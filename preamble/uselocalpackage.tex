@@ -1,0 +1,58 @@
+\RequirePackage{ifplatform}
+\makeatletter%
+\newcommand*{\uselocalpackage}[3][]%
+{%
+  \ifshellescape%
+    % Does specified file exist?
+    \IfFileExists{./#2#3.sty}%
+    {%
+      % Would copying it to the document
+      % directory overwrite an existing file?
+      \IfFileExists{./#3.sty}%
+      {%
+        \@latex@warning{Cannot load package `#3' from directory \MessageBreak
+                        #2\MessageBreak
+                        because file `#3.sty' exists in document directory.\MessageBreak
+                        Loading package `#3' from document directory \MessageBreak
+                        instead}%
+        \usepackage{#3}%
+      }{%
+        % Are we on windows?
+        \ifwindows%
+          % Locally make / an active character that replaces
+          % itself by \@backslashchar to get a Windows path.
+          \begingroup%
+            \catcode`/=13%
+            \begingroup%
+              \lccode`~=`/%
+            \lowercase{\endgroup\def~}{\@backslashchar}%
+            \edef\uselocalpackage@dir{\scantokens{#2\noexpand}}%
+            % Copy package to document directory
+            \immediate\write18{%
+              copy .\@backslashchar\uselocalpackage@dir#3.sty .\@backslashchar#3.sty%
+            }%
+          \endgroup%
+          % Use package and delete it afterwards
+          \usepackage[#1]{#3}%
+          \immediate\write18{del .\@backslashchar#3.sty}%
+        \else%
+          % We are on some kind of UNIX (hopefully?)
+          \immediate\write18{cp ./#2#3.sty ./#3.sty}%
+          \usepackage[#1]{#3}%
+          \immediate\write18{rm ./#3.sty}%
+        \fi%
+      }%
+    }{%
+      % Error message if file not found.
+      \@latex@error{File ./#2#3.sty not found}{}{}%
+    }%
+  \else%
+    % Raise error if \write18 is disabled. Other reasonable default
+    % behaviour at this point might be
+    %  * Copy using verbatimcopy package (no deletion possible though) or
+    %  * Load TeX distribution version of the package.
+    \@latex@error{Command \protect\uselocalpackage\space
+                  can only be used with \protect\write18 enabled}%
+  \fi%
+}%
+\makeatother%

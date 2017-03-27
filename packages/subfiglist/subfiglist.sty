@@ -1,0 +1,2819 @@
+\NeedsTeXFormat{LaTeX2e}[1994/12/01]
+\RequirePackage{expl3}[2014/06/10] % needs v5105 or newer
+\ProvidesExplPackage{subfiglist}{2015/03/22}{1.0}{labeled subfigures}
+
+\RequirePackage{l3sort}[2013/12/14]     % needs v4623 or newer
+\RequirePackage{l3keys2e}[2014/06/10]   % needs v5105 or newer
+\RequirePackage{xstring}[2013/10/13]    % needs v1.7c or newer
+\RequirePackage{xparse}[2014/06/10]     % needs v5105 or newer
+\RequirePackage{import}[2009/03/23]     % needs v5.1  or newer
+\RequirePackage{xcolor}[2007/01/21]     % needs v2.11 or newer
+\RequirePackage{graphicx}[2014/04/25]   % needs v1.0g or newer
+\RequirePackage{caption}[2013/05/02]    % needs v3.3  or newer
+\RequirePackage{caption3}[2013/05/01]   % needs v1.6  or newer
+\RequirePackage{subcaption}[2013/02/03] % needs v1.1  or newer
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Define package variables   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\dim_new:N  \subfiglist_total_width_dim
+\dim_new:N  \subfiglist_canvas_space_dim
+\dim_new:N  \subfiglist_canvas_height_dim
+\dim_new:N  \subfiglist_canvas_width_dim
+
+\dim_new:N  \subfiglist_canvas_top_dim
+\dim_new:N  \subfiglist_canvas_bot_dim
+\dim_new:N  \subfiglist_canvas_left_dim
+\dim_new:N  \subfiglist_canvas_right_dim
+
+\dim_new:N  \subfiglist_sub_block_line_hoff_dim
+\dim_new:N  \subfiglist_sub_block_line_voff_dim
+\dim_new:N  \subfiglist_sub_block_hoff_dim
+\dim_new:N  \subfiglist_sub_block_voff_dim
+
+\dim_new:N  \subfiglist_sum_hoff_dim
+\dim_new:N  \subfiglist_sum_voff_over_ratio_dim
+\dim_new:N  \subfilgist_newline_correction_dim
+\dim_new:N  \subfiglist_tempa_dim
+\dim_new:N  \subfiglist_tempb_dim
+
+\tl_new:N   \subfiglist_test_tl
+\tl_new:N   \subfiglist_head_tl
+\tl_new:N   \subfiglist_tail_tl
+
+\tl_new:N   \subfiglist_spec_tl
+\tl_new:N   \subfiglist_spec_nums_tl
+\tl_new:N   \subfiglist_spec_nums_sorted_tl
+
+\tl_new:N   \subfiglist_canvas_nums_tl
+\tl_new:N   \subfiglist_canvas_nums_sorted_tl
+\tl_new:N   \subfiglist_canvas_top_tl
+\tl_new:N   \subfiglist_canvas_bot_tl
+\tl_new:N   \subfiglist_canvas_left_tl
+\tl_new:N   \subfiglist_canvas_right_tl
+
+\tl_new:N   \subfiglist_file_nums_tl
+\tl_new:N   \subfiglist_file_names_tl
+
+\tl_new:N   \subfiglist_dummy_file_nums_tl
+\tl_new:N   \subfiglist_dummy_file_names_tl
+\tl_new:N   \subfiglist_dummy_file_frame_tl
+
+\tl_new:N   \subfiglist_dummy_nums_tl
+\tl_new:N   \subfiglist_dummy_ratio_tl
+\tl_new:N   \subfiglist_dummy_frame_tl
+
+\tl_new:N   \subfiglist_label_nums_tl
+\tl_new:N   \subfiglist_label_hooks_tl
+\tl_new:N   \subfiglist_label_hpos_tl
+\tl_new:N   \subfiglist_label_vpos_tl
+\tl_new:N   \subfiglist_label_hoff_tl
+\tl_new:N   \subfiglist_label_voff_tl
+\tl_new:N   \subfiglist_label_xshift_tl
+\tl_new:N   \subfiglist_label_yshift_tl
+\tl_new:N   \subfiglist_label_color_list_tl
+\tl_new:N   \subfiglist_label_background_list_tl
+
+\tl_new:N   \subfiglist_overlay_nums_tl
+\tl_new:N   \subfiglist_overlay_content_tl
+
+\tl_new:N   \subfiglist_objects_pos_tl
+\tl_new:N   \subfiglist_objects_hoff_tl
+\tl_new:N   \subfiglist_objects_voff_tl
+\tl_new:N   \subfiglist_objects_ratio_tl
+\tl_new:N   \subfiglist_objects_cs_tl
+\tl_new:N   \subfiglist_objects_opt_arg_nl_tl
+\tl_new:N   \subfiglist_objects_sub_blocks_tl
+\tl_new:N   \subfiglist_objects_width_tl
+
+\tl_new:N   \subfiglist_csname_tl
+
+\tl_new:N   \subfiglist_tempa_tl
+\tl_new:N   \subfiglist_tempb_tl
+
+\int_new:N  \subfiglist_exit_count_int
+\int_new:N  \subfiglist_canvas_int
+\int_new:N  \subfiglist_tl_if_eq_charcode_int
+\int_new:N  \subfiglist_keyval_choice_first_int
+\int_new:N  \subfiglist_tempa_int
+\int_new:N  \subfiglist_tempb_int
+
+\int_new:N  \subfiglist_label_hpos_int
+\int_new:N  \subfiglist_label_vpos_int
+\int_new:N  \subfiglist_label_hpos_default_int
+\int_new:N  \subfiglist_label_vpos_default_int
+
+\fp_new:N   \subfiglist_sub_block_line_ratio_fp
+\fp_new:N   \subfiglist_sub_block_ratio_fp
+\fp_new:N   \subfiglist_sum_ratio_over_ratio_fp
+
+\bool_new:N \subfiglist_after_char_at_bool
+\bool_new:N \subfiglist_after_char_br_bool
+\bool_new:N \subfiglist_after_char_nl_bool
+\bool_new:N \subfiglist_space_needed_bool
+\bool_new:N \subfiglist_first_bool
+\bool_new:N \subfiglist_hmode_bool
+\bool_new:N \subfiglist_tl_if_eq_charcode_bool
+\bool_new:N \subfiglist_temp_bool
+
+\newsavebox\subfiglist_box
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Define and initialize key-value pairs   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Keys as options for package loading
+\keys_define:nn { subfiglist }
+{
+  % Use caption package for generation of label?
+  caption.bool_set:N            = \subfiglist_use_caption_package_bool,
+  caption.default:n             = true,
+  
+  % Width of environment
+  environment-width.tl_set:N    = \subfiglist_env_width_default_tl,
+  environment-width.value_required:,
+  ew.meta:n                     = { environment-width = #1 },
+  ew.value_required:,
+  
+  % Space between canvases
+  environment-space.tl_set:N    = \subfiglist_env_space_default_tl,
+  environment-space.value_required:,
+  es.meta:n                     = { environment-space = #1 },
+  es.value_required:,
+  
+  % Space above canvas
+  canvas-top.tl_set:N           = \subfiglist_canvas_top_default_tl,
+  canvas-top.value_required:,
+  ct.meta:n                     = { canvas-top = #1 },
+  ct.value_required:,
+  
+  % Space below canvas
+  canvas-bottom.tl_set:N        = \subfiglist_canvas_bot_default_tl,
+  canvas-bottom.value_required:,
+  cb.meta:n                     = { canvas-bottom = #1 },
+  cb.value_required:,
+  
+  % Space left of canvas
+  canvas-left.tl_set:N          = \subfiglist_canvas_left_default_tl,
+  canvas-left.value_required:,
+  cl.meta:n                     = { canvas-left = #1 },
+  cl.value_required:,
+  
+  % Space right of canvas
+  canvas-right.tl_set:N         = \subfiglist_canvas_right_default_tl,
+  canvas-right.value_required:,
+  cr.meta:n                     = { canvas-right = #1 },
+  cr.value_required:,
+  
+  % Horizontal positioning of label (left, center, right)
+  label-hpos.choice:,
+  label-hpos.choice_code:n      = 
+    { \int_set_eq:NN \subfiglist_label_hpos_default_int \l_keys_choice_int },
+  label-hpos.generate_choices:n = { l, c, r },
+  label-hpos.value_required:,
+  lh.choice:,
+  lh.choice_code:n              =
+    { \int_set_eq:NN \subfiglist_label_hpos_default_int \l_keys_choice_int },
+  lh.generate_choices:n         = { l, c, r },
+  lh.value_required:,
+  
+  % Vertical positioning of label (top, center, bottom)
+  label-vpos.choice:,
+  label-vpos.choice_code:n      =
+    { \int_set_eq:NN \subfiglist_label_vpos_default_int \l_keys_choice_int },
+  label-vpos.generate_choices:n = { t, c, b },
+  label-vpos.value_required:,
+  lv.choice:,
+  lv.choice_code:n              =
+    { \int_set_eq:NN \subfiglist_label_vpos_default_int \l_keys_choice_int },
+  lv.generate_choices:n         = { t, c, b },
+  lv.value_required:,
+  
+  % Horizontal shift of label
+  label-xshift.tl_set:N         = \subfiglist_label_xshift_default_tl,
+  label-xshift.value_required:,
+  lx.meta:n                     = { label-xshift = #1 },
+  lx.value_required:,
+  
+  % Vertical shift of label
+  label-yshift.tl_set:N         = \subfiglist_label_yshift_default_tl,
+  label-yshift.value_required:,
+  ly.meta:n                     = { label-yshift = #1 },
+  ly.value_required:,
+  
+  % Label color
+  label-color.tl_set:N          = \subfiglist_label_color_default_tl,
+  label-color.value_required:,
+  label-colour.meta:n           = { label-color = #1 },
+  label-colour.value_required:,
+  lc.meta:n                     = { label-color = #1 },
+  lc.value_required:,
+  
+  % Label background
+  label-background.tl_set:N     = \subfiglist_label_background_default_tl,
+  label-background.value_required:,
+  lb.meta:n                     = { label-background = #1 },
+  lb.value_required:
+}
+
+% Initialize and set keys
+\keys_set:nn { subfiglist }
+{
+  caption           = true,
+  environment-width = \textwidth,
+  environment-space = 1ex,
+  canvas-top        = 0pt,
+  canvas-bottom     = 0pt,
+  canvas-left       = 0pt,
+  canvas-right      = 0pt,
+  label-hpos        = l,
+  label-vpos        = t,
+  label-xshift      = 0.5ex,
+  label-yshift      = 0.5ex,
+  label-color       = .,
+  label-background  = none
+}
+\ProcessKeysOptions { subfiglist }
+
+% Command for explicit manipulation of keys
+\NewDocumentCommand \subfiglistset { m }
+{
+  \keys_set:nn { subfiglist } { #1 }
+}
+
+% Key to find out what number the number of the first choice
+% in a key set is. Documentation and current implementation
+% differ, so better let's check.
+\keys_define:nn { subfiglisttest }
+{
+  test.choice:,
+  test.choice_code:n      =
+    { \int_gset_eq:NN \subfiglist_keyval_choice_first_int \l_keys_choice_int },
+  test.generate_choices:n = { first, second },
+  test.value_required:
+}
+\keys_set:nn { subfiglisttest } { test = first }
+
+\AtBeginDocument
+{
+  % Disable option that decides whether to use caption package
+  \keys_define:nn { subfiglist }
+  {
+    caption.code:n = { \msg_error:nn { subfiglist } { option~invalid } }
+  }
+  
+  % Derive command to put label inset from caption package
+  % code, if subfiglist package is loaded with caption option.
+  \bool_if:NT \subfiglist_use_caption_package_bool
+  {
+    \cs_new:Npn \subfiglist_label_inset_caption_package:n #1
+    %
+    % #1: Text color
+    %
+    {
+  	  % Step subcaption counter
+      \caption@@@refstepcounter\@subcaptype
+      % Setup label anchor
+      \caption@prepareanchor\@subcaptype{}
+      \memcaptioninfo\@subcaptype{\csname the\@subcaptype\endcsname}{}{}
+      \@nameuse{nag@hascaptiontrue}
+      % Begin caption
+      \caption@beginex\@subcaptype{}{}
+      \caption@setfloatcapt{\caption@boxrestore\caption@normalsize}
+      % Add contentsline
+      \caption@setfnum\@subcaptype
+      \caption@addcontentsline\@subcaptype{}
+      % Print actual label with formatting but without
+      % usual spacing needed in a figure environment.
+      \caption@setfloatcapt{\caption@boxrestore\caption@normalsize}
+      \caption@@@make{\color{#1}\csname fnum@\@subcaptype\endcsname}
+        {\ignorespaces\caption@makeanchor{}}
+      % End caption
+      \caption@end
+    }
+  }
+  
+  % Keys for subfiglist environment
+  \keys_define:nn { subfiglistenv }
+  {
+    % Width of environment
+    width.dim_set:N = \subfiglist_total_width_dim,
+    width.value_required:,
+    w.meta:n        = { width = #1 },
+    w.value_required:,
+  
+    % Space between images
+    space.dim_set:N = \subfiglist_canvas_space_dim,
+    space.value_required:,
+    s.meta:n       = { space = #1 },
+    s.value_required:,  
+
+    % Error catching
+    unknown.code:n   =
+    {
+      \msg_error:nnxn { subfiglist } { option~unknown }
+        { \l_keys_key_tl } { environment~subfiglist }
+    }
+  }
+
+  % Keys for macros \subfiglistfile, \subfiglistdummy and \subfiglistdummyfile
+  \keys_define:nn { subfiglistcanvas }
+  {
+    % Space above canvas
+    top.dim_set:N    = \subfiglist_canvas_top_dim,
+    top.value_required:,
+    t.meta:n         = { top = #1 },
+    t.value_required:,
+    
+    % Space below canvas
+    bottom.dim_set:N = \subfiglist_canvas_bot_dim,
+    bottom.value_required:,
+    b.meta:n         = { bottom = #1 },
+    b.value_required:,
+    
+    % Space left of canvas
+    left.dim_set:N   = \subfiglist_canvas_left_dim,
+    left.value_required:,
+    l.meta:n         = { left = #1 },
+    l.value_required:,
+    
+    % Space right of canvas
+    right.dim_set:N  = \subfiglist_canvas_right_dim,
+    right.value_required:,
+    r.meta:n         = { right = #1 },
+    r.value_required:,
+    
+    % Error catching
+    unknown.code:n   =
+    {
+      \msg_error:nnxx { subfiglist } { option~unknown }
+        { \l_keys_key_tl } { command~\subfiglist_csname_tl }
+    }
+  }
+  
+  % Keys for command \subfiglistlabel
+  \keys_define:nn { subfiglistlabel }
+  {
+    % Horizontal positioning (left, center, right)
+    hpos.choice:,
+    hpos.choice_code:x      =
+      { \int_set_eq:NN \subfiglist_label_hpos_int \l_keys_choice_int },
+    hpos.generate_choices:n = { l, c, r },
+    hpos.value_required:,
+    h.choice:,
+    h.choice_code:n         =
+      { \int_set_eq:NN \subfiglist_label_hpos_int \l_keys_choice_int },
+    h.generate_choices:n    = { l, c, r },
+    h.value_required:,
+    
+    % Vertical positioning (top, center, bottom)
+    vpos.choice:,
+    vpos.choice_code:n      =
+      { \int_set_eq:NN \subfiglist_label_vpos_int \l_keys_choice_int },
+    vpos.generate_choices:n = { t, c, b },
+    vpos.value_required:,
+    v.choice:,
+    v.choice_code:n         =
+      { \int_set_eq:NN \subfiglist_label_vpos_int \l_keys_choice_int },
+    v.generate_choices:n    = { t, c, b },
+    v.value_required:,
+    
+    % Horizontal shift
+    xshift.dim_set:N        = \subfiglist_label_xshift_dim,
+    xshift.value_required:,
+    x.meta:n                = { xshift = #1 },
+    x.value_required:,
+    
+    % Vertical shift
+    yshift.dim_set:N        = \subfiglist_label_yshift_dim,
+    yshift.value_required:,
+    y.meta:n                = { yshift = #1 },
+    y.value_required:,
+    
+    % Color
+    color.tl_set:N          = \subfiglist_label_color_tl,
+    color.value_required:,
+    colour.meta:n           = { color = #1 },
+    colour.value_required:,
+    c.meta:n                = { color = #1 },
+    c.value_required:,
+    
+    % Background
+    background.tl_set:N     = \subfiglist_label_background_tl,
+    background.value_required:,
+    b.meta:n                = { background = #1 },
+    b.value_required:,
+    
+    % Error catching
+    unknown.code:n          =
+    {
+      \msg_error:nnxn { subfiglist } { option~unknown }
+        { \l_keys_key_tl } { command~\subfiglist_csname_tl }
+    }
+  }
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Define messages   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\msg_new:nnn { subfiglist } { parser-error }
+  { Error~while~parsing~the~argument~of~`subfiglist'~environment:~#1 }
+
+\msg_new:nnn { subfiglist } { missing~identifier }
+  { Canvas~no.~#1~missing~in~argument~of~`subfiglist'~environment. }
+
+\msg_new:nnn { subfiglist } { missing~canvas }
+  { Canvas~no.~#1~missing~in~body~of~`subfiglist'~environment. }
+
+\msg_new:nnn { subfiglist } { double~identifier }
+  { Canvas~no.~#1~appears~twice~in~argument~of~`subfiglist'~environment. }
+
+\msg_new:nnn { subfiglist } { double~canvas }
+  { Canvas~no.~#1~appears~twice~in~body~of~`subfiglist'~environment. }
+
+\msg_new:nnn { subfiglist } { number-mismatch }
+{
+  Number~of~specified~identifiers~and~number~of~specified~canvases~disagree.~
+  Maybe~you~forgot~one~canvas~number~or~specified~it~twice?
+}
+  
+\msg_new:nnn { subfiglist } { unexpected~command }
+  { Unexpected~command~#1.~Command~#1~needs~to~be~used~within~`subfiglist'~environment. }
+
+\msg_new:nnn { subfiglist } { missing~number }
+  { #1~argument~of~command~#2~needs~to~be~an~integer. }
+
+\msg_new:nnn { subfiglist } { missing~float }
+  { #1~argument~of~command~#2~needs~to~be~a~floating~point~expression. }
+
+\msg_new:nnn { subfiglist } { argument~out~of~range }
+  { Number~of~selected~canvas~(#1)~is~greater~than~total~number~(#2)~of~canvases. }
+
+\msg_new:nnn { subfiglist } { wrong~image~order }
+{
+  Package~subfiglist~Warning:~
+  The~image~numbers~in~the~subfiglist~specification~are~given~in~non-ascending~order.
+}
+
+\msg_new:nnn { subfiglist } { mismatching~image~order }
+{
+  Package~subfiglist~Warning:~
+  The~files~are~given~in~a~different~order~than~the~image~numbers~
+  in~the~subfiglist~specification.
+}
+
+\msg_new:nnn { subfiglist } { option~unknown }
+  { Key~`#1'~in~optional~argument~of~#2~unknown. }
+
+\msg_new:nnn { subfiglist } { option~invalid }
+  { Option~`caption'~invalid~after~\@backslashchar begin{document}. }
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Generate variants of some commands   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cs_generate_variant:Nn \dim_set:Nn  { Nx }
+\cs_generate_variant:Nn \dim_add:Nn  { Nx }
+\cs_generate_variant:Nn \dim_sub:Nn  { Nx }
+\cs_generate_variant:Nn \fp_set:Nn   { Nx }
+\cs_generate_variant:Nn \fp_add:Nn   { Nx }
+\cs_generate_variant:Nn \fp_sub:Nn   { Nx }
+\cs_generate_variant:Nn \bool_set:Nn { Nx }
+\cs_generate_variant:Nn \token_if_eq_charcode_p:NN { Nf }
+\cs_generate_variant:Nn \token_if_eq_charcode_p:NN { fN }
+\cs_generate_variant:Nn \token_if_eq_charcode_p:NN { ff }
+\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { Nf }
+\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { fN }
+\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { ff }
+\cs_generate_variant:Nn \token_if_eq_charcode:NNT  { Nf }
+\cs_generate_variant:Nn \token_if_eq_charcode:NNT  { fN }
+\cs_generate_variant:Nn \token_if_eq_charcode:NNT  { ff }
+\cs_generate_variant:Nn \token_if_eq_charcode:NNF  { Nf }
+\cs_generate_variant:Nn \token_if_eq_charcode:NNF  { fN }
+\cs_generate_variant:Nn \token_if_eq_charcode:NNF  { ff }
+\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { Nx }
+\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { xN }
+\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { xx }
+\cs_generate_variant:Nn \token_if_eq_charcode:NNT  { Nx }
+\cs_generate_variant:Nn \token_if_eq_charcode:NNT  { xN }
+\cs_generate_variant:Nn \token_if_eq_charcode:NNT  { xx }
+\cs_generate_variant:Nn \token_if_eq_charcode:NNF  { Nx }
+\cs_generate_variant:Nn \token_if_eq_charcode:NNF  { xN }
+\cs_generate_variant:Nn \token_if_eq_charcode:NNF  { xx }
+\cs_generate_variant:Nn \msg_error:nnnn { nnnx }
+\cs_generate_variant:Nn \msg_error:nnnn { nnxn }
+\cs_generate_variant:Nn \msg_error:nnnn { nnxx }
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Helper functions   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+  
+% Provide framework for exporting group scope local variables according to discussion
+% at https://tex.stackexchange.com/questions/56294/how-do-i-get-a-value-out-of-a-group
+\cs_if_free:NT \group_insert_after:N
+{
+  \cs_set_eq:NN \group_insert_after:N \group_execute_after:N
+}
+
+\cs_generate_variant:Nn \tl_if_empty:nT {v}
+\cs_generate_variant:Nn \group_insert_after:N {c}
+
+\cs_new:Nn \subfiglist_group_after_insert:nn
+{ 
+  \cs_if_exist:cF { g_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
+  {
+    \tl_new:c { g_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
+  }
+
+  % First time the function is executed inside the group:
+  \tl_if_empty:vT { g_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
+  {
+    % Set up the aftergroup execution:
+    \group_insert_after:c  { g_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
+
+    % Reset the material for aftergroup execution:
+    \tl_gset:cx { g_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
+    {
+      \tl_gclear:c { g_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
+    }
+  }
+
+  % Append the new material to the aftergroup execution:
+  \tl_gput_right:cx  { g_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
+  {
+    \exp_not:n { #1 {#2} }
+  }
+}
+
+\cs_generate_variant:Nn \subfiglist_group_after_insert:nn {nV}
+
+\cs_new:Npn \subfiglist_group_var_return:NN #1 #2
+{
+  \subfiglist_group_after_insert:nV { #1 #2 } { #2 } 
+}
+
+
+% Test whether token is a digit.
+\prg_new_conditional:Npnn \subfiglist_is_digit:N #1 { p, T, F, TF }
+%
+% #1: Token
+%
+{
+  \bool_if:nTF
+  {
+    \token_if_eq_charcode_p:NN 0 #1 ||
+    \token_if_eq_charcode_p:NN 1 #1 ||
+    \token_if_eq_charcode_p:NN 2 #1 ||
+    \token_if_eq_charcode_p:NN 3 #1 ||
+    \token_if_eq_charcode_p:NN 4 #1 ||
+    \token_if_eq_charcode_p:NN 5 #1 ||
+    \token_if_eq_charcode_p:NN 6 #1 ||
+    \token_if_eq_charcode_p:NN 7 #1 ||
+    \token_if_eq_charcode_p:NN 8 #1 ||
+    \token_if_eq_charcode_p:NN 9 #1
+  }{
+    \prg_return_true:
+  }{
+    \prg_return_false:
+  }
+}
+
+\cs_generate_variant:Nn \subfiglist_is_digit_p:N { f }
+\cs_generate_variant:Nn \subfiglist_is_digit:NT  { f }
+\cs_generate_variant:Nn \subfiglist_is_digit:NF  { f }
+\cs_generate_variant:Nn \subfiglist_is_digit:NTF { f }
+
+% Test whether token list is an integer or empty
+\prg_new_conditional:Npnn \subfiglist_is_integer_or_empty:n #1 { p, T, F, TF }
+%
+% #1: Token list
+%
+{
+  \tl_if_empty:nTF { #1 }
+  {
+    % We are done if the token list is empty
+    \prg_return_true:
+  }{
+    % Check whether first token is digit
+    \subfiglist_is_digit:fTF { \tl_head:n { #1 } }
+    {
+      % Check remaining tokens if true
+      \subfiglist_is_integer_or_empty:fTF { \tl_tail:n { #1 } }
+      {
+        \prg_return_true:
+      }{
+        \prg_return_false:
+      }
+    }{
+      % Return false otherwise
+      \prg_return_false:
+    }
+  }
+}
+
+\cs_generate_variant:Nn \subfiglist_is_integer_or_empty_p:n { f }
+\cs_generate_variant:Nn \subfiglist_is_integer_or_empty:nT  { f }
+\cs_generate_variant:Nn \subfiglist_is_integer_or_empty:nF  { f }
+\cs_generate_variant:Nn \subfiglist_is_integer_or_empty:nTF { f }
+
+% Test whether token list is an integer
+\prg_new_conditional:Npnn \subfiglist_is_integer:n #1 { p, T, F, TF }
+%
+% #1: Token list
+%
+{
+  \bool_if:nTF { !\tl_if_empty_p:n { #1 } && \subfiglist_is_integer_or_empty_p:n { #1 } }
+  {
+    \prg_return_true:
+  }{
+    \prg_return_false:
+  }
+}
+
+\cs_generate_variant:Nn \subfiglist_is_integer_p:n { f }
+\cs_generate_variant:Nn \subfiglist_is_integer:nT  { f }
+\cs_generate_variant:Nn \subfiglist_is_integer:nF  { f }
+\cs_generate_variant:Nn \subfiglist_is_integer:nTF { f }
+\cs_generate_variant:Nn \subfiglist_is_integer:nT  { x }
+\cs_generate_variant:Nn \subfiglist_is_integer:nF  { x }
+\cs_generate_variant:Nn \subfiglist_is_integer:nTF { x }
+
+% Test whether token list is a float or empty
+\prg_new_conditional:Npnn \subfiglist_is_float_or_empty:n #1 { p, T, F, TF }
+%
+% #1: Token
+%
+{
+  \tl_if_empty:nTF { #1 }
+  {
+    % We are done if the token list is empty
+    \prg_return_true:
+  }{
+    % Check whether first token is digit
+    \subfiglist_is_digit:fTF { \tl_head:n { #1 } }
+    {
+      % Check remaining tokens, if true
+      \subfiglist_is_float_or_empty:fTF { \tl_tail:n { #1 } }
+      {
+        \prg_return_true:
+      }{
+        \prg_return_false:
+      }
+    }{
+      % Check for decimal separator otherwise
+      \token_if_eq_charcode:NfTF . { \tl_head:n { #1 } }
+      {
+        % Check if trailing end is an integer, if true
+        \subfiglist_is_integer:fTF { \tl_tail:n { #1 } }
+        {
+          \prg_return_true:
+        }{
+          \prg_return_false:
+        }
+      }{
+        % Return false otherwise
+        \prg_return_false:
+      }
+    }
+  }
+}
+
+\cs_generate_variant:Nn \subfiglist_is_float_or_empty_p:n { f }
+\cs_generate_variant:Nn \subfiglist_is_float_or_empty:nT  { f }
+\cs_generate_variant:Nn \subfiglist_is_float_or_empty:nF  { f }
+\cs_generate_variant:Nn \subfiglist_is_float_or_empty:nTF { f }
+
+% Test whether token list is a float
+\prg_new_conditional:Npnn \subfiglist_is_float:n #1 { p, T, F, TF }
+%
+% #1: Token list
+%
+{
+  \bool_if:nTF { !\tl_if_empty_p:n { #1 } && \subfiglist_is_float_or_empty_p:n { #1 } }
+  {
+    \prg_return_true:
+  }{
+    \prg_return_false:
+  }
+}
+
+\cs_generate_variant:Nn \subfiglist_is_float:nT  { x }
+\cs_generate_variant:Nn \subfiglist_is_float:nF  { x }
+\cs_generate_variant:Nn \subfiglist_is_float:nTF { x }
+
+
+% Test whether token lists have equal charcodes
+\prg_new_conditional:Npnn \subfiglist_tl_if_eq_charcode:nn #1 #2 { p, T, F, TF }
+%
+% #1: Token list one
+% #2: Token list two
+%
+{
+  \group_begin:
+  
+  % Do token lists have same lengths?
+  \int_compare:nTF { \tl_count:n {#1} = \tl_count:n {#2} }
+  {
+    % Loop over token lists to check for different tokens
+    \int_zero:N \subfiglist_tl_if_eq_charcode_int
+    \bool_set_true:N \subfiglist_tl_if_eq_charcode_bool
+    \tl_map_inline:nn { #1 }
+    {
+      \int_incr:N \subfiglist_tl_if_eq_charcode_int
+      
+      % Do current tokens have equal meaning?
+      \token_if_eq_charcode:xxF 
+      { \tl_item:nn { #1 } { \subfiglist_tl_if_eq_charcode_int } }
+      { \tl_item:nn { #2 } { \subfiglist_tl_if_eq_charcode_int } }
+      {
+        \bool_set_false:N \subfiglist_tl_if_eq_charcode_bool
+        \tl_map_break:
+      }
+    }
+    
+    % Have different tokens been found?
+    \bool_if:NTF \subfiglist_tl_if_eq_charcode_bool
+    {
+      \group_end:
+      \prg_return_true:
+    }{
+      \group_end:
+      \prg_return_false:
+    }
+  }{
+    \group_end:
+    \prg_return_false:
+  }
+}
+
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode_p:nn { nx }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode_p:nn { xn }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode_p:nn { xx }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnT  { nx }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnT  { xn }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnT  { xx }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnF  { nx }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnF  { xn }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnF  { xx }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnTF { nx }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnTF { xn }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnTF { xx }
+
+
+% Store specified number of heading tokens in varible \subfiglist_head_tl
+\cs_new:Npn \subfiglist_tl_head:nn #1 #2
+%
+% #1: Token list
+% #2: Number of heading tokens
+%
+{
+  \tl_set:Nn \subfiglist_head_tl { #1 }
+  \tl_reverse:N \subfiglist_head_tl
+ 
+  \int_until_do:nn { #2 >= \tl_count:N \subfiglist_head_tl }
+  {
+    \tl_set:Nx \subfiglist_head_tl { \tl_tail:N \subfiglist_head_tl }
+  }
+  
+  \tl_reverse:N \subfiglist_head_tl
+}
+
+\cs_new:Npn \subfiglist_tl_head:Nn #1 #2
+{
+  \tl_set_eq:NN \subfiglist_head_tl #1
+  \tl_reverse:N \subfiglist_head_tl
+ 
+  \int_until_do:nn { #2 >= \tl_count:N \subfiglist_head_tl }
+  {
+    \tl_set:Nx \subfiglist_head_tl { \tl_tail:N \subfiglist_head_tl }
+  }
+  
+  \tl_reverse:N \subfiglist_head_tl
+}
+
+
+% Store specified number of trailing tokens in varible \subfiglist_tail_tl
+\cs_new:Npn \subfiglist_tl_tail:nn #1 #2
+%
+% #1: Token list
+% #2: Number of trailing tokens
+%
+{
+  \tl_set:Nn \subfiglist_tail_tl { #1 }
+ 
+  \int_until_do:nn { #2 >= \tl_count:N \subfiglist_tail_tl }
+  {
+    \tl_set:Nx \subfiglist_tail_tl { \tl_tail:N \subfiglist_tail_tl }
+  }
+}
+
+\cs_new:Npn \subfiglist_tl_tail:Nn #1 #2
+{
+  \tl_set_eq:NN \subfiglist_tail_tl #1
+ 
+  \int_until_do:nn { #2 >= \tl_count:N \subfiglist_tail_tl }
+  {
+    \tl_set:Nx \subfiglist_tail_tl { \tl_tail:N \subfiglist_tail_tl }
+  }
+}
+
+
+% Replace item at specified index in token list
+\cs_new:Npn \subfiglist_tl_replace_item:Nnn #1 #2 #3
+%
+% #1: Token list
+% #2: Replacement token (list)
+% #3: Index for replacement
+%
+{
+  \group_begin:
+  \subfiglist_tl_head:Nn #1 { (#3) - 1 }
+  \subfiglist_tl_tail:Nn #1 { \tl_count:N #1 - (#3) }
+  \tl_set:Nn \subfiglist_tempa_tl { #2 }
+  
+  \tl_concat:NNN #1 \subfiglist_head_tl \subfiglist_tempa_tl
+  \tl_concat:NNN #1 #1 \subfiglist_tail_tl
+  \subfiglist_group_var_return:NN \tl_set:Nn #1
+  \group_end:
+}
+
+\cs_generate_variant:Nn \subfiglist_tl_replace_item:Nnn { Nx }
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Package code   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+  
+% Initialize \subfiglist_put_space: to empty control sequence
+\cs_new:Npn \subfiglist_put_space: {}
+
+
+% Command for loading a bitmap image.
+\cs_new:Npn \subfiglist_load_img:nn #1 #2
+%
+% #1: file path
+% #2: image width
+%
+{
+  % Has natural width been requested?
+  \subfiglist_tl_if_eq_charcode:nnTF { #2 } { ! }
+  {
+    % Load with natural width
+    \includegraphics { #1 }
+  }{
+    % Load with natural width and scale to desired width.
+    % This is a workaround to an apparent bug of \includegraphics,
+    % which slightly changes the aspect ratio of an image that
+    % is loaded with a specific width.
+    \setbox \subfiglist_box \hbox { \includegraphics { #1 } }
+    \dim_set:Nn \subfiglist_tempa_dim { \wd\subfiglist_box }
+    \scalebox { \fp_eval:n { #2 / \subfiglist_tempa_dim } } { \usebox\subfiglist_box }
+  }
+}
+
+% Command for loading an SVG image split into PDF and text.
+\cs_new:Npn \subfiglist_load_svg:nn #1 #2
+%
+% #1: file path
+% #2: image width
+%
+{
+  \begin{subfiglistsvgenv}
+    % Set width of SVG image
+    \subfiglist_tl_if_eq_charcode:nnF { #2 } { ! }
+      { \cs_gset:Npn \svgwidth { #2 } }
+    
+    % Split path into directory and file
+    \StrCount{#1}{/}[\subfiglist_file_number_of_slashes_int]
+    
+    % Subdirectory or not?
+    \int_compare:nTF { \subfiglist_file_number_of_slashes_int = 0 }
+    {
+      \input { #1 }
+    }{
+      \StrBefore[\subfiglist_file_number_of_slashes_int]{#1}{/}[\subfiglist_file_svg_path]
+      \StrBehind[\subfiglist_file_number_of_slashes_int]{#1}{/}[\subfiglist_file_svg_file]
+      \import{\subfiglist_file_svg_path/}{\subfiglist_file_svg_file}
+    }
+  \end{subfiglistsvgenv}
+}
+
+%Command for loading an SVG or bitmap image
+\cs_new:Npn \subfiglist_load:nn #1 #2
+%
+% #1: file path
+% #2: image width
+%
+{
+  % Determine file extension.
+  % Count number of dots in file name string.
+  \StrCount{#1}{.}[\subfiglist_file_number_of_dots_int]
+  % Split off extension, i.e. string part behind last dot.
+  \StrBehind[\subfiglist_file_number_of_dots_int]
+    {#1}{.}[\subfiglist_file_extension_str]
+  % Set command to load images depending on file extension.
+  \IfEq*{\subfiglist_file_extension_str}{pdf_tex}
+  {
+    \subfiglist_load_svg:nn { #1 } { #2 }
+  }{
+    \subfiglist_load_img:nn { #1 } { #2 }
+  }
+}
+
+\cs_generate_variant:Nn \subfiglist_load:nn { nx }
+\cs_generate_variant:Nn \subfiglist_load:nn { xn }
+\cs_generate_variant:Nn \subfiglist_load:nn { xx }
+
+
+% Define command for label inset
+\cs_new:Npn \subfiglist_label_inset:nnn #1 #2 #3
+%
+% #1: index to address current label
+% #2: image width
+% #3: image height
+%
+{
+  \group_begin:
+  
+  % Don't reqire any horizontal space
+  \rlap
+  {
+    % Create minipage of exact image size
+    \begin { minipage } [ b ] [ #3 ] [ t ] { #2 }
+      % Iterate over all three possible choices for vertical positioning
+      \int_step_inline:nnnn { \subfiglist_keyval_choice_first_int } { 1 }
+        { \subfiglist_keyval_choice_first_int + 2 }
+      {
+        \strut
+        % Is current choice for vertical positioning the selected one?
+        \int_compare:nTF { ##1 = \tl_item:Nn \subfiglist_label_vpos_tl { #1 } }
+        {
+          \strut
+          % Iterate over all three possible choices for horizontal positioning
+          \int_step_inline:nnnn { \subfiglist_keyval_choice_first_int } { 1 }
+            { \subfiglist_keyval_choice_first_int + 2 }
+          {
+            % Is current choce for horizontal positioning the selected one?
+            \int_compare:nTF { ####1 = \tl_item:Nn \subfiglist_label_hpos_tl { #1 } }
+            {
+              % Don't reqire any horizontal space for label
+              \makebox [ 0pt ] [ l ]
+              {
+                % Additional horizontal shift
+                \hspace{ \tl_item:Nn \subfiglist_label_xshift_tl { #1 } }
+                % Choose left, center or right alignment for label
+                \makebox [ 0pt ]
+                [
+                  \tl_item:nn { lcr }
+                  {
+                     \tl_item:Nn \subfiglist_label_hpos_tl { #1 }
+                     - \subfiglist_keyval_choice_first_int + 1
+                   }
+                ]
+                {
+                  % Additional vertical shift
+                  \dim_set:Nx \subfiglist_tempa_dim
+                    { \tl_item:Nn \subfiglist_label_yshift_tl { #1 } }
+                  \raisebox { -\subfiglist_tempa_dim } [ \ht\strutbox ] [ 0pt ]
+                  {
+                    % Decide whether label has to be put inside a colorbox or not
+                    \subfiglist_tl_if_eq_charcode:xnTF
+                      { \tl_item:Nn \subfiglist_label_background_list_tl { #1 } } { none }
+                      % Either delete next token or use it as argument of \colorbox
+                      \use_none:n \colorbox
+                        { \tl_item:Nn \subfiglist_label_background_list_tl { #1 } }
+                    {
+                      % Use caption package for putting label?
+                      \bool_if:NTF \subfiglist_use_caption_package_bool
+                      {
+                        \subfiglist_label_inset_caption_package:n
+                          { \tl_item:Nn \subfiglist_label_color_list_tl { #1 } }
+                        % Put hook for label
+                        \rlap{ \tl_item:Nn \subfiglist_label_hooks_tl { #1 } }
+                      }{
+                        \hbox
+                        {
+                          \refstepcounter { subfigure }
+                          \color { \tl_item:Nn \subfiglist_label_color_list_tl { #1 } }
+                          \subfiglistlabelformat
+                          % Put hook for label
+                          \rlap{ \tl_item:Nn \subfiglist_label_hooks_tl { #1 } }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }{
+              % Put \hfills for horizontal positioning of label
+              \hfill
+            }
+          }
+        }{
+          % Put \vfills for vertical positioning of label
+          \vfill
+        }
+        \strut
+      }
+    \end { minipage }
+  }
+    
+  \group_end:
+}
+
+
+% Define command for overlay
+\cs_new:Npn \subfiglist_overlay:nnn #1 #2 #3
+%
+% #1: index to address current overlay
+% #2: image width
+% #3: image height
+%
+{
+  % Don't require any horizontal space
+  \rlap
+  {
+    \begin { subfiglistoverlayenv } { #2 } { #3 }
+      % Put content of overlay
+      \tl_item:Nn \subfiglist_overlay_content_tl { #1 }
+    \end { subfiglistoverlayenv }
+  }
+}
+
+
+% Output specified file
+\cs_new:Npn \subfiglist_put_file:nnn #1 #2 #3
+%
+% #1: file number
+% #2: image width
+% #3: image height
+%
+{
+  \subfiglist_load:xx { \tl_item:Nn \subfiglist_file_names_tl { #1 } } { #2 }
+}
+
+\cs_generate_variant:Nn \subfiglist_put_file:nnn { nnx }
+\cs_generate_variant:Nn \subfiglist_put_file:nnn { nxn }
+\cs_generate_variant:Nn \subfiglist_put_file:nnn { nxx }
+\cs_generate_variant:Nn \subfiglist_put_file:nnn { xnn }
+\cs_generate_variant:Nn \subfiglist_put_file:nnn { xnx }
+\cs_generate_variant:Nn \subfiglist_put_file:nnn { xxn }
+\cs_generate_variant:Nn \subfiglist_put_file:nnn { xxx }
+
+% Output specified dummy file
+\cs_new:Npn \subfiglist_put_dummy_file:nnn #1 #2 #3
+%
+% #1: dummy file number
+% #2: image width
+% #3: image height
+%
+{
+  \group_begin:
+  
+  % Has a frame been requested?
+  \bool_set:Nx \subfiglist_temp_bool
+    { \tl_item:Nn \subfiglist_dummy_file_frame_tl { #1 } }
+  
+  % Put minipage with size of dummy file
+  \begin { minipage } [ b ] [ #3 ] [ c ] { #2 }
+    \mbox
+    {
+      % Put frame if necessary
+      \bool_if:NT \subfiglist_temp_bool
+      {
+        % Calculate frame width
+        \dim_set:Nn \subfiglist_tempa_dim { #2 }
+        \dim_sub:Nn \subfiglist_tempa_dim { 2 \fboxrule }
+        \dim_sub:Nn \subfiglist_tempa_dim { 2 \fboxsep }
+        % Calculate frame height
+        \dim_set:Nn \subfiglist_tempb_dim { #3 }
+        \dim_sub:Nn \subfiglist_tempb_dim { 2 \fboxrule }
+        \dim_sub:Nn \subfiglist_tempb_dim { 2 \fboxsep }
+        % Put frame box
+        \fbox
+        {
+          \begin { minipage } [ c ] [ \subfiglist_tempb_dim ] { \subfiglist_tempa_dim }
+            \mbox{}
+          \end { minipage }
+        }
+      }
+    }
+  \end { minipage }
+  
+  \group_end:
+}
+
+\cs_generate_variant:Nn \subfiglist_put_dummy_file:nnn { nnx }
+\cs_generate_variant:Nn \subfiglist_put_dummy_file:nnn { nxn }
+\cs_generate_variant:Nn \subfiglist_put_dummy_file:nnn { nxx }
+\cs_generate_variant:Nn \subfiglist_put_dummy_file:nnn { xnn }
+\cs_generate_variant:Nn \subfiglist_put_dummy_file:nnn { xnx }
+\cs_generate_variant:Nn \subfiglist_put_dummy_file:nnn { xxn }
+\cs_generate_variant:Nn \subfiglist_put_dummy_file:nnn { xxx }
+
+% Output specified dummy
+\cs_new:Npn \subfiglist_put_dummy:nnn #1 #2 #3
+%
+% #1: dummy number
+% #2: image width
+% #3: image height
+%
+{
+  \group_begin:
+  
+  % Has a frame been requested?
+  \bool_set:Nx \subfiglist_temp_bool
+    { \tl_item:Nn \subfiglist_dummy_frame_tl { #1 } }
+  
+  % Put minipage with size of dummy
+  \begin { minipage } [ b ] [ #3 ] [ c ] { #2 }
+    \mbox
+    {
+      % Put frame if necessary
+      \bool_if:NT \subfiglist_temp_bool
+      {
+        % Calculate frame width
+        \dim_set:Nn \subfiglist_tempa_dim { #2 }
+        \dim_sub:Nn \subfiglist_tempa_dim { 2 \fboxrule }
+        \dim_sub:Nn \subfiglist_tempa_dim { 2 \fboxsep }
+        % Calculate frame height
+        \dim_set:Nn \subfiglist_tempb_dim { #3 }
+        \dim_sub:Nn \subfiglist_tempb_dim { 2 \fboxrule }
+        \dim_sub:Nn \subfiglist_tempb_dim { 2 \fboxsep }
+        % Put frame box
+        \fbox
+        {
+          \begin { minipage } [ c ] [ \subfiglist_tempb_dim ] { \subfiglist_tempa_dim }
+            \mbox{}
+          \end { minipage }
+        }
+      }
+    }
+  \end { minipage }
+  
+  \group_end:
+}
+
+\cs_generate_variant:Nn \subfiglist_put_dummy:nnn { nnx }
+\cs_generate_variant:Nn \subfiglist_put_dummy:nnn { nxn }
+\cs_generate_variant:Nn \subfiglist_put_dummy:nnn { nxx }
+\cs_generate_variant:Nn \subfiglist_put_dummy:nnn { xnn }
+\cs_generate_variant:Nn \subfiglist_put_dummy:nnn { xnx }
+\cs_generate_variant:Nn \subfiglist_put_dummy:nnn { xxn }
+\cs_generate_variant:Nn \subfiglist_put_dummy:nnn { xxx }
+
+% Output specified canvas
+\cs_new:Npn \subfiglist_put_canvas:nn #1 #2
+%
+% #1: Object position of image
+% #2: Canvas number
+%
+{
+  \group_begin:
+  
+  % Search for current canvas in list of files
+  \int_zero:N \subfiglist_tempa_int
+  % Loop over all specified file numbers
+  \tl_map_inline:Nn \subfiglist_file_nums_tl
+  {
+    \int_incr:N \subfiglist_tempa_int
+    % Check if current canvas number has been found
+    \int_compare:nT { ##1 = #2 }
+    {
+      \tl_set:Nn \subfiglist_csname_tl { file }
+      \int_set_eq:NN \subfiglist_tempb_int \subfiglist_tempa_int
+      \tl_map_break:
+    }
+  }
+    
+  % Search for current canvas in list of dummy files
+  \int_zero:N \subfiglist_tempa_int
+  % Loop over all specified file numbers
+  \tl_map_inline:Nn \subfiglist_dummy_file_nums_tl
+  {
+    \int_incr:N \subfiglist_tempa_int
+    % Check if current canvas number has been found
+    \int_compare:nT { ##1 = #2 }
+    {
+      \tl_set:Nn \subfiglist_csname_tl { dummy_file }
+      \int_set_eq:NN \subfiglist_tempb_int \subfiglist_tempa_int
+      \tl_map_break:
+    }
+  }
+
+  % Search for current canvas in list of dummies
+  \int_zero:N \subfiglist_tempa_int
+  % Loop over all specified dummies
+  \tl_map_inline:Nn \subfiglist_dummy_nums_tl
+  {
+    \int_incr:N \subfiglist_tempa_int
+    % Check if current canvas number has been found
+    \int_compare:nT { ##1 = #2 }
+    {
+      \tl_set:Nn \subfiglist_csname_tl { dummy }
+      \int_set_eq:NN \subfiglist_tempb_int \subfiglist_tempa_int
+      \tl_map_break:
+    }
+  }
+
+  % Search for object position of current canvas
+  \int_zero:N \subfiglist_tempa_int
+  % Loop over all object positions
+  \tl_map_inline:Nn \subfiglist_objects_pos_tl
+  {
+    \int_incr:N \subfiglist_tempa_int
+    % Check if current canvas position has been found
+    \subfiglist_tl_if_eq_charcode:nnT { #1 } { ##1 }
+    {
+      \tl_map_break:
+    }
+  }
+  
+  % Save width and height of canvas
+  \dim_set:Nx \subfiglist_tempa_dim
+    { \tl_item:Nn \subfiglist_objects_width_tl { \subfiglist_tempa_int } }
+  \dim_set:Nx \subfiglist_tempb_dim
+  {
+    \tl_item:Nn \subfiglist_objects_ratio_tl { \subfiglist_tempa_int }
+    \exp_not:N \subfiglist_tempa_dim
+  }
+
+  % Search for number of current canvas
+  \int_zero:N \subfiglist_tempa_int
+  % Loop over all specified canvas numbers
+  \tl_map_inline:Nn \subfiglist_canvas_nums_tl
+  {
+    \int_incr:N \subfiglist_tempa_int
+    % Check if current canvas number has been found
+    \int_compare:nT { ##1 = #2 }
+    {
+      \tl_map_break:
+    }
+  }
+  
+  % Reduce canvas width by explicit horizontal offset
+  \dim_sub:Nx \subfiglist_tempa_dim
+    { \tl_item:Nn \subfiglist_canvas_left_tl { \subfiglist_tempa_int } }
+  \dim_sub:Nx \subfiglist_tempa_dim
+    { \tl_item:Nn \subfiglist_canvas_right_tl { \subfiglist_tempa_int } }
+  % Reduce canvas height by explicit vertical offset
+  \dim_sub:Nx \subfiglist_tempb_dim
+    { \tl_item:Nn \subfiglist_canvas_top_tl { \subfiglist_tempa_int } }
+  \dim_sub:Nx \subfiglist_tempb_dim
+    { \tl_item:Nn \subfiglist_canvas_bot_tl { \subfiglist_tempa_int } }
+    
+  % Store canvas in box
+  \setbox\subfiglist_box\hbox
+  {
+    % Vertical offset:
+    \vbox
+    {
+      \vspace { \tl_item:Nn \subfiglist_canvas_top_tl { \subfiglist_tempa_int } }
+      % Horizontal offset
+      \hbox
+      {
+        \hspace { \tl_item:Nn \subfiglist_canvas_left_tl { \subfiglist_tempa_int } }
+        % Put canvas
+        \use:c { subfiglist_put_ \tl_use:N \subfiglist_csname_tl :xxx }
+          { \int_use:N \subfiglist_tempb_int }
+          { \dim_use:N \subfiglist_tempa_dim }
+          { \dim_use:N \subfiglist_tempb_dim }
+        \hspace { \tl_item:Nn \subfiglist_canvas_right_tl { \subfiglist_tempa_int } }
+      }
+    \vspace { \tl_item:Nn \subfiglist_canvas_bot_tl { \subfiglist_tempa_int } }
+    }
+  }
+
+  % Get canvas width
+  \dim_set:Nn \subfiglist_tempa_dim { \wd\subfiglist_box }
+  
+  \begin { subfigure } [ b ] { \subfiglist_tempa_dim }
+    \centering
+    
+    % Place canvas
+    \leavevmode \rlap{ \usebox\subfiglist_box }
+    
+    % Check whether a label has been put for the current canvas
+    \int_zero:N \subfiglist_tempb_int
+    \bool_set_false:N \subfiglist_temp_bool
+    \tl_map_inline:Nn \subfiglist_label_nums_tl
+    {
+      \int_incr:N \subfiglist_tempb_int
+      
+      \int_compare:nT { ##1 = #2 }
+      {
+        \bool_set_true:N \subfiglist_temp_bool
+        \tl_map_break:
+      }
+    }
+      
+    % Has a label been specified?
+    \bool_if:NT \subfiglist_temp_bool
+    {
+      % Put label
+      \subfiglist_label_inset:nnn { \subfiglist_tempb_int }
+        { \wd\subfiglist_box } { \ht\subfiglist_box }
+    }
+    
+    % Check whether an overlay has been given for the current canvas
+    \int_zero:N \subfiglist_tempb_int
+    \bool_set_false:N \subfiglist_temp_bool
+    \tl_map_inline:Nn \subfiglist_overlay_nums_tl
+    {
+      \int_incr:N \subfiglist_tempb_int
+      
+      \int_compare:nT { ##1 = #2 }
+      {
+        \bool_set_true:N \subfiglist_temp_bool
+        \tl_map_break:
+      }
+    }
+      
+    % Has an overlay been specified?
+    \bool_if:NT \subfiglist_temp_bool
+    {
+      % Put overlay
+      \subfiglist_overlay:nnn { \subfiglist_tempb_int }
+        { \wd\subfiglist_box } { \ht\subfiglist_box }
+    }
+    
+    % Fix spacing
+    \phantom { \usebox \subfiglist_box }
+  \end { subfigure }
+    
+  \group_end:
+}
+
+
+% Output specified subblock
+\cs_new:Npn \subfiglist_put_sub_block:n #1
+%
+% #1: Object position of subblock
+%
+{
+  \group_begin:
+  
+  % Search for object position of current subblock
+  \int_zero:N \subfiglist_tempa_int
+  % Loop over all object positions
+  \tl_map_inline:Nn \subfiglist_objects_pos_tl
+  {
+    \int_incr:N \subfiglist_tempa_int
+    % Check if current object position has been found
+    \subfiglist_tl_if_eq_charcode:nnT { #1 } { ##1 }
+    {
+      \tl_map_break:
+    }
+  }
+  
+  % Save width of subblock
+  \dim_set:Nx \subfiglist_tempa_dim
+    { \tl_item:Nn \subfiglist_objects_width_tl { \subfiglist_tempa_int } }
+
+  % Put subblock in minipage
+  \begin { minipage } [ b ] { \dim_use:N \subfiglist_tempa_dim }
+  % Loop over object positions to find all elements of subblock
+  \int_zero:N \subfiglist_tempa_int
+  \tl_map_inline:Nn \subfiglist_objects_pos_tl
+  {
+    \int_incr:N \subfiglist_tempa_int
+    % All elements of highest level have an index with two more entries
+    \int_compare:nT { \tl_count:n { ##1 } = \tl_count:n { #1 } + 2 }
+    {
+      % Check if trailing coordinates agree
+      \subfiglist_tl_tail:nn { ##1 } { \tl_count:n { #1 } }
+      \subfiglist_tl_if_eq_charcode:xnT { \tl_use:N \subfiglist_tail_tl } { #1 }
+      {
+        \tl_item:Nn \subfiglist_objects_cs_tl { \subfiglist_tempa_int }
+      }
+    }
+  }
+  \end { minipage }
+  
+  \group_end:
+}
+
+
+% Calculate ratio height/width of specified file
+\cs_new:Npn \subfiglist_get_file_ratio:nn #1 #2
+%
+% #1: file number
+% #2: file width
+%
+{
+  \group_begin:
+  
+  % Store file in a box
+  \setbox\subfiglist_box\hbox
+  {
+    \subfiglist_load:xn
+      { \tl_item:Nn \subfiglist_file_names_tl { #1 } }
+      { #2 }
+  }
+  
+  % Get box dimensions
+  \dim_set:Nn \subfiglist_canvas_height_dim { \ht\subfiglist_box }
+  \dim_set:Nn \subfiglist_canvas_width_dim  { \wd\subfiglist_box }
+
+  % Store ratio height/width
+  \tl_put_left:Nx \subfiglist_objects_ratio_tl
+    { {\fp_eval:n { \subfiglist_canvas_height_dim / \subfiglist_canvas_width_dim } } }
+
+  % Return local variables with group scope
+  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_objects_ratio_tl
+  \group_end:
+}
+
+\cs_generate_variant:Nn \subfiglist_get_file_ratio:nn { nx }
+\cs_generate_variant:Nn \subfiglist_get_file_ratio:nn { xn }
+\cs_generate_variant:Nn \subfiglist_get_file_ratio:nn { xx }
+
+% Calculate ratio height/width of specified dummy file
+\cs_new:Npn \subfiglist_get_dummy_file_ratio:nn #1 #2
+%
+% #1: dummy file number
+% #2: dummy file width
+%
+{
+  \group_begin:
+  
+  % Store file in a box
+  \setbox\subfiglist_box\hbox
+  {
+    \subfiglist_load:xn
+      { \tl_item:Nn \subfiglist_dummy_file_names_tl { #1 } }
+      { #2 }
+  }
+  
+  % Get box dimensions
+  \dim_set:Nn \subfiglist_canvas_height_dim { \ht\subfiglist_box }
+  \dim_set:Nn \subfiglist_canvas_width_dim  { \wd\subfiglist_box }
+
+  % Store ratio height/width
+  \tl_put_left:Nx \subfiglist_objects_ratio_tl
+    { {\fp_eval:n { \subfiglist_canvas_height_dim / \subfiglist_canvas_width_dim } } }
+
+  % Return local variables with group scope
+  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_objects_ratio_tl
+  \group_end:
+}
+
+\cs_generate_variant:Nn \subfiglist_get_dummy_file_ratio:nn { nx }
+\cs_generate_variant:Nn \subfiglist_get_dummy_file_ratio:nn { xn }
+\cs_generate_variant:Nn \subfiglist_get_dummy_file_ratio:nn { xx }
+
+% Get ratio height/width of specified dummy
+\cs_new:Npn \subfiglist_get_dummy_ratio:nn #1 #2
+%
+% #1: dummy number
+% #2: dummy width
+%
+{
+  \group_begin:
+  
+  % Store ratio height/width
+  \tl_put_left:Nx \subfiglist_objects_ratio_tl
+    { {\tl_item:Nn \subfiglist_dummy_ratio_tl { #1 }} }
+    
+  % Return local variables with group scope
+  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_objects_ratio_tl
+  \group_end:
+}
+
+\cs_generate_variant:Nn \subfiglist_get_dummy_ratio:nn { nx }
+\cs_generate_variant:Nn \subfiglist_get_dummy_ratio:nn { xn }
+\cs_generate_variant:Nn \subfiglist_get_dummy_ratio:nn { xx }
+
+% Store ratio height/width and horizontal/vertical
+% offsets of specified canvas
+\cs_new:Npn \subfiglist_get_canvas_dimension:n #1
+%
+% #1: Image number
+%
+{
+  \group_begin:
+  
+  % Search for current canvas in list of files
+  \int_zero:N \subfiglist_tempa_int
+  % Loop over all specified file names
+  \tl_map_inline:Nn \subfiglist_file_nums_tl
+  {
+    \int_incr:N \subfiglist_tempa_int
+    % Check if file number belongs to current canvas
+    \int_compare:nT {##1 = #1}
+    {
+      \int_set_eq:NN \subfiglist_tempb_int \subfiglist_tempa_int
+      \tl_set:Nn \subfiglist_csname_tl { file }
+      \tl_map_break:
+    }
+  }
+
+  % Search for current canvas in list of dummy files
+  \int_zero:N \subfiglist_tempa_int
+  % Loop over all specified file names
+  \tl_map_inline:Nn \subfiglist_dummy_file_nums_tl
+  {
+    \int_incr:N \subfiglist_tempa_int
+    % Check if dummy file number belongs to current canvas
+    \int_compare:nT {##1 = #1}
+    {
+      \int_set_eq:NN \subfiglist_tempb_int \subfiglist_tempa_int
+      \tl_set:Nn \subfiglist_csname_tl { dummy_file }
+      \tl_map_break:
+    }
+  }
+  
+  % Search for current canvas in list of dummies
+  \int_zero:N \subfiglist_tempa_int
+  % Loop over all specified file names
+  \tl_map_inline:Nn \subfiglist_dummy_nums_tl
+  {
+    \int_incr:N \subfiglist_tempa_int
+    % Check if dummy file number belongs to current canvas
+    \int_compare:nT {##1 = #1}
+    {
+      \int_set_eq:NN \subfiglist_tempb_int \subfiglist_tempa_int
+      \tl_set:Nn \subfiglist_csname_tl { dummy }
+      \tl_map_break:
+    }
+  }
+  
+  % Get ratio width/height of current canvas
+  \use:c { subfiglist_get_ \tl_use:N \subfiglist_csname_tl _ratio:xn }
+    { \int_use:N \subfiglist_tempb_int }
+    { ! }
+
+  % Search for number of current canvas
+  \int_zero:N \subfiglist_tempa_int
+  % Loop over all specified canvas numbers
+  \tl_map_inline:Nn \subfiglist_canvas_nums_tl
+  {
+    \int_incr:N \subfiglist_tempa_int
+    % Check if current canvas number has been found
+    \int_compare:nT { ##1 = #1 }
+    {
+      \tl_map_break:
+    }
+  }
+  
+  % Get and store horizontal and vertical offsets
+  \dim_set:Nx \subfiglist_tempa_dim
+    { \tl_item:Nn \subfiglist_canvas_left_tl { \subfiglist_tempa_int } }
+  \dim_add:Nx \subfiglist_tempa_dim
+    { \tl_item:Nn \subfiglist_canvas_right_tl { \subfiglist_tempa_int } }
+  \tl_put_left:Nx \subfiglist_objects_hoff_tl { {\dim_use:N \subfiglist_tempa_dim} }
+
+  \dim_set:Nx \subfiglist_tempa_dim
+    { \tl_item:Nn \subfiglist_canvas_top_tl { \subfiglist_tempa_int } }
+  \dim_add:Nx \subfiglist_tempa_dim
+    { \tl_item:Nn \subfiglist_canvas_bot_tl { \subfiglist_tempa_int } }
+  \tl_put_left:Nx \subfiglist_objects_voff_tl { {\dim_use:N \subfiglist_tempa_dim} }
+
+  % Return local variables with group scope
+  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_objects_hoff_tl
+  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_objects_voff_tl
+  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_objects_ratio_tl
+  \group_end:
+}
+
+
+% Parse single token of subfiglist specification to detect image numbers
+\cs_new:Npn \subfiglist_parse_nums_token:n #1
+%
+% #1: Token
+%
+{
+  % Check if last token was a '@'
+  \bool_if:NTF \subfiglist_after_char_at_bool
+  {
+    % Skip current token
+    \bool_set_false:N \subfiglist_after_char_at_bool
+  }{
+    % Check if inside optional argument of \\
+    \bool_if:NTF \subfiglist_after_char_br_bool
+    {
+      % Skip until closing square bracket
+      \subfiglist_tl_if_eq_charcode:nnT { #1 } { ] }
+        { \bool_set_false:N \subfiglist_after_char_br_bool }
+    }{
+      % Is token a '@'?
+      \subfiglist_tl_if_eq_charcode:nnTF { #1 } { @ }
+      { \bool_set_true:N \subfiglist_after_char_at_bool }
+      {
+        % Is token an opening square bracket?
+        \subfiglist_tl_if_eq_charcode:nnTF { #1 } { [ }
+        { \bool_set_true:N \subfiglist_after_char_br_bool }
+        {
+          % Skip newline
+          \subfiglist_tl_if_eq_charcode:nnF { #1 } { \\ }
+          {
+            % Check if token is composed of other tokens
+            \tl_if_single:NTF { #1 }
+            {
+              % Store numbers/raise error on non-numbers
+              \subfiglist_is_integer:nTF { #1 }
+              { \tl_put_right:Nn \subfiglist_spec_nums_tl { {#1} } }
+              {
+                \msg_error:nnn { subfiglist } { parser-error }
+                  { Found~non-numerical~token~`#1'. }
+              }
+            }{
+              % Deal with composed tokens
+              \subfiglist_is_integer:nTF { #1 }
+                { \tl_put_right:Nn \subfiglist_spec_nums_tl { {#1} } }
+                { \subfiglist_parse_nums:n { #1 } }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+
+% Save position of current object
+\cs_new:Npn \subfiglist_update_objects_pos:
+{
+  \group_begin:
+  
+  % Check if we are at the first token of a block
+  \bool_if:NTF \subfiglist_first_bool
+  {
+    \bool_set_false:N \subfiglist_first_bool
+    % Create first position
+    \tl_if_empty:NTF \subfiglist_objects_pos_tl
+    {
+      % Very beginning of everything. Manually put first token
+      \tl_set:Nn \subfiglist_objects_pos_tl { {{1}{1}} }
+    }{
+      % Beginning of a sub-block. Glue {1}{1} to left of previos token
+      \tl_set:Nx \subfiglist_tempa_tl { \tl_head:N \subfiglist_objects_pos_tl }
+      \tl_concat:NNN \subfiglist_tempa_tl { {1}{1} } \subfiglist_tempa_tl
+      \tl_put_left:Nx \subfiglist_objects_pos_tl { {\subfiglist_tempa_tl} }
+    }
+  }{
+    % Do we need to increment the horizontal or the vertical counter?
+    \bool_if:NTF \subfiglist_hmode_bool
+    {
+      % Get last counter state
+      \tl_set:Nx \subfiglist_tempa_tl { \tl_head:N \subfiglist_objects_pos_tl }
+      % Did we just exit a block and need to chop off the first two sup-coordinates?
+      \int_while_do:nn { \subfiglist_exit_count_int > 0 }
+      {
+        \int_decr:N \subfiglist_exit_count_int
+        \tl_set:Nx \subfiglist_tempa_tl { \tl_tail:N \subfiglist_tempa_tl }
+        \tl_set:Nx \subfiglist_tempa_tl { \tl_tail:N \subfiglist_tempa_tl }
+      }
+      % Split into horizontal counter and rest of counter variable
+      \tl_set:Nx \subfiglist_tempb_tl { \tl_tail:N \subfiglist_tempa_tl }
+      \tl_set:Nx \subfiglist_tempa_tl { \tl_head:N \subfiglist_tempa_tl }
+      % Increment horizontal counter
+      \int_set:Nn \subfiglist_tempa_int { \subfiglist_tempa_tl + 1 }
+      % Put everything back together and append
+      \tl_set:Nx \subfiglist_tempa_tl { {\int_use:N \subfiglist_tempa_int} }
+      \tl_concat:NNN \subfiglist_tempa_tl \subfiglist_tempa_tl \subfiglist_tempb_tl
+      \tl_put_left:Nx \subfiglist_objects_pos_tl { {\subfiglist_tempa_tl} }
+    }{
+      % Get last counter state
+      \tl_set:Nx \subfiglist_tempa_tl { \tl_head:N \subfiglist_objects_pos_tl }
+      % Did we just exit a block and need to chop off the first two sup-coordinates?
+      \int_while_do:nn { \subfiglist_exit_count_int > 0 }
+      {
+        \int_decr:N \subfiglist_exit_count_int
+        \tl_set:Nx \subfiglist_tempa_tl { \tl_tail:N \subfiglist_tempa_tl }
+        \tl_set:Nx \subfiglist_tempa_tl { \tl_tail:N \subfiglist_tempa_tl }
+      }
+      % Split into vertical counter and rest of counter variable
+      \tl_set:Nx \subfiglist_tempa_tl { \tl_tail:N \subfiglist_tempa_tl }
+      \tl_set:Nx \subfiglist_tempb_tl { \tl_tail:N \subfiglist_tempa_tl }
+      \tl_set:Nx \subfiglist_tempa_tl { \tl_head:N \subfiglist_tempa_tl }
+      % Increment vertical counter
+      \int_set:Nn \subfiglist_tempa_int { \subfiglist_tempa_tl + 1 }
+      % Put everything back together, set horizontal counter to 1 and append
+      \tl_set:Nx \subfiglist_tempa_tl { {\int_use:N \subfiglist_tempa_int} }
+      \tl_concat:NNN \subfiglist_tempa_tl \subfiglist_tempa_tl \subfiglist_tempb_tl
+      \tl_concat:NNN \subfiglist_tempa_tl { {1} } \subfiglist_tempa_tl
+      \tl_put_left:Nx \subfiglist_objects_pos_tl { {\subfiglist_tempa_tl} }
+    }
+  }
+  
+  % Reset to horizontal mode
+  \bool_set_true:N \subfiglist_hmode_bool
+
+  % Return local variables with group scope
+  \subfiglist_group_var_return:NN \tl_set:Nn   \subfiglist_objects_pos_tl
+  \subfiglist_group_var_return:NN \int_set:Nn  \subfiglist_exit_count_int
+  \subfiglist_group_var_return:NN \bool_set:Nn \subfiglist_first_bool
+  \subfiglist_group_var_return:NN \bool_set:Nn \subfiglist_hmode_bool
+  \group_end:
+}
+
+
+% Insert space before image if necessary
+\cs_new:Npn \subfiglist_parse_objects_put_space:
+{
+  \bool_if:NT \subfiglist_space_needed_bool
+  {
+    % Provide position for spacer
+    \subfiglist_update_objects_pos:
+    % Set ratio to invalid
+    \tl_put_left:Nn \subfiglist_objects_ratio_tl { {x} }
+    % Use default horizontal offset
+    \tl_put_left:Nx \subfiglist_objects_hoff_tl
+      { {\dim_use:N \subfiglist_canvas_space_dim } }
+    % Set height to zero
+    \tl_put_left:Nn \subfiglist_objects_voff_tl { {0pt} }
+    % Put command
+    \tl_put_left:Nn \subfiglist_objects_cs_tl { {\subfiglist_put_space:} }
+  }
+}
+
+
+% Parse single token of subfiglist specification to detect objects
+\cs_new:Npn \subfiglist_parse_objects_token:n #1
+%
+% #1: Token
+%
+{
+  \group_begin:
+  
+  % Check if last token was a '@'
+  \bool_if:NTF \subfiglist_after_char_at_bool
+  {
+    \bool_set_false:N \subfiglist_after_char_at_bool
+
+    % Put specified separator in a box
+    \setbox \subfiglist_box \hbox { #1 }
+    % Get and store box width
+    \dim_set:Nn \subfiglist_tempa_dim { \wd\subfiglist_box }
+    \tl_put_left:Nx \subfiglist_objects_hoff_tl { {\dim_use:N \subfiglist_tempa_dim} }
+    % Set height to zero
+    \tl_put_left:Nn \subfiglist_objects_voff_tl { {0pt} }
+    % Put command
+    \tl_put_left:Nn \subfiglist_objects_cs_tl { {\hbox{#1}} }
+      
+    % No additional space needed before next image
+    \bool_set_false:N \subfiglist_space_needed_bool
+  }{
+    % Check if inside optional argument of \\
+    \bool_if:NTF \subfiglist_after_char_br_bool
+    {
+      % Push tokens until closing bracket
+      \subfiglist_tl_if_eq_charcode:nnTF { #1 } { ] }
+      {
+        \bool_set_false:N \subfiglist_after_char_br_bool
+        
+        % Set width to zero
+        \tl_put_left:Nn \subfiglist_objects_hoff_tl { {0pt} }
+        
+        % Get and store vertical offset
+        \dim_set:Nn \subfiglist_tempa_dim { \tl_to_str:N \subfiglist_objects_opt_arg_nl_tl }
+        \tl_put_left:Nx \subfiglist_objects_voff_tl { {\dim_use:N \subfiglist_tempa_dim} }
+        
+        % Correct additional space of newline
+        \dim_sub:Nn \subfiglist_tempa_dim { \subfilgist_newline_correction_dim }
+          
+        % Put command
+        \tl_put_left:Nx \subfiglist_objects_cs_tl
+          { {\exp_not:N\\[\dim_use:N \subfiglist_tempa_dim]} }
+        
+        % We are still in vertical mode
+        \bool_set_false:N \subfiglist_hmode_bool
+      }{
+        \tl_put_right:Nn \subfiglist_objects_opt_arg_nl_tl { #1 }
+      }
+    }{
+      % Is token a '@'?
+      \subfiglist_tl_if_eq_charcode:nnTF { #1 } { @ }
+      {
+        % Set position
+        \subfiglist_update_objects_pos:
+        % Mark ratio as invalid
+        \tl_put_left:Nn \subfiglist_objects_ratio_tl { {x} }
+        % Next token is after '@'
+        \bool_set_true:N \subfiglist_after_char_at_bool
+      }{
+        % Check if last token was a newline
+        \bool_if:NT \subfiglist_after_char_nl_bool
+        {
+          \bool_set_false:N \subfiglist_after_char_nl_bool
+
+          % Catch cases where no vertical offset is specified
+          \subfiglist_tl_if_eq_charcode:nnF { #1 } { [ }
+          {
+            % Set width to zero
+            \tl_put_left:Nn \subfiglist_objects_hoff_tl { {0pt} }
+            % Use default vertical offset
+            \tl_put_left:Nx \subfiglist_objects_voff_tl
+              { {\dim_use:N \subfiglist_canvas_space_dim } }
+            % Put command
+            \tl_put_left:Nx \subfiglist_objects_cs_tl
+              { {
+                \exp_not:N \\
+                [ \dim_eval:n {
+                  \subfiglist_canvas_space_dim - \subfilgist_newline_correction_dim
+                } ]
+              } }
+          }
+        }
+        % Is token an opening square bracket?
+        \subfiglist_tl_if_eq_charcode:nnTF { #1 } { [ }
+        {
+          \bool_set_true:N \subfiglist_after_char_br_bool
+          \tl_clear:N \subfiglist_objects_opt_arg_nl_tl
+        }{
+          % Is token a newline?
+          \subfiglist_tl_if_eq_charcode:nnTF { #1 } { \\ }
+          {
+            % Switch to vertical mode before updating position
+            \bool_set_false:N \subfiglist_hmode_bool
+            \subfiglist_update_objects_pos:
+            % Set ratio to invalid
+            \tl_put_left:Nn \subfiglist_objects_ratio_tl { {x} }
+            % Remain in vertical mode
+            \bool_set_false:N \subfiglist_hmode_bool
+            
+            % No space needed before first image of next line
+            \bool_set_false:N \subfiglist_space_needed_bool
+            \bool_set_true:N \subfiglist_after_char_nl_bool
+          }{
+            % Check if token is composed of other tokens
+            \tl_if_single:NTF { #1 }
+            {
+              % Treat images/raise error on non-numbers
+              \subfiglist_is_integer:nTF { #1 }
+                {
+                  % Insert space before image if necessary
+                  \subfiglist_parse_objects_put_space:
+                  % Set position of image
+                  \subfiglist_update_objects_pos:
+                  % Get offsets and ratio height/width
+                  \subfiglist_get_canvas_dimension:n { #1 }
+                  % Put command
+                  \tl_put_left:Nx \subfiglist_objects_cs_tl 
+                  { {
+                      \exp_not:N \subfiglist_put_canvas:nn
+                      { \tl_head:N \subfiglist_objects_pos_tl }{ #1 }
+                  } }
+                  % We need a space before the next image
+                  \bool_set_true:N \subfiglist_space_needed_bool
+                }{
+                  \msg_error:nnn { subfiglist } { parser-error }
+                    { Found~non-numerical~token~`#1'. }
+                }
+            }{
+              % Deal with composed tokens
+              \subfiglist_is_integer:nTF { #1 }
+                {
+                  % Insert space before image if necessary
+                  \subfiglist_parse_objects_put_space:
+                  % Set position of image
+                  \subfiglist_update_objects_pos:
+                  % Get offsets and ratio height/width
+                  \subfiglist_get_canvas_dimension:n { #1 }
+                  % Put command
+                  \tl_put_left:Nx \subfiglist_objects_cs_tl 
+                  { {
+                      \exp_not:N \subfiglist_put_canvas:nn
+                      { \tl_head:N \subfiglist_objects_pos_tl }{ #1 }
+                  } }
+                  
+                  % We need a space before the next image
+                  \bool_set_true:N \subfiglist_space_needed_bool
+                }{
+                  % Insert space before sub-block if necessary
+                  \subfiglist_parse_objects_put_space:
+                  % Set position of sub-block
+                  \subfiglist_update_objects_pos:
+                  % Set ratio, horizontal and vertical offset to "composed"
+                  \tl_put_left:Nn \subfiglist_objects_ratio_tl { {c} }
+                  \tl_put_left:Nn \subfiglist_objects_hoff_tl { {c} }
+                  \tl_put_left:Nn \subfiglist_objects_voff_tl { {c} }
+                  \tl_put_left:Nx \subfiglist_objects_sub_blocks_tl
+                    { {\tl_head:N \subfiglist_objects_pos_tl} }
+                  % Put command
+                  \tl_put_left:Nx \subfiglist_objects_cs_tl
+                  { {
+                      \exp_not:N \subfiglist_put_sub_block:n
+                      {\tl_head:N \subfiglist_objects_pos_tl}
+                  } }
+                  
+                  % Deal with sub-block
+                  \subfiglist_parse_objects:n { #1 }
+                  
+                  % We need a space before the next image
+                  \bool_set_true:N \subfiglist_space_needed_bool
+                }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  % Return local variables with group scope
+  \subfiglist_group_var_return:NN \bool_set:Nn \subfiglist_after_char_at_bool
+  \subfiglist_group_var_return:NN \bool_set:Nn \subfiglist_after_char_br_bool
+  \subfiglist_group_var_return:NN \bool_set:Nn \subfiglist_after_char_nl_bool
+  \subfiglist_group_var_return:NN \bool_set:Nn \subfiglist_space_needed_bool
+  \subfiglist_group_var_return:NN \bool_set:Nn \subfiglist_first_bool
+  \subfiglist_group_var_return:NN \bool_set:Nn \subfiglist_hmode_bool
+
+  \subfiglist_group_var_return:NN \int_set:Nn  \subfiglist_exit_count_int
+
+  \subfiglist_group_var_return:NN \tl_set:Nn   \subfiglist_objects_pos_tl
+  \subfiglist_group_var_return:NN \tl_set:Nn   \subfiglist_objects_hoff_tl
+  \subfiglist_group_var_return:NN \tl_set:Nn   \subfiglist_objects_voff_tl
+  \subfiglist_group_var_return:NN \tl_set:Nn   \subfiglist_objects_ratio_tl
+  \subfiglist_group_var_return:NN \tl_set:Nn   \subfiglist_objects_cs_tl
+  \subfiglist_group_var_return:NN \tl_set:Nn   \subfiglist_objects_opt_arg_nl_tl
+  \subfiglist_group_var_return:NN \tl_set:Nn   \subfiglist_objects_sub_blocks_tl
+  \group_end:
+}
+
+
+% Parse subfiglist specification and detect image numbers
+% Define for both n-type and N-type argument via tl_map and csname
+\tl_map_inline:nn { nN }
+{
+  \cs_new:cpn { subfiglist_parse_nums: #1 } ##1
+  %
+  % ##1: Subfiglist specification
+  %
+  {
+    \use:c {tl_map_function: #1 N} { ##1 } \subfiglist_parse_nums_token:n
+  }
+}
+
+
+% Parse subfiglist specification and detect objects
+% Define for both n-type and N-type argument via tl_map and csname
+\tl_map_inline:nn { nN }
+{
+  \cs_new:cpn { subfiglist_parse_objects: #1 } ##1
+  %
+  % ##1: Subfiglist specification
+  %
+  {
+    \bool_set_true:N \subfiglist_hmode_bool
+    \bool_set_true:N \subfiglist_first_bool
+    \bool_set_false:N \subfiglist_space_needed_bool
+    \use:c { tl_map_function: #1 N } { ##1 } \subfiglist_parse_objects_token:n
+    \int_incr:N \subfiglist_exit_count_int
+  }
+}
+
+
+% Update subblock dimensions after one line of its objects has been scanned
+\cs_new:Npn \subfiglist_update_sub_block_dimensions:
+{
+  % Has the last line broader minimum width than all previous?
+  \dim_compare:nTF
+  { \subfiglist_sub_block_line_hoff_dim > \subfiglist_sub_block_hoff_dim }
+  {
+    % Add minimum height of current line
+    \dim_add:Nn \subfiglist_sub_block_voff_dim
+      { \subfiglist_sub_block_line_voff_dim }
+    % Correct minimum height according to increased
+    % minimum width of images from previous lines
+    \dim_add:Nx \subfiglist_sub_block_voff_dim
+    {
+      \fp_use:N \subfiglist_sub_block_ratio_fp
+      \exp_not:N \subfiglist_sub_block_line_hoff_dim
+    }
+    \dim_sub:Nx \subfiglist_sub_block_voff_dim
+    {
+      \fp_use:N \subfiglist_sub_block_ratio_fp
+      \exp_not:N \subfiglist_sub_block_hoff_dim
+    }
+
+    % Update height/width ratio
+    \fp_add:Nn \subfiglist_sub_block_ratio_fp
+      { \subfiglist_sub_block_line_ratio_fp }
+    
+    % Update minimum width
+    \dim_set_eq:NN \subfiglist_sub_block_hoff_dim
+      \subfiglist_sub_block_line_hoff_dim
+  }{
+    % Add minimum height of current line
+    \dim_add:Nn \subfiglist_sub_block_voff_dim
+      { \subfiglist_sub_block_line_voff_dim }
+    % Correct minimum height according to increased
+    % minimum width of images from current line
+    \dim_add:Nx \subfiglist_sub_block_voff_dim
+    {
+      \fp_use:N \subfiglist_sub_block_line_ratio_fp
+      \exp_not:N \subfiglist_sub_block_hoff_dim
+    }
+    \dim_sub:Nx \subfiglist_sub_block_voff_dim
+    {
+      \fp_use:N \subfiglist_sub_block_line_ratio_fp
+      \exp_not:N \subfiglist_sub_block_line_hoff_dim
+    }
+
+    % Update width/height ratio
+    \fp_add:Nn \subfiglist_sub_block_ratio_fp
+      { \subfiglist_sub_block_line_ratio_fp }
+  }
+}
+
+
+% Calculate dimensions of subblocks
+\cs_new:Npn \subfiglist_get_sub_block_dimensions:
+{
+  \group_begin:
+  
+  % Store length of longest coordinate in \subfiglist_tempa_int
+  \int_zero:N \subfiglist_tempa_int
+  \tl_map_inline:Nn \subfiglist_objects_sub_blocks_tl
+  {
+    \int_compare:nT { \tl_count:n { ##1 } > \subfiglist_tempa_int }
+    {
+      \int_set:Nn \subfiglist_tempa_int { \tl_count:n { ##1 } }
+    }
+  }
+  
+  % Loop over subblocks from lowest to top level
+  \int_while_do:nn { \subfiglist_tempa_int > 0 }
+  {
+    % Iterate over list with all subblocks
+    \tl_map_inline:Nn \subfiglist_objects_sub_blocks_tl
+    {
+      \bool_set_true:N \subfiglist_first_bool
+      \dim_zero:N \subfiglist_sub_block_hoff_dim
+      \dim_zero:N \subfiglist_sub_block_voff_dim
+      \fp_zero:N  \subfiglist_sub_block_ratio_fp
+
+      % Is subblock at currently considered level?
+      \int_compare:nT { \tl_count:n { ##1 } = \subfiglist_tempa_int }
+      {
+        \int_zero:N \subfiglist_tempb_int
+        
+        % Iterate over all objects
+        \tl_map_inline:Nn \subfiglist_objects_pos_tl
+        {
+          \int_incr:N \subfiglist_tempb_int
+          
+          % Is current object one level below current subblock?
+          \int_compare:nT { \tl_count:n { ####1 } = \subfiglist_tempa_int + 2 }
+          {
+            % Is current object actually inside current subblock?
+            \subfiglist_tl_tail:nn { ####1 } { \subfiglist_tempa_int } 
+            \subfiglist_tl_head:nn { ####1 } { 2 }
+            \subfiglist_tl_if_eq_charcode:xnT { \tl_use:N \subfiglist_tail_tl } { ##1 }
+            {
+              % Is current object the first of a line?
+              \subfiglist_tl_if_eq_charcode:xnT { \tl_head:N \subfiglist_head_tl } { 1 }
+              {
+                % Update dimensions after completion of previous line, as
+                % long as this is not the very first object in the subblock
+                \bool_if:NF \subfiglist_first_bool
+                {
+                  \subfiglist_update_sub_block_dimensions:
+                }
+                \dim_zero:N \subfiglist_sub_block_line_hoff_dim
+                \dim_zero:N \subfiglist_sub_block_line_voff_dim
+                \fp_zero:N  \subfiglist_sub_block_line_ratio_fp
+              }
+              
+              % Update horizontal offset
+              \dim_add:Nn \subfiglist_sub_block_line_hoff_dim
+                { \tl_item:Nn \subfiglist_objects_hoff_tl { \subfiglist_tempb_int } }
+              
+              % Get vertical offset
+              \dim_set:Nn \subfiglist_tempa_dim
+                { \tl_item:Nn \subfiglist_objects_voff_tl { \subfiglist_tempb_int } }
+              
+              % If minimum height of current object is larger than
+              % minimum height of previous objects on current line,
+              % then correct minimum width according to increased
+              % minimum height of previous objects on current line.
+              \dim_compare:nT { \subfiglist_tempa_dim > \subfiglist_sub_block_line_voff_dim }
+              {
+                \dim_add:Nx \subfiglist_sub_block_line_hoff_dim
+                {
+                  \fp_use:N \subfiglist_sub_block_line_ratio_fp
+                  \exp_not:N \subfiglist_tempa_dim
+                }
+                \dim_sub:Nx \subfiglist_sub_block_line_hoff_dim
+                {
+                  \fp_use:N \subfiglist_sub_block_line_ratio_fp
+                  \exp_not:N \subfiglist_sub_block_line_voff_dim
+                }
+                \dim_set_eq:NN \subfiglist_sub_block_line_voff_dim \subfiglist_tempa_dim
+              }
+              
+              % Update height/width ratio if current object is scalable
+              \subfiglist_tl_if_eq_charcode:xnF
+              { \tl_item:Nn \subfiglist_objects_ratio_tl { \subfiglist_tempb_int } } { {x} }
+              {
+                % Initialize if ratio is zero, update otherwise
+                \fp_compare:nTF { \subfiglist_sub_block_line_ratio_fp = 0 }
+                {
+                  \fp_set:Nn \subfiglist_sub_block_line_ratio_fp
+                  { \tl_item:Nn \subfiglist_objects_ratio_tl { \subfiglist_tempb_int } }
+                }
+                {
+                  \fp_set:Nn \subfiglist_sub_block_line_ratio_fp
+                  {
+                    1 / ( ( 1 / \subfiglist_sub_block_line_ratio_fp ) +
+                    ( 1 / \tl_item:Nn \subfiglist_objects_ratio_tl { \subfiglist_tempb_int } ) )
+                  }
+                }
+              }
+              
+              % Next object is no longer the first
+              \bool_set_false:N \subfiglist_first_bool
+            }
+          }
+        }
+        
+        % Update subblock dimensions after end of loop
+        \subfiglist_update_sub_block_dimensions:
+        
+        % Replace placeholders "{c}" in dimension arrays.
+        % Put loop inside group to ensure working of \tl_map_break.
+        \group_begin:
+        \int_zero:N \subfiglist_tempb_int
+        \tl_map_inline:Nn \subfiglist_objects_pos_tl
+        {
+          \int_incr:N \subfiglist_tempb_int
+          \subfiglist_tl_if_eq_charcode:nnT { ##1 } { ####1 }
+          {
+            \subfiglist_tl_replace_item:Nxn \subfiglist_objects_hoff_tl
+              { {\dim_use:N \subfiglist_sub_block_hoff_dim} } { \subfiglist_tempb_int }
+            \subfiglist_tl_replace_item:Nxn \subfiglist_objects_voff_tl
+              { {\dim_use:N \subfiglist_sub_block_voff_dim} } { \subfiglist_tempb_int }
+            \subfiglist_tl_replace_item:Nxn \subfiglist_objects_ratio_tl
+              { {\fp_use:N  \subfiglist_sub_block_ratio_fp} } { \subfiglist_tempb_int }
+              
+            \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_objects_hoff_tl
+            \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_objects_voff_tl
+            \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_objects_ratio_tl
+
+            \tl_map_break:
+          }
+        }
+        \group_end:
+      }
+    }
+    
+    % Go to next higher level in subblock-structure.
+    \int_set:Nn \subfiglist_tempa_int { \subfiglist_tempa_int - 2 }
+  }
+  
+  % Return local variables with group scope
+  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_objects_hoff_tl
+  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_objects_voff_tl
+  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_objects_ratio_tl
+  \group_end:
+}
+
+
+% Calculate width of all images
+\cs_new:Npn \subfiglist_get_image_width:
+{
+  \group_begin:
+  
+  \int_zero:N \subfiglist_tempa_int
+  
+  % Loop over all objects
+  \tl_map_inline:Nn \subfiglist_objects_pos_tl
+  {
+    \int_incr:N \subfiglist_tempa_int
+    
+    \int_zero:N \subfiglist_tempb_int
+    \dim_zero:N \subfiglist_sum_hoff_dim
+    \dim_zero:N \subfiglist_sum_voff_over_ratio_dim
+    \fp_zero:N  \subfiglist_sum_ratio_over_ratio_fp
+
+    % Is current object scalable, i.e. an image or a subblock?
+    \subfiglist_tl_if_eq_charcode:xnTF
+    { \tl_item:Nn \subfiglist_objects_ratio_tl { \subfiglist_tempa_int } } { {x} }
+    {
+      % Add width to vertical offset for non-scalable objects
+      \tl_put_right:Nx \subfiglist_objects_width_tl
+        { { \tl_item:Nn \subfiglist_objects_hoff_tl { \subfiglist_tempa_int } } }
+    }
+    {
+      % For images loop over all objects on same line
+      \tl_map_inline:Nn \subfiglist_objects_pos_tl
+      {
+        \int_incr:N \subfiglist_tempb_int
+
+        \subfiglist_tl_if_eq_charcode:xxT { \tl_tail:n { ##1 } } { \tl_tail:n { ####1 } }
+        {
+          % Add minimum width to sum of horizontal offsets
+          \dim_add:Nn \subfiglist_sum_hoff_dim
+            { \tl_item:Nn \subfiglist_objects_hoff_tl { \subfiglist_tempb_int } }
+          
+          % Update sums including ratio height/width
+          % if current object is scalable
+          \subfiglist_tl_if_eq_charcode:xnF
+          { \tl_item:Nn \subfiglist_objects_ratio_tl { \subfiglist_tempb_int } } { {x} }
+          {
+            % Update sum of vertical offset over ratio
+            \fp_set:Nx \subfiglist_temp_fp
+              { 1 / \tl_item:Nn \subfiglist_objects_ratio_tl { \subfiglist_tempb_int } }
+            \dim_set:Nx \subfiglist_tempa_dim
+              { \tl_item:Nn \subfiglist_objects_voff_tl { \subfiglist_tempb_int } }
+            \dim_add:Nx \subfiglist_sum_voff_over_ratio_dim
+              { \fp_use:N \subfiglist_temp_fp \exp_not:N \subfiglist_tempa_dim }
+            
+            % Update sum of reciprocal ratios
+            \fp_add:Nx \subfiglist_sum_ratio_over_ratio_fp
+              { 1 / \tl_item:Nn \subfiglist_objects_ratio_tl { \subfiglist_tempb_int } }
+          }
+        }
+      }
+
+      % Get the width of the current (sub)block
+      \int_compare:nTF { \tl_count:n { ##1 } = 2 }
+      {
+        % Current level is top level, i.e. width is total width
+        \dim_set_eq:NN \subfiglist_tempa_dim \subfiglist_total_width_dim
+      }
+      {
+        % Not at top level. Find subblock to which current image belongs
+        \int_zero:N \subfiglist_tempb_int
+        
+        % Get relevant part of current coordinate
+        \subfiglist_tl_tail:nn { ##1 } { \tl_count:n { ##1 } - 2 }
+        
+        % Loop over all objects
+        \tl_map_inline:Nn \subfiglist_objects_pos_tl
+        {
+          \int_incr:N \subfiglist_tempb_int
+          
+          % Do coordinates agree?
+          \subfiglist_tl_if_eq_charcode:xnT { \tl_use:N \subfiglist_tail_tl } { ####1 }
+          {
+            % Get width of subblock
+            \dim_set:Nx \subfiglist_tempa_dim
+              { \tl_item:Nn \subfiglist_objects_width_tl { \subfiglist_tempb_int } }
+          }
+        }
+      }
+      
+      % Calculate image width in several steps
+      \dim_set:Nn \subfiglist_canvas_width_dim
+        { \subfiglist_tempa_dim - \subfiglist_sum_hoff_dim + \subfiglist_sum_voff_over_ratio_dim }
+      
+      \fp_set:Nx \subfiglist_temp_fp
+      {
+        1 / (\tl_item:Nn \subfiglist_objects_ratio_tl { \subfiglist_tempa_int } *
+            \subfiglist_sum_ratio_over_ratio_fp)
+      }
+
+      \dim_set:Nx \subfiglist_canvas_width_dim
+        { \fp_use:N \subfiglist_temp_fp \exp_not:N \subfiglist_canvas_width_dim }
+        
+      \fp_set:Nx \subfiglist_temp_fp
+        { 1 / \tl_item:Nn \subfiglist_objects_ratio_tl { \subfiglist_tempa_int } }
+      
+      \dim_set:Nx \subfiglist_tempa_dim
+        { \tl_item:Nn \subfiglist_objects_voff_tl { \subfiglist_tempa_int } }
+        
+      \dim_sub:Nx \subfiglist_canvas_width_dim
+        { \fp_use:N \subfiglist_temp_fp \exp_not:N \subfiglist_tempa_dim }
+      
+      \dim_add:Nx \subfiglist_canvas_width_dim
+        { \tl_item:Nn \subfiglist_objects_hoff_tl { \subfiglist_tempa_int } }
+  
+      \tl_put_right:Nx \subfiglist_objects_width_tl
+        { { \dim_use:N \subfiglist_canvas_width_dim } }
+    }
+  }
+  
+  % Return local variables with group scope
+  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_objects_width_tl
+  \group_end:
+}
+
+
+% Check if image numbers are valid
+\cs_new:Npn \subfiglist_test_spec_nums:
+{
+  \group_begin:
+  
+  % Sort detected image numbers
+  \tl_set_eq:NN \subfiglist_spec_nums_sorted_tl \subfiglist_spec_nums_tl
+  \tl_sort:Nn \subfiglist_spec_nums_sorted_tl
+  {
+    \int_compare:nTF { ##1 > ##2 }
+      { \sort_reversed: }
+      { \sort_ordered: }
+  }
+  
+  % Check if some image number is missing
+  \int_zero:N \subfiglist_tempa_int
+  \tl_map_inline:Nn \subfiglist_spec_nums_sorted_tl
+  {
+    \int_incr:N \subfiglist_tempa_int
+    
+    \int_compare:nF { ##1 = \subfiglist_tempa_int }
+    {
+      \int_compare:nTF { ##1 > \subfiglist_tempa_int }
+      {
+        \msg_error:nnx { subfiglist } { missing~identifier }
+          { \int_use:N \subfiglist_tempa_int }
+        \tl_map_break:
+      }{
+        \msg_error:nnn { subfiglist } { double~identifier }
+          { ##1 }
+        \tl_map_break:
+      }
+    }
+  }
+  
+  % Save total number of images
+  \int_set_eq:NN \subfiglist_canvas_int \subfiglist_tempa_int
+  
+  % Check if image numbers in subfiglist specification
+  % are in ascending order and warn if otherwise
+  \subfiglist_tl_if_eq_charcode:nnF \subfiglist_spec_nums_tl \subfiglist_spec_nums_sorted_tl
+  {
+    \msg_warning:nn { subfiglist } { wrong~image~order }
+  }
+
+  % Export local variables with group scope
+  \subfiglist_group_var_return:NN \int_set:Nn \subfiglist_canvas_int  
+  \group_end:
+}
+
+
+% Check if canvas numbers are valid
+\cs_new:Npn \subfiglist_test_canvas_nums:
+{
+  \group_begin:
+  
+  % Sort detected canvas numbers
+  \tl_set_eq:NN \subfiglist_canvas_nums_sorted_tl \subfiglist_canvas_nums_tl
+  \tl_sort:Nn \subfiglist_canvas_nums_sorted_tl
+  {
+    \int_compare:nTF { ##1 > ##2 }
+      { \sort_reversed: }
+      { \sort_ordered: }
+  }
+  
+  % Are there as many spec numbers as canvases?
+  \int_compare:nF
+  { \tl_count:N \subfiglist_spec_nums_tl = \tl_count:N \subfiglist_canvas_nums_tl }
+  {
+    \msg_error:nn { subfiglist } { number-mismatch }
+  }
+
+  % Check if some canvas number is missing
+  \int_zero:N \subfiglist_tempa_int
+  \tl_map_inline:Nn \subfiglist_canvas_nums_sorted_tl
+  {
+    \int_incr:N \subfiglist_tempa_int
+    
+    \int_compare:nF { ##1 = \subfiglist_tempa_int }
+    {
+      \int_compare:nTF { ##1 > \subfiglist_tempa_int }
+      {
+        \msg_error:nnx { subfiglist } { missing~canvas }
+          { \int_use:N \subfiglist_tempa_int }
+        \tl_map_break:
+      }{
+        \msg_error:nnn { subfiglist } { double~canvas }
+          { ##1 }
+        \tl_map_break:
+      }
+    }
+  }
+  
+  % Check if spec numbers and canvases are in same order
+  \subfiglist_tl_if_eq_charcode:nnF \subfiglist_spec_nums_tl \subfiglist_canvas_nums_tl
+  {
+    \msg_warning:nn { subfiglist } { mismatching~image~order }
+  }
+  
+  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_canvas_nums_sorted_tl
+  \group_end:
+}
+
+
+% Command for specifying image files
+\cs_new:Npn \subfiglist_file_error:
+{
+  \msg_error:nnn { subfiglist } { unexpected~command } { \subfiglistfile }
+}
+
+\cs_new:Npn \subfiglist_file_internal:nnn #1 #2 #3
+%
+% #1: optional arguments
+% #2: image number
+% #3: image path
+%
+{
+  % Check if first argument is numeric
+  \subfiglist_is_integer:nF { #2 }
+  {
+    \msg_error:nnnn { subfiglist } { missing~number } { First } { \subfiglistfile }
+  }
+
+  % Check if first argument is in range
+  \int_compare:nTF { #2 > \subfiglist_canvas_int }
+  {
+    \msg_error:nnxx { subfiglist } { argument~out~of~range }
+      { #2 } { \int_use:N \subfiglist_canvas_int }
+  }{
+    % Process opitonal arguments
+    \tl_set:Nn \subfiglist_csname_tl { \exp_not:N \subfiglistfile }
+    \keys_set:nn { subfiglistcanvas }
+      {
+        top    = \subfiglist_canvas_top_default_tl,
+        bottom = \subfiglist_canvas_bot_default_tl,
+        left   = \subfiglist_canvas_left_default_tl,
+        right  = \subfiglist_canvas_right_default_tl
+      }
+    \keys_set:nn { subfiglistcanvas } { #1 }
+    % Save file name and image number
+    \tl_put_right:Nn \subfiglist_canvas_nums_tl { {#2} }
+    \tl_put_right:Nn \subfiglist_file_nums_tl   { {#2} }
+    \tl_put_right:Nn \subfiglist_file_names_tl  { {#3} }
+    % Save specified offsets
+    \tl_put_right:Nx \subfiglist_canvas_top_tl   { {\dim_use:N \subfiglist_canvas_top_dim} }
+    \tl_put_right:Nx \subfiglist_canvas_bot_tl   { {\dim_use:N \subfiglist_canvas_bot_dim} }
+    \tl_put_right:Nx \subfiglist_canvas_left_tl  { {\dim_use:N \subfiglist_canvas_left_dim} }
+    \tl_put_right:Nx \subfiglist_canvas_right_tl { {\dim_use:N \subfiglist_canvas_right_dim} }
+  }
+}
+
+\NewDocumentCommand \subfiglistfile { } { \subfiglist_file_error: }
+
+
+% Command for specifying dummy files
+\cs_new:Npn \subfiglist_dummy_file_error:
+{
+  \msg_error:nnn { subfiglist } { unexpected~command } { \subfiglistdummyfile }
+}
+
+\cs_new:Npn \subfiglist_dummy_file_internal:nnnn #1 #2 #3 #4
+%
+% #1: optional arguments
+% #2: image number
+% #3: image path
+% #4: boolean for frame
+%
+{
+  % Check if first argument is numeric
+  \subfiglist_is_integer:nF { #2 }
+  {
+    \msg_error:nnnn { subfiglist } { missing~number } { First } { \subfiglistdummyfile }
+  }
+
+  % Check if first argument is in range
+  \int_compare:nTF { #2 > \subfiglist_canvas_int }
+  {
+    \msg_error:nnxx { subfiglist } { argument~out~of~range }
+      { #2 } { \int_use:N \subfiglist_canvas_int }
+  }{
+    % Process opitonal arguments
+    \tl_set:Nn \subfiglist_csname_tl { \exp_not:N \subfiglistdummyfile }
+    \keys_set:nn { subfiglistcanvas }
+      {
+        top    = \subfiglist_canvas_top_default_tl,
+        bottom = \subfiglist_canvas_bot_default_tl,
+        left   = \subfiglist_canvas_left_default_tl,
+        right  = \subfiglist_canvas_right_default_tl
+      }
+    \keys_set:nn { subfiglistcanvas } { #1 }
+    % Save file name and image number
+    \tl_put_right:Nn \subfiglist_canvas_nums_tl       { {#2} }
+    \tl_put_right:Nn \subfiglist_dummy_file_nums_tl   { {#2} }
+    \tl_put_right:Nn \subfiglist_dummy_file_names_tl  { {#3} }
+    \tl_put_right:Nn \subfiglist_dummy_file_frame_tl  { {#4} }
+    % Save specified offsets
+    \tl_put_right:Nx \subfiglist_canvas_top_tl   { {\dim_use:N \subfiglist_canvas_top_dim} }
+    \tl_put_right:Nx \subfiglist_canvas_bot_tl   { {\dim_use:N \subfiglist_canvas_bot_dim} }
+    \tl_put_right:Nx \subfiglist_canvas_left_tl  { {\dim_use:N \subfiglist_canvas_left_dim} }
+    \tl_put_right:Nx \subfiglist_canvas_right_tl { {\dim_use:N \subfiglist_canvas_right_dim} }
+  }
+}
+
+\NewDocumentCommand \subfiglistdummyfile { } { \subfiglist_dummy_file_error: }
+
+
+% Command for specifying dummies
+\cs_new:Npn \subfiglist_dummy_error:
+{
+  \msg_error:nnn { subfiglist } { unexpected~command } { \subfiglistdummy }
+}
+
+\cs_new:Npn \subfiglist_dummy_internal:nnnn #1 #2 #3 #4
+%
+% #1: optional arguments
+% #2: canvas number
+% #3: aspect ratio
+% #4: boolean for frame
+%
+{
+  % Check if first argument is numeric
+  \subfiglist_is_integer:nF { #2 }
+  {
+    \msg_error:nnnn { subfiglist } { missing~number } { First } { \subfiglistdummy }
+  }
+
+  % Check if second argument is a float
+  \subfiglist_is_float:nF { #3 }
+  {
+    \msg_error:nnnn { subfiglist } { missing~float } { Second } { \subfiglistdummy }
+  }
+
+  % Check if first argument is in range
+  \int_compare:nTF { #2 > \subfiglist_canvas_int }
+  {
+    \msg_error:nnxx { subfiglist } { argument~out~of~range }
+      { #2 } { \int_use:N \subfiglist_canvas_int }
+  }{
+    % Process opitonal arguments
+    \tl_set:Nn \subfiglist_csname_tl { \exp_not:N \subfiglistdummy }
+    \keys_set:nn { subfiglistcanvas }
+      {
+        top    = \subfiglist_canvas_top_default_tl,
+        bottom = \subfiglist_canvas_bot_default_tl,
+        left   = \subfiglist_canvas_left_default_tl,
+        right  = \subfiglist_canvas_right_default_tl
+      }
+    \keys_set:nn { subfiglistcanvas } { #1 }
+    % Save file name and image number
+    \tl_put_right:Nn \subfiglist_canvas_nums_tl { {#2} }
+    \tl_put_right:Nn \subfiglist_dummy_nums_tl  { {#2} }
+    \tl_put_right:Nn \subfiglist_dummy_ratio_tl { {#3} }
+    \tl_put_right:Nn \subfiglist_dummy_frame_tl { {#4} }
+    % Save specified offsets
+    \tl_put_right:Nx \subfiglist_canvas_top_tl   { {\dim_use:N \subfiglist_canvas_top_dim} }
+    \tl_put_right:Nx \subfiglist_canvas_bot_tl   { {\dim_use:N \subfiglist_canvas_bot_dim} }
+    \tl_put_right:Nx \subfiglist_canvas_left_tl  { {\dim_use:N \subfiglist_canvas_left_dim} }
+    \tl_put_right:Nx \subfiglist_canvas_right_tl { {\dim_use:N \subfiglist_canvas_right_dim} }
+  }
+}
+
+\NewDocumentCommand \subfiglistdummy { } { \subfiglist_dummy_error: }
+
+
+% Command for specifying label
+\cs_new:Npn \subfiglist_label_error:
+{
+  \msg_error:nnn { subfiglist } { unexpected~command } { \subfiglistlabel }
+}
+
+\cs_new:Npn \subfiglist_label_internal:nnn #1 #2 #3
+%
+% #1: optional argument
+% #2: image number
+% #3: label hook
+%
+{
+  % Check if fourth argument is numeric
+  \subfiglist_is_integer:nF { #2 }
+  {
+    \msg_error:nnnn { subfiglist } { missing~number } { First mandatory } { \subfiglistfile }
+  }
+
+  % Check if fourth argument is in range
+  \int_compare:nTF { #2 > \subfiglist_canvas_int }
+  {
+    \msg_error:nnxx { subfiglist } { argument~out~of~range }
+      { #2 } { \int_use:N \subfiglist_canvas_int }
+  }{
+    % Process opitonal arguments
+    \tl_set:Nn \subfiglist_csname_tl { \exp_not:N \subfiglistfile }
+    \int_set_eq:NN \subfiglist_label_hpos_int \subfiglist_label_hpos_default_int
+    \int_set_eq:NN \subfiglist_label_vpos_int \subfiglist_label_vpos_default_int
+    \keys_set:nn { subfiglistlabel }
+    {
+      xshift     = \subfiglist_label_xshift_default_tl,
+      yshift     = \subfiglist_label_yshift_default_tl,
+      color      = \subfiglist_label_color_default_tl,
+      background = \subfiglist_label_background_default_tl
+    }
+    \keys_set:nn { subfiglistlabel } { #1 }
+
+    % Save label properties and image number. Put everything left
+    % so that newer entries are found before older ones.
+    \tl_put_left:Nn \subfiglist_label_hoff_tl { {0.5ex} }
+    \tl_put_left:Nn \subfiglist_label_voff_tl { {0.5ex} }
+    \tl_put_left:Nx \subfiglist_label_hpos_tl { {\int_use:N \subfiglist_label_hpos_int} }
+    \tl_put_left:Nx \subfiglist_label_vpos_tl { {\int_use:N \subfiglist_label_vpos_int} }
+    \tl_put_left:Nx \subfiglist_label_xshift_tl
+      { {\dim_use:N \subfiglist_label_xshift_dim} }
+    \tl_put_left:Nx \subfiglist_label_yshift_tl
+      { {\dim_use:N \subfiglist_label_yshift_dim} }
+    \tl_put_left:Nx \subfiglist_label_color_list_tl
+      { {\subfiglist_label_color_tl} }
+    \tl_put_left:Nx \subfiglist_label_background_list_tl
+      { {\subfiglist_label_background_tl} } 
+    \tl_put_left:Nn \subfiglist_label_nums_tl  { {#2} }
+    \tl_put_left:Nn \subfiglist_label_hooks_tl { {#3} }
+  }
+}
+
+\NewDocumentCommand \subfiglistlabel { } { \subfiglist_label_error: }
+
+
+% Command for specifying overlay
+\cs_new:Npn \subfiglist_overlay_error:
+{
+  \msg_error:nnn { subfiglist } { unexpected~command } { \subfiglistoverlay }
+}
+
+\cs_new:Npn \subfiglist_overlay_internal:nn #1 #2
+%
+% #1: image number
+% #2: content
+%
+{
+  % Check if first argument is numeric
+  \subfiglist_is_integer:nF { #1 }
+  {
+    \msg_error:nnnn { subfiglist } { missing~number } { First mandatory } { \subfiglistoverlay }
+  }
+
+  % Check if first argument is in range
+  \int_compare:nTF { #1 > \subfiglist_canvas_int }
+  {
+    \msg_error:nnxx { subfiglist } { argument~out~of~range }
+      { #1 } { \int_use:N \subfiglist_canvas_int }
+  }{
+    % Save image number and content
+    \tl_put_left:Nn \subfiglist_overlay_nums_tl    { {#1} }
+    \tl_put_left:Nn \subfiglist_overlay_content_tl { {#2} }
+  }
+}
+
+\NewDocumentCommand \subfiglistoverlay { } { \subfiglist_overlay_error: }
+
+
+% Define command to format label when caption option is not used
+\NewDocumentCommand \subfiglistlabelformat { } { (\alph{subfigure}) }
+
+
+% Define environment to format SVG images
+\NewDocumentEnvironment { subfiglistsvgenv } { } { } { }
+
+
+% Define environment for overlays
+\NewDocumentEnvironment { subfiglistoverlayenv } { m m }
+%
+% #1: Image width
+% #2: Image height
+%
+{
+  \group_begin:
+
+  \dim_set:Nn \unitlength { #1 }
+  \dim_set:Nn \subfiglist_canvas_width_dim  { #1 }
+  \dim_set:Nn \subfiglist_canvas_height_dim { #2 }
+  
+  \begin { picture } ( 1, \fp_eval:n { \subfiglist_canvas_height_dim / \subfiglist_canvas_width_dim } )
+}{
+  \end { picture }
+  
+  \group_end:
+}
+
+
+\prg_new_conditional:Npnn \subfiglist_foo:n #1 { p, T, F, TF }
+{
+  \prg_return_true:
+}
+
+
+
+% Define environment subfiglist
+\NewDocumentEnvironment { subfiglist } { s O{ } m }
+%
+% #1: Optional star
+% #2: Optional argument
+% #3: Subfiglist specification
+%
+{
+  % Make everything local, so no variables have to be reset:
+  \group_begin:
+  
+  % Save specified dimensions
+  \keys_set:nn { subfiglistenv }
+  {
+    width = \subfiglist_env_width_default_tl,
+    space = \subfiglist_env_space_default_tl
+  }
+  \keys_set:nn { subfiglistenv } { #2 }
+  
+  % Decide which version of \subfiglist_put_space is used
+  % depending on whether the starred environment is called.
+  \IfBooleanTF #1
+  {
+    \cs_set:Npn \subfiglist_put_space:
+    {
+      \hspace * { \dim_use:N \subfiglist_canvas_space_dim }
+    }
+  }{
+    \cs_set:Npn \subfiglist_put_space:
+    {
+      \hfill
+    }
+  }
+
+  % Save subfiglist specification
+  \tl_set:Nn \subfiglist_spec_tl { #3 }
+    
+  % Parse subfiglist specification to get image numbers
+  \subfiglist_parse_nums:N \subfiglist_spec_tl
+  
+  % Check if image numbers are valid
+  \subfiglist_test_spec_nums:
+  
+  % Calculate correction for height of newline
+  \setbox\subfiglist_box\vbox
+  {
+    \rule{2em}{2em}\\[0pt]\rule{2em}{2em}
+  }  
+  \dim_set:Nx \subfilgist_newline_correction_dim 
+    { \ht\subfiglist_box - 4em }
+
+  % Setup commands
+  \RenewDocumentCommand \subfiglistfile { O{} m m }
+    { \subfiglist_file_internal:nnn { ##1 } { ##2 } { ##3} }
+  \RenewDocumentCommand \subfiglistdummyfile { s O{} m m }
+  {
+    \IfBooleanTF ##1
+      { \subfiglist_dummy_file_internal:nnnn { ##2 } { ##3 } { ##4 } { 1 } }
+      { \subfiglist_dummy_file_internal:nnnn { ##2 } { ##3 } { ##4 } { 0 } }
+  }
+  \RenewDocumentCommand \subfiglistdummy { s O{} m m }
+  {
+    \IfBooleanTF ##1
+      { \subfiglist_dummy_internal:nnnn { ##2 } { ##3 } { ##4 } { 1 } }
+      { \subfiglist_dummy_internal:nnnn { ##2 } { ##3 } { ##4 } { 0 } }
+  }
+  \RenewDocumentCommand \subfiglistlabel { O{} m m }
+    { \subfiglist_label_internal:nnn { ##1 } { ##2 } { ##3 } }
+  \RenewDocumentCommand \subfiglistoverlay { m m }
+    { \subfiglist_overlay_internal:nn { ##1 } { ##2 } }
+}{
+  % Check if file numbers are valid
+  \subfiglist_test_canvas_nums:
+  
+  % Parse subfiglist specification and reverse
+  % resulting token lists afterwards
+  \int_zero:N \subfiglist_exit_count_int
+  \subfiglist_parse_objects:N \subfiglist_spec_tl
+  \tl_reverse:N \subfiglist_objects_pos_tl
+  \tl_reverse:N \subfiglist_objects_hoff_tl
+  \tl_reverse:N \subfiglist_objects_voff_tl
+  \tl_reverse:N \subfiglist_objects_ratio_tl
+  \tl_reverse:N \subfiglist_objects_cs_tl
+  \tl_reverse:N \subfiglist_objects_sub_blocks_tl
+  
+  % Calculate dimensions of subblocks
+  \subfiglist_get_sub_block_dimensions:
+  
+  % Calculate dimensions of images
+  \subfiglist_get_image_width:
+  
+  % Put everything inside a minipage
+  \begin{minipage}{\subfiglist_total_width_dim}
+    % Loop over top level objects
+    \int_zero:N \subfiglist_tempa_int
+    \tl_map_inline:Nn \subfiglist_objects_pos_tl
+    {
+      \int_incr:N \subfiglist_tempa_int
+
+      \int_compare:nT { \tl_count:n { ##1 } = 2 }
+      {
+        \tl_item:Nn \subfiglist_objects_cs_tl { \subfiglist_tempa_int }
+      }
+    }
+  \end{minipage}
+  
+  % Discard commands
+  \RenewDocumentCommand \subfiglistfile {} { \subfiglist_file_error: }
+  \RenewDocumentCommand \subfiglistlabel {} { \subfiglist_label_error: }
+  \RenewDocumentCommand \subfiglistoverlay {} { \subfiglist_overlay_error: }
+  
+  % Close group
+  \group_end:
+}
+
+\NewDocumentEnvironment { subfiglist* } { s O{ } m }
+  { \begin{subfiglist}*[#2]{#3} }
+  { \end{subfiglist} }
+
+\endinput

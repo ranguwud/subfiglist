@@ -1,0 +1,1627 @@
+% Define commands for automatic positioning of subfigures.
+% Explanation of expl3 programming language in document
+% "The LaTeX3 interfaces" available on CTAN
+\ExplSyntaxOn
+
+\dim_new:N  \subfig_image_space_dim
+\dim_new:N  \subfig_total_width_dim
+\dim_new:N  \subfig_image_height_dim
+\dim_new:N  \subfig_image_width_dim
+\dim_new:N  \subfig_sub_block_line_hoff_dim
+\dim_new:N  \subfig_sub_block_line_voff_dim
+\dim_new:N  \subfig_sub_block_hoff_dim
+\dim_new:N  \subfig_sub_block_voff_dim
+\dim_new:N  \subfig_sum_hoff_dim
+\dim_new:N  \subfig_sum_voff_over_ratio_dim
+\dim_new:N  \subfig_temp_dim
+
+\tl_new:N   \subfig_tempa_tl
+\tl_new:N   \subfig_tempb_tl
+\tl_new:N   \subfig_tempc_tl
+\tl_new:N   \subfig_is_integer_tl
+\tl_new:N   \subfig_head_tl
+\tl_new:N   \subfig_tail_tl
+
+\tl_new:N   \subfvg_spec_tl
+\tl_new:N   \subfig_spec_nums_tl
+\tl_new:N   \subfig_spec_nums_sorted_tl
+
+\tl_new:N   \subfig_file_nums_tl
+\tl_new:N   \subfig_file_nums_sorted_tl
+\tl_new:N   \subfig_file_names_tl
+
+\tl_new:N   \subfig_label_nums_tl
+\tl_new:N   \subfig_label_hooks_tl
+\tl_new:N   \subfig_label_hoff_tl
+\tl_new:N   \subfig_label_voff_tl
+\tl_new:N   \subfig_label_color_tl
+
+\tl_new:N   \subfig_objects_pos_tl
+\tl_new:N   \subfig_objects_hoff_tl
+\tl_new:N   \subfig_objects_voff_tl
+\tl_new:N   \subfig_objects_ratio_tl
+\tl_new:N   \subfig_objects_cs_tl
+\tl_new:N   \subfig_objects_opt_arg_nl_tl
+\tl_new:N   \subfig_objects_sub_blocks_tl
+\tl_new:N   \subfig_objects_width_tl
+
+\int_new:N  \subfig_tempa_int
+\int_new:N  \subfig_tempb_int
+\int_new:N  \subfig_exit_count_int
+\int_new:N  \subfig_images_int
+\int_new:N  \subfig_tl_if_eq_meaning_int
+
+\fp_new:N   \subfig_sub_block_line_ratio_fp
+\fp_new:N   \subfig_sub_block_ratio_fp
+\fp_new:N   \subfig_sum_ratio_over_ratio_fp
+
+\bool_new:N \subfig_use_caption_package_bool
+\bool_new:N \subfig_after_char_at_bool
+\bool_new:N \subfig_after_char_br_bool
+\bool_new:N \subfig_after_char_nl_bool
+\bool_new:N \subfig_space_needed_bool
+\bool_new:N \subfig_first_bool
+\bool_new:N \subfig_hmode_bool
+\bool_new:N \subfig_tl_if_eq_meaning_bool
+\bool_new:N \subfig_temp_bool
+
+\newsavebox\subfig_box
+
+\msg_new:nnn { subfiglist } { parser-error }
+  { Error~while~parsing~the~argument~of~`subfiglist'~environment:~#1 }
+
+\msg_new:nnn { subfiglist } { missing~image }
+  { Image~nr.~#1~missing~in~argument~of~`subfiglist'~environment. }
+
+\msg_new:nnn { subfiglist } { missing~file }
+  { File~nr.~#1~missing~in~body~of~`subfiglist'~environment. }
+
+\msg_new:nnn { subfiglist } { double~image }
+  { Image~nr.~#1~appears~twice~in~argument~of~`subfiglist'~environment. }
+
+\msg_new:nnn { subfiglist } { double~file }
+  { File~nr.~#1~appears~twice~in~body~of~`subfiglist'~environment. }
+
+\msg_new:nnn { subfiglist } { number-mismatch }
+  {
+    Number~of~specified~images~and~number~of~specified~files~disagree.~
+    Maybe~you~forgot~one~image~number~or~specified~it~twice?
+  }
+  
+\msg_new:nnn { subfiglist } { unexpected~command }
+  { Unexpected~command~#1.~Command~#1~needs~to~be~used~within~`subfiglist'~environment. }
+
+\msg_new:nnn { subfiglist } { missing~number}
+  { #1~argument~of~command~#2~needs~to~be~an~integer. }
+
+\msg_new:nnn { subfiglist } { argument~out~of~range }
+  { Number~of~selected~subfigure~(#1)~is~greater~than~total~number~(#2)~of~subfigures. }
+
+\msg_new:nnn { subfiglist } { wrong~image~order }
+  {
+    Package~subfiglist~Warning:~
+    The~image~numbers~in~the~subfiglist~specification~are~given~in~non-ascending~order.
+  }
+
+\msg_new:nnn { subfiglist } { mismatching~image~order }
+  {
+    Package~subfiglist~Warning:~
+    The~files~are~given~in~a~different~order~than~the~image~numbers~
+    in~the~subfiglist~specification.
+  }
+
+% Generate variants of some commands
+\cs_generate_variant:Nn \dim_set:Nn { Nx }
+\cs_generate_variant:Nn \dim_add:Nn { Nx }
+\cs_generate_variant:Nn \dim_sub:Nn { Nx }
+\cs_generate_variant:Nn \fp_set:Nn  { Nx }
+\cs_generate_variant:Nn \fp_add:Nn  { Nx }
+\cs_generate_variant:Nn \fp_sub:Nn  { Nx }
+\cs_generate_variant:Nn \token_if_eq_meaning:NNTF { Nx }
+\cs_generate_variant:Nn \token_if_eq_meaning:NNTF { xN }
+\cs_generate_variant:Nn \token_if_eq_meaning:NNTF { xx }
+\cs_generate_variant:Nn \token_if_eq_meaning:NNT  { Nx }
+\cs_generate_variant:Nn \token_if_eq_meaning:NNT  { xN }
+\cs_generate_variant:Nn \token_if_eq_meaning:NNT  { xx }
+\cs_generate_variant:Nn \token_if_eq_meaning:NNF  { Nx }
+\cs_generate_variant:Nn \token_if_eq_meaning:NNF  { xN }
+\cs_generate_variant:Nn \token_if_eq_meaning:NNF  { xx }
+  
+% Provide framework for exporting group scope local variables according to discussion
+% at https://tex.stackexchange.com/questions/56294/how-do-i-get-a-value-out-of-a-group
+\cs_if_free:NT \group_insert_after:N
+{
+  \cs_set_eq:NN \group_insert_after:N \group_execute_after:N
+}
+
+\cs_generate_variant:Nn \tl_if_empty:nT {v}
+\cs_generate_variant:Nn \group_insert_after:N {c}
+
+\cs_new:Nn \group_after_insert:nn
+{ 
+  \cs_if_exist:cF { g_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
+  {
+    \tl_new:c { g_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
+  }
+
+  % First time the function is executed inside the group:
+  \tl_if_empty:vT { g_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
+  {
+    % Set up the aftergroup execution:
+    \group_insert_after:c  { g_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
+
+    % Reset the material for aftergroup execution:
+    \tl_gset:cx { g_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
+    {
+      \tl_gclear:c { g_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
+    }
+  }
+
+  % Append the new material to the aftergroup execution:
+  \tl_gput_right:cx  { g_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
+  {
+    \exp_not:n { #1 {#2} }
+  }
+}
+
+\cs_generate_variant:Nn \group_after_insert:nn {nV}
+
+\cs_new:Npn \group_var_return:NN #1 #2
+{
+  \group_after_insert:nV { #1 #2  } { #2 } 
+}
+
+
+
+
+
+
+
+\bool_set_true:N \subfig_use_caption_package_bool
+
+\bool_if:NTF \subfig_use_caption_package_bool
+{
+  % Caption package is used for redefinition. This involves use
+  % of internal package commands. To make sure this works, local
+  % versions of the package are used.
+  % WARNING: Other packages referencing caption or subcaption package
+  % will try to load the package versions of the LaTeX distribution
+  % thus leading to unexpected errors.
+  \usepackage{packages/caption/caption}
+  \usepackage{packages/caption/subcaption}
+  \usepackage{packages/caption/subcaptionlabelonly}
+}{
+  % Load LaTeX distribution versions of caption/subcaption packages.
+  \usepackage{caption}
+  \usepackage{subcaption}
+}
+
+% Define caption package options for subfigures, if needed
+\bool_if:NT \subfig_use_caption_package_bool
+{
+  \DeclareCaptionLabelFormat{killspace}{\makebox[\widthof{#2}-\widthof{\,}][r]{#2}}
+  \captionsetup[subfigure]{labelformat=killspace}
+}
+
+\renewcommand\thesubfigure{\,(\alph{subfigure})}
+
+% Define command for label inset
+\cs_new:Npn \subfig_label_inset:nnnnn #1 #2 #3 #4 #5
+%
+% #1: x-offset of label
+% #2: y-offset of label
+% #3: textcolor of lable
+% #4: command to load image
+% #5: hook for label
+%
+{
+  \group_begin:
+  
+  % Store image in box
+  \setbox\subfig_box\hbox{#4}
+  
+  % Get image width
+  \dim_set:Nn \subfig_temp_dim { \wd\subfig_box }
+  
+  \begin{subfigure}[b]{\subfig_temp_dim}
+    \centering
+    
+    % Place image
+    \leavevmode\rlap{ \usebox\subfig_box }
+    
+    % Place label
+    \rlap
+    {
+      % Shift horizontally
+      \hspace*{ #1 }
+      % Shift vertically
+      \dim_set:Nn \subfig_temp_dim { \ht\subfig_box - 0.8em - #2 }
+      \raisebox { \subfig_temp_dim }
+      {
+        % Put label
+        \bool_if:NTF \subfig_use_caption_package_bool
+        {
+          \subcaptionlabelonly [ \color{ #3 } ]
+        }{
+          \refstepcounter { subfigure }
+          \color { #3 }
+          \textbf { \textsf { (\alph{subfigure}) } }
+        }
+        % Put hook
+        \rlap{ #5 }
+      }
+    }
+    
+    % Fix spacing
+    \phantom{\usebox\subfig_box}
+  \end{subfigure}
+  
+  \group_end:
+}
+
+
+
+
+
+
+
+
+
+% Initialize \subfig_put_space: to empty control sequence
+\cs_new:Npn \subfig_put_space: {}
+
+
+% Test whether token is an integer
+\cs_new:Npn \subfig_is_integer:nTF #1 #2 #3
+%
+% #1: Token
+% #2: True part
+% #3: False part
+%
+{
+  \tl_set:Nn \subfig_is_integer_tl { #1 }
+  % Remove all tokens that are digits
+  \tl_remove_all:Nn \subfig_is_integer_tl { 1 }
+  \tl_remove_all:Nn \subfig_is_integer_tl { 2 }
+  \tl_remove_all:Nn \subfig_is_integer_tl { 3 }
+  \tl_remove_all:Nn \subfig_is_integer_tl { 4 }
+  \tl_remove_all:Nn \subfig_is_integer_tl { 5 }
+  \tl_remove_all:Nn \subfig_is_integer_tl { 6 }
+  \tl_remove_all:Nn \subfig_is_integer_tl { 7 }
+  \tl_remove_all:Nn \subfig_is_integer_tl { 8 }
+  \tl_remove_all:Nn \subfig_is_integer_tl { 9 }
+  \tl_remove_all:Nn \subfig_is_integer_tl { 0 }
+  % Check if anything is still there
+  \tl_if_empty:NTF \subfig_is_integer_tl { #2 } { #3 }
+}
+
+\cs_new:Npn \subfig_is_integer:nT #1 #2
+{
+  \subfig_is_integer:nTF { #1 } { #2 } {}
+}
+
+\cs_new:Npn \subfig_is_integer:nF #1 #2
+{
+  \subfig_is_integer:nTF { #1 } {} { #2 }
+}
+
+% Test whether token lists have equal meaning
+\cs_new:Npn \subfig_tl_if_eq_meaning:nnTF #1 #2 #3 #4
+%
+% #1: Token list one
+% #2: Token list two
+% #3: True part
+% #4: False part
+%
+{
+  % Do token lists have same lengths?
+  \int_compare:nTF { \tl_count:n {#1} = \tl_count:n {#2} }
+  {
+    % Loop over token lists to check for different tokens
+    \int_zero:N \subfig_tl_if_eq_meaning_int
+    \bool_set_true:N \subfig_tl_if_eq_meaning_bool
+    \tl_map_inline:nn { #1 }
+    {
+      \int_incr:N \subfig_tl_if_eq_meaning_int
+      
+      % Do current tokens have equal meaning?
+      \token_if_eq_meaning:xxF 
+      { \tl_item:nn { #1 } { \subfig_tl_if_eq_meaning_int } }
+      { \tl_item:nn { #2 } { \subfig_tl_if_eq_meaning_int } }
+      {
+        \bool_set_false:N \subfig_tl_if_eq_meaning_bool
+        \tl_map_break:
+      }
+    }
+    
+    % Have different tokens been found?
+    \bool_if:NTF \subfig_tl_if_eq_meaning_bool
+    { #3 } { #4 }
+  }{
+    #4
+  }
+}
+
+\cs_generate_variant:Nn \subfig_tl_if_eq_meaning:nnTF { nx }
+\cs_generate_variant:Nn \subfig_tl_if_eq_meaning:nnTF { xn }
+\cs_generate_variant:Nn \subfig_tl_if_eq_meaning:nnTF { xx }
+
+\cs_new:Npn \subfig_tl_if_eq_meaning:nnT #1 #2 #3
+{
+  \subfig_tl_if_eq_meaning:nnTF { #1 } { #2 } { #3 } {}
+}
+
+\cs_generate_variant:Nn \subfig_tl_if_eq_meaning:nnT { nx }
+\cs_generate_variant:Nn \subfig_tl_if_eq_meaning:nnT { xn }
+\cs_generate_variant:Nn \subfig_tl_if_eq_meaning:nnT { xx }
+
+\cs_new:Npn \subfig_tl_if_eq_meaning:nnF #1 #2 #3
+{
+  \subfig_tl_if_eq_meaning:nnTF { #1 } { #2 } {} { #3 }
+}
+
+\cs_generate_variant:Nn \subfig_tl_if_eq_meaning:nnF { nx }
+\cs_generate_variant:Nn \subfig_tl_if_eq_meaning:nnF { xn }
+\cs_generate_variant:Nn \subfig_tl_if_eq_meaning:nnF { xx }
+
+
+% Store specified number of heading tokens in varible \subfig_head_tl
+\cs_new:Npn \subfig_tl_head:nn #1 #2
+%
+% #1: Token list
+% #2: Number of heading tokens
+%
+{
+  \tl_set:Nn \subfig_head_tl { #1 }
+  \tl_reverse:N \subfig_head_tl
+ 
+  \int_until_do:nn { #2 >= \tl_count:N \subfig_head_tl }
+  {
+    \tl_set:Nx \subfig_head_tl { \tl_tail:N \subfig_head_tl }
+  }
+  
+  \tl_reverse:N \subfig_head_tl
+}
+
+\cs_new:Npn \subfig_tl_head:Nn #1 #2
+{
+  \tl_set_eq:NN \subfig_head_tl #1
+  \tl_reverse:N \subfig_head_tl
+ 
+  \int_until_do:nn { #2 >= \tl_count:N \subfig_head_tl }
+  {
+    \tl_set:Nx \subfig_head_tl { \tl_tail:N \subfig_head_tl }
+  }
+  
+  \tl_reverse:N \subfig_head_tl
+}
+
+% Store specified number of traiging tokens in varible \subfig_tail_tl
+\cs_new:Npn \subfig_tl_tail:nn #1 #2
+%
+% #1: Token list
+% #2: Number of trailing tokens
+%
+{
+  \tl_set:Nn \subfig_tail_tl { #1 }
+ 
+  \int_until_do:nn { #2 >= \tl_count:N \subfig_tail_tl }
+  {
+    \tl_set:Nx \subfig_tail_tl { \tl_tail:N \subfig_tail_tl }
+  }
+}
+
+\cs_new:Npn \subfig_tl_tail:Nn #1 #2
+{
+  \tl_set_eq:NN \subfig_tail_tl #1
+ 
+  \int_until_do:nn { #2 >= \tl_count:N \subfig_tail_tl }
+  {
+    \tl_set:Nx \subfig_tail_tl { \tl_tail:N \subfig_tail_tl }
+  }
+}
+
+% Replace item at specified index in token list
+\cs_new:Npn \subfig_tl_replace_item:Nnn #1 #2 #3
+%
+% #1: Token list
+% #2: Replacement token (list)
+% #3: Index for replacement
+%
+{
+  \group_begin:
+  \subfig_tl_head:Nn #1 { (#3) - 1 }
+  \subfig_tl_tail:Nn #1 { \tl_count:N #1 - (#3) }
+  \tl_set:Nn \subfig_tempa_tl { #2 }
+  
+  \tl_concat:NNN #1 \subfig_head_tl \subfig_tempa_tl
+  \tl_concat:NNN #1 #1 \subfig_tail_tl
+  \group_var_return:NN \tl_set:Nn #1
+  \group_end:
+}
+
+\cs_generate_variant:Nn \subfig_tl_replace_item:Nnn { Nx }
+
+
+% Command for loading a bitmap image.
+\cs_new:Npn \subfig_load_img:nn #1 #2
+%
+% #1: file path
+% #2: image width
+%
+{
+  \includegraphics[width=#2]{#1}
+}
+
+% Command for loading an SVG image split into PDF and text.
+\cs_new:Npn \subfig_load_svg:nn #1 #2
+%
+% #1: file path
+% #2: image width
+%
+{
+  \begin{sffamily}%
+  \mathversion{sans}%
+  \footnotesize%
+  % Split path into directory and file.
+  \StrCount{#1}{/}[\subfig_file_number_of_slashes_int]%
+  \StrBefore[\subfig_file_number_of_slashes_int]{#1}{/}[\subfig_file_svg_path]%
+  \StrBehind[\subfig_file_number_of_slashes_int]{#1}{/}[\subfig_file_svg_file]%
+  \let\svgwidth#2%
+  \import{\subfig_file_svg_path/}{\subfig_file_svg_file}%
+  \end{sffamily}%
+}
+
+%Command for loading an SVG or bitmap image
+\cs_new:Npn \subfig_load:nn #1 #2
+%
+% #1: file path
+% #2: image width
+%
+{
+  % Determine file extension.
+  % Count number of dots in file name string.
+  \StrCount{#1}{.}[\subfig_file_number_of_dots_int]
+  % Split off extension, i.e. string part behind last dot.
+  \StrBehind[\subfig_file_number_of_dots_int]
+    {#1}{.}[\subfig_file_extension_str]
+  % Set command to load images depending on file extension.
+  \IfEq*{\subfig_file_extension_str}{pdf_tex}
+  {
+    \subfig_load_svg:nn { #1 } { #2 }
+  }{
+    \subfig_load_img:nn { #1 } { #2 }
+  }
+}
+
+\cs_generate_variant:Nn \subfig_load:nn { nx }
+\cs_generate_variant:Nn \subfig_load:nn { xn }
+\cs_generate_variant:Nn \subfig_load:nn { xx }
+
+% Output specified image
+\cs_new:Npn \subfig_put_img:nn #1 #2
+%
+% #1: Object position of image
+% #2: Image number
+%
+{
+  \group_begin:
+  
+  % Search for object position of current image
+  \int_zero:N \subfig_tempa_int
+  % Loop over all object positions
+  \tl_map_inline:Nn \subfig_objects_pos_tl
+  {
+    \int_incr:N \subfig_tempa_int
+    % Check if current image position has been found
+    \subfig_tl_if_eq_meaning:nnT { #1 } { ##1 }
+    {
+      \tl_map_break:
+    }
+  }
+  
+  % Save width of image
+  \dim_set:Nx \subfig_temp_dim
+  { \tl_item:Nn \subfig_objects_width_tl { \subfig_tempa_int } }
+
+  % Search for file name of current image
+  \int_zero:N \subfig_tempa_int
+  % Loop over all specified file names
+  \tl_map_inline:Nn \subfig_file_nums_tl
+  {
+    \int_incr:N \subfig_tempa_int
+    % Check if file name belongs to current image
+    \int_compare:nT {##1 = #2}
+    {
+      \tl_map_break:
+    }
+  }
+  
+  % Check whether a label has been put for the current image
+  \int_zero:N \subfig_tempb_int
+  \bool_set_false:N \subfig_temp_bool
+  \tl_map_inline:Nn \subfig_label_nums_tl
+  {
+    \int_incr:N \subfig_tempb_int
+    
+    \int_compare:nT { ##1 = #2 }
+    {
+      \bool_set_true:N \subfig_temp_bool
+      \tl_map_break:
+    }
+  }
+  
+  % Has a label been specified?
+  \bool_if:NTF \subfig_temp_bool
+  {
+    % Put image with label
+    \subfig_label_inset:nnnnn { 0pt } { 0pt } { . }
+    {
+%      % Vertical offset:
+%      \vbox{\vspace{\dim_use:N \subfig_voffset_dim}
+%        % Horizontal offset%
+%        \hbox{\hspace{\dim_use:N \subfig_hoffset_dim}
+          % Load image
+          \subfig_load:xx
+            { \tl_item:Nn \subfig_file_names_tl { \subfig_tempa_int } }
+            { \dim_use:N \subfig_temp_dim }
+%        }
+%      }
+    % Hook for label
+    }{ }
+  }{
+    % Load image with file name and correct width
+    \subfig_load:xx
+      { \tl_item:Nn \subfig_file_names_tl { \subfig_tempa_int } }
+      { \dim_use:N \subfig_temp_dim }
+  }
+    
+  \group_end:
+}
+
+% Output specified subblock
+\cs_new:Npn \subfig_put_sub_block:n #1
+%
+% #1: Object position of subblock
+%
+{
+  \group_begin:
+  
+  % Search for object position of current subblock
+  \int_zero:N \subfig_tempa_int
+  % Loop over all object positions
+  \tl_map_inline:Nn \subfig_objects_pos_tl
+  {
+    \int_incr:N \subfig_tempa_int
+    % Check if current object position has been found
+    \subfig_tl_if_eq_meaning:nnT { #1 } { ##1 }
+    {
+      \tl_map_break:
+    }
+  }
+  
+  % Save width of subblock
+  \dim_set:Nx \subfig_temp_dim
+  { \tl_item:Nn \subfig_objects_width_tl { \subfig_tempa_int } }
+
+  % Put subblock in minipage
+  \begin{minipage}[b]{\dim_use:N \subfig_temp_dim}
+  % Loop over object positions to find all elements of subblock
+  \int_zero:N \subfig_tempa_int
+  \tl_map_inline:Nn \subfig_objects_pos_tl
+  {
+    \int_incr:N \subfig_tempa_int
+    % All elements of highest level have an index with two more entries
+    \int_compare:nT { \tl_count:n { ##1 } = \tl_count:n { #1 } + 2 }
+    {
+      % Check if trailing coordinates agree
+      \subfig_tl_tail:nn { ##1 } { \tl_count:n { #1 } }
+      \subfig_tl_if_eq_meaning:xnT { \tl_use:N \subfig_tail_tl } { #1 }
+      {
+        \tl_item:Nn \subfig_objects_cs_tl { \subfig_tempa_int }
+      }
+    }
+  }
+  \end{minipage}
+  
+  \group_end:
+}
+
+
+% Parse single token of subfiglist specification to detect image numbers
+\cs_new:Npn \subfig_parse_nums_token:n #1
+%
+% #1: Token
+%
+{
+  % Check if last token was a '@'
+  \bool_if:NTF \subfig_after_char_at_bool
+  {
+    % Skip current token
+    \bool_set_false:N \subfig_after_char_at_bool
+  }{
+    % Check if inside optional argument of \\
+    \bool_if:NTF \subfig_after_char_br_bool
+    {
+      % Skip until closing square bracket
+      \subfig_tl_if_eq_meaning:nnT { #1 } { ] }
+        { \bool_set_false:N \subfig_after_char_br_bool }
+    }{
+      % Is token a '@'?
+      \subfig_tl_if_eq_meaning:nnTF { #1 } { @ }
+      { \bool_set_true:N \subfig_after_char_at_bool }
+      {
+        % Is token an opening square bracket?
+        \subfig_tl_if_eq_meaning:nnTF { #1 } { [ }
+        { \bool_set_true:N \subfig_after_char_br_bool }
+        {
+          % Skip newline
+          \subfig_tl_if_eq_meaning:nnF { #1 } { \\ }
+          {
+            % Check if token is composed of other tokens
+            \tl_if_single:NTF { #1 }
+            {
+              % Store numbers/raise error on non-numbers
+              \subfig_is_integer:nTF { #1 }
+              { \tl_put_right:Nn \subfig_spec_nums_tl { {#1} } }
+              {
+                \msg_error:nnn { subfiglist } { parser-error }
+                  { Found~non-numerical~token~`#1'. }
+              }
+            }{
+              % Deal with composed tokens
+              \subfig_is_integer:nTF { #1 }
+                { \tl_put_right:Nn \subfig_spec_nums_tl { {#1} } }
+                { \subfig_parse_nums:n { #1 } }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+% Save position of current object
+\cs_new:Npn \subfig_update_objects_pos:
+{
+  \group_begin:
+  
+  % Check if we are at the first token of a block
+  \bool_if:NTF \subfig_first_bool
+  {
+    \bool_set_false:N \subfig_first_bool
+    % Create first position
+    \tl_if_empty:NTF \subfig_objects_pos_tl
+    {
+      % Very beginning of everything. Manually put first token
+      \tl_set:Nn \subfig_objects_pos_tl { {{1}{1}} }
+    }{
+      % Beginning of a sub-block. Glue {1}{1} to left of previos token
+      \tl_set:Nx \subfig_tempa_tl { \tl_head:N \subfig_objects_pos_tl }
+      \tl_concat:NNN \subfig_tempa_tl { {1}{1} } \subfig_tempa_tl
+      \tl_put_left:Nx \subfig_objects_pos_tl { {\subfig_tempa_tl} }
+    }
+  }{
+    % Do we need to increment the horizontal or the vertical counter?
+    \bool_if:NTF \subfig_hmode_bool
+    {
+      % Get last counter state
+      \tl_set:Nx \subfig_tempa_tl { \tl_head:N \subfig_objects_pos_tl }
+      % Did we just exit a block and need to chop off the first two sup-coordinates?
+      \int_while_do:nn { \subfig_exit_count_int > 0 }
+      {
+        \int_decr:N \subfig_exit_count_int
+        \tl_set:Nx \subfig_tempa_tl { \tl_tail:N \subfig_tempa_tl }
+        \tl_set:Nx \subfig_tempa_tl { \tl_tail:N \subfig_tempa_tl }
+      }
+      % Split into horizontal counter and rest of counter variable
+      \tl_set:Nx \subfig_tempb_tl { \tl_tail:N \subfig_tempa_tl }
+      \tl_set:Nx \subfig_tempa_tl { \tl_head:N \subfig_tempa_tl }
+      % Increment horizontal counter
+      \int_set:Nn \subfig_tempa_int { \subfig_tempa_tl + 1 }
+      % Put everything back together and append
+      \tl_set:Nx \subfig_tempa_tl { {\int_use:N \subfig_tempa_int} }
+      \tl_concat:NNN \subfig_tempa_tl \subfig_tempa_tl \subfig_tempb_tl
+      \tl_put_left:Nx \subfig_objects_pos_tl { {\subfig_tempa_tl} }
+    }{
+      % Get last counter state
+      \tl_set:Nx \subfig_tempa_tl { \tl_head:N \subfig_objects_pos_tl }
+      % Did we just exit a block and need to chop off the first two sup-coordinates?
+      \int_while_do:nn { \subfig_exit_count_int > 0 }
+      {
+        \int_decr:N \subfig_exit_count_int
+        \tl_set:Nx \subfig_tempa_tl { \tl_tail:N \subfig_tempa_tl }
+        \tl_set:Nx \subfig_tempa_tl { \tl_tail:N \subfig_tempa_tl }
+      }
+      % Split into vertical counter and rest of counter variable
+      \tl_set:Nx \subfig_tempa_tl { \tl_tail:N \subfig_tempa_tl }
+      \tl_set:Nx \subfig_tempb_tl { \tl_tail:N \subfig_tempa_tl }
+      \tl_set:Nx \subfig_tempa_tl { \tl_head:N \subfig_tempa_tl }
+      % Increment vertical counter
+      \int_set:Nn \subfig_tempa_int { \subfig_tempa_tl + 1 }
+      % Put everything back together, set horizontal counter to 1 and append
+      \tl_set:Nx \subfig_tempa_tl { {\int_use:N \subfig_tempa_int} }
+      \tl_concat:NNN \subfig_tempa_tl \subfig_tempa_tl \subfig_tempb_tl
+      \tl_concat:NNN \subfig_tempa_tl { {1} } \subfig_tempa_tl
+      \tl_put_left:Nx \subfig_objects_pos_tl { {\subfig_tempa_tl} }
+    }
+  }
+  
+  % Reset to horizontal mode
+  \bool_set_true:N \subfig_hmode_bool
+
+  % Return local variables with group scope
+  \group_var_return:NN \tl_set:Nn   \subfig_objects_pos_tl
+  \group_var_return:NN \int_set:Nn  \subfig_exit_count_int
+  \group_var_return:NN \bool_set:Nn \subfig_first_bool
+  \group_var_return:NN \bool_set:Nn \subfig_hmode_bool
+  \group_end:
+}
+
+% Calculate ratio height/width of specified image
+\cs_new:Npn \subfig_get_image_ratio:n #1
+%
+% #1: Image number
+%
+{
+  \group_begin:
+  
+  % Search for file name of current image
+  \int_zero:N \subfig_tempa_int
+  % Loop over all specified file names
+  \tl_map_inline:Nn \subfig_file_nums_tl
+  {
+    \int_incr:N \subfig_tempa_int
+    % Check if file name belongs to current image
+    \int_compare:nT {##1 = #1}
+    {
+      \tl_map_break:
+    }
+  }
+
+  % Put image in a box box
+  \setbox\subfig_box\hbox
+  {
+    \subfig_load:xn
+      { \tl_item:Nn \subfig_file_names_tl { \subfig_tempa_int } }
+      { \subfig_total_width_dim }
+  }
+  
+  % Get box dimensions
+  \dim_set:Nn \subfig_image_height_dim { \ht\subfig_box }
+  \dim_set:Nn \subfig_image_width_dim { \wd\subfig_box }
+
+  % Store ratio height/width
+  \tl_put_left:Nx \subfig_objects_ratio_tl
+    { {\fp_eval:n { \subfig_image_height_dim / \subfig_image_width_dim }} }
+  
+  % Return local variables with group scope
+  \group_var_return:NN \tl_set:Nn \subfig_objects_ratio_tl
+  \group_end:
+}
+
+% Insert space before image if necessary
+\cs_new:Npn \subfig_parse_objects_put_space:
+{
+  \bool_if:NT \subfig_space_needed_bool
+  {
+    % Provide position for spacer
+    \subfig_update_objects_pos:
+    % Set ratio to invalid
+    \tl_put_left:Nn \subfig_objects_ratio_tl { {x} }
+    % Use default horizontal offset
+    \tl_put_left:Nx \subfig_objects_hoff_tl
+      { {\dim_use:N \subfig_image_space_dim } }
+    % Set height to zero
+    \tl_put_left:Nn \subfig_objects_voff_tl { {0pt} }
+    % Put command
+    \tl_put_left:Nn \subfig_objects_cs_tl { {\subfig_put_space:} }
+  }
+}
+
+
+% Parse single token of subfiglist specification to detect objects to be positioned
+\cs_new:Npn \subfig_parse_objects_token:n #1
+%
+% #1: Token
+%
+{
+  \group_begin:
+  
+  % Check if last token was a '@'
+  \bool_if:NTF \subfig_after_char_at_bool
+  {
+    \bool_set_false:N \subfig_after_char_at_bool
+
+    % Put specified seperator in a box
+    \setbox\subfig_box\hbox{#1}
+    % Get and store box width locally
+    \dim_set:Nn \subfig_temp_dim { \wd\subfig_box }
+    \tl_put_left:Nx \subfig_objects_hoff_tl { {\dim_use:N \subfig_temp_dim} }
+    % Set height to zero
+    \tl_put_left:Nn \subfig_objects_voff_tl { {0pt} }
+    % Put command
+    \tl_put_left:Nn \subfig_objects_cs_tl { {\hbox{#1}} }
+      
+    % No additional space needed before next image
+    \bool_set_false:N \subfig_space_needed_bool
+  }{
+    % Check if inside optional argument of \\
+    \bool_if:NTF \subfig_after_char_br_bool
+    {
+      % Push tokens until closing bracket
+      \subfig_tl_if_eq_meaning:nnTF { #1 } { ] }
+      {
+        \bool_set_false:N \subfig_after_char_br_bool
+        
+        % Set width to zero
+        \tl_put_left:Nn \subfig_objects_hoff_tl { {0pt} }
+        % Get and store vertical offset locally
+        \dim_set:Nn \subfig_temp_dim { \tl_to_str:N \subfig_objects_opt_arg_nl_tl }
+        \tl_put_left:Nx \subfig_objects_voff_tl { {\dim_use:N \subfig_temp_dim} }
+        
+        % Correct additional 1pt space
+        \dim_sub:Nn \subfig_temp_dim { 1pt }
+          
+        % Put command
+        \tl_put_left:Nx \subfig_objects_cs_tl
+          { {\exp_not:N\\[\dim_use:N \subfig_temp_dim]} }
+        
+        % We are still in vertical mode
+        \bool_set_false:N \subfig_hmode_bool
+      }{
+        \tl_put_right:Nn \subfig_objects_opt_arg_nl_tl { #1 }
+      }
+    }{
+      % Is token a '@'?
+      \subfig_tl_if_eq_meaning:nnTF { #1 } { @ }
+      {
+        % Set position
+        \subfig_update_objects_pos:
+        % Mark ratio as invalid
+        \tl_put_left:Nn \subfig_objects_ratio_tl { {x} }
+        % Next token is after '@'
+        \bool_set_true:N \subfig_after_char_at_bool
+      }{
+        % Check if last token was a newline
+        \bool_if:NT \subfig_after_char_nl_bool
+        {
+          \bool_set_false:N \subfig_after_char_nl_bool
+
+          % Catch cases where no vertical offset is specified
+          \subfig_tl_if_eq_meaning:nnF { #1 } { [ }
+          {
+            % Set width to zero
+            \tl_put_left:Nn \subfig_objects_hoff_tl { {0pt} }
+            % Use default vertical offset
+            \tl_put_left:Nx \subfig_objects_voff_tl
+              { {\dim_use:N \subfig_image_space_dim } }
+            % Put command
+            \tl_put_left:Nx \subfig_objects_cs_tl
+              { {\exp_not:N\\[\dim_eval:n { \subfig_image_space_dim - 1pt }]} }
+          }
+        }
+        % Is token an opening square bracket?
+        \subfig_tl_if_eq_meaning:nnTF { #1 } { [ }
+        {
+          \bool_set_true:N \subfig_after_char_br_bool
+          \tl_clear:N \subfig_objects_opt_arg_nl_tl
+        }{
+          % Skip newline
+          \subfig_tl_if_eq_meaning:nnTF { #1 } { \\ }
+          {
+            % Switch to vertical mode before updating position
+            \bool_set_false:N \subfig_hmode_bool
+            \subfig_update_objects_pos:
+            % Set ratio to invalid
+            \tl_put_left:Nn \subfig_objects_ratio_tl { {x} }
+            % Remain in vertical mode
+            \bool_set_false:N \subfig_hmode_bool
+            
+            % No space needed before first image of next line
+            \bool_set_false:N \subfig_space_needed_bool
+            \bool_set_true:N \subfig_after_char_nl_bool
+          }{
+            % Check if token is composed of other tokens
+            \tl_if_single:NTF { #1 }
+            {
+              % Treat images/raise error on non-numbers
+              \subfig_is_integer:nTF { #1 }
+                {
+                  % Insert space before image if necessary
+                  \subfig_parse_objects_put_space:
+                  % Set position of image
+                  \subfig_update_objects_pos:
+                  % Get ratio height/width
+                  \subfig_get_image_ratio:n { #1 }
+                  % Do not set offsets
+                  \tl_put_left:Nn \subfig_objects_hoff_tl { {0pt} }
+                  \tl_put_left:Nn \subfig_objects_voff_tl { {0pt} }
+                  % Put command
+                  \tl_put_left:Nx \subfig_objects_cs_tl 
+                  { {
+                      \exp_not:N \subfig_put_img:nn
+                      { \tl_head:N \subfig_objects_pos_tl }{ #1 }
+                  } }
+                  % We need a space before the next image
+                  \bool_set_true:N \subfig_space_needed_bool
+                }{
+                  \msg_error:nnn { subfiglist } { parser-error }
+                    { Found~non-numerical~token~`#1'. }
+                }
+            }{
+              % Deal with composed tokens
+              \subfig_is_integer:nTF { #1 }
+                {
+                  % Insert space before image if necessary
+                  \subfig_parse_objects_put_space:
+                  % Set position of image
+                  \subfig_update_objects_pos:
+                  % Get ratio height/width
+                  \subfig_get_image_ratio:n { #1 }
+                  % Do not set offsets
+                  \tl_put_left:Nn \subfig_objects_hoff_tl {{0pt}}
+                  \tl_put_left:Nn \subfig_objects_voff_tl {{0pt}}
+                  % Put command
+                  \tl_put_left:Nx \subfig_objects_cs_tl 
+                  { {
+                      \exp_not:N \subfig_put_img:nn
+                      { \tl_head:N \subfig_objects_pos_tl }{ #1 }
+                  } }
+                  
+                  % We need a space before the next image
+                  \bool_set_true:N \subfig_space_needed_bool
+                }{
+                  % Insert space before sub-block if necessary
+                  \subfig_parse_objects_put_space:
+                  % Set position of sub-block
+                  \subfig_update_objects_pos:
+                  % Set ratio, horizontal and vertical offset to "composed"
+                  \tl_put_left:Nn \subfig_objects_ratio_tl { {c} }
+                  \tl_put_left:Nn \subfig_objects_hoff_tl { {c} }
+                  \tl_put_left:Nn \subfig_objects_voff_tl { {c} }
+                  \tl_put_left:Nx \subfig_objects_sub_blocks_tl
+                    { {\tl_head:N \subfig_objects_pos_tl} }
+                  % Put command
+                  \tl_put_left:Nx \subfig_objects_cs_tl
+                  { {
+                      \exp_not:N \subfig_put_sub_block:n
+                      {\tl_head:N \subfig_objects_pos_tl}
+                  } }
+                  
+                  % Deal with sub-block
+                  \subfig_parse_objects:n { #1 }
+                  
+                  % We need a space before the next image
+                  \bool_set_true:N \subfig_space_needed_bool
+                }
+            }
+          }
+        }
+      }
+    }
+  }
+  
+  % Return local variables with group scope
+  \group_var_return:NN \bool_set:Nn \subfig_after_char_at_bool
+  \group_var_return:NN \bool_set:Nn \subfig_after_char_br_bool
+  \group_var_return:NN \bool_set:Nn \subfig_after_char_nl_bool
+  \group_var_return:NN \bool_set:Nn \subfig_space_needed_bool
+  \group_var_return:NN \bool_set:Nn \subfig_first_bool
+  \group_var_return:NN \bool_set:Nn \subfig_hmode_bool
+
+  \group_var_return:NN \int_set:Nn  \subfig_exit_count_int
+
+  \group_var_return:NN \tl_set:Nn   \subfig_objects_pos_tl
+  \group_var_return:NN \tl_set:Nn   \subfig_objects_hoff_tl
+  \group_var_return:NN \tl_set:Nn   \subfig_objects_voff_tl
+  \group_var_return:NN \tl_set:Nn   \subfig_objects_ratio_tl
+  \group_var_return:NN \tl_set:Nn   \subfig_objects_cs_tl
+  \group_var_return:NN \tl_set:Nn   \subfig_objects_opt_arg_nl_tl
+  \group_var_return:NN \tl_set:Nn   \subfig_objects_sub_blocks_tl
+  \group_end:
+}
+
+% Parse subfiglist specification and detect image numbers
+% Define for both n-type and N-type argument via tl_map and csname
+\tl_map_inline:nn { nN }
+{
+  \cs_new:cpn { subfig_parse_nums: #1 } ##1
+  %
+  % ##1: Subfiglist specification
+  %
+  {
+    \use:c {tl_map_function: #1 N} { ##1 } \subfig_parse_nums_token:n
+  }
+}
+
+% Parse subfiglist specification and detect objects to be positioned
+% Define for both n-type and N-type argument via tl_map and csname
+\tl_map_inline:nn { nN }
+{
+  \cs_new:cpn { subfig_parse_objects: #1 } ##1
+  %
+  % ##1: Subfiglist specification
+  %
+  {
+    \bool_set_true:N \subfig_hmode_bool
+    \bool_set_true:N \subfig_first_bool
+    \bool_set_false:N \subfig_space_needed_bool
+    \use:c { tl_map_function: #1 N } { ##1 } \subfig_parse_objects_token:n
+    \int_incr:N \subfig_exit_count_int
+  }
+}
+
+% Update subblock dimensions after one line of its objects has been scanned
+\cs_new:Npn \subfig_update_sub_block_dimensions:
+{
+  % Has the last line broader minimum width than all previous?
+  \dim_compare:nTF { \subfig_sub_block_line_hoff_dim > \subfig_sub_block_hoff_dim }
+  {
+    % Add minimum height of current line
+    \dim_add:Nn \subfig_sub_block_voff_dim
+      { \subfig_sub_block_line_voff_dim }
+    % Correct minimum height according to increased
+    % minimum width of images from previous lines
+    \dim_add:Nx \subfig_sub_block_voff_dim
+      { \fp_use:N \subfig_sub_block_ratio_fp \exp_not:N \subfig_sub_block_line_hoff_dim }
+    \dim_sub:Nx \subfig_sub_block_voff_dim
+      { \fp_use:N \subfig_sub_block_ratio_fp \exp_not:N \subfig_sub_block_hoff_dim }
+
+    % Update height/width ratio
+    \fp_add:Nn \subfig_sub_block_ratio_fp { \subfig_sub_block_line_ratio_fp }
+    
+    % Update minimum width
+    \dim_set_eq:NN \subfig_sub_block_hoff_dim \subfig_sub_block_line_hoff_dim
+  }{
+    % Add minimum height of current line
+    \dim_add:Nn \subfig_sub_block_voff_dim
+      { \subfig_sub_block_line_voff_dim }
+    % Correct minimum height according to increased
+    % minimum width of images from current line
+    \dim_add:Nx \subfig_sub_block_voff_dim
+      { \fp_use:N \subfig_sub_block_line_ratio_fp \exp_not:N \subfig_sub_block_hoff_dim }
+    \dim_sub:Nx \subfig_sub_block_voff_dim
+      { \fp_use:N \subfig_sub_block_line_ratio_fp \exp_not:N \subfig_sub_block_line_hoff_dim }
+
+    % Update width/height ratio
+    \fp_add:Nn \subfig_sub_block_ratio_fp { \subfig_sub_block_line_ratio_fp }
+  }
+}
+
+% Calculate dimensions of subblocks
+\cs_new:Npn \subfig_get_sub_block_dimensions:
+{
+  \group_begin:
+  
+  % Store length of longest coordinate in \subfig_tempa_int
+  \int_zero:N \subfig_tempa_int
+  \tl_map_inline:Nn \subfig_objects_sub_blocks_tl
+  {
+    \int_compare:nT { \tl_count:n { ##1 } > \subfig_tempa_int }
+    {
+      \int_set:Nn \subfig_tempa_int { \tl_count:n { ##1 } }
+    }
+  }
+  
+  % Loop over subblocks from lowest to top level
+  \int_while_do:nn { \subfig_tempa_int > 0 }
+  {
+    % Iterate over list with all subblocks
+    \tl_map_inline:Nn \subfig_objects_sub_blocks_tl
+    {
+      \bool_set_true:N \subfig_first_bool
+      \dim_zero:N \subfig_sub_block_hoff_dim
+      \dim_zero:N \subfig_sub_block_voff_dim
+      \fp_zero:N  \subfig_sub_block_ratio_fp
+
+      % Is subblock at currently considered level?
+      \int_compare:nT { \tl_count:n { ##1 } = \subfig_tempa_int }
+      {
+        \int_zero:N \subfig_tempb_int
+        
+        % Iterate over all objects
+        \tl_map_inline:Nn \subfig_objects_pos_tl
+        {
+          \int_incr:N \subfig_tempb_int
+          
+          % Is current object one level below current subblock?
+          \int_compare:nT { \tl_count:n { ####1 } = \subfig_tempa_int + 2 }
+          {
+            % Is current object actually inside current subblock?
+            \subfig_tl_tail:nn { ####1 } { \subfig_tempa_int } 
+            \subfig_tl_head:nn { ####1 } { 2 }
+            \subfig_tl_if_eq_meaning:xnT { \tl_use:N \subfig_tail_tl } { ##1 }
+            {
+              % Is current object the first of a line?
+              \subfig_tl_if_eq_meaning:xnT { \tl_head:N \subfig_head_tl } { 1 }
+              {
+                % Update dimensions after completion of previous line, as
+                % long as this is not the very first object in the subblock
+                \bool_if:NF \subfig_first_bool
+                {
+                  \subfig_update_sub_block_dimensions:
+                }
+                \dim_zero:N \subfig_sub_block_line_hoff_dim
+                \dim_zero:N \subfig_sub_block_line_voff_dim
+                \fp_zero:N  \subfig_sub_block_line_ratio_fp
+              }
+              
+              % Update horizontal offset
+              \dim_add:Nn \subfig_sub_block_line_hoff_dim
+              { \tl_item:Nn \subfig_objects_hoff_tl { \subfig_tempb_int } }
+              
+              % Get vertical offset
+              \dim_set:Nn \subfig_temp_dim
+              { \tl_item:Nn \subfig_objects_voff_tl { \subfig_tempb_int } }
+              
+              % If minimum height of current object is larger than
+              % minimum height of previous objects on current line,
+              % then correct minimum width according to increased
+              % minimum height of previous objects on current line.
+              \dim_compare:nT { \subfig_temp_dim > \subfig_sub_block_line_voff_dim }
+              {
+                \dim_add:Nx \subfig_sub_block_line_hoff_dim
+                {
+                  \fp_use:N \subfig_sub_block_line_ratio_fp
+                  \exp_not:N \subfig_temp_dim
+                }
+                \dim_sub:Nx \subfig_sub_block_line_hoff_dim
+                {
+                  \fp_use:N \subfig_sub_block_line_ratio_fp
+                  \exp_not:N \subfig_sub_block_line_voff_dim
+                }
+                \dim_set_eq:NN \subfig_sub_block_line_voff_dim \subfig_temp_dim
+              }
+              
+              % Update height/width ratio if current object is scalable
+              \subfig_tl_if_eq_meaning:xnF
+              { \tl_item:Nn \subfig_objects_ratio_tl { \subfig_tempb_int } } { {x} }
+              {
+                % Initialize if ratio is zero, update otherwise
+                \fp_compare:nTF { \subfig_sub_block_line_ratio_fp = 0 }
+                {
+                  \fp_set:Nn \subfig_sub_block_line_ratio_fp
+                  { \tl_item:Nn \subfig_objects_ratio_tl { \subfig_tempb_int } }
+                }
+                {
+                  \fp_set:Nn \subfig_sub_block_line_ratio_fp
+                  {
+                    1 / ( ( 1 / \subfig_sub_block_line_ratio_fp ) +
+                    ( 1 / \tl_item:Nn \subfig_objects_ratio_tl { \subfig_tempb_int } ) )
+                  }
+                }
+              }
+              
+              % Next object is no longer the first
+              \bool_set_false:N \subfig_first_bool
+            }
+          }
+        }
+        
+        % Update subblock dimensions after end of loop
+        \subfig_update_sub_block_dimensions:
+        
+        % Replace placeholders "{c}" in dimension arrays.
+        % Put loop inside group to ensure working of \tl_map_break.
+        \group_begin:
+        \int_zero:N \subfig_tempb_int
+        \tl_map_inline:Nn \subfig_objects_pos_tl
+        {
+          \int_incr:N \subfig_tempb_int
+          \subfig_tl_if_eq_meaning:nnT { ##1 } { ####1 }
+          {
+            \subfig_tl_replace_item:Nxn \subfig_objects_hoff_tl
+              { {\dim_use:N \subfig_sub_block_hoff_dim} } { \subfig_tempb_int }
+            \subfig_tl_replace_item:Nxn \subfig_objects_voff_tl
+              { {\dim_use:N \subfig_sub_block_voff_dim} } { \subfig_tempb_int }
+            \subfig_tl_replace_item:Nxn \subfig_objects_ratio_tl
+              { {\fp_use:N  \subfig_sub_block_ratio_fp} } { \subfig_tempb_int }
+              
+            \group_var_return:NN \tl_set:Nn \subfig_objects_hoff_tl
+            \group_var_return:NN \tl_set:Nn \subfig_objects_voff_tl
+            \group_var_return:NN \tl_set:Nn \subfig_objects_ratio_tl
+
+            \tl_map_break:
+          }
+        }
+        \group_end:
+      }
+    }
+    
+    % Go to next higher level in subblock-structure.
+    \int_set:Nn \subfig_tempa_int { \subfig_tempa_int - 2 }
+  }
+  
+  % Return local variables with group scope
+  \group_var_return:NN \tl_set:Nn \subfig_objects_hoff_tl
+  \group_var_return:NN \tl_set:Nn \subfig_objects_voff_tl
+  \group_var_return:NN \tl_set:Nn \subfig_objects_ratio_tl
+  \group_end:
+}
+
+% Calculate width of all images
+\cs_new:Npn \subfig_get_image_width:
+{
+  \group_begin:
+  
+  \int_zero:N \subfig_tempa_int
+  
+  % Loop over all objects
+  \tl_map_inline:Nn \subfig_objects_pos_tl
+  {
+    \int_incr:N \subfig_tempa_int
+    
+    \int_zero:N \subfig_tempb_int
+    \dim_zero:N \subfig_sum_hoff_dim
+    \dim_zero:N \subfig_sum_voff_over_ratio_dim
+    \fp_zero:N  \subfig_sum_ratio_over_ratio_fp
+
+    % Is current object scalable, i.e. an image or a subblock?
+    \subfig_tl_if_eq_meaning:xnTF
+    { \tl_item:Nn \subfig_objects_ratio_tl { \subfig_tempa_int } } { {x} }
+    {
+      % Add width to vertical offset for non-scalable objects
+      \tl_put_right:Nx \subfig_objects_width_tl
+        { { \tl_item:Nn \subfig_objects_hoff_tl { \subfig_tempa_int } } }
+    }
+    {
+      % For images loop over all objects on same line
+      \tl_map_inline:Nn \subfig_objects_pos_tl
+      {
+        \int_incr:N \subfig_tempb_int
+
+        \subfig_tl_if_eq_meaning:xxT { \tl_tail:n { ##1 } } { \tl_tail:n { ####1 } }
+        {
+          % Add minimum width to sum of horizontal offsets
+          \dim_add:Nn \subfig_sum_hoff_dim
+            { \tl_item:Nn \subfig_objects_hoff_tl { \subfig_tempb_int } }
+          
+          % Update sums including ratio height/width
+          % if current object is scalable
+          \subfig_tl_if_eq_meaning:xnF
+          { \tl_item:Nn \subfig_objects_ratio_tl { \subfig_tempb_int } } { {x} }
+          {
+            % Update sum of vertical offset over ratio
+            \fp_set:Nx \subfig_temp_fp
+              { 1 / \tl_item:Nn \subfig_objects_ratio_tl { \subfig_tempb_int } }
+            \dim_set:Nx \subfig_temp_dim
+              { \tl_item:Nn \subfig_objects_voff_tl { \subfig_tempb_int } }
+            \dim_add:Nx \subfig_sum_voff_over_ratio_dim
+              { \fp_use:N \subfig_temp_fp \exp_not:N \subfig_temp_dim }
+            
+            % Update sum of reciprocal ratios
+            \fp_add:Nx \subfig_sum_ratio_over_ratio_fp
+              { 1 / \tl_item:Nn \subfig_objects_ratio_tl { \subfig_tempb_int } }
+          }
+        }
+      }
+      
+      % Get the width of the current (sub)block
+      \int_compare:nTF { \tl_count:n { ##1 } = 2 }
+      {
+        % Current level is top level, i.e. width is total width
+        \dim_set_eq:NN \subfig_temp_dim \subfig_total_width_dim
+      }
+      {
+        % Not at top level. Find subblock to which current image belongs
+        \int_zero:N \subfig_tempb_int
+        
+        % Get relevant part of current coordinate
+        \subfig_tl_tail:nn { ##1 } { \tl_count:n { ##1 } - 2 }
+        
+        % Loop over all objects
+        \tl_map_inline:Nn \subfig_objects_pos_tl
+        {
+          \int_incr:N \subfig_tempb_int
+          
+          % Do coordinates agree?
+          \subfig_tl_if_eq_meaning:xnT { \tl_use:N \subfig_tail_tl } { ####1 }
+          {
+            % Get width of subblock
+            \dim_set:Nx \subfig_temp_dim
+              { \tl_item:Nn \subfig_objects_width_tl { \subfig_tempb_int } }
+          }
+        }
+      }
+      
+      % Calculate image width in several steps
+      \dim_set:Nn \subfig_image_width_dim
+        { \subfig_temp_dim - \subfig_sum_hoff_dim + \subfig_sum_voff_over_ratio_dim }
+      
+      \fp_set:Nx \subfig_temp_fp
+      {
+        1 / (\tl_item:Nn \subfig_objects_ratio_tl { \subfig_tempa_int } *
+            \subfig_sum_ratio_over_ratio_fp)
+      }
+
+      \dim_set:Nx \subfig_image_width_dim
+        { \fp_use:N \subfig_temp_fp \exp_not:N \subfig_image_width_dim }
+        
+      \fp_set:Nx \subfig_temp_fp
+        { 1 / \tl_item:Nn \subfig_objects_ratio_tl { \subfig_tempa_int } }
+      
+      \dim_set:Nx \subfig_temp_dim
+        { \tl_item:Nn \subfig_objects_voff_tl { \subfig_tempa_int } }
+        
+      \dim_sub:Nx \subfig_image_width_dim
+        { \fp_use:N \subfig_temp_fp \exp_not:N \subfig_temp_dim }
+      
+      \dim_add:Nx \subfig_image_width_dim
+        { \tl_item:Nn \subfig_objects_hoff_tl { \subfig_tempa_int } }
+  
+      \tl_put_right:Nx \subfig_objects_width_tl
+        { { \dim_use:N \subfig_image_width_dim } }
+    }
+  }
+  
+  % Return local variables with group scope
+  \group_var_return:NN \tl_set:Nn \subfig_objects_width_tl
+  \group_end:
+}
+
+
+% Check if image numbers are valid
+\cs_new:Npn \subfig_test_spec_nums:
+{
+  \group_begin:
+  
+  % Sort detected image numbers
+  \tl_set_eq:NN \subfig_spec_nums_sorted_tl \subfig_spec_nums_tl
+  \tl_sort:Nn \subfig_spec_nums_sorted_tl
+  {
+    \int_compare:nTF { ##1 > ##2 }
+      { \sort_reversed: }
+      { \sort_ordered: }
+  }
+  
+  % Check if some image number is missing
+  \int_zero:N \subfig_tempa_int
+  \tl_map_inline:Nn \subfig_spec_nums_sorted_tl
+  {
+    \int_incr:N \subfig_tempa_int
+    
+    \int_compare:nF { ##1 = \subfig_tempa_int }
+    {
+      \int_compare:nTF { ##1 > \subfig_tempa_int }
+      {
+        \msg_error:nnx { subfiglist } { missing~image }
+          { \int_use:N \subfig_tempa_int }
+        \tl_map_break:
+      }{
+        \msg_error:nnn { subfiglist } { double~image }
+          { ##1 }
+        \tl_map_break:
+      }
+    }
+  }
+  
+  % Save total number of images
+  \int_set_eq:NN \subfig_images_int \subfig_tempa_int
+  
+  % Check if image numbers in subfiglist specification
+  % are in ascending order and warn if otherwise
+  \subfig_tl_if_eq_meaning:nnF \subfig_spec_nums_tl \subfig_spec_nums_sorted_tl
+  {
+    \msg_warning:nn { subfiglist } { wrong~image~order }
+  }
+
+  % Export local variables with group scope
+  \group_var_return:NN \int_set:Nn \subfig_images_int  
+%  \group_var_return:NN \tl_set:Nn  \subfig_spec_nums_sorted_tl
+  \group_end:
+}
+
+% Check if file numbers are valid
+\cs_new:Npn \subfig_test_file_nums:
+{
+  \group_begin:
+  
+  % Sort detected file numbers
+  \tl_set_eq:NN \subfig_file_nums_sorted_tl \subfig_file_nums_tl
+  \tl_sort:Nn \subfig_file_nums_sorted_tl
+  {
+    \int_compare:nTF { ##1 > ##2 }
+      { \sort_reversed: }
+      { \sort_ordered: }
+  }
+  
+  % Are there as many images as files?
+  \int_compare:nF
+  { \tl_count:N \subfig_spec_nums_tl = \tl_count:N \subfig_file_nums_tl }
+  {
+    \msg_error:nn { subfiglist } { number-mismatch }
+  }
+
+  % Check if some file number is missing
+  \int_zero:N \subfig_tempa_int
+  \tl_map_inline:Nn \subfig_file_nums_sorted_tl
+  {
+    \int_incr:N \subfig_tempa_int
+    
+    \int_compare:nF { ##1 = \subfig_tempa_int }
+    {
+      \int_compare:nTF { ##1 > \subfig_tempa_int }
+      {
+        \msg_error:nnx { subfiglist } { missing~file }
+          { \int_use:N \subfig_tempa_int }
+        \tl_map_break:
+      }{
+        \msg_error:nnn { subfiglist } { double~file }
+          { ##1 }
+        \tl_map_break:
+      }
+    }
+  }
+  
+  % Check if images and files are in same order
+  \subfig_tl_if_eq_meaning:nnF \subfig_spec_nums_tl \subfig_file_nums_tl
+  {
+    \msg_warning:nn { subfiglist } { mismatching~image~order }
+  }
+  
+  \group_var_return:NN \tl_set:Nn \subfig_file_nums_sorted_tl
+  \group_end:
+}
+
+
+
+% Command for specifying image path
+%
+% #1: image number
+% #2: image path
+%
+\cs_new:Npn \subfig_file_error:
+{
+  \msg_error:nnn { subfiglist } { unexpected~command } { \subfigfile }
+}
+\cs_new:Npn \subfig_file_internal:nn #1 #2
+{
+  % Check if first argument is numeric
+  \subfig_is_integer:nF { #1 }
+  {
+    \msg_error:nnnn { subfiglist } { missing~number } { First } { \subfigfile }
+  }
+
+  % Check if first argument is in range
+  \int_compare:nTF { #1 > \subfig_images_int }
+  {
+    \msg_error:nnxx { subfiglist } { argument~out~of~range }
+      { #1 } { \int_use:N \subfig_images_int }
+  }{
+    % Save file name and image number
+    \tl_put_right:Nn \subfig_file_nums_tl  { {#1} }
+    \tl_put_right:Nn \subfig_file_names_tl { {#2} }
+  }
+}
+\NewDocumentCommand \subfigfile { } { \subfig_file_error: }
+
+
+
+% Command for specifying label
+%
+% #1: horizontal offset
+% #2: vertical offset
+% #3: label text color
+% #4: image number
+% #5: label hook
+%
+\cs_new:Npn \subfig_label_error:
+{
+  \msg_error:nnn { subfiglist } { unexpected~command } { \subfiglabel }
+}
+\cs_new:Npn \subfig_label_internal:nnnnn #1 #2 #3 #4 #5
+{
+  % Check if fourth argument is numeric
+  \subfig_is_integer:nF { #4 }
+  {
+    \msg_error:nnnn { subfiglist } { missing~number } { First mandatory } { \subfigfile }
+  }
+
+  % Check if fourth argument is in range
+  \int_compare:nTF { #4 > \subfig_images_int }
+  {
+    \msg_error:nnxx { subfiglist } { argument~out~of~range }
+      { #4 } { \int_use:N \subfig_images_int }
+  }{
+    % Save label properties and image number
+    \tl_put_right:Nn \subfig_label_hoff_tl  { {#1} }
+    \tl_put_right:Nn \subfig_label_voff_tl  { {#2} }
+    \tl_put_right:Nn \subfig_label_color_tl { {#3} }
+    \tl_put_right:Nn \subfig_label_nums_tl  { {#4} }
+    \tl_put_right:Nn \subfig_label_hooks_tl { {#5} }
+  }
+}
+\NewDocumentCommand \subfiglabel { } { \subfig_label_error: }
+
+
+
+% Define environment subfiglist
+%
+% #1: Subfiglist specification
+%
+\NewDocumentEnvironment { subfiglist } { s O{1ex} O{\textwidth} m }
+{
+  % Make everything local, so no variables have to be reset:
+  \group_begin:
+  
+  % Save specified dimensions
+  \dim_set:Nn \subfig_image_space_dim { #2 }
+  \dim_set:Nn \subfig_total_width_dim { #3 }
+  
+  % Decide which version of \subfig_put_space is used
+  % depending on whether the starred environment is called.
+  \IfBooleanTF #1
+  {
+    \cs_set:Npn \subfig_put_space:
+    {
+      \hspace { \dim_use:N \subfig_image_space_dim }
+    }
+  }{
+    \cs_set:Npn \subfig_put_space:
+    {
+      \hfill
+    }
+  }
+
+  % Save subfiglist specification
+  \tl_set:Nn \subfig_spec_tl { #4 }
+    
+  % Parse subfiglist specification to get image numbers
+  \subfig_parse_nums:N \subfig_spec_tl
+  
+  % Check if image numbers are valid
+  \subfig_test_spec_nums:
+
+  % Setup commands
+  \RenewDocumentCommand \subfigfile { m m } { \subfig_file_internal:nn { ##1 } { ##2 } }
+  \RenewDocumentCommand \subfiglabel { O{0.5ex} O{0.5ex} O{.} m m }
+    { \subfig_label_internal:nnnnn { ##1 } { ##2 } { ##3 } { ##4 } { ##5 } }
+}{
+  % Check if file numbers are valid
+  \subfig_test_file_nums:
+  
+  % Parse subfiglist specification and reverse
+  % resulting token lists afterwards
+  \int_zero:N \subfig_exit_count_int
+  \subfig_parse_objects:N \subfig_spec_tl
+  \tl_reverse:N \subfig_objects_pos_tl
+  \tl_reverse:N \subfig_objects_hoff_tl
+  \tl_reverse:N \subfig_objects_voff_tl
+  \tl_reverse:N \subfig_objects_ratio_tl
+  \tl_reverse:N \subfig_objects_cs_tl
+  \tl_reverse:N \subfig_objects_sub_blocks_tl
+  
+  % Calculate dimensions of subblocks
+  \subfig_get_sub_block_dimensions:
+  
+  % Calculate dimensions of images
+  \subfig_get_image_width:
+
+  % Put everything inside a minipage
+  \begin{minipage}{\subfig_total_width_dim}
+  \int_zero:N \subfig_tempa_int
+  \tl_map_inline:Nn \subfig_objects_pos_tl
+  {
+    \int_incr:N \subfig_tempa_int
+
+    \int_compare:nT { \tl_count:n { ##1 } = 2 }
+    {
+      \tl_item:Nn \subfig_objects_cs_tl { \subfig_tempa_int }
+    }
+  }
+  \end{minipage}
+
+  % Discard commands
+  \RenewDocumentCommand \subfigfile {} { \subfig_file_error: }
+  \RenewDocumentCommand \subfiglabel {} { \subfig_label_error: }
+  
+  % Close group
+  \group_end:
+}
+
+\NewDocumentEnvironment { subfiglist* } { s O{1ex} O{\textwidth} m }
+{ \begin{subfiglist}*[#2][#3]{#4} }
+{ \end{subfiglist} }
+
+\ExplSyntaxOff

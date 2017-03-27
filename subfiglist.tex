@@ -1,0 +1,810 @@
+\documentclass[version=3.12,american]{scrartcl}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Loading of local packages   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+% Loading local files as packages in LaTeX is a huge mess. This document makes use of
+% the custom package `subfiglist', which itself redefines internal commands of the
+% `caption' package and thus may break when used together with future versions of
+% the `caption' package. Hence, the following approach would be desired.
+%
+%  (1) Load a local (possibly older) version of the `caption' package to ensure proper
+%      functionality of the subfiglist package.
+%
+%  (2) Store all local packages in some subfolder of the document folder, say in
+%      ./packages/caption/.
+%
+% Apparently, this cannot be achieved. The following list suggest different approaches,
+% all of which have different benefits or drawbacks.
+%
+%   * Place all packages in the same directory as the document. This is probably the
+%     easiest and safest way but fills the document directory with additional files
+%     that may be deleted by accident when cleaning up.
+%
+%   * Load the package with full directory like \usepackage{packages/caption/caption}.
+%     This *does* work but is technically wrong since \usepackage expects the name
+%     of a package and not its path. Consequently, LaTeX will complain by saying
+%
+%       LaTeX Warning: You have requested package `packages/caption/caption',
+%                      but the package provides `caption'.
+%
+%     If now some other package also references `caption', then LaTeX will *think*
+%     it has not yet been loaded, because it only got `packages/caption/caption'
+%     previously. Hence, the TeX-distribution version of `caption' will be loaded
+%     as well, leading to weird compilation errors.
+%
+%   * Bypass the package loading system by using something like
+%
+%       \makeatletter\input{packages/caption/caption}\makeatother.
+%
+%     This is even worse since it turns off all useful mechanisms of \usepackage.
+%     In particular, it suffers from the same problem as the previous approach.
+%
+%   * Make use of the TEXINPUTS environment variable. This is one of the "recommended"
+%     ways to make LaTeX find local packages. For example, by setting
+%
+%       TEXINPUTS=.//
+%
+%     LaTeX would search all subdirectories of the document directory. This is fine
+%     (packages are being found) as long as there are no name clashes. In the case
+%     discussed here, where there is a local and a TeX-distribution version of the
+%     same package, LaTeX usually finds the TeX-distribution version first. Maybe
+%     this can be fixed in the texmf.cnf.
+%
+%   * Use the -include-directory option of pdfLaTeX. This solution suffers from the same
+%     problem as the previous and in addition is only available for MikTeX on Windows.
+%
+%   * Use a local TeXMF folder. This method is reliable and even supports changing the
+%     order in which LaTeX searches different TeXMF trees but destroys the desired grouping
+%     of document and packages. In addition, it needs to be set up on any machine that
+%     is used for compiling.
+%
+%   * Make use of write18/shell-escape. With the command \write18 TeX is able make the
+%     operating system execute shell commands. This can be used to copy a package file
+%     from a subdirectory to the document directory, then load it via \usepackage and
+%     finally delete the copy of the package file. In this document that approach is
+%     invoked by the \uselocalpackage command, which also checks if the specified package
+%     file is present and whether copying it would overwrite an existing file. Still
+%     this method might cause files to be overwritten accidentally and cause possible
+%     security issues by making \write18 accessible.
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Begin of preamble   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Load encoding and spelling
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% Load ngerman as second language options and make shorthands
+% like "~ (non-breaking hyphen) available in the document
+\usepackage[ngerman,main=american]{babel}
+\useshorthands{"}
+\addto\extrasamerican{\languageshorthands{ngerman}}
+
+% Define title and author
+\newcommand*{\customtitle}{The \texttt{subfiglist} package v1.0}
+\newcommand*{\customauthor}{Manuel Nutz}
+
+% Configuration of KOMA package
+\KOMAoption{paper}{a4}
+\KOMAoption{pagesize}{auto}
+\KOMAoption{fontsize}{12}
+\KOMAoption{titlepage}{false}
+\KOMAoption{twoside}{false}
+\KOMAoption{DIV}{14}
+%\KOMAoption{BCOR}{0.5cm}
+\KOMAoption{headinclude}{true}
+\KOMAoption{footinclude}{false}
+\KOMAoption{parskip}{half}
+\KOMAoption{toc}{indented}
+\KOMAoption{bibliography}{oldstyle}
+\KOMAoption{bibliography}{totoc}
+\KOMAoption{listof}{totoc}
+\addtokomafont{title}{\LARGE}
+\recalctypearea
+
+% Load some core packages
+\usepackage{etoolbox}
+\usepackage{fancyvrb}
+\usepackage{hologo}
+
+% Configure headers and footers
+\usepackage[automark,headsepline]{scrpage2}
+\automark[section]{chapter}
+\lohead[]{\ifdefempty{\rightmark}{\leftmark}{\rightmark}}
+\cohead[]{}
+\rohead[]{\customauthor}
+\lofoot[]{}
+\cofoot[\pagemark]{\pagemark}
+\rofoot[]{}
+\pagestyle{scrheadings}
+
+% Load fonts and microtypography
+\usepackage{lmodern}
+\usepackage{textcomp}
+\usepackage{microtype}
+\microtypesetup{activate={true,nocompatibility}}
+% Disable XeTeX incompatible options
+\microtypesetup{tracking=false}
+\microtypesetup{kerning=false}
+\microtypesetup{expansion=false}
+%Disable experimental option "spacing", which conflicts with \frenchspacing
+\microtypesetup{spacing=false}
+\frenchspacing
+\microtypesetup{auto=true}
+\microtypesetup{selected=true}
+\microtypesetup{verbose=true}
+\microtypesetup{babel=true}
+% Reduce letterspacing for smallcaps
+\SetTracking{encoding=*,shape=sc}{50}
+
+% Load packages caption and subfiglist
+\input{preamble/uselocalpackage}
+\usepackage{calc}
+\usepackage{float}
+\uselocalpackage{packages/caption/}{caption3}
+\uselocalpackage{packages/caption/}{caption}
+\uselocalpackage{packages/caption/}{subcaption}
+\uselocalpackage{packages/subfiglist/}{subfiglist}
+\usepackage{pict2e}
+\usepackage{pstricks}
+
+% Create listing environment
+\newfloat{listing}{h}{lol}
+\floatname{listing}{Listing}
+\newcounter{sublisting}
+
+% Setup caption format
+\DeclareCaptionLabelFormat{killspace}{\makebox[\widthof{#2}-\widthof{\,}][r]{#2}}
+\captionsetup{format=plain,indention=0ex}
+\captionsetup{font=small}
+\captionsetup{labelfont={bf,sf}}
+\captionsetup{margin=1.5em}
+\captionsetup[subfigure]{labelformat=killspace}
+\renewcommand*\thesubfigure{\,(\alph{subfigure})}
+\captionsetup[sublisting]{labelformat=killspace}
+\renewcommand*\thesublisting{\,(\alph{sublisting})}
+
+\usepackage[pdfpagelabels]{hyperref}
+\usepackage[all]{hypcap}
+\usepackage[nameinlink]{cleveref}
+
+% Setup hyperref package
+\hypersetup{pdfstartview=FitH,
+            pdftitle=\customtitle,
+            pdfauthor=\customauthor,
+            colorlinks=true,
+            linkcolor=black,
+            citecolor=black,
+            filecolor=black,
+            urlcolor=black}
+
+% Setup cleveref package
+\crefname{figure}{fig.}{figs.}
+\Crefname{figure}{Fig.}{Figs.}
+\crefname{subfigure}{fig.}{figs.}
+\Crefname{subfigure}{Fig.}{Figs.}
+
+% Declanre sans serif math version
+\DeclareMathVersion{sans}
+\SetSymbolFont{operators}{sans}{OT1}{cmbr}{m}{n}
+\SetSymbolFont{letters}{sans}{OML}{cmbrm}{m}{it}
+\SetSymbolFont{symbols}{sans}{OMS}{cmbrs}{m}{n}
+\SetMathAlphabet{\mathit}{sans}{OT1}{cmbr}{m}{sl}
+\SetMathAlphabet{\mathbf}{sans}{OT1}{cmbr}{bx}{n}
+\SetMathAlphabet{\mathtt}{sans}{OT1}{cmtl}{m}{n}
+\SetSymbolFont{largesymbols}{sans}{OMX}{iwona}{m}{n}
+
+% Set title, author and date
+\title\customtitle
+\author\customauthor
+\date{March 22, 2015}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%    End of preamble    %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{document}
+%
+%\maketitle
+%
+%\tableofcontents
+%
+%\section{Package loading}
+%
+%\verb|\usepackage[options]{subfiglist}|
+%
+%Options have to be given in a key-value comma separated list as in \texttt{key1=val1,key2=val2}. After loading the package, options can also be specified or overwritten with the command \verb|\subfiglistset{options}|. Currently the following options are supported.
+%
+%\begin{description}
+%\item[\texttt{caption}\enskip] Can be set to \texttt{true} or \texttt{false} and will be set to \texttt{true} when specified completely without value. Default value is \texttt{true}. This option cannot be changed after \verb|\begin{document}|.
+%
+%This option decides whether the interface provided by the \texttt{caption} package is used for formatting of the subfigure labels. This interface is powerful, but in order to use it some internal commands of the \texttt{caption} package have to be modified. Compatibility was only tested for version 3.3 of the \texttt{caption} package and things may fail for any other version.
+%
+%Note that this option does \emph{not} decide whether the caption package is loaded! The functionality of the caption package is used in any case, but because this tweak is considered particularly ``dangerous'' it can be turned off explicitly.
+%
+%\item[\texttt{environment-width}\enskip] Length that specifies the default width of the \texttt{subfiglist} environment. Default value is \verb|\textwidth|. Shorthand \texttt{ew} can be used instead.
+%
+%\item[\texttt{environment-space}\enskip] Length that specifies the default space between two images in the \texttt{subfiglist} environment. Default value is \texttt{1ex}. Shorthand \texttt{es} can be used instead.
+%
+%\item[\texttt{file-top}\enskip] Length that specifies the default additional white space above an image in the \texttt{subfiglist} environment. Default value is \texttt{0pt}. Shorthand \texttt{ft} can be used instead.
+%
+%\item[\texttt{file-bottom}\enskip] Length that specifies the default additional white space below an image in the \texttt{subfiglist} environment. Default value is \texttt{0pt}. Shorthand \texttt{fb} can be used instead.
+%
+%\item[\texttt{file-left}\enskip] Length that specifies the default additional white space left of an image in the \texttt{subfiglist} environment. Default value is \texttt{0pt}. Shorthand \texttt{fl} can be used instead.
+%
+%\item[\texttt{file-right}\enskip] Length that specifies the default additional white space right of an image in the \texttt{subfiglist} environment. Default value is \texttt{0pt}. Shorthand \texttt{fr} can be used instead.
+%
+%\item[\texttt{label-hpos}\enskip] Default horizontal positioning of label within subfigure. Can be either \texttt{l} (left), \texttt{c} (centered) or \texttt{r} (right). Default is \texttt{l}. Shorthand \texttt{lh} can be used instead.
+%
+%\item[\texttt{label-vpos}\enskip] Default vertical positioning of label within subfigure. Can be either \texttt{t} (top), \texttt{c} (centered) or \texttt{b} (bottom). Default is \texttt{t}. Shorthand \texttt{lv} can be used instead.
+%
+%\item[\texttt{label-xshift}\enskip] Length that specifies the default additional horizontal shift of the label, where positive values shift to the right and negative values to the left, respectively. Default is \texttt{0.5ex}. Shorthand \texttt{lx} can be used instead.
+%
+%\item[\texttt{label-yshift}\enskip] Length that specifies the default additional vertical shift of the label, where positive values shift downwards and negative values upwards, respectively. Default is \texttt{0.5ex}. Shorthand \texttt{ly} can be used instead.
+%
+%\item[\texttt{label-color} or \texttt{label-colour}\enskip] Default text color of the label. More complex color definitions using e.\,g.\ extended color expressions from the \texttt{xcolor} package syntax should be enclosed in \emph{double} braces as
+%\begin{verbatim}
+%  label-color={{rgb,2:green,0.75;blue,1}}
+%\end{verbatim}
+%demonstrates. Default color is \texttt{.}\ (period) which means no color change, i.\,e.\ current text color. Shorthand \texttt{lc} can be used instead.
+%
+%\item[\texttt{label-background}\enskip] Default background color of the label. As for the \texttt{label-color} option, more complex color definitions should be enclosed in \emph{double} braces. Default color is \texttt{none}, i.\,e.\ fully transparent background. Shorthand \texttt{lb} can be used instead.
+%\end{description}
+%
+%
+%\section{The \texttt{subfiglist} environment}
+%The \texttt{subfiglist} environment is used for specification of the desired figure layout and for loading the corresponding files. It is typically used inside a \texttt{figure} environment. A first simple example is given in \cref{lst:simple}.
+%
+%\begin{listing}
+%\begin{minipage}{0.4\textwidth}
+%\begin{Verbatim}[numbers=left]
+%\begin{subfiglist}{1 2 3 \\ 4 5 6}
+%  \subfiglistfile{1}{figures/01.png}
+%  \subfiglistfile{2}{figures/02.png}
+%  \subfiglistfile{3}{figures/03.png}
+%  \subfiglistfile{4}{figures/04.png}
+%  \subfiglistfile{5}{figures/05.png}
+%  \subfiglistfile{6}{figures/06.png}
+%\end{subfiglist}
+%\end{Verbatim}
+%\end{minipage}
+%\hfill
+%\begin{minipage}{0.5\textwidth}
+%\begin{subfiglist}{1 2 3 \\ 4 5 6}
+%  \subfiglistfile{1}{figures/01.png}
+%  \subfiglistfile{2}{figures/02.png}
+%  \subfiglistfile{3}{figures/03.png}
+%  \subfiglistfile{4}{figures/04.png}
+%  \subfiglistfile{5}{figures/05.png}
+%  \subfiglistfile{6}{figures/06.png}
+%\end{subfiglist}
+%\end{minipage}
+%\caption{Simple example of \texttt{subfiglist} environment usage}
+%\label{lst:simple}
+%\end{listing}
+%
+%In case the \texttt{subfiglist} environment is used outside a \texttt{figure} or any other float environment, the \texttt{caption} package has to be told explicitly that it is supposed to label figures. This can be done with the following command.
+%
+%\begin{verbatim}
+%\captionsetup{type=figure}
+%\end{verbatim}
+%
+%The \texttt{subfiglist} environment serves as a wrapper for several commands, which can be used to specify images, put labels or image overlays. The general syntax is as follows.
+%
+%\begin{verbatim}
+%\begin{subfiglist}[options]{spec}
+%  content
+%\end{subfiglist}
+%\end{verbatim}
+%
+%The commands to be used as \texttt{content} are discussed in the subsequent sections. The specification \texttt{spec} determines in what layout the subfigures are to be arranged. Within \texttt{spec} the following characters are admissible.
+%
+%\begin{description}
+%\item[\texttt{0} to \texttt{9}\enskip] All subfigures are assigned a \texttt{number}, which is used as reference later. When \texttt{n} subfigures are to be arranged, the specified numbers have to be \texttt{1} to \texttt{n} with no number appearing twice or being omitted. However, it is not strictly necessary (but recommended) to specify the numbers in ascending order. Any numbers may be enclosed in braces, which is necessary for numbers greater than \texttt{9}, as any spaces are ignored. Hence, \texttt{12} is interpreted as one followed by two, while \verb|{12}| is interpreted as twelve.
+%
+%\item[\texttt{\textbackslash\textbackslash[length]}\enskip] Indicates a line break just as in usual text. The optional argument \texttt[length] can be used to specify a vertical space that is different from the default distance between two images.
+%
+%\item[\texttt{@\{...\}}\enskip] Can be used to typeset the argument \verb|{...}| between two images instead of the default spacing. For example, \verb|1@{TEXT}2| will omit any space between image \texttt{1} and \texttt{2} and typeset \texttt{TEXT} instead. In particular, \verb|@{\hspace*{length}}| can be used to put a space between two images that differs from the default value.
+%
+%\item[\texttt{\{...\}}\enskip] Braces are used for grouping content in the usual way. This mechanism can be used to create subblocks for a more advanced positioning of subfigures.
+%\end{description}
+%
+%The more complicated example in \cref{lst:complicated} illustrates the usage of the \texttt{spec} argument and the meaning of the individual parts.
+%
+%\begin{listing}
+%\begin{minipage}{0.4\textwidth}
+%\begin{Verbatim}[numbers=left]
+%\begin{subfiglist}
+%  {
+%    1 @{\color{red}\rule{2ex}{2ex}} 2 3 \\ 
+%    { 4 \\ 5 6 } 7 { 8 9 \\ {10} } \\[3ex]
+%    {11} {12} @{\hspace*{3ex}} {13} {14}
+%  }
+%  \subfiglistfile{1}{figures/01.png}
+%  \subfiglistfile{2}{figures/02.png}
+%  \subfiglistfile{3}{figures/03.png}
+%  \subfiglistfile{4}{figures/04.png}
+%  \subfiglistfile{5}{figures/05.png}
+%  \subfiglistfile{6}{figures/06.png}
+%  \subfiglistfile{7}{figures/07.png}
+%  \subfiglistfile{8}{figures/08.png}
+%  \subfiglistfile{9}{figures/09.png}
+%  \subfiglistfile{10}{figures/10.png}
+%  \subfiglistfile{11}{figures/11.png}
+%  \subfiglistfile{12}{figures/12.png}
+%  \subfiglistfile{13}{figures/13.png}
+%  \subfiglistfile{14}{figures/14.png}
+%\end{subfiglist}
+%\end{Verbatim}
+%\end{minipage}
+%\hfill
+%\raisebox{-2.5\baselineskip}{
+%\begin{minipage}{0.5\textwidth}
+%\begin{subfiglist}
+%  {
+%    1 @{\color{red}\rule{2ex}{2ex}} 2 3 \\ 
+%    { 4 \\ 5 6 } 7 { 8 9 \\ {10} } \\[3ex]
+%    {11} {12} @{\hspace*{3ex}} {13} {14}
+%  }
+%  \subfiglistfile{1}{figures/01.png}
+%  \subfiglistfile{2}{figures/02.png}
+%  \subfiglistfile{3}{figures/03.png}
+%  \subfiglistfile{4}{figures/04.png}
+%  \subfiglistfile{5}{figures/05.png}
+%  \subfiglistfile{6}{figures/06.png}
+%  \subfiglistfile{7}{figures/07.png}
+%  \subfiglistfile{8}{figures/08.png}
+%  \subfiglistfile{9}{figures/09.png}
+%  \subfiglistfile{10}{figures/10.png}
+%  \subfiglistfile{11}{figures/11.png}
+%  \subfiglistfile{12}{figures/12.png}
+%  \subfiglistfile{13}{figures/13.png}
+%  \subfiglistfile{14}{figures/14.png}
+%\end{subfiglist}
+%\end{minipage}}
+%\caption{More complicated example to demonstrate the usage of the \texttt{spec} argument.}
+%\label{lst:complicated}
+%\end{listing}
+%
+%The options have to be given in a key-value comma separated list as in \texttt{key1=val1,key2=val2}. Currently the following options are supported.
+%
+%\begin{description}
+%\item[\texttt{width}\enskip] Length that specifies the width of the \texttt{subfiglist} environment. Default value is \verb|\textwidth| if not specified otherwise in the package options. Shorthand \texttt{w} can be used instead.
+%
+%\item[\texttt{space}\enskip] Length that specifies the space between two images in the \texttt{subfiglist} environment. Default value is \texttt{1ex} if not specified otherwise in the package options. Shorthand \texttt{s} can be used instead.
+%\end{description}
+%
+%Alongside with the \texttt{subfiglist} environment also the \texttt{subfiglist*} environment exist, which is identical in usage but internally uses the \verb|\hspace*| command instead of the \verb|\hfill| command for creating horizontal white space between images. This should not make any visible difference in any situation I could think of. But I couldn't decide which version to use anyway, so here it is. Maybe it's helpful to have it in some way.
+%
+%\section{The command \texttt{\textbackslash subfiglistfile}}
+%\begin{verbatim}
+%\subfiglistfile[options]{image-number}{file-name}
+%\end{verbatim}
+%
+%The argument \texttt{image-number} is used to reference the numbers used in the \texttt{spec} argument of the \texttt{subfiglist} environment. For \texttt{file-name} either a simple file name as in \texttt{file} or a full or relative path as in \texttt{path/to/file} can be used. The file extension can be omitted if it belongs to the usual set that is checked by the \verb|\includegraphics| command.
+%
+%If the file extension \texttt{pdf\textunderscore tex} is given as in \texttt{file/svg.pdf\textunderscore tex}, then it is automatically assumed that the corresponding file was created with the `PDF + \hologo{LaTeX}' option of Inkscape, which allows for separation of drawings and text. The text inside a SVG image is then typeset directly by \hologo{LaTeX} with full support of formatting and math mode as shown in \cref{lst:svg}.
+%
+%\begin{listing}
+%\begin{minipage}{0.4\textwidth}
+%\begin{Verbatim}[numbers=left]
+%\begin{subfiglist}{1 2 3}
+%  \subfiglistfile{1}{figures/02.png}
+%  \subfiglistfile{2}
+%    {figures/svg.pdf_tex}
+%  \subfiglistfile{3}{figures/04.png}
+%\end{subfiglist}
+%\end{Verbatim}
+%\end{minipage}
+%\hfill
+%\begin{minipage}{0.5\textwidth}
+%\begin{subfiglist}{1 2 3}
+%  \subfiglistfile{1}{figures/02.png}
+%  \subfiglistfile{2}
+%    {figures/svg.pdf_tex}
+%  \subfiglistfile{3}{figures/04.png}
+%\end{subfiglist}
+%\end{minipage}
+%\caption{Compatibility with both bitmap images and the `PDF + \hologo{LaTeX}' option of Inkscape}
+%\label{lst:svg}
+%\end{listing}
+%
+%When an image with the file extension \texttt{pdf\textunderscore tex} is loaded, it is put inside the \texttt{subfiglistsvgenv} environment, which can be used to change the default formatting of the text in SVG images. By default the \texttt{subfiglistsvgenv} environment expands to nothing. In order to set all text on SVG images in footnotesize sans serif font, the following code can be used. First, a sans serif version of the math fonts has to be defined in the preamble.
+%
+%\begin{Verbatim}[numbers=left]
+%\DeclareMathVersion{sans}
+%  \SetSymbolFont{operators}{sans}{OT1}{cmbr}{m}{n}
+%  \SetSymbolFont{letters}{sans}{OML}{cmbrm}{m}{it}
+%  \SetSymbolFont{symbols}{sans}{OMS}{cmbrs}{m}{n}
+%  \SetMathAlphabet{\mathit}{sans}{OT1}{cmbr}{m}{sl}
+%  \SetMathAlphabet{\mathbf}{sans}{OT1}{cmbr}{bx}{n}
+%  \SetMathAlphabet{\mathtt}{sans}{OT1}{cmtl}{m}{n}
+%  \SetSymbolFont{largesymbols}{sans}{OMX}{iwona}{m}{n}
+%\end{Verbatim}
+%
+%Afterwards, the \texttt{subfiglistsvgenv} environment can be redefined in the desired way. Special care has to be taken to terminate every line properly by \texttt{\%} or otherwise spacing might be messed up.
+%
+%\begin{Verbatim}[numbers=left]
+%\renewenvironment*{subfiglistsvgenv}{%
+%  \begin{sffamily}%
+%  \mathversion{sans}%
+%  \footnotesize%
+%}{%
+%  \end{sffamily}%
+%}
+%\end{Verbatim}
+%%
+%\renewenvironment*{subfiglistsvgenv}{%
+%  \begin{sffamily}%
+%  \mathversion{sans}%
+%  \footnotesize%
+%}{%
+%  \end{sffamily}%
+%}
+%
+%After this setup the same code as above yields the result shown in \cref{lst:svg-sans}. Note that the text color cannot be changed globally this way, since the file generated by Inkscape explicitly sets it.
+%
+%\begin{listing}
+%\begin{minipage}{0.4\textwidth}
+%\begin{Verbatim}[numbers=left]
+%\begin{subfiglist}{1 2 3}
+%  \subfiglistfile{1}{figures/02}
+%  \subfiglistfile{2}
+%    {figures/svg.pdf_tex}
+%  \subfiglistfile{3}{figures/04}
+%\end{subfiglist}
+%\end{Verbatim}
+%\end{minipage}
+%\hfill
+%\begin{minipage}{0.5\textwidth}
+%\begin{subfiglist}{1 2 3}
+%  \subfiglistfile{1}{figures/02.png}
+%  \subfiglistfile{2}
+%    {figures/svg.pdf_tex}
+%  \subfiglistfile{3}{figures/04.png}
+%\end{subfiglist}
+%\end{minipage}
+%\caption{Footnotesize sans serif font in SVG image}
+%\label{lst:svg-sans}
+%\end{listing}
+%
+%The options have to be given in a key-value comma separated list as in \texttt{key1=val1,key2=val2}. Currently the following options are supported.
+%
+%\begin{description}
+%\item[\texttt{top}\enskip] Length that specifies the additional white space above the specified image. Default value is \texttt{0pt}. Shorthand \texttt{t} can be used instead.
+%
+%\item[\texttt{bottom}\enskip] Length that specifies the additional white space below the specified image. Default value is \texttt{0pt}. Shorthand \texttt{b} can be used instead.
+%
+%\item[\texttt{left}\enskip] Length that specifies the additional white space left of the specified image. Default value is \texttt{0pt}. Shorthand \texttt{l} can be used instead.
+%
+%\item[\texttt{right}\enskip] Length that specifies the additional white space right of the specified image. Default value is \texttt{0pt}. Shorthand \texttt{r} can be used instead.
+%\end{description}
+%
+%\begin{listing}
+%\begin{minipage}{0.4\textwidth}
+%\begin{Verbatim}[numbers=left]
+%\begin{subfiglist}{1 2 \\ 3 4}
+%  \subfiglistfile[t=2ex]{1}
+%    {figures/01}
+%  \subfiglistfile[b=2ex]{2}
+%    {figures/02}
+%  \subfiglistfile[l=2ex]{3}
+%    {figures/03}
+%  \subfiglistfile[r=2ex]{4}
+%    {figures/04}
+%\end{subfiglist}
+%\end{Verbatim}
+%\end{minipage}
+%\hfill
+%\begin{minipage}{0.5\textwidth}
+%\begin{subfiglist}{1 2 \\ 3 4}
+%  \subfiglistfile[t=2ex]{1}
+%    {figures/01.png}
+%  \subfiglistfile[b=2ex]{2}
+%    {figures/02.png}
+%  \subfiglistfile[l=2ex]{3}
+%    {figures/03.png}
+%  \subfiglistfile[r=2ex]{4}
+%    {figures/04.png}
+%\end{subfiglist}
+%\end{minipage}
+%\caption{Additional spacing around images}
+%\label{lst:spacing}
+%\end{listing}
+%
+%\section{The command \texttt{\textbackslash subfiglistlabel}}
+%
+%\begin{verbatim}
+%\subfiglistlabel[options]{image-number}{label-hook}
+%\end{verbatim}
+%
+%Places a label for the image referenced by \texttt{image-number}. The argument \texttt{label-hook} can be used to pass a \verb|\label| command in order to reference the image by a \verb|\ref| like command. If \texttt{label-hook} is left empty, a label is still typeset but it cannot be referenced by \verb|\ref|.
+%
+%The appearance of the label can be changed both with and without the package option \texttt{caption}. As an example it shall be demonstrated how to obtain a bold sans-serif lowercase letter in braces as label, while a reference using \verb|\ref| produces the image number followed by a thin space \verb|\,| and a normal font lowercase latter in braces like in 1\,(a).
+%
+%When the option \texttt{caption} is used, the font of the label can be set using the \texttt{caption} package mechanism using \verb|\captionsetup|. Braces and thin space for the \verb|\ref| command can be obtained by redefinition of \verb|\thesubfigure|. However, also the caption package makes use of \verb|\thesubfigure| and the thin space is unwanted there, so it has to be canceled by putting everything inside a \verb|\makebox|. The full code may look as follows.
+%
+%\begin{Verbatim}[numbers=left]
+%\DeclareCaptionLabelFormat{killspace}{%
+%  \makebox[\widthof{#2}-\widthof{\,}][r]{#2}%
+%}
+%\captionsetup{labelfont={bf,sf}}
+%\captionsetup[subfigure]{labelformat=killspace}
+%\renewcommand*\thesubfigure{\,(\alph{subfigure})}
+%\end{Verbatim}
+%
+%Without the \texttt{caption} option the desired behavior of \verb|\ref| is again obtained by redefiniton of \verb|\thesubfigure|. The format of the label, however, has to be defined explicitly via a redefinition of \verb|\subfiglistlabelformat| in the following way.
+%
+%\begin{Verbatim}[numbers=left]
+%\renewcommand*\subfiglistlabelformat{\textbf{\textsf{(\alph{subfigure})}}}
+%\renewcommand*\thesubfigure{\,(\alph{subfigure})}
+%\end{Verbatim}
+%
+%The options have to be given in a key-value comma separated list as in \texttt{key1=val1,key2=val2}. Currently the following options are supported.
+%
+%\begin{description}
+%\item[\texttt{hpos}\enskip] Horizontal positioning of label within subfigure. Can be either \texttt{l} (left), \texttt{c} (centered) or \texttt{r} (right). Default is \texttt{l} if not specified otherwise in the package options. Shorthand \texttt{h} can be used instead.
+%
+%\item[\texttt{vpos}\enskip] Vertical positioning of label within subfigure. Can be either \texttt{t} (top), \texttt{c} (centered) or \texttt{b} (bottom). Default is \texttt{t} if not specified otherwise in the package options. Shorthand \texttt{v} can be used instead.
+%
+%\item[\texttt{xshift}\enskip] Length that specifies the additional horizontal shift of the label, where positive values shift to the right and negative values to the left, respectively. Default is \texttt{0.5ex} if not specified otherwise in the package options. Shorthand \texttt{x} can be used instead.
+%
+%\item[\texttt{yshift}\enskip] Length that specifies the additional vertical shift of the label, where positive values shift downwards and negative values upwards, respectively. Default is \texttt{0.5ex} if not specified otherwise in the package options. Shorthand \texttt{y} can be used instead.
+%
+%\item[\texttt{color} or \texttt{colour}\enskip] Text color of the label. More complex color definitions using e.\,g.\ extended color expressions from the \texttt{xcolor} package syntax should be enclosed in \emph{double} braces as
+%\begin{verbatim}
+%  color={{rgb,2:green,0.75;blue,1}}
+%\end{verbatim}
+%demonstrates. Default color is \texttt{.}\ (period) if not specified otherwise in the package options, which means no color change, i.\,e.\ current text color. Shorthand \texttt{c} can be used instead.
+%
+%\item[\texttt{background}\enskip] Background color of the label. As for the \texttt{label-color} option, more complex color definitions should be enclosed in \emph{double} braces. Default color is \texttt{none}, i.\,e.\ fully transparent background, if not specified otherwise in the package options. Shorthand \texttt{b} can be used instead.
+%\end{description}
+%
+%\Cref{lst:labels} illustrates these options. Note that the \texttt{top}, \texttt{bottom}, \texttt{left} and \texttt{right} options of the \verb|\subfiglistfile| command do not influence the label positioning. They can hence be used to move the label off a subfigure.
+%
+%\begin{listing}
+%\begin{minipage}{0.4\textwidth}
+%\begin{Verbatim}[numbers=left]
+%\begin{subfiglist}{1 2 3 \\ 4 5 6}
+%  \subfiglistfile[t=3ex]{1}{figures/01}
+%  \subfiglistfile[t=3ex]{2}{figures/02}
+%  \subfiglistfile[t=3ex]{3}{figures/03}
+%  \subfiglistfile{4}{figures/04}
+%  \subfiglistfile{5}{figures/05}
+%  \subfiglistfile{6}{figures/06}
+%  \subfiglistlabel
+%    [y=0pt,c=blue]
+%    {1}{\label{foo}}
+%  \subfiglistlabel
+%    [y=0pt,c={{rgb,256:red,224}}]
+%    {2}{\label{bar}}
+%  \subfiglistlabel
+%    [y=0pt,c={{rgb,1:green,.75}}]
+%    {3}{\label{baz}}
+%  \subfiglistlabel
+%    [h=r,v=b,x=-0.5ex,y=-1ex,b=yellow]
+%    {4}{}
+%  \subfiglistlabel
+%    [h=r,v=b,x=-0.5ex,y=-1ex,b=cyan]
+%    {5}{}
+%  \subfiglistlabel
+%    [h=r,v=b,x=-0.5ex,y=-1ex,b=magenta]
+%    {6}{}
+%\end{subfiglist}
+%\end{Verbatim}
+%\end{minipage}
+%\hfill
+%\raisebox{2.5\baselineskip}{
+%\begin{minipage}{0.5\textwidth}
+%\begin{subfiglist}{1 2 3 \\ 4 5 6}
+%  \subfiglistfile[t=3ex]{1}{figures/01.png}
+%  \subfiglistfile[t=3ex]{2}{figures/02.png}
+%  \subfiglistfile[t=3ex]{3}{figures/03.png}
+%  \subfiglistfile{4}{figures/04.png}
+%  \subfiglistfile{5}{figures/05.png}
+%  \subfiglistfile{6}{figures/06.png}
+%  \subfiglistlabel
+%    [y=0pt,c=blue]
+%    {1}{\label{foo}}
+%  \subfiglistlabel
+%    [y=0pt,c={{rgb,256:red,224}}]
+%    {2}{\label{bar}}
+%  \subfiglistlabel
+%    [y=0pt,c={{rgb,1:green,.75}}]
+%    {3}{\label{baz}}
+%  \subfiglistlabel
+%    [h=r,v=b,x=-0.5ex,y=-1ex,b=yellow]
+%    {4}{}
+%  \subfiglistlabel
+%    [h=r,v=b,x=-0.5ex,y=-1ex,b=cyan]
+%    {5}{}
+%  \subfiglistlabel
+%    [h=r,v=b,x=-0.5ex,y=-1ex,b=magenta]
+%    {6}{}
+%\end{subfiglist}
+%\end{minipage}}
+%\caption{Demonstration of the different options for the \texttt{\textbackslash subfiglistlabel} command}
+%\label{lst:labels}
+%\end{listing}
+%
+%\section{The command \texttt{\textbackslash subfiglistoverlay}}
+%
+%\begin{verbatim}
+%\subfiglistoverlay{image-number}{content}
+%\end{verbatim}
+%
+%This command can be used to place objects on top of the image referenced by \texttt{image-number}. The argument \texttt{content} can contain arbitrary commands that are placed inside the environment \texttt{subfiglistoverlayenv}. By default, \texttt{subfiglistoverlayenv} expands to a \texttt{picture} environment with \verb|\unitlength| being equal to the width of the image referenced by \texttt{image-number}.
+%
+%When \verb|\subfiglistoverlay| in its default setup, i.\,e.\ for \texttt{subfiglistoverlayenv} expanding to a \texttt{picture} environment, is used for drawing lines or shapes, loading of the \texttt{pict2e} package is strongly recommended. The standard \texttt{picture} environment suffers from several severe limitations, which are lifted by this package.
+%
+%\begin{listing}
+%\begin{minipage}{0.4\textwidth}
+%\begin{Verbatim}[numbers=left]
+%\begin{subfiglist}{1 2}
+%  \subfiglistfile{1}{figures/01}
+%  \subfiglistfile{2}{figures/02}
+%  \subfiglistoverlay{1}{%
+%    \put(0.8,0){%
+%      \color{red}%
+%      \rule{1em}{2em}%
+%    }%
+%    \put(0,0.5){%
+%      \color{blue}%
+%      \rule{2em}{1em}%
+%    }%
+%    \linethickness{1ex}%
+%    \put(0.3,0.25){%
+%      \color{orange}%
+%      \vector(1,0){1.2}%
+%    }%
+%  }
+%  \subfiglistoverlay{2}{%
+%    \linethickness{1ex}%
+%    \put(0.6,0.6){%
+%      \color{yellow}%
+%      \vector(-1,0){1.7}%
+%    }%
+%  }
+%\end{subfiglist}
+%\end{Verbatim}
+%\end{minipage}
+%\hfill
+%\begin{minipage}{0.5\textwidth}
+%\begin{subfiglist}{1 2}
+%  \subfiglistfile{1}{figures/01.png}
+%  \subfiglistfile{2}{figures/02.png}
+%  \subfiglistoverlay{1}{%
+%    \put(0.8,0){%
+%      \color{red}%
+%      \rule{1em}{2em}%
+%    }%
+%    \put(0,0.5){%
+%      \color{blue}%
+%      \rule{2em}{1em}%
+%    }%
+%    \linethickness{1ex}%
+%    \put(0.3,0.25){%
+%      \color{orange}%
+%      \vector(1,0){1.2}%
+%    }%
+%  }
+%  \subfiglistoverlay{2}{%
+%    \linethickness{1ex}%
+%    \put(0.6,0.6){%
+%      \color{yellow}%
+%      \vector(-1,0){1.7}%
+%    }%
+%  }
+%\end{subfiglist}
+%\end{minipage}
+%\caption{Overlays using the default \texttt{picture} environment}
+%\label{lst:overlay-picture}
+%\end{listing}
+%
+%Note that the first image together with overlay is typeset before the second image. Hence the orange arrow is hidden behind the second (half-transparent PNG) image, while the yellow arrow appears in front of everything. To influence the behavior of overlays, the \texttt{subfiglistoverlayenv} environment can be redefined. It takes two arguments, the first being the width and the second the height of the current image.
+%
+%The following example shows how to employ PSTricks and use a \texttt{pspicture} environment as overlay, which has image width and image height as horizontal and vertical unit length, respectively. With this method the top right corner of the image can be addressed by the coordinate $(1,1)$. Note that this example requires \hologo{XeLaTeX}, since PSTricks is incompatible with \hologo{pdfLaTeX} by design and the usual workarounds using the packages \texttt{auto-pst-pdf} or \texttt{pdftricks} do not seem to get along with the use of \texttt{pspicture} nested within self-defined environments properly.
+%
+%\begin{Verbatim}[numbers=left]
+%\renewenvironment*{subfiglistoverlayenv}[2]{%
+%  \psset{xunit=#1,yunit=#2}%
+%  \begin{pspicture}(1,1)%
+%}{%
+%  \end{pspicture}%
+%}
+%\end{Verbatim}
+%%
+%\renewenvironment*{subfiglistoverlayenv}[2]{%
+%  \psset{xunit=#1,yunit=#2}%
+%  \begin{pspicture}(1,1)%
+%}{%
+%  \end{pspicture}%
+%}
+%
+%The automatic rescaling behavior of this approach depending on image size and aspect ratio is shown in \cref{lst:overlay-ps}.
+%
+%\begin{listing}
+%\begin{minipage}{0.4\textwidth}
+%\begin{Verbatim}[numbers=left]
+%\begin{subfiglist}{1 2}
+%  \subfiglistfile{1}{figures/01.png}
+%  \subfiglistfile{2}{figures/02.png}
+%  \subfiglistoverlay{1}{%
+%    \psset{%
+%      linewidth=3pt,%
+%      linecolor=blue%
+%    }%
+%    \psline[linecolor=red]%
+%      (0,0)(1,1)%
+%    \pscurve[showpoints=true]%
+%      (0.2,0.8)(0.8,0.2)%
+%      (0.5,0.7)(0.8,0.8)%
+%  }
+%  \subfiglistoverlay{2}{%
+%    \psset{%
+%      linewidth=3pt,%
+%      linecolor=blue%
+%    }%
+%    \psline[linecolor=red]%
+%      (0,0)(1,1)%
+%    \pscurve[showpoints=true]%
+%      (0.2,0.8)(0.8,0.2)%
+%      (0.5,0.7)(0.8,0.8)%
+%  }
+%\end{subfiglist}
+%\end{Verbatim}
+%\end{minipage}
+%\hfill
+%\begin{minipage}{0.5\textwidth}
+%\begin{subfiglist}{1 2}
+%  \subfiglistfile{1}{figures/01.png}
+%  \subfiglistfile{2}{figures/02.png}
+%  \subfiglistoverlay{1}{%
+%    \psset{%
+%      linewidth=3pt,%
+%      linecolor=blue%
+%    }%
+%    \psline[linecolor=red]%
+%      (0,0)(1,1)%
+%    \pscurve[showpoints=true]%
+%      (0.2,0.8)(0.8,0.2)%
+%      (0.5,0.7)(0.8,0.8)%
+%  }
+%  \subfiglistoverlay{2}{%
+%    \psset{%
+%      linewidth=3pt,%
+%      linecolor=blue%
+%    }%
+%    \psline[linecolor=red]%
+%      (0,0)(1,1)%
+%    \pscurve[showpoints=true]%
+%      (0.2,0.8)(0.8,0.2)%
+%      (0.5,0.7)(0.8,0.8)%
+%  }
+%\end{subfiglist}
+%\end{minipage}
+%\caption{Overlays using the \texttt{pspicture} environment}
+%\label{lst:overlay-ps}
+%\end{listing}
+%
+%\section{Known issues}
+%
+%\begin{itemize}
+%\item A newline command \verb|\\| apparently produces at least \texttt{1pt} of vertical space. In fact, the command \verb|\\[\dim]| produces a vertical distance of \texttt{\textbackslash dim\,+\,1pt} between the two lines it separates. This difference is automatically corrected for by the package. However, requesting vertical space of \emph{less} than \texttt{1pt} will mess up vertical spacing.
+%
+%\item All images are placed on lines just like normal text. This works fine, as long as the images are higher than the minimum line height, because then the line height will automatically be increased to match the exact image height. However, for images with less height, the lines will keep their minimum height and thereby mess up vertical spacing. This minimum height is probably given by \verb|\baselineskip|, \texttt{1em}, \verb|\ht\strutbox| or something related. Anyway, all these values are more or less the same.
+%\end{itemize}
+%
+%\section{Rough description of the algorithm}
+%For every image~-- or more general for every ``object'' like  images, spaces or newlines~-- several properties like width, height, aspect ratio and others have to be saved. In any object oriented programming language this would probably be solved by writing a class, which can store the various properties in fields, and creating instances for any of the considered objects.
+
+\begin{subfiglist}{1 2}
+  \subfiglistfile{1}{figures/01.png}
+  \subfiglistfile{2}{figures/02.png}
+\end{subfiglist}
+
+
+\end{document}
