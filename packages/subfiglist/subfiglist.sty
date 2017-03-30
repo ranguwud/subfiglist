@@ -172,26 +172,22 @@
   
   % Horizontal positioning of label (left, center, right)
   label-hpos.choice:,
-  label-hpos.choice_code:n      = 
+  label-hpos.choices:nn         = { l, c, r }
     { \int_set_eq:NN \subfiglist_label_hpos_default_int \l_keys_choice_int },
-  label-hpos.generate_choices:n = { l, c, r },
   label-hpos.value_required:,
   lh.choice:,
-  lh.choice_code:n              =
+  lh.choices:nn                 = { l, c, r }
     { \int_set_eq:NN \subfiglist_label_hpos_default_int \l_keys_choice_int },
-  lh.generate_choices:n         = { l, c, r },
   lh.value_required:,
   
   % Vertical positioning of label (top, center, bottom)
   label-vpos.choice:,
-  label-vpos.choice_code:n      =
+  label-vpos.choices:nn         = { t, c, b }
     { \int_set_eq:NN \subfiglist_label_vpos_default_int \l_keys_choice_int },
-  label-vpos.generate_choices:n = { t, c, b },
   label-vpos.value_required:,
   lv.choice:,
-  lv.choice_code:n              =
+  lv.choices:nn                 = { t, c, b }
     { \int_set_eq:NN \subfiglist_label_vpos_default_int \l_keys_choice_int },
-  lv.generate_choices:n         = { t, c, b },
   lv.value_required:,
   
   % Horizontal shift of label
@@ -252,9 +248,8 @@
 \keys_define:nn { subfiglisttest }
 {
   test.choice:,
-  test.choice_code:n      =
+  test.choices:nn = { first, second }
     { \int_gset_eq:NN \subfiglist_keyval_choice_first_int \l_keys_choice_int },
-  test.generate_choices:n = { first, second },
   test.value_required:
 }
 \keys_set:nn { subfiglisttest } { test = first }
@@ -361,26 +356,22 @@
   {
     % Horizontal positioning (left, center, right)
     hpos.choice:,
-    hpos.choice_code:x      =
+    hpos.choices:nn         = { l, c, r }
       { \int_set_eq:NN \subfiglist_label_hpos_int \l_keys_choice_int },
-    hpos.generate_choices:n = { l, c, r },
     hpos.value_required:,
     h.choice:,
-    h.choice_code:n         =
+    h.choices:nn            = { l, c, r }
       { \int_set_eq:NN \subfiglist_label_hpos_int \l_keys_choice_int },
-    h.generate_choices:n    = { l, c, r },
     h.value_required:,
     
     % Vertical positioning (top, center, bottom)
     vpos.choice:,
-    vpos.choice_code:n      =
+    vpos.choices:nn         = { t, c, b }
       { \int_set_eq:NN \subfiglist_label_vpos_int \l_keys_choice_int },
-    vpos.generate_choices:n = { t, c, b },
     vpos.value_required:,
     v.choice:,
-    v.choice_code:n         =
+    v.choices:nn            = { t, c, b }
       { \int_set_eq:NN \subfiglist_label_vpos_int \l_keys_choice_int },
-    v.generate_choices:n    = { t, c, b },
     v.value_required:,
     
     % Horizontal shift
