@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.3.26)  26 MAR 2017 18:14
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.3.26)  30 MAR 2017 18:27
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -695,333 +695,66 @@ Package graphics Info: Driver file: xetex.def on input line 95.
 \subfiglist_label_hpos_default_int=\count146
 \subfiglist_label_vpos_default_int=\count147
 \subfiglist_box=\box45
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-! LaTeX error: "kernel/property-unknown"
-! 
-! The key property '.choice_code:n' is unknown.
-! 
-! See the LaTeX3 documentation for further information.
-! 
-! For immediate help type H <return>.
-!...............................................  
-                                                  
-l.222 }
-       
-|'''''''''''''''''''''''''''''''''''''''''''''''
-| This is a coding error.
-| 
-| LaTeX has been asked to set the property '.choice_code:n' for key
-| 'subfiglist/label-hpos': this property is not defined.
-|...............................................
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-! LaTeX error: "kernel/property-unknown"
-! 
-! The key property '.generate_choices:n' is unknown.
-! 
-! See the LaTeX3 documentation for further information.
-! 
-! For immediate help type H <return>.
-!...............................................  
-                                                  
-l.222 }
-       
-|'''''''''''''''''''''''''''''''''''''''''''''''
-| This is a coding error.
-| 
-| LaTeX has been asked to set the property '.generate_choices:n' for key
-| 'subfiglist/label-hpos': this property is not defined.
-|...............................................
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-! LaTeX error: "kernel/property-unknown"
-! 
-! The key property '.choice_code:n' is unknown.
-! 
-! See the LaTeX3 documentation for further information.
-! 
-! For immediate help type H <return>.
-!...............................................  
-                                                  
-l.222 }
-       
-|'''''''''''''''''''''''''''''''''''''''''''''''
-| This is a coding error.
-| 
-| LaTeX has been asked to set the property '.choice_code:n' for key
-| 'subfiglist/lh': this property is not defined.
-|...............................................
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-! LaTeX error: "kernel/property-unknown"
-! 
-! The key property '.generate_choices:n' is unknown.
-! 
-! See the LaTeX3 documentation for further information.
-! 
-! For immediate help type H <return>.
-!...............................................  
-                                                  
-l.222 }
-       
-|'''''''''''''''''''''''''''''''''''''''''''''''
-| This is a coding error.
-| 
-| LaTeX has been asked to set the property '.generate_choices:n' for key
-| 'subfiglist/lh': this property is not defined.
-|...............................................
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-! LaTeX error: "kernel/property-unknown"
-! 
-! The key property '.choice_code:n' is unknown.
-! 
-! See the LaTeX3 documentation for further information.
-! 
-! For immediate help type H <return>.
-!...............................................  
-                                                  
-l.222 }
-       
-|'''''''''''''''''''''''''''''''''''''''''''''''
-| This is a coding error.
-| 
-| LaTeX has been asked to set the property '.choice_code:n' for key
-| 'subfiglist/label-vpos': this property is not defined.
-|...............................................
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-! LaTeX error: "kernel/property-unknown"
-! 
-! The key property '.generate_choices:n' is unknown.
-! 
-! See the LaTeX3 documentation for further information.
-! 
-! For immediate help type H <return>.
-!...............................................  
-                                                  
-l.222 }
-       
-|'''''''''''''''''''''''''''''''''''''''''''''''
-| This is a coding error.
-| 
-| LaTeX has been asked to set the property '.generate_choices:n' for key
-| 'subfiglist/label-vpos': this property is not defined.
-|...............................................
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-! LaTeX error: "kernel/property-unknown"
-! 
-! The key property '.choice_code:n' is unknown.
-! 
-! See the LaTeX3 documentation for further information.
-! 
-! For immediate help type H <return>.
-!...............................................  
-                                                  
-l.222 }
-       
-|'''''''''''''''''''''''''''''''''''''''''''''''
-| This is a coding error.
-| 
-| LaTeX has been asked to set the property '.choice_code:n' for key
-| 'subfiglist/lv': this property is not defined.
-|...............................................
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-! LaTeX error: "kernel/property-unknown"
-! 
-! The key property '.generate_choices:n' is unknown.
-! 
-! See the LaTeX3 documentation for further information.
-! 
-! For immediate help type H <return>.
-!...............................................  
-                                                  
-l.222 }
-       
-|'''''''''''''''''''''''''''''''''''''''''''''''
-| This is a coding error.
-| 
-| LaTeX has been asked to set the property '.generate_choices:n' for key
-| 'subfiglist/lv': this property is not defined.
-|...............................................
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-! LaTeX error: "kernel/key-choice-unknown"
-! 
-! Key 'subfiglist/label-hpos' accepts only a fixed set of choices.
-! 
-! See the LaTeX3 documentation for further information.
-! 
-! For immediate help type H <return>.
-!...............................................  
-                                                  
-l.240 }
-       
-|'''''''''''''''''''''''''''''''''''''''''''''''
-| The key 'subfiglist/label-hpos' only accepts predefined values, and 'l' is
-| not one of these.
-|...............................................
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-! LaTeX error: "kernel/key-choice-unknown"
-! 
-! Key 'subfiglist/label-vpos' accepts only a fixed set of choices.
-! 
-! See the LaTeX3 documentation for further information.
-! 
-! For immediate help type H <return>.
-!...............................................  
-                                                  
-l.240 }
-       
-|'''''''''''''''''''''''''''''''''''''''''''''''
-| The key 'subfiglist/label-vpos' only accepts predefined values, and 't' is
-| not one of these.
-|...............................................
-
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistset with sig. 'm' on line 247.
-.................................................
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-! LaTeX error: "kernel/property-unknown"
-! 
-! The key property '.choice_code:n' is unknown.
-! 
-! See the LaTeX3 documentation for further information.
-! 
-! For immediate help type H <return>.
-!...............................................  
-                                                  
-l.259 }
-       
-|'''''''''''''''''''''''''''''''''''''''''''''''
-| This is a coding error.
-| 
-| LaTeX has been asked to set the property '.choice_code:n' for key
-| 'subfiglisttest/test': this property is not defined.
-|...............................................
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-! LaTeX error: "kernel/property-unknown"
-! 
-! The key property '.generate_choices:n' is unknown.
-! 
-! See the LaTeX3 documentation for further information.
-! 
-! For immediate help type H <return>.
-!...............................................  
-                                                  
-l.259 }
-       
-|'''''''''''''''''''''''''''''''''''''''''''''''
-| This is a coding error.
-| 
-| LaTeX has been asked to set the property '.generate_choices:n' for key
-| 'subfiglisttest/test': this property is not defined.
-|...............................................
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-! LaTeX error: "kernel/key-choice-unknown"
-! 
-! Key 'subfiglisttest/test' accepts only a fixed set of choices.
-! 
-! See the LaTeX3 documentation for further information.
-! 
-! For immediate help type H <return>.
-!...............................................  
-                                                  
-l.260 ...et:nn { subfiglisttest } { test = first }
-                                                  
-|'''''''''''''''''''''''''''''''''''''''''''''''
-| The key 'subfiglisttest/test' only accepts predefined values, and 'first' is
-| not one of these.
-|...............................................
-
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \subfiglistfile with sig. '' on line 2458.
+. Defining command \subfiglistset with sig. 'm' on line 243.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummyfile with sig. '' on line 2510.
+. Defining command \subfiglistfile with sig. '' on line 2449.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummy with sig. '' on line 2568.
+. Defining command \subfiglistdummyfile with sig. '' on line 2501.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabel with sig. '' on line 2628.
+. Defining command \subfiglistdummy with sig. '' on line 2559.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistoverlay with sig. '' on line 2661.
+. Defining command \subfiglistlabel with sig. '' on line 2619.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabelformat with sig. '' on line 2665.
+. Defining command \subfiglistoverlay with sig. '' on line 2652.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \subfiglistlabelformat with sig. '' on line 2656.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistsvgenv' with sig. '' on line 2669.
+. Defining environment 'subfiglistsvgenv' with sig. '' on line 2660.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 2690.
+. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 2681.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist' with sig. 'sO{}m' on line 2813.
+. Defining environment 'subfiglist' with sig. 'sO{}m' on line 2804.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 2817.
+. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 2808.
 .................................................
 )
 runsystem(rm ./subfiglist.sty)...executed.
 
- (/usr/share/texlive/texmf-dist/tex/latex/pict2e/pict2e.sty
+
+(/usr/share/texlive/texmf-dist/tex/latex/pict2e/pict2e.sty
 Package: pict2e 2016/02/05 v0.3b Improved picture commands (HjG,RN,JT)
 
 (/usr/share/texlive/texmf-dist/tex/latex/pict2e/pict2e.cfg
@@ -1348,55 +1081,85 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `sans'
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `sans'
 (Font)                  OMX/cmex/m/n --> OMX/iwona/m/n on input line 198.
 
+(./subfiglist.aux)
+\openout1 = `subfiglist.aux'.
 
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-! LaTeX error: "kernel/key-unknown"
-! 
-! The key 'subfiglistenv/width' is unknown and is being ignored.
-! 
-! See the LaTeX3 documentation for further information.
-! 
-! For immediate help type H <return>.
-!...............................................  
-                                                  
-l.804 \begin{subfiglist}{1 2}
-                             
-|'''''''''''''''''''''''''''''''''''''''''''''''
-| The module 'subfiglistenv' does not have a key called 'subfiglistenv/width'.
-| Check that you have spelled the key name correctly.
-|...............................................
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 209.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 209.
+
+ (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
+File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
+)
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 209.
+LaTeX Font Info:    ... okay on input line 209.
+LaTeX Font Info:    Try loading font information for T1+lmr on input line 209.
+
+(/usr/share/texmf/tex/latex/lm/t1lmr.fd
+File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
+)
+LaTeX Info: Redefining \microtypecontext on input line 209.
+Package microtype Info: Character protrusion enabled (level 2).
+Package microtype Info: Using default protrusion set `alltext'.
+Package microtype Info: No adjustment of tracking.
+Package microtype Info: No adjustment of spacing.
+Package microtype Info: No adjustment of kerning.
+Package microtype Info: Redefining babel's language switching commands.
+Package microtype Info: *** Changing to language context `american'
+(microtype)              on input line 209.
+Package microtype Info: ... No configuration file mt-lmr.cfg.
+Package microtype Info: ... Loading configuration file mt-cmr.cfg.
+
+(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
+(RS)
+)
+Package microtype Info: Setting up font `T1/lmr/m/n/12' on input line 209.
+Package microtype Info: ... Loading protrusion list `lmr-T1'.
+Package microtype Info: ... : First loading protrusion list `cmr-T1'.
+Package microtype Info: ... : First loading protrusion list `cmr-default'.
+Package caption Info: Begin \AtBeginDocument code.
+Package caption Info: hyperref package is loaded.
+Package caption Info: hypcap package is loaded.
+Package caption Info: End \AtBeginDocument code.
+\subfiglist_label_xshift_dim=\dimen265
+\subfiglist_label_yshift_dim=\dimen266
+\AtBeginShipoutBox=\box51
+Package hyperref Info: Link coloring ON on input line 209.
+
+(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
+
+(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
+)
+\c@section@level=\count194
+)
+LaTeX Info: Redefining \ref on input line 209.
+LaTeX Info: Redefining \pageref on input line 209.
+LaTeX Info: Redefining \nameref on input line 209.
+
+(./subfiglist.out) (./subfiglist.out)
+\@outlinefile=\write5
+\openout5 = `subfiglist.out'.
 
 
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-! LaTeX error: "kernel/key-unknown"
-! 
-! The key 'subfiglistenv/space' is unknown and is being ignored.
-! 
-! See the LaTeX3 documentation for further information.
-! 
-! For immediate help type H <return>.
-!...............................................  
-                                                  
-l.804 \begin{subfiglist}{1 2}
-                             
-|'''''''''''''''''''''''''''''''''''''''''''''''
-| The module 'subfiglistenv' does not have a key called 'subfiglistenv/space'.
-| Check that you have spelled the key name correctly.
-|...............................................
 
-
-! LaTeX Error: Missing \begin{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.804 \begin{subfiglist}{1 2}
-                             
-You're in trouble here.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
+Package hyperref Warning: Rerun to get /PageLabels entry.
 
 .................................................
 . LaTeX info: "xparse/redefine-command"
@@ -1423,364 +1186,39 @@ If that doesn't work, type  X <return>  to quit.
 . 
 . Redefining command \subfiglistoverlay with sig. 'mm' on line 804.
 .................................................
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-! LaTeX error: "kernel/key-unknown"
-! 
-! The key 'subfiglistcanvas/top' is unknown and is being ignored.
-! 
-! See the LaTeX3 documentation for further information.
-! 
-! For immediate help type H <return>.
-!...............................................  
-                                                  
-l.805   \subfiglistfile{1}{figures/01.png}
-                                          
-|'''''''''''''''''''''''''''''''''''''''''''''''
-| The module 'subfiglistcanvas' does not have a key called
-| 'subfiglistcanvas/top'.
-| Check that you have spelled the key name correctly.
-|...............................................
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-! LaTeX error: "kernel/key-unknown"
-! 
-! The key 'subfiglistcanvas/bottom' is unknown and is being ignored.
-! 
-! See the LaTeX3 documentation for further information.
-! 
-! For immediate help type H <return>.
-!...............................................  
-                                                  
-l.805   \subfiglistfile{1}{figures/01.png}
-                                          
-|'''''''''''''''''''''''''''''''''''''''''''''''
-| The module 'subfiglistcanvas' does not have a key called
-| 'subfiglistcanvas/bottom'.
-| Check that you have spelled the key name correctly.
-|...............................................
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-! LaTeX error: "kernel/key-unknown"
-! 
-! The key 'subfiglistcanvas/left' is unknown and is being ignored.
-! 
-! See the LaTeX3 documentation for further information.
-! 
-! For immediate help type H <return>.
-!...............................................  
-                                                  
-l.805   \subfiglistfile{1}{figures/01.png}
-                                          
-|'''''''''''''''''''''''''''''''''''''''''''''''
-| The module 'subfiglistcanvas' does not have a key called
-| 'subfiglistcanvas/left'.
-| Check that you have spelled the key name correctly.
-|...............................................
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-! LaTeX error: "kernel/key-unknown"
-! 
-! The key 'subfiglistcanvas/right' is unknown and is being ignored.
-! 
-! See the LaTeX3 documentation for further information.
-! 
-! For immediate help type H <return>.
-!...............................................  
-                                                  
-l.805   \subfiglistfile{1}{figures/01.png}
-                                          
-|'''''''''''''''''''''''''''''''''''''''''''''''
-| The module 'subfiglistcanvas' does not have a key called
-| 'subfiglistcanvas/right'.
-| Check that you have spelled the key name correctly.
-|...............................................
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-! LaTeX error: "kernel/key-unknown"
-! 
-! The key 'subfiglistcanvas/top' is unknown and is being ignored.
-! 
-! See the LaTeX3 documentation for further information.
-! 
-! For immediate help type H <return>.
-!...............................................  
-                                                  
-l.806   \subfiglistfile{2}{figures/02.png}
-                                          
-|'''''''''''''''''''''''''''''''''''''''''''''''
-| The module 'subfiglistcanvas' does not have a key called
-| 'subfiglistcanvas/top'.
-| Check that you have spelled the key name correctly.
-|...............................................
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-! LaTeX error: "kernel/key-unknown"
-! 
-! The key 'subfiglistcanvas/bottom' is unknown and is being ignored.
-! 
-! See the LaTeX3 documentation for further information.
-! 
-! For immediate help type H <return>.
-!...............................................  
-                                                  
-l.806   \subfiglistfile{2}{figures/02.png}
-                                          
-|'''''''''''''''''''''''''''''''''''''''''''''''
-| The module 'subfiglistcanvas' does not have a key called
-| 'subfiglistcanvas/bottom'.
-| Check that you have spelled the key name correctly.
-|...............................................
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-! LaTeX error: "kernel/key-unknown"
-! 
-! The key 'subfiglistcanvas/left' is unknown and is being ignored.
-! 
-! See the LaTeX3 documentation for further information.
-! 
-! For immediate help type H <return>.
-!...............................................  
-                                                  
-l.806   \subfiglistfile{2}{figures/02.png}
-                                          
-|'''''''''''''''''''''''''''''''''''''''''''''''
-| The module 'subfiglistcanvas' does not have a key called
-| 'subfiglistcanvas/left'.
-| Check that you have spelled the key name correctly.
-|...............................................
-
-
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-!
-! LaTeX error: "kernel/key-unknown"
-! 
-! The key 'subfiglistcanvas/right' is unknown and is being ignored.
-! 
-! See the LaTeX3 documentation for further information.
-! 
-! For immediate help type H <return>.
-!...............................................  
-                                                  
-l.806   \subfiglistfile{2}{figures/02.png}
-                                          
-|'''''''''''''''''''''''''''''''''''''''''''''''
-| The module 'subfiglistcanvas' does not have a key called
-| 'subfiglistcanvas/right'.
-| Check that you have spelled the key name correctly.
-|...............................................
-
 File: figures/01.png Graphic file (type QTm)
 <use  "figures/01.png" >
 File: figures/02.png Graphic file (type QTm)
  <use  "figures/02.png" >
+File: figures/03.png Graphic file (type QTm)
+ <use  "figures/03.png" >
+File: figures/04.png Graphic file (type QTm)
 
-! LaTeX Error: Missing \begin{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.807 \end{subfiglist}
-                      
-You're in trouble here.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
+<use  "figures/04.png" >
+File: figures/05.png Graphic file (type QTm)
+ <use  "figures/05.png" >
+File: figures/06.png Graphic file (type QTm)
+ <use  "figures/06.png" >
 File: figures/01.png Graphic file (type QTm)
+
 <use  "figures/01.png" >
 
-! LaTeX Error: Environment subfigure undefined.
+! Package caption Error: \setcaptionsubtype outside float.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.807 \end{subfiglist}
-                      
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-! Missing number, treated as zero.
-<to be read again> 
-                   }
-l.807 \end{subfiglist}
-                      
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   }
-l.807 \end{subfiglist}
-                      
-Dimensions can be in units of em, ex, in, pt, pc,
-cm, mm, dd, cc, bp, or sp; but yours is a new one!
-I'll assume that you meant to say pt, for printer's points.
-To recover gracefully from this error, it's best to
-delete the erroneous units; e.g., type `2' to delete
-two letters. (See Chapter 27 of The TeXbook.)
-
-
-! LaTeX Error: \begin{minipage} on input line 807 ended by \end{subfigure}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.807 \end{subfiglist}
-                      
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-File: figures/02.png Graphic file (type QTm)
-<use  "figures/02.png" >
-
-! LaTeX Error: Environment subfigure undefined.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.807 \end{subfiglist}
-                      
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-! Missing number, treated as zero.
-<to be read again> 
-                   }
-l.807 \end{subfiglist}
-                      
-A number should have been here; I inserted `0'.
-(If you can't figure out why I needed to see a number,
-look up `weird error' in the index to The TeXbook.)
-
-! Illegal unit of measure (pt inserted).
-<to be read again> 
-                   }
-l.807 \end{subfiglist}
-                      
-Dimensions can be in units of em, ex, in, pt, pc,
-cm, mm, dd, cc, bp, or sp; but yours is a new one!
-I'll assume that you meant to say pt, for printer's points.
-To recover gracefully from this error, it's best to
-delete the erroneous units; e.g., type `2' to delete
-two letters. (See Chapter 27 of The TeXbook.)
-
-
-! LaTeX Error: \begin{minipage} on input line 807 ended by \end{subfigure}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.807 \end{subfiglist}
-                      
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-
-Overfull \hbox (13.05234pt too wide) in paragraph at lines 807--807
-[]\T1/cmr/m/n/12 [b][][]
- []
-
-
-Overfull \hbox (13.05234pt too wide) in paragraph at lines 807--807
-\T1/cmr/m/n/12 [b][][] 
- []
-
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 807.
-
-(/usr/share/texmf/tex/latex/lm/ot1lmr.fd
-File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 807.
-
-
-(/usr/share/texmf/tex/latex/lm/omllmm.fd
-File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 807
-.
-
-(/usr/share/texmf/tex/latex/lm/omslmsy.fd
-File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 807
-.
-
-(/usr/share/texmf/tex/latex/lm/omxlmex.fd
-File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
-)
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 807.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 807.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 807.
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistfile with sig. '' on line 807.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistlabel with sig. '' on line 807.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistoverlay with sig. '' on line 807.
-.................................................
-
-
-Package caption Warning: Unused \captionsetup[subfigure] on input line 165.
 See the caption package documentation for explanation.
-
-
-Package caption Warning: Unused \captionsetup[sublisting] on input line 167.
-See the caption package documentation for explanation.
-
-LaTeX Font Info:    Try loading font information for T1+lmr on input line 810.
-(/usr/share/texmf/tex/latex/lm/t1lmr.fd
-File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
-) [1
-
-
-] (./subfiglist.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 810.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 810.
-
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.824 \end{subfiglist}
+                      
+? x
+ 
 Here is how much of TeX's memory you used:
- 29778 strings out of 493638
- 525127 string characters out of 6146796
- 696424 words of memory out of 5000000
- 32864 multiletter control sequences out of 15000+600000
- 22887 words of font info for 30 fonts, out of 8000000 for 9000
+ 30614 strings out of 493638
+ 546423 string characters out of 6146796
+ 695175 words of memory out of 5000000
+ 33702 multiletter control sequences out of 15000+600000
+ 8832 words of font info for 19 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
- 41i,10n,75p,10434b,467s stack positions out of 5000i,500n,10000p,200000b,80000s
-
-Output written on subfiglist.pdf (1 page).
+ 41i,9n,75p,10434b,457s stack positions out of 5000i,500n,10000p,200000b,80000s
+No pages of output.
