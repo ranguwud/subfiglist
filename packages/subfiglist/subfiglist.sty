@@ -480,27 +480,28 @@
 \cs_generate_variant:Nn \fp_add:Nn   { Nx }
 \cs_generate_variant:Nn \fp_sub:Nn   { Nx }
 \cs_generate_variant:Nn \bool_set:Nn { Nx }
-\cs_generate_variant:Nn \token_if_eq_charcode_p:NN { Nf }
-\cs_generate_variant:Nn \token_if_eq_charcode_p:NN { fN }
-\cs_generate_variant:Nn \token_if_eq_charcode_p:NN { ff }
-\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { Nf }
-\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { fN }
-\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { ff }
-\cs_generate_variant:Nn \token_if_eq_charcode:NNT  { Nf }
-\cs_generate_variant:Nn \token_if_eq_charcode:NNT  { fN }
-\cs_generate_variant:Nn \token_if_eq_charcode:NNT  { ff }
-\cs_generate_variant:Nn \token_if_eq_charcode:NNF  { Nf }
-\cs_generate_variant:Nn \token_if_eq_charcode:NNF  { fN }
-\cs_generate_variant:Nn \token_if_eq_charcode:NNF  { ff }
-\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { Nx }
-\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { xN }
-\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { xx }
-\cs_generate_variant:Nn \token_if_eq_charcode:NNT  { Nx }
-\cs_generate_variant:Nn \token_if_eq_charcode:NNT  { xN }
-\cs_generate_variant:Nn \token_if_eq_charcode:NNT  { xx }
-\cs_generate_variant:Nn \token_if_eq_charcode:NNF  { Nx }
-\cs_generate_variant:Nn \token_if_eq_charcode:NNF  { xN }
-\cs_generate_variant:Nn \token_if_eq_charcode:NNF  { xx }
+%\cs_generate_variant:Nn \token_if_eq_charcode_p:NN { Nf }
+%\cs_generate_variant:Nn \token_if_eq_charcode_p:NN { fN }
+%\cs_generate_variant:Nn \token_if_eq_charcode_p:NN { ff }
+%\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { Nf }
+%\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { fN }
+%\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { ff }
+%\cs_generate_variant:Nn \token_if_eq_charcode:NNT  { Nf }
+%\cs_generate_variant:Nn \token_if_eq_charcode:NNT  { fN }
+%\cs_generate_variant:Nn \token_if_eq_charcode:NNT  { ff }
+%\cs_generate_variant:Nn \token_if_eq_charcode:NNF  { Nf }
+%\cs_generate_variant:Nn \token_if_eq_charcode:NNF  { fN }
+%\cs_generate_variant:Nn \token_if_eq_charcode:NNF  { ff }
+%\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { Nx }
+%\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { xN }
+%\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { xx }
+%\cs_generate_variant:Nn \token_if_eq_charcode:NNT  { Nx }
+%\cs_generate_variant:Nn \token_if_eq_charcode:NNT  { xN }
+%\cs_generate_variant:Nn \token_if_eq_charcode:NNT  { xx }
+%\cs_generate_variant:Nn \token_if_eq_charcode:NNF  { Nx }
+%\cs_generate_variant:Nn \token_if_eq_charcode:NNF  { xN }
+%\cs_generate_variant:Nn \token_if_eq_charcode:NNF  { xx }
+\cs_generate_variant:Nn \tl_if_eq:nnF { xx }
 \cs_generate_variant:Nn \msg_error:nnnn { nnnx }
 \cs_generate_variant:Nn \msg_error:nnnn { nnxn }
 \cs_generate_variant:Nn \msg_error:nnnn { nnxx }
@@ -704,7 +705,6 @@
 \cs_generate_variant:Nn \subfiglist_is_float:nF  { x }
 \cs_generate_variant:Nn \subfiglist_is_float:nTF { x }
 
-
 % Test whether token lists have equal charcodes
 \prg_new_conditional:Npnn \subfiglist_tl_if_eq_charcode:nn #1 #2 { p, T, F, TF }
 %
@@ -725,7 +725,8 @@
       \int_incr:N \subfiglist_tl_if_eq_charcode_int
       
       % Do current tokens have equal meaning?
-      \token_if_eq_charcode:xxF 
+      %\token_if_eq_charcode:xxF 
+      \tl_if_eq:xxF
       { \tl_item:nn { #1 } { \subfiglist_tl_if_eq_charcode_int } }
       { \tl_item:nn { #2 } { \subfiglist_tl_if_eq_charcode_int } }
       {
