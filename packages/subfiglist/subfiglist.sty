@@ -563,20 +563,34 @@
 % #1: Token
 %
 {
-  \bool_if:nTF
+  % Exclude that a tokenlist of the form { tokens } was passed
+  % to the N argument
+  \tl_if_single:nTF { #1 }
   {
-    \token_if_eq_charcode_p:NN 0 #1 ||
-    \token_if_eq_charcode_p:NN 1 #1 ||
-    \token_if_eq_charcode_p:NN 2 #1 ||
-    \token_if_eq_charcode_p:NN 3 #1 ||
-    \token_if_eq_charcode_p:NN 4 #1 ||
-    \token_if_eq_charcode_p:NN 5 #1 ||
-    \token_if_eq_charcode_p:NN 6 #1 ||
-    \token_if_eq_charcode_p:NN 7 #1 ||
-    \token_if_eq_charcode_p:NN 8 #1 ||
-    \token_if_eq_charcode_p:NN 9 #1
-  }{
-    \prg_return_true:
+    % Exclude that a tokenlist of the form { { tokens } } was
+    % passed to the N argument
+    \tl_if_single:nTF #1
+    {
+      \bool_if:nTF
+      {
+        \token_if_eq_charcode_p:NN 0 #1 ||
+        \token_if_eq_charcode_p:NN 1 #1 ||
+        \token_if_eq_charcode_p:NN 2 #1 ||
+        \token_if_eq_charcode_p:NN 3 #1 ||
+        \token_if_eq_charcode_p:NN 4 #1 ||
+        \token_if_eq_charcode_p:NN 5 #1 ||
+        \token_if_eq_charcode_p:NN 6 #1 ||
+        \token_if_eq_charcode_p:NN 7 #1 ||
+        \token_if_eq_charcode_p:NN 8 #1 ||
+        \token_if_eq_charcode_p:NN 9 #1
+      }{
+        \prg_return_true:
+      }{
+        \prg_return_false:
+      }
+    }{
+      \prg_return_false:
+    }
   }{
     \prg_return_false:
   }
