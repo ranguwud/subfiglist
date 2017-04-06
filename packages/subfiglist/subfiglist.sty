@@ -480,28 +480,6 @@
 \cs_generate_variant:Nn \fp_add:Nn   { Nx }
 \cs_generate_variant:Nn \fp_sub:Nn   { Nx }
 \cs_generate_variant:Nn \bool_set:Nn { Nx }
-%\cs_generate_variant:Nn \token_if_eq_charcode_p:NN { Nf }
-%\cs_generate_variant:Nn \token_if_eq_charcode_p:NN { fN }
-%\cs_generate_variant:Nn \token_if_eq_charcode_p:NN { ff }
-%\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { Nf }
-%\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { fN }
-%\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { ff }
-%\cs_generate_variant:Nn \token_if_eq_charcode:NNT  { Nf }
-%\cs_generate_variant:Nn \token_if_eq_charcode:NNT  { fN }
-%\cs_generate_variant:Nn \token_if_eq_charcode:NNT  { ff }
-%\cs_generate_variant:Nn \token_if_eq_charcode:NNF  { Nf }
-%\cs_generate_variant:Nn \token_if_eq_charcode:NNF  { fN }
-%\cs_generate_variant:Nn \token_if_eq_charcode:NNF  { ff }
-%\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { Nx }
-%\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { xN }
-%\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { xx }
-%\cs_generate_variant:Nn \token_if_eq_charcode:NNT  { Nx }
-%\cs_generate_variant:Nn \token_if_eq_charcode:NNT  { xN }
-%\cs_generate_variant:Nn \token_if_eq_charcode:NNT  { xx }
-%\cs_generate_variant:Nn \token_if_eq_charcode:NNF  { Nx }
-%\cs_generate_variant:Nn \token_if_eq_charcode:NNF  { xN }
-%\cs_generate_variant:Nn \token_if_eq_charcode:NNF  { xx }
-\cs_generate_variant:Nn \tl_if_eq:nnF { xx }
 \cs_generate_variant:Nn \msg_error:nnnn { nnnx }
 \cs_generate_variant:Nn \msg_error:nnnn { nnxn }
 \cs_generate_variant:Nn \msg_error:nnnn { nnxx }
@@ -656,6 +634,152 @@
 \cs_generate_variant:Nn \subfiglist_is_integer:nF  { x }
 \cs_generate_variant:Nn \subfiglist_is_integer:nTF { x }
 
+
+\prg_new_conditional:Npnn \subfiglist_token_if_eq_charcode:NN #1 #2 { p, T, F, TF }
+%
+% #1: First token
+% #2: Second token
+%
+{
+  % Check whether a token list of the form { tokens } was passed
+  % to the first N argument
+  \tl_if_single:nTF { #1 }
+  {
+    % Check whether a token list of the form { tokens } was passed
+    % to the first N argument
+    \tl_if_single:nTF { #2 }
+    {
+      % Check whether a token list of the form { { tokens } } was passed
+      % to the first N argument
+      \tl_if_single:nTF #1
+      {
+        % Check whether a token list of the form { { tokens } } was passed
+        % to the second N argument
+        \tl_if_single:nTF #2
+        {
+          % Tokens are single down to second level. Compare charcodes.
+          \token_if_eq_charcode:NNTF #1 #2
+          {
+            \prg_return_true:
+          }{
+            \prg_return_false:
+          }
+        }{
+          % A token list of the form { { tokens } } was passed to the
+          % second but not to the first N argument. Charcodes cannot
+          % be equal.
+          \prg_return_false:
+        }
+      }{
+        % A token list of the form { { tokens } } was passed to the first
+        % N argument. Check, whether the same is true for the second N argument.
+        \tl_if_single:nTF #2
+        {
+          % No token list of the form { { tokens } } was passed to the second
+          % N argument. Charcodes cannot be equal.
+          \prg_return_false:
+        }{
+          % Two token lists of the form { { tokens } } were passed to the
+          % N arguments. Unpack the topmost level and pass to
+          % \subfiglist_tl_if_eq_charcode:nnTF.
+          \subfiglist_tl_if_eq_charcode:nnTF #1 #2
+          {
+            \prg_return_true:
+          }{
+            \prg_return_false:
+          }
+        }
+      }
+    }{
+      % A token list of the form { tokens } was passed to the second
+      % but not to the first N argument. Charcodes cannot be equal.
+      \prg_return_false:
+    }
+  }{
+    % A token list of the form { tokens } was passed to the first N argument.
+    % Check, whether the same is true for the second N argument.
+    \tl_if_single:nTF { #2 }
+    {
+      % No token list of the form { tokens } was passed to the second N
+      % argument. Charcodes cannot be equal.
+      \prg_return_false:
+    }{
+      % Two token lists of the form { tokens } were passed to the N
+      % arguments. Pass to \subfiglist_tl_if_eq_charcode:nnTF
+      % without further unpacking.
+      \subfiglist_tl_if_eq_charcode:nnTF { #1 } { #2 }
+      {
+        \prg_return_true:
+      }{
+        \prg_return_false:
+      }
+    }
+  }
+}
+
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode_p:NN { nf }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode_p:NN { fn }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode_p:NN { ff }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNT  { nf }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNT  { fn }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNT  { ff }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNF  { nf }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNF  { fn }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNF  { ff }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNTF { nf }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNTF { fn }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNTF { ff }
+
+% Test whether token lists have equal charcodes
+\prg_new_conditional:Npnn \subfiglist_tl_if_eq_charcode:nn #1 #2 { p, T, F, TF }
+%
+% #1: Firt token list
+% #2: Second token list
+%
+{
+  % Do token lists have same lengths?
+  \int_compare:nTF { \tl_count:n { #1 } = \tl_count:n { #2 } }
+  {
+    % Are both token lists empty?
+    \int_compare:nTF { \tl_count:n { #1 } = 0 }
+    {
+      \prg_return_true:
+    }{
+      % Do the respective first tokens have same charcode?
+      \subfiglist_token_if_eq_charcode:ffTF { \tl_head:n { #1 } } { \tl_head:n { #2 } }
+      {
+        % Recursively pass respective remaining tokens.
+        \subfiglist_tl_if_eq_charcode:ffTF { \tl_tail:n { #1 } } { \tl_tail:n { #2 } }
+        {
+          \prg_return_true:
+        }{
+          \prg_return_false:
+        }
+      }{
+        % Respective first tokens have unequal charcodes
+        \prg_return_false:
+      }
+    }
+  }{
+    % Token lists have unequal lengths
+    \prg_return_false:
+  }
+}
+
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode_p:nn { nf }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode_p:nn { fn }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode_p:nn { ff }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnT  { nf }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnT  { fn }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnT  { ff }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnF  { nf }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnF  { fn }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnF  { ff }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnTF { nf }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnTF { fn }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnTF { ff }
+
+
 % Test whether token list is a float or empty
 \prg_new_conditional:Npnn \subfiglist_is_float_or_empty:n #1 { p, T, F, TF }
 %
@@ -719,64 +843,6 @@
 \cs_generate_variant:Nn \subfiglist_is_float:nF  { x }
 \cs_generate_variant:Nn \subfiglist_is_float:nTF { x }
 
-% Test whether token lists have equal charcodes
-\prg_new_conditional:Npnn \subfiglist_tl_if_eq_charcode:nn #1 #2 { p, T, F, TF }
-%
-% #1: Token list one
-% #2: Token list two
-%
-{
-  \group_begin:
-  
-  % Do token lists have same lengths?
-  \int_compare:nTF { \tl_count:n {#1} = \tl_count:n {#2} }
-  {
-    % Loop over token lists to check for different tokens
-    \int_zero:N \subfiglist_tl_if_eq_charcode_int
-    \bool_set_true:N \subfiglist_tl_if_eq_charcode_bool
-    \tl_map_inline:nn { #1 }
-    {
-      \int_incr:N \subfiglist_tl_if_eq_charcode_int
-      
-      % Do current tokens have equal meaning?
-      %\token_if_eq_charcode:xxF 
-      \tl_if_eq:xxF
-      { \tl_item:nn { #1 } { \subfiglist_tl_if_eq_charcode_int } }
-      { \tl_item:nn { #2 } { \subfiglist_tl_if_eq_charcode_int } }
-      {
-        \bool_set_false:N \subfiglist_tl_if_eq_charcode_bool
-        \tl_map_break:
-      }
-    }
-    
-    % Have different tokens been found?
-    \bool_if:NTF \subfiglist_tl_if_eq_charcode_bool
-    {
-      \group_end:
-      \prg_return_true:
-    }{
-      \group_end:
-      \prg_return_false:
-    }
-  }{
-    \group_end:
-    \prg_return_false:
-  }
-}
-
-\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode_p:nn { nx }
-\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode_p:nn { xn }
-\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode_p:nn { xx }
-\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnT  { nx }
-\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnT  { xn }
-\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnT  { xx }
-\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnF  { nx }
-\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnF  { xn }
-\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnF  { xx }
-\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnTF { nx }
-\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnTF { xn }
-\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnTF { xx }
-
 
 % Test truth value of various conditionals and print result
 \cs_new:Npn \subfiglist_test_conditionals:
@@ -798,6 +864,21 @@
       { \subfiglist_is_integer_p:n { 12{34} } }
       { \subfiglist_is_integer_p:n { 12{{34}} } }
       { \subfiglist_is_integer_p:n { 12{{{34}}} } }
+    }{
+      { \subfiglist_tl_if_eq_charcode_p:nn a a }
+      { \subfiglist_tl_if_eq_charcode_p:nn a b }
+      { \subfiglist_tl_if_eq_charcode_p:nn a {ab} }
+      { \subfiglist_tl_if_eq_charcode_p:nn {ab} b }
+      { \subfiglist_tl_if_eq_charcode_p:nn {a} {a} }
+      { \subfiglist_tl_if_eq_charcode_p:nn {ab} {ab} }
+      { \subfiglist_tl_if_eq_charcode_p:nn {ab} {ac} }
+      { \subfiglist_tl_if_eq_charcode_p:nn {a{b}} {ab} }
+      { \subfiglist_tl_if_eq_charcode_p:nn {a{{b}}} {ab} }
+      { \subfiglist_tl_if_eq_charcode_p:nn {a{{{b}}}} {ab} }
+      { \subfiglist_tl_if_eq_charcode_p:nn {ab{cd}} {abcd} }
+      { \subfiglist_tl_if_eq_charcode_p:nn {ab{cd}} {ab{cd}} }
+      { \subfiglist_tl_if_eq_charcode_p:nn {ab{{cd}}} {ab{cd}} }
+      { \subfiglist_tl_if_eq_charcode_p:nn {ab{{cd}}} {ab{{cd}}} }
     }
   }{
     \tl_map_inline:nn { ##1 }
