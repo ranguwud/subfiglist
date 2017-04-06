@@ -563,11 +563,11 @@
 % #1: Token
 %
 {
-  % Exclude that a tokenlist of the form { tokens } was passed
+  % Exclude that a token list of the form { tokens } was passed
   % to the N argument
   \tl_if_single:nTF { #1 }
   {
-    % Exclude that a tokenlist of the form { { tokens } } was
+    % Exclude that a token list of the form { { tokens } } was
     % passed to the N argument
     \tl_if_single:nTF #1
     {
@@ -776,6 +776,36 @@
 \cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnTF { nx }
 \cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnTF { xn }
 \cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnTF { xx }
+
+
+% Test truth value of various conditionals and print result
+\cs_new:Npn \subfiglist_test_conditionals:
+{
+  \tl_map_inline:nn
+  {
+    {
+      { \subfiglist_is_digit_p:N a }
+      { \subfiglist_is_digit_p:N 1 }
+      { \subfiglist_is_digit_p:N {11} }
+      { \subfiglist_is_digit_p:N {{11}} }
+      { \subfiglist_is_digit_p:N {{{11}}} }
+    }{
+      { \subfiglist_is_integer_p:n 1 }
+      { \subfiglist_is_integer_p:n { } }
+      { \subfiglist_is_integer_p:n { 1234 } }
+      { \subfiglist_is_integer_p:n {{1234}} }
+      { \subfiglist_is_integer_p:n { 12ab } }
+      { \subfiglist_is_integer_p:n { 12{34} } }
+      { \subfiglist_is_integer_p:n { 12{{34}} } }
+      { \subfiglist_is_integer_p:n { 12{{{34}}} } }
+    }
+  }{
+    \tl_map_inline:nn { ##1 }
+    {
+      \texttt { \tl_to_str:n { ####1 } }   ~---~ \bool_if:nTF { ####1 } { true } { false }\\
+    } \\
+  }
+}
 
 
 % Store specified number of heading tokens in varible \subfiglist_head_tl

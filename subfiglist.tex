@@ -802,18 +802,6 @@
 %For every image~-- or more general for every ``object'' like  images, spaces or newlines~-- several properties like width, height, aspect ratio and others have to be saved. In any object oriented programming language this would probably be solved by writing a class, which can store the various properties in fields, and creating instances for any of the considered objects.
 
 \ExplSyntaxOn
-\subfiglist_is_digit:NTF a { true } { false }\\
-\subfiglist_is_digit:NTF 1 { true } { false }\\
-\subfiglist_is_digit:NTF {11} { true } { false }\\
-\subfiglist_is_digit:NTF {{11}} { true } { false }\\
-\subfiglist_is_digit:NTF {{{11}}} { true } { false }\\
-\\
-\subfiglist_is_integer:nTF 1 { true } { false }\\
-\subfiglist_is_integer:nTF { } { true } { false }\\
-\subfiglist_is_integer:nTF { 1234 } { true } { false }\\
-\subfiglist_is_integer:nTF { 12ab } { true } { false }\\
-\subfiglist_is_integer:nTF { 12{34} } { true } { false }\\
-\subfiglist_is_integer:nTF { 12{{34}} } { true } { false }\\
-\subfiglist_is_integer:nTF { 12{{{34}}} } { true } { false }
+\subfiglist_test_conditionals:
 
 \end{document}

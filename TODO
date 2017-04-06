@@ -1,3 +1,4 @@
 * Check for unknown keys in subfiglist package options
 * Check if new method of choice key setting works with older l3keys
 * Rewrite \subfiglist_tl_if_eq_charcode:nn to actually compare charcodes
+* Use working \subfiglist_tl_if_eq_charcode:nn in \subfiglist_is_float_or_empty to detect decimal separator.
