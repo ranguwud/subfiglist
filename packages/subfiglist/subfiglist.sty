@@ -717,17 +717,17 @@
   }
 }
 
-\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode_p:NN { nf }
-\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode_p:NN { fn }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode_p:NN { Nf }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode_p:NN { fN }
 \cs_generate_variant:Nn \subfiglist_token_if_eq_charcode_p:NN { ff }
-\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNT  { nf }
-\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNT  { fn }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNT  { Nf }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNT  { fN }
 \cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNT  { ff }
-\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNF  { nf }
-\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNF  { fn }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNF  { Nf }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNF  { fN }
 \cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNF  { ff }
-\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNTF { nf }
-\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNTF { fn }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNTF { Nf }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNTF { fN }
 \cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNTF { ff }
 
 % Test whether token lists have equal charcodes
@@ -783,7 +783,7 @@
 % Test whether token list is a float or empty
 \prg_new_conditional:Npnn \subfiglist_is_float_or_empty:n #1 { p, T, F, TF }
 %
-% #1: Token
+% #1: Token list
 %
 {
   \tl_if_empty:nTF { #1 }
@@ -803,7 +803,7 @@
       }
     }{
       % Check for decimal separator otherwise
-      \token_if_eq_charcode:NfTF . { \tl_head:n { #1 } }
+      \subfiglist_token_if_eq_charcode:NfTF . { \tl_head:n { #1 } }
       {
         % Check if trailing end is an integer, if true
         \subfiglist_is_integer:fTF { \tl_tail:n { #1 } }
@@ -839,6 +839,10 @@
   }
 }
 
+\cs_generate_variant:Nn \subfiglist_is_float_or_empty_p:n { f }
+\cs_generate_variant:Nn \subfiglist_is_float_or_empty:nT  { f }
+\cs_generate_variant:Nn \subfiglist_is_float_or_empty:nF  { f }
+\cs_generate_variant:Nn \subfiglist_is_float_or_empty:nTF { f }
 \cs_generate_variant:Nn \subfiglist_is_float:nT  { x }
 \cs_generate_variant:Nn \subfiglist_is_float:nF  { x }
 \cs_generate_variant:Nn \subfiglist_is_float:nTF { x }
@@ -879,6 +883,21 @@
       { \subfiglist_tl_if_eq_charcode_p:nn {ab{cd}} {ab{cd}} }
       { \subfiglist_tl_if_eq_charcode_p:nn {ab{{cd}}} {ab{cd}} }
       { \subfiglist_tl_if_eq_charcode_p:nn {ab{{cd}}} {ab{{cd}}} }
+    }{
+      { \subfiglist_is_float_p:n 1 }
+      { \subfiglist_is_float_p:n { } }
+      { \subfiglist_is_float_p:n { 1234 } }
+      { \subfiglist_is_float_p:n {{1234}} }
+      { \subfiglist_is_float_p:n { 12ab } }
+      { \subfiglist_is_float_p:n { 12{34} } }
+      { \subfiglist_is_float_p:n { 12{{34}} } }
+      { \subfiglist_is_float_p:n { 12{{{34}}} } }
+      { \subfiglist_is_float_p:n { 1234. } }
+      { \subfiglist_is_float_p:n { 12.34 } }
+      { \subfiglist_is_float_p:n { .1234 } }
+      { \subfiglist_is_float_p:n { 1234, } }
+      { \subfiglist_is_float_p:n { 12,34 } }
+      { \subfiglist_is_float_p:n { ,1234 } }
     }
   }{
     \tl_map_inline:nn { ##1 }

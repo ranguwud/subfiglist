@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.3.26)  6 APR 2017 13:34
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.3.26)  6 APR 2017 13:41
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -703,52 +703,52 @@ Package graphics Info: Driver file: xetex.def on input line 95.
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistfile with sig. '' on line 2575.
+. Defining command \subfiglistfile with sig. '' on line 2590.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummyfile with sig. '' on line 2627.
+. Defining command \subfiglistdummyfile with sig. '' on line 2642.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummy with sig. '' on line 2685.
+. Defining command \subfiglistdummy with sig. '' on line 2700.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabel with sig. '' on line 2745.
+. Defining command \subfiglistlabel with sig. '' on line 2760.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistoverlay with sig. '' on line 2778.
+. Defining command \subfiglistoverlay with sig. '' on line 2793.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabelformat with sig. '' on line 2782.
+. Defining command \subfiglistlabelformat with sig. '' on line 2797.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistsvgenv' with sig. '' on line 2786.
+. Defining environment 'subfiglistsvgenv' with sig. '' on line 2801.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 2807.
+. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 2822.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist' with sig. 'sO{}m' on line 2930.
+. Defining environment 'subfiglist' with sig. 'sO{}m' on line 2945.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 2934.
+. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 2949.
 .................................................
 )
 runsystem(rm ./subfiglist.sty)...executed.
@@ -1199,6 +1199,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 805--807
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 805--807
+
+ []
+
 Package microtype Info: Setting up font `T1/lmr/m/sl/12' on input line 807.
 Package microtype Info: ... Loading protrusion list `lmr-it-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-it-T1'.
@@ -1276,6 +1281,15 @@ Package babel Info: Redefining ngerman shorthand "~
 
 
 ]
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 807.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 807.
+Package babel Info: Redefining ngerman shorthand "|
+(babel)             in language  on input line 807.
+Package babel Info: Redefining ngerman shorthand "~
+(babel)             in language  on input line 807.
+ [2]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 807.
  (./subfiglist.aux
 Package microtype Info: *** Changing to language context `american'
@@ -1285,12 +1299,12 @@ Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 807.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 807.
  ) 
 Here is how much of TeX's memory you used:
- 30756 strings out of 493638
- 549416 string characters out of 6146796
- 697882 words of memory out of 5000000
- 33817 multiletter control sequences out of 15000+600000
+ 30754 strings out of 493638
+ 549379 string characters out of 6146796
+ 699016 words of memory out of 5000000
+ 33815 multiletter control sequences out of 15000+600000
  23205 words of font info for 31 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
- 41i,10n,61p,10434b,347s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,10n,61p,10434b,348s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on subfiglist.pdf (1 page).
+Output written on subfiglist.pdf (2 pages).
