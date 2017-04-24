@@ -802,6 +802,31 @@
 %For every image~-- or more general for every ``object'' like  images, spaces or newlines~-- several properties like width, height, aspect ratio and others have to be saved. In any object oriented programming language this would probably be solved by writing a class, which can store the various properties in fields, and creating instances for any of the considered objects.
 
 \ExplSyntaxOn
-\subfiglist_test_conditionals:
+%\subfiglist_test_conditionals:
+%\subfiglist_tl_if_eq_charcode:nnTF { \\ } { \\ } { true } { false }
+%\cs_generate_variant:Nn \tl_to_str:n { f }
+%\tl_to_str:f { \tl_head:n  { \exp_stop_f:\\a } }
+%\subfiglist_token_if_eq_charcode:fNTF { \tl_head:n { \\ } } a { t } { f }
+
+  \keys_set:nn { subfiglistenv }
+  {
+    width = \subfiglist_env_width_default_tl,
+    space = \subfiglist_env_space_default_tl
+  }
+
+\tl_set:Nn \subfiglist_spec_tl { 1 2 3 // 4 5 6 }
+\subfiglist_parse_nums:N \subfiglist_spec_tl
+
+
+
+%\captionsetup{type=figure}
+%\begin{subfiglist}{1 2 3 4 5 6 }
+%  \subfiglistfile{1}{figures/01.png}
+%  \subfiglistfile{2}{figures/02.png}
+%  \subfiglistfile{3}{figures/03.png}
+%  \subfiglistfile{4}{figures/04.png}
+%  \subfiglistfile{5}{figures/05.png}
+%  \subfiglistfile{6}{figures/06.png}
+%\end{subfiglist}
 
 \end{document}
