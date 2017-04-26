@@ -7,6 +7,7 @@ TODO
 * Use sequences in place of token lists
 * Delete unnecessary variables
 * Replace test for equal charcode by test for equal charcode AND equal meaning
+* Remove \subfiglist_exp_args:NNt from \subfiglist_is_float_or_empty
 
 
 

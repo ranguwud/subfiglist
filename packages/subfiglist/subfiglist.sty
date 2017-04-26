@@ -912,13 +912,23 @@
   }
 }
 
-\cs_generate_variant:Nn \subfiglist_is_float_or_empty_p:n { f }
-\cs_generate_variant:Nn \subfiglist_is_float_or_empty:nT  { f }
-\cs_generate_variant:Nn \subfiglist_is_float_or_empty:nF  { f }
-\cs_generate_variant:Nn \subfiglist_is_float_or_empty:nTF { f }
-%\cs_generate_variant:Nn \subfiglist_is_float:nT  { x }
-%\cs_generate_variant:Nn \subfiglist_is_float:nF  { x }
-%\cs_generate_variant:Nn \subfiglist_is_float:nTF { x }
+% Define variants of \subfiglist_is_float expanding its argument twice
+\cs_new:Npn \subfiglist_is_float_p:t #1
+{
+  \subfiglist_exp_args:Nt \subfiglist_is_float_p:N #1
+}
+\cs_new:Npn \subfiglist_is_float:tT #1 #2
+{
+  \subfiglist_exp_args:Nt \subfiglist_is_float:NT #1 #2
+}
+\cs_new:Npn \subfiglist_is_float:tF #1 #2
+{
+  \subfiglist_exp_args:Nt \subfiglist_is_float:NF #1 #2
+}
+\cs_new:Npn \subfiglist_is_float:tTF #1 #2 #3
+{
+  \subfiglist_exp_args:Nt \subfiglist_is_float:NTF #1 #2
+}
 
 
 % Test truth value of various conditionals and print result
