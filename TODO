@@ -4,6 +4,8 @@ TODO
 * Check if new method of choice key setting works with older l3keys
 * Use \subfiglist_token_if_eq_charcode:NN to compare \\ with \\.
 * Test all error messages
+* Use sequences in place of token lists
+* Delete unnecessary variables
 
 
 

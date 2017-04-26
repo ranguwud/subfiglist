@@ -814,8 +814,12 @@
     space = \subfiglist_env_space_default_tl
   }
 
-\tl_set:Nn \subfiglist_spec_tl { 1 2 3 // 4 5 6 }
-\subfiglist_parse_nums:N \subfiglist_spec_tl
+\tl_set:Nn \subfiglist_spec_tl { 1 2 3 \\ 4 5 6 }
+%\subfiglist_parse_nums:N \subfiglist_spec_tl
+\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { fN }
+%\tl_if_single:nTF { \\ } { true } { false }\\
+\let\\\relax
+\token_if_eq_charcode:fNTF { \tl_head:n { \\as } } \\ { true } { false }
 
 
 

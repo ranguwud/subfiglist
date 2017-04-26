@@ -489,7 +489,24 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%   Helper functions   %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
-  
+
+% Functions for expanding tokens TWICE
+\cs_new:Npn \subfiglist_exp_args:Nt #1 #2
+{
+  \exp_args:NNo \exp_args:No #1 { #2 }
+}
+
+\cs_new:Npn \subfiglist_exp_args:NNt #1 #2 #3
+{
+  \exp_args:NNNo \exp_args:NNo #1 { #2 } { #3 }
+}
+
+\cs_new:Npn \subfiglist_exp_args:Ntt #1 #2 #3
+{
+  \subfiglist_exp_args:NNt \subfiglist_exp_args:NNt #1 { #2 } { #3 }
+}
+
+
 % Provide framework for exporting group scope local variables according to discussion
 % at https://tex.stackexchange.com/questions/56294/how-do-i-get-a-value-out-of-a-group
 \cs_if_free:NT \group_insert_after:N
@@ -730,7 +747,7 @@
 \cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNTF { fN }
 \cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNTF { ff }
 
-% Test whether token lists have equal charcodes
+% Test whether token lists have equal charcodes. May break on fragile tokens.
 \prg_new_conditional:Npnn \subfiglist_tl_if_eq_charcode:nn #1 #2 { p, T, F, TF }
 %
 % #1: Firt token list
