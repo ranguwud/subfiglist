@@ -589,19 +589,19 @@
 % Define variants of \subfiglist_is_digit expanding its argument twice
 \cs_new:Npn \subfiglist_is_digit_p:t #1
 {
-  \subfiglist_exp_args:Nt \subfiglist_is_digit_p:N #1
+  \subfiglist_exp_args:Nt \subfiglist_is_digit_p:N { #1 }
 }
 \cs_new:Npn \subfiglist_is_digit:tT #1 #2
 {
-  \subfiglist_exp_args:Nt \subfiglist_is_digit:NT #1 #2
+  \subfiglist_exp_args:Nt \subfiglist_is_digit:NT { #1 } { #2 }
 }
 \cs_new:Npn \subfiglist_is_digit:tF #1 #2
 {
-  \subfiglist_exp_args:Nt \subfiglist_is_digit:NF #1 #2
+  \subfiglist_exp_args:Nt \subfiglist_is_digit:NF { #1 } { #2 }
 }
 \cs_new:Npn \subfiglist_is_digit:tTF #1 #2 #3
 {
-  \subfiglist_exp_args:Nt \subfiglist_is_digit:NTF #1 #2
+  \subfiglist_exp_args:Nt \subfiglist_is_digit:NTF { #1 } { #2 } { #3 }
 }
 
 % Test whether token list is an integer or empty
@@ -635,19 +635,19 @@
 % Define variants of \subfiglist_is_integer_or_empty expanding its argument twice
 \cs_new:Npn \subfiglist_is_integer_or_empty_p:t #1
 {
-  \subfiglist_exp_args:Nt \subfiglist_is_integer_or_empty_p:N #1
+  \subfiglist_exp_args:Nt \subfiglist_is_integer_or_empty_p:n { #1 }
 }
 \cs_new:Npn \subfiglist_is_integer_or_empty:tT #1 #2
 {
-  \subfiglist_exp_args:Nt \subfiglist_is_integer_or_empty:NT #1 #2
+  \subfiglist_exp_args:Nt \subfiglist_is_integer_or_empty:nT { #1 } { #2 }
 }
 \cs_new:Npn \subfiglist_is_integer_or_empty:tF #1 #2
 {
-  \subfiglist_exp_args:Nt \subfiglist_is_integer_or_empty:NF #1 #2
+  \subfiglist_exp_args:Nt \subfiglist_is_integer_or_empty:nF { #1 } { #2 }
 }
 \cs_new:Npn \subfiglist_is_integer_or_empty:tTF #1 #2 #3
 {
-  \subfiglist_exp_args:Nt \subfiglist_is_integer_or_empty:NTF #1 #2
+  \subfiglist_exp_args:Nt \subfiglist_is_integer_or_empty:nTF { #1 } { #2 } { #3 }
 }
 
 % Test whether token list is an integer
@@ -667,19 +667,19 @@
 % Define variants of \subfiglist_is_integer expanding its argument twice
 \cs_new:Npn \subfiglist_is_integer_p:t #1
 {
-  \subfiglist_exp_args:Nt \subfiglist_is_integer_p:N #1
+  \subfiglist_exp_args:Nt \subfiglist_is_integer_p:n { #1 }
 }
 \cs_new:Npn \subfiglist_is_integer:tT #1 #2
 {
-  \subfiglist_exp_args:Nt \subfiglist_is_integer:NT #1 #2
+  \subfiglist_exp_args:Nt \subfiglist_is_integer:nT { #1 } { #2 }
 }
 \cs_new:Npn \subfiglist_is_integer:tF #1 #2
 {
-  \subfiglist_exp_args:Nt \subfiglist_is_integer:NF #1 #2
+  \subfiglist_exp_args:Nt \subfiglist_is_integer:nF { #1 } { #2 }
 }
 \cs_new:Npn \subfiglist_is_integer:tTF #1 #2 #3
 {
-  \subfiglist_exp_args:Nt \subfiglist_is_integer:NTF #1 #2
+  \subfiglist_exp_args:Nt \subfiglist_is_integer:nTF { #1 } { #2 } { #3 }
 }
 
 
@@ -881,19 +881,19 @@
 % Define variants of \subfiglist_is_float_or_empty expanding its argument twice
 \cs_new:Npn \subfiglist_is_float_or_empty_p:t #1
 {
-  \subfiglist_exp_args:Nt \subfiglist_is_float_or_empty_p:N #1
+  \subfiglist_exp_args:Nt \subfiglist_is_float_or_empty_p:n { #1 }
 }
 \cs_new:Npn \subfiglist_is_float_or_empty:tT #1 #2
 {
-  \subfiglist_exp_args:Nt \subfiglist_is_float_or_empty:NT #1 #2
+  \subfiglist_exp_args:Nt \subfiglist_is_float_or_empty:nT { #1 } { #2 }
 }
 \cs_new:Npn \subfiglist_is_float_or_empty:tF #1 #2
 {
-  \subfiglist_exp_args:Nt \subfiglist_is_float_or_empty:NF #1 #2
+  \subfiglist_exp_args:Nt \subfiglist_is_float_or_empty:nF { #1 } { #2 }
 }
 \cs_new:Npn \subfiglist_is_float_or_empty:tTF #1 #2 #3
 {
-  \subfiglist_exp_args:Nt \subfiglist_is_float_or_empty:NTF #1 #2
+  \subfiglist_exp_args:Nt \subfiglist_is_float_or_empty:nTF { #1 } { #2 } { #3 }
 }
 
 % Test whether token list is a float
@@ -913,19 +913,19 @@
 % Define variants of \subfiglist_is_float expanding its argument twice
 \cs_new:Npn \subfiglist_is_float_p:t #1
 {
-  \subfiglist_exp_args:Nt \subfiglist_is_float_p:N #1
+  \subfiglist_exp_args:Nt \subfiglist_is_float_p:n { #1 }
 }
 \cs_new:Npn \subfiglist_is_float:tT #1 #2
 {
-  \subfiglist_exp_args:Nt \subfiglist_is_float:NT #1 #2
+  \subfiglist_exp_args:Nt \subfiglist_is_float:nT { #1 } { #2 }
 }
 \cs_new:Npn \subfiglist_is_float:tF #1 #2
 {
-  \subfiglist_exp_args:Nt \subfiglist_is_float:NF #1 #2
+  \subfiglist_exp_args:Nt \subfiglist_is_float:nF { #1 } { #2 }
 }
 \cs_new:Npn \subfiglist_is_float:tTF #1 #2 #3
 {
-  \subfiglist_exp_args:Nt \subfiglist_is_float:NTF #1 #2
+  \subfiglist_exp_args:Nt \subfiglist_is_float:nTF { #1 } { #2 } { #3 }
 }
 
 
