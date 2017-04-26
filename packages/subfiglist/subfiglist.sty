@@ -666,13 +666,23 @@
   }
 }
 
-\cs_generate_variant:Nn \subfiglist_is_integer_p:n { f }
-\cs_generate_variant:Nn \subfiglist_is_integer:nT  { f }
-\cs_generate_variant:Nn \subfiglist_is_integer:nF  { f }
-\cs_generate_variant:Nn \subfiglist_is_integer:nTF { f }
-%\cs_generate_variant:Nn \subfiglist_is_integer:nT  { x }
-%\cs_generate_variant:Nn \subfiglist_is_integer:nF  { x }
-%\cs_generate_variant:Nn \subfiglist_is_integer:nTF { x }
+% Define variants of \subfiglist_is_integer expanding its argument twice
+\cs_new:Npn \subfiglist_is_integer_p:t #1
+{
+  \subfiglist_exp_args:Nt \subfiglist_is_integer_p:N #1
+}
+\cs_new:Npn \subfiglist_is_integer:tT #1 #2
+{
+  \subfiglist_exp_args:Nt \subfiglist_is_integer:NT #1 #2
+}
+\cs_new:Npn \subfiglist_is_integer:tF #1 #2
+{
+  \subfiglist_exp_args:Nt \subfiglist_is_integer:NF #1 #2
+}
+\cs_new:Npn \subfiglist_is_integer:tTF #1 #2 #3
+{
+  \subfiglist_exp_args:Nt \subfiglist_is_integer:NTF #1 #2
+}
 
 
 \prg_new_conditional:Npnn \subfiglist_token_if_eq_charcode:NN #1 #2 { p, T, F, TF }
