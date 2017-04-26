@@ -6,6 +6,7 @@ TODO
 * Test all error messages
 * Use sequences in place of token lists
 * Delete unnecessary variables
+* Replace test for equal charcode by test for equal charcode AND equal meaning
 
 
 

@@ -618,10 +618,10 @@
     \prg_return_true:
   }{
     % Check whether first token is digit
-    \subfiglist_is_digit:fTF { \tl_head:n { #1 } }
+    \subfiglist_is_digit:tTF { \tl_head:n { #1 } }
     {
       % Check remaining tokens if true
-      \subfiglist_is_integer_or_empty:fTF { \tl_tail:n { #1 } }
+      \subfiglist_is_integer_or_empty:tTF { \tl_tail:n { #1 } }
       {
         \prg_return_true:
       }{
@@ -634,10 +634,23 @@
   }
 }
 
-\cs_generate_variant:Nn \subfiglist_is_integer_or_empty_p:n { f }
-\cs_generate_variant:Nn \subfiglist_is_integer_or_empty:nT  { f }
-\cs_generate_variant:Nn \subfiglist_is_integer_or_empty:nF  { f }
-\cs_generate_variant:Nn \subfiglist_is_integer_or_empty:nTF { f }
+% Define variants of \subfiglist_is_integer_or_empty expanding its argument twice
+\cs_new:Npn \subfiglist_is_integer_or_empty_p:t #1
+{
+  \subfiglist_exp_args:Nt \subfiglist_is_integer_or_empty_p:N #1
+}
+\cs_new:Npn \subfiglist_is_integer_or_empty:tT #1 #2
+{
+  \subfiglist_exp_args:Nt \subfiglist_is_integer_or_empty:NT #1 #2
+}
+\cs_new:Npn \subfiglist_is_integer_or_empty:tF #1 #2
+{
+  \subfiglist_exp_args:Nt \subfiglist_is_integer_or_empty:NF #1 #2
+}
+\cs_new:Npn \subfiglist_is_integer_or_empty:tTF #1 #2 #3
+{
+  \subfiglist_exp_args:Nt \subfiglist_is_integer_or_empty:NTF #1 #2
+}
 
 % Test whether token list is an integer
 \prg_new_conditional:Npnn \subfiglist_is_integer:n #1 { p, T, F, TF }
