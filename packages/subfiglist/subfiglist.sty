@@ -509,10 +509,8 @@
 
 % Provide framework for exporting group scope local variables according to discussion
 % at https://tex.stackexchange.com/questions/56294/how-do-i-get-a-value-out-of-a-group
-\cs_set_eq:NN \subfiglist_group_insert_after:N \group_execute_after:N
-
 \cs_generate_variant:Nn \tl_if_empty:nT {v}
-\cs_generate_variant:Nn \subfiglist_group_insert_after:N {c}
+\cs_generate_variant:Nn \group_insert_after:N {c}
 
 \cs_new:Nn \subfiglist_group_after_insert:nn
 { 
@@ -525,7 +523,7 @@
   \tl_if_empty:vT { g_subfiglist_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
   {
     % Set up the aftergroup execution:
-    \subfiglist_group_insert_after:c { g_subfiglist_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
+    \group_insert_after:c { g_subfiglist_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
 
     % Reset the material for aftergroup execution:
     \tl_gset:cx { g_subfiglist_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
