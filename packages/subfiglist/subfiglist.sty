@@ -588,10 +588,23 @@
   }
 }
 
-\cs_generate_variant:Nn \subfiglist_is_digit_p:N { f }
-\cs_generate_variant:Nn \subfiglist_is_digit:NT  { f }
-\cs_generate_variant:Nn \subfiglist_is_digit:NF  { f }
-\cs_generate_variant:Nn \subfiglist_is_digit:NTF { f }
+% Define variants of \subfiglist_is_digit expanding its argument twice
+\cs_new:Npn \subfiglist_is_digit_p:t #1
+{
+  \subfiglist_exp_args:Nt \subfiglist_is_digit_p:N #1
+}
+\cs_new:Npn \subfiglist_is_digit:tT #1 #2
+{
+  \subfiglist_exp_args:Nt \subfiglist_is_digit:NT #1 #2
+}
+\cs_new:Npn \subfiglist_is_digit:tF #1 #2
+{
+  \subfiglist_exp_args:Nt \subfiglist_is_digit:NF #1 #2
+}
+\cs_new:Npn \subfiglist_is_digit:tTF #1 #2 #3
+{
+  \subfiglist_exp_args:Nt \subfiglist_is_digit:NTF #1 #2
+}
 
 % Test whether token list is an integer or empty
 \prg_new_conditional:Npnn \subfiglist_is_integer_or_empty:n #1 { p, T, F, TF }
