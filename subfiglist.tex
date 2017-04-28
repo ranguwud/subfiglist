@@ -802,16 +802,16 @@
 %For every image~-- or more general for every ``object'' like  images, spaces or newlines~-- several properties like width, height, aspect ratio and others have to be saved. In any object oriented programming language this would probably be solved by writing a class, which can store the various properties in fields, and creating instances for any of the considered objects.
 
 \ExplSyntaxOn
-\subfiglist_test_conditionals:
+%\subfiglist_test_conditionals:
 
-%  \keys_set:nn { subfiglistenv }
-%  {
-%    width = \subfiglist_env_width_default_tl,
-%    space = \subfiglist_env_space_default_tl
-%  }
-%
-%\tl_set:Nn \subfiglist_spec_tl { 1 2 3 \\ 4 5 6 }
-%%\subfiglist_parse_nums:N \subfiglist_spec_tl
+  \keys_set:nn { subfiglistenv }
+  {
+    width = \subfiglist_env_width_default_tl,
+    space = \subfiglist_env_space_default_tl
+  }
+
+\tl_set:Nn \subfiglist_spec_tl { 1 2 3 \\ 4 5 6 }
+\subfiglist_parse_nums:N \subfiglist_spec_tl
 %\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { fN }
 %%\tl_if_single:nTF { \\ } { true } { false }\\
 %\let\\\relax

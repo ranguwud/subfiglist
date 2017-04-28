@@ -754,7 +754,7 @@
       \prg_return_false:
     }{
       % Two token lists of the form { tokens } were passed to the N
-      % arguments. Pass to \subfiglist_tl_if_eq_charcode:nnTF
+      % arguments. Pass to \subfiglist_tl_if_eq:nnTF
       % without further unpacking.
       \subfiglist_tl_if_eq:nnTF { #1 } { #2 }
       {
@@ -1153,7 +1153,7 @@
 %
 {
   % Has natural width been requested?
-  \subfiglist_tl_if_eq_charcode:nnTF { #2 } { ! }
+  \subfiglist_tl_if_eq:nnTF { #2 } { ! }
   {
     % Load with natural width
     \includegraphics { #1 }
@@ -1177,7 +1177,7 @@
 {
   \begin{subfiglistsvgenv}
     % Set width of SVG image
-    \subfiglist_tl_if_eq_charcode:nnF { #2 } { ! }
+    \subfiglist_tl_if_eq:nnF { #2 } { ! }
       { \cs_gset:Npn \svgwidth { #2 } }
     
     % Split path into directory and file
@@ -1274,7 +1274,7 @@
                   \raisebox { -\subfiglist_tempa_dim } [ \ht\strutbox ] [ 0pt ]
                   {
                     % Decide whether label has to be put inside a colorbox or not
-                    \subfiglist_tl_if_eq_charcode:xnTF
+                    \subfiglist_tl_if_eq:xnTF
                       { \tl_item:Nn \subfiglist_label_background_list_tl { #1 } } { none }
                       % Either delete next token or use it as argument of \colorbox
                       \use_none:n \colorbox
@@ -1520,7 +1520,7 @@
   {
     \int_incr:N \subfiglist_tempa_int
     % Check if current canvas position has been found
-    \subfiglist_tl_if_eq_charcode:nnT { #1 } { ##1 }
+    \subfiglist_tl_if_eq:nnT { #1 } { ##1 }
     {
       \tl_map_break:
     }
@@ -1657,7 +1657,7 @@
   {
     \int_incr:N \subfiglist_tempa_int
     % Check if current object position has been found
-    \subfiglist_tl_if_eq_charcode:nnT { #1 } { ##1 }
+    \subfiglist_tl_if_eq:nnT { #1 } { ##1 }
     {
       \tl_map_break:
     }
@@ -1679,7 +1679,7 @@
     {
       % Check if trailing coordinates agree
       \subfiglist_tl_tail:nn { ##1 } { \tl_count:n { #1 } }
-      \subfiglist_tl_if_eq_charcode:xnT { \tl_use:N \subfiglist_tail_tl } { #1 }
+      \subfiglist_tl_if_eq:xnT { \tl_use:N \subfiglist_tail_tl } { #1 }
       {
         \tl_item:Nn \subfiglist_objects_cs_tl { \subfiglist_tempa_int }
       }
@@ -1890,19 +1890,19 @@
     \bool_if:NTF \subfiglist_after_char_br_bool
     {
       % Skip until closing square bracket
-      \subfiglist_tl_if_eq_charcode:nnT { #1 } { ] }
+      \subfiglist_token_if_eq:NNT #1 ]
         { \bool_set_false:N \subfiglist_after_char_br_bool }
     }{
       % Is token a '@'?
-      \subfiglist_tl_if_eq_charcode:nnTF { #1 } { @ }
+      \subfiglist_token_if_eq:NNTF #1 @
       { \bool_set_true:N \subfiglist_after_char_at_bool }
       {
         % Is token an opening square bracket?
-        \subfiglist_tl_if_eq_charcode:nnTF { #1 } { [ }
+        \subfiglist_token_if_eq:NNTF #1 [
         { \bool_set_true:N \subfiglist_after_char_br_bool }
         {
           % Skip newline
-          \subfiglist_tl_if_eq_charcode:nnF { #1 } { \\ }
+          \subfiglist_token_if_eq:NNF #1 \\
           {
             % Check if token is composed of other tokens
             \tl_if_single:NTF { #1 }
@@ -2056,7 +2056,7 @@
     \bool_if:NTF \subfiglist_after_char_br_bool
     {
       % Push tokens until closing bracket
-      \subfiglist_tl_if_eq_charcode:nnTF { #1 } { ] }
+      \subfiglist_token_if_eq:NNTF #1 ]
       {
         \bool_set_false:N \subfiglist_after_char_br_bool
         
@@ -2081,7 +2081,7 @@
       }
     }{
       % Is token a '@'?
-      \subfiglist_tl_if_eq_charcode:nnTF { #1 } { @ }
+      \subfiglist_token_if_eq:NNTF #1 @
       {
         % Set position
         \subfiglist_update_objects_pos:
@@ -2096,7 +2096,7 @@
           \bool_set_false:N \subfiglist_after_char_nl_bool
 
           % Catch cases where no vertical offset is specified
-          \subfiglist_tl_if_eq_charcode:nnF { #1 } { [ }
+          \subfiglist_token_if_eq:NNF #1 [
           {
             % Set width to zero
             \tl_put_left:Nn \subfiglist_objects_hoff_tl { {0pt} }
@@ -2114,13 +2114,13 @@
           }
         }
         % Is token an opening square bracket?
-        \subfiglist_tl_if_eq_charcode:nnTF { #1 } { [ }
+        \subfiglist_token_if_eq:NNTF #1 [
         {
           \bool_set_true:N \subfiglist_after_char_br_bool
           \tl_clear:N \subfiglist_objects_opt_arg_nl_tl
         }{
           % Is token a newline?
-          \subfiglist_tl_if_eq_charcode:nnTF { #1 } { \\ }
+          \subfiglist_token_if_eq:NNTF #1 \\
           {
             % Switch to vertical mode before updating position
             \bool_set_false:N \subfiglist_hmode_bool
@@ -2357,10 +2357,10 @@
             % Is current object actually inside current subblock?
             \subfiglist_tl_tail:nn { ####1 } { \subfiglist_tempa_int } 
             \subfiglist_tl_head:nn { ####1 } { 2 }
-            \subfiglist_tl_if_eq_charcode:xnT { \tl_use:N \subfiglist_tail_tl } { ##1 }
+            \subfiglist_tl_if_eq:xnT { \tl_use:N \subfiglist_tail_tl } { ##1 }
             {
               % Is current object the first of a line?
-              \subfiglist_tl_if_eq_charcode:xnT { \tl_head:N \subfiglist_head_tl } { 1 }
+              \subfiglist_tl_if_eq:xnT { \tl_head:N \subfiglist_head_tl } { 1 }
               {
                 % Update dimensions after completion of previous line, as
                 % long as this is not the very first object in the subblock
@@ -2401,7 +2401,7 @@
               }
               
               % Update height/width ratio if current object is scalable
-              \subfiglist_tl_if_eq_charcode:xnF
+              \subfiglist_tl_if_eq:xnF
               { \tl_item:Nn \subfiglist_objects_ratio_tl { \subfiglist_tempb_int } } { {x} }
               {
                 % Initialize if ratio is zero, update otherwise
@@ -2435,7 +2435,7 @@
         \tl_map_inline:Nn \subfiglist_objects_pos_tl
         {
           \int_incr:N \subfiglist_tempb_int
-          \subfiglist_tl_if_eq_charcode:nnT { ##1 } { ####1 }
+          \subfiglist_tl_if_eq:nnT { ##1 } { ####1 }
           {
             \subfiglist_tl_replace_item:Nxn \subfiglist_objects_hoff_tl
               { {\dim_use:N \subfiglist_sub_block_hoff_dim} } { \subfiglist_tempb_int }
@@ -2485,7 +2485,7 @@
     \fp_zero:N  \subfiglist_sum_ratio_over_ratio_fp
 
     % Is current object scalable, i.e. an image or a subblock?
-    \subfiglist_tl_if_eq_charcode:xnTF
+    \subfiglist_tl_if_eq:xnTF
     { \tl_item:Nn \subfiglist_objects_ratio_tl { \subfiglist_tempa_int } } { {x} }
     {
       % Add width to vertical offset for non-scalable objects
@@ -2498,7 +2498,7 @@
       {
         \int_incr:N \subfiglist_tempb_int
 
-        \subfiglist_tl_if_eq_charcode:xxT { \tl_tail:n { ##1 } } { \tl_tail:n { ####1 } }
+        \subfiglist_tl_if_eq:xxT { \tl_tail:n { ##1 } } { \tl_tail:n { ####1 } }
         {
           % Add minimum width to sum of horizontal offsets
           \dim_add:Nn \subfiglist_sum_hoff_dim
@@ -2506,7 +2506,7 @@
           
           % Update sums including ratio height/width
           % if current object is scalable
-          \subfiglist_tl_if_eq_charcode:xnF
+          \subfiglist_tl_if_eq:xnF
           { \tl_item:Nn \subfiglist_objects_ratio_tl { \subfiglist_tempb_int } } { {x} }
           {
             % Update sum of vertical offset over ratio
@@ -2543,7 +2543,7 @@
           \int_incr:N \subfiglist_tempb_int
           
           % Do coordinates agree?
-          \subfiglist_tl_if_eq_charcode:xnT { \tl_use:N \subfiglist_tail_tl } { ####1 }
+          \subfiglist_tl_if_eq:xnT { \tl_use:N \subfiglist_tail_tl } { ####1 }
           {
             % Get width of subblock
             \dim_set:Nx \subfiglist_tempa_dim
@@ -2628,7 +2628,7 @@
   
   % Check if image numbers in subfiglist specification
   % are in ascending order and warn if otherwise
-  \subfiglist_tl_if_eq_charcode:nnF \subfiglist_spec_nums_tl \subfiglist_spec_nums_sorted_tl
+  \subfiglist_tl_if_eq:nnF \subfiglist_spec_nums_tl \subfiglist_spec_nums_sorted_tl
   {
     \msg_warning:nn { subfiglist } { wrong~image~order }
   }
@@ -2682,7 +2682,7 @@
   }
   
   % Check if spec numbers and canvases are in same order
-  \subfiglist_tl_if_eq_charcode:nnF \subfiglist_spec_nums_tl \subfiglist_canvas_nums_tl
+  \subfiglist_tl_if_eq:nnF \subfiglist_spec_nums_tl \subfiglist_canvas_nums_tl
   {
     \msg_warning:nn { subfiglist } { mismatching~image~order }
   }
