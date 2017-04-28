@@ -683,7 +683,8 @@
 }
 
 
-\prg_new_conditional:Npnn \subfiglist_token_if_eq_charcode:NN #1 #2 { p, T, F, TF }
+% Test whether two tokens have equal character code and meaning
+\prg_new_conditional:Npnn \subfiglist_token_if_eq:NN #1 #2 { p, T, F, TF }
 %
 % #1: First token
 % #2: Second token
@@ -705,8 +706,8 @@
         % to the second N argument
         \tl_if_single:nTF #2
         {
-          % Tokens are single down to second level. Compare charcodes.
-          \token_if_eq_charcode:NNTF #1 #2
+          % Tokens are single down to second level. Compare charcodes and meaning.
+          \bool_if:nTF { \token_if_eq_charcode_p:NN #1 #2 && \token_if_eq_meaning_p:NN #1 #2 }
           {
             \prg_return_true:
           }{
@@ -729,8 +730,8 @@
         }{
           % Two token lists of the form { { tokens } } were passed to the
           % N arguments. Unpack the topmost level and pass to
-          % \subfiglist_tl_if_eq_charcode:nnTF.
-          \subfiglist_tl_if_eq_charcode:nnTF #1 #2
+          % \subfiglist_tl_if_eq:nnTF.
+          \subfiglist_tl_if_eq:nnTF #1 #2
           {
             \prg_return_true:
           }{
@@ -755,7 +756,7 @@
       % Two token lists of the form { tokens } were passed to the N
       % arguments. Pass to \subfiglist_tl_if_eq_charcode:nnTF
       % without further unpacking.
-      \subfiglist_tl_if_eq_charcode:nnTF { #1 } { #2 }
+      \subfiglist_tl_if_eq:nnTF { #1 } { #2 }
       {
         \prg_return_true:
       }{
@@ -765,21 +766,58 @@
   }
 }
 
-\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode_p:NN { Nf }
-\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode_p:NN { fN }
-\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode_p:NN { ff }
-\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNT  { Nf }
-\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNT  { fN }
-\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNT  { ff }
-\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNF  { Nf }
-\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNF  { fN }
-\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNF  { ff }
-\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNTF { Nf }
-\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNTF { fN }
-\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNTF { ff }
+% Define variants of \subfiglist_token_if_eq expanding its argument twice
+\cs_new:Npn \subfiglist_token_if_eq_p:Nt #1 #2
+{
+  \subfiglist_exp_args:NNt \subfiglist_token_if_eq_p:NN { #1 } { #2 }
+}
+\cs_new:Npn \subfiglist_token_if_eq_p:tN #1 #2
+{
+  \subfiglist_exp_args:Nt \subfiglist_token_if_eq_p:NN { #1 } { #2 }
+}
+\cs_new:Npn \subfiglist_token_if_eq_p:tt #1 #2
+{
+  \subfiglist_exp_args:Ntt \subfiglist_token_if_eq_p:NN { #1 } { #2 }
+}
+\cs_new:Npn \subfiglist_token_if_eq:NtT #1 #2 #3
+{
+  \subfiglist_exp_args:NNt \subfiglist_token_if_eq:NNT { #1 } { #2 } { #3 }
+}
+\cs_new:Npn \subfiglist_token_if_eq:tNT #1 #2 #3
+{
+  \subfiglist_exp_args:Nt \subfiglist_token_if_eq:NNT { #1 } { #2 } { #3 }
+}
+\cs_new:Npn \subfiglist_token_if_eq:ttT #1 #2 #3
+{
+  \subfiglist_exp_args:Ntt \subfiglist_token_if_eq:NNT { #1 } { #2 } { #3 }
+}
+\cs_new:Npn \subfiglist_token_if_eq:NtF #1 #2 #3
+{
+  \subfiglist_exp_args:NNt \subfiglist_token_if_eq:NNF { #1 } { #2 } { #3 }
+}
+\cs_new:Npn \subfiglist_token_if_eq:tNF #1 #2 #3
+{
+  \subfiglist_exp_args:Nt \subfiglist_token_if_eq:NNF { #1 } { #2 } { #3 }
+}
+\cs_new:Npn \subfiglist_token_if_eq:ttF #1 #2 #3
+{
+  \subfiglist_exp_args:Ntt \subfiglist_token_if_eq:NNF { #1 } { #2 } { #3 }
+}
+\cs_new:Npn \subfiglist_token_if_eq:NtTF #1 #2 #3 #4
+{
+  \subfiglist_exp_args:NNt \subfiglist_token_if_eq:NNTF { #1 } { #2 } { #3 } { #4 }
+}
+\cs_new:Npn \subfiglist_token_if_eq:tNTF #1 #2 #3 #4
+{
+  \subfiglist_exp_args:Nt \subfiglist_token_if_eq:NNTF { #1 } { #2 } { #3 } { #4 }
+}
+\cs_new:Npn \subfiglist_token_if_eq:ttTF #1 #2 #3 #4
+{
+  \subfiglist_exp_args:Ntt \subfiglist_token_if_eq:NNTF { #1 } { #2 } { #3 } { #4 }
+}
 
-% Test whether token lists have equal charcodes. May break on fragile tokens.
-\prg_new_conditional:Npnn \subfiglist_tl_if_eq_charcode:nn #1 #2 { p, T, F, TF }
+% Test whether all tokens of a token lists have equal charcodes and equal meaning.
+\prg_new_conditional:Npnn \subfiglist_tl_if_eq:nn #1 #2 { p, T, F, TF }
 %
 % #1: Firt token list
 % #2: Second token list
@@ -793,11 +831,11 @@
     {
       \prg_return_true:
     }{
-      % Do the respective first tokens have same charcode?
-      \subfiglist_token_if_eq_charcode:ffTF { \tl_head:n { #1 } } { \tl_head:n { #2 } }
+      % Do the respective first tokens have same charcode and meaning?
+      \subfiglist_token_if_eq:ttTF { \tl_head:n { #1 } } { \tl_head:n { #2 } }
       {
         % Recursively pass respective remaining tokens.
-        \subfiglist_tl_if_eq_charcode:ffTF { \tl_tail:n { #1 } } { \tl_tail:n { #2 } }
+        \subfiglist_tl_if_eq:ttTF { \tl_tail:n { #1 } } { \tl_tail:n { #2 } }
         {
           \prg_return_true:
         }{
@@ -814,28 +852,55 @@
   }
 }
 
-\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode_p:nn { nf }
-\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode_p:nn { fn }
-\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode_p:nn { ff }
-\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnT  { nf }
-\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnT  { fn }
-\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnT  { ff }
-\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnF  { nf }
-\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnF  { fn }
-\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnF  { ff }
-\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnTF { nf }
-\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnTF { fn }
-\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnTF { ff }
-
-%\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnT  { nx }
-%\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnT  { xn }
-%\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnT  { xx }
-%\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnF  { nx }
-%\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnF  { xn }
-%\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnF  { xx }
-%\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnTF { nx }
-%\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnTF { xn }
-%\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnTF { xx }
+% Define variants of \subfiglist_tl_if_eq expanding its argument twice
+\cs_new:Npn \subfiglist_tl_if_eq_p:nt #1 #2
+{
+  \subfiglist_exp_args:NNt \subfiglist_tl_if_eq_p:nn { #1 } { #2 }
+}
+\cs_new:Npn \subfiglist_tl_if_eq_p:tn #1 #2
+{
+  \subfiglist_exp_args:Nt \subfiglist_tl_if_eq_p:nn { #1 } { #2 }
+}
+\cs_new:Npn \subfiglist_tl_if_eq_p:tt #1 #2
+{
+  \subfiglist_exp_args:Ntt \subfiglist_tl_if_eq_p:nn { #1 } { #2 }
+}
+\cs_new:Npn \subfiglist_tl_if_eq:ntT #1 #2 #3
+{
+  \subfiglist_exp_args:NNt \subfiglist_tl_if_eq:nnT { #1 } { #2 } { #3 }
+}
+\cs_new:Npn \subfiglist_tl_if_eq:tnT #1 #2 #3
+{
+  \subfiglist_exp_args:Nt \subfiglist_tl_if_eq:nnT { #1 } { #2 } { #3 }
+}
+\cs_new:Npn \subfiglist_tl_if_eq:ttT #1 #2 #3
+{
+  \subfiglist_exp_args:Ntt \subfiglist_tl_if_eq:nnT { #1 } { #2 } { #3 }
+}
+\cs_new:Npn \subfiglist_tl_if_eq:ntF #1 #2 #3
+{
+  \subfiglist_exp_args:NNt \subfiglist_tl_if_eq:nnF { #1 } { #2 } { #3 }
+}
+\cs_new:Npn \subfiglist_tl_if_eq:tnF #1 #2 #3
+{
+  \subfiglist_exp_args:Nt \subfiglist_tl_if_eq:nnF { #1 } { #2 } { #3 }
+}
+\cs_new:Npn \subfiglist_tl_if_eq:ttF #1 #2 #3
+{
+  \subfiglist_exp_args:Ntt \subfiglist_tl_if_eq:nnF { #1 } { #2 } { #3 }
+}
+\cs_new:Npn \subfiglist_tl_if_eq:ntTF #1 #2 #3 #4
+{
+  \subfiglist_exp_args:NNt \subfiglist_tl_if_eq:nnTF { #1 } { #2 } { #3 } { #4 }
+}
+\cs_new:Npn \subfiglist_tl_if_eq:tnTF #1 #2 #3 #4
+{
+  \subfiglist_exp_args:Nt \subfiglist_tl_if_eq:nnTF { #1 } { #2 } { #3 } { #4 }
+}
+\cs_new:Npn \subfiglist_tl_if_eq:ttTF #1 #2 #3 #4
+{
+  \subfiglist_exp_args:Ntt \subfiglist_tl_if_eq:nnTF { #1 } { #2 } { #3 } { #4 }
+}
 
 
 % Test whether token list is a float or empty
@@ -861,7 +926,7 @@
       }
     }{
       % Check for decimal separator otherwise
-      \subfiglist_exp_args:NNt \subfiglist_token_if_eq_charcode:NNTF . { \tl_head:n { #1 } }
+      \subfiglist_token_if_eq:NtTF . { \tl_head:n { #1 } }
       {
         % Check if trailing end is an integer, if true
         \subfiglist_is_integer:tTF { \tl_tail:n { #1 } }
@@ -950,20 +1015,22 @@
       { \subfiglist_is_integer_p:n { 12{{34}} } }
       { \subfiglist_is_integer_p:n { 12{{{34}}} } }
     }{
-      { \subfiglist_tl_if_eq_charcode_p:nn a a }
-      { \subfiglist_tl_if_eq_charcode_p:nn a b }
-      { \subfiglist_tl_if_eq_charcode_p:nn a {ab} }
-      { \subfiglist_tl_if_eq_charcode_p:nn {ab} b }
-      { \subfiglist_tl_if_eq_charcode_p:nn {a} {a} }
-      { \subfiglist_tl_if_eq_charcode_p:nn {ab} {ab} }
-      { \subfiglist_tl_if_eq_charcode_p:nn {ab} {ac} }
-      { \subfiglist_tl_if_eq_charcode_p:nn {a{b}} {ab} }
-      { \subfiglist_tl_if_eq_charcode_p:nn {a{{b}}} {ab} }
-      { \subfiglist_tl_if_eq_charcode_p:nn {a{{{b}}}} {ab} }
-      { \subfiglist_tl_if_eq_charcode_p:nn {ab{cd}} {abcd} }
-      { \subfiglist_tl_if_eq_charcode_p:nn {ab{cd}} {ab{cd}} }
-      { \subfiglist_tl_if_eq_charcode_p:nn {ab{{cd}}} {ab{cd}} }
-      { \subfiglist_tl_if_eq_charcode_p:nn {ab{{cd}}} {ab{{cd}}} }
+      { \subfiglist_tl_if_eq_p:nn a a }
+      { \subfiglist_tl_if_eq_p:nn a b }
+      { \subfiglist_tl_if_eq_p:nn a {ab} }
+      { \subfiglist_tl_if_eq_p:nn {ab} b }
+      { \subfiglist_tl_if_eq_p:nn {a} {a} }
+      { \subfiglist_tl_if_eq_p:nn {ab} {ab} }
+      { \subfiglist_tl_if_eq_p:nn {ab} {ac} }
+      { \subfiglist_tl_if_eq_p:nn {a{b}} {ab} }
+      { \subfiglist_tl_if_eq_p:nn {a{{b}}} {ab} }
+      { \subfiglist_tl_if_eq_p:nn {a{{{b}}}} {ab} }
+      { \subfiglist_tl_if_eq_p:nn {ab{cd}} {abcd} }
+      { \subfiglist_tl_if_eq_p:nn {ab{cd}} {ab{cd}} }
+      { \subfiglist_tl_if_eq_p:nn {ab{{cd}}} {ab{cd}} }
+      { \subfiglist_tl_if_eq_p:nn {ab{{cd}}} {ab{{cd}}} }
+      { \subfiglist_tl_if_eq_p:nn {\\bc} {\\bc} }
+      { \subfiglist_tl_if_eq_p:nn {\\bc} {\relax bc} }
     }{
       { \subfiglist_is_float_p:n 1 }
       { \subfiglist_is_float_p:n { } }
