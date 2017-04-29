@@ -801,32 +801,100 @@
 %\section{Rough description of the algorithm}
 %For every image~-- or more general for every ``object'' like  images, spaces or newlines~-- several properties like width, height, aspect ratio and others have to be saved. In any object oriented programming language this would probably be solved by writing a class, which can store the various properties in fields, and creating instances for any of the considered objects.
 
-\ExplSyntaxOn
-%\subfiglist_test_conditionals:
-
-  \keys_set:nn { subfiglistenv }
-  {
-    width = \subfiglist_env_width_default_tl,
-    space = \subfiglist_env_space_default_tl
-  }
-
-\tl_set:Nn \subfiglist_spec_tl { 1 2 3 \\ 4 5 6 }
-\subfiglist_parse_nums:N \subfiglist_spec_tl
+%\ExplSyntaxOn
+%%\subfiglist_test_conditionals:
+%
+%  \keys_set:nn { subfiglistenv }
+%  {
+%    width = \subfiglist_env_width_default_tl,
+%    space = \subfiglist_env_space_default_tl
+%  }
+%
+%\tl_set:Nn \subfiglist_spec_tl { 1 2 }
+%\subfiglist_parse_nums:N \subfiglist_spec_tl
+%\subfiglist_test_spec_nums:
+%  \setbox\subfiglist_box\vbox
+%  {
+%    \rule{2em}{2em}\\[0pt]\rule{2em}{2em}
+%  }  
+%  \exp_args:NNx\dim_set:Nn \subfilgist_newline_correction_dim 
+%  { \ht\subfiglist_box - 4em }
+%  
+%  \dim_show:N\subfilgist_newline_correction_dim 
+%% Setup commands
+%\RenewDocumentCommand \subfiglistfile { O{} m m }
+%{ \subfiglist_file_internal:nnn { #1 } { #2 } { #3} }
+%\RenewDocumentCommand \subfiglistdummyfile { s O{} m m }
+%{
+%  \IfBooleanTF ##1
+%  { \subfiglist_dummy_file_internal:nnnn { ##2 } { ##3 } { ##4 } { 1 } }
+%  { \subfiglist_dummy_file_internal:nnnn { ##2 } { ##3 } { ##4 } { 0 } }
+%}
+%\RenewDocumentCommand \subfiglistdummy { s O{} m m }
+%{
+%  \IfBooleanTF ##1
+%  { \subfiglist_dummy_internal:nnnn { ##2 } { ##3 } { ##4 } { 1 } }
+%  { \subfiglist_dummy_internal:nnnn { ##2 } { ##3 } { ##4 } { 0 } }
+%}
+%\RenewDocumentCommand \subfiglistlabel { O{} m m }
+%{ \subfiglist_label_internal:nnn { ##1 } { ##2 } { ##3 } }
+%\RenewDocumentCommand \subfiglistoverlay { m m }
+%{ \subfiglist_overlay_internal:nn { ##1 } { ##2 } }
+%  \subfiglistfile{1}{figures/01.png}
+%  \subfiglistfile{2}{figures/02.png}
+%  
+%  \subfiglist_test_canvas_nums:
+%  \int_zero:N \subfiglist_exit_count_int
+%  \subfiglist_parse_objects:N \subfiglist_spec_tl
+%  \tl_reverse:N \subfiglist_objects_pos_tl
+%  \tl_reverse:N \subfiglist_objects_hoff_tl
+%  \tl_reverse:N \subfiglist_objects_voff_tl
+%  \tl_reverse:N \subfiglist_objects_ratio_tl
+%  \tl_reverse:N \subfiglist_objects_cs_tl
+%  \tl_reverse:N \subfiglist_objects_sub_blocks_tl
+%  
+%  \subfiglist_get_sub_block_dimensions:
+%  
+%  \subfiglist_get_image_width:
+%  
+%  %\tl_to_str:N \subfiglist_objects_width_tl\\
+%  
+%%  \subfiglist_put_canvas:nn {{1}{1}}{1}
+%  
+%    \begin{minipage}{\subfiglist_total_width_dim}
+%      % Loop over top level objects
+%      \int_zero:N \subfiglist_tempa_int
+%      \tl_map_inline:Nn \subfiglist_objects_pos_tl
+%      {
+%        \int_incr:N \subfiglist_tempa_int
+%        
+%        \int_compare:nT { \tl_count:n { ##1 } = 2 }
+%        {
+%          \tl_item:Nn \subfiglist_objects_cs_tl { \subfiglist_tempa_int }
+%        }
+%      }
+%    \end{minipage}
+%    
+%  
+  % Calculate dimensions of subblocks
+  %\subfiglist_get_sub_block_dimensions:
 %\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { fN }
 %%\tl_if_single:nTF { \\ } { true } { false }\\
 %\let\\\relax
 %\token_if_eq_charcode:fNTF { \tl_head:n { \\as } } \\ { true } { false }
 
 
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
-%\captionsetup{type=figure}
-%\begin{subfiglist}{1 2 3 4 5 6 }
-%  \subfiglistfile{1}{figures/01.png}
-%  \subfiglistfile{2}{figures/02.png}
+\captionsetup{type=figure}
+\begin{subfiglist}{ 1 2 }
+  \subfiglistfile{1}{figures/01.png}
+  \subfiglistfile{2}{figures/02.png}
 %  \subfiglistfile{3}{figures/03.png}
 %  \subfiglistfile{4}{figures/04.png}
 %  \subfiglistfile{5}{figures/05.png}
 %  \subfiglistfile{6}{figures/06.png}
-%\end{subfiglist}
+\end{subfiglist}
 
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 \end{document}

@@ -271,7 +271,7 @@
     % #1: Text color
     %
     {
-  	  % Step subcaption counter
+      % Step subcaption counter
       \caption@@@refstepcounter\@subcaptype
       % Setup label anchor
       \caption@prepareanchor\@subcaptype{}
@@ -473,16 +473,16 @@
 %%%   Generate variants of some commands   %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-%\cs_generate_variant:Nn \dim_set:Nn  { Nx }
-%\cs_generate_variant:Nn \dim_add:Nn  { Nx }
-%\cs_generate_variant:Nn \dim_sub:Nn  { Nx }
-%\cs_generate_variant:Nn \fp_set:Nn   { Nx }
-%\cs_generate_variant:Nn \fp_add:Nn   { Nx }
-%\cs_generate_variant:Nn \fp_sub:Nn   { Nx }
-%\cs_generate_variant:Nn \bool_set:Nn { Nx }
-\cs_generate_variant:Nn \msg_error:nnnn { nnnf }
-\cs_generate_variant:Nn \msg_error:nnnn { nnfn }
-\cs_generate_variant:Nn \msg_error:nnnn { nnff }
+\cs_generate_variant:Nn \dim_set:Nn      { Nf }
+\cs_generate_variant:Nn \dim_add:Nn      { Nf }
+\cs_generate_variant:Nn \dim_sub:Nn      { Nf }
+\cs_generate_variant:Nn \fp_set:Nn       { Nf }
+\cs_generate_variant:Nn \fp_add:Nn       { Nf }
+\cs_generate_variant:Nn \fp_sub:Nn       { Nf }
+\cs_generate_variant:Nn \tl_put_right:Nn { Nf }
+\cs_generate_variant:Nn \msg_error:nnnn  { nnnf }
+\cs_generate_variant:Nn \msg_error:nnnn  { nnfn }
+\cs_generate_variant:Nn \msg_error:nnnn  { nnff }
 
 
 
@@ -901,6 +901,19 @@
 {
   \subfiglist_exp_args:Ntt \subfiglist_tl_if_eq:nnTF { #1 } { #2 } { #3 } { #4 }
 }
+% Define variants of \subfiglist_tl_if_eq performing full argument expansion
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_p:nn { nf }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_p:nn { fn }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_p:nn { ff }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq:nnT { nf }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq:nnT { fn }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq:nnT { ff }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq:nnF { nf }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq:nnF { fn }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq:nnF { ff }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq:nnTF { nf }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq:nnTF { fn }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq:nnTF { ff }
 
 
 % Test whether token list is a float or empty
@@ -1217,9 +1230,9 @@
   }
 }
 
-%\cs_generate_variant:Nn \subfiglist_load:nn { nx }
-%\cs_generate_variant:Nn \subfiglist_load:nn { xn }
-%\cs_generate_variant:Nn \subfiglist_load:nn { xx }
+\cs_generate_variant:Nn \subfiglist_load:nn { nf }
+\cs_generate_variant:Nn \subfiglist_load:nn { fn }
+\cs_generate_variant:Nn \subfiglist_load:nn { ff }
 
 
 % Define command for label inset
@@ -1269,7 +1282,7 @@
                 ]
                 {
                   % Additional vertical shift
-                  \dim_set:Nx \subfiglist_tempa_dim
+                  \dim_set:Nf \subfiglist_tempa_dim
                     { \tl_item:Nn \subfiglist_label_yshift_tl { #1 } }
                   \raisebox { -\subfiglist_tempa_dim } [ \ht\strutbox ] [ 0pt ]
                   {
@@ -1346,16 +1359,16 @@
 % #3: image height
 %
 {
-  \subfiglist_load:xx { \tl_item:Nn \subfiglist_file_names_tl { #1 } } { #2 }
+  \subfiglist_load:ff { \tl_item:Nn \subfiglist_file_names_tl { #1 } } { #2 }
 }
 
-%\cs_generate_variant:Nn \subfiglist_put_file:nnn { nnx }
-%\cs_generate_variant:Nn \subfiglist_put_file:nnn { nxn }
-%\cs_generate_variant:Nn \subfiglist_put_file:nnn { nxx }
-%\cs_generate_variant:Nn \subfiglist_put_file:nnn { xnn }
-%\cs_generate_variant:Nn \subfiglist_put_file:nnn { xnx }
-%\cs_generate_variant:Nn \subfiglist_put_file:nnn { xxn }
-%\cs_generate_variant:Nn \subfiglist_put_file:nnn { xxx }
+\cs_generate_variant:Nn \subfiglist_put_file:nnn { nnV }
+\cs_generate_variant:Nn \subfiglist_put_file:nnn { nVn }
+\cs_generate_variant:Nn \subfiglist_put_file:nnn { nVV }
+\cs_generate_variant:Nn \subfiglist_put_file:nnn { Vnn }
+\cs_generate_variant:Nn \subfiglist_put_file:nnn { VnV }
+\cs_generate_variant:Nn \subfiglist_put_file:nnn { VVn }
+\cs_generate_variant:Nn \subfiglist_put_file:nnn { VVV }
 
 % Output specified dummy file
 \cs_new:Npn \subfiglist_put_dummy_file:nnn #1 #2 #3
@@ -1527,9 +1540,9 @@
   }
   
   % Save width and height of canvas
-  \dim_set:Nx \subfiglist_tempa_dim
+  \dim_set:Nf \subfiglist_tempa_dim
     { \tl_item:Nn \subfiglist_objects_width_tl { \subfiglist_tempa_int } }
-  \dim_set:Nx \subfiglist_tempb_dim
+  \dim_set:Nf \subfiglist_tempb_dim
   {
     \tl_item:Nn \subfiglist_objects_ratio_tl { \subfiglist_tempa_int }
     \exp_not:N \subfiglist_tempa_dim
@@ -1549,14 +1562,14 @@
   }
   
   % Reduce canvas width by explicit horizontal offset
-  \dim_sub:Nx \subfiglist_tempa_dim
+  \dim_sub:Nf \subfiglist_tempa_dim
     { \tl_item:Nn \subfiglist_canvas_left_tl { \subfiglist_tempa_int } }
-  \dim_sub:Nx \subfiglist_tempa_dim
+  \dim_sub:Nf \subfiglist_tempa_dim
     { \tl_item:Nn \subfiglist_canvas_right_tl { \subfiglist_tempa_int } }
   % Reduce canvas height by explicit vertical offset
-  \dim_sub:Nx \subfiglist_tempb_dim
+  \dim_sub:Nf \subfiglist_tempb_dim
     { \tl_item:Nn \subfiglist_canvas_top_tl { \subfiglist_tempa_int } }
-  \dim_sub:Nx \subfiglist_tempb_dim
+  \dim_sub:Nf \subfiglist_tempb_dim
     { \tl_item:Nn \subfiglist_canvas_bot_tl { \subfiglist_tempa_int } }
     
   % Store canvas in box
@@ -1571,10 +1584,10 @@
       {
         \hspace { \tl_item:Nn \subfiglist_canvas_left_tl { \subfiglist_tempa_int } }
         % Put canvas
-        \use:c { subfiglist_put_ \tl_use:N \subfiglist_csname_tl :xxx }
-          { \int_use:N \subfiglist_tempb_int }
-          { \dim_use:N \subfiglist_tempa_dim }
-          { \dim_use:N \subfiglist_tempb_dim }
+        \use:c { subfiglist_put_ \tl_use:N \subfiglist_csname_tl :VVV }
+          \subfiglist_tempb_int
+          \subfiglist_tempa_dim
+          \subfiglist_tempb_dim
         \hspace { \tl_item:Nn \subfiglist_canvas_right_tl { \subfiglist_tempa_int } }
       }
     \vspace { \tl_item:Nn \subfiglist_canvas_bot_tl { \subfiglist_tempa_int } }
@@ -1664,7 +1677,7 @@
   }
   
   % Save width of subblock
-  \dim_set:Nx \subfiglist_tempa_dim
+  \dim_set:Nf \subfiglist_tempa_dim
     { \tl_item:Nn \subfiglist_objects_width_tl { \subfiglist_tempa_int } }
 
   % Put subblock in minipage
@@ -1703,7 +1716,7 @@
   % Store file in a box
   \setbox\subfiglist_box\hbox
   {
-    \subfiglist_load:xn
+    \subfiglist_load:fn
       { \tl_item:Nn \subfiglist_file_names_tl { #1 } }
       { #2 }
   }
@@ -1721,9 +1734,7 @@
   \group_end:
 }
 
-%\cs_generate_variant:Nn \subfiglist_get_file_ratio:nn { nx }
-%\cs_generate_variant:Nn \subfiglist_get_file_ratio:nn { xn }
-%\cs_generate_variant:Nn \subfiglist_get_file_ratio:nn { xx }
+\cs_generate_variant:Nn \subfiglist_get_file_ratio:nn { Vn }
 
 % Calculate ratio height/width of specified dummy file
 \cs_new:Npn \subfiglist_get_dummy_file_ratio:nn #1 #2
@@ -1836,8 +1847,8 @@
   }
   
   % Get ratio width/height of current canvas
-  \use:c { subfiglist_get_ \tl_use:N \subfiglist_csname_tl _ratio:xn }
-    { \int_use:N \subfiglist_tempb_int }
+  \use:c { subfiglist_get_ \tl_use:N \subfiglist_csname_tl _ratio:Vn }
+    \subfiglist_tempb_int
     { ! }
 
   % Search for number of current canvas
@@ -1854,15 +1865,15 @@
   }
   
   % Get and store horizontal and vertical offsets
-  \dim_set:Nx \subfiglist_tempa_dim
+  \dim_set:Nf \subfiglist_tempa_dim
     { \tl_item:Nn \subfiglist_canvas_left_tl { \subfiglist_tempa_int } }
-  \dim_add:Nx \subfiglist_tempa_dim
+  \dim_add:Nf \subfiglist_tempa_dim
     { \tl_item:Nn \subfiglist_canvas_right_tl { \subfiglist_tempa_int } }
   \tl_put_left:Nx \subfiglist_objects_hoff_tl { {\dim_use:N \subfiglist_tempa_dim} }
 
-  \dim_set:Nx \subfiglist_tempa_dim
+  \dim_set:Nf \subfiglist_tempa_dim
     { \tl_item:Nn \subfiglist_canvas_top_tl { \subfiglist_tempa_int } }
-  \dim_add:Nx \subfiglist_tempa_dim
+  \dim_add:Nf \subfiglist_tempa_dim
     { \tl_item:Nn \subfiglist_canvas_bot_tl { \subfiglist_tempa_int } }
   \tl_put_left:Nx \subfiglist_objects_voff_tl { {\dim_use:N \subfiglist_tempa_dim} }
 
@@ -2485,11 +2496,11 @@
     \fp_zero:N  \subfiglist_sum_ratio_over_ratio_fp
 
     % Is current object scalable, i.e. an image or a subblock?
-    \subfiglist_tl_if_eq:xnTF
+    \subfiglist_tl_if_eq:fnTF
     { \tl_item:Nn \subfiglist_objects_ratio_tl { \subfiglist_tempa_int } } { {x} }
     {
       % Add width to vertical offset for non-scalable objects
-      \tl_put_right:Nx \subfiglist_objects_width_tl
+      \tl_put_right:Nf \subfiglist_objects_width_tl
         { { \tl_item:Nn \subfiglist_objects_hoff_tl { \subfiglist_tempa_int } } }
     }
     {
@@ -2498,7 +2509,7 @@
       {
         \int_incr:N \subfiglist_tempb_int
 
-        \subfiglist_tl_if_eq:xxT { \tl_tail:n { ##1 } } { \tl_tail:n { ####1 } }
+        \subfiglist_tl_if_eq:ttT { \tl_tail:n { ##1 } } { \tl_tail:n { ####1 } }
         {
           % Add minimum width to sum of horizontal offsets
           \dim_add:Nn \subfiglist_sum_hoff_dim
@@ -2506,19 +2517,19 @@
           
           % Update sums including ratio height/width
           % if current object is scalable
-          \subfiglist_tl_if_eq:xnF
+          \subfiglist_tl_if_eq:fnF
           { \tl_item:Nn \subfiglist_objects_ratio_tl { \subfiglist_tempb_int } } { {x} }
           {
             % Update sum of vertical offset over ratio
-            \fp_set:Nx \subfiglist_temp_fp
+            \fp_set:Nf \subfiglist_temp_fp
               { 1 / \tl_item:Nn \subfiglist_objects_ratio_tl { \subfiglist_tempb_int } }
-            \dim_set:Nx \subfiglist_tempa_dim
+            \dim_set:Nf \subfiglist_tempa_dim
               { \tl_item:Nn \subfiglist_objects_voff_tl { \subfiglist_tempb_int } }
-            \dim_add:Nx \subfiglist_sum_voff_over_ratio_dim
+            \dim_add:Nf \subfiglist_sum_voff_over_ratio_dim
               { \fp_use:N \subfiglist_temp_fp \exp_not:N \subfiglist_tempa_dim }
             
             % Update sum of reciprocal ratios
-            \fp_add:Nx \subfiglist_sum_ratio_over_ratio_fp
+            \fp_add:Nf \subfiglist_sum_ratio_over_ratio_fp
               { 1 / \tl_item:Nn \subfiglist_objects_ratio_tl { \subfiglist_tempb_int } }
           }
         }
@@ -2543,10 +2554,10 @@
           \int_incr:N \subfiglist_tempb_int
           
           % Do coordinates agree?
-          \subfiglist_tl_if_eq:xnT { \tl_use:N \subfiglist_tail_tl } { ####1 }
+          \subfiglist_tl_if_eq:VnT \subfiglist_tail_tl { ####1 }
           {
             % Get width of subblock
-            \dim_set:Nx \subfiglist_tempa_dim
+            \dim_set:Nf \subfiglist_tempa_dim
               { \tl_item:Nn \subfiglist_objects_width_tl { \subfiglist_tempb_int } }
           }
         }
@@ -2556,25 +2567,25 @@
       \dim_set:Nn \subfiglist_canvas_width_dim
         { \subfiglist_tempa_dim - \subfiglist_sum_hoff_dim + \subfiglist_sum_voff_over_ratio_dim }
       
-      \fp_set:Nx \subfiglist_temp_fp
+      \fp_set:Nf \subfiglist_temp_fp
       {
         1 / (\tl_item:Nn \subfiglist_objects_ratio_tl { \subfiglist_tempa_int } *
             \subfiglist_sum_ratio_over_ratio_fp)
       }
 
-      \dim_set:Nx \subfiglist_canvas_width_dim
+      \dim_set:Nf \subfiglist_canvas_width_dim
         { \fp_use:N \subfiglist_temp_fp \exp_not:N \subfiglist_canvas_width_dim }
         
-      \fp_set:Nx \subfiglist_temp_fp
+      \fp_set:Nf \subfiglist_temp_fp
         { 1 / \tl_item:Nn \subfiglist_objects_ratio_tl { \subfiglist_tempa_int } }
       
-      \dim_set:Nx \subfiglist_tempa_dim
+      \dim_set:Nf \subfiglist_tempa_dim
         { \tl_item:Nn \subfiglist_objects_voff_tl { \subfiglist_tempa_int } }
         
-      \dim_sub:Nx \subfiglist_canvas_width_dim
+      \dim_sub:Nf \subfiglist_canvas_width_dim
         { \fp_use:N \subfiglist_temp_fp \exp_not:N \subfiglist_tempa_dim }
       
-      \dim_add:Nx \subfiglist_canvas_width_dim
+      \dim_add:Nf \subfiglist_canvas_width_dim
         { \tl_item:Nn \subfiglist_objects_hoff_tl { \subfiglist_tempa_int } }
   
       \tl_put_right:Nx \subfiglist_objects_width_tl
@@ -3029,7 +3040,7 @@
   {
     \rule{2em}{2em}\\[0pt]\rule{2em}{2em}
   }  
-  \dim_set:Nx \subfilgist_newline_correction_dim 
+  \dim_set:Nn \subfilgist_newline_correction_dim 
     { \ht\subfiglist_box - 4em }
 
   % Setup commands
