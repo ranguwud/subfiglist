@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.3.26)  29 APR 2017 22:44
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.3.26)  1 MAY 2017 20:17
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -703,52 +703,52 @@ Package graphics Info: Driver file: xetex.def on input line 95.
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistfile with sig. '' on line 2753.
+. Defining command \subfiglistfile with sig. '' on line 2763.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummyfile with sig. '' on line 2805.
+. Defining command \subfiglistdummyfile with sig. '' on line 2815.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummy with sig. '' on line 2863.
+. Defining command \subfiglistdummy with sig. '' on line 2873.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabel with sig. '' on line 2923.
+. Defining command \subfiglistlabel with sig. '' on line 2933.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistoverlay with sig. '' on line 2956.
+. Defining command \subfiglistoverlay with sig. '' on line 2966.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabelformat with sig. '' on line 2960.
+. Defining command \subfiglistlabelformat with sig. '' on line 2970.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistsvgenv' with sig. '' on line 2964.
+. Defining environment 'subfiglistsvgenv' with sig. '' on line 2974.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 2985.
+. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 2995.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3108.
+. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3118.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3112.
+. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3122.
 .................................................
 )
 runsystem(rm ./subfiglist.sty)...executed.
@@ -1308,10 +1308,10 @@ Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 900.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 900.
  ) 
 Here is how much of TeX's memory you used:
- 30728 strings out of 493638
- 548472 string characters out of 6146796
- 699500 words of memory out of 5000000
- 33789 multiletter control sequences out of 15000+600000
+ 30731 strings out of 493638
+ 548590 string characters out of 6146796
+ 699626 words of memory out of 5000000
+ 33792 multiletter control sequences out of 15000+600000
  22887 words of font info for 30 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
  41i,10n,75p,10434b,443s stack positions out of 5000i,500n,10000p,200000b,80000s

@@ -435,9 +435,6 @@
   Number~of~specified~identifiers~and~number~of~specified~canvases~disagree.~
   Maybe~you~forgot~one~canvas~number~or~specified~it~twice?
 }
-  
-\msg_new:nnn { subfiglist } { unexpected~command }
-  { Unexpected~command~#1.~Command~#1~needs~to~be~used~within~`subfiglist'~environment. }
 
 \msg_new:nnn { subfiglist } { missing~number }
   { #1~argument~of~command~#2~needs~to~be~an~integer. }
@@ -447,6 +444,18 @@
 
 \msg_new:nnn { subfiglist } { argument~out~of~range }
   { Number~of~selected~canvas~(#1)~is~greater~than~total~number~(#2)~of~canvases. }
+
+\msg_new:nnn { subfiglist } { unexpected~command }
+  { Unexpected~command~#1.~Command~#1~needs~to~be~used~within~`subfiglist'~environment. }
+
+\msg_new:nnn { subfiglist } { undefined~command~sequence }
+  { The~command~sequence~`#1'~was~used,~but~never~defined. }
+
+\msg_new:nnn { subfiglist } { option~unknown }
+  { Key~`#1'~in~optional~argument~of~#2~unknown. }
+
+\msg_new:nnn { subfiglist } { option~invalid }
+  { Option~`caption'~invalid~after~\@backslashchar begin{document}. }
 
 \msg_new:nnn { subfiglist } { wrong~image~order }
 {
@@ -461,13 +470,6 @@
   in~the~subfiglist~specification.
 }
 
-\msg_new:nnn { subfiglist } { option~unknown }
-  { Key~`#1'~in~optional~argument~of~#2~unknown. }
-
-\msg_new:nnn { subfiglist } { option~invalid }
-  { Option~`caption'~invalid~after~\@backslashchar begin{document}. }
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%   Generate variants of some commands   %%%
@@ -480,6 +482,7 @@
 \cs_generate_variant:Nn \fp_add:Nn       { Nf }
 \cs_generate_variant:Nn \fp_sub:Nn       { Nf }
 \cs_generate_variant:Nn \tl_put_right:Nn { Nf }
+\cs_generate_variant:Nn \msg_error:nnn  { nnf }
 \cs_generate_variant:Nn \msg_error:nnnn  { nnnf }
 \cs_generate_variant:Nn \msg_error:nnnn  { nnfn }
 \cs_generate_variant:Nn \msg_error:nnnn  { nnff }
@@ -489,6 +492,13 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%   Helper functions   %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Function for constructing a command sequence via \csname, using it and
+% causing an error, if it does not exist
+\cs_new:Npn \subfiglist_use:c #1
+{
+  \cs_if_exist_use:cF { #1 } { \msg_error:nnf { subfiglist } { undefined~command~sequence } { \token_to_str:c { #1 } } }
+}
 
 % Functions for expanding tokens TWICE
 \cs_new:Npn \subfiglist_exp_args:Nt #1 #2
@@ -1584,7 +1594,7 @@
       {
         \hspace { \tl_item:Nn \subfiglist_canvas_left_tl { \subfiglist_tempa_int } }
         % Put canvas
-        \use:c { subfiglist_put_ \tl_use:N \subfiglist_csname_tl :VVV }
+        \subfiglist_use:c { subfiglist_put_ \tl_use:N \subfiglist_csname_tl :VVV }
           \subfiglist_tempb_int
           \subfiglist_tempa_dim
           \subfiglist_tempb_dim
@@ -1847,7 +1857,7 @@
   }
   
   % Get ratio width/height of current canvas
-  \use:c { subfiglist_get_ \tl_use:N \subfiglist_csname_tl _ratio:Vn }
+  \subfiglist_use:c { subfiglist_get_ \tl_use:N \subfiglist_csname_tl _ratio:Vn }
     \subfiglist_tempb_int
     { ! }
 
@@ -2249,7 +2259,7 @@
   % ##1: Subfiglist specification
   %
   {
-    \use:c {tl_map_function: #1 N} { ##1 } \subfiglist_parse_nums_token:n
+    \subfiglist_use:c {tl_map_function: #1 N} { ##1 } \subfiglist_parse_nums_token:n
   }
 }
 
@@ -2266,7 +2276,7 @@
     \bool_set_true:N \subfiglist_hmode_bool
     \bool_set_true:N \subfiglist_first_bool
     \bool_set_false:N \subfiglist_space_needed_bool
-    \use:c { tl_map_function: #1 N } { ##1 } \subfiglist_parse_objects_token:n
+    \subfiglist_use:c { tl_map_function: #1 N } { ##1 } \subfiglist_parse_objects_token:n
     \int_incr:N \subfiglist_exit_count_int
   }
 }
