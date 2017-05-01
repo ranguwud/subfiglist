@@ -806,14 +806,17 @@
   % Do token lists have same lengths?
   \int_compare:nTF { \tl_count:n { #1 } = \tl_count:n { #2 } }
   {
-    % Are both token lists empty?
-    \int_compare:nTF { \tl_count:n { #1 } = 0 }
+    % Do the respective first tokens have same charcode and meaning?
+    \subfiglist_token_if_eq:ttTF { \tl_head:n { #1 } } { \tl_head:n { #2 } }
     {
-      \prg_return_true:
-    }{
-      % Do the respective first tokens have same charcode and meaning?
-      \subfiglist_token_if_eq:ttTF { \tl_head:n { #1 } } { \tl_head:n { #2 } }
+      % Is this the last token, or ar there remaining tokens?
+      % It is sufficient to check argument 1, because we know
+      % that the token lists have equal length.
+      \int_compare:nTF { \tl_count:n { #1 } = 1 }
       {
+        % This is the last token. Return true
+        \prg_return_true:
+      }{
         % Recursively pass respective remaining tokens.
         \subfiglist_tl_if_eq:ttTF { \tl_tail:n { #1 } } { \tl_tail:n { #2 } }
         {
@@ -821,10 +824,10 @@
         }{
           \prg_return_false:
         }
-      }{
-        % Respective first tokens have unequal charcodes
-        \prg_return_false:
       }
+    }{
+      % Respective first tokens have unequal charcodes or meaning
+      \prg_return_false:
     }
   }{
     % Token lists have unequal lengths
