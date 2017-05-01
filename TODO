@@ -7,7 +7,6 @@ TODO
 * Use sequences in place of token lists
 * Delete unnecessary variables
 * Replace test for equal charcode by test for equal charcode AND equal meaning
-* For token list conditionals, check for length equal to 1 and do not pass tail, if true. Makes ..._or_empty functions obsolete.
 
 
 
@@ -17,4 +16,4 @@ DONE
 * Use working \subfiglist_tl_if_eq_charcode:nn in \subfiglist_is_float_or_empty to detect decimal separator.
 * Remove \subfiglist_exp_args:NNt from \subfiglist_is_float_or_empty
 * Maybe replace \use:c by \cs_if_exist_use:cF and throw an error message in false part
-
+* For token list conditionals, check for length equal to 1 and do not pass tail, if true. Makes ..._or_empty functions obsolete.
