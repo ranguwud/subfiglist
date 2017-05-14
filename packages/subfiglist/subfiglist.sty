@@ -94,6 +94,9 @@
 \tl_new:N   \subfiglist_tempa_tl
 \tl_new:N   \subfiglist_tempb_tl
 
+\seq_new:N  \subfiglist_spec_str_seq
+\seq_new:N  \subfiglist_spec_token_seq
+
 \int_new:N  \subfiglist_exit_count_int
 \int_new:N  \subfiglist_canvas_int
 \int_new:N  \subfiglist_tl_if_eq_charcode_int
@@ -1989,6 +1992,33 @@
 }
 
 
+% Lexer for subfiglist specification
+\cs_new:Npn \subfiglist_tokenize_spec_str:nN #1 #2
+%
+% #1: Token list containing specification string
+% #2: Variable for storing tokenized specification string
+%
+{
+  \group_begin:
+    \seq_clear:N \subfiglist_spec_str_seq
+    \tl_map_inline:nn { #1 }
+    {
+      \seq_put_right:Nn \subfiglist_spec_str_seq { ##1 }
+    }
+    
+    \bool_until_do:nn { \seq_is_empty_p:N \subfiglist_spec_str_seq }
+    {
+      \seq_get_left:NN #1 \subfiglist_tempa_tl
+
+      \subfiglist_is_integer:VTF \subfiglist_tempa_tl
+      {
+        \subfiglist_tokenize_integer:NN \subfiglist_spec_str_seq #2
+      }
+    }
+  \group_end:
+}
+
+
 % Parse single token of subfiglist specification to detect objects
 \cs_new:Npn \subfiglist_parse_objects_token:n #1
 %
@@ -2979,7 +3009,9 @@
   }
 
   % Save subfiglist specification
-  \tl_set:Nn \subfiglist_spec_tl { #3 }
+  %\tl_set:Nn \subfiglist_spec_tl { #3 }
+  \seq_clear:N \subfiglist_spec_token_seq
+  \subfiglist_tokenize_spec_str:nN { #3 } \subfiglist_spec_token_seq
     
   % Parse subfiglist specification to get image numbers
   \subfiglist_parse_nums:N \subfiglist_spec_tl
