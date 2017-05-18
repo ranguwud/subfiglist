@@ -419,8 +419,11 @@
 %%%   Define messages   %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\msg_new:nnn { subfiglist } { parser-error }
+\msg_new:nnn { subfiglist } { parser~error }
   { Error~while~parsing~the~argument~of~`subfiglist'~environment:~Unexpected~token~`#1' }
+
+\msg_new:nnn { subfiglist } { missing~separator }
+  { Expected~specification~of~a~separator~after~token~`@'~in~argument~of~`subfiglist'~environment. }
 
 \msg_new:nnn { subfiglist } { missing~identifier }
   { Canvas~no.~#1~missing~in~argument~of~`subfiglist'~environment. }
@@ -808,6 +811,19 @@
 {
   \subfiglist_exp_args:Ntt \subfiglist_token_if_eq:NNTF { #1 } { #2 } { #3 } { #4 }
 }
+% Define variants of \subfiglist_token_if_eq getting variable value
+\cs_generate_variant:Nn \subfiglist_token_if_eq_p:NN { NV }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_p:NN { VN }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_p:NN { VV }
+\cs_generate_variant:Nn \subfiglist_token_if_eq:NNT  { NV }
+\cs_generate_variant:Nn \subfiglist_token_if_eq:NNT  { VN }
+\cs_generate_variant:Nn \subfiglist_token_if_eq:NNT  { VV }
+\cs_generate_variant:Nn \subfiglist_token_if_eq:NNF  { NV }
+\cs_generate_variant:Nn \subfiglist_token_if_eq:NNF  { VN }
+\cs_generate_variant:Nn \subfiglist_token_if_eq:NNF  { VV }
+\cs_generate_variant:Nn \subfiglist_token_if_eq:NNTF { NV }
+\cs_generate_variant:Nn \subfiglist_token_if_eq:NNTF { VN }
+\cs_generate_variant:Nn \subfiglist_token_if_eq:NNTF { VV }
 
 % Test whether all tokens of a token lists have equal charcodes and equal meaning.
 \prg_new_conditional:Npnn \subfiglist_tl_if_eq:nn #1 #2 { p, T, F, TF }
@@ -2018,6 +2034,17 @@
   \subfiglist_is_integer_p:V #1
 }
 
+\cs_new:Npn \subfiglist_tokenize_is_at_p:V #1
+%
+% #1: Token to be tested
+%
+{
+  % Compare `@' using \token_if_eq_charcode instead of \subfiglist_token_if_eq,
+  % because the test \token_if_eq_meaning used by \subfiglist_token_if_eq returns
+  % false, if @ is `other' in the document, but `letter' in the package code.
+  \token_if_eq_charcode_p:NV @ #1
+}
+
 \prg_new_conditional:Npnn \subfiglist_tokenize_is_error:V #1 { p }
 %
 % #1: Token to be tested
@@ -2046,6 +2073,31 @@
   \tl_put_right:NV #2 \subfiglist_tempb_tl
 }
 
+\cs_new:Npn \subfiglist_tokenize_at:NN #1 #2
+%
+% #1: Sequence containing specification string
+% #2: Token list variable for storing tokenized specification string
+%
+{
+  \seq_pop_left:NN #1 \subfiglist_tempa_tl
+  
+  \seq_get_left:NN #1 \subfiglist_tempa_tl
+  \bool_while_do:nn { \subfiglist_tokenize_is_blank_p:V \subfiglist_tempa_tl }
+  {
+    \seq_pop_left:NN #1 \subfiglist_tempa_tl
+    \seq_get_left:NN #1 \subfiglist_tempa_tl
+  }
+  
+  \seq_pop_left:NN #1 \subfiglist_tempa_tl
+  \quark_if_no_value:NTF \subfiglist_tempa_tl
+  {
+    \msg_error:nn { subfiglist } { missing~separator }
+  }{
+    \subfiglist_tokenize_make_token:NnV \subfiglist_tempb_tl { separator } \subfiglist_tempa_tl
+    \tl_put_right:NV #2 \subfiglist_tempb_tl
+  }
+}
+
 \cs_new:Npn \subfiglist_tokenize_error:NN #1 #2
 %
 % #1: Sequence containing specification string
@@ -2053,7 +2105,7 @@
 %
 {
   \seq_pop_left:NN #1 \subfiglist_tempa_tl
-  \msg_error:nnV { subfiglist } { parser-error } \subfiglist_tempa_tl
+  \msg_error:nnV { subfiglist } { parser~error } \subfiglist_tempa_tl
 }
 
 \cs_new:Npn \subfiglist_tokenize_make_token:NnN #1 #2 #3
@@ -2086,7 +2138,7 @@
     {
       \seq_get_left:NN \subfiglist_spec_str_seq \subfiglist_tempa_tl
       
-      \tl_map_inline:nn { { blank } { integer } { error } }
+      \tl_map_inline:nn { { blank } { integer } { at } { error } }
       {
         \bool_if:nTF { \subfiglist_use:c { subfiglist_tokenize_is_ ##1 _p:V } \subfiglist_tempa_tl }
         {

@@ -900,8 +900,9 @@
 
 %\pagebreak
 \ExplSyntaxOn
+%\makeatletter
 %\subfiglist_test_conditionals:
-\cs_generate_variant:Nn \subfiglist_is_integer:nTF { V }
-\subfiglist_tokenize_spec_str:nN { 12{34}~z } \subfiglist_spec_token_tl
+\cs_generate_variant:Nn \token_if_eq_charcode_p:NN { NV }
+\subfiglist_tokenize_spec_str:nN { 1 2 {34} @ } \subfiglist_spec_token_tl
 aa\tl_to_str:N\subfiglist_spec_token_tl zz
 \end{document}
