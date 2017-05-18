@@ -45,6 +45,7 @@
 \tl_new:N   \subfiglist_tail_tl
 
 \tl_new:N   \subfiglist_spec_tl
+\tl_new:N   \subfiglist_spec_token_tl
 \tl_new:N   \subfiglist_spec_nums_tl
 \tl_new:N   \subfiglist_spec_nums_sorted_tl
 
@@ -419,7 +420,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \msg_new:nnn { subfiglist } { parser-error }
-  { Error~while~parsing~the~argument~of~`subfiglist'~environment:~#1 }
+  { Error~while~parsing~the~argument~of~`subfiglist'~environment:~Unexpected~token~`#1' }
 
 \msg_new:nnn { subfiglist } { missing~identifier }
   { Canvas~no.~#1~missing~in~argument~of~`subfiglist'~environment. }
@@ -489,6 +490,10 @@
 \cs_generate_variant:Nn \msg_error:nnnn  { nnnf }
 \cs_generate_variant:Nn \msg_error:nnnn  { nnfn }
 \cs_generate_variant:Nn \msg_error:nnnn  { nnff }
+\cs_generate_variant:Nn \msg_error:nnn   { nnV }
+\cs_generate_variant:Nn \msg_error:nnnn  { nnnV }
+\cs_generate_variant:Nn \msg_error:nnnn  { nnVn }
+\cs_generate_variant:Nn \msg_error:nnnn  { nnVV }
 
 
 
@@ -646,6 +651,11 @@
     \prg_return_false:
   }
 }
+
+\cs_generate_variant:Nn \subfiglist_is_integer_p:n { V }
+\cs_generate_variant:Nn \subfiglist_is_integer:nT  { V }
+\cs_generate_variant:Nn \subfiglist_is_integer:nF  { V }
+\cs_generate_variant:Nn \subfiglist_is_integer:nTF { V }
 
 % Define variants of \subfiglist_is_integer expanding its argument twice
 \cs_new:Npn \subfiglist_is_integer_p:t #1
@@ -1992,11 +2002,77 @@
 }
 
 
+\cs_new:Npn \subfiglist_tokenize_is_blank_p:V #1
+%
+% #1: Token to be tested
+%
+{
+  \tl_if_blank_p:V #1
+}
+
+\cs_new:Npn \subfiglist_tokenize_is_integer_p:V #1
+%
+% #1: Token to be tested
+%
+{
+  \subfiglist_is_integer_p:V #1
+}
+
+\prg_new_conditional:Npnn \subfiglist_tokenize_is_error:V #1 { p }
+%
+% #1: Token to be tested
+%
+{
+  \prg_return_true:
+}
+
+\cs_new:Npn \subfiglist_tokenize_blank:NN #1 #2
+%
+% #1: Sequence containing specification string
+% #2: Token list variable for storing tokenized specification string
+%
+{
+  \seq_pop_left:NN #1 \subfiglist_tempa_tl
+}
+
+\cs_new:Npn \subfiglist_tokenize_integer:NN #1 #2
+%
+% #1: Sequence containing specification string
+% #2: Token list variable for storing tokenized specification string
+%
+{
+  \seq_pop_left:NN #1 \subfiglist_tempa_tl
+  \subfiglist_tokenize_make_token:NnV \subfiglist_tempb_tl { canvas } \subfiglist_tempa_tl
+  \tl_put_right:NV #2 \subfiglist_tempb_tl
+}
+
+\cs_new:Npn \subfiglist_tokenize_error:NN #1 #2
+%
+% #1: Sequence containing specification string
+% #2: Token list variable for storing tokenized specification string
+%
+{
+  \seq_pop_left:NN #1 \subfiglist_tempa_tl
+  \msg_error:nnV { subfiglist } { parser-error } \subfiglist_tempa_tl
+}
+
+\cs_new:Npn \subfiglist_tokenize_make_token:NnN #1 #2 #3
+%
+% #1: Token list variable to store token
+% #2: String for type of token
+% #3: Content of token
+%
+{
+  \tl_set:Nn #1 { { { #2 } { #3 } } }
+}
+
+\cs_generate_variant:Nn \subfiglist_tokenize_make_token:NnN { NnV }
+
 % Lexer for subfiglist specification
 \cs_new:Npn \subfiglist_tokenize_spec_str:nN #1 #2
 %
 % #1: Token list containing specification string
-% #2: Variable for storing tokenized specification string
+% #2: Token list variable for storing tokenized specification string
 %
 {
   \group_begin:
@@ -2006,15 +2082,20 @@
       \seq_put_right:Nn \subfiglist_spec_str_seq { ##1 }
     }
     
-    \bool_until_do:nn { \seq_is_empty_p:N \subfiglist_spec_str_seq }
+    \bool_until_do:nn { \seq_if_empty_p:N \subfiglist_spec_str_seq }
     {
-      \seq_get_left:NN #1 \subfiglist_tempa_tl
-
-      \subfiglist_is_integer:VTF \subfiglist_tempa_tl
+      \seq_get_left:NN \subfiglist_spec_str_seq \subfiglist_tempa_tl
+      
+      \tl_map_inline:nn { { blank } { integer } { error } }
       {
-        \subfiglist_tokenize_integer:NN \subfiglist_spec_str_seq #2
+        \bool_if:nTF { \subfiglist_use:c { subfiglist_tokenize_is_ ##1 _p:V } \subfiglist_tempa_tl }
+        {
+          \subfiglist_use:c { subfiglist_tokenize_ ##1 :NN } \subfiglist_spec_str_seq #2
+          \tl_map_break:
+        }
       }
     }
+  \subfiglist_group_var_return:NN \tl_set:Nn #2
   \group_end:
 }
 
@@ -3011,7 +3092,7 @@
   % Save subfiglist specification
   %\tl_set:Nn \subfiglist_spec_tl { #3 }
   \seq_clear:N \subfiglist_spec_token_seq
-  \subfiglist_tokenize_spec_str:nN { #3 } \subfiglist_spec_token_seq
+  \subfiglist_tokenize_spec_str:nN { #3 } \subfiglist_spec_token_tl
     
   % Parse subfiglist specification to get image numbers
   \subfiglist_parse_nums:N \subfiglist_spec_tl

@@ -884,21 +884,24 @@
 %\token_if_eq_charcode:fNTF { \tl_head:n { \\as } } \\ { true } { false }
 
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+%Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
-\captionsetup{type=figure}
-\begin{subfiglist}{ 1 2 }
-  \subfiglistfile{1}{figures/01.png}
-  \subfiglistfile{2}{figures/02.png}
+%\captionsetup{type=figure}
+%\begin{subfiglist}{ 1 2 }
+%  \subfiglistfile{1}{figures/01.png}
+%  \subfiglistfile{2}{figures/02.png}
 %  \subfiglistfile{3}{figures/03.png}
 %  \subfiglistfile{4}{figures/04.png}
 %  \subfiglistfile{5}{figures/05.png}
 %  \subfiglistfile{6}{figures/06.png}
-\end{subfiglist}
+%\end{subfiglist}
 
-Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+%Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
 
-\pagebreak
+%\pagebreak
 \ExplSyntaxOn
-\subfiglist_test_conditionals:
+%\subfiglist_test_conditionals:
+\cs_generate_variant:Nn \subfiglist_is_integer:nTF { V }
+\subfiglist_tokenize_spec_str:nN { 12{34}~z } \subfiglist_spec_token_tl
+aa\tl_to_str:N\subfiglist_spec_token_tl zz
 \end{document}
