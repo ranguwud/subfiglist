@@ -422,6 +422,9 @@
 \msg_new:nnn { subfiglist } { parser~error }
   { Error~while~parsing~the~argument~of~`subfiglist'~environment:~Unexpected~token~`#1' }
 
+\msg_new:nnn { subfiglist } { runaway~optional~argument }
+  { Missing~closing~square~bracket~`]'~of~optional~argument~inside~argument~of~`subfiglist'~environment. }
+
 \msg_new:nnn { subfiglist } { missing~separator }
   { Expected~specification~of~a~separator~after~token~`@'~in~argument~of~`subfiglist'~environment. }
 
@@ -2045,6 +2048,14 @@
   \token_if_eq_charcode_p:NV @ #1
 }
 
+\cs_new:Npn \subfiglist_tokenize_is_newline_p:V #1
+%
+% #1: Token to be tested
+%
+{
+  \subfiglist_token_if_eq_p:NV \\ #1
+}
+
 \prg_new_conditional:Npnn \subfiglist_tokenize_is_error:V #1 { p }
 %
 % #1: Token to be tested
@@ -2098,6 +2109,55 @@
   }
 }
 
+\cs_new:Npn \subfiglist_tokenize_newline:NN #1 #2
+%
+% #1: Sequence containing specification string
+% #2: Token list variable for storing tokenized specification string
+%
+{
+  % Consume newline character
+  \seq_pop_left:NN #1 \subfiglist_tempa_tl
+  
+  % Consume any blanks
+  \seq_get_left:NN #1 \subfiglist_tempa_tl
+  \bool_while_do:nn { \subfiglist_tokenize_is_blank_p:V \subfiglist_tempa_tl }
+  {
+    \seq_pop_left:NN #1 \subfiglist_tempa_tl
+    \seq_get_left:NN #1 \subfiglist_tempa_tl
+  }
+  
+  \tl_clear:N \subfiglist_tempb_tl
+  \quark_if_no_value:NF \subfiglist_tempa_tl
+  {
+    \subfiglist_token_if_eq:NVT [ \subfiglist_tempa_tl
+    {
+      \seq_pop_left:NN #1 \subfiglist_tempa_tl
+      \tl_put_right:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
+      \seq_get_left:NN #1 \subfiglist_tempa_tl
+      \bool_until_do:nn 
+      {
+        \bool_lazy_or_p:nn
+          { \quark_if_no_value_p:N \subfiglist_tempa_tl }
+          { \subfiglist_token_if_eq_p:NV ] \subfiglist_tempa_tl }
+      }{
+        \seq_pop_left:NN #1 \subfiglist_tempa_tl
+        \tl_put_right:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
+        \seq_get_left:NN #1 \subfiglist_tempa_tl
+      }
+      
+      \quark_if_no_value:NTF \subfiglist_tempa_tl
+      {
+        \msg_error:nn { subfiglist } { runaway~optional~argument }
+      }{
+        \seq_pop_left:NN #1 \subfiglist_tempa_tl
+        \tl_put_right:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
+      }
+    }
+  }
+  \subfiglist_tokenize_make_token:NnV \subfiglist_tempa_tl { newline } \subfiglist_tempb_tl
+  \tl_put_right:NV #2 \subfiglist_tempa_tl
+}
+
 \cs_new:Npn \subfiglist_tokenize_error:NN #1 #2
 %
 % #1: Sequence containing specification string
@@ -2138,8 +2198,8 @@
     {
       \seq_get_left:NN \subfiglist_spec_str_seq \subfiglist_tempa_tl
       
-      \tl_map_inline:nn { { blank } { integer } { at } { error } }
-      {
+      \tl_map_inline:nn { { blank } { integer } { at } { newline } { error } }
+      {%\show_meaning:V \subfiglist_tempa_tl\\
         \bool_if:nTF { \subfiglist_use:c { subfiglist_tokenize_is_ ##1 _p:V } \subfiglist_tempa_tl }
         {
           \subfiglist_use:c { subfiglist_tokenize_ ##1 :NN } \subfiglist_spec_str_seq #2

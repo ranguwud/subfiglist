@@ -900,9 +900,16 @@
 
 %\pagebreak
 \ExplSyntaxOn
+%\meaning @\\
 %\makeatletter
+%\meaning @\\
+%\subfiglist_token_if_eq:NNTF \q_no_value \q_no_value t f
 %\subfiglist_test_conditionals:
+%\meaning \\ \\
+%\cs_new:Npn \show_meaning:N #1 { \meaning #1 }
+%\cs_generate_variant:Nn \show_meaning:N { V }
 \cs_generate_variant:Nn \token_if_eq_charcode_p:NN { NV }
-\subfiglist_tokenize_spec_str:nN { 1 2 {34} @ } \subfiglist_spec_token_tl
+%\cs_generate_variant:Nn \token_if_eq_meaning_p:NN { NV }
+\subfiglist_tokenize_spec_str:nN { 1 2 {34} \\[1ex] @{asdf} } \subfiglist_spec_token_tl
 aa\tl_to_str:N\subfiglist_spec_token_tl zz
 \end{document}
