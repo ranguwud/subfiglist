@@ -2179,8 +2179,9 @@
 {
   \seq_pop_left:NN #1 \subfiglist_tempa_tl
   \group_begin:
-    \subfiglist_tokenize_spec_str:VN \subfiglist_tempa_tl \subfiglist_spec_token_tl
-    \subfiglist_tokenize_make_token:NnV \subfiglist_tempa_tl { subblock } \subfiglist_spec_token_tl
+    \tl_clear:N #2
+    \subfiglist_tokenize_spec_str:VN \subfiglist_tempa_tl #2
+    \subfiglist_tokenize_make_token:NnV \subfiglist_tempa_tl { subblock } #2
     \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tempa_tl
   \group_end:
   \tl_put_right:NV #2 \subfiglist_tempa_tl
