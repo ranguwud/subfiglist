@@ -8,6 +8,7 @@ TODO
 * Delete unnecessary variables
 * Replace test for equal charcode by test for equal charcode AND equal meaning
 * Add change of meaning for `@' depending on catcode to known issues. Weird settings of catcodes e.g. for numbers may have strange effects
+* Make use of \tl_if_head_is_space in token list conditionals
 
 
 

@@ -909,7 +909,14 @@
 %\cs_new:Npn \show_meaning:N #1 { \meaning #1 }
 %\cs_generate_variant:Nn \show_meaning:N { V }
 \cs_generate_variant:Nn \token_if_eq_charcode_p:NN { NV }
+\cs_generate_variant:Nn \tl_if_single:NTF { V }
 %\cs_generate_variant:Nn \token_if_eq_meaning_p:NN { NV }
-\subfiglist_tokenize_spec_str:nN { 1 2 {34} \\[1ex] @{asdf} } \subfiglist_spec_token_tl
-aa\tl_to_str:N\subfiglist_spec_token_tl zz
+\let\stss \subfiglist_tokenize_spec_str:nN
+\def\sii{\subfiglist_is_integer:nTF}
+\tl_new:N \sstt %\subfiglist_spec_token_tl
+\ExplSyntaxOff
+\sii { 3 4 } t f\\
+\tiny\stss { 1 { 2 3 } { 4 \\ 5 } \\[1ex] @{asdf} } \sstt
+\ExplSyntaxOn
+aa\tl_to_str:N\sstt zz
 \end{document}

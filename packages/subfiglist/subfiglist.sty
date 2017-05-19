@@ -2056,6 +2056,19 @@
   \subfiglist_token_if_eq_p:NV \\ #1
 }
 
+\prg_new_conditional:Npnn \subfiglist_tokenize_is_subblock:V #1 { p }
+%
+% #1: Token to be tested
+%
+{
+  \tl_if_single:VTF #1
+  {
+    \prg_return_false:
+  }{
+    \prg_return_true:
+  }
+}
+
 \prg_new_conditional:Npnn \subfiglist_tokenize_is_error:V #1 { p }
 %
 % #1: Token to be tested
@@ -2158,6 +2171,21 @@
   \tl_put_right:NV #2 \subfiglist_tempa_tl
 }
 
+\cs_new:Npn \subfiglist_tokenize_subblock:NN #1 #2
+%
+% #1: Sequence containing specification string
+% #2: Token list variable for storing tokenized specification string
+%
+{
+  \seq_pop_left:NN #1 \subfiglist_tempa_tl
+  \group_begin:
+    \subfiglist_tokenize_spec_str:VN \subfiglist_tempa_tl \subfiglist_spec_token_tl
+    \subfiglist_tokenize_make_token:NnV \subfiglist_tempa_tl { subblock } \subfiglist_spec_token_tl
+    \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tempa_tl
+  \group_end:
+  \tl_put_right:NV #2 \subfiglist_tempa_tl
+}
+
 \cs_new:Npn \subfiglist_tokenize_error:NN #1 #2
 %
 % #1: Sequence containing specification string
@@ -2198,7 +2226,7 @@
     {
       \seq_get_left:NN \subfiglist_spec_str_seq \subfiglist_tempa_tl
       
-      \tl_map_inline:nn { { blank } { integer } { at } { newline } { error } }
+      \tl_map_inline:nn { { blank } { integer } { at } { newline } { subblock } { error } }
       {%\show_meaning:V \subfiglist_tempa_tl\\
         \bool_if:nTF { \subfiglist_use:c { subfiglist_tokenize_is_ ##1 _p:V } \subfiglist_tempa_tl }
         {
@@ -2210,6 +2238,8 @@
   \subfiglist_group_var_return:NN \tl_set:Nn #2
   \group_end:
 }
+
+\cs_generate_variant:Nn \subfiglist_tokenize_spec_str:nN { VN }
 
 
 % Parse single token of subfiglist specification to detect objects
