@@ -1221,6 +1221,233 @@
 
 
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Specification string lexer   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cs_new:Npn \subfiglist_tokenize_is_blank_p:V #1
+%
+% #1: Token to be tested
+%
+{
+  \tl_if_blank_p:V #1
+}
+
+\cs_new:Npn \subfiglist_tokenize_is_integer_p:V #1
+%
+% #1: Token to be tested
+%
+{
+  \subfiglist_is_integer_p:V #1
+}
+
+\cs_new:Npn \subfiglist_tokenize_is_at_p:V #1
+%
+% #1: Token to be tested
+%
+{
+  % Compare `@' using \token_if_eq_charcode instead of \subfiglist_token_if_eq,
+  % because the test \token_if_eq_meaning used by \subfiglist_token_if_eq returns
+  % false, if @ is `other' in the document, but `letter' in the package code.
+  \token_if_eq_charcode_p:NV @ #1
+}
+
+\cs_new:Npn \subfiglist_tokenize_is_newline_p:V #1
+%
+% #1: Token to be tested
+%
+{
+  \subfiglist_token_if_eq_p:NV \\ #1
+}
+
+\prg_new_conditional:Npnn \subfiglist_tokenize_is_subblock:V #1 { p }
+%
+% #1: Token to be tested
+%
+{
+  \tl_if_single:VTF #1
+  {
+    \prg_return_false:
+  }{
+    \prg_return_true:
+  }
+}
+
+\prg_new_conditional:Npnn \subfiglist_tokenize_is_error:V #1 { p }
+%
+% #1: Token to be tested
+%
+{
+  \prg_return_true:
+}
+
+\cs_new:Npn \subfiglist_tokenize_blank:NN #1 #2
+%
+% #1: Sequence containing specification string
+% #2: Token list variable for storing tokenized specification string
+%
+{
+  \seq_pop_left:NN #1 \subfiglist_tempa_tl
+}
+
+\cs_new:Npn \subfiglist_tokenize_integer:NN #1 #2
+%
+% #1: Sequence containing specification string
+% #2: Token list variable for storing tokenized specification string
+%
+{
+  \seq_pop_left:NN #1 \subfiglist_tempa_tl
+  \subfiglist_tokenize_make_token:NnV \subfiglist_tempb_tl { canvas } \subfiglist_tempa_tl
+  \tl_put_right:NV #2 \subfiglist_tempb_tl
+}
+
+\cs_new:Npn \subfiglist_tokenize_at:NN #1 #2
+%
+% #1: Sequence containing specification string
+% #2: Token list variable for storing tokenized specification string
+%
+{
+  \seq_pop_left:NN #1 \subfiglist_tempa_tl
+  
+  \seq_get_left:NN #1 \subfiglist_tempa_tl
+  \bool_while_do:nn { \subfiglist_tokenize_is_blank_p:V \subfiglist_tempa_tl }
+  {
+    \seq_pop_left:NN #1 \subfiglist_tempa_tl
+    \seq_get_left:NN #1 \subfiglist_tempa_tl
+  }
+  
+  \seq_pop_left:NN #1 \subfiglist_tempa_tl
+  \quark_if_no_value:NTF \subfiglist_tempa_tl
+  {
+    \msg_error:nn { subfiglist } { missing~separator }
+  }{
+    \subfiglist_tokenize_make_token:NnV \subfiglist_tempb_tl { separator } \subfiglist_tempa_tl
+    \tl_put_right:NV #2 \subfiglist_tempb_tl
+  }
+}
+
+\cs_new:Npn \subfiglist_tokenize_newline:NN #1 #2
+%
+% #1: Sequence containing specification string
+% #2: Token list variable for storing tokenized specification string
+%
+{
+  % Consume newline character
+  \seq_pop_left:NN #1 \subfiglist_tempa_tl
+  
+  % Consume any blanks
+  \seq_get_left:NN #1 \subfiglist_tempa_tl
+  \bool_while_do:nn { \subfiglist_tokenize_is_blank_p:V \subfiglist_tempa_tl }
+  {
+    \seq_pop_left:NN #1 \subfiglist_tempa_tl
+    \seq_get_left:NN #1 \subfiglist_tempa_tl
+  }
+  
+  \tl_clear:N \subfiglist_tempb_tl
+  \quark_if_no_value:NF \subfiglist_tempa_tl
+  {
+    \subfiglist_token_if_eq:NVT [ \subfiglist_tempa_tl
+    {
+      \seq_pop_left:NN #1 \subfiglist_tempa_tl
+      \tl_put_right:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
+      \seq_get_left:NN #1 \subfiglist_tempa_tl
+      \bool_until_do:nn 
+      {
+        \bool_lazy_or_p:nn
+          { \quark_if_no_value_p:N \subfiglist_tempa_tl }
+          { \subfiglist_token_if_eq_p:NV ] \subfiglist_tempa_tl }
+      }{
+        \seq_pop_left:NN #1 \subfiglist_tempa_tl
+        \tl_put_right:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
+        \seq_get_left:NN #1 \subfiglist_tempa_tl
+      }
+      
+      \quark_if_no_value:NTF \subfiglist_tempa_tl
+      {
+        \msg_error:nn { subfiglist } { runaway~optional~argument }
+      }{
+        \seq_pop_left:NN #1 \subfiglist_tempa_tl
+        \tl_put_right:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
+      }
+    }
+  }
+  \subfiglist_tokenize_make_token:NnV \subfiglist_tempa_tl { newline } \subfiglist_tempb_tl
+  \tl_put_right:NV #2 \subfiglist_tempa_tl
+}
+
+\cs_new:Npn \subfiglist_tokenize_subblock:NN #1 #2
+%
+% #1: Sequence containing specification string
+% #2: Token list variable for storing tokenized specification string
+%
+{
+  \seq_pop_left:NN #1 \subfiglist_tempa_tl
+  \group_begin:
+    \tl_clear:N #2
+    \subfiglist_tokenize_spec_str:VN \subfiglist_tempa_tl #2
+    \subfiglist_tokenize_make_token:NnV \subfiglist_tempa_tl { subblock } #2
+    \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tempa_tl
+  \group_end:
+  \tl_put_right:NV #2 \subfiglist_tempa_tl
+}
+
+\cs_new:Npn \subfiglist_tokenize_error:NN #1 #2
+%
+% #1: Sequence containing specification string
+% #2: Token list variable for storing tokenized specification string
+%
+{
+  \seq_pop_left:NN #1 \subfiglist_tempa_tl
+  \msg_error:nnV { subfiglist } { parser~error } \subfiglist_tempa_tl
+}
+
+\cs_new:Npn \subfiglist_tokenize_make_token:NnN #1 #2 #3
+%
+% #1: Token list variable to store token
+% #2: String for type of token
+% #3: Content of token
+%
+{
+  \tl_set:Nn #1 { { { #2 } { #3 } } }
+}
+
+\cs_generate_variant:Nn \subfiglist_tokenize_make_token:NnN { NnV }
+
+% Lexer for subfiglist specification
+\cs_new:Npn \subfiglist_tokenize_spec_str:nN #1 #2
+%
+% #1: Token list containing specification string
+% #2: Token list variable for storing tokenized specification string
+%
+{
+  \group_begin:
+    \seq_clear:N \subfiglist_spec_str_seq
+    \tl_map_inline:nn { #1 }
+    {
+      \seq_put_right:Nn \subfiglist_spec_str_seq { ##1 }
+    }
+    
+    \bool_until_do:nn { \seq_if_empty_p:N \subfiglist_spec_str_seq }
+    {
+      \seq_get_left:NN \subfiglist_spec_str_seq \subfiglist_tempa_tl
+      
+      \tl_map_inline:nn { { blank } { integer } { at } { newline } { subblock } { error } }
+      {%\show_meaning:V \subfiglist_tempa_tl\\
+        \bool_if:nTF { \subfiglist_use:c { subfiglist_tokenize_is_ ##1 _p:V } \subfiglist_tempa_tl }
+        {
+          \subfiglist_use:c { subfiglist_tokenize_ ##1 :NN } \subfiglist_spec_str_seq #2
+          \tl_map_break:
+        }
+      }
+    }
+  \subfiglist_group_var_return:NN \tl_set:Nn #2
+  \group_end:
+}
+
+\cs_generate_variant:Nn \subfiglist_tokenize_spec_str:nN { VN }
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%
 %%%   Package code   %%%
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -2106,228 +2333,6 @@
     \tl_put_left:Nn \subfiglist_objects_cs_tl { {\subfiglist_put_space:} }
   }
 }
-
-
-\cs_new:Npn \subfiglist_tokenize_is_blank_p:V #1
-%
-% #1: Token to be tested
-%
-{
-  \tl_if_blank_p:V #1
-}
-
-\cs_new:Npn \subfiglist_tokenize_is_integer_p:V #1
-%
-% #1: Token to be tested
-%
-{
-  \subfiglist_is_integer_p:V #1
-}
-
-\cs_new:Npn \subfiglist_tokenize_is_at_p:V #1
-%
-% #1: Token to be tested
-%
-{
-  % Compare `@' using \token_if_eq_charcode instead of \subfiglist_token_if_eq,
-  % because the test \token_if_eq_meaning used by \subfiglist_token_if_eq returns
-  % false, if @ is `other' in the document, but `letter' in the package code.
-  \token_if_eq_charcode_p:NV @ #1
-}
-
-\cs_new:Npn \subfiglist_tokenize_is_newline_p:V #1
-%
-% #1: Token to be tested
-%
-{
-  \subfiglist_token_if_eq_p:NV \\ #1
-}
-
-\prg_new_conditional:Npnn \subfiglist_tokenize_is_subblock:V #1 { p }
-%
-% #1: Token to be tested
-%
-{
-  \tl_if_single:VTF #1
-  {
-    \prg_return_false:
-  }{
-    \prg_return_true:
-  }
-}
-
-\prg_new_conditional:Npnn \subfiglist_tokenize_is_error:V #1 { p }
-%
-% #1: Token to be tested
-%
-{
-  \prg_return_true:
-}
-
-\cs_new:Npn \subfiglist_tokenize_blank:NN #1 #2
-%
-% #1: Sequence containing specification string
-% #2: Token list variable for storing tokenized specification string
-%
-{
-  \seq_pop_left:NN #1 \subfiglist_tempa_tl
-}
-
-\cs_new:Npn \subfiglist_tokenize_integer:NN #1 #2
-%
-% #1: Sequence containing specification string
-% #2: Token list variable for storing tokenized specification string
-%
-{
-  \seq_pop_left:NN #1 \subfiglist_tempa_tl
-  \subfiglist_tokenize_make_token:NnV \subfiglist_tempb_tl { canvas } \subfiglist_tempa_tl
-  \tl_put_right:NV #2 \subfiglist_tempb_tl
-}
-
-\cs_new:Npn \subfiglist_tokenize_at:NN #1 #2
-%
-% #1: Sequence containing specification string
-% #2: Token list variable for storing tokenized specification string
-%
-{
-  \seq_pop_left:NN #1 \subfiglist_tempa_tl
-  
-  \seq_get_left:NN #1 \subfiglist_tempa_tl
-  \bool_while_do:nn { \subfiglist_tokenize_is_blank_p:V \subfiglist_tempa_tl }
-  {
-    \seq_pop_left:NN #1 \subfiglist_tempa_tl
-    \seq_get_left:NN #1 \subfiglist_tempa_tl
-  }
-  
-  \seq_pop_left:NN #1 \subfiglist_tempa_tl
-  \quark_if_no_value:NTF \subfiglist_tempa_tl
-  {
-    \msg_error:nn { subfiglist } { missing~separator }
-  }{
-    \subfiglist_tokenize_make_token:NnV \subfiglist_tempb_tl { separator } \subfiglist_tempa_tl
-    \tl_put_right:NV #2 \subfiglist_tempb_tl
-  }
-}
-
-\cs_new:Npn \subfiglist_tokenize_newline:NN #1 #2
-%
-% #1: Sequence containing specification string
-% #2: Token list variable for storing tokenized specification string
-%
-{
-  % Consume newline character
-  \seq_pop_left:NN #1 \subfiglist_tempa_tl
-  
-  % Consume any blanks
-  \seq_get_left:NN #1 \subfiglist_tempa_tl
-  \bool_while_do:nn { \subfiglist_tokenize_is_blank_p:V \subfiglist_tempa_tl }
-  {
-    \seq_pop_left:NN #1 \subfiglist_tempa_tl
-    \seq_get_left:NN #1 \subfiglist_tempa_tl
-  }
-  
-  \tl_clear:N \subfiglist_tempb_tl
-  \quark_if_no_value:NF \subfiglist_tempa_tl
-  {
-    \subfiglist_token_if_eq:NVT [ \subfiglist_tempa_tl
-    {
-      \seq_pop_left:NN #1 \subfiglist_tempa_tl
-      \tl_put_right:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
-      \seq_get_left:NN #1 \subfiglist_tempa_tl
-      \bool_until_do:nn 
-      {
-        \bool_lazy_or_p:nn
-          { \quark_if_no_value_p:N \subfiglist_tempa_tl }
-          { \subfiglist_token_if_eq_p:NV ] \subfiglist_tempa_tl }
-      }{
-        \seq_pop_left:NN #1 \subfiglist_tempa_tl
-        \tl_put_right:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
-        \seq_get_left:NN #1 \subfiglist_tempa_tl
-      }
-      
-      \quark_if_no_value:NTF \subfiglist_tempa_tl
-      {
-        \msg_error:nn { subfiglist } { runaway~optional~argument }
-      }{
-        \seq_pop_left:NN #1 \subfiglist_tempa_tl
-        \tl_put_right:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
-      }
-    }
-  }
-  \subfiglist_tokenize_make_token:NnV \subfiglist_tempa_tl { newline } \subfiglist_tempb_tl
-  \tl_put_right:NV #2 \subfiglist_tempa_tl
-}
-
-\cs_new:Npn \subfiglist_tokenize_subblock:NN #1 #2
-%
-% #1: Sequence containing specification string
-% #2: Token list variable for storing tokenized specification string
-%
-{
-  \seq_pop_left:NN #1 \subfiglist_tempa_tl
-  \group_begin:
-    \tl_clear:N #2
-    \subfiglist_tokenize_spec_str:VN \subfiglist_tempa_tl #2
-    \subfiglist_tokenize_make_token:NnV \subfiglist_tempa_tl { subblock } #2
-    \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tempa_tl
-  \group_end:
-  \tl_put_right:NV #2 \subfiglist_tempa_tl
-}
-
-\cs_new:Npn \subfiglist_tokenize_error:NN #1 #2
-%
-% #1: Sequence containing specification string
-% #2: Token list variable for storing tokenized specification string
-%
-{
-  \seq_pop_left:NN #1 \subfiglist_tempa_tl
-  \msg_error:nnV { subfiglist } { parser~error } \subfiglist_tempa_tl
-}
-
-\cs_new:Npn \subfiglist_tokenize_make_token:NnN #1 #2 #3
-%
-% #1: Token list variable to store token
-% #2: String for type of token
-% #3: Content of token
-%
-{
-  \tl_set:Nn #1 { { { #2 } { #3 } } }
-}
-
-\cs_generate_variant:Nn \subfiglist_tokenize_make_token:NnN { NnV }
-
-% Lexer for subfiglist specification
-\cs_new:Npn \subfiglist_tokenize_spec_str:nN #1 #2
-%
-% #1: Token list containing specification string
-% #2: Token list variable for storing tokenized specification string
-%
-{
-  \group_begin:
-    \seq_clear:N \subfiglist_spec_str_seq
-    \tl_map_inline:nn { #1 }
-    {
-      \seq_put_right:Nn \subfiglist_spec_str_seq { ##1 }
-    }
-    
-    \bool_until_do:nn { \seq_if_empty_p:N \subfiglist_spec_str_seq }
-    {
-      \seq_get_left:NN \subfiglist_spec_str_seq \subfiglist_tempa_tl
-      
-      \tl_map_inline:nn { { blank } { integer } { at } { newline } { subblock } { error } }
-      {%\show_meaning:V \subfiglist_tempa_tl\\
-        \bool_if:nTF { \subfiglist_use:c { subfiglist_tokenize_is_ ##1 _p:V } \subfiglist_tempa_tl }
-        {
-          \subfiglist_use:c { subfiglist_tokenize_ ##1 :NN } \subfiglist_spec_str_seq #2
-          \tl_map_break:
-        }
-      }
-    }
-  \subfiglist_group_var_return:NN \tl_set:Nn #2
-  \group_end:
-}
-
-\cs_generate_variant:Nn \subfiglist_tokenize_spec_str:nN { VN }
 
 
 % Parse single token of subfiglist specification to detect objects
