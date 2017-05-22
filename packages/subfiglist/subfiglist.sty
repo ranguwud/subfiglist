@@ -630,38 +630,73 @@
 }
 
 % Test whether token list is an integer or empty
+\prg_new_conditional:Npnn \subfiglist_is_integer_or_empty:n #1 { p, T, F, TF }
+%
+% #1: Token list
+%
+{
+  % Check whether token list is empty
+  \tl_if_empty:nTF { #1 }
+  {
+    \prg_return_true:
+  }{
+    % Does token list start with an explicit space?
+    \tl_if_head_is_space:nTF { #1 }
+    {
+      \prg_return_false:
+    }{
+      % Check whether first token is digit
+      \subfiglist_is_digit:tTF { \tl_head:n { #1 } }
+      {
+        % Check remaining tokens recursively
+        \subfiglist_is_integer_or_empty:tTF { \tl_tail:n { #1 } }
+        {
+          \prg_return_true:
+        }{
+          \prg_return_false:
+        }
+      }{
+        % Return false otherwise
+        \prg_return_false:
+      }
+    }
+  }
+}
+
+% Define variants of \subfiglist_is_integer_or_empty expanding its argument twice
+\cs_new:Npn \subfiglist_is_integer_or_empty_p:t #1
+{
+  \subfiglist_exp_args:Nt \subfiglist_is_integer_or_empty_p:n { #1 }
+}
+\cs_new:Npn \subfiglist_is_integer_or_empty:tT #1 #2
+{
+  \subfiglist_exp_args:Nt \subfiglist_is_integer_or_empty:nT { #1 } { #2 }
+}
+\cs_new:Npn \subfiglist_is_integer_or_empty:tF #1 #2
+{
+  \subfiglist_exp_args:Nt \subfiglist_is_integer_or_empty:nF { #1 } { #2 }
+}
+\cs_new:Npn \subfiglist_is_integer_or_empty:tTF #1 #2 #3
+{
+  \subfiglist_exp_args:Nt \subfiglist_is_integer_or_empty:nTF { #1 } { #2 } { #3 }
+}
+
+% Test whether token list is an integer
 \prg_new_conditional:Npnn \subfiglist_is_integer:n #1 { p, T, F, TF }
 %
 % #1: Token list
 %
 {
-  % Check whether first token is digit
-  \subfiglist_is_digit:tTF { \tl_head:n { #1 } }
+  \bool_if:nTF
   {
-    % Is this the last token, or ar there remaining tokens?
-    \int_compare:nTF { \tl_count:n { #1 } = 1 }
-    {
-      % This is the last token. Return true.
-      \prg_return_true:
-    }{
-      % Check remaining tokens recursively
-      \subfiglist_is_integer:tTF { \tl_tail:n { #1 } }
-      {
-        \prg_return_true:
-      }{
-        \prg_return_false:
-      }
-    }
+    \bool_lazy_and_p:nn { ! \tl_if_empty_p:n { #1 } } { \subfiglist_is_integer_or_empty_p:n { #1 } }
   }{
-    % Return false otherwise
+    \prg_return_true:
+  }{
     \prg_return_false:
   }
 }
 
-\cs_generate_variant:Nn \subfiglist_is_integer_p:n { V }
-\cs_generate_variant:Nn \subfiglist_is_integer:nT  { V }
-\cs_generate_variant:Nn \subfiglist_is_integer:nF  { V }
-\cs_generate_variant:Nn \subfiglist_is_integer:nTF { V }
 
 % Define variants of \subfiglist_is_integer expanding its argument twice
 \cs_new:Npn \subfiglist_is_integer_p:t #1
@@ -680,6 +715,11 @@
 {
   \subfiglist_exp_args:Nt \subfiglist_is_integer:nTF { #1 } { #2 } { #3 }
 }
+
+\cs_generate_variant:Nn \subfiglist_is_integer_p:n { V }
+\cs_generate_variant:Nn \subfiglist_is_integer:nT  { V }
+\cs_generate_variant:Nn \subfiglist_is_integer:nF  { V }
+\cs_generate_variant:Nn \subfiglist_is_integer:nTF { V }
 
 
 % Test whether two tokens have equal character code and meaning
