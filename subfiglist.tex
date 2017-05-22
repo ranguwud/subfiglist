@@ -913,9 +913,11 @@
 %\cs_generate_variant:Nn \token_if_eq_meaning_p:NN { NV }
 \let\stss \subfiglist_tokenize_spec_str:nN
 \def\sii{\subfiglist_is_integer:nTF}
+\def\stie{\subfiglist_tl_if_eq:nnTF}
 \tl_new:N \sstt %\subfiglist_spec_token_tl
 \ExplSyntaxOff
-\sii { 3 4 } t f\\
+\sii {34 } t f\\
+\stie{a b}{a b }tf\\
 \tiny\stss { 1 { 2 3 } { 4 \\ 5 } \\[1ex] @{asdf} } \sstt
 \ExplSyntaxOn
 aa\tl_to_str:N\sstt zz

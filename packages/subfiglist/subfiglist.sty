@@ -878,28 +878,40 @@
   % Do token lists have same lengths?
   \int_compare:nTF { \tl_count:n { #1 } = \tl_count:n { #2 } }
   {
-    % Do the respective first tokens have same charcode and meaning?
-    \subfiglist_token_if_eq:ttTF { \tl_head:n { #1 } } { \tl_head:n { #2 } }
+    % Are the token lists empty, or are there remaining tokens?
+    % It is sufficient to check argument 1, because we know
+    % that the token lists have equal length.
+    \tl_if_empty:nTF { #1 }
     {
-      % Is this the last token, or ar there remaining tokens?
-      % It is sufficient to check argument 1, because we know
-      % that the token lists have equal length.
-      \int_compare:nTF { \tl_count:n { #1 } = 1 }
+      % There are no more tokens to compare. Return true
+      \prg_return_true:
+    }{
+      % Check whether either both ore none of the token lists start with an
+      % explicit space character using xor comparison.
+      \bool_if:nTF
       {
-        % This is the last token. Return true
-        \prg_return_true:
+        \bool_xor_p:nn { \tl_if_head_is_space_p:n { #1 } } { \tl_if_head_is_space_p:n { #2 } }
       }{
-        % Recursively pass respective remaining tokens.
-        \subfiglist_tl_if_eq:ttTF { \tl_tail:n { #1 } } { \tl_tail:n { #2 } }
+        % Exactly one of the token lists starts with an explicit space character.
+        % Return false.
+        \prg_return_false:
+      }{
+        % Either both ore none of the token lists start with an explicit space character.
+        % Do the respective first non-space tokens have same charcode and meaning?
+        \subfiglist_token_if_eq:ttTF { \tl_head:n { #1 } } { \tl_head:n { #2 } }
         {
-          \prg_return_true:
+          % Recursively pass respective remaining tokens.
+          \subfiglist_tl_if_eq:ttTF { \tl_tail:n { #1 } } { \tl_tail:n { #2 } }
+          {
+            \prg_return_true:
+          }{
+            \prg_return_false:
+          }
         }{
+          % Respective first tokens have unequal charcodes or meaning
           \prg_return_false:
         }
       }
-    }{
-      % Respective first tokens have unequal charcodes or meaning
-      \prg_return_false:
     }
   }{
     % Token lists have unequal lengths
