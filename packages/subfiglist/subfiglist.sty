@@ -879,10 +879,14 @@
   \int_compare:nTF { \tl_count:n { #1 } = \tl_count:n { #2 } }
   {
     % Are the token lists empty, or are there remaining tokens?
-    % It is sufficient to check argument 1, because we know
-    % that the token lists have equal length.
-    \tl_if_empty:nTF { #1 }
+    % Although we know that both token lists have equal lenght,
+    % this needs to be checked for BOTH token lists, since trailing
+    % explicit space characters will not contribute to the count
+    % and therefore remain undetected.
+    \bool_if:nTF
     {
+      \bool_lazy_and_p:nn { \tl_if_empty_p:n { #1 } } { \tl_if_empty_p:n { #2 } }
+    }{
       % There are no more tokens to compare. Return true
       \prg_return_true:
     }{
@@ -984,62 +988,83 @@
 
 
 % Test whether token list is a float or empty
+\prg_new_conditional:Npnn \subfiglist_is_float_or_empty:n #1 { p, T, F, TF }
+%
+% #1: Token list
+%
+{
+  % Check whether token list is empty
+  \tl_if_empty:nTF { #1 }
+  {
+    \prg_return_true:
+  }{
+    % Does token list start with an explicit space?
+    \tl_if_head_is_space:nTF { #1 }
+    {
+      \prg_return_false:
+    }{
+      % Check whether first token is a digit
+      \subfiglist_is_digit:tTF { \tl_head:n { #1 } }
+      {
+        % Recursively check remaining tokens
+        \subfiglist_is_float_or_empty:tTF { \tl_tail:n { #1 } }
+        {
+          \prg_return_true:
+        }{
+          \prg_return_false:
+        }
+      }{
+        % Check for decimal separator
+        \subfiglist_token_if_eq:NtTF . { \tl_head:n { #1 } }
+        {
+          % Check if trailing end is an integer
+          \subfiglist_is_integer:tTF { \tl_tail:n { #1 } }
+          {
+            \prg_return_true:
+          }{
+            \prg_return_false:
+          }
+        }{
+          % Return false otherwise
+          \prg_return_false:
+        }
+      }
+    }
+  }
+}
+
+% Define variants of \subfiglist_is_float_or_empty expanding its argument twice
+\cs_new:Npn \subfiglist_is_float_or_empty_p:t #1
+{
+  \subfiglist_exp_args:Nt \subfiglist_is_float_or_empty_p:n { #1 }
+}
+\cs_new:Npn \subfiglist_is_float_or_empty:tT #1 #2
+{
+  \subfiglist_exp_args:Nt \subfiglist_is_float_or_empty:nT { #1 } { #2 }
+}
+\cs_new:Npn \subfiglist_is_float_or_empty:tF #1 #2
+{
+  \subfiglist_exp_args:Nt \subfiglist_is_float_or_empty:nF { #1 } { #2 }
+}
+\cs_new:Npn \subfiglist_is_float_or_empty:tTF #1 #2 #3
+{
+  \subfiglist_exp_args:Nt \subfiglist_is_float_or_empty:nTF { #1 } { #2 } { #3 }
+}
+
+% Test whether token list is a float
 \prg_new_conditional:Npnn \subfiglist_is_float:n #1 { p, T, F, TF }
 %
 % #1: Token list
 %
 {
-  % Check whether first token is digit
-  \subfiglist_is_digit:tTF { \tl_head:n { #1 } }
+  \bool_if:nTF
   {
-    % Is this the last token, or ar there remaining tokens?
-    \int_compare:nTF { \tl_count:n { #1 } = 1 }
-    {
-      % This is the last token. Return true.
-      \prg_return_true:
-    }{
-      % Check remaining tokens
-      \subfiglist_is_float:tTF { \tl_tail:n { #1 } }
-      {
-        \prg_return_true:
-      }{
-        \prg_return_false:
-      }
-    }
+    \bool_lazy_and_p:nn { ! \tl_if_empty_p:n { #1 } } { \subfiglist_is_float_or_empty_p:n { #1 } }
   }{
-    % Check for decimal separator
-    \subfiglist_token_if_eq:NtTF . { \tl_head:n { #1 } }
-    {
-      % Check if trailing end is an integer, if true
-      \subfiglist_is_integer:tTF { \tl_tail:n { #1 } }
-      {
-        \prg_return_true:
-      }{
-        \prg_return_false:
-      }
-    }{
-      % Return false otherwise
-      \prg_return_false:
-    }
+    \prg_return_true:
+  }{
+    \prg_return_false:
   }
-}
-
-% Define variants of \subfiglist_is_float expanding its argument twice
-\cs_new:Npn \subfiglist_is_float_p:t #1
-{
-  \subfiglist_exp_args:Nt \subfiglist_is_float_p:n { #1 }
-}
-\cs_new:Npn \subfiglist_is_float:tT #1 #2
-{
-  \subfiglist_exp_args:Nt \subfiglist_is_float:nT { #1 } { #2 }
-}
-\cs_new:Npn \subfiglist_is_float:tF #1 #2
-{
-  \subfiglist_exp_args:Nt \subfiglist_is_float:nF { #1 } { #2 }
-}
-\cs_new:Npn \subfiglist_is_float:tTF #1 #2 #3
-{
-  \subfiglist_exp_args:Nt \subfiglist_is_float:nTF { #1 } { #2 } { #3 }
 }
 
 
