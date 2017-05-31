@@ -577,6 +577,152 @@
 %%%   String comparison   %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Test whether two tokens have equal character code
+\prg_new_conditional:Npnn \subfiglist_token_if_eq_charcode:NN #1 #2 { p, T, F, TF }
+%
+% #1: First token
+% #2: Second token
+%
+{
+  % Check whether a token list of the form { tokens } was passed
+  % to the first N argument
+  \tl_if_single:nTF { #1 }
+  {
+    % Check whether a token list of the form { tokens } was passed
+    % to the first N argument
+    \tl_if_single:nTF { #2 }
+    {
+      % Check whether a token list of the form { { tokens } } was passed
+      % to the first N argument
+      \tl_if_single:nTF #1
+      {
+        % Check whether a token list of the form { { tokens } } was passed
+        % to the second N argument
+        \tl_if_single:nTF #2
+        {
+          % Tokens are single down to second level. Compare charcodes and meaning.
+          \token_if_eq_charcode:NNTF #1 #2
+          {
+            \prg_return_true:
+          }{
+            \prg_return_false:
+          }
+        }{
+          % A token list of the form { { tokens } } was passed to the
+          % second but not to the first N argument. Charcodes cannot
+          % be equal.
+          \prg_return_false:
+        }
+      }{
+        % A token list of the form { { tokens } } was passed to the first
+        % N argument. Check, whether the same is true for the second N argument.
+        \tl_if_single:nTF #2
+        {
+          % No token list of the form { { tokens } } was passed to the second
+          % N argument. Charcodes cannot be equal.
+          \prg_return_false:
+        }{
+          % Two token lists of the form { { tokens } } were passed to the
+          % N arguments. Unpack the topmost level and pass to
+          % \subfiglist_tl_if_eq:nnTF.
+          \subfiglist_tl_if_eq_charcode:nnTF #1 #2
+          {
+            \prg_return_true:
+          }{
+            \prg_return_false:
+          }
+        }
+      }
+    }{
+      % A token list of the form { tokens } was passed to the second
+      % but not to the first N argument. Charcodes cannot be equal.
+      \prg_return_false:
+    }
+  }{
+    % A token list of the form { tokens } was passed to the first N argument.
+    % Check, whether the same is true for the second N argument.
+    \tl_if_single:nTF { #2 }
+    {
+      % No token list of the form { tokens } was passed to the second N
+      % argument. Charcodes cannot be equal.
+      \prg_return_false:
+    }{
+      % Two token lists of the form { tokens } were passed to the N
+      % arguments. Pass to \subfiglist_tl_if_eq:nnTF
+      % without further unpacking.
+      \subfiglist_tl_if_eq_charcode:nnTF { #1 } { #2 }
+      {
+        \prg_return_true:
+      }{
+        \prg_return_false:
+      }
+    }
+  }
+}
+
+% Define variants of \subfiglist_token_if_eq_charcode expanding its argument twice
+\cs_new:Npn \subfiglist_token_if_eq_charcode_p:Nt #1 #2
+{
+  \subfiglist_exp_args:NNt \subfiglist_token_if_eq_charcode_p:NN { #1 } { #2 }
+}
+\cs_new:Npn \subfiglist_token_if_eq_charcode_p:tN #1 #2
+{
+  \subfiglist_exp_args:Nt \subfiglist_token_if_eq_charcode_p:NN { #1 } { #2 }
+}
+\cs_new:Npn \subfiglist_token_if_eq_charcode_p:tt #1 #2
+{
+  \subfiglist_exp_args:Ntt \subfiglist_token_if_eq_charcode_p:NN { #1 } { #2 }
+}
+\cs_new:Npn \subfiglist_token_if_eq_charcode:NtT #1 #2 #3
+{
+  \subfiglist_exp_args:NNt \subfiglist_token_if_eq_charcode:NNT { #1 } { #2 } { #3 }
+}
+\cs_new:Npn \subfiglist_token_if_eq_charcode:tNT #1 #2 #3
+{
+  \subfiglist_exp_args:Nt \subfiglist_token_if_eq_charcode:NNT { #1 } { #2 } { #3 }
+}
+\cs_new:Npn \subfiglist_token_if_eq_charcode:ttT #1 #2 #3
+{
+  \subfiglist_exp_args:Ntt \subfiglist_token_if_eq_charcode:NNT { #1 } { #2 } { #3 }
+}
+\cs_new:Npn \subfiglist_token_if_eq_charcode:NtF #1 #2 #3
+{
+  \subfiglist_exp_args:NNt \subfiglist_token_if_eq_charcode:NNF { #1 } { #2 } { #3 }
+}
+\cs_new:Npn \subfiglist_token_if_eq_charcode:tNF #1 #2 #3
+{
+  \subfiglist_exp_args:Nt \subfiglist_token_if_eq_charcode:NNF { #1 } { #2 } { #3 }
+}
+\cs_new:Npn \subfiglist_token_if_eq_charcode:ttF #1 #2 #3
+{
+  \subfiglist_exp_args:Ntt \subfiglist_token_if_eq_charcode:NNF { #1 } { #2 } { #3 }
+}
+\cs_new:Npn \subfiglist_token_if_eq_charcode:NtTF #1 #2 #3 #4
+{
+  \subfiglist_exp_args:NNt \subfiglist_token_if_eq_charcode:NNTF { #1 } { #2 } { #3 } { #4 }
+}
+\cs_new:Npn \subfiglist_token_if_eq_charcode:tNTF #1 #2 #3 #4
+{
+  \subfiglist_exp_args:Nt \subfiglist_token_if_eq_charcode:NNTF { #1 } { #2 } { #3 } { #4 }
+}
+\cs_new:Npn \subfiglist_token_if_eq_charcode:ttTF #1 #2 #3 #4
+{
+  \subfiglist_exp_args:Ntt \subfiglist_token_if_eq_charcode:NNTF { #1 } { #2 } { #3 } { #4 }
+}
+% Define variants of \subfiglist_token_if_eq_charcode getting variable value
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode_p:NN { NV }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode_p:NN { VN }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode_p:NN { VV }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNT  { NV }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNT  { VN }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNT  { VV }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNF  { NV }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNF  { VN }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNF  { VV }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNTF { NV }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNTF { VN }
+\cs_generate_variant:Nn \subfiglist_token_if_eq_charcode:NNTF { VV }
+
 % Test whether two tokens have equal character code and meaning
 \prg_new_conditional:Npnn \subfiglist_token_if_eq:NN #1 #2 { p, T, F, TF }
 %
@@ -722,6 +868,124 @@
 \cs_generate_variant:Nn \subfiglist_token_if_eq:NNTF { NV }
 \cs_generate_variant:Nn \subfiglist_token_if_eq:NNTF { VN }
 \cs_generate_variant:Nn \subfiglist_token_if_eq:NNTF { VV }
+
+% Test whether all tokens of a token lists have equal charcodes
+\prg_new_conditional:Npnn \subfiglist_tl_if_eq_charcode:nn #1 #2 { p, T, F, TF }
+%
+% #1: Firt token list
+% #2: Second token list
+%
+{
+  % Do token lists have same lengths?
+  \int_compare:nTF { \tl_count:n { #1 } = \tl_count:n { #2 } }
+  {
+    % Are the token lists empty, or are there remaining tokens?
+    % Although we know that both token lists have equal lenght,
+    % this needs to be checked for BOTH token lists, since trailing
+    % explicit space characters will not contribute to the count
+    % and therefore remain undetected.
+    \bool_if:nTF
+    {
+      \bool_lazy_and_p:nn { \tl_if_empty_p:n { #1 } } { \tl_if_empty_p:n { #2 } }
+    }{
+      % There are no more tokens to compare. Return true
+      \prg_return_true:
+    }{
+      % Check whether either both ore none of the token lists start with an
+      % explicit space character using xor comparison.
+      \bool_if:nTF
+      {
+        \bool_xor_p:nn { \tl_if_head_is_space_p:n { #1 } } { \tl_if_head_is_space_p:n { #2 } }
+      }{
+        % Exactly one of the token lists starts with an explicit space character.
+        % Return false.
+        \prg_return_false:
+      }{
+        % Either both ore none of the token lists start with an explicit space character.
+        % Do the respective first non-space tokens have same charcode and meaning?
+        \subfiglist_token_if_eq_charcode:ttTF { \tl_head:n { #1 } } { \tl_head:n { #2 } }
+        {
+          % Recursively pass respective remaining tokens.
+          \subfiglist_tl_if_eq_charcode:ttTF { \tl_tail:n { #1 } } { \tl_tail:n { #2 } }
+          {
+            \prg_return_true:
+          }{
+            \prg_return_false:
+          }
+        }{
+          % Respective first tokens have unequal charcodes or meaning
+          \prg_return_false:
+        }
+      }
+    }
+  }{
+    % Token lists have unequal lengths
+    \prg_return_false:
+  }
+}
+
+% Define variants of \subfiglist_tl_if_eq_charcode expanding its argument twice
+\cs_new:Npn \subfiglist_tl_if_eq_charcode_p:nt #1 #2
+{
+  \subfiglist_exp_args:NNt \subfiglist_tl_if_eq_charcode_p:nn { #1 } { #2 }
+}
+\cs_new:Npn \subfiglist_tl_if_eq_charcode_p:tn #1 #2
+{
+  \subfiglist_exp_args:Nt \subfiglist_tl_if_eq_charcode_p:nn { #1 } { #2 }
+}
+\cs_new:Npn \subfiglist_tl_if_eq_charcode_p:tt #1 #2
+{
+  \subfiglist_exp_args:Ntt \subfiglist_tl_if_eq_charcode_p:nn { #1 } { #2 }
+}
+\cs_new:Npn \subfiglist_tl_if_eq_charcode:ntT #1 #2 #3
+{
+  \subfiglist_exp_args:NNt \subfiglist_tl_if_eq_charcode:nnT { #1 } { #2 } { #3 }
+}
+\cs_new:Npn \subfiglist_tl_if_eq_charcode:tnT #1 #2 #3
+{
+  \subfiglist_exp_args:Nt \subfiglist_tl_if_eq_charcode:nnT { #1 } { #2 } { #3 }
+}
+\cs_new:Npn \subfiglist_tl_if_eq_charcode:ttT #1 #2 #3
+{
+  \subfiglist_exp_args:Ntt \subfiglist_tl_if_eq_charcode:nnT { #1 } { #2 } { #3 }
+}
+\cs_new:Npn \subfiglist_tl_if_eq_charcode:ntF #1 #2 #3
+{
+  \subfiglist_exp_args:NNt \subfiglist_tl_if_eq_charcode:nnF { #1 } { #2 } { #3 }
+}
+\cs_new:Npn \subfiglist_tl_if_eq_charcode:tnF #1 #2 #3
+{
+  \subfiglist_exp_args:Nt \subfiglist_tl_if_eq_charcode:nnF { #1 } { #2 } { #3 }
+}
+\cs_new:Npn \subfiglist_tl_if_eq_charcode:ttF #1 #2 #3
+{
+  \subfiglist_exp_args:Ntt \subfiglist_tl_if_eq_charcode:nnF { #1 } { #2 } { #3 }
+}
+\cs_new:Npn \subfiglist_tl_if_eq_charcode:ntTF #1 #2 #3 #4
+{
+  \subfiglist_exp_args:NNt \subfiglist_tl_if_eq_charcode:nnTF { #1 } { #2 } { #3 } { #4 }
+}
+\cs_new:Npn \subfiglist_tl_if_eq_charcode:tnTF #1 #2 #3 #4
+{
+  \subfiglist_exp_args:Nt \subfiglist_tl_if_eq_charcode:nnTF { #1 } { #2 } { #3 } { #4 }
+}
+\cs_new:Npn \subfiglist_tl_if_eq_charcode:ttTF #1 #2 #3 #4
+{
+  \subfiglist_exp_args:Ntt \subfiglist_tl_if_eq_charcode:nnTF { #1 } { #2 } { #3 } { #4 }
+}
+% Define variants of \subfiglist_tl_if_eq_charcode performing full argument expansion
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode_p:nn { nf }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode_p:nn { fn }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode_p:nn { ff }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnT { nf }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnT { fn }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnT { ff }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnF { nf }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnF { fn }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnF { ff }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnTF { nf }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnTF { fn }
+\cs_generate_variant:Nn \subfiglist_tl_if_eq_charcode:nnTF { ff }
 
 % Test whether all tokens of a token lists have equal charcodes and equal meaning.
 \prg_new_conditional:Npnn \subfiglist_tl_if_eq:nn #1 #2 { p, T, F, TF }
@@ -1249,7 +1513,7 @@
   % Compare `@' using \token_if_eq_charcode instead of \subfiglist_token_if_eq,
   % because the test \token_if_eq_meaning used by \subfiglist_token_if_eq returns
   % false, if @ is `other' in the document, but `letter' in the package code.
-  \token_if_eq_charcode_p:NV @ #1
+  \subfiglist_token_if_eq_charcode_p:NV @ #1
 }
 
 \cs_new:Npn \subfiglist_tokenize_is_newline_p:V #1
@@ -1346,7 +1610,7 @@
   \tl_clear:N \subfiglist_tempb_tl
   \quark_if_no_value:NF \subfiglist_tempa_tl
   {
-    \subfiglist_token_if_eq:NVT [ \subfiglist_tempa_tl
+    \subfiglist_token_if_eq_charcode:NVT [ \subfiglist_tempa_tl
     {
       \seq_pop_left:NN #1 \subfiglist_tempa_tl
       \tl_put_right:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
@@ -1355,7 +1619,7 @@
       {
         \bool_lazy_or_p:nn
           { \quark_if_no_value_p:N \subfiglist_tempa_tl }
-          { \subfiglist_token_if_eq_p:NV ] \subfiglist_tempa_tl }
+          { \subfiglist_token_if_eq_charcode_p:NV ] \subfiglist_tempa_tl }
       }{
         \seq_pop_left:NN #1 \subfiglist_tempa_tl
         \tl_put_right:NV \subfiglist_tempb_tl \subfiglist_tempa_tl

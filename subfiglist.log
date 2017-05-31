@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.3.26)  22 MAY 2017 22:02
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.3.26)  31 MAY 2017 21:54
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -703,52 +703,52 @@ Package graphics Info: Driver file: xetex.def on input line 95.
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistfile with sig. '' on line 3051.
+. Defining command \subfiglistfile with sig. '' on line 3315.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummyfile with sig. '' on line 3103.
+. Defining command \subfiglistdummyfile with sig. '' on line 3367.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummy with sig. '' on line 3161.
+. Defining command \subfiglistdummy with sig. '' on line 3425.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabel with sig. '' on line 3221.
+. Defining command \subfiglistlabel with sig. '' on line 3485.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistoverlay with sig. '' on line 3254.
+. Defining command \subfiglistoverlay with sig. '' on line 3518.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabelformat with sig. '' on line 3258.
+. Defining command \subfiglistlabelformat with sig. '' on line 3522.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistsvgenv' with sig. '' on line 3262.
+. Defining environment 'subfiglistsvgenv' with sig. '' on line 3526.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3283.
+. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3547.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3408.
+. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3672.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3412.
+. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3676.
 .................................................
 )
 runsystem(rm ./subfiglist.sty)...executed.
@@ -1203,13 +1203,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 907--925
 
  []
 
-
-Overfull \hbox (71.01236pt too wide) in paragraph at lines 907--925
-\T1/lmr/m/n/6 aa{{canvas}{1}}{{subblock}{{{canvas}{2}}{{canvas}{3}}}}{{subblock
-}{{{canvas}{4}}{{newline}{}}{{canvas}{5}}}}{{newline}{[1ex]}}{{separator}{asdf}
-}zz 
- []
-
 Package microtype Info: Setting up font `T1/lmr/m/sl/12' on input line 925.
 Package microtype Info: ... Loading protrusion list `lmr-it-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-it-T1'.
@@ -1296,10 +1289,10 @@ Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 925.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 925.
  ) 
 Here is how much of TeX's memory you used:
- 30809 strings out of 493638
- 550307 string characters out of 6146796
- 700655 words of memory out of 5000000
- 33869 multiletter control sequences out of 15000+600000
+ 30867 strings out of 493638
+ 552276 string characters out of 6146796
+ 701879 words of memory out of 5000000
+ 33927 multiletter control sequences out of 15000+600000
  26193 words of font info for 32 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
  46i,10n,85p,10434b,347s stack positions out of 5000i,500n,10000p,200000b,80000s

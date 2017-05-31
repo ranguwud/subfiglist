@@ -8,7 +8,7 @@ TODO
 * Delete unnecessary variables
 * Replace test for equal charcode by test for equal charcode AND equal meaning
 * Add change of meaning for `@' depending on catcode to known issues. Weird settings of catcodes e.g. for numbers may have strange effects
-* Make use of \tl_if_head_is_space in token list conditionals & revert to _or_empty versions of tl conditionals
+* Remove \subfiglist_test_conditionals:
 
 
 
@@ -19,3 +19,5 @@ DONE
 * Remove \subfiglist_exp_args:NNt from \subfiglist_is_float_or_empty
 * Maybe replace \use:c by \cs_if_exist_use:cF and throw an error message in false part
 * For token list conditionals, check for length equal to 1 and do not pass tail, if true. Makes ..._or_empty functions obsolete.
+* Make use of \tl_if_head_is_space in token list conditionals & revert to _or_empty versions of tl conditionals
+* Add \subfiglist_tl_if_eq_charcode and employ in lexer functions
