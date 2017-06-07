@@ -904,22 +904,26 @@
 %\makeatletter
 %\meaning @\\
 %\subfiglist_token_if_eq:NNTF \q_no_value \q_no_value t f
-\subfiglist_test_conditionals:
+%\subfiglist_test_conditionals:
 %\meaning \\ \\
 %\cs_new:Npn \show_meaning:N #1 { \meaning #1 }
 %\cs_generate_variant:Nn \show_meaning:N { V }
-\cs_generate_variant:Nn \token_if_eq_charcode_p:NN { NV }
-\cs_generate_variant:Nn \tl_if_single:NTF { V }
+%\cs_generate_variant:Nn \token_if_eq_charcode_p:NN { NV }
+%\cs_generate_variant:Nn \tl_if_single:NTF { V }
 %\cs_generate_variant:Nn \token_if_eq_meaning_p:NN { NV }
 \let\stss \subfiglist_tokenize_spec_str:nN
-\def\sii{\subfiglist_is_integer:nTF}
-\def\sif{\subfiglist_is_float:nTF}
-\def\stie{\subfiglist_tl_if_eq:nnTF}
+\let\spst \subfiglist_parse_spec_tokens:VN
+%\def\sii{\subfiglist_is_integer:nTF}
+%\def\sif{\subfiglist_is_float:nTF}
+%\def\stie{\subfiglist_tl_if_eq:nnTF}
 \tl_new:N \sstt %\subfiglist_spec_token_tl
+\tl_new:N \sst %\subfiglist_spec_tl
 \ExplSyntaxOff
-\sii {34} t f\\
-\stie{ab}{ab }tf\\
-\tiny\stss { 1 {23} { 4 \\ 5 } \\[1ex] @{asdf} } \sstt
+%\sii {34} t f\\
+%\stie{ab}{ab }tf\\
+\stss { 1 {23} { 4 \\ 5 } \\[1ex] @{asdf} } \sstt
+\spst \sstt \sst
 \ExplSyntaxOn
-aa\tl_to_str:N\sstt zz
+\tl_show:N\sst\error
+xxx
 \end{document}
