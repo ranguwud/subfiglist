@@ -1519,6 +1519,22 @@
   \subfiglist_tl_if_eq_charcode_p:nf { canvas } { \tl_head:V #1 }
 }
 
+\cs_new:Npn \subfiglist_parse_is_separator_p:V #1
+%
+% #1: Token to be tested
+%
+{
+  \subfiglist_tl_if_eq_charcode_p:nf { separator } { \tl_head:V #1 }
+}
+
+\cs_new:Npn \subfiglist_parse_is_newline_p:V #1
+%
+% #1: Token to be tested
+%
+{
+  \subfiglist_tl_if_eq_charcode_p:nf { newline } { \tl_head:V #1 }
+}
+
 \prg_new_conditional:Npnn \subfiglist_parse_is_error:V #1 { p }
 %
 % #1: Token to be tested
@@ -1528,6 +1544,28 @@
 }
 
 \cs_new:Npn \subfiglist_parse_canvas:NN #1 #2
+%
+% #1: Sequence containing tokenized specification string
+% #2: Token list variable for storing tokenized specification string
+%
+{
+  \seq_pop_left:NN #1 \subfiglist_tempa_tl
+  \subfiglist_parse_wrap_token:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
+  \tl_put_right:NV #2 \subfiglist_tempb_tl
+}
+
+\cs_new:Npn \subfiglist_parse_separator:NN #1 #2
+%
+% #1: Sequence containing tokenized specification string
+% #2: Token list variable for storing tokenized specification string
+%
+{
+  \seq_pop_left:NN #1 \subfiglist_tempa_tl
+  \subfiglist_parse_wrap_token:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
+  \tl_put_right:NV #2 \subfiglist_tempb_tl
+}
+
+\cs_new:Npn \subfiglist_parse_newline:NN #1 #2
 %
 % #1: Sequence containing tokenized specification string
 % #2: Token list variable for storing tokenized specification string
@@ -1586,7 +1624,7 @@
     {
       \seq_get_left:NN \subfiglist_spec_tokens_seq \subfiglist_tempa_tl
       
-      \tl_map_inline:nn { { canvas } { error } }
+      \tl_map_inline:nn { { canvas } { separator } { newline } { error } }
       {
         \bool_if:nTF { \subfiglist_use:c { subfiglist_parse_is_ ##1 _p:V } \subfiglist_tempa_tl }
         {
