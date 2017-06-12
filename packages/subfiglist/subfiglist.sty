@@ -551,6 +551,23 @@
 \cs_generate_variant:Nn \subfiglist_exp_args:Ntt { c }
 
 
+% Commands for setting a token list variable to head or tail
+% of another token list variable
+\cs_new:Npn \subfiglist_tl_set_head:Nn #1 #2
+{
+  \subfiglist_exp_args:NNt \tl_set:Nn #1 { \tl_head:n { #2 } }
+}
+
+\cs_generate_variant:Nn \subfiglist_tl_set_head:Nn { NV }
+
+\cs_new:Npn \subfiglist_tl_set_tail:Nn #1 #2
+{
+  \subfiglist_exp_args:NNt \tl_set:Nn #1 { \tl_tail:n { #2 } }
+}
+
+\cs_generate_variant:Nn \subfiglist_tl_set_tail:Nn { NV }
+
+
 % Provide framework for exporting group scope local variables according to discussion
 % at https://tex.stackexchange.com/questions/56294/how-do-i-get-a-value-out-of-a-group
 \cs_generate_variant:Nn \tl_if_empty:nT {v}
@@ -1535,6 +1552,14 @@
   \subfiglist_tl_if_eq_charcode_p:nf { newline } { \tl_head:V #1 }
 }
 
+\cs_new:Npn \subfiglist_parse_is_subblock_p:V #1
+%
+% #1: Token to be tested
+%
+{
+  \subfiglist_tl_if_eq_charcode_p:nf { subblock } { \tl_head:V #1 }
+}
+
 \prg_new_conditional:Npnn \subfiglist_parse_is_error:V #1 { p }
 %
 % #1: Token to be tested
@@ -1576,6 +1601,25 @@
   \tl_put_right:NV #2 \subfiglist_tempb_tl
 }
 
+\cs_new:Npn \subfiglist_parse_subblock:NN #1 #2
+%
+% #1: Sequence containing specification string
+% #2: Token list variable for storing tokenized specification string
+%
+{
+  \seq_pop_left:NN #1 \subfiglist_tempa_tl
+  \subfiglist_tl_set_tail:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
+  % Remove one level of braces
+  \subfiglist_tl_set_head:NV \subfiglist_tempa_tl \subfiglist_tempb_tl
+  \group_begin:
+    \tl_clear:N #2
+    \subfiglist_parse_spec_tokens:VN \subfiglist_tempa_tl #2
+    \subfiglist_parse_make_token:NnV \subfiglist_tempa_tl { subblock } #2
+    \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tempa_tl
+  \group_end:
+  \tl_put_right:NV #2 \subfiglist_tempa_tl
+}
+
 \cs_new:Npn \subfiglist_parse_error:NN #1 #2
 {
   \seq_pop_left:NN #1 \subfiglist_tempa_tl
@@ -1606,6 +1650,8 @@
   \tl_set:Nn #1 { { { #2 } { #3 } } }
 }
 
+\cs_generate_variant:Nn \subfiglist_parse_make_token:NnN { NnV }
+
 % Parser for subfiglist specification
 \cs_new:Npn \subfiglist_parse_spec_tokens:nN #1 #2
 %
@@ -1624,7 +1670,7 @@
     {
       \seq_get_left:NN \subfiglist_spec_tokens_seq \subfiglist_tempa_tl
       
-      \tl_map_inline:nn { { canvas } { separator } { newline } { error } }
+      \tl_map_inline:nn { { canvas } { separator } { newline } { subblock } { error } }
       {
         \bool_if:nTF { \subfiglist_use:c { subfiglist_parse_is_ ##1 _p:V } \subfiglist_tempa_tl }
         {

@@ -925,5 +925,8 @@
 \spst \sstt \sst
 \ExplSyntaxOn
 \tl_show:N\sst\error
+\tl_set:Nn \subfiglist_tempa_tl { abc }
+\subfiglist_tl_set_tail:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
+\tl_to_str:N \subfiglist_tempb_tl
 xxx
 \end{document}
