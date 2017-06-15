@@ -1509,7 +1509,7 @@
       
       \tl_map_inline:nn { { blank } { integer } { at } { newline } { subblock } { error } }
       {
-        \bool_if:nTF { \subfiglist_use:c { subfiglist_tokenize_is_ ##1 _p:V } \subfiglist_tempa_tl }
+        \bool_if:nT { \subfiglist_use:c { subfiglist_tokenize_is_ ##1 _p:V } \subfiglist_tempa_tl }
         {
           \subfiglist_use:c { subfiglist_tokenize_ ##1 :NN } \subfiglist_spec_str_seq #2
           \tl_map_break:
@@ -1577,6 +1577,18 @@
   \seq_pop_left:NN #1 \subfiglist_tempa_tl
   \subfiglist_parse_wrap_token:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
   \tl_put_right:NV #2 \subfiglist_tempb_tl
+  
+  \seq_get_left:NN #1 \subfiglist_tempa_tl
+  \bool_lazy_any:nF
+  {
+    { \quark_if_no_value_p:N \subfiglist_tempa_tl }
+    { \subfiglist_parse_is_separator_p:V \subfiglist_tempa_tl }
+    { \subfiglist_parse_is_newline_p:V \subfiglist_tempa_tl }
+  }{
+    \tl_clear:N \subfiglist_tempa_tl
+    \subfiglist_parse_make_token:NnV \subfiglist_tempb_tl { space } \subfiglist_tempa_tl
+    \tl_put_right:NV #2 \subfiglist_tempb_tl
+  }
 }
 
 \cs_new:Npn \subfiglist_parse_separator:NN #1 #2
@@ -1672,7 +1684,7 @@
       
       \tl_map_inline:nn { { canvas } { separator } { newline } { subblock } { error } }
       {
-        \bool_if:nTF { \subfiglist_use:c { subfiglist_parse_is_ ##1 _p:V } \subfiglist_tempa_tl }
+        \bool_if:nT { \subfiglist_use:c { subfiglist_parse_is_ ##1 _p:V } \subfiglist_tempa_tl }
         {
           \subfiglist_use:c { subfiglist_parse_ ##1 :NN } \subfiglist_spec_tokens_seq #2
           \tl_map_break:
