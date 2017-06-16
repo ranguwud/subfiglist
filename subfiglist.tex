@@ -922,7 +922,7 @@
 \ExplSyntaxOff
 %\sii {34} t f\\
 %\stie{ab}{ab }tf\\
-\stss { 1 @{asdf} {23} { 4 \\ 5 } \\[1ex] 7 } \sstt
+\stss { 1 @{asdf} {2} { 4 \\ 3 } \\[1ex] 5 } \sstt
 \spst \sstt \sst
 \ExplSyntaxOn
 \tl_show:N\sst\error
@@ -930,4 +930,9 @@
 \subfiglist_tl_set_tail:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
 \tl_to_str:N \subfiglist_tempb_tl
 xxx
+\tl_to_str:N \subfiglist_spec_canvas_nums_tl
+\subfiglist_verify_spec_canvas_nums:NNN
+  \subfiglist_spec_canvas_nums_tl
+  \subfiglist_spec_canvas_nums_sorted_tl
+  \subfiglist_canvas_count_int
 \end{document}
