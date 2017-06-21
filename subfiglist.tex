@@ -911,28 +911,33 @@
 %\cs_generate_variant:Nn \token_if_eq_charcode_p:NN { NV }
 %\cs_generate_variant:Nn \tl_if_single:NTF { V }
 %\cs_generate_variant:Nn \token_if_eq_meaning_p:NN { NV }
-\let\stss \subfiglist_tokenize_spec_str:nN
-\let\spst \subfiglist_parse_spec_tokens:VN
+%\let\stss \subfiglist_tokenize_spec_str:nN
+%\let\spst \subfiglist_parse_spec_tokens:VN
 %\def\sii{\subfiglist_is_integer:nTF}
 %\def\sif{\subfiglist_is_float:nTF}
 %\def\stie{\subfiglist_tl_if_eq:nnTF}
-\tl_new:N \sstt %\subfiglist_spec_token_tl
-\tl_new:N \sst %\subfiglist_spec_tl
-\tl_new:N \subfiglist_tempc_tl
-\ExplSyntaxOff
+%\tl_new:N \sstt %\subfiglist_spec_token_tl
+%\tl_new:N \sst %\subfiglist_spec_tl
+%\tl_new:N \subfiglist_tempc_tl
+%\ExplSyntaxOff
 %\sii {34} t f\\
 %\stie{ab}{ab }tf\\
-\stss { 1 @{asdf} {2} { 4 \\ 3 } \\[1ex] 5 } \sstt
-\spst \sstt \sst
+%\stss { 1 @{asdf} {2} { 4 \\ 3 } \\[1ex] 5 } \sstt
+%\spst \sstt \sst
 \ExplSyntaxOn
-\tl_show:N\sst\error
-\tl_set:Nn \subfiglist_tempa_tl { abc }
-\subfiglist_tl_set_tail:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
-\tl_to_str:N \subfiglist_tempb_tl
+%\tl_show:N\sst\error
+%\tl_set:Nn \subfiglist_tempa_tl { abc }
+%\subfiglist_tl_set_tail:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
+%\tl_to_str:N \subfiglist_tempb_tl
 xxx
-\tl_to_str:N \subfiglist_spec_canvas_nums_tl
-\subfiglist_verify_spec_canvas_nums:NNN
-  \subfiglist_spec_canvas_nums_tl
-  \subfiglist_spec_canvas_nums_sorted_tl
-  \subfiglist_canvas_count_int
+%\tl_to_str:N \subfiglist_spec_canvas_nums_tl
+%\subfiglist_verify_spec_canvas_nums:NNN
+%  \subfiglist_spec_canvas_nums_tl
+%  \subfiglist_spec_canvas_nums_sorted_tl
+%  \subfiglist_canvas_count_int
+\begin{subfiglist}{ 1 @{asdf} {2} { 4 \\ 3 } \\[1ex] 5 }
+  \tl_show:N \subfiglist_spec_tl \error
+  \subfiglist_setup_file:nnn {} {1} {/path/to/image}
+  \prop_show:N \subfiglist_canvas_prop \error
+\end{subfiglist}
 \end{document}
