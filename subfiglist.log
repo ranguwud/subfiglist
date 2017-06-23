@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.3.26)  21 JUN 2017 21:58
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.3.26)  23 JUN 2017 22:06
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -698,57 +698,57 @@ Package graphics Info: Driver file: xetex.def on input line 95.
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistset with sig. 'm' on line 251.
+. Defining command \subfiglistset with sig. 'm' on line 252.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistfile with sig. '' on line 3457.
+. Defining command \subfiglistfile with sig. '' on line 3464.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummyfile with sig. '' on line 3509.
+. Defining command \subfiglistdummyfile with sig. '' on line 3516.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummy with sig. '' on line 3567.
+. Defining command \subfiglistdummy with sig. '' on line 3574.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabel with sig. '' on line 3627.
+. Defining command \subfiglistlabel with sig. '' on line 3634.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistoverlay with sig. '' on line 3660.
+. Defining command \subfiglistoverlay with sig. '' on line 3667.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabelformat with sig. '' on line 3664.
+. Defining command \subfiglistlabelformat with sig. '' on line 3671.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistsvgenv' with sig. '' on line 3668.
+. Defining environment 'subfiglistsvgenv' with sig. '' on line 3675.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3689.
+. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3696.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3812.
+. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3819.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3816.
+. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3823.
 .................................................
 )
 runsystem(rm ./subfiglist.sty)...executed.
@@ -1189,29 +1189,13 @@ LaTeX Info: Redefining \nameref on input line 209.
 . 
 . Redefining command \subfiglistoverlay with sig. 'mm' on line 938.
 .................................................
-> 
-\subfiglist_spec_tl={{line}{{{canvas}{1}}{{separator}{asdf}}{{canvas}{2}}{{spac
-e}{}}{{subblock}{{{line}{{{canvas}{4}}}}{{newline}{}}{{line}{{{canvas}{3}}}}}}}
-}{{newline}{[1ex]}}{{line}{{{canvas}{5}}}}.
-<recently read> }
-                 
-l.939   \tl_show:N \subfiglist_spec_tl
-                                       \error
-
-! Undefined control sequence.
-l.939   \tl_show:N \subfiglist_spec_tl \error
-                                             
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
+File: figures/01.png Graphic file (type QTm)
+<use  "figures/01.png" >
 The property list \subfiglist_canvas_prop contains the pairs (without outer
 braces):
 >  {1}  => 
-{{{type}{file}}{{path}{/path/to/image}}{{top}{0.0pt}}{{bot}{0.0pt}}{{left}{0.0p
-t}}{{right}{0.0pt}}}.
+{{{type}{file}}{{path}{figures/01}}{{ratio}{0.6773069911903234}}{{top}{0.0pt}}{
+{bot}{0.0pt}}{{left}{0.0pt}}{{right}{0.0pt}}}.
 <recently read> }
                  
 l.941   \prop_show:N \subfiglist_canvas_prop
@@ -1336,10 +1320,10 @@ Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 943.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 943.
  ) 
 Here is how much of TeX's memory you used:
- 30893 strings out of 493638
- 553837 string characters out of 6146796
- 703648 words of memory out of 5000000
- 33959 multiletter control sequences out of 15000+600000
+ 30901 strings out of 493638
+ 553845 string characters out of 6146796
+ 703641 words of memory out of 5000000
+ 33958 multiletter control sequences out of 15000+600000
  22887 words of font info for 30 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
  67i,10n,119p,10434b,347s stack positions out of 5000i,500n,10000p,200000b,80000s

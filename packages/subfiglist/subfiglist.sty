@@ -117,6 +117,7 @@
 \fp_new:N   \subfiglist_sub_block_line_ratio_fp
 \fp_new:N   \subfiglist_sub_block_ratio_fp
 \fp_new:N   \subfiglist_sum_ratio_over_ratio_fp
+\fp_new:N   \subfiglist_temp_fp
 
 \bool_new:N \subfiglist_after_char_at_bool
 \bool_new:N \subfiglist_after_char_br_bool
@@ -1894,9 +1895,9 @@
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%   Canvas specification   %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Canvas setup commands   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \cs_new:Npn \subfiglist_setup_file:nnn #1 #2 #3
 %
@@ -1922,6 +1923,10 @@
     \prop_put:Nnn \subfiglist_temp_prop { type } { file }
     \prop_put:Nnn \subfiglist_temp_prop { path } { #3 }
     
+    % Get file ratio
+    \subfiglist_get_file_ratio:Nn \subfiglist_tempa_tl { #3 }
+    \prop_put:NnV \subfiglist_temp_prop { ratio } \subfiglist_tempa_tl
+    
     % Process opitonal arguments
     \tl_set:Nn \subfiglist_csname_tl { \exp_not:N \subfiglistfile }
     \keys_set:nn { subfiglistcanvas }
@@ -1946,13 +1951,9 @@
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%
-%%%   Package code   %%%
-%%%%%%%%%%%%%%%%%%%%%%%%
-  
-% Initialize \subfiglist_put_space: to empty control sequence
-\cs_new:Npn \subfiglist_put_space: {}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Image loading   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Command for loading a bitmap image.
 \cs_new:Npn \subfiglist_load_img:nn #1 #2
@@ -1962,7 +1963,7 @@
 %
 {
   % Has natural width been requested?
-  \subfiglist_tl_if_eq:nnTF { #2 } { ! }
+  \subfiglist_tl_if_eq_charcode:nnTF { ! } { #2 }
   {
     % Load with natural width
     \includegraphics { #1 }
@@ -1986,7 +1987,7 @@
 {
   \begin{subfiglistsvgenv}
     % Set width of SVG image
-    \subfiglist_tl_if_eq:nnF { #2 } { ! }
+    \subfiglist_tl_if_eq_charcode:nnF { #2 } { ! }
       { \cs_gset:Npn \svgwidth { #2 } }
     
     % Split path into directory and file
@@ -2018,7 +2019,7 @@
   \StrBehind[\subfiglist_file_number_of_dots_int]
     {#1}{.}[\subfiglist_file_extension_str]
   % Set command to load images depending on file extension.
-  \IfEq*{\subfiglist_file_extension_str}{pdf_tex}
+  \subfiglist_tl_if_eq_charcode:nVTF { pdf_tex } \subfiglist_file_extension_str
   {
     \subfiglist_load_svg:nn { #1 } { #2 }
   }{
@@ -2026,10 +2027,48 @@
   }
 }
 
-\cs_generate_variant:Nn \subfiglist_load:nn { nf }
-\cs_generate_variant:Nn \subfiglist_load:nn { fn }
-\cs_generate_variant:Nn \subfiglist_load:nn { ff }
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Calculate canvas ratio   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Calculate ratio height/width of specified file
+\cs_new:Npn \subfiglist_get_file_ratio:Nn #1 #2
+%
+% #1: floating point variable to store ratio
+% #2: image file path
+%
+{
+  \group_begin:
+  
+    % Store file in a box
+    \setbox\subfiglist_box\hbox
+    {
+      \subfiglist_load:nn { #2 } { ! }
+    }
+
+    % Get box dimensions
+    \dim_set:Nn \subfiglist_canvas_height_dim { \ht\subfiglist_box }
+    \dim_set:Nn \subfiglist_canvas_width_dim  { \wd\subfiglist_box }
+
+    % Store ratio height/width
+    \fp_set:Nn \subfiglist_tempa_fp { \subfiglist_canvas_height_dim / \subfiglist_canvas_width_dim }
+    \tl_set:Nf #1 { \fp_use:N \subfiglist_tempa_fp }
+
+  % Return local variables with group scope
+  \subfiglist_group_var_return:NN \tl_set:Nn #1
+  \group_end:
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Package code   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%
+  
+% Initialize \subfiglist_put_space: to empty control sequence
+\cs_new:Npn \subfiglist_put_space: {}
 
 % Define command for label inset
 \cs_new:Npn \subfiglist_label_inset:nnn #1 #2 #3
@@ -2499,38 +2538,6 @@
   \group_end:
 }
 
-
-% Calculate ratio height/width of specified file
-\cs_new:Npn \subfiglist_get_file_ratio:nn #1 #2
-%
-% #1: file number
-% #2: file width
-%
-{
-  \group_begin:
-  
-  % Store file in a box
-  \setbox\subfiglist_box\hbox
-  {
-    \subfiglist_load:fn
-      { \tl_item:Nn \subfiglist_file_names_tl { #1 } }
-      { #2 }
-  }
-  
-  % Get box dimensions
-  \dim_set:Nn \subfiglist_canvas_height_dim { \ht\subfiglist_box }
-  \dim_set:Nn \subfiglist_canvas_width_dim  { \wd\subfiglist_box }
-
-  % Store ratio height/width
-  \tl_put_left:Nx \subfiglist_objects_ratio_tl
-    { {\fp_eval:n { \subfiglist_canvas_height_dim / \subfiglist_canvas_width_dim } } }
-
-  % Return local variables with group scope
-  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_objects_ratio_tl
-  \group_end:
-}
-
-\cs_generate_variant:Nn \subfiglist_get_file_ratio:nn { Vn }
 
 % Calculate ratio height/width of specified dummy file
 \cs_new:Npn \subfiglist_get_dummy_file_ratio:nn #1 #2
