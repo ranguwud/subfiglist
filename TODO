@@ -14,6 +14,10 @@ TODO
 * tempa -> tmpa in accordance with kernel docs
 * Replace wrapping commands by more general \subfiglist_tl_set_wrapped in parser and lexer
 * Add logging of canvas numbers to \subfiglist_setup_file:nnn
+* Remove need for xstring package?
+* Add starred commands for dummy/dummyfile to add frame
+* Rewrite error messages for int/float as "expected integer, found ... instead"
+* Replace any \cs in error messages by \tl_to_str:c { cs }
 
 
 

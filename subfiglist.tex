@@ -925,6 +925,7 @@
 %\stss { 1 @{asdf} {2} { 4 \\ 3 } \\[1ex] 5 } \sstt
 %\spst \sstt \sst
 \ExplSyntaxOn
+\cs_generate_variant:Nn \msg_error:nnnn { nnnc }
 %\tl_show:N\sst\error
 %\tl_set:Nn \subfiglist_tempa_tl { abc }
 %\subfiglist_tl_set_tail:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
@@ -938,6 +939,9 @@ xxx
 \begin{subfiglist}{ 1 @{asdf} {2} { 4 \\ 3 } \\[1ex] 5 }
 %  \tl_show:N \subfiglist_spec_tl \error
   \subfiglist_setup_file:nnn {} {1} { figures/01 }
+  \subfiglist_setup_dummyfile:nnn {} {2} { figures/02 }
+  \subfiglist_setup_dummy:nnn {} {3} { 1.23 }
+  \subfiglist_setup_dummy:nnn {} {4} { 4:3 }
   \prop_show:N \subfiglist_canvas_prop \error
 \end{subfiglist}
 \end{document}

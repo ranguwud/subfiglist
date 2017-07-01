@@ -1,5 +1,5 @@
-\NeedsTeXFormat{LaTeX2e}[1994/12/01]
-\RequirePackage{expl3}[2014/06/10] % needs v5105 or newer
+\NeedsTeXFormat{LaTeX2e}[1994/12/01]%
+\RequirePackage{expl3}[2014/06/10]% needs v5105 or newer
 \ProvidesExplPackage{subfiglist}{2015/03/22}{1.0}{labeled subfigures}
 
 \RequirePackage{l3sort}[2013/12/14]     % needs v4623 or newer
@@ -455,16 +455,19 @@
 }
 
 \msg_new:nnn { subfiglist } { missing~number }
-  { #1~argument~of~command~#2~needs~to~be~an~integer. }
+  { #1~argument~of~command~`#2'~needs~to~be~an~integer. }
 
 \msg_new:nnn { subfiglist } { missing~float }
-  { #1~argument~of~command~#2~needs~to~be~a~floating~point~expression. }
+  { #1~argument~of~command~`#2'~needs~to~be~a~floating~point~expression. }
+
+\msg_new:nnn { subfiglist } { malformed~argument }
+  { Malformed~argument:~expected~#1~but~found~#2~instead. }
 
 \msg_new:nnn { subfiglist } { argument~out~of~range }
   { Number~of~selected~canvas~(#1)~is~greater~than~total~number~(#2)~of~canvases. }
 
 \msg_new:nnn { subfiglist } { unexpected~command }
-  { Unexpected~command~#1.~Command~#1~needs~to~be~used~within~`subfiglist'~environment. }
+  { Unexpected~command~`#1'.~Command~#1~needs~to~be~used~within~`subfiglist'~environment. }
 
 \msg_new:nnn { subfiglist } { undefined~command~sequence }
   { The~command~sequence~`#1'~was~used,~but~never~defined. }
@@ -1214,6 +1217,11 @@
   }
 }
 
+\cs_generate_variant:Nn \subfiglist_is_float_p:n { V }
+\cs_generate_variant:Nn \subfiglist_is_float:nT  { V }
+\cs_generate_variant:Nn \subfiglist_is_float:nF  { V }
+\cs_generate_variant:Nn \subfiglist_is_float:nTF { V }
+
 
 % Test truth value of various conditionals and print result
 \cs_new:Npn \subfiglist_test_conditionals:
@@ -1899,17 +1907,70 @@
 %%%   Canvas setup commands   %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\cs_new:Npn \subfiglist_setup_file:nnn #1 #2 #3
+\tl_map_inline:nn { { file } { dummyfile } }
+{
+  \cs_new:cpn { subfiglist_setup_ #1 :nnn } ##1 ##2 ##3
+  %
+  % #1: optional arguments
+  % #2: image number
+  % #3: image path
+  %
+  {
+    % Check if first argument is numeric
+    \subfiglist_is_integer:nF { ##2 }
+    {
+      \msg_error:nnnf { subfiglist } { missing~number } { First } { \token_to_str:c { subfiglist #1 } }
+    }
+
+    % Check if first argument is in range
+    \int_compare:nTF { ##2 > \subfiglist_canvas_count_int }
+    {
+      \msg_error:nnnV { subfiglist } { argument~out~of~range }
+        { ##2 } \subfiglist_canvas_count_int
+    }{
+      % Save canvas type and image path
+      \prop_clear:N \subfiglist_temp_prop
+      \prop_put:Nnn \subfiglist_temp_prop { type } { #1 }
+      \prop_put:Nnn \subfiglist_temp_prop { path } { ##3 }
+
+      % Get file ratio
+      \subfiglist_get_file_ratio:Nn \subfiglist_tempa_tl { ##3 }
+      \prop_put:NnV \subfiglist_temp_prop { ratio } \subfiglist_tempa_tl
+
+      % Process opitonal arguments
+      \tl_set:Nn \subfiglist_csname_tl { \exp_not:N \subfiglistfile }
+      \keys_set:nn { subfiglistcanvas }
+        {
+          top    = \subfiglist_canvas_top_default_tl,
+          bottom = \subfiglist_canvas_bot_default_tl,
+          left   = \subfiglist_canvas_left_default_tl,
+          right  = \subfiglist_canvas_right_default_tl
+        }
+      \keys_set:nn { subfiglistcanvas } { ##1 }
+
+      % Save specified offsets
+      \prop_put:NnV \subfiglist_temp_prop { top }   \subfiglist_canvas_top_dim
+      \prop_put:NnV \subfiglist_temp_prop { bot }   \subfiglist_canvas_bot_dim
+      \prop_put:NnV \subfiglist_temp_prop { left }  \subfiglist_canvas_left_dim
+      \prop_put:NnV \subfiglist_temp_prop { right } \subfiglist_canvas_right_dim
+
+      \subfiglist_tl_set_from_prop:NN \subfiglist_tempa_tl \subfiglist_temp_prop
+      \prop_put:NnV \subfiglist_canvas_prop { ##2 } \subfiglist_tempa_tl
+    }
+  }
+}
+
+\cs_new:Npn \subfiglist_setup_dummy:nnn #1 #2 #3
 %
 % #1: optional arguments
 % #2: image number
-% #3: image path
+% #3: aspect ratio width:height
 %
 {
   % Check if first argument is numeric
   \subfiglist_is_integer:nF { #2 }
   {
-    \msg_error:nnnn { subfiglist } { missing~number } { First } { \subfiglistfile }
+    \msg_error:nnnn { subfiglist } { missing~number } { First } { \subfiglistdummy }
   }
 
   % Check if first argument is in range
@@ -1920,12 +1981,39 @@
   }{
     % Save canvas type and image path
     \prop_clear:N \subfiglist_temp_prop
-    \prop_put:Nnn \subfiglist_temp_prop { type } { file }
-    \prop_put:Nnn \subfiglist_temp_prop { path } { #3 }
+    \prop_put:Nnn \subfiglist_temp_prop { type } { dummy }
     
-    % Get file ratio
-    \subfiglist_get_file_ratio:Nn \subfiglist_tempa_tl { #3 }
-    \prop_put:NnV \subfiglist_temp_prop { ratio } \subfiglist_tempa_tl
+    % Get dummy ratio
+    \seq_set_split:Nnn \subfiglist_temp_seq { : } { #3 }
+    
+    \int_compare:nTF { 1 <= \seq_count:N \subfiglist_temp_seq <= 2 }
+    {
+      \int_compare:nTF { \seq_count:N \subfiglist_temp_seq = 1 }
+      {
+        \seq_get_left:NN \subfiglist_temp_seq \subfiglist_tempa_tl
+        \subfiglist_is_float:VF \subfiglist_tempa_tl
+        {
+          \msg_error:nnnn { subfiglist } { missing~float } { Second } { \subfiglistdummy }
+        }
+        \prop_put:NnV \subfiglist_temp_prop { ratio } \subfiglist_tempa_tl
+      }{
+        \seq_pop_left:NN \subfiglist_temp_seq \subfiglist_tempa_tl
+        \subfiglist_is_float:VF \subfiglist_tempa_tl
+        {
+          \msg_error:nnnn { subfiglist } { missing~float } { Second } { \subfiglistdummy }
+        }
+        \seq_pop_left:NN \subfiglist_temp_seq \subfiglist_tempb_tl
+        \subfiglist_is_float:VF \subfiglist_tempb_tl
+        {
+          \msg_error:nnnn { subfiglist } { missing~float } { Second } { \subfiglistdummy }
+        }
+        \fp_set:Nn \subfiglist_temp_fp { \subfiglist_tempb_tl / \subfiglist_tempa_tl }
+        \tl_set:Nf \subfiglist_tempa_tl { \fp_use:N \subfiglist_temp_fp }
+        \prop_put:NnV \subfiglist_temp_prop { ratio } \subfiglist_tempa_tl
+      }
+    }{
+      \msg_error:nnnn { subfiglist } { malformed~argument } { argument~containing~zero~or~one~colons } { `#3' }
+    }
     
     % Process opitonal arguments
     \tl_set:Nn \subfiglist_csname_tl { \exp_not:N \subfiglistfile }

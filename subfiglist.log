@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.3.26)  23 JUN 2017 22:06
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.3.26)  1 JUL 2017 17:31
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -703,52 +703,52 @@ Package graphics Info: Driver file: xetex.def on input line 95.
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistfile with sig. '' on line 3464.
+. Defining command \subfiglistfile with sig. '' on line 3552.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummyfile with sig. '' on line 3516.
+. Defining command \subfiglistdummyfile with sig. '' on line 3604.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummy with sig. '' on line 3574.
+. Defining command \subfiglistdummy with sig. '' on line 3662.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabel with sig. '' on line 3634.
+. Defining command \subfiglistlabel with sig. '' on line 3722.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistoverlay with sig. '' on line 3667.
+. Defining command \subfiglistoverlay with sig. '' on line 3755.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabelformat with sig. '' on line 3671.
+. Defining command \subfiglistlabelformat with sig. '' on line 3759.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistsvgenv' with sig. '' on line 3675.
+. Defining environment 'subfiglistsvgenv' with sig. '' on line 3763.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3696.
+. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3784.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3819.
+. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3907.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3823.
+. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3911.
 .................................................
 )
 runsystem(rm ./subfiglist.sty)...executed.
@@ -1167,42 +1167,53 @@ LaTeX Info: Redefining \nameref on input line 209.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistfile with sig. 'O{}mm' on line 938.
+. Redefining command \subfiglistfile with sig. 'O{}mm' on line 939.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummyfile with sig. 'sO{}mm' on line 938.
+. Redefining command \subfiglistdummyfile with sig. 'sO{}mm' on line 939.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummy with sig. 'sO{}mm' on line 938.
+. Redefining command \subfiglistdummy with sig. 'sO{}mm' on line 939.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistlabel with sig. 'O{}mm' on line 938.
+. Redefining command \subfiglistlabel with sig. 'O{}mm' on line 939.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistoverlay with sig. 'mm' on line 938.
+. Redefining command \subfiglistoverlay with sig. 'mm' on line 939.
 .................................................
 File: figures/01.png Graphic file (type QTm)
 <use  "figures/01.png" >
+File: figures/02.png Graphic file (type QTm)
+ <use  "figures/02.png" >
 The property list \subfiglist_canvas_prop contains the pairs (without outer
 braces):
 >  {1}  => 
 {{{type}{file}}{{path}{figures/01}}{{ratio}{0.6773069911903234}}{{top}{0.0pt}}{
-{bot}{0.0pt}}{{left}{0.0pt}}{{right}{0.0pt}}}.
+{bot}{0.0pt}}{{left}{0.0pt}}{{right}{0.0pt}}}
+>  {2}  => 
+{{{type}{dummyfile}}{{path}{figures/02}}{{ratio}{1}}{{top}{0.0pt}}{{bot}{0.0pt}
+}{{left}{0.0pt}}{{right}{0.0pt}}}
+>  {3}  => 
+{{{type}{dummy}}{{ratio}{1.23}}{{top}{0.0pt}}{{bot}{0.0pt}}{{left}{0.0pt}}{{rig
+ht}{0.0pt}}}
+>  {4}  => 
+{{{type}{dummy}}{{ratio}{0.75}}{{top}{0.0pt}}{{bot}{0.0pt}}{{left}{0.0pt}}{{rig
+ht}{0.0pt}}}.
 <recently read> }
                  
-l.941   \prop_show:N \subfiglist_canvas_prop
+l.945   \prop_show:N \subfiglist_canvas_prop
                                              \error
 
 ! Undefined control sequence.
-l.941 ...rop_show:N \subfiglist_canvas_prop \error
+l.945 ...rop_show:N \subfiglist_canvas_prop \error
                                                   
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
@@ -1213,17 +1224,17 @@ and I'll forget about whatever was undefined.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistfile with sig. '' on line 942.
+. Redefining command \subfiglistfile with sig. '' on line 946.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistlabel with sig. '' on line 942.
+. Redefining command \subfiglistlabel with sig. '' on line 946.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistoverlay with sig. '' on line 942.
+. Redefining command \subfiglistoverlay with sig. '' on line 946.
 .................................................
 
 Package caption Warning: Unused \captionsetup[subfigure] on input line 165.
@@ -1233,26 +1244,26 @@ See the caption package documentation for explanation.
 Package caption Warning: Unused \captionsetup[sublisting] on input line 167.
 See the caption package documentation for explanation.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 943.
-Package microtype Info: Setting up font `T1/lmr/m/sl/12' on input line 943.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 947.
+Package microtype Info: Setting up font `T1/lmr/m/sl/12' on input line 947.
 Package microtype Info: ... Loading protrusion list `lmr-it-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-it-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-it'.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 943.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 947.
 
 (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Package microtype Info: Setting up font `OT1/lmr/m/n/12' on input line 943.
+Package microtype Info: Setting up font `OT1/lmr/m/n/12' on input line 947.
 Package microtype Info: ... Loading protrusion list `cmr-OT1'.
 Package microtype Info: ... : First loading protrusion list `cmr-default'.
-Package microtype Info: Setting up font `OT1/lmr/m/n/8' on input line 943.
+Package microtype Info: Setting up font `OT1/lmr/m/n/8' on input line 947.
 Package microtype Info: ... Loading protrusion list `cmr-OT1'.
 Package microtype Info: ... : First loading protrusion list `cmr-default'.
-Package microtype Info: Setting up font `OT1/lmr/m/n/6' on input line 943.
+Package microtype Info: Setting up font `OT1/lmr/m/n/6' on input line 947.
 Package microtype Info: ... Loading protrusion list `cmr-OT1'.
 Package microtype Info: ... : First loading protrusion list `cmr-default'.
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 943.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 947.
 
 
 (/usr/share/texmf/tex/latex/lm/omllmm.fd
@@ -1260,13 +1271,13 @@ File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 Package microtype Info: ... No configuration file mt-lmm.cfg.
 Package microtype Info: ... No configuration file mt-cmm.cfg.
-Package microtype Info: Setting up font `OML/lmm/m/it/12' on input line 943.
+Package microtype Info: Setting up font `OML/lmm/m/it/12' on input line 947.
 Package microtype Info: ... No protrusion.
-Package microtype Info: Setting up font `OML/lmm/m/it/8' on input line 943.
+Package microtype Info: Setting up font `OML/lmm/m/it/8' on input line 947.
 Package microtype Info: ... No protrusion.
-Package microtype Info: Setting up font `OML/lmm/m/it/6' on input line 943.
+Package microtype Info: Setting up font `OML/lmm/m/it/6' on input line 947.
 Package microtype Info: ... No protrusion.
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 943
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 947
 .
 
 (/usr/share/texmf/tex/latex/lm/omslmsy.fd
@@ -1274,58 +1285,58 @@ File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 Package microtype Info: ... No configuration file mt-lmsy.cfg.
 Package microtype Info: ... No configuration file mt-cmsy.cfg.
-Package microtype Info: Setting up font `OMS/lmsy/m/n/12' on input line 943.
+Package microtype Info: Setting up font `OMS/lmsy/m/n/12' on input line 947.
 Package microtype Info: ... No protrusion.
-Package microtype Info: Setting up font `OMS/lmsy/m/n/8' on input line 943.
+Package microtype Info: Setting up font `OMS/lmsy/m/n/8' on input line 947.
 Package microtype Info: ... No protrusion.
-Package microtype Info: Setting up font `OMS/lmsy/m/n/6' on input line 943.
+Package microtype Info: Setting up font `OMS/lmsy/m/n/6' on input line 947.
 Package microtype Info: ... No protrusion.
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 943
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 947
 .
 
 (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 943.
+(Font)              <12> on input line 947.
 Package microtype Info: ... No configuration file mt-lmex.cfg.
-Package microtype Info: Setting up font `OMX/lmex/m/n/12' on input line 943.
+Package microtype Info: Setting up font `OMX/lmex/m/n/12' on input line 947.
 Package microtype Info: ... No protrusion.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 943.
-Package microtype Info: Setting up font `OMX/lmex/m/n/8' on input line 943.
+(Font)              <8> on input line 947.
+Package microtype Info: Setting up font `OMX/lmex/m/n/8' on input line 947.
 Package microtype Info: ... No protrusion.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 943.
-Package microtype Info: Setting up font `OMX/lmex/m/n/6' on input line 943.
+(Font)              <6> on input line 947.
+Package microtype Info: Setting up font `OMX/lmex/m/n/6' on input line 947.
 Package microtype Info: ... No protrusion.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 943.
+(babel)             in language  on input line 947.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 943.
+(babel)             in language  on input line 947.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 943.
+(babel)             in language  on input line 947.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 943.
+(babel)             in language  on input line 947.
  [1
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 943.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 947.
  (./subfiglist.aux
 Package microtype Info: *** Changing to language context `american'
 (microtype)              on input line 20.
 )
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 943.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 943.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 947.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 947.
  ) 
 Here is how much of TeX's memory you used:
- 30901 strings out of 493638
- 553845 string characters out of 6146796
- 703641 words of memory out of 5000000
- 33958 multiletter control sequences out of 15000+600000
+ 30914 strings out of 493638
+ 554144 string characters out of 6146796
+ 704554 words of memory out of 5000000
+ 33970 multiletter control sequences out of 15000+600000
  22887 words of font info for 30 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
- 67i,10n,119p,10434b,347s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 67i,10n,119p,10433b,347s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on subfiglist.pdf (1 page).
