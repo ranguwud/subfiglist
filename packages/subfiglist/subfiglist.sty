@@ -47,11 +47,12 @@
 \tl_new:N   \subfiglist_spec_tl
 \tl_new:N   \subfiglist_spec_token_tl
 \tl_new:N   \subfiglist_spec_current_line_tl
-\tl_new:N   \subfiglist_spec_canvas_nums_tl
-\tl_new:N   \subfiglist_spec_canvas_nums_sorted_tl
 
+\tl_new:N   \subfiglist_identifier_nums_tl
+\tl_new:N   \subfiglist_identifier_nums_sorted_tl
 \tl_new:N   \subfiglist_canvas_nums_tl
 \tl_new:N   \subfiglist_canvas_nums_sorted_tl
+
 \tl_new:N   \subfiglist_canvas_top_tl
 \tl_new:N   \subfiglist_canvas_bot_tl
 \tl_new:N   \subfiglist_canvas_left_tl
@@ -103,6 +104,7 @@
 \prop_new:N \subfiglist_temp_prop
 
 \int_new:N  \subfiglist_exit_count_int
+\int_new:N  \subfiglist_identifier_count_int
 \int_new:N  \subfiglist_canvas_count_int
 \int_new:N  \subfiglist_tl_if_eq_charcode_int
 \int_new:N  \subfiglist_keyval_choice_first_int
@@ -1443,7 +1445,7 @@
 {
   \seq_pop_left:NN #1 \subfiglist_tempa_tl
   \subfiglist_tokenize_wrap_token:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
-  \tl_put_right:NV \subfiglist_spec_canvas_nums_tl \subfiglist_tempb_tl
+  \tl_put_right:NV \subfiglist_identifier_nums_tl \subfiglist_tempb_tl
   
   \subfiglist_tokenize_make_token:NnV \subfiglist_tempb_tl { canvas } \subfiglist_tempa_tl
   \tl_put_right:NV #2 \subfiglist_tempb_tl
@@ -1535,7 +1537,7 @@
     \subfiglist_tokenize_spec_str:VN \subfiglist_tempa_tl #2
     \subfiglist_tokenize_make_token:NnV \subfiglist_tempa_tl { subblock } #2
     \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tempa_tl
-    \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_spec_canvas_nums_tl
+    \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_identifier_nums_tl
   \group_end:
   \tl_put_right:NV #2 \subfiglist_tempa_tl
 }
@@ -1601,7 +1603,7 @@
       }
     }
   \subfiglist_group_var_return:NN \tl_set:Nn #2
-  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_spec_canvas_nums_tl
+  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_identifier_nums_tl
   \group_end:
 }
 
@@ -1855,11 +1857,11 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Check if image numbers given in subfiglist specification are valid
-\cs_new:Npn \subfiglist_verify_spec_canvas_nums:NNN #1 #2 #3
+\cs_new:Npn \subfiglist_verify_identifier_nums:NNN #1 #2 #3
 %
-% #1: Variable containing canvas numbers
-% #2: Variable to store sorted canvas numbers
-% #3: Variable to store total number of canvases
+% #1: Variable containing identifier numbers
+% #2: Variable to store sorted identifier numbers
+% #3: Variable to store total number of identifiers
 %
 {
   % Sort detected image numbers
@@ -1923,10 +1925,10 @@
     }
 
     % Check if first argument is in range
-    \int_compare:nTF { ##2 > \subfiglist_canvas_count_int }
+    \int_compare:nTF { ##2 > \subfiglist_identifier_count_int }
     {
       \msg_error:nnnV { subfiglist } { argument~out~of~range }
-        { ##2 } \subfiglist_canvas_count_int
+        { ##2 } \subfiglist_identifier_count_int
     }{
       % Save canvas type and image path
       \prop_clear:N \subfiglist_temp_prop
@@ -1974,10 +1976,10 @@
   }
 
   % Check if first argument is in range
-  \int_compare:nTF { #2 > \subfiglist_canvas_count_int }
+  \int_compare:nTF { #2 > \subfiglist_identifier_count_int }
   {
     \msg_error:nnnV { subfiglist } { argument~out~of~range }
-      { #2 } \subfiglist_canvas_count_int
+      { #2 } \subfiglist_identifier_count_int
   }{
     % Save canvas type and image path
     \prop_clear:N \subfiglist_temp_prop
@@ -3819,15 +3821,15 @@
   }
 
   % Tokenize subfiglist specification
-  \tl_clear:N \subfiglist_spec_canvas_nums_tl
+  \tl_clear:N \subfiglist_identifier_nums_tl
   \seq_clear:N \subfiglist_spec_token_seq
   \subfiglist_tokenize_spec_str:nN { #3 } \subfiglist_spec_token_tl
   
-  % Verify canvas numbers
-  \subfiglist_verify_spec_canvas_nums:NNN
-    \subfiglist_spec_canvas_nums_tl
-    \subfiglist_spec_canvas_nums_sorted_tl
-    \subfiglist_canvas_count_int
+  % Verify identifier numbers
+  \subfiglist_verify_identifier_nums:NNN
+    \subfiglist_identifier_nums_tl
+    \subfiglist_identifier_nums_sorted_tl
+    \subfiglist_identifier_count_int
     
  % Parse subfiglist specification
   \subfiglist_parse_spec_tokens:VN \subfiglist_spec_token_tl \subfiglist_spec_tl
