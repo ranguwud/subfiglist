@@ -450,10 +450,16 @@
 \msg_new:nnn { subfiglist } { double~canvas }
   { Canvas~no.~#1~appears~twice~in~body~of~`subfiglist'~environment. }
 
-\msg_new:nnn { subfiglist } { number-mismatch }
+\msg_new:nnn { subfiglist } { too~many~identifiers }
 {
-  Number~of~specified~identifiers~and~number~of~specified~canvases~disagree.~
-  Maybe~you~forgot~one~canvas~number~or~specified~it~twice?
+  You~have~specified~#1~identifieres~in~argument~of~`subfiglist'~environment,~
+  but~only~#2~canvases~are~given~in~body~of~`subfiglist'~environment.
+}
+
+\msg_new:nnn { subfiglist } { too~many~canvases }
+{
+  You~have~specified~#1~canvases~in~body~of~`subfiglist'~environment,~
+  but~only~#2~identifieres~are~given~in~argument~of~`subfiglist'~environment.
 }
 
 \msg_new:nnn { subfiglist } { missing~number }
@@ -480,17 +486,23 @@
 \msg_new:nnn { subfiglist } { option~invalid }
   { Option~`caption'~invalid~after~\@backslashchar begin{document}. }
 
-\msg_new:nnn { subfiglist } { wrong~image~order }
+\msg_new:nnn { subfiglist } { wrong~identifier~order }
 {
   Package~subfiglist~Warning:~
-  The~image~numbers~in~the~subfiglist~specification~are~given~in~non-ascending~order.
+  The~image~numbers~in~the~argument~of~`subfiglist'~environment~are~given~in~non-ascending~order.
+}
+
+\msg_new:nnn { subfiglist } { wrong~canvas~order }
+{
+  Package~subfiglist~Warning:~
+  The~image~numbers~in~the~body~of~`subfiglist'~environment~are~given~in~non-ascending~order.
 }
 
 \msg_new:nnn { subfiglist } { mismatching~image~order }
 {
   Package~subfiglist~Warning:~
-  The~files~are~given~in~a~different~order~than~the~image~numbers~
-  in~the~subfiglist~specification.
+  The~image~numbers~in~the~argument~of~`subfiglist'~environment~are~given~
+  in~a~different~order~than~the~image~numbers~in~the~body~of~`subfiglist'~environment.
 }
 
 
@@ -1899,9 +1911,72 @@
   % are in ascending order and warn if otherwise
   \subfiglist_tl_if_eq:VVF #1 #2
   {
-    \msg_warning:nn { subfiglist } { wrong~image~order }
+    \msg_warning:nn { subfiglist } { wrong~identifier~order }
   }
 }
+
+% Check if image numbers given in subfiglist body are valid
+\cs_new:Npn \subfiglist_verify_canvas_nums:NNNn #1 #2 #3 #4
+%
+% #1: Variable containing identifier numbers
+% #2: Variable containing canvas numbers
+% #3: Variable to store sorted canvas numbers
+% #4: Total number of identifiers
+%
+{
+  % Sort detected image numbers
+  \tl_set_eq:NN #3 #2
+  \tl_sort:Nn #3
+  {
+    \int_compare:nTF { ##1 > ##2 }
+      { \sort_reversed: }
+      { \sort_ordered: }
+  }
+  
+  % Check if some image number is missing
+  \int_zero:N \subfiglist_tempa_int
+  \tl_map_inline:Nn #3
+  {
+    \int_incr:N \subfiglist_tempa_int
+    
+    \int_compare:nF { ##1 = \subfiglist_tempa_int }
+    {
+      \int_compare:nTF { ##1 > \subfiglist_tempa_int }
+      {
+        \msg_error:nnV { subfiglist } { missing~canvas } \subfiglist_tempa_int
+        \tl_map_break:
+      }{
+        \msg_error:nnn { subfiglist } { double~canvas } { ##1 }
+        \tl_map_break:
+      }
+    }
+  }
+  
+  % Is number of identifiers equal to number of canvases?
+  \int_compare:nF { \subfiglist_tempa_int = #4 }
+  {
+    \int_compare:nTF { \subfiglist_tempa_int > #4 }
+    {
+      \msg_error:nnVn { subfiglist } { too~many~canvases } \subfiglist_tempa_int { #4 }
+    }{
+      \msg_error:nnnV { subfiglist } { too~many~identifiers } { #4 } \subfiglist_tempa_int
+    }
+  }
+
+  % Check if image numbers in subfiglist specification
+  % are in ascending order and warn if otherwise
+  \subfiglist_tl_if_eq:VVF #2 #3
+  {
+    \msg_warning:nn { subfiglist } { wrong~canvas~order }
+  }
+  
+  \subfiglist_tl_if_eq:VVF #1 #2
+  {
+    \msg_warning:nn { subfiglist } { mismatching~image~order }
+  }
+}
+
+\cs_generate_variant:Nn \subfiglist_verify_canvas_nums:NNNn { NNNV }
 
 
 
@@ -1919,17 +1994,11 @@
   %
   {
     % Check if first argument is numeric
-    \subfiglist_is_integer:nF { ##2 }
+    \subfiglist_is_integer:nTF { ##2 }
     {
-      \msg_error:nnnf { subfiglist } { missing~number } { First } { \token_to_str:c { subfiglist #1 } }
-    }
+      \subfiglist_tl_set_wrapped:Nn \subfiglist_tempa_tl { ##2 }
+      \tl_put_right:NV \subfiglist_canvas_nums_tl \subfiglist_tempa_tl
 
-    % Check if first argument is in range
-    \int_compare:nTF { ##2 > \subfiglist_identifier_count_int }
-    {
-      \msg_error:nnnV { subfiglist } { argument~out~of~range }
-        { ##2 } \subfiglist_identifier_count_int
-    }{
       % Save canvas type and image path
       \prop_clear:N \subfiglist_temp_prop
       \prop_put:Nnn \subfiglist_temp_prop { type } { #1 }
@@ -1958,6 +2027,8 @@
 
       \subfiglist_tl_set_from_prop:NN \subfiglist_tempa_tl \subfiglist_temp_prop
       \prop_put:NnV \subfiglist_canvas_prop { ##2 } \subfiglist_tempa_tl
+    }{
+      \msg_error:nnnf { subfiglist } { missing~number } { First } { \token_to_str:c { subfiglist #1 } }
     }
   }
 }
@@ -1970,17 +2041,11 @@
 %
 {
   % Check if first argument is numeric
-  \subfiglist_is_integer:nF { #2 }
+  \subfiglist_is_integer:nTF { #2 }
   {
-    \msg_error:nnnn { subfiglist } { missing~number } { First } { \subfiglistdummy }
-  }
+    \subfiglist_tl_set_wrapped:Nn \subfiglist_tempa_tl { #2 }
+    \tl_put_right:NV \subfiglist_canvas_nums_tl \subfiglist_tempa_tl
 
-  % Check if first argument is in range
-  \int_compare:nTF { #2 > \subfiglist_identifier_count_int }
-  {
-    \msg_error:nnnV { subfiglist } { argument~out~of~range }
-      { #2 } \subfiglist_identifier_count_int
-  }{
     % Save canvas type and image path
     \prop_clear:N \subfiglist_temp_prop
     \prop_put:Nnn \subfiglist_temp_prop { type } { dummy }
@@ -2036,6 +2101,8 @@
     
     \subfiglist_tl_set_from_prop:NN \subfiglist_tempa_tl \subfiglist_temp_prop
     \prop_put:NnV \subfiglist_canvas_prop { #2 } \subfiglist_tempa_tl
+  }{
+    \msg_error:nnnn { subfiglist } { missing~number } { First } { \subfiglistdummy }
   }
 }
 
@@ -3864,9 +3931,13 @@
   \RenewDocumentCommand \subfiglistoverlay { m m }
     { \subfiglist_overlay_internal:nn { ##1 } { ##2 } }
 }{
-%  % Check if file numbers are valid
-%  \subfiglist_test_canvas_nums:
-%  
+  % Verify canvas numbers
+  \subfiglist_verify_canvas_nums:NNNV
+    \subfiglist_identifier_nums_tl
+    \subfiglist_canvas_nums_tl
+    \subifglist_canvas_nums_sorted_tl
+    \subfiglist_identifier_count_int
+
 %  % Parse subfiglist specification and reverse
 %  % resulting token lists afterwards
 %  \int_zero:N \subfiglist_exit_count_int
