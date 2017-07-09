@@ -19,6 +19,7 @@ TODO
 * Rewrite error messages for int/float as "expected integer, found ... instead"
 * Replace any \cs in error messages by \tl_to_str:c { cs }
 * Remove error message "argument out of range"
+* Add spaces to empty lines to fix syntax highlighting
 
 
 

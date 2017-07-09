@@ -40,12 +40,15 @@
 \dim_new:N  \subfiglist_tempa_dim
 \dim_new:N  \subfiglist_tempb_dim
 
+\dim_new:N  \subfiglist_effective_line_width_dim
+
 \tl_new:N   \subfiglist_test_tl
 \tl_new:N   \subfiglist_head_tl
 \tl_new:N   \subfiglist_tail_tl
 
 \tl_new:N   \subfiglist_parsed_spec_tl
 \tl_new:N   \subfiglist_tokenized_spec_tl
+\tl_new:N   \subfiglist_dimensioned_spce_tl
 \tl_new:N   \subfiglist_spec_current_line_tl
 
 \tl_new:N   \subfiglist_identifier_nums_tl
@@ -120,6 +123,7 @@
 \fp_new:N   \subfiglist_sub_block_ratio_fp
 \fp_new:N   \subfiglist_sum_ratio_over_ratio_fp
 \fp_new:N   \subfiglist_temp_fp
+\fp_new:N   \subfiglist_canvas_ratio_sum_fp
 
 \bool_new:N \subfiglist_after_char_at_bool
 \bool_new:N \subfiglist_after_char_br_bool
@@ -513,9 +517,15 @@
 \cs_generate_variant:Nn \dim_set:Nn               { Nf }
 \cs_generate_variant:Nn \dim_add:Nn               { Nf }
 \cs_generate_variant:Nn \dim_sub:Nn               { Nf }
+\cs_generate_variant:Nn \dim_set:Nn               { NV }
+\cs_generate_variant:Nn \dim_add:Nn               { NV }
+\cs_generate_variant:Nn \dim_sub:Nn               { NV }
 \cs_generate_variant:Nn \fp_set:Nn                { Nf }
 \cs_generate_variant:Nn \fp_add:Nn                { Nf }
 \cs_generate_variant:Nn \fp_sub:Nn                { Nf }
+\cs_generate_variant:Nn \fp_set:Nn                { NV }
+\cs_generate_variant:Nn \fp_add:Nn                { NV }
+\cs_generate_variant:Nn \fp_sub:Nn                { NV }
 \cs_generate_variant:Nn \tl_put_right:Nn          { Nf }
 \cs_generate_variant:Nn \tl_if_single:NTF         { V }
 \cs_generate_variant:Nn \msg_error:nnn            { nnf }
@@ -610,6 +620,19 @@
   \tl_set:Nn #1 { { { #2 } { #3 } } }
 }
 
+% Commands for removing braces from tokens and storing them in
+% a token list variable
+\cs_new:Npn \subfiglist_tl_set_unwrapped:Nn #1 #2
+%
+% #1: Token list variable to be set
+% #2: Token list with braces
+%
+{
+  \subfiglist_tl_set_head:Nn #1 #2
+}
+
+\cs_generate_variant:Nn \subfiglist_tl_set_unwrapped:Nn { NV }
+
 % Commands for transforming property lists into token lists
 % and vice versa
 \cs_new:Npn \subfiglist_tl_set_from_prop:NN #1 #2
@@ -629,6 +652,18 @@
     \tl_set_eq:NN #1 \subfiglist_tempa_tl
   \subfiglist_group_var_return:NN \tl_set:Nn #1
   \group_end:
+}
+
+\cs_new:Npn \subfiglist_prop_set_from_tl:NN #1 #2
+%
+% #1: Property list to be set
+% #2: Token list
+%
+{
+  \tl_map_inline:Nn #2
+  {
+    \prop_put:Nnn #1 ##1
+  }
 }
 
 
@@ -1734,7 +1769,7 @@
   \seq_pop_left:NN #1 \subfiglist_tempa_tl
   \subfiglist_tl_set_tail:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
   % Remove one level of braces
-  \subfiglist_tl_set_head:NV \subfiglist_tempa_tl \subfiglist_tempb_tl
+  \subfiglist_tl_set_unwrapped:NV \subfiglist_tempa_tl \subfiglist_tempb_tl
   \group_begin:
     \tl_clear:N #2
     \subfiglist_parse_spec_tokens:VN \subfiglist_tempa_tl #2
@@ -1751,7 +1786,7 @@
 % #2: Token list variable for storing tokenized specification string
 %
 {
-  \seq_get_left:NN \subfiglist_spec_tokens_seq \subfiglist_tempa_tl
+  \seq_get_left:NN #1 \subfiglist_tempa_tl
   \tl_clear:N \subfiglist_tempb_tl
 
   \bool_until_do:nn
@@ -1760,30 +1795,30 @@
       { \quark_if_no_value_p:N \subfiglist_tempa_tl }
       { ! \subfiglist_parse_is_line_p:V \subfiglist_tempa_tl }
   }{
-    \seq_pop_left:NN \subfiglist_spec_tokens_seq \subfiglist_tempa_tl
+    \seq_pop_left:NN #1 \subfiglist_tempa_tl
     \subfiglist_parse_wrap_token:NV \subfiglist_tempa_tl \subfiglist_tempa_tl
     \tl_put_right:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
-    \seq_get_left:NN \subfiglist_spec_tokens_seq \subfiglist_tempa_tl
+    \seq_get_left:NN #1 \subfiglist_tempa_tl
   }
   
   \tl_set_eq:NN \subfiglist_tempa_tl #2
   \group_begin:
     \tl_clear:N #2
-    \seq_clear:N \subfiglist_spec_tokens_seq
+    \seq_clear:N #1
     \tl_map_inline:Nn \subfiglist_tempb_tl
     {
-      \seq_put_right:Nn \subfiglist_spec_tokens_seq { ##1 }
+      \seq_put_right:Nn #1 { ##1 }
     }
     
-    \bool_until_do:nn { \seq_if_empty_p:N \subfiglist_spec_tokens_seq }
+    \bool_until_do:nn { \seq_if_empty_p:N #1 }
     {
-      \seq_get_left:NN \subfiglist_spec_tokens_seq \subfiglist_tempa_tl
+      \seq_get_left:NN #1 \subfiglist_tempa_tl
       
       \tl_map_inline:nn { { canvas } { separator } { subblock } { error } }
       {
         \bool_if:nT { \subfiglist_use:c { subfiglist_parse_is_ ##1 _p:V } \subfiglist_tempa_tl }
         {
-          \subfiglist_use:c { subfiglist_parse_ ##1 :NN } \subfiglist_spec_tokens_seq #2
+          \subfiglist_use:c { subfiglist_parse_ ##1 :NN } #1 #2
           \tl_map_break:
         }
       }
@@ -2045,7 +2080,7 @@
   {
     \subfiglist_tl_set_wrapped:Nn \subfiglist_tempa_tl { #2 }
     \tl_put_right:NV \subfiglist_canvas_nums_tl \subfiglist_tempa_tl
-
+    
     % Save canvas type and image path
     \prop_clear:N \subfiglist_temp_prop
     \prop_put:Nnn \subfiglist_temp_prop { type } { dummy }
@@ -2105,6 +2140,59 @@
     \msg_error:nnnn { subfiglist } { missing~number } { First } { \subfiglistdummy }
   }
 }
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Canvas dimesioning   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cs_new:Npn \subfiglist_dimension_canvas:NNNn #1 #2 #3 #4
+%
+% #1: Floating point variable to store canvas ratio
+% #2: Dimension to store horizontal offset
+% #3: Dimension to store vertical offset
+% #4: Canvas specification
+{
+  \prop_get:NnN \subfiglist_canvas_prop { #4 } \subfiglist_tempa_tl
+  \subfiglist_prop_set_from_tl:NN \subfiglist_temp_prop \subfiglist_tempa_tl
+  
+  \prop_get:NnN \subfiglist_temp_prop { ratio } \subfiglist_tempa_tl
+  \fp_set:NV #1 \subfiglist_tempa_tl
+  
+  \dim_zero:N #2
+  \prop_get:NnN \subfiglist_temp_prop { left } \subfiglist_tempa_tl
+  \dim_add:NV #2 \subfiglist_tempa_tl
+  \prop_get:NnN \subfiglist_temp_prop { right } \subfiglist_tempa_tl
+  \dim_add:NV #2 \subfiglist_tempa_tl
+  
+  \dim_zero:N #3
+  \prop_get:NnN \subfiglist_temp_prop { top } \subfiglist_tempa_tl
+  \dim_add:NV #3 \subfiglist_tempa_tl
+  \prop_get:NnN \subfiglist_temp_prop { bot } \subfiglist_tempa_tl
+  \dim_add:NV #3 \subfiglist_tempa_tl
+}
+
+\cs_generate_variant:Nn \subfiglist_dimension_canvas:NNNn { NNNV }
+
+\cs_new:Npn \subfiglist_dimension_line:NNn #1 #2 #3
+%
+% #1: Token list variable for stroing dimensioned specification string
+% #2: Property list containing canvas properties
+% #3: Token list with parsed specification string for current line
+{
+  \tl_map_inline:nn { #3 }
+  {
+    \subfiglist_tl_set_head:Nn \subfiglist_tempa_tl { ##1 }
+    \subfiglist_tl_set_tail:Nn \subfiglist_tempb_tl { ##1 }
+    \subfiglist_tl_set_unwrapped:NV \subfiglist_tempb_tl \subfiglist_tempb_tl
+    
+    \subfiglist_use:c { subfiglist_dimension_ \subfiglist_tempa_tl :NNNV }
+      \subfiglist_temp_fp \subfiglist_tempa_dim \subfiglist_tempb_dim \subfiglist_tempb_tl
+  }
+}
+
+\cs_generate_variant:Nn \subfiglist_dimension_line:NNn { NNV }
 
 
 
