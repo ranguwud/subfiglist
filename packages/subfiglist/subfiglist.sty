@@ -2109,7 +2109,7 @@
         {
           \msg_error:nnnn { subfiglist } { missing~float } { Second } { \subfiglistdummy }
         }
-        \fp_set:Nn \subfiglist_temp_fp { \subfiglist_tempb_tl / \subfiglist_tempa_tl }
+        \fp_set:Nn \subfiglist_temp_fp { \subfiglist_tempa_tl / \subfiglist_tempb_tl }
         \tl_set:Nf \subfiglist_tempa_tl { \fp_use:N \subfiglist_temp_fp }
         \prop_put:NnV \subfiglist_temp_prop { ratio } \subfiglist_tempa_tl
       }
@@ -2173,7 +2173,7 @@
   \dim_add:NV #3 \subfiglist_tempa_tl
 }
 
-\cs_generate_variant:Nn \subfiglist_dimension_canvas:NNNn { NNNV }
+\cs_generate_variant:Nn \subfiglist_get_key_figures_canvas:NNNn { NNNV }
 
 \cs_new:Npn \subfiglist_get_key_figures_line:NNn #1 #2 #3 #4
 %
@@ -2193,7 +2193,7 @@
   }
 }
 
-\cs_generate_variant:Nn \subfiglist_dimension_line:NNn { NNV }
+\cs_generate_variant:Nn \subfiglist_get_key_figures_line:NNn { NNV }
 
 
 
@@ -2279,7 +2279,7 @@
 %%%   Calculate canvas ratio   %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-% Calculate ratio height/width of specified file
+% Calculate ratio width/height of specified file
 \cs_new:Npn \subfiglist_get_file_ratio:Nn #1 #2
 %
 % #1: floating point variable to store ratio
@@ -2298,8 +2298,8 @@
     \dim_set:Nn \subfiglist_canvas_height_dim { \ht\subfiglist_box }
     \dim_set:Nn \subfiglist_canvas_width_dim  { \wd\subfiglist_box }
 
-    % Store ratio height/width
-    \fp_set:Nn \subfiglist_tempa_fp { \subfiglist_canvas_height_dim / \subfiglist_canvas_width_dim }
+    % Store ratio width/height
+    \fp_set:Nn \subfiglist_tempa_fp { \subfiglist_canvas_width_dim / \subfiglist_canvas_height_dim }
     \tl_set:Nf #1 { \fp_use:N \subfiglist_tempa_fp }
 
   % Return local variables with group scope
