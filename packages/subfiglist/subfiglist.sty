@@ -44,8 +44,8 @@
 \tl_new:N   \subfiglist_head_tl
 \tl_new:N   \subfiglist_tail_tl
 
-\tl_new:N   \subfiglist_spec_tl
-\tl_new:N   \subfiglist_spec_token_tl
+\tl_new:N   \subfiglist_parsed_spec_tl
+\tl_new:N   \subfiglist_tokenized_spec_tl
 \tl_new:N   \subfiglist_spec_current_line_tl
 
 \tl_new:N   \subfiglist_identifier_nums_tl
@@ -3890,7 +3890,7 @@
   % Tokenize subfiglist specification
   \tl_clear:N \subfiglist_identifier_nums_tl
   \seq_clear:N \subfiglist_spec_token_seq
-  \subfiglist_tokenize_spec_str:nN { #3 } \subfiglist_spec_token_tl
+  \subfiglist_tokenize_spec_str:nN { #3 } \subfiglist_tokenized_spec_tl
   
   % Verify identifier numbers
   \subfiglist_verify_identifier_nums:NNN
@@ -3899,7 +3899,7 @@
     \subfiglist_identifier_count_int
     
  % Parse subfiglist specification
-  \subfiglist_parse_spec_tokens:VN \subfiglist_spec_token_tl \subfiglist_spec_tl
+  \subfiglist_parse_spec_tokens:VN \subfiglist_tokenized_spec_tl \subfiglist_parsed_spec_tl
   
   \prop_clear:N \subfiglist_canvas_prop
   
@@ -3941,7 +3941,7 @@
 %  % Parse subfiglist specification and reverse
 %  % resulting token lists afterwards
 %  \int_zero:N \subfiglist_exit_count_int
-%  \subfiglist_parse_objects:N \subfiglist_spec_tl
+%  \subfiglist_parse_objects:N \subfiglist_parsed_spec_tl
 %  \tl_reverse:N \subfiglist_objects_pos_tl
 %  \tl_reverse:N \subfiglist_objects_hoff_tl
 %  \tl_reverse:N \subfiglist_objects_voff_tl
