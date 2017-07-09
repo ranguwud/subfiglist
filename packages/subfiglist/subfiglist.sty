@@ -2147,7 +2147,7 @@
 %%%   Canvas dimesioning   %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\cs_new:Npn \subfiglist_dimension_canvas:NNNn #1 #2 #3 #4
+\cs_new:Npn \subfiglist_get_key_figures_canvas:NNNn #1 #2 #3 #4
 %
 % #1: Floating point variable to store canvas ratio
 % #2: Dimension to store horizontal offset
@@ -2175,19 +2175,20 @@
 
 \cs_generate_variant:Nn \subfiglist_dimension_canvas:NNNn { NNNV }
 
-\cs_new:Npn \subfiglist_dimension_line:NNn #1 #2 #3
+\cs_new:Npn \subfiglist_get_key_figures_line:NNn #1 #2 #3 #4
 %
-% #1: Token list variable for stroing dimensioned specification string
-% #2: Property list containing canvas properties
-% #3: Token list with parsed specification string for current line
+% #1: Floating point variable to store canvas ratio
+% #2: Dimension to store horizontal offset
+% #3: Dimension to store vertical offset
+% #4: Token list with parsed specification string for current line
 {
-  \tl_map_inline:nn { #3 }
+  \tl_map_inline:nn { #4 }
   {
     \subfiglist_tl_set_head:Nn \subfiglist_tempa_tl { ##1 }
     \subfiglist_tl_set_tail:Nn \subfiglist_tempb_tl { ##1 }
     \subfiglist_tl_set_unwrapped:NV \subfiglist_tempb_tl \subfiglist_tempb_tl
     
-    \subfiglist_use:c { subfiglist_dimension_ \subfiglist_tempa_tl :NNNV }
+    \subfiglist_use:c { subfiglist_get_key_figures_ \subfiglist_tempa_tl :NNNV }
       \subfiglist_temp_fp \subfiglist_tempa_dim \subfiglist_tempb_dim \subfiglist_tempb_tl
   }
 }
