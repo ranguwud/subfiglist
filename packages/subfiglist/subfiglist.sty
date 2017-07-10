@@ -2155,7 +2155,7 @@
 %%%   Canvas dimesioning   %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\cs_new:Npn \subfiglist_get_key_figures_canvas:NNNn #1 #2 #3 #4
+\cs_new:Npn \subfiglist_get_aspect_canvas:NNNn #1 #2 #3 #4
 %
 % #1: Floating point variable to store canvas ratio
 % #2: Dimension to store horizontal offset
@@ -2181,9 +2181,9 @@
   \dim_add:NV #3 \subfiglist_tempa_tl
 }
 
-\cs_generate_variant:Nn \subfiglist_get_key_figures_canvas:NNNn { NNNV }
+\cs_generate_variant:Nn \subfiglist_get_aspect_canvas:NNNn { NNNV }
 
-\cs_new:Npn \subfiglist_get_key_figures_space:NNNn #1 #2 #3 #4
+\cs_new:Npn \subfiglist_get_aspect_space:NNNn #1 #2 #3 #4
 %
 % #1: Floating point variable to store canvas ratio
 % #2: Dimension to store horizontal offset
@@ -2195,9 +2195,9 @@
   \dim_zero:N #3
 }
 
-\cs_generate_variant:Nn \subfiglist_get_key_figures_space:NNNn { NNNV }
+\cs_generate_variant:Nn \subfiglist_get_aspect_space:NNNn { NNNV }
 
-\cs_new:Npn \subfiglist_get_key_figures_line:NNNn #1 #2 #3 #4
+\cs_new:Npn \subfiglist_get_aspect_line:NNNn #1 #2 #3 #4
 %
 % #1: Floating point variable to store canvas ratio
 % #2: Dimension to store horizontal offset
@@ -2216,7 +2216,7 @@
       \subfiglist_tl_set_tail:Nn \subfiglist_tempb_tl { ##1 }
       \subfiglist_tl_set_unwrapped:NV \subfiglist_tempb_tl \subfiglist_tempb_tl
       
-      \subfiglist_use:c { subfiglist_get_key_figures_ \subfiglist_tempa_tl :NNNV }
+      \subfiglist_use:c { subfiglist_get_aspect_ \subfiglist_tempa_tl :NNNV }
         \subfiglist_temp_fp \subfiglist_tempa_dim \subfiglist_tempb_dim \subfiglist_tempb_tl
       
       \fp_add:NV #1 \subfiglist_temp_fp
@@ -2232,7 +2232,7 @@
   \group_end:
 }
 
-\cs_generate_variant:Nn \subfiglist_get_key_figures_line:NNNn { NNNV }
+\cs_generate_variant:Nn \subfiglist_get_aspect_line:NNNn { NNNV }
 
 
 \cs_new:Npn \subfiglist_dimension_canvas:Nnn #1 #2 #3
@@ -2290,7 +2290,7 @@
 % #3: Token list with parsed specification string for current line
 %
 {
-  \subfiglist_get_key_figures_line:NNNn
+  \subfiglist_get_aspect_line:NNNn
     \subfiglist_effective_canvas_ratio_fp
     \subfiglist_effective_hoff_dim
     \subfiglist_effective_voff_dim

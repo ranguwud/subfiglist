@@ -22,7 +22,6 @@ TODO
 * Add spaces to empty lines to fix syntax highlighting
 * Use expl3 box commands instead of plain TeX commands
 * Add option to keep images stored in boxes instead of loading them twice
-* Rename key_figures -> aspect
 
 
 
@@ -35,3 +34,4 @@ DONE
 * For token list conditionals, check for length equal to 1 and do not pass tail, if true. Makes ..._or_empty functions obsolete.
 * Make use of \tl_if_head_is_space in token list conditionals & revert to _or_empty versions of tl conditionals
 * Add \subfiglist_tl_if_eq_charcode and employ in lexer functions
+* Rename key_figures -> aspect
