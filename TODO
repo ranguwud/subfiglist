@@ -20,6 +20,9 @@ TODO
 * Replace any \cs in error messages by \tl_to_str:c { cs }
 * Remove error message "argument out of range"
 * Add spaces to empty lines to fix syntax highlighting
+* Use expl3 box commands instead of plain TeX commands
+* Add option to keep images stored in boxes instead of loading them twice
+* Rename key_figures -> aspect
 
 
 
