@@ -19,6 +19,8 @@
 %%%   Define package variables   %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\dim_new:N  \subfiglistlineheight
+
 \dim_new:N  \subfiglist_total_width_dim
 \dim_new:N  \subfiglist_canvas_space_dim
 \dim_new:N  \subfiglist_canvas_height_dim
@@ -2209,6 +2211,23 @@
 
 \cs_generate_variant:Nn \subfiglist_get_aspect_space:NNNn { NNNV }
 
+\cs_new:Npn \subfiglist_get_aspect_separator:NNNn #1 #2 #3 #4
+%
+% #1: Floating point variable to store canvas ratio
+% #2: Dimension to store horizontal offset
+% #3: Dimension to store vertical offset
+% #4: Separator specification
+{
+  \dim_set:Nn \subfiglistlineheight { 1ex }
+  \fp_zero:N #1
+  
+  \setbox \subfiglist_box \hbox { #4 }
+  \dim_set:Nn #2 { \wd \subfiglist_box }
+  \dim_set:Nn #3 { \ht \subfiglist_box }
+}
+
+\cs_generate_variant:Nn \subfiglist_get_aspect_separator:NNNn { NNNV }
+
 \cs_new:Npn \subfiglist_get_aspect_line:NNNn #1 #2 #3 #4
 %
 % #1: Floating point variable to store canvas ratio
@@ -2296,6 +2315,22 @@
 \cs_generate_variant:Nn \subfiglist_dimension_space:Nnn { NnV }
 \cs_generate_variant:Nn \subfiglist_dimension_space:Nnn { NVn }
 \cs_generate_variant:Nn \subfiglist_dimension_space:Nnn { NVV }
+
+
+\cs_new:Npn \subfiglist_dimension_separator:Nnn #1 #2 #3
+%
+% #1: Token list variable for storing dimensioned specification string
+% #2: Height of current line
+% #3: Separator specification
+%
+{
+  \subfiglist_tl_set_wrapped:Nnn \subfiglist_tempa_tl { separator } { #3 }
+  \tl_put_right:NV #1 \subfiglist_tempa_tl
+}
+
+\cs_generate_variant:Nn \subfiglist_dimension_separator:Nnn { NnV }
+\cs_generate_variant:Nn \subfiglist_dimension_separator:Nnn { NVn }
+\cs_generate_variant:Nn \subfiglist_dimension_separator:Nnn { NVV }
 
 
 \cs_new:Npn \subfiglist_dimension_line:Nnn #1 #2 #3
@@ -2617,9 +2652,32 @@
   \end { subfigure }
 }
 
+\cs_generate_variant:Nn \subfiglist_put_canvas:n { V }
+
 % Initialize \subfiglist_put_space: to empty control sequence
 \cs_new:Npn \subfiglist_put_space:n #1 {}
 
+\cs_generate_variant:Nn \subfiglist_put_space:n { V }
+
+\cs_new:Npn \subfiglist_put_lineheight:n #1
+%
+% #1: Height of current line
+%
+{
+  \dim_set:Nn \subfiglistlineheight { #1 }
+}
+
+\cs_generate_variant:Nn \subfiglist_put_lineheight:n { V }
+
+\cs_new:Npn \subfiglist_put_separator:n #1
+%
+% #1: Content of separator
+%
+{
+  \mbox { #1 }
+}
+
+\cs_generate_variant:Nn \subfiglist_put_separator:n { V }
 
 
 
