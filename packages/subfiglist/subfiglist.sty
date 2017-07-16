@@ -585,16 +585,28 @@
 \cs_generate_variant:Nn \subfiglist_exp_args:Ntt { c }
 
 
-% Commands for setting a token list variable to head or tail
-% of another token list variable
+% Command for setting a token list variable to head
+% of another token list variable. If the heading token
+% is enclosed by braces, one level of braces will be removed
 \cs_new:Npn \subfiglist_tl_set_head:Nn #1 #2
+%
+% #1: Token list variable to be set
+% #2: Token list variable to get head from
+%
 {
   \subfiglist_exp_args:NNt \tl_set:Nn #1 { \tl_head:n { #2 } }
 }
 
 \cs_generate_variant:Nn \subfiglist_tl_set_head:Nn { NV }
 
+% Command for setting a token list variable to tail
+% of another token list variable. No braces will be
+% removed from any of the trailing tokens.
 \cs_new:Npn \subfiglist_tl_set_tail:Nn #1 #2
+%
+% #1: Token list variable to be set
+% #2: Token list variable to get tail from
+%
 {
   \subfiglist_exp_args:NNt \tl_set:Nn #1 { \tl_tail:n { #2 } }
 }
@@ -636,7 +648,7 @@
 % #2: Token list with braces
 %
 {
-  \subfiglist_tl_set_head:Nn #1 #2
+  \tl_set:Nn #1 #2
 }
 
 \cs_generate_variant:Nn \subfiglist_tl_set_unwrapped:Nn { NV }
