@@ -22,6 +22,10 @@ TODO
 * Add spaces to empty lines to fix syntax highlighting
 * Use expl3 box commands instead of plain TeX commands
 * Add option to keep images stored in boxes instead of loading them twice
+* Add "g" to name of any global variables
+* Add "i" to name of inline macros, which modify variables without scoping
+* Introduce R-type argument for byref-tokens
+* Secure any \prop_get for occurence of \q_empty
 
 
 
