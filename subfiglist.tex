@@ -936,10 +936,10 @@ xxx
 %  \subfiglist_spec_canvas_nums_tl
 %  \subfiglist_spec_canvas_nums_sorted_tl
 %  \subfiglist_canvas_count_int
-\begin{subfiglist}{1 2}%{ 1 @{asdf} {2} { 3 \\ 4 } \\[1ex] 5 }
+\begin{subfiglist*}{1 2}%{ 1 @{asdf} {2} { 3 \\ 4 } \\[1ex] 5 }
 %  \tl_show:N \subfiglist_spec_tl \error
-  \subfiglist_setup_dummy:nnn {} {1} { 1 }
-  \subfiglist_setup_file:nnn {left=1em} {2} { figures/02 }
+  \subfiglist_setup_file:nnn {} {1} { figures/01 }
+  \subfiglist_setup_file:nnn {} {2} { figures/02 }
 %  \subfiglist_setup_dummy:nnn {} {3} { 1.23 }
 %  \subfiglist_setup_dummy:nnn {} {4} { 4:3 }
 %  \subfiglist_setup_dummy:nnn {} {5} { 4:3 }
@@ -957,9 +957,10 @@ xxx
 \dim_use:N \subfiglist_line_height_dim\\
 
 %  \prop_show:N \subfiglist_canvas_prop \error
-  \tl_show:N \subfiglist_dimensioned_spec_tl\error
+%  \tl_show:N \subfiglist_dimensioned_spec_tl\error
 \captionsetup{type=figure}
 \subfiglist_put_canvas:n { 1 }
+\subfiglist_put_space:n  { }
 \subfiglist_put_canvas:n { 2 }
-\end{subfiglist}
+\end{subfiglist*}
 \end{document}

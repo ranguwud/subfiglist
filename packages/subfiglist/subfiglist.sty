@@ -2605,15 +2605,16 @@
   \end { subfigure }
 }
 
+% Initialize \subfiglist_put_space: to empty control sequence
+\cs_new:Npn \subfiglist_put_space:n #1 {}
+
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%
 %%%   Package code   %%%
 %%%%%%%%%%%%%%%%%%%%%%%%
   
-% Initialize \subfiglist_put_space: to empty control sequence
-\cs_new:Npn \subfiglist_put_space: {}
-
 % Define command for label inset
 \cs_new:Npn \subfiglist_label_inset:nnn #1 #2 #3
 %
@@ -3960,12 +3961,12 @@
   % depending on whether the starred environment is called.
   \IfBooleanTF #1
   {
-    \cs_set:Npn \subfiglist_put_space:
+    \cs_set:Npn \subfiglist_put_space:n ##1
     {
       \hspace * { \dim_use:N \subfiglist_canvas_space_dim }
     }
   }{
-    \cs_set:Npn \subfiglist_put_space:
+    \cs_set:Npn \subfiglist_put_space:n ##1
     {
       \hfill
     }
