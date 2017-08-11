@@ -2165,9 +2165,9 @@
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%   Canvas dimesioning   %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Canvas aspect ratio   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \cs_new:Npn \subfiglist_get_aspect_canvas:NNNn #1 #2 #3 #4
 %
@@ -2266,7 +2266,12 @@
 \cs_generate_variant:Nn \subfiglist_get_aspect_line:NNNn { NNNV }
 
 
-\cs_new:Npn \subfiglist_dimension_canvas:Nnn #1 #2 #3
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Canvas dimesioning   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cs_new:Npn \subfiglist_dimension_hmode_canvas:Nnn #1 #2 #3
 %
 % #1: Token list variable for storing dimensioned specification string
 % #2: Height of current line
@@ -2296,12 +2301,12 @@
   \tl_put_right:NV #1 \subfiglist_tempa_tl
 }
 
-\cs_generate_variant:Nn \subfiglist_dimension_canvas:Nnn { NnV }
-\cs_generate_variant:Nn \subfiglist_dimension_canvas:Nnn { NVn }
-\cs_generate_variant:Nn \subfiglist_dimension_canvas:Nnn { NVV }
+\cs_generate_variant:Nn \subfiglist_dimension_hmode_canvas:Nnn { NnV }
+\cs_generate_variant:Nn \subfiglist_dimension_hmode_canvas:Nnn { NVn }
+\cs_generate_variant:Nn \subfiglist_dimension_hmode_canvas:Nnn { NVV }
 
 
-\cs_new:Npn \subfiglist_dimension_space:Nnn #1 #2 #3
+\cs_new:Npn \subfiglist_dimension_hmode_space:Nnn #1 #2 #3
 %
 % #1: Token list variable for storing dimensioned specification string
 % #2: Height of current line
@@ -2312,12 +2317,12 @@
   \tl_put_right:NV #1 \subfiglist_tempa_tl
 }
 
-\cs_generate_variant:Nn \subfiglist_dimension_space:Nnn { NnV }
-\cs_generate_variant:Nn \subfiglist_dimension_space:Nnn { NVn }
-\cs_generate_variant:Nn \subfiglist_dimension_space:Nnn { NVV }
+\cs_generate_variant:Nn \subfiglist_dimension_hmode_space:Nnn { NnV }
+\cs_generate_variant:Nn \subfiglist_dimension_hmode_space:Nnn { NVn }
+\cs_generate_variant:Nn \subfiglist_dimension_hmode_space:Nnn { NVV }
 
 
-\cs_new:Npn \subfiglist_dimension_separator:Nnn #1 #2 #3
+\cs_new:Npn \subfiglist_dimension_hmode_separator:Nnn #1 #2 #3
 %
 % #1: Token list variable for storing dimensioned specification string
 % #2: Height of current line
@@ -2328,12 +2333,12 @@
   \tl_put_right:NV #1 \subfiglist_tempa_tl
 }
 
-\cs_generate_variant:Nn \subfiglist_dimension_separator:Nnn { NnV }
-\cs_generate_variant:Nn \subfiglist_dimension_separator:Nnn { NVn }
-\cs_generate_variant:Nn \subfiglist_dimension_separator:Nnn { NVV }
+\cs_generate_variant:Nn \subfiglist_dimension_hmode_separator:Nnn { NnV }
+\cs_generate_variant:Nn \subfiglist_dimension_hmode_separator:Nnn { NVn }
+\cs_generate_variant:Nn \subfiglist_dimension_hmode_separator:Nnn { NVV }
 
 
-\cs_new:Npn \subfiglist_dimension_line:Nnn #1 #2 #3
+\cs_new:Npn \subfiglist_dimension_vmode_line:Nnn #1 #2 #3
 %
 % #1: Token list variable for storing dimensioned specification string
 % #2: Width of current line
@@ -2361,7 +2366,7 @@
       \subfiglist_tl_set_tail:Nn \subfiglist_tempb_tl { ##1 }
       \subfiglist_tl_set_unwrapped:NV \subfiglist_tempb_tl \subfiglist_tempb_tl
       
-      \subfiglist_use:c { subfiglist_dimension_ \subfiglist_tempa_tl :NVV }
+      \subfiglist_use:c { subfiglist_dimension_hmode_ \subfiglist_tempa_tl :NVV }
         #1 \subfiglist_line_height_dim \subfiglist_tempb_tl
     }
     
@@ -2372,9 +2377,9 @@
   \subfiglist_prop_set_from_tl:NN \subfiglist_canvas_prop \subfiglist_tempa_tl
 }
 
-\cs_generate_variant:Nn \subfiglist_dimension_line:Nnn { NVn }
-\cs_generate_variant:Nn \subfiglist_dimension_line:Nnn { NnV }
-\cs_generate_variant:Nn \subfiglist_dimension_line:Nnn { NVV }
+\cs_generate_variant:Nn \subfiglist_dimension_vmode_line:Nnn { NVn }
+\cs_generate_variant:Nn \subfiglist_dimension_vmode_line:Nnn { NnV }
+\cs_generate_variant:Nn \subfiglist_dimension_vmode_line:Nnn { NVV }
 
 
 
