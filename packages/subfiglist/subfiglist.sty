@@ -38,7 +38,7 @@
 
 \dim_new:N  \subfiglist_sum_hoff_dim
 \dim_new:N  \subfiglist_sum_voff_over_ratio_dim
-\dim_new:N  \subfilgist_newline_correction_dim
+\dim_new:N  \subfiglist_newline_correction_dim
 \dim_new:N  \subfiglist_tempa_dim
 \dim_new:N  \subfiglist_tempb_dim
 
@@ -1563,12 +1563,13 @@
   }
   
   \tl_clear:N \subfiglist_tempb_tl
-  \quark_if_no_value:NF \subfiglist_tempa_tl
+  \quark_if_no_value:NTF \subfiglist_tempa_tl
   {
-    \subfiglist_token_if_eq_charcode:NVT [ \subfiglist_tempa_tl
+    \tl_put_right:NV \subfiglist_tempb_tl \subfiglist_canvas_space_dim
+  }{
+    \subfiglist_token_if_eq_charcode:NVTF [ \subfiglist_tempa_tl
     {
       \seq_pop_left:NN #1 \subfiglist_tempa_tl
-      \tl_put_right:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
       \seq_get_left:NN #1 \subfiglist_tempa_tl
       \bool_until_do:nn 
       {
@@ -1586,8 +1587,9 @@
         \msg_error:nn { subfiglist } { runaway~optional~argument }
       }{
         \seq_pop_left:NN #1 \subfiglist_tempa_tl
-        \tl_put_right:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
       }
+    }{
+      \tl_put_right:NV \subfiglist_tempb_tl \subfiglist_canvas_space_dim
     }
   }
   \subfiglist_tokenize_make_token:NnV \subfiglist_tempa_tl { newline } \subfiglist_tempb_tl
