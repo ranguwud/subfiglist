@@ -2267,6 +2267,20 @@
 
 \cs_generate_variant:Nn \subfiglist_get_aspect_line:NNNn { NNNV }
 
+\cs_new:Npn \subfiglist_get_aspect_newline:NNNn #1 #2 #3 #4
+%
+% #1: Floating point variable to store canvas ratio
+% #2: Dimension to store horizontal offset
+% #3: Dimension to store vertical offset
+% #4: Newline specification
+{
+  \fp_zero:N #1
+  \dim_zero:N #2
+  \dim_set:Nn #3 { #4 }
+}
+
+\cs_generate_variant:Nn \subfiglist_get_aspect_newline:NNNn { NNNV }
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2382,6 +2396,21 @@
 \cs_generate_variant:Nn \subfiglist_dimension_vmode_line:Nnn { NVn }
 \cs_generate_variant:Nn \subfiglist_dimension_vmode_line:Nnn { NnV }
 \cs_generate_variant:Nn \subfiglist_dimension_vmode_line:Nnn { NVV }
+
+\cs_new:Npn \subfiglist_dimension_vmode_newline:Nnn #1 #2 #3
+%
+% #1: Token list variable for storing dimensioned specification string
+% #2: Width of current line
+% #3: Token list with parsed specification string for current line
+%
+{
+  \subfiglist_tl_set_wrapped:Nnn \subfiglist_tempa_tl { newline } { #3 }
+  \tl_put_right:NV #1 \subfiglist_tempa_tl
+}
+
+\cs_generate_variant:Nn \subfiglist_dimension_vmode_newline:Nnn { NVn }
+\cs_generate_variant:Nn \subfiglist_dimension_vmode_newline:Nnn { NnV }
+\cs_generate_variant:Nn \subfiglist_dimension_vmode_newline:Nnn { NVV }
 
 
 
@@ -4070,7 +4099,7 @@
   {
     \rule{2em}{2em}\\[0pt]\rule{2em}{2em}
   }  
-  \dim_set:Nn \subfilgist_newline_correction_dim 
+  \dim_set:Nn \subfiglist_newline_correction_dim 
     { \ht\subfiglist_box - 4em }
 
   % Setup commands
