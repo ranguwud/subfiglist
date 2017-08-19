@@ -1294,6 +1294,29 @@
 \cs_generate_variant:Nn \subfiglist_is_float:nTF { V }
 
 
+% Test whether a float is NaN
+\prg_new_conditional:Npnn \subfiglist_is_nan:n #1 { p, T, F, TF }
+%
+% #1: Float to be tested
+%
+{
+  % Use test described in explanation of \fp_compare:nNnTF from interface3 documentation.
+  \fp_compare:nNnTF { #1 } ? { 0 }
+  {
+    % Float is NaN
+    \prg_return_true:
+  }{
+    % Float is not NaN
+    \prg_return_false:
+  }
+}
+
+\cs_generate_variant:Nn \subfiglist_is_nan_p:n { V }
+\cs_generate_variant:Nn \subfiglist_is_nan:nT  { V }
+\cs_generate_variant:Nn \subfiglist_is_nan:nF  { V }
+\cs_generate_variant:Nn \subfiglist_is_nan:nTF { V }
+
+
 % Test truth value of various conditionals and print result
 \cs_new:Npn \subfiglist_test_conditionals:
 {
@@ -2206,7 +2229,7 @@
 % #3: Dimension to store vertical offset
 % #4: Space specification
 {
-  \fp_zero:N #1
+  \fp_set_eq:NN #1 \c_nan_fp
   \dim_set_eq:NN #2 \subfiglist_canvas_space_dim
   \dim_zero:N #3
 }
@@ -2221,7 +2244,7 @@
 % #4: Separator specification
 {
   \dim_set:Nn \subfiglistlineheight { 1ex }
-  \fp_zero:N #1
+  \fp_set_eq:NN #1 \c_nan_fp
   
   \setbox \subfiglist_box \hbox { #4 }
   \dim_set:Nn #2 { \wd \subfiglist_box }
@@ -2261,7 +2284,10 @@
     \subfiglist_group_var_return:NN \dim_set:Nn \subfiglist_tempb_dim
     \group_end:
     
-    \fp_add:NV #1 \subfiglist_temp_fp
+    \subfiglist_is_nan:VF \subfiglist_temp_fp
+    {
+      \fp_add:NV #1 \subfiglist_temp_fp
+    }
     \dim_add:NV #2 \subfiglist_tempa_dim
     \dim_add:Nf #3 { \subfiglist_tempb_dim * \dim_ratio:nn { \fp_to_dim:N \subfiglist_temp_fp } { 1pt } }
   }
@@ -2279,7 +2305,7 @@
 % #4: Newline specification
 %
 {
-  \fp_zero:N #1
+  \fp_set_eq:NN #1 \c_nan_fp
   \dim_zero:N #2
   \dim_set:Nn #3 { #4 }
 }
@@ -2317,7 +2343,7 @@
     \subfiglist_group_var_return:NN \dim_set:Nn \subfiglist_tempb_dim
     \group_end:
     
-    \fp_compare:nNnF { \subfiglist_temp_fp } = { \c_zero_fp }
+    \subfiglist_is_nan:VF \subfiglist_temp_fp
     {
       \fp_compare:nNnTF { #1 } = { \c_zero_fp }
       {
