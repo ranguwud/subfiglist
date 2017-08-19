@@ -936,14 +936,14 @@ xxx
 %  \subfiglist_spec_canvas_nums_tl
 %  \subfiglist_spec_canvas_nums_sorted_tl
 %  \subfiglist_canvas_count_int
-\begin{subfiglist*}{1@{\hspace{1pt}}2\\[0pt]3@{\hspace{3pt}}4}%{1 @{\color{red}\rule{2ex}{\subfiglistlineheight}} 2\\}%{ 1 @{asdf} {2} { 3 \\ 4 } \\[1ex] 5 }
+\begin{subfiglist*}{1@{\hspace{10pt}}2\\[10pt]3@{\hspace{30pt}}4}%{1 @{\color{red}\rule{2ex}{\subfiglistlineheight}} 2\\}%{ 1 @{asdf} {2} { 3 \\ 4 } \\[1ex] 5 }
 %  \tl_show:N \subfiglist_parsed_spec_tl \error
 %  \subfiglist_setup_file:nnn {} {1} { figures/01 }
 %  \subfiglist_setup_file:nnn {} {2} { figures/02 }
-\subfiglist_setup_dummy:nnn {} {1} {1:1}
-\subfiglist_setup_dummy:nnn {} {2} {1}
-\subfiglist_setup_dummy:nnn {} {3} {1}
-\subfiglist_setup_dummy:nnn {} {4} {1}
+\subfiglist_setup_dummy:nnn {} {1} {2}
+\subfiglist_setup_dummy:nnn {} {2} {2}
+\subfiglist_setup_dummy:nnn {} {3} {2}
+\subfiglist_setup_dummy:nnn {} {4} {2}
   
   \tl_to_str:N \subfiglist_parsed_spec_tl\\
 %  \dim_use:N\subfiglist_newline_correction_dim
@@ -964,13 +964,15 @@ xxx
 \dim_new:N \tempb_dim
 %
 \subfiglist_get_aspect_hmode_subblock:NNNV \temp_fp \tempa_dim \tempb_dim \subfiglist_parsed_spec_tl
-
+%
 \fp_use:N \temp_fp\\
 \dim_use:N \tempa_dim\\
 \dim_use:N \tempb_dim\\
-\subfiglist_is_nan:VTF \c_nan_fp { true } { false }
 
-%\tl_to_str:N \subfiglist_dimensioned_spec_tl
+\subfiglist_dimension_hmode_subblock:NnV \subfiglist_dimensioned_spec_tl { 100pt } \subfiglist_parsed_spec_tl
+
+\prop_show:N \subfiglist_canvas_prop
+\tl_show:N \subfiglist_dimensioned_spec_tl \error
 %\dim_use:N \subfiglist_line_height_dim\\
 %
 %%  \prop_show:N \subfiglist_canvas_prop \error
