@@ -29,7 +29,7 @@ TODO
 * Caveat: Don't use \subfiglistlineheight for anything related to width.
 * Add default value in \subfiglist_tokenize_newline
 * Differentiate between vmode and hmode aspect ratio macros
-* Set ratio to NaN instead of 0 for non scalable tokens
+* Check if empty separator @{} raises unwanted error
 
 
 
@@ -44,3 +44,4 @@ DONE
 * Add \subfiglist_tl_if_eq_charcode and employ in lexer functions
 * Rename key_figures -> aspect
 * Differentiate between vmode and hmode dimensioning macros
+* Set ratio to NaN instead of 0 for non scalable tokens

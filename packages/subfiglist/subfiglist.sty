@@ -2289,7 +2289,10 @@
       \fp_add:NV #1 \subfiglist_temp_fp
     }
     \dim_add:NV #2 \subfiglist_tempa_dim
-    \dim_add:Nf #3 { \subfiglist_tempb_dim * \dim_ratio:nn { \fp_to_dim:N \subfiglist_temp_fp } { 1pt } }
+    \subfiglist_is_nan:VF \subfiglist_temp_fp
+    {
+      \dim_add:Nf #3 { \subfiglist_tempb_dim * \dim_ratio:nn { \fp_to_dim:N \subfiglist_temp_fp } { 1pt } }
+    }
   }
   
   \dim_set:Nf #3 { #3 * \dim_ratio:nn { 1pt } { \fp_to_dim:N #1 } }
@@ -2320,7 +2323,7 @@
 % #4: Newline specification
 %
 {
-  \fp_zero:N  #1
+  \fp_set_eq:NN #1 \c_inf_fp
   \dim_zero:N #2
   \dim_zero:N #3
   
@@ -2343,15 +2346,19 @@
     \subfiglist_group_var_return:NN \dim_set:Nn \subfiglist_tempb_dim
     \group_end:
     
+    \dim_compare:nNnT { #2 } < { \subfiglist_tempa_dim }
+    {
+      \fp_compare:nNnF { #1 } = { \c_inf_fp }
+      {
+        \dim_add:Nn #3 { ( \subfiglist_tempa_dim - #2 ) * \dim_ratio:nn { 1pt } { \fp_to_dim:N #1 } }
+      }
+      \dim_set_eq:NN #2 \subfiglist_tempa_dim
+    }
     \subfiglist_is_nan:VF \subfiglist_temp_fp
     {
-      \fp_compare:nNnTF { #1 } = { \c_zero_fp }
-      {
-        \fp_set:Nn #1 { \subfiglist_temp_fp }
-      }{
-        \fp_set:Nn #1 { 1 / ( ( 1 / #1 ) + ( 1 / \subfiglist_temp_fp ) ) }
-      }
+      \fp_set:Nn #1 { 1 / ( ( 1 / #1 ) + ( 1 / \subfiglist_temp_fp ) ) }
     }
+    \dim_add:NV #3 \subfiglist_tempb_dim
   }
 }
 
