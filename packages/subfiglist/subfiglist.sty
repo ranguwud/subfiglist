@@ -2194,7 +2194,7 @@
 %%%   Canvas aspect ratio   %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\cs_new:Npn \subfiglist_get_aspect_canvas:NNNn #1 #2 #3 #4
+\cs_new:Npn \subfiglist_get_aspect_hmode_canvas:NNNn #1 #2 #3 #4
 %
 % #1: Floating point variable to store canvas ratio
 % #2: Dimension to store horizontal offset
@@ -2220,9 +2220,9 @@
   \dim_add:NV #3 \subfiglist_tempa_tl
 }
 
-\cs_generate_variant:Nn \subfiglist_get_aspect_canvas:NNNn { NNNV }
+\cs_generate_variant:Nn \subfiglist_get_aspect_hmode_canvas:NNNn { NNNV }
 
-\cs_new:Npn \subfiglist_get_aspect_space:NNNn #1 #2 #3 #4
+\cs_new:Npn \subfiglist_get_aspect_hmode_space:NNNn #1 #2 #3 #4
 %
 % #1: Floating point variable to store canvas ratio
 % #2: Dimension to store horizontal offset
@@ -2234,9 +2234,9 @@
   \dim_zero:N #3
 }
 
-\cs_generate_variant:Nn \subfiglist_get_aspect_space:NNNn { NNNV }
+\cs_generate_variant:Nn \subfiglist_get_aspect_hmode_space:NNNn { NNNV }
 
-\cs_new:Npn \subfiglist_get_aspect_separator:NNNn #1 #2 #3 #4
+\cs_new:Npn \subfiglist_get_aspect_hmode_separator:NNNn #1 #2 #3 #4
 %
 % #1: Floating point variable to store canvas ratio
 % #2: Dimension to store horizontal offset
@@ -2251,71 +2251,9 @@
   \dim_set:Nn #3 { \ht \subfiglist_box }
 }
 
-\cs_generate_variant:Nn \subfiglist_get_aspect_separator:NNNn { NNNV }
+\cs_generate_variant:Nn \subfiglist_get_aspect_hmode_separator:NNNn { NNNV }
 
-\cs_new:Npn \subfiglist_get_aspect_line:NNNn #1 #2 #3 #4
-%
-% #1: Floating point variable to store canvas ratio
-% #2: Dimension to store horizontal offset
-% #3: Dimension to store vertical offset
-% #4: Token list with parsed specification string for current line
-%
-{
-  \fp_zero:N  #1
-  \dim_zero:N #2
-  \dim_zero:N #3
-  
-  \tl_map_inline:nn { #4 }
-  {
-    \subfiglist_tl_set_head:Nn \subfiglist_tempa_tl { ##1 }
-    \subfiglist_tl_set_tail:Nn \subfiglist_tempb_tl { ##1 }
-    \subfiglist_tl_set_unwrapped:NV \subfiglist_tempb_tl \subfiglist_tempb_tl
-    
-    \group_begin:
-      \subfiglist_use:c { subfiglist_get_aspect_ \subfiglist_tempa_tl :NNNV }
-        #1 #2 #3 \subfiglist_tempb_tl
-      
-      \fp_set:Nn \subfiglist_temp_fp #1
-      \dim_set:Nn \subfiglist_tempa_dim #2
-      \dim_set:Nn \subfiglist_tempb_dim #3
-    
-    \subfiglist_group_var_return:NN \fp_set:Nn \subfiglist_temp_fp
-    \subfiglist_group_var_return:NN \dim_set:Nn \subfiglist_tempa_dim
-    \subfiglist_group_var_return:NN \dim_set:Nn \subfiglist_tempb_dim
-    \group_end:
-    
-    \subfiglist_is_nan:VF \subfiglist_temp_fp
-    {
-      \fp_add:NV #1 \subfiglist_temp_fp
-    }
-    \dim_add:NV #2 \subfiglist_tempa_dim
-    \subfiglist_is_nan:VF \subfiglist_temp_fp
-    {
-      \dim_add:Nf #3 { \subfiglist_tempb_dim * \dim_ratio:nn { \fp_to_dim:N \subfiglist_temp_fp } { 1pt } }
-    }
-  }
-  
-  \dim_set:Nf #3 { #3 * \dim_ratio:nn { 1pt } { \fp_to_dim:N #1 } }
-}
-
-\cs_generate_variant:Nn \subfiglist_get_aspect_line:NNNn { NNNV }
-
-\cs_new:Npn \subfiglist_get_aspect_newline:NNNn #1 #2 #3 #4
-%
-% #1: Floating point variable to store canvas ratio
-% #2: Dimension to store horizontal offset
-% #3: Dimension to store vertical offset
-% #4: Newline specification
-%
-{
-  \fp_set_eq:NN #1 \c_nan_fp
-  \dim_zero:N #2
-  \dim_set:Nn #3 { #4 }
-}
-
-\cs_generate_variant:Nn \subfiglist_get_aspect_newline:NNNn { NNNV }
-
-\cs_new:Npn \subfiglist_get_aspect_subblock:NNNn #1 #2 #3 #4
+\cs_new:Npn \subfiglist_get_aspect_hmode_subblock:NNNn #1 #2 #3 #4
 %
 % #1: Floating point variable to store canvas ratio
 % #2: Dimension to store horizontal offset
@@ -2334,7 +2272,7 @@
     \subfiglist_tl_set_unwrapped:NV \subfiglist_tempb_tl \subfiglist_tempb_tl
     
     \group_begin:
-      \subfiglist_use:c { subfiglist_get_aspect_ \subfiglist_tempa_tl :NNNV }
+      \subfiglist_use:c { subfiglist_get_aspect_vmode_ \subfiglist_tempa_tl :NNNV }
         #1 #2 #3 \subfiglist_tempb_tl
       
       \fp_set:Nn \subfiglist_temp_fp #1
@@ -2362,7 +2300,69 @@
   }
 }
 
-\cs_generate_variant:Nn \subfiglist_get_aspect_subblock:NNNn { NNNV }
+\cs_generate_variant:Nn \subfiglist_get_aspect_hmode_subblock:NNNn { NNNV }
+
+\cs_new:Npn \subfiglist_get_aspect_vmode_line:NNNn #1 #2 #3 #4
+%
+% #1: Floating point variable to store canvas ratio
+% #2: Dimension to store horizontal offset
+% #3: Dimension to store vertical offset
+% #4: Token list with parsed specification string for current line
+%
+{
+  \fp_zero:N  #1
+  \dim_zero:N #2
+  \dim_zero:N #3
+  
+  \tl_map_inline:nn { #4 }
+  {
+    \subfiglist_tl_set_head:Nn \subfiglist_tempa_tl { ##1 }
+    \subfiglist_tl_set_tail:Nn \subfiglist_tempb_tl { ##1 }
+    \subfiglist_tl_set_unwrapped:NV \subfiglist_tempb_tl \subfiglist_tempb_tl
+    
+    \group_begin:
+      \subfiglist_use:c { subfiglist_get_aspect_hmode_ \subfiglist_tempa_tl :NNNV }
+        #1 #2 #3 \subfiglist_tempb_tl
+      
+      \fp_set:Nn \subfiglist_temp_fp #1
+      \dim_set:Nn \subfiglist_tempa_dim #2
+      \dim_set:Nn \subfiglist_tempb_dim #3
+    
+    \subfiglist_group_var_return:NN \fp_set:Nn \subfiglist_temp_fp
+    \subfiglist_group_var_return:NN \dim_set:Nn \subfiglist_tempa_dim
+    \subfiglist_group_var_return:NN \dim_set:Nn \subfiglist_tempb_dim
+    \group_end:
+    
+    \subfiglist_is_nan:VF \subfiglist_temp_fp
+    {
+      \fp_add:NV #1 \subfiglist_temp_fp
+    }
+    \dim_add:NV #2 \subfiglist_tempa_dim
+    \subfiglist_is_nan:VF \subfiglist_temp_fp
+    {
+      \dim_add:Nf #3 { \subfiglist_tempb_dim * \dim_ratio:nn { \fp_to_dim:N \subfiglist_temp_fp } { 1pt } }
+    }
+  }
+  
+  \dim_set:Nf #3 { #3 * \dim_ratio:nn { 1pt } { \fp_to_dim:N #1 } }
+}
+
+\cs_generate_variant:Nn \subfiglist_get_aspect_vmode_line:NNNn { NNNV }
+
+\cs_new:Npn \subfiglist_get_aspect_vmode_newline:NNNn #1 #2 #3 #4
+%
+% #1: Floating point variable to store canvas ratio
+% #2: Dimension to store horizontal offset
+% #3: Dimension to store vertical offset
+% #4: Newline specification
+%
+{
+  \fp_set_eq:NN #1 \c_nan_fp
+  \dim_zero:N #2
+  \dim_set:Nn #3 { #4 }
+}
+
+\cs_generate_variant:Nn \subfiglist_get_aspect_vmode_newline:NNNn { NNNV }
 
 
 

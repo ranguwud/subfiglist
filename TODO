@@ -28,7 +28,6 @@ TODO
 * Secure any \prop_get for occurence of \q_empty
 * Caveat: Don't use \subfiglistlineheight for anything related to width.
 * Add default value in \subfiglist_tokenize_newline
-* Differentiate between vmode and hmode aspect ratio macros
 * Check if empty separator @{} raises unwanted error
 
 
@@ -45,3 +44,4 @@ DONE
 * Rename key_figures -> aspect
 * Differentiate between vmode and hmode dimensioning macros
 * Set ratio to NaN instead of 0 for non scalable tokens
+* Differentiate between vmode and hmode aspect ratio macros
