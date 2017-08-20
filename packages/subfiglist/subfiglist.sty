@@ -2520,7 +2520,8 @@
   \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tempb_tl
   \group_end:
   \subfiglist_prop_set_from_tl:NN \subfiglist_canvas_prop \subfiglist_tempa_tl
-  \tl_put_right:NV #1 \subfiglist_tempb_tl
+  \subfiglist_tl_set_wrapped:NnV \subfiglist_tempa_tl { line } \subfiglist_tempb_tl
+  \tl_put_right:NV #1 \subfiglist_tempa_tl
 }
 
 \cs_generate_variant:Nn \subfiglist_dimension_vmode_line:Nnn { NVn }
@@ -2845,6 +2846,51 @@
 
 \cs_generate_variant:Nn \subfiglist_put_separator:n { V }
 
+\cs_new:Npn \subfiglist_put_subblock:n #1
+%
+% #1: Content of subblock
+%
+{
+  \tl_map_inline:nn { #1 }
+  {
+    \subfiglist_tl_set_head:Nn \subfiglist_tempa_tl { ##1 }
+    \subfiglist_tl_set_tail:Nn \subfiglist_tempb_tl { ##1 }
+    \subfiglist_tl_set_unwrapped:NV \subfiglist_tempb_tl \subfiglist_tempb_tl
+    
+    \subfiglist_use:c { subfiglist_put_ \subfiglist_tempa_tl :V } \subfiglist_tempb_tl
+  }
+}
+
+\cs_generate_variant:Nn \subfiglist_put_subblock:n { V }
+
+\cs_new:Npn \subfiglist_put_line:n #1
+%
+% #1: Content of line
+%
+{
+  \tl_map_inline:nn { #1 }
+  {
+    \subfiglist_tl_set_head:Nn \subfiglist_tempa_tl { ##1 }
+    \subfiglist_tl_set_tail:Nn \subfiglist_tempb_tl { ##1 }
+    \subfiglist_tl_set_unwrapped:NV \subfiglist_tempb_tl \subfiglist_tempb_tl
+    
+    \subfiglist_use:c { subfiglist_put_ \subfiglist_tempa_tl :V } \subfiglist_tempb_tl
+  }
+}
+
+\cs_generate_variant:Nn \subfiglist_put_line:n { V }
+
+\cs_new:Npn \subfiglist_put_newline:n #1
+%
+% #1: Content of newline
+%
+{
+  \dim_set:Nn \subfiglist_tempa_dim { #1 }
+  \dim_sub:Nn \subfiglist_tempa_dim \subfiglist_newline_correction_dim
+  \\[\subfiglist_tempa_dim]
+}
+
+\cs_generate_variant:Nn \subfiglist_put_newline:n { V }
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%

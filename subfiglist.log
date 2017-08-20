@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.3.26)  19 AUG 2017 22:26
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.3.26)  20 AUG 2017 18:32
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -709,52 +709,52 @@ Package graphics Info: Driver file: xetex.def on input line 95.
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistfile with sig. '' on line 3942.
+. Defining command \subfiglistfile with sig. '' on line 3988.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummyfile with sig. '' on line 3994.
+. Defining command \subfiglistdummyfile with sig. '' on line 4040.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummy with sig. '' on line 4052.
+. Defining command \subfiglistdummy with sig. '' on line 4098.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabel with sig. '' on line 4112.
+. Defining command \subfiglistlabel with sig. '' on line 4158.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistoverlay with sig. '' on line 4145.
+. Defining command \subfiglistoverlay with sig. '' on line 4191.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabelformat with sig. '' on line 4149.
+. Defining command \subfiglistlabelformat with sig. '' on line 4195.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistsvgenv' with sig. '' on line 4153.
+. Defining environment 'subfiglistsvgenv' with sig. '' on line 4199.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 4174.
+. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 4220.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist' with sig. 'sO{}m' on line 4301.
+. Defining environment 'subfiglist' with sig. 'sO{}m' on line 4347.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 4305.
+. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 4351.
 .................................................
 )
 runsystem(rm ./subfiglist.sty)...executed.
@@ -1188,102 +1188,103 @@ LaTeX Info: Redefining \nameref on input line 209.
 . 
 . Redefining command \subfiglistoverlay with sig. 'mm' on line 939.
 .................................................
+File: figures/02.png Graphic file (type QTm)
+ <use  "figures/02.png" >
+File: figures/02.png Graphic file (type QTm)
+
+<use  "figures/02.png" >
+File: figures/02.png Graphic file (type QTm)
+ <use  "figures/02.png" >
+File: figures/02.png Graphic file (type QTm)
+ <use  "figures/02.png" >
 \tempa_dim=\dimen272
 \tempb_dim=\dimen273
 
 The property list \subfiglist_canvas_prop contains the pairs (without outer
 braces):
 >  {1}  => 
-{{{type}{dummy}}{{ratio}{2}}{{top}{0.0pt}}{{bot}{0.0pt}}{{left}{0.0pt}}{{right}
-{0.0pt}}{{height}{47.5pt}}{{width}{95.0pt}}}
+{{{type}{file}}{{path}{figures/02}}{{ratio}{1}}{{top}{0.0pt}}{{bot}{0.0pt}}{{le
+ft}{0.0pt}}{{right}{0.0pt}}{{height}{100.0pt}}{{width}{100.0pt}}}
 >  {2}  => 
-{{{type}{dummy}}{{ratio}{2}}{{top}{0.0pt}}{{bot}{0.0pt}}{{left}{0.0pt}}{{right}
-{0.0pt}}{{height}{47.5pt}}{{width}{95.0pt}}}
+{{{type}{file}}{{path}{figures/02}}{{ratio}{1}}{{top}{0.0pt}}{{bot}{0.0pt}}{{le
+ft}{0.0pt}}{{right}{0.0pt}}{{height}{100.0pt}}{{width}{100.0pt}}}
 >  {3}  => 
-{{{type}{dummy}}{{ratio}{2}}{{top}{0.0pt}}{{bot}{0.0pt}}{{left}{0.0pt}}{{right}
-{0.0pt}}{{height}{42.5pt}}{{width}{85.0pt}}}
+{{{type}{file}}{{path}{figures/02}}{{ratio}{1}}{{top}{0.0pt}}{{bot}{0.0pt}}{{le
+ft}{0.0pt}}{{right}{0.0pt}}{{height}{90.0pt}}{{width}{90.0pt}}}
 >  {4}  => 
-{{{type}{dummy}}{{ratio}{2}}{{top}{0.0pt}}{{bot}{0.0pt}}{{left}{0.0pt}}{{right}
-{0.0pt}}{{height}{42.5pt}}{{width}{85.0pt}}}.
+{{{type}{file}}{{path}{figures/02}}{{ratio}{1}}{{top}{0.0pt}}{{bot}{0.0pt}}{{le
+ft}{0.0pt}}{{right}{0.0pt}}{{height}{90.0pt}}{{width}{90.0pt}}}.
 <recently read> }
                  
 l.974 \prop_show:N \subfiglist_canvas_prop
                                           
 
 > 
-\subfiglist_dimensioned_spec_tl={{lineheight}{47.5pt}}{{canvas}{1}}{{separator}
-{\hspace
-{10pt}}}{{canvas}{2}}{{newline}{10pt}}{{lineheight}{42.5pt}}{{canvas}{3}}{{sepa
-rator}{\hspace
-{30pt}}}{{canvas}{4}}.
+\subfiglist_dimensioned_spec_tl={{line}{{{lineheight}{100.0pt}}{{canvas}{1}}{{s
+eparator}{\hspace
+{10pt}}}{{canvas}{2}}}}{{newline}{10pt}}{{line}{{{lineheight}{90.0pt}}{{canvas}
+{3}}{{separator}{\hspace
+{30pt}}}{{canvas}{4}}}}.
 <recently read> }
                  
 l.975 \tl_show:N \subfiglist_dimensioned_spec_tl
-                                                 \error
+                                                 %\error
 
-! Undefined control sequence.
-l.975 ...:N \subfiglist_dimensioned_spec_tl \error
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
+File: figures/02.png Graphic file (type QTm)
+<use  "figures/02.png" >
+File: figures/02.png Graphic file (type QTm)
+ <use  "figures/02.png" >
+File: figures/02.png Graphic file (type QTm)
+ <use  "figures/02.png" >
+File: figures/02.png Graphic file (type QTm)
 
+<use  "figures/02.png" >
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistfile with sig. '' on line 995.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistlabel with sig. '' on line 995.
+. Redefining command \subfiglistfile with sig. '' on line 996.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistoverlay with sig. '' on line 995.
+. Redefining command \subfiglistlabel with sig. '' on line 996.
 .................................................
-
-Package caption Warning: Unused \captionsetup[subfigure] on input line 165.
-See the caption package documentation for explanation.
+.................................................
+. LaTeX info: "xparse/redefine-command"
+. 
+. Redefining command \subfiglistoverlay with sig. '' on line 996.
+.................................................
 
 
 Package caption Warning: Unused \captionsetup[sublisting] on input line 167.
 See the caption package documentation for explanation.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 996.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 997.
 
-Overfull \hbox (241.35403pt too wide) in paragraph at lines 933--996
+Overfull \hbox (241.35403pt too wide) in paragraph at lines 933--997
 []\T1/lmr/m/n/12 xxx{{line}{{{canvas}{1}}{{separator}{\hspace {10pt}}}{{canvas}
 {2}}}}{{newline}{10pt}}{{line}{{{canvas}{3}}{{separator}{\hspace
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 933--996
-
- []
-
-Package microtype Info: Setting up font `T1/lmr/m/sl/12' on input line 996.
+Package microtype Info: Setting up font `T1/lmr/m/sl/12' on input line 997.
 Package microtype Info: ... Loading protrusion list `lmr-it-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-it-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-it'.
-LaTeX Font Info:    Try loading font information for OT1+lmr on input line 996.
+LaTeX Font Info:    Try loading font information for OT1+lmr on input line 997.
 
 (/usr/share/texmf/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Package microtype Info: Setting up font `OT1/lmr/m/n/12' on input line 996.
+Package microtype Info: Setting up font `OT1/lmr/m/n/12' on input line 997.
 Package microtype Info: ... Loading protrusion list `cmr-OT1'.
 Package microtype Info: ... : First loading protrusion list `cmr-default'.
-Package microtype Info: Setting up font `OT1/lmr/m/n/8' on input line 996.
+Package microtype Info: Setting up font `OT1/lmr/m/n/8' on input line 997.
 Package microtype Info: ... Loading protrusion list `cmr-OT1'.
 Package microtype Info: ... : First loading protrusion list `cmr-default'.
-Package microtype Info: Setting up font `OT1/lmr/m/n/6' on input line 996.
+Package microtype Info: Setting up font `OT1/lmr/m/n/6' on input line 997.
 Package microtype Info: ... Loading protrusion list `cmr-OT1'.
 Package microtype Info: ... : First loading protrusion list `cmr-default'.
-LaTeX Font Info:    Try loading font information for OML+lmm on input line 996.
+LaTeX Font Info:    Try loading font information for OML+lmm on input line 997.
 
 
 (/usr/share/texmf/tex/latex/lm/omllmm.fd
@@ -1291,13 +1292,13 @@ File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 Package microtype Info: ... No configuration file mt-lmm.cfg.
 Package microtype Info: ... No configuration file mt-cmm.cfg.
-Package microtype Info: Setting up font `OML/lmm/m/it/12' on input line 996.
+Package microtype Info: Setting up font `OML/lmm/m/it/12' on input line 997.
 Package microtype Info: ... No protrusion.
-Package microtype Info: Setting up font `OML/lmm/m/it/8' on input line 996.
+Package microtype Info: Setting up font `OML/lmm/m/it/8' on input line 997.
 Package microtype Info: ... No protrusion.
-Package microtype Info: Setting up font `OML/lmm/m/it/6' on input line 996.
+Package microtype Info: Setting up font `OML/lmm/m/it/6' on input line 997.
 Package microtype Info: ... No protrusion.
-LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 996
+LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 997
 .
 
 (/usr/share/texmf/tex/latex/lm/omslmsy.fd
@@ -1305,58 +1306,58 @@ File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 Package microtype Info: ... No configuration file mt-lmsy.cfg.
 Package microtype Info: ... No configuration file mt-cmsy.cfg.
-Package microtype Info: Setting up font `OMS/lmsy/m/n/12' on input line 996.
+Package microtype Info: Setting up font `OMS/lmsy/m/n/12' on input line 997.
 Package microtype Info: ... No protrusion.
-Package microtype Info: Setting up font `OMS/lmsy/m/n/8' on input line 996.
+Package microtype Info: Setting up font `OMS/lmsy/m/n/8' on input line 997.
 Package microtype Info: ... No protrusion.
-Package microtype Info: Setting up font `OMS/lmsy/m/n/6' on input line 996.
+Package microtype Info: Setting up font `OMS/lmsy/m/n/6' on input line 997.
 Package microtype Info: ... No protrusion.
-LaTeX Font Info:    Try loading font information for OMX+lmex on input line 996
+LaTeX Font Info:    Try loading font information for OMX+lmex on input line 997
 .
 
 (/usr/share/texmf/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 996.
+(Font)              <12> on input line 997.
 Package microtype Info: ... No configuration file mt-lmex.cfg.
-Package microtype Info: Setting up font `OMX/lmex/m/n/12' on input line 996.
+Package microtype Info: Setting up font `OMX/lmex/m/n/12' on input line 997.
 Package microtype Info: ... No protrusion.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 996.
-Package microtype Info: Setting up font `OMX/lmex/m/n/8' on input line 996.
+(Font)              <8> on input line 997.
+Package microtype Info: Setting up font `OMX/lmex/m/n/8' on input line 997.
 Package microtype Info: ... No protrusion.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 996.
-Package microtype Info: Setting up font `OMX/lmex/m/n/6' on input line 996.
+(Font)              <6> on input line 997.
+Package microtype Info: Setting up font `OMX/lmex/m/n/6' on input line 997.
 Package microtype Info: ... No protrusion.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 996.
+(babel)             in language  on input line 997.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 996.
+(babel)             in language  on input line 997.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 996.
+(babel)             in language  on input line 997.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 996.
+(babel)             in language  on input line 997.
  [1
 
 
 ]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 996.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 997.
  (./subfiglist.aux
 Package microtype Info: *** Changing to language context `american'
 (microtype)              on input line 20.
 )
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 996.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 996.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 997.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 997.
  ) 
 Here is how much of TeX's memory you used:
- 30979 strings out of 493638
- 556489 string characters out of 6146796
- 705926 words of memory out of 5000000
- 34045 multiletter control sequences out of 15000+600000
+ 31003 strings out of 493638
+ 556827 string characters out of 6146796
+ 707054 words of memory out of 5000000
+ 34060 multiletter control sequences out of 15000+600000
  22887 words of font info for 30 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
- 56i,10n,117p,10433b,347s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 56i,10n,117p,10433b,515s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on subfiglist.pdf (1 page).
