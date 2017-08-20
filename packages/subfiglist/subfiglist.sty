@@ -4253,7 +4253,7 @@
       \hfill
     }
   }
-
+  
   % Tokenize subfiglist specification
   \tl_clear:N \subfiglist_identifier_nums_tl
   \seq_clear:N \subfiglist_spec_token_seq
@@ -4277,7 +4277,7 @@
   }  
   \dim_set:Nn \subfiglist_newline_correction_dim 
     { \ht\subfiglist_box - 4em }
-
+  
   % Setup commands
   \RenewDocumentCommand \subfiglistfile { O{} m m }
     { \subfiglist_file_internal:nnn { ##1 } { ##2 } { ##3} }
@@ -4304,39 +4304,25 @@
     \subfiglist_canvas_nums_tl
     \subifglist_canvas_nums_sorted_tl
     \subfiglist_identifier_count_int
-
-%  % Parse subfiglist specification and reverse
-%  % resulting token lists afterwards
-%  \int_zero:N \subfiglist_exit_count_int
-%  \subfiglist_parse_objects:N \subfiglist_parsed_spec_tl
-%  \tl_reverse:N \subfiglist_objects_pos_tl
-%  \tl_reverse:N \subfiglist_objects_hoff_tl
-%  \tl_reverse:N \subfiglist_objects_voff_tl
-%  \tl_reverse:N \subfiglist_objects_ratio_tl
-%  \tl_reverse:N \subfiglist_objects_cs_tl
-%  \tl_reverse:N \subfiglist_objects_sub_blocks_tl
-%  
-%  % Calculate dimensions of subblocks
-%  \subfiglist_get_sub_block_dimensions:
-%  
-%  % Calculate dimensions of images
-%  \subfiglist_get_image_width:
-%  
-%  % Put everything inside a minipage
-%  \begin{minipage}{\subfiglist_total_width_dim}
-%    % Loop over top level objects
-%    \int_zero:N \subfiglist_tempa_int
-%    \tl_map_inline:Nn \subfiglist_objects_pos_tl
-%    {
-%      \int_incr:N \subfiglist_tempa_int
-%
-%      \int_compare:nT { \tl_count:n { ##1 } = 2 }
-%      {
-%        \tl_item:Nn \subfiglist_objects_cs_tl { \subfiglist_tempa_int }
-%      }
-%    }
-%  \end{minipage}
-%  
+  
+  % Iterate over top level elements to build
+  % dimensioned subfiglist string
+  \tl_map_inline:Nn \subfiglist_parsed_spec_tl
+  {
+    \subfiglist_tl_set_head:Nn \subfiglist_tempa_tl { ##1 }
+    \subfiglist_tl_set_tail:Nn \subfiglist_tempb_tl { ##1 }
+    \subfiglist_tl_set_unwrapped:NV \subfiglist_tempb_tl \subfiglist_tempb_tl
+    
+    \subfiglist_use:c { subfiglist_dimension_vmode_ \subfiglist_tempa_tl :NVV }
+      \subfiglist_dimensioned_spec_tl \subfiglist_total_width_dim \subfiglist_tempb_tl
+  }
+  
+  % Put everything inside a minipage
+  \begin{minipage}{\subfiglist_total_width_dim}
+    % The whole figure can just be treated like a top level subblock
+    \subfiglist_put_subblock:V \subfiglist_dimensioned_spec_tl
+  \end{minipage}
+  
   % Discard commands
   \RenewDocumentCommand \subfiglistfile {} { \subfiglist_file_error: }
   \RenewDocumentCommand \subfiglistlabel {} { \subfiglist_label_error: }
