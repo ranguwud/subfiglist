@@ -2499,7 +2499,7 @@
   \dim_sub:NV \subfiglist_line_height_dim \subfiglist_effective_hoff_dim 
   \dim_set:Nf \subfiglist_line_height_dim
     { \subfiglist_line_height_dim * \dim_ratio:nn { 1pt } { \fp_to_dim:N \subfiglist_effective_canvas_ratio_fp } }
-  \dim_sub:NV \subfiglist_line_height_dim \subfiglist_effective_voff_dim
+  \dim_add:NV \subfiglist_line_height_dim \subfiglist_effective_voff_dim
   
   \group_begin:
     \subfiglist_tl_set_wrapped:NnV #1 { lineheight } \subfiglist_line_height_dim
@@ -3349,6 +3349,8 @@
     % The whole figure can just be treated like a top level subblock
     \subfiglist_put_subblock:V \subfiglist_dimensioned_spec_tl
   \end{minipage}
+  
+  \tl_show:N \subfiglist_dimensioned_spec_tl \error
   
   % Discard commands
   \RenewDocumentCommand \subfiglistfile {} { \subfiglist_setup_file_stub: }
