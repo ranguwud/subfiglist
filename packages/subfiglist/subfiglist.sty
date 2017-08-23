@@ -2893,6 +2893,48 @@
 \cs_generate_variant:Nn \subfiglist_put_newline:n { V }
 
 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Setup command stubs   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cs_new:Npn \subfiglist_setup_file_stub:
+{
+  \msg_error:nnf { subfiglist } { unexpected~command } { \token_to_str:c { subfiglistfile } }
+}
+
+\NewDocumentCommand \subfiglistfile { } { \subfiglist_setup_file_stub: }
+
+\cs_new:Npn \subfiglist_setup_dummyfile_stub:
+{
+  \msg_error:nnn { subfiglist } { unexpected~command } { \token_to_str:c { subfiglistdummyfile } }
+}
+
+\NewDocumentCommand \subfiglistdummyfile { } { \subfiglist_setup_dummyfile_stub: }
+
+\cs_new:Npn \subfiglist_setup_dummy_stub:
+{
+  \msg_error:nnn { subfiglist } { unexpected~command } { \token_to_str:c { subfiglistdummy } }
+}
+
+\NewDocumentCommand \subfiglistdummy { } { \subfiglist_setup_dummy_stub: }
+
+\cs_new:Npn \subfiglist_setup_label_stub:
+{
+  \msg_error:nnn { subfiglist } { unexpected~command } { \token_to_str:c { subfiglistlabel } }
+}
+
+\NewDocumentCommand \subfiglistlabel { } { \subfiglist_setup_label_stub: }
+
+\cs_new:Npn \subfiglist_setup_overlay_stub:
+{
+  \msg_error:nnn { subfiglist } { unexpected~command } { \token_to_str:c { subfiglistoverlay } }
+}
+
+\NewDocumentCommand \subfiglistoverlay { } { \subfiglist_setup_overlay_stub: }
+
+
+
 %%%%%%%%%%%%%%%%%%%%%%%%
 %%%   Package code   %%%
 %%%%%%%%%%%%%%%%%%%%%%%%
@@ -3013,21 +3055,6 @@
 }
 
 
-% Command for specifying image files
-\cs_new:Npn \subfiglist_file_error:
-{
-  \msg_error:nnn { subfiglist } { unexpected~command } { \subfiglistfile }
-}
-
-\NewDocumentCommand \subfiglistfile { } { \subfiglist_file_error: }
-
-
-% Command for specifying dummy files
-\cs_new:Npn \subfiglist_dummy_file_error:
-{
-  \msg_error:nnn { subfiglist } { unexpected~command } { \subfiglistdummyfile }
-}
-
 \cs_new:Npn \subfiglist_dummy_file_internal:nnnn #1 #2 #3 #4
 %
 % #1: optional arguments
@@ -3069,15 +3096,6 @@
     \tl_put_right:Nx \subfiglist_canvas_left_tl  { {\dim_use:N \subfiglist_canvas_left_dim} }
     \tl_put_right:Nx \subfiglist_canvas_right_tl { {\dim_use:N \subfiglist_canvas_right_dim} }
   }
-}
-
-\NewDocumentCommand \subfiglistdummyfile { } { \subfiglist_dummy_file_error: }
-
-
-% Command for specifying dummies
-\cs_new:Npn \subfiglist_dummy_error:
-{
-  \msg_error:nnn { subfiglist } { unexpected~command } { \subfiglistdummy }
 }
 
 \cs_new:Npn \subfiglist_dummy_internal:nnnn #1 #2 #3 #4
@@ -3129,15 +3147,7 @@
   }
 }
 
-\NewDocumentCommand \subfiglistdummy { } { \subfiglist_dummy_error: }
-
-
 % Command for specifying label
-\cs_new:Npn \subfiglist_label_error:
-{
-  \msg_error:nnn { subfiglist } { unexpected~command } { \subfiglistlabel }
-}
-
 \cs_new:Npn \subfiglist_label_internal:nnn #1 #2 #3
 %
 % #1: optional argument
@@ -3189,15 +3199,8 @@
   }
 }
 
-\NewDocumentCommand \subfiglistlabel { } { \subfiglist_label_error: }
-
 
 % Command for specifying overlay
-\cs_new:Npn \subfiglist_overlay_error:
-{
-  \msg_error:nnn { subfiglist } { unexpected~command } { \subfiglistoverlay }
-}
-
 \cs_new:Npn \subfiglist_overlay_internal:nn #1 #2
 %
 % #1: image number
@@ -3221,8 +3224,6 @@
     \tl_put_left:Nn \subfiglist_overlay_content_tl { {#2} }
   }
 }
-
-\NewDocumentCommand \subfiglistoverlay { } { \subfiglist_overlay_error: }
 
 
 % Define command to format label when caption option is not used
@@ -3314,23 +3315,15 @@
   
   % Setup commands
   \RenewDocumentCommand \subfiglistfile { O{} m m }
-    { \subfiglist_file_internal:nnn { ##1 } { ##2 } { ##3} }
-  \RenewDocumentCommand \subfiglistdummyfile { s O{} m m }
-  {
-    \IfBooleanTF ##1
-      { \subfiglist_dummy_file_internal:nnnn { ##2 } { ##3 } { ##4 } { 1 } }
-      { \subfiglist_dummy_file_internal:nnnn { ##2 } { ##3 } { ##4 } { 0 } }
-  }
-  \RenewDocumentCommand \subfiglistdummy { s O{} m m }
-  {
-    \IfBooleanTF ##1
-      { \subfiglist_dummy_internal:nnnn { ##2 } { ##3 } { ##4 } { 1 } }
-      { \subfiglist_dummy_internal:nnnn { ##2 } { ##3 } { ##4 } { 0 } }
-  }
+    { \subfiglist_setup_file:nnn { ##1 } { ##2 } { ##3} }
+  \RenewDocumentCommand \subfiglistdummyfile { O{} m m }
+    { \subfiglist_setup_dummyfile:nnn { ##1 } { ##2 } { ##3} }
+  \RenewDocumentCommand \subfiglistdummy { O{} m m }
+    { \subfiglist_setup_dummy:nnn { ##1 } { ##2 } { ##3} }
   \RenewDocumentCommand \subfiglistlabel { O{} m m }
-    { \subfiglist_label_internal:nnn { ##1 } { ##2 } { ##3 } }
+    { \subfiglist_label:nnn { ##1 } { ##2 } { ##3 } }
   \RenewDocumentCommand \subfiglistoverlay { m m }
-    { \subfiglist_overlay_internal:nn { ##1 } { ##2 } }
+    { \subfiglist_overlay:nn { ##1 } { ##2 } }
 }{
   % Verify canvas numbers
   \subfiglist_verify_canvas_nums:NNNV
@@ -3358,9 +3351,11 @@
   \end{minipage}
   
   % Discard commands
-  \RenewDocumentCommand \subfiglistfile {} { \subfiglist_file_error: }
-  \RenewDocumentCommand \subfiglistlabel {} { \subfiglist_label_error: }
-  \RenewDocumentCommand \subfiglistoverlay {} { \subfiglist_overlay_error: }
+  \RenewDocumentCommand \subfiglistfile {} { \subfiglist_setup_file_stub: }
+  \RenewDocumentCommand \subfiglistdummyfile {} { \subfiglist_setup_dummyfile_stub: }
+  \RenewDocumentCommand \subfiglistdummy {} { \subfiglist_setup_dummy_stub: }
+  \RenewDocumentCommand \subfiglistlabel {} { \subfiglist_setup_label_stub: }
+  \RenewDocumentCommand \subfiglistoverlay {} { \subfiglist_setup_overlay_stub: }
   
   % Close group
   \group_end:

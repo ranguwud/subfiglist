@@ -17,7 +17,7 @@ TODO
 * Remove need for xstring package?
 * Add starred commands for dummy/dummyfile to add frame
 * Rewrite error messages for int/float as "expected integer, found ... instead"
-* Replace any \cs in error messages by \tl_to_str:c { cs }
+* Replace any \cs in error messages by \token_to_str:c { cs }
 * Remove error message "argument out of range"
 * Add spaces to empty lines to fix syntax highlighting
 * Use expl3 box commands instead of plain TeX commands
