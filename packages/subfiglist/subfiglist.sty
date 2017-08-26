@@ -109,6 +109,8 @@
 \seq_new:N  \subfiglist_spec_tokens_seq
 
 \prop_new:N \subfiglist_canvas_prop
+\prop_new:N \subfiglist_label_prop
+\prop_new:N \subfiglist_overlay_prop
 \prop_new:N \subfiglist_temp_prop
 
 \int_new:N  \subfiglist_exit_count_int
@@ -311,6 +313,8 @@
       % End caption
       \caption@end
     }
+    
+    \cs_generate_variant:Nn \subfiglist_label_inset_caption_package:n { V }
   }
   
   % Keys for subfiglist environment
@@ -688,6 +692,21 @@
     \prop_put:Nnn #1 ##1
   }
 }
+
+% Command for setting a single key-value pair
+\cs_new:Npn \subfiglist_key_set:nnn #1 #2 #3
+%
+% #1: Module of the key to be set
+% #2: Name of the key
+% #3: Value to be set
+{
+  \keys_set:nn { #1 }
+  {
+    #2 = #3
+  }
+}
+
+\cs_generate_variant:Nn \subfiglist_key_set:nnn { nnV }
 
 
 % Provide framework for exporting group scope local variables according to discussion
@@ -2092,7 +2111,6 @@
       \prop_put:NnV \subfiglist_temp_prop { ratio } \subfiglist_tempa_tl
 
       % Process opitonal arguments
-      \tl_set:Nn \subfiglist_csname_tl { \exp_not:N \subfiglistfile }
       \keys_set:nn { subfiglistcanvas }
         {
           top    = \subfiglist_canvas_top_default_tl,
@@ -2166,7 +2184,6 @@
     }
     
     % Process opitonal arguments
-    \tl_set:Nn \subfiglist_csname_tl { \exp_not:N \subfiglistfile }
     \keys_set:nn { subfiglistcanvas }
       {
         top    = \subfiglist_canvas_top_default_tl,
@@ -2186,6 +2203,51 @@
     \prop_put:NnV \subfiglist_canvas_prop { #2 } \subfiglist_tempa_tl
   }{
     \msg_error:nnnn { subfiglist } { missing~number } { First } { \subfiglistdummy }
+  }
+}
+
+% Command for specifying label
+\cs_new:Npn \subfiglist_setup_label:nnn #1 #2 #3
+%
+% #1: optional argument
+% #2: image number
+% #3: label hook
+%
+{
+  % Check if fourth argument is numeric
+  \subfiglist_is_integer:nTF { #2 }
+  {
+    % Save label hook
+    \prop_clear:N \subfiglist_temp_prop
+    \prop_put:Nnn \subfiglist_temp_prop { hook } { #3 }
+    
+    % Process opitonal arguments
+    \int_set_eq:NN \subfiglist_label_hpos_int \subfiglist_label_hpos_default_int
+    \int_set_eq:NN \subfiglist_label_vpos_int \subfiglist_label_vpos_default_int
+    \keys_set:nn { subfiglistlabel }
+    {
+      xshift     = \subfiglist_label_xshift_default_tl,
+      yshift     = \subfiglist_label_yshift_default_tl,
+      color      = \subfiglist_label_color_default_tl,
+      background = \subfiglist_label_background_default_tl
+    }
+    \subfiglist_key_set:nnV { subfiglistlabel } { background } \subfiglist_label_background_default_tl
+    \keys_set:nn { subfiglistlabel } { #1 }
+    
+    % Save label properties.
+    \prop_put:Nnn \subfiglist_temp_prop { hoff }       { 0.5ex }
+    \prop_put:Nnn \subfiglist_temp_prop { voff }       { 0.5ex }
+    \prop_put:NnV \subfiglist_temp_prop { hpos }       \subfiglist_label_hpos_int
+    \prop_put:NnV \subfiglist_temp_prop { vpos }       \subfiglist_label_vpos_int
+    \prop_put:NnV \subfiglist_temp_prop { xshift }     \subfiglist_label_xshift_dim
+    \prop_put:NnV \subfiglist_temp_prop { yshift }     \subfiglist_label_yshift_dim
+    \prop_put:NnV \subfiglist_temp_prop { color }      \subfiglist_label_color_tl
+    \prop_put:NnV \subfiglist_temp_prop { background } \subfiglist_label_background_tl
+    
+    \subfiglist_tl_set_from_prop:NN \subfiglist_tempa_tl \subfiglist_temp_prop
+    \prop_put:NnV \subfiglist_label_prop { #2 } \subfiglist_tempa_tl
+  }{
+    \msg_error:nnnn { subfiglist } { missing~number } { First } { \token_to_str:c { subfiglistfile } }
   }
 }
 
@@ -2770,28 +2832,12 @@
     % Place canvas
     \leavevmode \rlap{ \usebox\subfiglist_box }
     
-%    % Check whether a label has been put for the current canvas
-%    \int_zero:N \subfiglist_tempb_int
-%    \bool_set_false:N \subfiglist_temp_bool
-%    \tl_map_inline:Nn \subfiglist_label_nums_tl
-%    {
-%      \int_incr:N \subfiglist_tempb_int
-%      
-%      \int_compare:nT { ##1 = #2 }
-%      {
-%        \bool_set_true:N \subfiglist_temp_bool
-%        \tl_map_break:
-%      }
-%    }
-%      
-%    % Has a label been specified?
-%    \bool_if:NT \subfiglist_temp_bool
-%    {
-%      % Put label
-%      \subfiglist_label_inset:nnn { \subfiglist_tempb_int }
-%        { \wd\subfiglist_box } { \ht\subfiglist_box }
-%    }
-%    
+    % Has a label been specified?
+    \prop_if_in:NnT \subfiglist_label_prop { #1 }
+    {
+      \subfiglist_put_label:nVV { #1 } { \wd\subfiglist_box } { \ht\subfiglist_box }
+    }
+    
 %    % Check whether an overlay has been given for the current canvas
 %    \int_zero:N \subfiglist_tempb_int
 %    \bool_set_false:N \subfiglist_temp_bool
@@ -2892,6 +2938,114 @@
 
 \cs_generate_variant:Nn \subfiglist_put_newline:n { V }
 
+% Define command for label inset
+\cs_new:Npn \subfiglist_put_label:nnn #1 #2 #3
+%
+% #1: Canvas number
+% #2: Canvas width
+% #3: Canvas height
+%
+{
+  \prop_get:NnN \subfiglist_label_prop { #1 } \subfiglist_tempa_tl
+  \subfiglist_prop_set_from_tl:NN \subfiglist_temp_prop \subfiglist_tempa_tl
+  
+  % Don't reqire any horizontal space
+  \rlap
+  {
+    % Create minipage of exact image size
+    \begin { minipage } [ b ] [ #3 ] [ t ] { #2 }
+      % Iterate over all three possible choices for vertical positioning
+      \prop_get:NnN \subfiglist_temp_prop { vpos } \subfiglist_tempa_tl
+      \int_step_inline:nnnn { \subfiglist_keyval_choice_first_int } { 1 }
+        { \subfiglist_keyval_choice_first_int + 2 }
+      {
+        \strut
+        % Is current choice for vertical positioning the selected one?
+        \int_compare:nTF { ##1 = \subfiglist_tempa_tl }
+        {
+          \strut
+          % Iterate over all three possible choices for horizontal positioning
+          \prop_get:NnN \subfiglist_temp_prop { hpos } \subfiglist_tempb_tl
+          \int_step_inline:nnnn { \subfiglist_keyval_choice_first_int } { 1 }
+            { \subfiglist_keyval_choice_first_int + 2 }
+          {
+            % Is current choce for horizontal positioning the selected one?
+            \int_compare:nTF { ####1 = \subfiglist_tempb_tl }
+            {
+              \group_begin:
+                % Don't reqire any horizontal space for label
+                \makebox [ 0pt ] [ l ]
+                {
+                  % Additional horizontal shift
+                  \prop_get:NnN \subfiglist_temp_prop { xshift } \subfiglist_tempa_tl
+                  \dim_set:NV \subfiglist_tempa_dim \subfiglist_tempa_tl
+                  \prop_get:NnN \subfiglist_temp_prop { hoff } \subfiglist_tempa_tl
+                  \dim_add:NV \subfiglist_tempa_dim \subfiglist_tempa_tl
+                  \hspace{ \subfiglist_tempa_dim }
+                  % Choose left, center or right alignment for label
+                  \prop_get:NnN \subfiglist_temp_prop { hpos } \subfiglist_tempa_tl
+                  \tl_set:Nn \subfiglist_temp_int
+                    { \subfiglist_tempa_tl - \subfiglist_keyval_choice_first_int + 1 }
+                  \makebox [ 0pt ]
+                  [
+                    \tl_item:nn { lcr } { \subfiglist_temp_int }
+                  ]
+                  {
+                    % Additional vertical shift
+                    \prop_get:NnN \subfiglist_temp_prop { yshift } \subfiglist_tempa_tl
+                    \dim_set:NV \subfiglist_tempa_dim \subfiglist_tempa_tl
+                    \prop_get:NnN \subfiglist_temp_prop { voff } \subfiglist_tempa_tl
+                    \dim_add:NV \subfiglist_tempa_dim \subfiglist_tempa_tl
+                    \raisebox { -\subfiglist_tempa_dim } [ \ht\strutbox ] [ 0pt ]
+                    {
+                      \prop_get:NnN \subfiglist_temp_prop { background } \subfiglist_tempa_tl
+                      % Decide whether label has to be put inside a colorbox or not
+                      \tl_show:N \subfiglist_tempa_tl
+                      \subfiglist_tl_if_eq_charcode:nVTF { none } \subfiglist_tempa_tl
+                        % Either delete next token or use it as argument of \colorbox
+                        \use_none:n \colorbox
+                          { \subfiglist_tempa_tl }
+                      {
+                        \prop_get:NnN \subfiglist_temp_prop { color } \subfiglist_tempa_tl
+                        \prop_get:NnN \subfiglist_temp_prop { hook }  \subfiglist_tempb_tl
+                        % Use caption package for putting label?
+                        \bool_if:NTF \subfiglist_use_caption_package_bool
+                        {
+                          \subfiglist_label_inset_caption_package:V \subfiglist_tempa_tl
+                          % Put hook for label
+                          \rlap{ \subfiglist_tempb_tl }
+                        }{
+                          \hbox
+                          {
+                            \refstepcounter { subfigure }
+                            \color { \subfiglist_tempa_tl }
+                            \subfiglistlabelformat
+                            % Put hook for label
+                            \rlap{ \subfiglist_tempb_tl }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              \group_end:
+            }{
+              % Put \hfills for horizontal positioning of label
+              \hfill
+            }
+          }
+        }{
+          % Put \vfills for vertical positioning of label
+          \vfill
+        }
+        \strut
+      }
+    \end { minipage }
+  }
+}
+
+\cs_generate_variant:Nn \subfiglist_put_label:nnn { nVV }
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2939,101 +3093,6 @@
 %%%   Package code   %%%
 %%%%%%%%%%%%%%%%%%%%%%%%
   
-% Define command for label inset
-\cs_new:Npn \subfiglist_label_inset:nnn #1 #2 #3
-%
-% #1: index to address current label
-% #2: image width
-% #3: image height
-%
-{
-  \group_begin:
-  
-  % Don't reqire any horizontal space
-  \rlap
-  {
-    % Create minipage of exact image size
-    \begin { minipage } [ b ] [ #3 ] [ t ] { #2 }
-      % Iterate over all three possible choices for vertical positioning
-      \int_step_inline:nnnn { \subfiglist_keyval_choice_first_int } { 1 }
-        { \subfiglist_keyval_choice_first_int + 2 }
-      {
-        \strut
-        % Is current choice for vertical positioning the selected one?
-        \int_compare:nTF { ##1 = \tl_item:Nn \subfiglist_label_vpos_tl { #1 } }
-        {
-          \strut
-          % Iterate over all three possible choices for horizontal positioning
-          \int_step_inline:nnnn { \subfiglist_keyval_choice_first_int } { 1 }
-            { \subfiglist_keyval_choice_first_int + 2 }
-          {
-            % Is current choce for horizontal positioning the selected one?
-            \int_compare:nTF { ####1 = \tl_item:Nn \subfiglist_label_hpos_tl { #1 } }
-            {
-              % Don't reqire any horizontal space for label
-              \makebox [ 0pt ] [ l ]
-              {
-                % Additional horizontal shift
-                \hspace{ \tl_item:Nn \subfiglist_label_xshift_tl { #1 } }
-                % Choose left, center or right alignment for label
-                \makebox [ 0pt ]
-                [
-                  \tl_item:nn { lcr }
-                  {
-                     \tl_item:Nn \subfiglist_label_hpos_tl { #1 }
-                     - \subfiglist_keyval_choice_first_int + 1
-                   }
-                ]
-                {
-                  % Additional vertical shift
-                  \dim_set:Nf \subfiglist_tempa_dim
-                    { \tl_item:Nn \subfiglist_label_yshift_tl { #1 } }
-                  \raisebox { -\subfiglist_tempa_dim } [ \ht\strutbox ] [ 0pt ]
-                  {
-                    % Decide whether label has to be put inside a colorbox or not
-                    \subfiglist_tl_if_eq:xnTF
-                      { \tl_item:Nn \subfiglist_label_background_list_tl { #1 } } { none }
-                      % Either delete next token or use it as argument of \colorbox
-                      \use_none:n \colorbox
-                        { \tl_item:Nn \subfiglist_label_background_list_tl { #1 } }
-                    {
-                      % Use caption package for putting label?
-                      \bool_if:NTF \subfiglist_use_caption_package_bool
-                      {
-                        \subfiglist_label_inset_caption_package:n
-                          { \tl_item:Nn \subfiglist_label_color_list_tl { #1 } }
-                        % Put hook for label
-                        \rlap{ \tl_item:Nn \subfiglist_label_hooks_tl { #1 } }
-                      }{
-                        \hbox
-                        {
-                          \refstepcounter { subfigure }
-                          \color { \tl_item:Nn \subfiglist_label_color_list_tl { #1 } }
-                          \subfiglistlabelformat
-                          % Put hook for label
-                          \rlap{ \tl_item:Nn \subfiglist_label_hooks_tl { #1 } }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }{
-              % Put \hfills for horizontal positioning of label
-              \hfill
-            }
-          }
-        }{
-          % Put \vfills for vertical positioning of label
-          \vfill
-        }
-        \strut
-      }
-    \end { minipage }
-  }
-    
-  \group_end:
-}
 
 
 % Define command for overlay
@@ -3144,58 +3203,6 @@
     \tl_put_right:Nx \subfiglist_canvas_bot_tl   { {\dim_use:N \subfiglist_canvas_bot_dim} }
     \tl_put_right:Nx \subfiglist_canvas_left_tl  { {\dim_use:N \subfiglist_canvas_left_dim} }
     \tl_put_right:Nx \subfiglist_canvas_right_tl { {\dim_use:N \subfiglist_canvas_right_dim} }
-  }
-}
-
-% Command for specifying label
-\cs_new:Npn \subfiglist_label_internal:nnn #1 #2 #3
-%
-% #1: optional argument
-% #2: image number
-% #3: label hook
-%
-{
-  % Check if fourth argument is numeric
-  \subfiglist_is_integer:nF { #2 }
-  {
-    \msg_error:nnnn { subfiglist } { missing~number } { First mandatory } { \subfiglistfile }
-  }
-
-  % Check if fourth argument is in range
-  \int_compare:nTF { #2 > \subfiglist_canvas_count_int }
-  {
-    \msg_error:nnff { subfiglist } { argument~out~of~range }
-      { #2 } { \int_use:N \subfiglist_canvas_count_int }
-  }{
-    % Process opitonal arguments
-    \tl_set:Nn \subfiglist_csname_tl { \exp_not:N \subfiglistfile }
-    \int_set_eq:NN \subfiglist_label_hpos_int \subfiglist_label_hpos_default_int
-    \int_set_eq:NN \subfiglist_label_vpos_int \subfiglist_label_vpos_default_int
-    \keys_set:nn { subfiglistlabel }
-    {
-      xshift     = \subfiglist_label_xshift_default_tl,
-      yshift     = \subfiglist_label_yshift_default_tl,
-      color      = \subfiglist_label_color_default_tl,
-      background = \subfiglist_label_background_default_tl
-    }
-    \keys_set:nn { subfiglistlabel } { #1 }
-
-    % Save label properties and image number. Put everything left
-    % so that newer entries are found before older ones.
-    \tl_put_left:Nn \subfiglist_label_hoff_tl { {0.5ex} }
-    \tl_put_left:Nn \subfiglist_label_voff_tl { {0.5ex} }
-    \tl_put_left:Nx \subfiglist_label_hpos_tl { {\int_use:N \subfiglist_label_hpos_int} }
-    \tl_put_left:Nx \subfiglist_label_vpos_tl { {\int_use:N \subfiglist_label_vpos_int} }
-    \tl_put_left:Nx \subfiglist_label_xshift_tl
-      { {\dim_use:N \subfiglist_label_xshift_dim} }
-    \tl_put_left:Nx \subfiglist_label_yshift_tl
-      { {\dim_use:N \subfiglist_label_yshift_dim} }
-    \tl_put_left:Nx \subfiglist_label_color_list_tl
-      { {\subfiglist_label_color_tl} }
-    \tl_put_left:Nx \subfiglist_label_background_list_tl
-      { {\subfiglist_label_background_tl} } 
-    \tl_put_left:Nn \subfiglist_label_nums_tl  { {#2} }
-    \tl_put_left:Nn \subfiglist_label_hooks_tl { {#3} }
   }
 }
 
@@ -3321,7 +3328,7 @@
   \RenewDocumentCommand \subfiglistdummy { O{} m m }
     { \subfiglist_setup_dummy:nnn { ##1 } { ##2 } { ##3} }
   \RenewDocumentCommand \subfiglistlabel { O{} m m }
-    { \subfiglist_label:nnn { ##1 } { ##2 } { ##3 } }
+    { \subfiglist_setup_label:nnn { ##1 } { ##2 } { ##3 } }
   \RenewDocumentCommand \subfiglistoverlay { m m }
     { \subfiglist_overlay:nn { ##1 } { ##2 } }
 }{
@@ -3349,8 +3356,6 @@
     % The whole figure can just be treated like a top level subblock
     \subfiglist_put_subblock:V \subfiglist_dimensioned_spec_tl
   \end{minipage}
-  
-  \tl_show:N \subfiglist_dimensioned_spec_tl \error
   
   % Discard commands
   \RenewDocumentCommand \subfiglistfile {} { \subfiglist_setup_file_stub: }
