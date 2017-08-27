@@ -45,7 +45,7 @@
 \dim_new:N  \subfiglist_effective_hoff_dim
 \dim_new:N  \subfiglist_effective_voff_dim
 \dim_new:N  \subfiglist_line_height_dim
-\dim_new:N  \subfiglist_line_width_dim
+\dim_new:N  \subfiglist_column_width_dim
 
 \tl_new:N   \subfiglist_test_tl
 \tl_new:N   \subfiglist_head_tl
@@ -2545,13 +2545,15 @@
     \subfiglist_effective_voff_dim
     { #3 }
   
-  \dim_set:Nn \subfiglist_line_width_dim { #2 }
-  \dim_sub:NV \subfiglist_line_width_dim \subfiglist_effective_voff_dim
-  \dim_set:Nn \subfiglist_line_width_dim
-    { \subfiglist_line_width_dim * \dim_ratio:nn { \fp_to_dim:N \subfiglist_effective_canvas_ratio_fp } { 1pt } }
-  \dim_add:NV \subfiglist_line_width_dim \subfiglist_effective_hoff_dim
+  \dim_set:Nn \subfiglist_column_width_dim { #2 }
+  \dim_sub:NV \subfiglist_column_width_dim \subfiglist_effective_voff_dim
+  \dim_set:Nn \subfiglist_column_width_dim
+    { \subfiglist_column_width_dim * \dim_ratio:nn { \fp_to_dim:N \subfiglist_effective_canvas_ratio_fp } { 1pt } }
+  \dim_add:NV \subfiglist_column_width_dim \subfiglist_effective_hoff_dim
   
   \group_begin:
+    \subfiglist_tl_set_wrapped:NnV #1 { columnwidth } \subfiglist_column_width_dim
+    
     \tl_map_inline:nn { #3 }
     {
       \subfiglist_tl_set_head:Nn \subfiglist_tempa_tl { ##1 }
@@ -2559,7 +2561,7 @@
       \subfiglist_tl_set_unwrapped:NV \subfiglist_tempb_tl \subfiglist_tempb_tl
       
       \subfiglist_use:c { subfiglist_dimension_vmode_ \subfiglist_tempa_tl :NVV }
-        #1 \subfiglist_line_width_dim \subfiglist_tempb_tl
+        #1 \subfiglist_column_width_dim \subfiglist_tempb_tl
     }
     
   \subfiglist_tl_set_from_prop:NN \subfiglist_tempa_tl \subfiglist_canvas_prop
@@ -2568,7 +2570,8 @@
   \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tempb_tl
   \group_end:
   \subfiglist_prop_set_from_tl:NN \subfiglist_canvas_prop \subfiglist_tempa_tl
-  \tl_put_right:NV #1 \subfiglist_tempb_tl
+  \subfiglist_tl_set_wrapped:NnV \subfiglist_tempa_tl { subblock } \subfiglist_tempb_tl
+  \tl_put_right:NV #1 \subfiglist_tempa_tl
 }
 
 \cs_generate_variant:Nn \subfiglist_dimension_hmode_subblock:Nnn { NnV }
@@ -2934,17 +2937,39 @@
 % #1: Content of subblock
 %
 {
-  \tl_map_inline:nn { #1 }
+  \subfiglist_tl_set_head:Nn \subfiglist_tempa_tl { #1 }
+  \subfiglist_tl_set_tail:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
+  \subfiglist_tl_set_head:NV \subfiglist_tempa_tl \subfiglist_tempa_tl
+  \subfiglist_tl_set_unwrapped:NV \subfiglist_tempb_tl \subfiglist_tempb_tl
+  
+  \subfiglist_tl_if_eq:nVTF { columnwidth } \subfiglist_tempa_tl
   {
-    \subfiglist_tl_set_head:Nn \subfiglist_tempa_tl { ##1 }
-    \subfiglist_tl_set_tail:Nn \subfiglist_tempb_tl { ##1 }
-    \subfiglist_tl_set_unwrapped:NV \subfiglist_tempb_tl \subfiglist_tempb_tl
-    
-    \subfiglist_use:c { subfiglist_put_ \subfiglist_tempa_tl :V } \subfiglist_tempb_tl
+    \begin{minipage}[b]{\subfiglist_tempb_tl}
+      \tl_map_inline:nn { #1 }
+      {
+        \subfiglist_tl_set_head:Nn \subfiglist_tempa_tl { ##1 }
+        \subfiglist_tl_set_tail:Nn \subfiglist_tempb_tl { ##1 }
+        \subfiglist_tl_set_unwrapped:NV \subfiglist_tempb_tl \subfiglist_tempb_tl
+        
+        \subfiglist_use:c { subfiglist_put_ \subfiglist_tempa_tl :V } \subfiglist_tempb_tl
+      }
+    \end{minipage}
+  }{
+    \tl_set:Nn \subfiglist_tempb_tl { Expected~token~`columnwidth'~but~found~token~` }
+    \tl_put_right:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
+    \tl_put_right:Nn \subfiglist_tempb_tl { '~instead }
+    \msg_error:nnV { subfiglist } { internal~error } \subfiglist_tempb_tl
   }
 }
 
 \cs_generate_variant:Nn \subfiglist_put_subblock:n { V }
+
+\cs_new:Npn \subfiglist_put_columnwidth:n #1
+{
+  \relax
+}
+
+\cs_generate_variant:Nn \subfiglist_put_columnwidth:n { V }
 
 \cs_new:Npn \subfiglist_put_line:n #1
 %
@@ -3271,8 +3296,15 @@
   
   % Put everything inside a minipage
   \begin{minipage}{\subfiglist_total_width_dim}
-    % The whole figure can just be treated like a top level subblock
-    \subfiglist_put_subblock:V \subfiglist_dimensioned_spec_tl
+    % Iterate over top level elements to produce output
+    \tl_map_inline:Nn \subfiglist_dimensioned_spec_tl
+    {
+      \subfiglist_tl_set_head:Nn \subfiglist_tempa_tl { ##1 }
+      \subfiglist_tl_set_tail:Nn \subfiglist_tempb_tl { ##1 }
+      \subfiglist_tl_set_unwrapped:NV \subfiglist_tempb_tl \subfiglist_tempb_tl
+      
+      \subfiglist_use:c { subfiglist_put_ \subfiglist_tempa_tl :V } \subfiglist_tempb_tl
+    }
   \end{minipage}
   
   % Discard commands

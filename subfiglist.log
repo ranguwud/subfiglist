@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.8.23)  27 AUG 2017 12:20
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.8.23)  27 AUG 2017 16:19
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -688,7 +688,7 @@ Package graphics Info: Driver file: xetex.def on input line 95.
 \subfiglist_effective_hoff_dim=\dimen165
 \subfiglist_effective_voff_dim=\dimen166
 \subfiglist_line_height_dim=\dimen167
-\subfiglist_line_width_dim=\dimen168
+\subfiglist_column_width_dim=\dimen168
 \subfiglist_exit_count_int=\count138
 \subfiglist_identifier_count_int=\count139
 \subfiglist_canvas_count_int=\count140
@@ -709,52 +709,52 @@ Package graphics Info: Driver file: xetex.def on input line 95.
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistfile with sig. '' on line 3118.
+. Defining command \subfiglistfile with sig. '' on line 3143.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummyfile with sig. '' on line 3125.
+. Defining command \subfiglistdummyfile with sig. '' on line 3150.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummy with sig. '' on line 3132.
+. Defining command \subfiglistdummy with sig. '' on line 3157.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabel with sig. '' on line 3139.
+. Defining command \subfiglistlabel with sig. '' on line 3164.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistoverlay with sig. '' on line 3146.
+. Defining command \subfiglistoverlay with sig. '' on line 3171.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabelformat with sig. '' on line 3155.
+. Defining command \subfiglistlabelformat with sig. '' on line 3180.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistsvgenv' with sig. '' on line 3159.
+. Defining environment 'subfiglistsvgenv' with sig. '' on line 3184.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3180.
+. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3205.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3287.
+. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3319.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3291.
+. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3323.
 .................................................
 )
 runsystem(rm ./subfiglist.sty)...executed.
@@ -1483,27 +1483,27 @@ Package babel Info: Redefining ngerman shorthand "~
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistfile with sig. 'O{}mm' on line 368.
+. Redefining command \subfiglistfile with sig. 'O{}mm' on line 367.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummyfile with sig. 'O{}mm' on line 368.
+. Redefining command \subfiglistdummyfile with sig. 'O{}mm' on line 367.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummy with sig. 'O{}mm' on line 368.
+. Redefining command \subfiglistdummy with sig. 'O{}mm' on line 367.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistlabel with sig. 'O{}mm' on line 368.
+. Redefining command \subfiglistlabel with sig. 'O{}mm' on line 367.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistoverlay with sig. 'mm' on line 368.
+. Redefining command \subfiglistoverlay with sig. 'mm' on line 367.
 .................................................
 File: figures/01.png Graphic file (type QTm)
  <use  "figures/01.png" >
@@ -1554,200 +1554,191 @@ File: figures/06.png Graphic file (type QTm)
 File: figures/07.png Graphic file (type QTm)
 
 <use  "figures/07.png" >
-File: figures/04.png Graphic file (type QTm)
- <use  "figures/04.png" >
-File: figures/05.png Graphic file (type QTm)
- <use  "figures/05.png" >
-File: figures/06.png Graphic file (type QTm)
-
-<use  "figures/06.png" >
-File: figures/07.png Graphic file (type QTm)
- <use  "figures/07.png" >
 File: figures/08.png Graphic file (type QTm)
  <use  "figures/08.png" >
 File: figures/09.png Graphic file (type QTm)
-
-<use  "figures/09.png" >
+ <use  "figures/09.png" >
 File: figures/10.png Graphic file (type QTm)
- <use  "figures/10.png" >
+
+<use  "figures/10.png" >
 File: figures/11.png Graphic file (type QTm)
  <use  "figures/11.png" >
 File: figures/12.png Graphic file (type QTm)
-
-<use  "figures/12.png" >
+ <use  "figures/12.png" >
 File: figures/13.png Graphic file (type QTm)
- <use  "figures/13.png" >
+
+<use  "figures/13.png" >
 File: figures/14.png Graphic file (type QTm)
  <use  "figures/14.png" >
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistfile with sig. '' on line 368.
+. Redefining command \subfiglistfile with sig. '' on line 367.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummyfile with sig. '' on line 368.
+. Redefining command \subfiglistdummyfile with sig. '' on line 367.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummy with sig. '' on line 368.
+. Redefining command \subfiglistdummy with sig. '' on line 367.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistlabel with sig. '' on line 368.
+. Redefining command \subfiglistlabel with sig. '' on line 367.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistoverlay with sig. '' on line 368.
+. Redefining command \subfiglistoverlay with sig. '' on line 367.
 .................................................
 Package microtype Info: *** Changing to language context `american'
-(microtype)              on input line 374.
+(microtype)              on input line 378.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 374.
+(babel)             in language  on input line 378.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 374.
+(babel)             in language  on input line 378.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 374.
+(babel)             in language  on input line 378.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 374.
-
-[4]
+(babel)             in language  on input line 378.
+ [4]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 383.
+(babel)             in language  on input line 382.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 383.
-Package microtype Info: Setting up font `T1/lmr/m/n/8' on input line 390.
+(babel)             in language  on input line 382.
+Package microtype Info: Setting up font `T1/lmr/m/n/8' on input line 389.
 Package microtype Info: ... Loading protrusion list `lmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-default'.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistfile with sig. 'O{}mm' on line 405.
+. Redefining command \subfiglistfile with sig. 'O{}mm' on line 404.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummyfile with sig. 'O{}mm' on line 405.
+. Redefining command \subfiglistdummyfile with sig. 'O{}mm' on line 404.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummy with sig. 'O{}mm' on line 405.
+. Redefining command \subfiglistdummy with sig. 'O{}mm' on line 404.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistlabel with sig. 'O{}mm' on line 405.
+. Redefining command \subfiglistlabel with sig. 'O{}mm' on line 404.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistoverlay with sig. 'mm' on line 405.
+. Redefining command \subfiglistoverlay with sig. 'mm' on line 404.
 .................................................
 File: figures/02.png Graphic file (type QTm)
- <use  "figures/02.png" > (./figures/svg.pdf_tex
+ <use  "figures/02.png" >
+(./figures/svg.pdf_tex
+File: figures/svg.pdf Graphic file (type QTm)
+ <use  "figures/svg.pdf" >)
+File: figures/04.png Graphic file (type QTm)
+ <use  "figures/04.png" >
+File: figures/02.png Graphic file (type QTm)
+
+<use  "figures/02.png" > (./figures/svg.pdf_tex
 File: figures/svg.pdf Graphic file (type QTm)
  <use  "figures/svg.pdf" >)
 File: figures/04.png Graphic file (type QTm)
 
 <use  "figures/04.png" >
-File: figures/02.png Graphic file (type QTm)
- <use  "figures/02.png" > (./figures/svg.pdf_tex
-File: figures/svg.pdf Graphic file (type QTm)
-
-<use  "figures/svg.pdf" >)
-File: figures/04.png Graphic file (type QTm)
- <use  "figures/04.png" >
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistfile with sig. '' on line 410.
+. Redefining command \subfiglistfile with sig. '' on line 409.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummyfile with sig. '' on line 410.
+. Redefining command \subfiglistdummyfile with sig. '' on line 409.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummy with sig. '' on line 410.
+. Redefining command \subfiglistdummy with sig. '' on line 409.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistlabel with sig. '' on line 410.
+. Redefining command \subfiglistlabel with sig. '' on line 409.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistoverlay with sig. '' on line 410.
+. Redefining command \subfiglistoverlay with sig. '' on line 409.
 .................................................
-Package microtype Info: Setting up font `OT1/lmr/m/n/10.95' on input line 412.
+Package microtype Info: Setting up font `OT1/lmr/m/n/10.95' on input line 411.
 Package microtype Info: ... Loading protrusion list `cmr-OT1'.
 Package microtype Info: ... : First loading protrusion list `cmr-default'.
-Package microtype Info: Setting up font `OML/lmm/m/it/10.95' on input line 412.
+Package microtype Info: Setting up font `OML/lmm/m/it/10.95' on input line 411.
 
 Package microtype Info: ... No protrusion.
-Package microtype Info: Setting up font `OMS/lmsy/m/n/10.95' on input line 412.
+Package microtype Info: Setting up font `OMS/lmsy/m/n/10.95' on input line 411.
 
 Package microtype Info: ... No protrusion.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <10.95> on input line 412.
-Package microtype Info: Setting up font `OMX/lmex/m/n/10.95' on input line 412.
+(Font)              <10.95> on input line 411.
+Package microtype Info: Setting up font `OMX/lmex/m/n/10.95' on input line 411.
 
 Package microtype Info: ... No protrusion.
 
-Overfull \hbox (9.44757pt too wide) in paragraph at lines 416--417
+Overfull \hbox (9.44757pt too wide) in paragraph at lines 415--416
 []\T1/lmr/m/n/12 When an im-age with the file ex-ten-sion \T1/lmtt/m/n/12 pdf_t
 ex \T1/lmr/m/n/12 is loaded, it is put in-side the \T1/lmtt/m/n/12 subfiglistsv
 genv
  []
 
 Package microtype Info: *** Changing to language context `american'
-(microtype)              on input line 421.
+(microtype)              on input line 426.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 421.
+(babel)             in language  on input line 426.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 421.
+(babel)             in language  on input line 426.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 421.
+(babel)             in language  on input line 426.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 421.
+(babel)             in language  on input line 426.
 [5]
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistfile with sig. 'O{}mm' on line 464.
+. Redefining command \subfiglistfile with sig. 'O{}mm' on line 463.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummyfile with sig. 'O{}mm' on line 464.
+. Redefining command \subfiglistdummyfile with sig. 'O{}mm' on line 463.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummy with sig. 'O{}mm' on line 464.
+. Redefining command \subfiglistdummy with sig. 'O{}mm' on line 463.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistlabel with sig. 'O{}mm' on line 464.
+. Redefining command \subfiglistlabel with sig. 'O{}mm' on line 463.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistoverlay with sig. 'mm' on line 464.
+. Redefining command \subfiglistoverlay with sig. 'mm' on line 463.
 .................................................
 File: figures/02.png Graphic file (type QTm)
  <use  "figures/02.png" >
-Package microtype Info: Setting up font `T1/lmss/m/n/10' on input line 467.
+Package microtype Info: Setting up font `T1/lmss/m/n/10' on input line 466.
 Package microtype Info: ... Loading protrusion list `T1-default'.
 Package microtype Info: ... : First loading protrusion list `default'.
  (./figures/svg.pdf_tex
@@ -1826,52 +1817,52 @@ File: figures/04.png Graphic file (type QTm)
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistfile with sig. '' on line 469.
+. Redefining command \subfiglistfile with sig. '' on line 468.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummyfile with sig. '' on line 469.
+. Redefining command \subfiglistdummyfile with sig. '' on line 468.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummy with sig. '' on line 469.
+. Redefining command \subfiglistdummy with sig. '' on line 468.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistlabel with sig. '' on line 469.
+. Redefining command \subfiglistlabel with sig. '' on line 468.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistoverlay with sig. '' on line 469.
+. Redefining command \subfiglistoverlay with sig. '' on line 468.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistfile with sig. 'O{}mm' on line 504.
+. Redefining command \subfiglistfile with sig. 'O{}mm' on line 503.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummyfile with sig. 'O{}mm' on line 504.
+. Redefining command \subfiglistdummyfile with sig. 'O{}mm' on line 503.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummy with sig. 'O{}mm' on line 504.
+. Redefining command \subfiglistdummy with sig. 'O{}mm' on line 503.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistlabel with sig. 'O{}mm' on line 504.
+. Redefining command \subfiglistlabel with sig. 'O{}mm' on line 503.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistoverlay with sig. 'mm' on line 504.
+. Redefining command \subfiglistoverlay with sig. 'mm' on line 503.
 .................................................
 File: figures/01.png Graphic file (type QTm)
  <use  "figures/01.png" >
@@ -1895,82 +1886,82 @@ File: figures/04.png Graphic file (type QTm)
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistfile with sig. '' on line 513.
+. Redefining command \subfiglistfile with sig. '' on line 512.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummyfile with sig. '' on line 513.
+. Redefining command \subfiglistdummyfile with sig. '' on line 512.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummy with sig. '' on line 513.
+. Redefining command \subfiglistdummy with sig. '' on line 512.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistlabel with sig. '' on line 513.
+. Redefining command \subfiglistlabel with sig. '' on line 512.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistoverlay with sig. '' on line 513.
+. Redefining command \subfiglistoverlay with sig. '' on line 512.
 .................................................
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 519.
+(babel)             in language  on input line 518.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 519.
+(babel)             in language  on input line 518.
 Package microtype Info: *** Changing to language context `american'
-(microtype)              on input line 523.
+(microtype)              on input line 522.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 523.
+(babel)             in language  on input line 522.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 523.
+(babel)             in language  on input line 522.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 523.
+(babel)             in language  on input line 522.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 523.
+(babel)             in language  on input line 522.
 [6]
 Package microtype Info: *** Changing to language context `american'
-(microtype)              on input line 545.
+(microtype)              on input line 544.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 545.
+(babel)             in language  on input line 544.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 545.
+(babel)             in language  on input line 544.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 545.
+(babel)             in language  on input line 544.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 545.
+(babel)             in language  on input line 544.
  [7]
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistfile with sig. 'O{}mm' on line 629.
+. Redefining command \subfiglistfile with sig. 'O{}mm' on line 628.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummyfile with sig. 'O{}mm' on line 629.
+. Redefining command \subfiglistdummyfile with sig. 'O{}mm' on line 628.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummy with sig. 'O{}mm' on line 629.
+. Redefining command \subfiglistdummy with sig. 'O{}mm' on line 628.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistlabel with sig. 'O{}mm' on line 629.
+. Redefining command \subfiglistlabel with sig. 'O{}mm' on line 628.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistoverlay with sig. 'mm' on line 629.
+. Redefining command \subfiglistoverlay with sig. 'mm' on line 628.
 .................................................
 File: figures/01.png Graphic file (type QTm)
  <use  "figures/01.png" >
@@ -1991,7 +1982,7 @@ File: figures/01.png Graphic file (type QTm)
 > \subfiglist_tempa_tl=none.
 <recently read> }
                  
-l.629 \end{minipage}}
+l.628 \end{minipage}}
                      
 
 File: figures/02.png Graphic file (type QTm)
@@ -1999,7 +1990,7 @@ File: figures/02.png Graphic file (type QTm)
 > \subfiglist_tempa_tl=none.
 <recently read> }
                  
-l.629 \end{minipage}}
+l.628 \end{minipage}}
                      
 
 File: figures/03.png Graphic file (type QTm)
@@ -2007,7 +1998,7 @@ File: figures/03.png Graphic file (type QTm)
 > \subfiglist_tempa_tl=none.
 <recently read> }
                  
-l.629 \end{minipage}}
+l.628 \end{minipage}}
                      
 
 File: figures/04.png Graphic file (type QTm)
@@ -2015,7 +2006,7 @@ File: figures/04.png Graphic file (type QTm)
 > \subfiglist_tempa_tl=yellow.
 <recently read> }
                  
-l.629 \end{minipage}}
+l.628 \end{minipage}}
                      
 
 File: figures/05.png Graphic file (type QTm)
@@ -2023,7 +2014,7 @@ File: figures/05.png Graphic file (type QTm)
 > \subfiglist_tempa_tl=cyan.
 <recently read> }
                  
-l.629 \end{minipage}}
+l.628 \end{minipage}}
                      
 
 File: figures/06.png Graphic file (type QTm)
@@ -2031,83 +2022,83 @@ File: figures/06.png Graphic file (type QTm)
 > \subfiglist_tempa_tl=magenta.
 <recently read> }
                  
-l.629 \end{minipage}}
+l.628 \end{minipage}}
                      
 
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistfile with sig. '' on line 629.
+. Redefining command \subfiglistfile with sig. '' on line 628.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummyfile with sig. '' on line 629.
+. Redefining command \subfiglistdummyfile with sig. '' on line 628.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummy with sig. '' on line 629.
+. Redefining command \subfiglistdummy with sig. '' on line 628.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistlabel with sig. '' on line 629.
+. Redefining command \subfiglistlabel with sig. '' on line 628.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistoverlay with sig. '' on line 629.
+. Redefining command \subfiglistoverlay with sig. '' on line 628.
 .................................................
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 634.
+(babel)             in language  on input line 633.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 634.
+(babel)             in language  on input line 633.
 
-Overfull \hbox (25.18835pt too wide) in paragraph at lines 640--641
+Overfull \hbox (25.18835pt too wide) in paragraph at lines 639--640
 \T1/lmr/m/n/12 vi-ron-ment with []\T1/lmtt/m/n/12 \unitlength \T1/lmr/m/n/12 be
 -ing equal to the width of the im-age ref-er-enced by \T1/lmtt/m/n/12 image-num
 ber\T1/lmr/m/n/12 . 
  []
 
 Package microtype Info: *** Changing to language context `american'
-(microtype)              on input line 641.
+(microtype)              on input line 640.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 641.
+(babel)             in language  on input line 640.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 641.
+(babel)             in language  on input line 640.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 641.
+(babel)             in language  on input line 640.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 641.
+(babel)             in language  on input line 640.
 [8]
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistfile with sig. 'O{}mm' on line 677.
+. Redefining command \subfiglistfile with sig. 'O{}mm' on line 676.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummyfile with sig. 'O{}mm' on line 677.
+. Redefining command \subfiglistdummyfile with sig. 'O{}mm' on line 676.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummy with sig. 'O{}mm' on line 677.
+. Redefining command \subfiglistdummy with sig. 'O{}mm' on line 676.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistlabel with sig. 'O{}mm' on line 677.
+. Redefining command \subfiglistlabel with sig. 'O{}mm' on line 676.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistoverlay with sig. 'mm' on line 677.
+. Redefining command \subfiglistoverlay with sig. 'mm' on line 676.
 .................................................
 File: figures/01.png Graphic file (type QTm)
  <use  "figures/01.png" >
@@ -2121,67 +2112,67 @@ File: figures/02.png Graphic file (type QTm)
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistfile with sig. '' on line 702.
+. Redefining command \subfiglistfile with sig. '' on line 701.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummyfile with sig. '' on line 702.
+. Redefining command \subfiglistdummyfile with sig. '' on line 701.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummy with sig. '' on line 702.
+. Redefining command \subfiglistdummy with sig. '' on line 701.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistlabel with sig. '' on line 702.
+. Redefining command \subfiglistlabel with sig. '' on line 701.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistoverlay with sig. '' on line 702.
+. Redefining command \subfiglistoverlay with sig. '' on line 701.
 .................................................
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 Package microtype Info: *** Changing to language context `american'
-(microtype)              on input line 711.
+(microtype)              on input line 710.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 711.
+(babel)             in language  on input line 710.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 711.
+(babel)             in language  on input line 710.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 711.
+(babel)             in language  on input line 710.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 711.
+(babel)             in language  on input line 710.
 [9]
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistfile with sig. 'O{}mm' on line 763.
+. Redefining command \subfiglistfile with sig. 'O{}mm' on line 762.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummyfile with sig. 'O{}mm' on line 763.
+. Redefining command \subfiglistdummyfile with sig. 'O{}mm' on line 762.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummy with sig. 'O{}mm' on line 763.
+. Redefining command \subfiglistdummy with sig. 'O{}mm' on line 762.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistlabel with sig. 'O{}mm' on line 763.
+. Redefining command \subfiglistlabel with sig. 'O{}mm' on line 762.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistoverlay with sig. 'mm' on line 763.
+. Redefining command \subfiglistoverlay with sig. 'mm' on line 762.
 .................................................
 File: figures/01.png Graphic file (type QTm)
  <use  "figures/01.png" >
@@ -2195,96 +2186,96 @@ File: figures/02.png Graphic file (type QTm)
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistfile with sig. '' on line 788.
+. Redefining command \subfiglistfile with sig. '' on line 787.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummyfile with sig. '' on line 788.
+. Redefining command \subfiglistdummyfile with sig. '' on line 787.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistdummy with sig. '' on line 788.
+. Redefining command \subfiglistdummy with sig. '' on line 787.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistlabel with sig. '' on line 788.
+. Redefining command \subfiglistlabel with sig. '' on line 787.
 .................................................
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
-. Redefining command \subfiglistoverlay with sig. '' on line 788.
+. Redefining command \subfiglistoverlay with sig. '' on line 787.
 .................................................
 Package microtype Info: *** Changing to language context `american'
-(microtype)              on input line 792.
+(microtype)              on input line 791.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 792.
+(babel)             in language  on input line 791.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 792.
+(babel)             in language  on input line 791.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 792.
+(babel)             in language  on input line 791.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 792.
+(babel)             in language  on input line 791.
  [10]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 794.
+(babel)             in language  on input line 793.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 794.
-LaTeX Font Info:    Try loading font information for TS1+lmr on input line 797.
+(babel)             in language  on input line 793.
+LaTeX Font Info:    Try loading font information for TS1+lmr on input line 796.
 
  (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Package microtype Info: Setting up font `TS1/lmr/m/n/12' on input line 797.
+Package microtype Info: Setting up font `TS1/lmr/m/n/12' on input line 796.
 Package microtype Info: ... Loading protrusion list `cmr-textcomp'.
 Package microtype Info: *** Changing to language context `american'
-(microtype)              on input line 800.
+(microtype)              on input line 799.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 800.
+(babel)             in language  on input line 799.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 800.
+(babel)             in language  on input line 799.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 800.
+(babel)             in language  on input line 799.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 800.
+(babel)             in language  on input line 799.
 
 [11]
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 802.
+(babel)             in language  on input line 801.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 802.
+(babel)             in language  on input line 801.
 
 
 Package caption Warning: Unused \captionsetup[subfigure] on input line 165.
 See the caption package documentation for explanation.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 804.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 803.
 Package microtype Info: *** Changing to language context `american'
-(microtype)              on input line 804.
+(microtype)              on input line 803.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 804.
+(babel)             in language  on input line 803.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 804.
+(babel)             in language  on input line 803.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 804.
+(babel)             in language  on input line 803.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 804.
+(babel)             in language  on input line 803.
 [12]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 804.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 803.
  (./subfiglist.aux
 Package microtype Info: *** Changing to language context `american'
 (microtype)              on input line 20.
 )
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 804.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 804.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 803.
+Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 803.
  ) 
 Here is how much of TeX's memory you used:
- 31399 strings out of 493638
- 563896 string characters out of 6146796
- 714665 words of memory out of 5000000
- 34380 multiletter control sequences out of 15000+600000
+ 31401 strings out of 493638
+ 563954 string characters out of 6146796
+ 713898 words of memory out of 5000000
+ 34382 multiletter control sequences out of 15000+600000
  78076 words of font info for 71 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
  70i,18n,136p,10433b,931s stack positions out of 5000i,500n,10000p,200000b,80000s
