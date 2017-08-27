@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.8.23)  26 AUG 2017 11:59
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.8.23)  27 AUG 2017 10:53
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -734,27 +734,27 @@ Package graphics Info: Driver file: xetex.def on input line 95.
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabelformat with sig. '' on line 3238.
+. Defining command \subfiglistlabelformat with sig. '' on line 3143.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistsvgenv' with sig. '' on line 3242.
+. Defining environment 'subfiglistsvgenv' with sig. '' on line 3147.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3263.
+. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3168.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3370.
+. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3275.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3374.
+. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3279.
 .................................................
 )
 runsystem(rm ./subfiglist.sty)...executed.
@@ -1358,10 +1358,10 @@ Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1000.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 1000.
  ) 
 Here is how much of TeX's memory you used:
- 31030 strings out of 493638
- 557166 string characters out of 6146796
- 705159 words of memory out of 5000000
- 34080 multiletter control sequences out of 15000+600000
+ 31028 strings out of 493638
+ 557101 string characters out of 6146796
+ 704630 words of memory out of 5000000
+ 34078 multiletter control sequences out of 15000+600000
  31640 words of font info for 33 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
  59i,12n,99p,10433b,780s stack positions out of 5000i,500n,10000p,200000b,80000s
