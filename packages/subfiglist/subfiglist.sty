@@ -2129,7 +2129,7 @@
       \subfiglist_tl_set_from_prop:NN \subfiglist_tempa_tl \subfiglist_temp_prop
       \prop_put:NnV \subfiglist_canvas_prop { ##2 } \subfiglist_tempa_tl
     }{
-      \msg_error:nnnf { subfiglist } { missing~number } { First } { \token_to_str:c { subfiglist #1 } }
+      \msg_error:nnnf { subfiglist } { missing~number } { First~mandatory } { \token_to_str:c { subfiglist #1 } }
     }
   }
 }
@@ -2202,7 +2202,7 @@
     \subfiglist_tl_set_from_prop:NN \subfiglist_tempa_tl \subfiglist_temp_prop
     \prop_put:NnV \subfiglist_canvas_prop { #2 } \subfiglist_tempa_tl
   }{
-    \msg_error:nnnn { subfiglist } { missing~number } { First } { \subfiglistdummy }
+    \msg_error:nnnf { subfiglist } { missing~number } { First~mandatory } { \token_to_str:c { subfiglistdummy } }
   }
 }
 
@@ -2247,7 +2247,27 @@
     \subfiglist_tl_set_from_prop:NN \subfiglist_tempa_tl \subfiglist_temp_prop
     \prop_put:NnV \subfiglist_label_prop { #2 } \subfiglist_tempa_tl
   }{
-    \msg_error:nnnn { subfiglist } { missing~number } { First } { \token_to_str:c { subfiglistfile } }
+    \msg_error:nnnf { subfiglist } { missing~number } { First~mandatory } { \token_to_str:c { subfiglistfile } }
+  }
+}
+
+% Command for specifying overlay
+\cs_new:Npn \subfiglist_setup_overlay:nn #1 #2
+%
+% #1: image number
+% #2: content
+%
+{
+  % Check if first argument is numeric
+  \subfiglist_is_integer:nTF { #1 }
+  {
+    \prop_clear:N \subfiglist_temp_prop
+    \prop_put:Nnn \subfiglist_temp_prop { content } { #2 }
+    
+    \subfiglist_tl_set_from_prop:NN \subfiglist_tempa_tl \subfiglist_temp_prop
+    \prop_put:NnV \subfiglist_overlay_prop { #1 } \subfiglist_tempa_tl
+  }{
+    \msg_error:nnnf { subfiglist } { missing~number } { First~mandatory } { \token_to_str:c { subfiglistoverlay } }
   }
 }
 
@@ -2835,9 +2855,14 @@
     % Has a label been specified?
     \prop_if_in:NnT \subfiglist_label_prop { #1 }
     {
-      \subfiglist_put_label:nVV { #1 } { \wd\subfiglist_box } { \ht\subfiglist_box }
+      \subfiglist_put_label:nnn { #1 } { \wd\subfiglist_box } { \ht\subfiglist_box }
     }
     
+    % Has an overlay been specified?
+    \prop_if_in:NnT \subfiglist_overlay_prop { #1 }
+    {
+      \subfiglist_put_overlay:nnn { #1 } { \wd\subfiglist_box } { \ht\subfiglist_box }
+    }
 %    % Check whether an overlay has been given for the current canvas
 %    \int_zero:N \subfiglist_tempb_int
 %    \bool_set_false:N \subfiglist_temp_bool
@@ -3044,7 +3069,28 @@
   }
 }
 
-\cs_generate_variant:Nn \subfiglist_put_label:nnn { nVV }
+% Define command for overlay
+\cs_new:Npn \subfiglist_put_overlay:nnn #1 #2 #3
+%
+% #1: Canvas number
+% #2: Image width
+% #3: Image height
+%
+{
+  \prop_get:NnN \subfiglist_overlay_prop { #1 } \subfiglist_tempa_tl
+  \subfiglist_prop_set_from_tl:NN \subfiglist_temp_prop \subfiglist_tempa_tl
+  
+  % Don't require any horizontal space
+  \rlap
+  {
+    \begin { subfiglistoverlayenv } { #2 } { #3 }
+      % Put content of overlay
+      \prop_get:NnN \subfiglist_temp_prop { content } \subfiglist_tempa_tl
+      \tl_use:N \subfiglist_tempa_tl
+    \end { subfiglistoverlayenv }
+  }
+}
+
 
 
 
@@ -3092,26 +3138,7 @@
 %%%%%%%%%%%%%%%%%%%%%%%%
 %%%   Package code   %%%
 %%%%%%%%%%%%%%%%%%%%%%%%
-  
 
-
-% Define command for overlay
-\cs_new:Npn \subfiglist_overlay:nnn #1 #2 #3
-%
-% #1: index to address current overlay
-% #2: image width
-% #3: image height
-%
-{
-  % Don't require any horizontal space
-  \rlap
-  {
-    \begin { subfiglistoverlayenv } { #2 } { #3 }
-      % Put content of overlay
-      \tl_item:Nn \subfiglist_overlay_content_tl { #1 }
-    \end { subfiglistoverlayenv }
-  }
-}
 
 
 \cs_new:Npn \subfiglist_dummy_file_internal:nnnn #1 #2 #3 #4
@@ -3203,32 +3230,6 @@
     \tl_put_right:Nx \subfiglist_canvas_bot_tl   { {\dim_use:N \subfiglist_canvas_bot_dim} }
     \tl_put_right:Nx \subfiglist_canvas_left_tl  { {\dim_use:N \subfiglist_canvas_left_dim} }
     \tl_put_right:Nx \subfiglist_canvas_right_tl { {\dim_use:N \subfiglist_canvas_right_dim} }
-  }
-}
-
-
-% Command for specifying overlay
-\cs_new:Npn \subfiglist_overlay_internal:nn #1 #2
-%
-% #1: image number
-% #2: content
-%
-{
-  % Check if first argument is numeric
-  \subfiglist_is_integer:nF { #1 }
-  {
-    \msg_error:nnnn { subfiglist } { missing~number } { First mandatory } { \subfiglistoverlay }
-  }
-
-  % Check if first argument is in range
-  \int_compare:nTF { #1 > \subfiglist_canvas_count_int }
-  {
-    \msg_error:nnff { subfiglist } { argument~out~of~range }
-      { #1 } { \int_use:N \subfiglist_canvas_count_int }
-  }{
-    % Save image number and content
-    \tl_put_left:Nn \subfiglist_overlay_nums_tl    { {#1} }
-    \tl_put_left:Nn \subfiglist_overlay_content_tl { {#2} }
   }
 }
 
@@ -3330,7 +3331,7 @@
   \RenewDocumentCommand \subfiglistlabel { O{} m m }
     { \subfiglist_setup_label:nnn { ##1 } { ##2 } { ##3 } }
   \RenewDocumentCommand \subfiglistoverlay { m m }
-    { \subfiglist_overlay:nn { ##1 } { ##2 } }
+    { \subfiglist_setup_overlay:nn { ##1 } { ##2 } }
 }{
   % Verify canvas numbers
   \subfiglist_verify_canvas_nums:NNNV
