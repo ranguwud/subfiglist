@@ -32,6 +32,7 @@ TODO
 * Verify numbers for labels and overlays
 * Option to set label hoff and voff globally. Document default values for no/colored background
 * Use \subfiglist_key_set:nnV where possible
+* Test all kinds of weird nestings and alignments
 
 
 
