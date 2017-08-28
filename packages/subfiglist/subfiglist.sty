@@ -1,5 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}[1994/12/01]%
-\RequirePackage{expl3}[2014/06/10]% needs v5105 or newer
+\RequirePackage{expl3}[2015/12/20]% needs v6326 or newer
 \ProvidesExplPackage{subfiglist}{2015/03/22}{1.0}{labeled subfigures}
 
 \RequirePackage{l3sort}[2013/12/14]     % needs v4623 or newer
@@ -3064,7 +3064,6 @@
                     {
                       \prop_get:NnN \subfiglist_temp_prop { background } \subfiglist_tempa_tl
                       % Decide whether label has to be put inside a colorbox or not
-                      \tl_show:N \subfiglist_tempa_tl
                       \subfiglist_tl_if_eq_charcode:nVTF { none } \subfiglist_tempa_tl
                         % Either delete next token or use it as argument of \colorbox
                         \use_none:n \colorbox

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.8.23)  27 AUG 2017 20:28
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.8.23)  28 AUG 2017 18:53
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -709,52 +709,52 @@ Package graphics Info: Driver file: xetex.def on input line 95.
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistfile with sig. '' on line 3145.
+. Defining command \subfiglistfile with sig. '' on line 3144.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummyfile with sig. '' on line 3152.
+. Defining command \subfiglistdummyfile with sig. '' on line 3151.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummy with sig. '' on line 3159.
+. Defining command \subfiglistdummy with sig. '' on line 3158.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabel with sig. '' on line 3166.
+. Defining command \subfiglistlabel with sig. '' on line 3165.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistoverlay with sig. '' on line 3173.
+. Defining command \subfiglistoverlay with sig. '' on line 3172.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabelformat with sig. '' on line 3182.
+. Defining command \subfiglistlabelformat with sig. '' on line 3181.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistsvgenv' with sig. '' on line 3186.
+. Defining environment 'subfiglistsvgenv' with sig. '' on line 3185.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3207.
+. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3206.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3321.
+. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3320.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3325.
+. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3324.
 .................................................
 )
 runsystem(rm ./subfiglist.sty)...executed.
@@ -1979,52 +1979,18 @@ File: figures/06.png Graphic file (type QTm)
 <use  "figures/06.png" >
 File: figures/01.png Graphic file (type QTm)
  <use  "figures/01.png" >
-> \subfiglist_tempa_tl=none.
-<recently read> }
-                 
-l.628 \end{minipage}}
-                     
-
 File: figures/02.png Graphic file (type QTm)
-<use  "figures/02.png" >
-> \subfiglist_tempa_tl=none.
-<recently read> }
-                 
-l.628 \end{minipage}}
-                     
-
+ <use  "figures/02.png" >
 File: figures/03.png Graphic file (type QTm)
+
 <use  "figures/03.png" >
-> \subfiglist_tempa_tl=none.
-<recently read> }
-                 
-l.628 \end{minipage}}
-                     
-
 File: figures/04.png Graphic file (type QTm)
-<use  "figures/04.png" >
-> \subfiglist_tempa_tl=yellow.
-<recently read> }
-                 
-l.628 \end{minipage}}
-                     
-
+ <use  "figures/04.png" >
 File: figures/05.png Graphic file (type QTm)
-<use  "figures/05.png" >
-> \subfiglist_tempa_tl=cyan.
-<recently read> }
-                 
-l.628 \end{minipage}}
-                     
-
+ <use  "figures/05.png" >
 File: figures/06.png Graphic file (type QTm)
-<use  "figures/06.png" >
-> \subfiglist_tempa_tl=magenta.
-<recently read> }
-                 
-l.628 \end{minipage}}
-                     
 
+<use  "figures/06.png" >
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -2050,6 +2016,7 @@ l.628 \end{minipage}}
 . 
 . Redefining command \subfiglistoverlay with sig. '' on line 628.
 .................................................
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -2274,10 +2241,10 @@ Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 803.
 Here is how much of TeX's memory you used:
  31401 strings out of 493638
  563954 string characters out of 6146796
- 714916 words of memory out of 5000000
+ 714914 words of memory out of 5000000
  34382 multiletter control sequences out of 15000+600000
  78076 words of font info for 71 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
- 70i,18n,136p,10433b,931s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 70i,18n,136p,10433b,929s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on subfiglist.pdf (12 pages).
