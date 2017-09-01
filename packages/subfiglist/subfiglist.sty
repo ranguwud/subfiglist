@@ -2123,13 +2123,10 @@
       \prop_put:NnV \subfiglist_temp_prop { ratio } \subfiglist_tempa_tl
 
       % Process opitonal arguments
-      \keys_set:nn { subfiglistcanvas }
-        {
-          top    = \subfiglist_canvas_top_default_tl,
-          bottom = \subfiglist_canvas_bot_default_tl,
-          left   = \subfiglist_canvas_left_default_tl,
-          right  = \subfiglist_canvas_right_default_tl
-        }
+      \subfiglist_key_set:nnV { subfiglistcanvas } { top }    \subfiglist_canvas_top_default_tl
+      \subfiglist_key_set:nnV { subfiglistcanvas } { bottom } \subfiglist_canvas_bot_default_tl
+      \subfiglist_key_set:nnV { subfiglistcanvas } { left }   \subfiglist_canvas_left_default_tl
+      \subfiglist_key_set:nnV { subfiglistcanvas } { right }  \subfiglist_canvas_right_default_tl
       \keys_set:nn { subfiglistcanvas } { ##1 }
 
       % Save specified offsets
@@ -2196,13 +2193,10 @@
     }
     
     % Process opitonal arguments
-    \keys_set:nn { subfiglistcanvas }
-      {
-        top    = \subfiglist_canvas_top_default_tl,
-        bottom = \subfiglist_canvas_bot_default_tl,
-        left   = \subfiglist_canvas_left_default_tl,
-        right  = \subfiglist_canvas_right_default_tl
-      }
+    \subfiglist_key_set:nnV { subfiglistcanvas } { top }    \subfiglist_canvas_top_default_tl
+    \subfiglist_key_set:nnV { subfiglistcanvas } { bottom } \subfiglist_canvas_bot_default_tl
+    \subfiglist_key_set:nnV { subfiglistcanvas } { left }   \subfiglist_canvas_left_default_tl
+    \subfiglist_key_set:nnV { subfiglistcanvas } { right }  \subfiglist_canvas_right_default_tl
     \keys_set:nn { subfiglistcanvas } { #1 }
     
     % Save specified offsets
@@ -2236,13 +2230,9 @@
     % Process opitonal arguments
     \int_set_eq:NN \subfiglist_label_hpos_int \subfiglist_label_hpos_default_int
     \int_set_eq:NN \subfiglist_label_vpos_int \subfiglist_label_vpos_default_int
-    \keys_set:nn { subfiglistlabel }
-    {
-      xshift     = \subfiglist_label_xshift_default_tl,
-      yshift     = \subfiglist_label_yshift_default_tl,
-      color      = \subfiglist_label_color_default_tl,
-      background = \subfiglist_label_background_default_tl
-    }
+    \subfiglist_key_set:nnV { subfiglistlabel } { xshift }     \subfiglist_label_xshift_default_tl
+    \subfiglist_key_set:nnV { subfiglistlabel } { yshift }     \subfiglist_label_yshift_default_tl
+    \subfiglist_key_set:nnV { subfiglistlabel } { color }      \subfiglist_label_color_default_tl
     \subfiglist_key_set:nnV { subfiglistlabel } { background } \subfiglist_label_background_default_tl
     \keys_set:nn { subfiglistlabel } { #1 }
     
@@ -3218,11 +3208,8 @@
   \group_begin:
   
   % Save specified dimensions
-  \keys_set:nn { subfiglistenv }
-  {
-    width = \subfiglist_env_width_default_tl,
-    space = \subfiglist_env_space_default_tl
-  }
+  \subfiglist_key_set:nnn { subfiglistenv } { width } \subfiglist_env_width_default_tl
+  \subfiglist_key_set:nnn { subfiglistenv } { space } \subfiglist_env_space_default_tl
   \keys_set:nn { subfiglistenv } { #2 }
   
   % Decide which version of \subfiglist_put_space is used

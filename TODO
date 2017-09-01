@@ -31,7 +31,6 @@ TODO
 * Check if empty separator @{} raises unwanted error
 * Verify numbers for labels and overlays
 * Option to set label hoff and voff globally. Document default values for no/colored background
-* Use \subfiglist_key_set:nnV where possible
 * Test all kinds of weird nestings and alignments
 
 
@@ -50,3 +49,4 @@ DONE
 * Differentiate between vmode and hmode dimensioning macros
 * Set ratio to NaN instead of 0 for non scalable tokens
 * Differentiate between vmode and hmode aspect ratio macros
+* Use \subfiglist_key_set:nnV where possible
