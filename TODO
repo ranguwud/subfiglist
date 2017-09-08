@@ -4,12 +4,10 @@ TODO
 * Check if new method of choice key setting works with older l3keys
 * Use \subfiglist_token_if_eq_charcode:NN to compare \\ with \\.
 * Test all error messages
-* Use sequences in place of token lists
 * Delete unnecessary variables
 * Replace test for equal charcode by test for equal charcode AND equal meaning
 * Add change of meaning for `@' depending on catcode to known issues. Weird settings of catcodes e.g. for numbers may have strange effects
 * Remove \subfiglist_test_conditionals:
-* \subfiglist_tokenize_spec_str:VN -> \subfiglist_tokenize_spec_str:NV
 * Set \subfiglist_identifier_nums by dependency injection
 * tempa -> tmpa in accordance with kernel docs
 * Replace wrapping commands by more general \subfiglist_tl_set_wrapped in parser and lexer
@@ -51,3 +49,5 @@ DONE
 * Differentiate between vmode and hmode aspect ratio macros
 * Use \subfiglist_key_set:nnV where possible
 * Safe default horizontal/vertical label positioning as token list to use in \subfiglist_key_set:nnV
+* \subfiglist_tokenize_spec_str:VN -> \subfiglist_tokenize_spec_str:NV
+* Use sequences in place of token lists
