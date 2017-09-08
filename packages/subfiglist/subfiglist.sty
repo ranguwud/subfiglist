@@ -1356,68 +1356,6 @@
 \cs_generate_variant:Nn \subfiglist_is_nan:nTF { V }
 
 
-% Test truth value of various conditionals and print result
-\cs_new:Npn \subfiglist_test_conditionals:
-{
-  \tl_map_inline:nn
-  {
-    {
-      { \subfiglist_is_digit_p:N a }
-      { \subfiglist_is_digit_p:N 1 }
-      { \subfiglist_is_digit_p:N {11} }
-      { \subfiglist_is_digit_p:N {{11}} }
-      { \subfiglist_is_digit_p:N {{{11}}} }
-    }{
-      { \subfiglist_is_integer_p:n 1 }
-      { \subfiglist_is_integer_p:n { } }
-      { \subfiglist_is_integer_p:n { 1234 } }
-      { \subfiglist_is_integer_p:n {{1234}} }
-      { \subfiglist_is_integer_p:n { 12ab } }
-      { \subfiglist_is_integer_p:n { 12{34} } }
-      { \subfiglist_is_integer_p:n { 12{{34}} } }
-      { \subfiglist_is_integer_p:n { 12{{{34}}} } }
-    }{
-      { \subfiglist_tl_if_eq_p:nn a a }
-      { \subfiglist_tl_if_eq_p:nn a b }
-      { \subfiglist_tl_if_eq_p:nn a {ab} }
-      { \subfiglist_tl_if_eq_p:nn {ab} b }
-      { \subfiglist_tl_if_eq_p:nn {a} {a} }
-      { \subfiglist_tl_if_eq_p:nn {ab} {ab} }
-      { \subfiglist_tl_if_eq_p:nn {ab} {ac} }
-      { \subfiglist_tl_if_eq_p:nn {a{b}} {ab} }
-      { \subfiglist_tl_if_eq_p:nn {a{{b}}} {ab} }
-      { \subfiglist_tl_if_eq_p:nn {a{{{b}}}} {ab} }
-      { \subfiglist_tl_if_eq_p:nn {ab{cd}} {abcd} }
-      { \subfiglist_tl_if_eq_p:nn {ab{cd}} {ab{cd}} }
-      { \subfiglist_tl_if_eq_p:nn {ab{{cd}}} {ab{cd}} }
-      { \subfiglist_tl_if_eq_p:nn {ab{{cd}}} {ab{{cd}}} }
-      { \subfiglist_tl_if_eq_p:nn {\\bc} {\\bc} }
-      { \subfiglist_tl_if_eq_p:nn {\\bc} {\relax bc} }
-    }{
-      { \subfiglist_is_float_p:n 1 }
-      { \subfiglist_is_float_p:n { } }
-      { \subfiglist_is_float_p:n { 1234 } }
-      { \subfiglist_is_float_p:n {{1234}} }
-      { \subfiglist_is_float_p:n { 12ab } }
-      { \subfiglist_is_float_p:n { 12{34} } }
-      { \subfiglist_is_float_p:n { 12{{34}} } }
-      { \subfiglist_is_float_p:n { 12{{{34}}} } }
-      { \subfiglist_is_float_p:n { 1234. } }
-      { \subfiglist_is_float_p:n { 12.34 } }
-      { \subfiglist_is_float_p:n { .1234 } }
-      { \subfiglist_is_float_p:n { 1234, } }
-      { \subfiglist_is_float_p:n { 12,34 } }
-      { \subfiglist_is_float_p:n { ,1234 } }
-    }
-  }{
-    \tl_map_inline:nn { ##1 }
-    {
-      \texttt { \tl_to_str:n { ####1 } }   ~---~ \bool_if:nTF { ####1 } { true } { false }\\
-    } \\
-  }
-}
-
-
 % Store specified number of heading tokens in varible \subfiglist_head_tl
 \cs_new:Npn \subfiglist_tl_head:nn #1 #2
 %
