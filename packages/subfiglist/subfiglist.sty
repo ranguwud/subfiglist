@@ -99,6 +99,7 @@
 \tl_new:N   \subfiglist_objects_opt_arg_nl_tl
 \tl_new:N   \subfiglist_objects_sub_blocks_tl
 \tl_new:N   \subfiglist_objects_width_tl
+\tl_new:N   \subfiglist_option_unknown_message_name_tl
 
 \tl_new:N   \subfiglist_csname_tl
 
@@ -142,6 +143,129 @@
 \bool_new:N \subfiglist_temp_bool
 
 \newsavebox\subfiglist_box
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Generate variants of some commands   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\cs_generate_variant:Nn \dim_set:Nn               { Nf }
+\cs_generate_variant:Nn \dim_add:Nn               { Nf }
+\cs_generate_variant:Nn \dim_sub:Nn               { Nf }
+\cs_generate_variant:Nn \dim_set:Nn               { NV }
+\cs_generate_variant:Nn \dim_add:Nn               { NV }
+\cs_generate_variant:Nn \dim_sub:Nn               { NV }
+\cs_generate_variant:Nn \fp_set:Nn                { Nf }
+\cs_generate_variant:Nn \fp_add:Nn                { Nf }
+\cs_generate_variant:Nn \fp_sub:Nn                { Nf }
+\cs_generate_variant:Nn \fp_set:Nn                { NV }
+\cs_generate_variant:Nn \fp_add:Nn                { NV }
+\cs_generate_variant:Nn \fp_sub:Nn                { NV }
+\cs_generate_variant:Nn \tl_put_right:Nn          { Nf }
+\cs_generate_variant:Nn \tl_if_single:NTF         { V }
+\cs_generate_variant:Nn \msg_error:nnn            { nnf }
+\cs_generate_variant:Nn \msg_error:nnnn           { nnnf }
+\cs_generate_variant:Nn \msg_error:nnnn           { nnfn }
+\cs_generate_variant:Nn \msg_error:nnnn           { nnff }
+\cs_generate_variant:Nn \msg_error:nnn            { nnV }
+\cs_generate_variant:Nn \msg_error:nnnn           { nnnV }
+\cs_generate_variant:Nn \msg_error:nnnn           { nnVn }
+\cs_generate_variant:Nn \msg_error:nnnn           { nnVV }
+\cs_generate_variant:Nn \msg_error:nnn            { nVV }
+\cs_generate_variant:Nn \msg_error:nnnn           { nVnV }
+\cs_generate_variant:Nn \msg_error:nnnn           { nVVn }
+\cs_generate_variant:Nn \msg_error:nnnn           { nVVV }
+\cs_generate_variant:Nn \prg_new_conditional:Npnn { cpnn }
+\cs_generate_variant:Nn \cs_generate_variant:Nn   { cn }
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Define messages   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\msg_new:nnn { subfiglist } { internal~error }
+  { Internal~error:~#1 }
+
+\msg_new:nnn { subfiglist } { parser~error }
+  { Error~while~parsing~the~argument~of~`subfiglist'~environment:~Unexpected~token~`#1' }
+
+\msg_new:nnn { subfiglist } { runaway~optional~argument }
+  { Missing~closing~square~bracket~`]'~of~optional~argument~inside~argument~of~`subfiglist'~environment. }
+
+\msg_new:nnn { subfiglist } { missing~separator }
+  { Expected~specification~of~a~separator~after~token~`@'~in~argument~of~`subfiglist'~environment. }
+
+\msg_new:nnn { subfiglist } { missing~identifier }
+  { Canvas~no.~#1~missing~in~argument~of~`subfiglist'~environment. }
+
+\msg_new:nnn { subfiglist } { missing~canvas }
+  { Canvas~no.~#1~missing~in~body~of~`subfiglist'~environment. }
+
+\msg_new:nnn { subfiglist } { double~identifier }
+  { Canvas~no.~#1~appears~twice~in~argument~of~`subfiglist'~environment. }
+
+\msg_new:nnn { subfiglist } { double~canvas }
+  { Canvas~no.~#1~appears~twice~in~body~of~`subfiglist'~environment. }
+
+\msg_new:nnn { subfiglist } { too~many~identifiers }
+{
+  You~have~specified~#1~identifieres~in~argument~of~`subfiglist'~environment,~
+  but~only~#2~canvases~are~given~in~body~of~`subfiglist'~environment.
+}
+
+\msg_new:nnn { subfiglist } { too~many~canvases }
+{
+  You~have~specified~#1~canvases~in~body~of~`subfiglist'~environment,~
+  but~only~#2~identifieres~are~given~in~argument~of~`subfiglist'~environment.
+}
+
+\msg_new:nnn { subfiglist } { missing~number }
+  { #1~argument~of~command~`#2'~needs~to~be~an~integer. }
+
+\msg_new:nnn { subfiglist } { missing~float }
+  { #1~argument~of~command~`#2'~needs~to~be~a~floating~point~expression. }
+
+\msg_new:nnn { subfiglist } { malformed~argument }
+  { Malformed~argument:~expected~#1~but~found~#2~instead. }
+
+\msg_new:nnn { subfiglist } { argument~out~of~range }
+  { Number~of~selected~canvas~(#1)~is~greater~than~total~number~(#2)~of~canvases. }
+
+\msg_new:nnn { subfiglist } { unexpected~command }
+  { Unexpected~command~`#1'.~Command~#1~needs~to~be~used~within~`subfiglist'~environment. }
+
+\msg_new:nnn { subfiglist } { undefined~command~sequence }
+  { The~command~sequence~`#1'~was~used,~but~never~defined. }
+
+\msg_new:nnn { subfiglist } { option~unknown }
+  { Unknown~key~`#1'~in~optional~argument~of~#2. }
+
+\msg_new:nnn { subfiglist } { subfiglistsetup~option~unknown }
+  { Unknown~key~`#1'~in~argument~of~`\token_to_str:c { subfiglistsetup }'. }
+
+\msg_new:nnn { subfiglist } { option~invalid }
+  { Option~`caption'~invalid~after~\@backslashchar begin{document}. }
+
+\msg_new:nnn { subfiglist } { wrong~identifier~order }
+{
+  Package~subfiglist~Warning:~
+  The~image~numbers~in~the~argument~of~`subfiglist'~environment~are~given~in~non-ascending~order.
+}
+
+\msg_new:nnn { subfiglist } { wrong~canvas~order }
+{
+  Package~subfiglist~Warning:~
+  The~image~numbers~in~the~body~of~`subfiglist'~environment~are~given~in~non-ascending~order.
+}
+
+\msg_new:nnn { subfiglist } { mismatching~image~order }
+{
+  Package~subfiglist~Warning:~
+  The~image~numbers~in~the~argument~of~`subfiglist'~environment~are~given~
+  in~a~different~order~than~the~image~numbers~in~the~body~of~`subfiglist'~environment.
+}
 
 
 
@@ -236,10 +360,18 @@
   label-background.tl_set:N     = \subfiglist_label_background_default_tl,
   label-background.value_required:,
   lb.meta:n                     = { label-background = #1 },
-  lb.value_required:
+  lb.value_required:,
+  
+  % Error catching
+  unknown.code:n                =
+  {
+    \msg_error:nnVn { subfiglist } \subfiglist_option_unknown_message_name_tl
+      \l_keys_key_tl { subfiglist~package }
+  }
 }
 
 % Initialize and set keys
+\tl_set:Nn \subfiglist_option_unknown_message_name_tl { option~unknown }
 \keys_set:nn { subfiglist }
 {
   caption           = true,
@@ -261,7 +393,9 @@
 % Command for explicit manipulation of keys
 \NewDocumentCommand \subfiglistsetup { m }
 {
+  \tl_set:Nn \subfiglist_option_unknown_message_name_tl { subfiglistsetup~option~unknown }
   \keys_set:nn { subfiglist } { #1 }
+  \tl_set:Nn \subfiglist_option_unknown_message_name_tl { option~unknown }
 }
 
 % Key to find out what number the number of the first choice
@@ -335,8 +469,8 @@
     % Error catching
     unknown.code:n   =
     {
-      \msg_error:nnfn { subfiglist } { option~unknown }
-        { \l_keys_key_tl } { environment~subfiglist }
+      \msg_error:nnVn { subfiglist } { option~unknown }
+        \l_keys_key_tl { environment~subfiglist }
     }
   }
 
@@ -370,8 +504,8 @@
     % Error catching
     unknown.code:n   =
     {
-      \msg_error:nnff { subfiglist } { option~unknown }
-        { \l_keys_key_tl } { command~\subfiglist_csname_tl }
+      \msg_error:nnVf { subfiglist } { option~unknown }
+        \l_keys_key_tl { command~\subfiglist_csname_tl }
     }
   }
   
@@ -427,126 +561,11 @@
     % Error catching
     unknown.code:n          =
     {
-      \msg_error:nnff { subfiglist } { option~unknown }
-        { \l_keys_key_tl } { command~\subfiglist_csname_tl }
+      \msg_error:nnVf { subfiglist } { option~unknown }
+        \l_keys_key_tl { command~\subfiglist_csname_tl }
     }
   }
 }
-
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%   Define messages   %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\msg_new:nnn { subfiglist } { internal~error }
-  { Internal~error:~#1 }
-
-\msg_new:nnn { subfiglist } { parser~error }
-  { Error~while~parsing~the~argument~of~`subfiglist'~environment:~Unexpected~token~`#1' }
-
-\msg_new:nnn { subfiglist } { runaway~optional~argument }
-  { Missing~closing~square~bracket~`]'~of~optional~argument~inside~argument~of~`subfiglist'~environment. }
-
-\msg_new:nnn { subfiglist } { missing~separator }
-  { Expected~specification~of~a~separator~after~token~`@'~in~argument~of~`subfiglist'~environment. }
-
-\msg_new:nnn { subfiglist } { missing~identifier }
-  { Canvas~no.~#1~missing~in~argument~of~`subfiglist'~environment. }
-
-\msg_new:nnn { subfiglist } { missing~canvas }
-  { Canvas~no.~#1~missing~in~body~of~`subfiglist'~environment. }
-
-\msg_new:nnn { subfiglist } { double~identifier }
-  { Canvas~no.~#1~appears~twice~in~argument~of~`subfiglist'~environment. }
-
-\msg_new:nnn { subfiglist } { double~canvas }
-  { Canvas~no.~#1~appears~twice~in~body~of~`subfiglist'~environment. }
-
-\msg_new:nnn { subfiglist } { too~many~identifiers }
-{
-  You~have~specified~#1~identifieres~in~argument~of~`subfiglist'~environment,~
-  but~only~#2~canvases~are~given~in~body~of~`subfiglist'~environment.
-}
-
-\msg_new:nnn { subfiglist } { too~many~canvases }
-{
-  You~have~specified~#1~canvases~in~body~of~`subfiglist'~environment,~
-  but~only~#2~identifieres~are~given~in~argument~of~`subfiglist'~environment.
-}
-
-\msg_new:nnn { subfiglist } { missing~number }
-  { #1~argument~of~command~`#2'~needs~to~be~an~integer. }
-
-\msg_new:nnn { subfiglist } { missing~float }
-  { #1~argument~of~command~`#2'~needs~to~be~a~floating~point~expression. }
-
-\msg_new:nnn { subfiglist } { malformed~argument }
-  { Malformed~argument:~expected~#1~but~found~#2~instead. }
-
-\msg_new:nnn { subfiglist } { argument~out~of~range }
-  { Number~of~selected~canvas~(#1)~is~greater~than~total~number~(#2)~of~canvases. }
-
-\msg_new:nnn { subfiglist } { unexpected~command }
-  { Unexpected~command~`#1'.~Command~#1~needs~to~be~used~within~`subfiglist'~environment. }
-
-\msg_new:nnn { subfiglist } { undefined~command~sequence }
-  { The~command~sequence~`#1'~was~used,~but~never~defined. }
-
-\msg_new:nnn { subfiglist } { option~unknown }
-  { Key~`#1'~in~optional~argument~of~#2~unknown. }
-
-\msg_new:nnn { subfiglist } { option~invalid }
-  { Option~`caption'~invalid~after~\@backslashchar begin{document}. }
-
-\msg_new:nnn { subfiglist } { wrong~identifier~order }
-{
-  Package~subfiglist~Warning:~
-  The~image~numbers~in~the~argument~of~`subfiglist'~environment~are~given~in~non-ascending~order.
-}
-
-\msg_new:nnn { subfiglist } { wrong~canvas~order }
-{
-  Package~subfiglist~Warning:~
-  The~image~numbers~in~the~body~of~`subfiglist'~environment~are~given~in~non-ascending~order.
-}
-
-\msg_new:nnn { subfiglist } { mismatching~image~order }
-{
-  Package~subfiglist~Warning:~
-  The~image~numbers~in~the~argument~of~`subfiglist'~environment~are~given~
-  in~a~different~order~than~the~image~numbers~in~the~body~of~`subfiglist'~environment.
-}
-
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%   Generate variants of some commands   %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\cs_generate_variant:Nn \dim_set:Nn               { Nf }
-\cs_generate_variant:Nn \dim_add:Nn               { Nf }
-\cs_generate_variant:Nn \dim_sub:Nn               { Nf }
-\cs_generate_variant:Nn \dim_set:Nn               { NV }
-\cs_generate_variant:Nn \dim_add:Nn               { NV }
-\cs_generate_variant:Nn \dim_sub:Nn               { NV }
-\cs_generate_variant:Nn \fp_set:Nn                { Nf }
-\cs_generate_variant:Nn \fp_add:Nn                { Nf }
-\cs_generate_variant:Nn \fp_sub:Nn                { Nf }
-\cs_generate_variant:Nn \fp_set:Nn                { NV }
-\cs_generate_variant:Nn \fp_add:Nn                { NV }
-\cs_generate_variant:Nn \fp_sub:Nn                { NV }
-\cs_generate_variant:Nn \tl_put_right:Nn          { Nf }
-\cs_generate_variant:Nn \tl_if_single:NTF         { V }
-\cs_generate_variant:Nn \msg_error:nnn            { nnf }
-\cs_generate_variant:Nn \msg_error:nnnn           { nnnf }
-\cs_generate_variant:Nn \msg_error:nnnn           { nnfn }
-\cs_generate_variant:Nn \msg_error:nnnn           { nnff }
-\cs_generate_variant:Nn \msg_error:nnn            { nnV }
-\cs_generate_variant:Nn \msg_error:nnnn           { nnnV }
-\cs_generate_variant:Nn \msg_error:nnnn           { nnVn }
-\cs_generate_variant:Nn \msg_error:nnnn           { nnVV }
-\cs_generate_variant:Nn \prg_new_conditional:Npnn { cpnn }
-\cs_generate_variant:Nn \cs_generate_variant:Nn   { cn }
 
 
 

@@ -1,6 +1,5 @@
 TODO
 
-* Check for unknown keys in subfiglist package options
 * Check if new method of choice key setting works with older l3keys
 * Use \subfiglist_token_if_eq_charcode:NN to compare \\ with \\.
 * Test all error messages
@@ -51,3 +50,4 @@ DONE
 * Safe default horizontal/vertical label positioning as token list to use in \subfiglist_key_set:nnV
 * \subfiglist_tokenize_spec_str:VN -> \subfiglist_tokenize_spec_str:NV
 * Use sequences in place of token lists
+* Check for unknown keys in subfiglist package options
