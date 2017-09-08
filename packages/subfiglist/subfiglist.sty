@@ -142,7 +142,7 @@
 \bool_new:N \subfiglist_tl_if_eq_charcode_bool
 \bool_new:N \subfiglist_temp_bool
 
-\newsavebox\subfiglist_box
+\box_new:N  \subfiglist_temp_box
 
 
 
@@ -2288,9 +2288,9 @@
   \dim_set:Nn \subfiglistlineheight { 1ex }
   \fp_set_eq:NN #1 \c_nan_fp
   
-  \setbox \subfiglist_box \hbox { #4 }
-  \dim_set:Nn #2 { \wd \subfiglist_box }
-  \dim_set:Nn #3 { \ht \subfiglist_box }
+  \hbox_set:Nn \subfiglist_temp_box { #4 }
+  \dim_set:Nn #2 { \box_wd:N \subfiglist_temp_box }
+  \dim_set:Nn #3 { \box_ht:N \subfiglist_temp_box }
 }
 
 \cs_generate_variant:Nn \subfiglist_get_aspect_hmode_separator:NNNn { NNNV }
@@ -2612,9 +2612,9 @@
     % This is a workaround to an apparent bug of \includegraphics,
     % which slightly changes the aspect ratio of an image that
     % is loaded with a specific width.
-    \setbox \subfiglist_box \hbox { \includegraphics { #1 } }
-    \dim_set:Nn \subfiglist_tempa_dim { \wd\subfiglist_box }
-    \scalebox { \fp_eval:n { #2 / \subfiglist_tempa_dim } } { \usebox\subfiglist_box }
+    \hbox_set:Nn \subfiglist_temp_box { \includegraphics { #1 } }
+    \dim_set:Nn \subfiglist_tempa_dim { \box_wd:N \subfiglist_temp_box }
+    \scalebox { \fp_eval:n { #2 / \subfiglist_tempa_dim } } { \box_use:N \subfiglist_temp_box }
   }
 }
 
@@ -2687,14 +2687,14 @@
   \group_begin:
   
     % Store file in a box
-    \setbox\subfiglist_box\hbox
+    \hbox_set:Nn \subfiglist_temp_box
     {
       \subfiglist_load:nn { #2 } { ! }
     }
     
     % Get box dimensions
-    \dim_set:Nn \subfiglist_canvas_height_dim { \ht\subfiglist_box }
-    \dim_set:Nn \subfiglist_canvas_width_dim  { \wd\subfiglist_box }
+    \dim_set:Nn \subfiglist_canvas_height_dim { \box_ht:N \subfiglist_temp_box }
+    \dim_set:Nn \subfiglist_canvas_width_dim  { \box_wd:N \subfiglist_temp_box }
     
     % Store ratio width/height
     \fp_set:Nn \subfiglist_tempa_fp { \subfiglist_canvas_width_dim / \subfiglist_canvas_height_dim }
@@ -2778,16 +2778,16 @@
   \subfiglist_prop_set_from_tl:NN \subfiglist_temp_prop \subfiglist_tempa_tl
 %  
   % Store canvas in box
-  \setbox\subfiglist_box\hbox
+  \hbox_set:Nn \subfiglist_temp_box
   {
     % Vertical offset:
-    \vbox
+    \vbox:n
     {
       \prop_get:NnN \subfiglist_temp_prop { top } \subfiglist_tempa_tl
       \dim_set:NV \subfiglist_tempa_dim \subfiglist_tempa_tl
       \vspace { \subfiglist_tempa_dim }
       % Horizontal offset
-      \hbox
+      \hbox:n
       {
         \prop_get:NnN \subfiglist_temp_prop { left } \subfiglist_tempa_tl
         \dim_set:NV \subfiglist_tempa_dim \subfiglist_tempa_tl
@@ -2808,28 +2808,28 @@
   }
   
   % Get canvas width
-  \dim_set:Nn \subfiglist_tempa_dim { \wd\subfiglist_box }
+  \dim_set:Nn \subfiglist_tempa_dim { \box_wd:N \subfiglist_temp_box }
   
   \begin { subfigure } [ b ] { \subfiglist_tempa_dim }
     \centering
     
     % Place canvas
-    \leavevmode \rlap{ \usebox\subfiglist_box }
+    \leavevmode \rlap{ \box_use:N \subfiglist_temp_box }
     
     % Has a label been specified?
     \prop_if_in:NnT \subfiglist_label_prop { #1 }
     {
-      \subfiglist_put_label:nnn { #1 } { \wd\subfiglist_box } { \ht\subfiglist_box }
+      \subfiglist_put_label:nnn { #1 } { \box_wd:N \subfiglist_temp_box } { \box_ht:N \subfiglist_temp_box }
     }
     
     % Has an overlay been specified?
     \prop_if_in:NnT \subfiglist_overlay_prop { #1 }
     {
-      \subfiglist_put_overlay:nnn { #1 } { \wd\subfiglist_box } { \ht\subfiglist_box }
+      \subfiglist_put_overlay:nnn { #1 } { \box_wd:N \subfiglist_temp_box } { \box_ht:N \subfiglist_temp_box }
     }
     
     % Fix spacing
-    \phantom { \usebox \subfiglist_box }
+    \phantom { \box_use:N \subfiglist_temp_box }
   \end { subfigure }
 }
 
@@ -2986,7 +2986,7 @@
                     \dim_set:NV \subfiglist_tempa_dim \subfiglist_tempa_tl
                     \prop_get:NnN \subfiglist_temp_prop { voff } \subfiglist_tempa_tl
                     \dim_add:NV \subfiglist_tempa_dim \subfiglist_tempa_tl
-                    \raisebox { -\subfiglist_tempa_dim } [ \ht\strutbox ] [ 0pt ]
+                    \raisebox { -\subfiglist_tempa_dim } [ \box_ht:N \strutbox ] [ 0pt ]
                     {
                       \prop_get:NnN \subfiglist_temp_prop { background } \subfiglist_tempa_tl
                       % Decide whether label has to be put inside a colorbox or not
@@ -3004,7 +3004,7 @@
                           % Put hook for label
                           \rlap{ \subfiglist_tempb_tl }
                         }{
-                          \hbox
+                          \hbox:N
                           {
                             \refstepcounter { subfigure }
                             \color { \subfiglist_tempa_tl }
@@ -3180,12 +3180,12 @@
   \prop_clear:N \subfiglist_canvas_prop
   
   % Calculate correction for height of newline
-  \setbox\subfiglist_box\vbox
+  \vbox_set:Nn \subfiglist_temp_box
   {
     \rule{2em}{2em}\\[0pt]\rule{2em}{2em}
   }  
   \dim_set:Nn \subfiglist_newline_correction_dim 
-    { \ht\subfiglist_box - 4em }
+    { \box_ht:N \subfiglist_temp_box - 4em }
   
   % Setup commands
   \RenewDocumentCommand \subfiglistfile { O{} m m }

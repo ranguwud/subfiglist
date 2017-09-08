@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.8.23)  8 SEP 2017 21:23
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.8.23)  8 SEP 2017 21:40
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -698,7 +698,7 @@ Package graphics Info: Driver file: xetex.def on input line 95.
 \subfiglist_tempb_int=\count144
 \subfiglist_label_hpos_int=\count145
 \subfiglist_label_vpos_int=\count146
-\subfiglist_box=\box45
+\subfiglist_temp_box=\box45
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
@@ -2237,10 +2237,10 @@ Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 803.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 803.
  ) 
 Here is how much of TeX's memory you used:
- 31411 strings out of 493638
- 564186 string characters out of 6146796
- 714813 words of memory out of 5000000
- 34392 multiletter control sequences out of 15000+600000
+ 31412 strings out of 493638
+ 564197 string characters out of 6146796
+ 714808 words of memory out of 5000000
+ 34393 multiletter control sequences out of 15000+600000
  78076 words of font info for 71 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
  70i,18n,136p,10433b,931s stack positions out of 5000i,500n,10000p,200000b,80000s

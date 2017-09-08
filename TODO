@@ -15,7 +15,6 @@ TODO
 * Replace any \cs in error messages by \token_to_str:c { cs }
 * Remove error message "argument out of range"
 * Add spaces to empty lines to fix syntax highlighting
-* Use expl3 box commands instead of plain TeX commands
 * Add option to keep images stored in boxes instead of loading them twice
 * Add "g" to name of any global variables
 * Add "i" to name of inline macros, which modify variables without scoping
@@ -51,3 +50,4 @@ DONE
 * Check for unknown keys in subfiglist package options
 * Check if new method of choice key setting works with older l3keys
 * Remove \subfiglist_test_conditionals:
+* Use expl3 box commands instead of plain TeX commands
