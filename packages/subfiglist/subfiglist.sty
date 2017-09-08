@@ -2870,28 +2870,7 @@
     {
       \subfiglist_put_overlay:nnn { #1 } { \wd\subfiglist_box } { \ht\subfiglist_box }
     }
-%    % Check whether an overlay has been given for the current canvas
-%    \int_zero:N \subfiglist_tempb_int
-%    \bool_set_false:N \subfiglist_temp_bool
-%    \tl_map_inline:Nn \subfiglist_overlay_nums_tl
-%    {
-%      \int_incr:N \subfiglist_tempb_int
-%      
-%      \int_compare:nT { ##1 = #2 }
-%      {
-%        \bool_set_true:N \subfiglist_temp_bool
-%        \tl_map_break:
-%      }
-%    }
-%      
-%    % Has an overlay been specified?
-%    \bool_if:NT \subfiglist_temp_bool
-%    {
-%      % Put overlay
-%      \subfiglist_overlay:nnn { \subfiglist_tempb_int }
-%        { \wd\subfiglist_box } { \ht\subfiglist_box }
-%    }
-%    
+    
     % Fix spacing
     \phantom { \usebox \subfiglist_box }
   \end { subfigure }
