@@ -123,8 +123,8 @@
 
 \int_new:N  \subfiglist_label_hpos_int
 \int_new:N  \subfiglist_label_vpos_int
-\int_new:N  \subfiglist_label_hpos_default_int
-\int_new:N  \subfiglist_label_vpos_default_int
+\tl_new:N  \subfiglist_label_hpos_default_tl
+\tl_new:N  \subfiglist_label_vpos_default_tl
 
 \fp_new:N   \subfiglist_sub_block_line_ratio_fp
 \fp_new:N   \subfiglist_sub_block_ratio_fp
@@ -195,21 +195,21 @@
   % Horizontal positioning of label (left, center, right)
   label-hpos.choice:,
   label-hpos.choices:nn         = { l, c, r }
-    { \int_set_eq:NN \subfiglist_label_hpos_default_int \l_keys_choice_int },
+    { \tl_set_eq:NN \subfiglist_label_hpos_default_tl \l_keys_choice_tl },
   label-hpos.value_required:,
   lh.choice:,
   lh.choices:nn                 = { l, c, r }
-    { \int_set_eq:NN \subfiglist_label_hpos_default_int \l_keys_choice_int },
+    { \tl_set_eq:NN \subfiglist_label_hpos_default_tl \l_keys_choice_tl },
   lh.value_required:,
   
   % Vertical positioning of label (top, center, bottom)
   label-vpos.choice:,
   label-vpos.choices:nn         = { t, c, b }
-    { \int_set_eq:NN \subfiglist_label_vpos_default_int \l_keys_choice_int },
+    { \tl_set_eq:NN \subfiglist_label_vpos_default_tl \l_keys_choice_tl },
   label-vpos.value_required:,
   lv.choice:,
   lv.choices:nn                 = { t, c, b }
-    { \int_set_eq:NN \subfiglist_label_vpos_default_int \l_keys_choice_int },
+    { \tl_set_eq:NN \subfiglist_label_vpos_default_tl \l_keys_choice_tl },
   lv.value_required:,
   
   % Horizontal shift of label
@@ -2228,8 +2228,8 @@
     \prop_put:Nnn \subfiglist_temp_prop { hook } { #3 }
     
     % Process opitonal arguments
-    \int_set_eq:NN \subfiglist_label_hpos_int \subfiglist_label_hpos_default_int
-    \int_set_eq:NN \subfiglist_label_vpos_int \subfiglist_label_vpos_default_int
+    \subfiglist_key_set:nnV { subfiglistlabel } { hpos }       \subfiglist_label_hpos_default_tl
+    \subfiglist_key_set:nnV { subfiglistlabel } { vpos }       \subfiglist_label_vpos_default_tl
     \subfiglist_key_set:nnV { subfiglistlabel } { xshift }     \subfiglist_label_xshift_default_tl
     \subfiglist_key_set:nnV { subfiglistlabel } { yshift }     \subfiglist_label_yshift_default_tl
     \subfiglist_key_set:nnV { subfiglistlabel } { color }      \subfiglist_label_color_default_tl

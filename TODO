@@ -50,3 +50,4 @@ DONE
 * Set ratio to NaN instead of 0 for non scalable tokens
 * Differentiate between vmode and hmode aspect ratio macros
 * Use \subfiglist_key_set:nnV where possible
+* Safe default horizontal/vertical label positioning as token list to use in \subfiglist_key_set:nnV
