@@ -163,7 +163,8 @@
 \cs_generate_variant:Nn \fp_add:Nn                { NV }
 \cs_generate_variant:Nn \fp_sub:Nn                { NV }
 \cs_generate_variant:Nn \tl_put_right:Nn          { Nf }
-\cs_generate_variant:Nn \tl_if_single:NTF         { V }
+\cs_generate_variant:Nn \tl_if_single_p:n         { V }
+\cs_generate_variant:Nn \tl_if_blank_p:n          { V }
 \cs_generate_variant:Nn \msg_error:nnn            { nnf }
 \cs_generate_variant:Nn \msg_error:nnnn           { nnnf }
 \cs_generate_variant:Nn \msg_error:nnnn           { nnfn }
@@ -1441,14 +1442,6 @@
 %%%   Specification string lexer   %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\cs_new:Npn \subfiglist_tokenize_is_blank_p:V #1
-%
-% #1: Token to be tested
-%
-{
-  \tl_if_blank_p:V #1
-}
-
 \cs_new:Npn \subfiglist_tokenize_is_integer_p:V #1
 %
 % #1: Token to be tested
@@ -1481,7 +1474,7 @@
 % #1: Token to be tested
 %
 {
-  \tl_if_single:VTF #1
+  \bool_if:nTF { \tl_if_single_p:V #1 || \tl_if_blank_p:V #1 }
   {
     \prg_return_false:
   }{
@@ -1495,15 +1488,6 @@
 %
 {
   \prg_return_true:
-}
-
-\cs_new:Npn \subfiglist_tokenize_blank:NN #1 #2
-%
-% #1: Token list variable for storing tokenized specification string
-% #2: Sequence containing specification string
-%
-{
-  \seq_pop_left:NN #2 \subfiglist_tempa_tl
 }
 
 \cs_new:Npn \subfiglist_tokenize_integer:NN #1 #2
@@ -1528,13 +1512,6 @@
 {
   \seq_pop_left:NN #2 \subfiglist_tempa_tl
   
-  \seq_get_left:NN #2 \subfiglist_tempa_tl
-  \bool_while_do:nn { \subfiglist_tokenize_is_blank_p:V \subfiglist_tempa_tl }
-  {
-    \seq_pop_left:NN #2 \subfiglist_tempa_tl
-    \seq_get_left:NN #2 \subfiglist_tempa_tl
-  }
-  
   \seq_pop_left:NN #2 \subfiglist_tempa_tl
   \quark_if_no_value:NTF \subfiglist_tempa_tl
   {
@@ -1554,14 +1531,7 @@
   % Consume newline character
   \seq_pop_left:NN #2 \subfiglist_tempa_tl
   
-  % Consume any blanks
   \seq_get_left:NN #2 \subfiglist_tempa_tl
-  \bool_while_do:nn { \subfiglist_tokenize_is_blank_p:V \subfiglist_tempa_tl }
-  {
-    \seq_pop_left:NN #2 \subfiglist_tempa_tl
-    \seq_get_left:NN #2 \subfiglist_tempa_tl
-  }
-  
   \tl_clear:N \subfiglist_tempb_tl
   \quark_if_no_value:NTF \subfiglist_tempa_tl
   {
@@ -1664,7 +1634,7 @@
     {
       \seq_get_left:NN \subfiglist_spec_str_seq \subfiglist_tempa_tl
       
-      \tl_map_inline:nn { { blank } { integer } { at } { newline } { subblock } { error } }
+      \tl_map_inline:nn { { integer } { at } { newline } { subblock } { error } }
       {
         \bool_if:nT { \subfiglist_use:c { subfiglist_tokenize_is_ ##1 _p:V } \subfiglist_tempa_tl }
         {

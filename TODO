@@ -22,7 +22,6 @@ TODO
 * Secure any \prop_get for occurence of \q_empty
 * Caveat: Don't use \subfiglistlineheight for anything related to width.
 * Add default value in \subfiglist_tokenize_newline
-* Check if empty separator @{} raises unwanted error
 * Verify numbers for labels and overlays
 * Option to set label hoff and voff globally. Document default values for no/colored background
 * Test all kinds of weird nestings and alignments
@@ -51,3 +50,4 @@ DONE
 * Check if new method of choice key setting works with older l3keys
 * Remove \subfiglist_test_conditionals:
 * Use expl3 box commands instead of plain TeX commands
+* Check if empty separator @{} raises unwanted error
