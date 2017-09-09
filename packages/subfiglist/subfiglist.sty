@@ -39,8 +39,8 @@
 \dim_new:N  \subfiglist_sum_hoff_dim
 \dim_new:N  \subfiglist_sum_voff_over_ratio_dim
 \dim_new:N  \subfiglist_newline_correction_dim
-\dim_new:N  \subfiglist_tempa_dim
-\dim_new:N  \subfiglist_tempb_dim
+\dim_new:N  \subfiglist_tmpa_dim
+\dim_new:N  \subfiglist_tmpb_dim
 
 \dim_new:N  \subfiglist_effective_hoff_dim
 \dim_new:N  \subfiglist_effective_voff_dim
@@ -103,24 +103,24 @@
 
 \tl_new:N   \subfiglist_csname_tl
 
-\tl_new:N   \subfiglist_tempa_tl
-\tl_new:N   \subfiglist_tempb_tl
+\tl_new:N   \subfiglist_tmpa_tl
+\tl_new:N   \subfiglist_tmpb_tl
 
 \seq_new:N  \subfiglist_spec_str_seq
 \seq_new:N  \subfiglist_spec_tokens_seq
+\seq_new:N  \subfiglist_tmp_seq
 
 \prop_new:N \subfiglist_canvas_prop
 \prop_new:N \subfiglist_label_prop
 \prop_new:N \subfiglist_overlay_prop
-\prop_new:N \subfiglist_temp_prop
+\prop_new:N \subfiglist_tmp_prop
 
 \int_new:N  \subfiglist_exit_count_int
 \int_new:N  \subfiglist_identifier_count_int
 \int_new:N  \subfiglist_canvas_count_int
 \int_new:N  \subfiglist_tl_if_eq_charcode_int
 \int_new:N  \subfiglist_keyval_choice_first_int
-\int_new:N  \subfiglist_tempa_int
-\int_new:N  \subfiglist_tempb_int
+\int_new:N  \subfiglist_tmp_int
 
 \int_new:N  \subfiglist_label_hpos_int
 \int_new:N  \subfiglist_label_vpos_int
@@ -130,7 +130,7 @@
 \fp_new:N   \subfiglist_sub_block_line_ratio_fp
 \fp_new:N   \subfiglist_sub_block_ratio_fp
 \fp_new:N   \subfiglist_sum_ratio_over_ratio_fp
-\fp_new:N   \subfiglist_temp_fp
+\fp_new:N   \subfiglist_tmp_fp
 \fp_new:N   \subfiglist_effective_canvas_ratio_fp
 
 \bool_new:N \subfiglist_after_char_at_bool
@@ -140,9 +140,9 @@
 \bool_new:N \subfiglist_first_bool
 \bool_new:N \subfiglist_hmode_bool
 \bool_new:N \subfiglist_tl_if_eq_charcode_bool
-\bool_new:N \subfiglist_temp_bool
+\bool_new:N \subfiglist_tmp_bool
 
-\box_new:N  \subfiglist_temp_box
+\box_new:N  \subfiglist_tmp_box
 
 
 
@@ -689,14 +689,14 @@
 %
 {
   \group_begin:
-    \tl_clear:N \subfiglist_tempa_tl
+    \tl_clear:N \subfiglist_tmpa_tl
 
     \prop_map_inline:Nn #2
     {
-      \subfiglist_tl_set_wrapped:Nnn \subfiglist_tempb_tl { ##1 } { ##2 }
-      \tl_put_right:NV \subfiglist_tempa_tl \subfiglist_tempb_tl
+      \subfiglist_tl_set_wrapped:Nnn \subfiglist_tmpb_tl { ##1 } { ##2 }
+      \tl_put_right:NV \subfiglist_tmpa_tl \subfiglist_tmpb_tl
     }
-    \tl_set_eq:NN #1 \subfiglist_tempa_tl
+    \tl_set_eq:NN #1 \subfiglist_tmpa_tl
   \subfiglist_group_var_return:NN \tl_set:Nn #1
   \group_end:
 }
@@ -1426,9 +1426,9 @@
   \group_begin:
   \subfiglist_tl_head:Nn #1 { (#3) - 1 }
   \subfiglist_tl_tail:Nn #1 { \tl_count:N #1 - (#3) }
-  \tl_set:Nn \subfiglist_tempa_tl { #2 }
+  \tl_set:Nn \subfiglist_tmpa_tl { #2 }
   
-  \tl_concat:NNN #1 \subfiglist_head_tl \subfiglist_tempa_tl
+  \tl_concat:NNN #1 \subfiglist_head_tl \subfiglist_tmpa_tl
   \tl_concat:NNN #1 #1 \subfiglist_tail_tl
   \subfiglist_group_var_return:NN \tl_set:Nn #1
   \group_end:
@@ -1496,12 +1496,12 @@
 % #2: Sequence containing specification string
 %
 {
-  \seq_pop_left:NN #2 \subfiglist_tempa_tl
-  \subfiglist_tokenize_wrap_token:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
-  \tl_put_right:NV \subfiglist_identifier_nums_tl \subfiglist_tempb_tl
+  \seq_pop_left:NN #2 \subfiglist_tmpa_tl
+  \subfiglist_tokenize_wrap_token:NV \subfiglist_tmpb_tl \subfiglist_tmpa_tl
+  \tl_put_right:NV \subfiglist_identifier_nums_tl \subfiglist_tmpb_tl
   
-  \subfiglist_tokenize_make_token:NnV \subfiglist_tempb_tl { canvas } \subfiglist_tempa_tl
-  \tl_put_right:NV #1 \subfiglist_tempb_tl
+  \subfiglist_tokenize_make_token:NnV \subfiglist_tmpb_tl { canvas } \subfiglist_tmpa_tl
+  \tl_put_right:NV #1 \subfiglist_tmpb_tl
 }
 
 \cs_new:Npn \subfiglist_tokenize_at:NN #1 #2
@@ -1510,15 +1510,15 @@
 % #2: Sequence containing specification string
 %
 {
-  \seq_pop_left:NN #2 \subfiglist_tempa_tl
+  \seq_pop_left:NN #2 \subfiglist_tmpa_tl
   
-  \seq_pop_left:NN #2 \subfiglist_tempa_tl
-  \quark_if_no_value:NTF \subfiglist_tempa_tl
+  \seq_pop_left:NN #2 \subfiglist_tmpa_tl
+  \quark_if_no_value:NTF \subfiglist_tmpa_tl
   {
     \msg_error:nn { subfiglist } { missing~separator }
   }{
-    \subfiglist_tokenize_make_token:NnV \subfiglist_tempb_tl { separator } \subfiglist_tempa_tl
-    \tl_put_right:NV #1 \subfiglist_tempb_tl
+    \subfiglist_tokenize_make_token:NnV \subfiglist_tmpb_tl { separator } \subfiglist_tmpa_tl
+    \tl_put_right:NV #1 \subfiglist_tmpb_tl
   }
 }
 
@@ -1529,41 +1529,41 @@
 %
 {
   % Consume newline character
-  \seq_pop_left:NN #2 \subfiglist_tempa_tl
+  \seq_pop_left:NN #2 \subfiglist_tmpa_tl
   
-  \seq_get_left:NN #2 \subfiglist_tempa_tl
-  \tl_clear:N \subfiglist_tempb_tl
-  \quark_if_no_value:NTF \subfiglist_tempa_tl
+  \seq_get_left:NN #2 \subfiglist_tmpa_tl
+  \tl_clear:N \subfiglist_tmpb_tl
+  \quark_if_no_value:NTF \subfiglist_tmpa_tl
   {
-    \tl_put_right:NV \subfiglist_tempb_tl \subfiglist_canvas_space_dim
+    \tl_put_right:NV \subfiglist_tmpb_tl \subfiglist_canvas_space_dim
   }{
-    \subfiglist_token_if_eq_charcode:NVTF [ \subfiglist_tempa_tl
+    \subfiglist_token_if_eq_charcode:NVTF [ \subfiglist_tmpa_tl
     {
-      \seq_pop_left:NN #2 \subfiglist_tempa_tl
-      \seq_get_left:NN #2 \subfiglist_tempa_tl
+      \seq_pop_left:NN #2 \subfiglist_tmpa_tl
+      \seq_get_left:NN #2 \subfiglist_tmpa_tl
       \bool_until_do:nn 
       {
         \bool_lazy_or_p:nn
-          { \quark_if_no_value_p:N \subfiglist_tempa_tl }
-          { \subfiglist_token_if_eq_charcode_p:NV ] \subfiglist_tempa_tl }
+          { \quark_if_no_value_p:N \subfiglist_tmpa_tl }
+          { \subfiglist_token_if_eq_charcode_p:NV ] \subfiglist_tmpa_tl }
       }{
-        \seq_pop_left:NN #2 \subfiglist_tempa_tl
-        \tl_put_right:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
-        \seq_get_left:NN #2 \subfiglist_tempa_tl
+        \seq_pop_left:NN #2 \subfiglist_tmpa_tl
+        \tl_put_right:NV \subfiglist_tmpb_tl \subfiglist_tmpa_tl
+        \seq_get_left:NN #2 \subfiglist_tmpa_tl
       }
       
-      \quark_if_no_value:NTF \subfiglist_tempa_tl
+      \quark_if_no_value:NTF \subfiglist_tmpa_tl
       {
         \msg_error:nn { subfiglist } { runaway~optional~argument }
       }{
-        \seq_pop_left:NN #2 \subfiglist_tempa_tl
+        \seq_pop_left:NN #2 \subfiglist_tmpa_tl
       }
     }{
-      \tl_put_right:NV \subfiglist_tempb_tl \subfiglist_canvas_space_dim
+      \tl_put_right:NV \subfiglist_tmpb_tl \subfiglist_canvas_space_dim
     }
   }
-  \subfiglist_tokenize_make_token:NnV \subfiglist_tempa_tl { newline } \subfiglist_tempb_tl
-  \tl_put_right:NV #1 \subfiglist_tempa_tl
+  \subfiglist_tokenize_make_token:NnV \subfiglist_tmpa_tl { newline } \subfiglist_tmpb_tl
+  \tl_put_right:NV #1 \subfiglist_tmpa_tl
 }
 
 \cs_new:Npn \subfiglist_tokenize_subblock:NN #1 #2
@@ -1572,15 +1572,15 @@
 % #2: Sequence containing specification string
 %
 {
-  \seq_pop_left:NN #2 \subfiglist_tempa_tl
+  \seq_pop_left:NN #2 \subfiglist_tmpa_tl
   \group_begin:
     \tl_clear:N #1
-    \subfiglist_tokenize_spec_str:NV #1 \subfiglist_tempa_tl
-    \subfiglist_tokenize_make_token:NnV \subfiglist_tempa_tl { subblock } #1
-    \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tempa_tl
+    \subfiglist_tokenize_spec_str:NV #1 \subfiglist_tmpa_tl
+    \subfiglist_tokenize_make_token:NnV \subfiglist_tmpa_tl { subblock } #1
+    \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tmpa_tl
     \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_identifier_nums_tl
   \group_end:
-  \tl_put_right:NV #1 \subfiglist_tempa_tl
+  \tl_put_right:NV #1 \subfiglist_tmpa_tl
 }
 
 \cs_new:Npn \subfiglist_tokenize_error:NN #1 #2
@@ -1589,8 +1589,8 @@
 % #2: Sequence containing specification string
 %
 {
-  \seq_pop_left:NN #2 \subfiglist_tempa_tl
-  \msg_error:nnV { subfiglist } { parser~error } \subfiglist_tempa_tl
+  \seq_pop_left:NN #2 \subfiglist_tmpa_tl
+  \msg_error:nnV { subfiglist } { parser~error } \subfiglist_tmpa_tl
 }
 
 \cs_new:Npn \subfiglist_tokenize_wrap_token:Nn #1 #2
@@ -1632,11 +1632,11 @@
     
     \bool_until_do:nn { \seq_if_empty_p:N \subfiglist_spec_str_seq }
     {
-      \seq_get_left:NN \subfiglist_spec_str_seq \subfiglist_tempa_tl
+      \seq_get_left:NN \subfiglist_spec_str_seq \subfiglist_tmpa_tl
       
       \tl_map_inline:nn { { integer } { at } { newline } { subblock } { error } }
       {
-        \bool_if:nT { \subfiglist_use:c { subfiglist_tokenize_is_ ##1 _p:V } \subfiglist_tempa_tl }
+        \bool_if:nT { \subfiglist_use:c { subfiglist_tokenize_is_ ##1 _p:V } \subfiglist_tmpa_tl }
         {
           \subfiglist_use:c { subfiglist_tokenize_ ##1 :NN } #1 \subfiglist_spec_str_seq
           \tl_map_break:
@@ -1715,20 +1715,20 @@
 % #2: Sequence containing tokenized specification string
 %
 {
-  \seq_pop_left:NN #2 \subfiglist_tempa_tl
-  \subfiglist_parse_wrap_token:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
-  \tl_put_right:NV #1 \subfiglist_tempb_tl
+  \seq_pop_left:NN #2 \subfiglist_tmpa_tl
+  \subfiglist_parse_wrap_token:NV \subfiglist_tmpb_tl \subfiglist_tmpa_tl
+  \tl_put_right:NV #1 \subfiglist_tmpb_tl
   
-  \seq_get_left:NN #2 \subfiglist_tempa_tl
+  \seq_get_left:NN #2 \subfiglist_tmpa_tl
   \bool_lazy_any:nF
   {
-    { \quark_if_no_value_p:N \subfiglist_tempa_tl }
-    { \subfiglist_parse_is_separator_p:V \subfiglist_tempa_tl }
-    { \subfiglist_parse_is_newline_p:V \subfiglist_tempa_tl }
+    { \quark_if_no_value_p:N \subfiglist_tmpa_tl }
+    { \subfiglist_parse_is_separator_p:V \subfiglist_tmpa_tl }
+    { \subfiglist_parse_is_newline_p:V \subfiglist_tmpa_tl }
   }{
-    \tl_clear:N \subfiglist_tempa_tl
-    \subfiglist_parse_make_token:NnV \subfiglist_tempb_tl { space } \subfiglist_tempa_tl
-    \tl_put_right:NV #1 \subfiglist_tempb_tl
+    \tl_clear:N \subfiglist_tmpa_tl
+    \subfiglist_parse_make_token:NnV \subfiglist_tmpb_tl { space } \subfiglist_tmpa_tl
+    \tl_put_right:NV #1 \subfiglist_tmpb_tl
   }
 }
 
@@ -1738,9 +1738,9 @@
 % #2: Sequence containing tokenized specification string
 %
 {
-  \seq_pop_left:NN #2 \subfiglist_tempa_tl
-  \subfiglist_parse_wrap_token:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
-  \tl_put_right:NV #1 \subfiglist_tempb_tl
+  \seq_pop_left:NN #2 \subfiglist_tmpa_tl
+  \subfiglist_parse_wrap_token:NV \subfiglist_tmpb_tl \subfiglist_tmpa_tl
+  \tl_put_right:NV #1 \subfiglist_tmpb_tl
 }
 
 \cs_new:Npn \subfiglist_parse_newline:NN #1 #2
@@ -1749,9 +1749,9 @@
 % #2: Sequence containing tokenized specification string
 %
 {
-  \seq_pop_left:NN #2 \subfiglist_tempa_tl
-  \subfiglist_parse_wrap_token:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
-  \tl_put_right:NV #1 \subfiglist_tempb_tl
+  \seq_pop_left:NN #2 \subfiglist_tmpa_tl
+  \subfiglist_parse_wrap_token:NV \subfiglist_tmpb_tl \subfiglist_tmpa_tl
+  \tl_put_right:NV #1 \subfiglist_tmpb_tl
 }
 
 \cs_new:Npn \subfiglist_parse_subblock:NN #1 #2
@@ -1760,28 +1760,28 @@
 % #2: Sequence containing specification string
 %
 {
-  \seq_pop_left:NN #2 \subfiglist_tempa_tl
-  \subfiglist_tl_set_tail:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
+  \seq_pop_left:NN #2 \subfiglist_tmpa_tl
+  \subfiglist_tl_set_tail:NV \subfiglist_tmpb_tl \subfiglist_tmpa_tl
   % Remove one level of braces
-  \subfiglist_tl_set_unwrapped:NV \subfiglist_tempa_tl \subfiglist_tempb_tl
+  \subfiglist_tl_set_unwrapped:NV \subfiglist_tmpa_tl \subfiglist_tmpb_tl
   \group_begin:
     \tl_clear:N #1
-    \subfiglist_parse_spec_tokens:NV #1 \subfiglist_tempa_tl
-    \subfiglist_parse_make_token:NnV \subfiglist_tempa_tl { subblock } #1
-    \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tempa_tl
+    \subfiglist_parse_spec_tokens:NV #1 \subfiglist_tmpa_tl
+    \subfiglist_parse_make_token:NnV \subfiglist_tmpa_tl { subblock } #1
+    \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tmpa_tl
   \group_end:
-  \tl_put_right:NV #1 \subfiglist_tempa_tl
+  \tl_put_right:NV #1 \subfiglist_tmpa_tl
   
-  \seq_get_left:NN #2 \subfiglist_tempa_tl
+  \seq_get_left:NN #2 \subfiglist_tmpa_tl
   \bool_lazy_any:nF
   {
-    { \quark_if_no_value_p:N \subfiglist_tempa_tl }
-    { \subfiglist_parse_is_separator_p:V \subfiglist_tempa_tl }
-    { \subfiglist_parse_is_newline_p:V \subfiglist_tempa_tl }
+    { \quark_if_no_value_p:N \subfiglist_tmpa_tl }
+    { \subfiglist_parse_is_separator_p:V \subfiglist_tmpa_tl }
+    { \subfiglist_parse_is_newline_p:V \subfiglist_tmpa_tl }
   }{
-    \tl_clear:N \subfiglist_tempa_tl
-    \subfiglist_parse_make_token:NnV \subfiglist_tempb_tl { space } \subfiglist_tempa_tl
-    \tl_put_right:NV #1 \subfiglist_tempb_tl
+    \tl_clear:N \subfiglist_tmpa_tl
+    \subfiglist_parse_make_token:NnV \subfiglist_tmpb_tl { space } \subfiglist_tmpa_tl
+    \tl_put_right:NV #1 \subfiglist_tmpb_tl
   }
 }
 
@@ -1792,37 +1792,37 @@
 % #2: Sequence containing tokenized specification string
 %
 {
-  \seq_get_left:NN #2 \subfiglist_tempa_tl
-  \tl_clear:N \subfiglist_tempb_tl
+  \seq_get_left:NN #2 \subfiglist_tmpa_tl
+  \tl_clear:N \subfiglist_tmpb_tl
   
   \bool_until_do:nn
   {
     \bool_lazy_or_p:nn
-      { \quark_if_no_value_p:N \subfiglist_tempa_tl }
-      { ! \subfiglist_parse_is_line_p:V \subfiglist_tempa_tl }
+      { \quark_if_no_value_p:N \subfiglist_tmpa_tl }
+      { ! \subfiglist_parse_is_line_p:V \subfiglist_tmpa_tl }
   }{
-    \seq_pop_left:NN #2 \subfiglist_tempa_tl
-    \subfiglist_parse_wrap_token:NV \subfiglist_tempa_tl \subfiglist_tempa_tl
-    \tl_put_right:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
-    \seq_get_left:NN #2 \subfiglist_tempa_tl
+    \seq_pop_left:NN #2 \subfiglist_tmpa_tl
+    \subfiglist_parse_wrap_token:NV \subfiglist_tmpa_tl \subfiglist_tmpa_tl
+    \tl_put_right:NV \subfiglist_tmpb_tl \subfiglist_tmpa_tl
+    \seq_get_left:NN #2 \subfiglist_tmpa_tl
   }
   
-  \tl_set_eq:NN \subfiglist_tempa_tl #1
+  \tl_set_eq:NN \subfiglist_tmpa_tl #1
   \group_begin:
     \tl_clear:N #1
     \seq_clear:N #2
-    \tl_map_inline:Nn \subfiglist_tempb_tl
+    \tl_map_inline:Nn \subfiglist_tmpb_tl
     {
       \seq_put_right:Nn #2 { ##1 }
     }
     
     \bool_until_do:nn { \seq_if_empty_p:N #2 }
     {
-      \seq_get_left:NN #2 \subfiglist_tempa_tl
+      \seq_get_left:NN #2 \subfiglist_tmpa_tl
       
       \tl_map_inline:nn { { canvas } { separator } { subblock } { error } }
       {
-        \bool_if:nT { \subfiglist_use:c { subfiglist_parse_is_ ##1 _p:V } \subfiglist_tempa_tl }
+        \bool_if:nT { \subfiglist_use:c { subfiglist_parse_is_ ##1 _p:V } \subfiglist_tmpa_tl }
         {
           \subfiglist_use:c { subfiglist_parse_ ##1 :NN } #1 #2
           \tl_map_break:
@@ -1833,18 +1833,18 @@
   \subfiglist_group_var_return:NN \tl_set:Nn #1
   \group_end:
   
-  \subfiglist_parse_make_token:NnV \subfiglist_tempb_tl { line } #1
-  \tl_put_right:NV \subfiglist_tempa_tl \subfiglist_tempb_tl
-  \tl_set_eq:NN #1 \subfiglist_tempa_tl
+  \subfiglist_parse_make_token:NnV \subfiglist_tmpb_tl { line } #1
+  \tl_put_right:NV \subfiglist_tmpa_tl \subfiglist_tmpb_tl
+  \tl_set_eq:NN #1 \subfiglist_tmpa_tl
 }
 
 \cs_new:Npn \subfiglist_parse_error:NN #1 #2
 {
-  \seq_pop_left:NN #2 \subfiglist_tempa_tl
-  \tl_set:Nn \subfiglist_tempb_tl { Parser~encountered~unexpected~token~` }
-  \tl_put_right:Nf \subfiglist_tempb_tl { \tl_head:V \subfiglist_tempa_tl }
-  \tl_put_right:Nn \subfiglist_tempb_tl { ' }
-  \msg_error:nnV { subfiglist } { internal~error } \subfiglist_tempb_tl
+  \seq_pop_left:NN #2 \subfiglist_tmpa_tl
+  \tl_set:Nn \subfiglist_tmpb_tl { Parser~encountered~unexpected~token~` }
+  \tl_put_right:Nf \subfiglist_tmpb_tl { \tl_head:V \subfiglist_tmpa_tl }
+  \tl_put_right:Nn \subfiglist_tmpb_tl { ' }
+  \msg_error:nnV { subfiglist } { internal~error } \subfiglist_tmpb_tl
 }
 
 \cs_new:Npn \subfiglist_parse_wrap_token:Nn #1 #2
@@ -1886,11 +1886,11 @@
     
     \bool_until_do:nn { \seq_if_empty_p:N \subfiglist_spec_tokens_seq }
     {
-      \seq_get_left:NN \subfiglist_spec_tokens_seq \subfiglist_tempa_tl
+      \seq_get_left:NN \subfiglist_spec_tokens_seq \subfiglist_tmpa_tl
       
       \tl_map_inline:nn { { line } { newline } { error } }
       {
-        \bool_if:nT { \subfiglist_use:c { subfiglist_parse_is_ ##1 _p:V } \subfiglist_tempa_tl }
+        \bool_if:nT { \subfiglist_use:c { subfiglist_parse_is_ ##1 _p:V } \subfiglist_tmpa_tl }
         {
           \subfiglist_use:c { subfiglist_parse_ ##1 :NN } #1 \subfiglist_spec_tokens_seq
           \tl_map_break:
@@ -1927,16 +1927,16 @@
   }
   
   % Check if some image number is missing
-  \int_zero:N \subfiglist_tempa_int
+  \int_zero:N \subfiglist_tmp_int
   \tl_map_inline:Nn #2
   {
-    \int_incr:N \subfiglist_tempa_int
+    \int_incr:N \subfiglist_tmp_int
     
-    \int_compare:nF { ##1 = \subfiglist_tempa_int }
+    \int_compare:nF { ##1 = \subfiglist_tmp_int }
     {
-      \int_compare:nTF { ##1 > \subfiglist_tempa_int }
+      \int_compare:nTF { ##1 > \subfiglist_tmp_int }
       {
-        \msg_error:nnV { subfiglist } { missing~identifier } \subfiglist_tempa_int
+        \msg_error:nnV { subfiglist } { missing~identifier } \subfiglist_tmp_int
         \tl_map_break:
       }{
         \msg_error:nnn { subfiglist } { double~identifier } { ##1 }
@@ -1946,7 +1946,7 @@
   }
   
   % Save total number of images
-  \int_set_eq:NN #3 \subfiglist_tempa_int
+  \int_set_eq:NN #3 \subfiglist_tmp_int
   
   % Check if image numbers in subfiglist specification
   % are in ascending order and warn if otherwise
@@ -1975,16 +1975,16 @@
   }
   
   % Check if some image number is missing
-  \int_zero:N \subfiglist_tempa_int
+  \int_zero:N \subfiglist_tmp_int
   \tl_map_inline:Nn #3
   {
-    \int_incr:N \subfiglist_tempa_int
+    \int_incr:N \subfiglist_tmp_int
     
-    \int_compare:nF { ##1 = \subfiglist_tempa_int }
+    \int_compare:nF { ##1 = \subfiglist_tmp_int }
     {
-      \int_compare:nTF { ##1 > \subfiglist_tempa_int }
+      \int_compare:nTF { ##1 > \subfiglist_tmp_int }
       {
-        \msg_error:nnV { subfiglist } { missing~canvas } \subfiglist_tempa_int
+        \msg_error:nnV { subfiglist } { missing~canvas } \subfiglist_tmp_int
         \tl_map_break:
       }{
         \msg_error:nnn { subfiglist } { double~canvas } { ##1 }
@@ -1994,13 +1994,13 @@
   }
   
   % Is number of identifiers equal to number of canvases?
-  \int_compare:nF { \subfiglist_tempa_int = #4 }
+  \int_compare:nF { \subfiglist_tmp_int = #4 }
   {
-    \int_compare:nTF { \subfiglist_tempa_int > #4 }
+    \int_compare:nTF { \subfiglist_tmp_int > #4 }
     {
-      \msg_error:nnVn { subfiglist } { too~many~canvases } \subfiglist_tempa_int { #4 }
+      \msg_error:nnVn { subfiglist } { too~many~canvases } \subfiglist_tmp_int { #4 }
     }{
-      \msg_error:nnnV { subfiglist } { too~many~identifiers } { #4 } \subfiglist_tempa_int
+      \msg_error:nnnV { subfiglist } { too~many~identifiers } { #4 } \subfiglist_tmp_int
     }
   }
 
@@ -2037,17 +2037,17 @@
     % Check if first argument is numeric
     \subfiglist_is_integer:nTF { ##2 }
     {
-      \subfiglist_tl_set_wrapped:Nn \subfiglist_tempa_tl { ##2 }
-      \tl_put_right:NV \subfiglist_canvas_nums_tl \subfiglist_tempa_tl
+      \subfiglist_tl_set_wrapped:Nn \subfiglist_tmpa_tl { ##2 }
+      \tl_put_right:NV \subfiglist_canvas_nums_tl \subfiglist_tmpa_tl
 
       % Save canvas type and image path
-      \prop_clear:N \subfiglist_temp_prop
-      \prop_put:Nnn \subfiglist_temp_prop { type } { #1 }
-      \prop_put:Nnn \subfiglist_temp_prop { path } { ##3 }
+      \prop_clear:N \subfiglist_tmp_prop
+      \prop_put:Nnn \subfiglist_tmp_prop { type } { #1 }
+      \prop_put:Nnn \subfiglist_tmp_prop { path } { ##3 }
 
       % Get file ratio
-      \subfiglist_get_file_ratio:Nn \subfiglist_tempa_tl { ##3 }
-      \prop_put:NnV \subfiglist_temp_prop { ratio } \subfiglist_tempa_tl
+      \subfiglist_get_file_ratio:Nn \subfiglist_tmpa_tl { ##3 }
+      \prop_put:NnV \subfiglist_tmp_prop { ratio } \subfiglist_tmpa_tl
 
       % Process opitonal arguments
       \subfiglist_key_set:nnV { subfiglistcanvas } { top }    \subfiglist_canvas_top_default_tl
@@ -2057,13 +2057,13 @@
       \keys_set:nn { subfiglistcanvas } { ##1 }
 
       % Save specified offsets
-      \prop_put:NnV \subfiglist_temp_prop { top }   \subfiglist_canvas_top_dim
-      \prop_put:NnV \subfiglist_temp_prop { bot }   \subfiglist_canvas_bot_dim
-      \prop_put:NnV \subfiglist_temp_prop { left }  \subfiglist_canvas_left_dim
-      \prop_put:NnV \subfiglist_temp_prop { right } \subfiglist_canvas_right_dim
+      \prop_put:NnV \subfiglist_tmp_prop { top }   \subfiglist_canvas_top_dim
+      \prop_put:NnV \subfiglist_tmp_prop { bot }   \subfiglist_canvas_bot_dim
+      \prop_put:NnV \subfiglist_tmp_prop { left }  \subfiglist_canvas_left_dim
+      \prop_put:NnV \subfiglist_tmp_prop { right } \subfiglist_canvas_right_dim
 
-      \subfiglist_tl_set_from_prop:NN \subfiglist_tempa_tl \subfiglist_temp_prop
-      \prop_put:NnV \subfiglist_canvas_prop { ##2 } \subfiglist_tempa_tl
+      \subfiglist_tl_set_from_prop:NN \subfiglist_tmpa_tl \subfiglist_tmp_prop
+      \prop_put:NnV \subfiglist_canvas_prop { ##2 } \subfiglist_tmpa_tl
     }{
       \msg_error:nnnf { subfiglist } { missing~number } { First~mandatory } { \token_to_str:c { subfiglist #1 } }
     }
@@ -2080,40 +2080,40 @@
   % Check if first argument is numeric
   \subfiglist_is_integer:nTF { #2 }
   {
-    \subfiglist_tl_set_wrapped:Nn \subfiglist_tempa_tl { #2 }
-    \tl_put_right:NV \subfiglist_canvas_nums_tl \subfiglist_tempa_tl
+    \subfiglist_tl_set_wrapped:Nn \subfiglist_tmpa_tl { #2 }
+    \tl_put_right:NV \subfiglist_canvas_nums_tl \subfiglist_tmpa_tl
     
     % Save canvas type and image path
-    \prop_clear:N \subfiglist_temp_prop
-    \prop_put:Nnn \subfiglist_temp_prop { type } { dummy }
+    \prop_clear:N \subfiglist_tmp_prop
+    \prop_put:Nnn \subfiglist_tmp_prop { type } { dummy }
     
     % Get dummy ratio
-    \seq_set_split:Nnn \subfiglist_temp_seq { : } { #3 }
+    \seq_set_split:Nnn \subfiglist_tmp_seq { : } { #3 }
     
-    \int_compare:nTF { 1 <= \seq_count:N \subfiglist_temp_seq <= 2 }
+    \int_compare:nTF { 1 <= \seq_count:N \subfiglist_tmp_seq <= 2 }
     {
-      \int_compare:nTF { \seq_count:N \subfiglist_temp_seq = 1 }
+      \int_compare:nTF { \seq_count:N \subfiglist_tmp_seq = 1 }
       {
-        \seq_get_left:NN \subfiglist_temp_seq \subfiglist_tempa_tl
-        \subfiglist_is_float:VF \subfiglist_tempa_tl
+        \seq_get_left:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
+        \subfiglist_is_float:VF \subfiglist_tmpa_tl
         {
           \msg_error:nnnn { subfiglist } { missing~float } { Second } { \subfiglistdummy }
         }
-        \prop_put:NnV \subfiglist_temp_prop { ratio } \subfiglist_tempa_tl
+        \prop_put:NnV \subfiglist_tmp_prop { ratio } \subfiglist_tmpa_tl
       }{
-        \seq_pop_left:NN \subfiglist_temp_seq \subfiglist_tempa_tl
-        \subfiglist_is_float:VF \subfiglist_tempa_tl
+        \seq_pop_left:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
+        \subfiglist_is_float:VF \subfiglist_tmpa_tl
         {
           \msg_error:nnnn { subfiglist } { missing~float } { Second } { \subfiglistdummy }
         }
-        \seq_pop_left:NN \subfiglist_temp_seq \subfiglist_tempb_tl
-        \subfiglist_is_float:VF \subfiglist_tempb_tl
+        \seq_pop_left:NN \subfiglist_tmp_seq \subfiglist_tmpb_tl
+        \subfiglist_is_float:VF \subfiglist_tmpb_tl
         {
           \msg_error:nnnn { subfiglist } { missing~float } { Second } { \subfiglistdummy }
         }
-        \fp_set:Nn \subfiglist_temp_fp { \subfiglist_tempa_tl / \subfiglist_tempb_tl }
-        \tl_set:Nf \subfiglist_tempa_tl { \fp_use:N \subfiglist_temp_fp }
-        \prop_put:NnV \subfiglist_temp_prop { ratio } \subfiglist_tempa_tl
+        \fp_set:Nn \subfiglist_tmp_fp { \subfiglist_tmpa_tl / \subfiglist_tmpb_tl }
+        \tl_set:Nf \subfiglist_tmpa_tl { \fp_use:N \subfiglist_tmp_fp }
+        \prop_put:NnV \subfiglist_tmp_prop { ratio } \subfiglist_tmpa_tl
       }
     }{
       \msg_error:nnnn { subfiglist } { malformed~argument } { argument~containing~zero~or~one~colons } { `#3' }
@@ -2127,13 +2127,13 @@
     \keys_set:nn { subfiglistcanvas } { #1 }
     
     % Save specified offsets
-    \prop_put:NnV \subfiglist_temp_prop { top }   \subfiglist_canvas_top_dim
-    \prop_put:NnV \subfiglist_temp_prop { bot }   \subfiglist_canvas_bot_dim
-    \prop_put:NnV \subfiglist_temp_prop { left }  \subfiglist_canvas_left_dim
-    \prop_put:NnV \subfiglist_temp_prop { right } \subfiglist_canvas_right_dim
+    \prop_put:NnV \subfiglist_tmp_prop { top }   \subfiglist_canvas_top_dim
+    \prop_put:NnV \subfiglist_tmp_prop { bot }   \subfiglist_canvas_bot_dim
+    \prop_put:NnV \subfiglist_tmp_prop { left }  \subfiglist_canvas_left_dim
+    \prop_put:NnV \subfiglist_tmp_prop { right } \subfiglist_canvas_right_dim
     
-    \subfiglist_tl_set_from_prop:NN \subfiglist_tempa_tl \subfiglist_temp_prop
-    \prop_put:NnV \subfiglist_canvas_prop { #2 } \subfiglist_tempa_tl
+    \subfiglist_tl_set_from_prop:NN \subfiglist_tmpa_tl \subfiglist_tmp_prop
+    \prop_put:NnV \subfiglist_canvas_prop { #2 } \subfiglist_tmpa_tl
   }{
     \msg_error:nnnf { subfiglist } { missing~number } { First~mandatory } { \token_to_str:c { subfiglistdummy } }
   }
@@ -2151,8 +2151,8 @@
   \subfiglist_is_integer:nTF { #2 }
   {
     % Save label hook
-    \prop_clear:N \subfiglist_temp_prop
-    \prop_put:Nnn \subfiglist_temp_prop { hook } { #3 }
+    \prop_clear:N \subfiglist_tmp_prop
+    \prop_put:Nnn \subfiglist_tmp_prop { hook } { #3 }
     
     % Process opitonal arguments
     \subfiglist_key_set:nnV { subfiglistlabel } { hpos }       \subfiglist_label_hpos_default_tl
@@ -2164,17 +2164,17 @@
     \keys_set:nn { subfiglistlabel } { #1 }
     
     % Save label properties.
-    \prop_put:Nnn \subfiglist_temp_prop { hoff }       { 0.5ex }
-    \prop_put:Nnn \subfiglist_temp_prop { voff }       { 0.5ex }
-    \prop_put:NnV \subfiglist_temp_prop { hpos }       \subfiglist_label_hpos_int
-    \prop_put:NnV \subfiglist_temp_prop { vpos }       \subfiglist_label_vpos_int
-    \prop_put:NnV \subfiglist_temp_prop { xshift }     \subfiglist_label_xshift_dim
-    \prop_put:NnV \subfiglist_temp_prop { yshift }     \subfiglist_label_yshift_dim
-    \prop_put:NnV \subfiglist_temp_prop { color }      \subfiglist_label_color_tl
-    \prop_put:NnV \subfiglist_temp_prop { background } \subfiglist_label_background_tl
+    \prop_put:Nnn \subfiglist_tmp_prop { hoff }       { 0.5ex }
+    \prop_put:Nnn \subfiglist_tmp_prop { voff }       { 0.5ex }
+    \prop_put:NnV \subfiglist_tmp_prop { hpos }       \subfiglist_label_hpos_int
+    \prop_put:NnV \subfiglist_tmp_prop { vpos }       \subfiglist_label_vpos_int
+    \prop_put:NnV \subfiglist_tmp_prop { xshift }     \subfiglist_label_xshift_dim
+    \prop_put:NnV \subfiglist_tmp_prop { yshift }     \subfiglist_label_yshift_dim
+    \prop_put:NnV \subfiglist_tmp_prop { color }      \subfiglist_label_color_tl
+    \prop_put:NnV \subfiglist_tmp_prop { background } \subfiglist_label_background_tl
     
-    \subfiglist_tl_set_from_prop:NN \subfiglist_tempa_tl \subfiglist_temp_prop
-    \prop_put:NnV \subfiglist_label_prop { #2 } \subfiglist_tempa_tl
+    \subfiglist_tl_set_from_prop:NN \subfiglist_tmpa_tl \subfiglist_tmp_prop
+    \prop_put:NnV \subfiglist_label_prop { #2 } \subfiglist_tmpa_tl
   }{
     \msg_error:nnnf { subfiglist } { missing~number } { First~mandatory } { \token_to_str:c { subfiglistfile } }
   }
@@ -2190,11 +2190,11 @@
   % Check if first argument is numeric
   \subfiglist_is_integer:nTF { #1 }
   {
-    \prop_clear:N \subfiglist_temp_prop
-    \prop_put:Nnn \subfiglist_temp_prop { content } { #2 }
+    \prop_clear:N \subfiglist_tmp_prop
+    \prop_put:Nnn \subfiglist_tmp_prop { content } { #2 }
     
-    \subfiglist_tl_set_from_prop:NN \subfiglist_tempa_tl \subfiglist_temp_prop
-    \prop_put:NnV \subfiglist_overlay_prop { #1 } \subfiglist_tempa_tl
+    \subfiglist_tl_set_from_prop:NN \subfiglist_tmpa_tl \subfiglist_tmp_prop
+    \prop_put:NnV \subfiglist_overlay_prop { #1 } \subfiglist_tmpa_tl
   }{
     \msg_error:nnnf { subfiglist } { missing~number } { First~mandatory } { \token_to_str:c { subfiglistoverlay } }
   }
@@ -2213,23 +2213,23 @@
 % #3: Dimension to store vertical offset
 % #4: Canvas specification
 {
-  \prop_get:NnN \subfiglist_canvas_prop { #4 } \subfiglist_tempa_tl
-  \subfiglist_prop_set_from_tl:NN \subfiglist_temp_prop \subfiglist_tempa_tl
+  \prop_get:NnN \subfiglist_canvas_prop { #4 } \subfiglist_tmpa_tl
+  \subfiglist_prop_set_from_tl:NN \subfiglist_tmp_prop \subfiglist_tmpa_tl
   
-  \prop_get:NnN \subfiglist_temp_prop { ratio } \subfiglist_tempa_tl
-  \fp_set:NV #1 \subfiglist_tempa_tl
+  \prop_get:NnN \subfiglist_tmp_prop { ratio } \subfiglist_tmpa_tl
+  \fp_set:NV #1 \subfiglist_tmpa_tl
   
   \dim_zero:N #2
-  \prop_get:NnN \subfiglist_temp_prop { left } \subfiglist_tempa_tl
-  \dim_add:NV #2 \subfiglist_tempa_tl
-  \prop_get:NnN \subfiglist_temp_prop { right } \subfiglist_tempa_tl
-  \dim_add:NV #2 \subfiglist_tempa_tl
+  \prop_get:NnN \subfiglist_tmp_prop { left } \subfiglist_tmpa_tl
+  \dim_add:NV #2 \subfiglist_tmpa_tl
+  \prop_get:NnN \subfiglist_tmp_prop { right } \subfiglist_tmpa_tl
+  \dim_add:NV #2 \subfiglist_tmpa_tl
   
   \dim_zero:N #3
-  \prop_get:NnN \subfiglist_temp_prop { top } \subfiglist_tempa_tl
-  \dim_add:NV #3 \subfiglist_tempa_tl
-  \prop_get:NnN \subfiglist_temp_prop { bot } \subfiglist_tempa_tl
-  \dim_add:NV #3 \subfiglist_tempa_tl
+  \prop_get:NnN \subfiglist_tmp_prop { top } \subfiglist_tmpa_tl
+  \dim_add:NV #3 \subfiglist_tmpa_tl
+  \prop_get:NnN \subfiglist_tmp_prop { bot } \subfiglist_tmpa_tl
+  \dim_add:NV #3 \subfiglist_tmpa_tl
 }
 
 \cs_generate_variant:Nn \subfiglist_get_aspect_hmode_canvas:NNNn { NNNV }
@@ -2258,9 +2258,9 @@
   \dim_set:Nn \subfiglistlineheight { 1ex }
   \fp_set_eq:NN #1 \c_nan_fp
   
-  \hbox_set:Nn \subfiglist_temp_box { #4 }
-  \dim_set:Nn #2 { \box_wd:N \subfiglist_temp_box }
-  \dim_set:Nn #3 { \box_ht:N \subfiglist_temp_box }
+  \hbox_set:Nn \subfiglist_tmp_box { #4 }
+  \dim_set:Nn #2 { \box_wd:N \subfiglist_tmp_box }
+  \dim_set:Nn #3 { \box_ht:N \subfiglist_tmp_box }
 }
 
 \cs_generate_variant:Nn \subfiglist_get_aspect_hmode_separator:NNNn { NNNV }
@@ -2279,38 +2279,38 @@
   
   \tl_map_inline:nn { #4 }
   {
-    \subfiglist_tl_set_head:Nn \subfiglist_tempa_tl { ##1 }
-    \subfiglist_tl_set_tail:Nn \subfiglist_tempb_tl { ##1 }
-    \subfiglist_tl_set_unwrapped:NV \subfiglist_tempb_tl \subfiglist_tempb_tl
+    \subfiglist_tl_set_head:Nn \subfiglist_tmpa_tl { ##1 }
+    \subfiglist_tl_set_tail:Nn \subfiglist_tmpb_tl { ##1 }
+    \subfiglist_tl_set_unwrapped:NV \subfiglist_tmpb_tl \subfiglist_tmpb_tl
     
     \group_begin:
-      \subfiglist_use:c { subfiglist_get_aspect_vmode_ \subfiglist_tempa_tl :NNNV }
-        #1 #2 #3 \subfiglist_tempb_tl
+      \subfiglist_use:c { subfiglist_get_aspect_vmode_ \subfiglist_tmpa_tl :NNNV }
+        #1 #2 #3 \subfiglist_tmpb_tl
       
-      \fp_set:Nn \subfiglist_temp_fp #1
-      \dim_set:Nn \subfiglist_tempa_dim #2
-      \dim_set:Nn \subfiglist_tempb_dim #3
+      \fp_set:Nn \subfiglist_tmp_fp #1
+      \dim_set:Nn \subfiglist_tmpa_dim #2
+      \dim_set:Nn \subfiglist_tmpb_dim #3
     
-    \subfiglist_group_var_return:NN \fp_set:Nn \subfiglist_temp_fp
-    \subfiglist_group_var_return:NN \dim_set:Nn \subfiglist_tempa_dim
-    \subfiglist_group_var_return:NN \dim_set:Nn \subfiglist_tempb_dim
+    \subfiglist_group_var_return:NN \fp_set:Nn \subfiglist_tmp_fp
+    \subfiglist_group_var_return:NN \dim_set:Nn \subfiglist_tmpa_dim
+    \subfiglist_group_var_return:NN \dim_set:Nn \subfiglist_tmpb_dim
     \group_end:
     
-    \subfiglist_is_nan:VF \subfiglist_temp_fp
+    \subfiglist_is_nan:VF \subfiglist_tmp_fp
     {
-      \dim_compare:nNnTF { #2 } < { \subfiglist_tempa_dim }
+      \dim_compare:nNnTF { #2 } < { \subfiglist_tmpa_dim }
       {
         \fp_compare:nNnF { #1 } = { \c_inf_fp }
         {
-          \dim_add:Nn #3 { ( \subfiglist_tempa_dim - #2 ) * \dim_ratio:nn { 1pt } { \fp_to_dim:N #1 } }
+          \dim_add:Nn #3 { ( \subfiglist_tmpa_dim - #2 ) * \dim_ratio:nn { 1pt } { \fp_to_dim:N #1 } }
         }
-        \dim_set_eq:NN #2 \subfiglist_tempa_dim
+        \dim_set_eq:NN #2 \subfiglist_tmpa_dim
       }{
-        \dim_add:Nn #3 { #2 * \dim_ratio:nn { 1pt } { \fp_to_dim:N \subfiglist_temp_fp } }
+        \dim_add:Nn #3 { #2 * \dim_ratio:nn { 1pt } { \fp_to_dim:N \subfiglist_tmp_fp } }
       }
-      \fp_set:Nn #1 { 1 / ( ( 1 / #1 ) + ( 1 / \subfiglist_temp_fp ) ) }
+      \fp_set:Nn #1 { 1 / ( ( 1 / #1 ) + ( 1 / \subfiglist_tmp_fp ) ) }
     }
-    \dim_add:NV #3 \subfiglist_tempb_dim
+    \dim_add:NV #3 \subfiglist_tmpb_dim
   }
 }
 
@@ -2330,31 +2330,31 @@
   
   \tl_map_inline:nn { #4 }
   {
-    \subfiglist_tl_set_head:Nn \subfiglist_tempa_tl { ##1 }
-    \subfiglist_tl_set_tail:Nn \subfiglist_tempb_tl { ##1 }
-    \subfiglist_tl_set_unwrapped:NV \subfiglist_tempb_tl \subfiglist_tempb_tl
+    \subfiglist_tl_set_head:Nn \subfiglist_tmpa_tl { ##1 }
+    \subfiglist_tl_set_tail:Nn \subfiglist_tmpb_tl { ##1 }
+    \subfiglist_tl_set_unwrapped:NV \subfiglist_tmpb_tl \subfiglist_tmpb_tl
     
     \group_begin:
-      \subfiglist_use:c { subfiglist_get_aspect_hmode_ \subfiglist_tempa_tl :NNNV }
-        #1 #2 #3 \subfiglist_tempb_tl
+      \subfiglist_use:c { subfiglist_get_aspect_hmode_ \subfiglist_tmpa_tl :NNNV }
+        #1 #2 #3 \subfiglist_tmpb_tl
       
-      \fp_set:Nn \subfiglist_temp_fp #1
-      \dim_set:Nn \subfiglist_tempa_dim #2
-      \dim_set:Nn \subfiglist_tempb_dim #3
+      \fp_set:Nn \subfiglist_tmp_fp #1
+      \dim_set:Nn \subfiglist_tmpa_dim #2
+      \dim_set:Nn \subfiglist_tmpb_dim #3
     
-    \subfiglist_group_var_return:NN \fp_set:Nn \subfiglist_temp_fp
-    \subfiglist_group_var_return:NN \dim_set:Nn \subfiglist_tempa_dim
-    \subfiglist_group_var_return:NN \dim_set:Nn \subfiglist_tempb_dim
+    \subfiglist_group_var_return:NN \fp_set:Nn \subfiglist_tmp_fp
+    \subfiglist_group_var_return:NN \dim_set:Nn \subfiglist_tmpa_dim
+    \subfiglist_group_var_return:NN \dim_set:Nn \subfiglist_tmpb_dim
     \group_end:
     
-    \subfiglist_is_nan:VF \subfiglist_temp_fp
+    \subfiglist_is_nan:VF \subfiglist_tmp_fp
     {
-      \fp_add:NV #1 \subfiglist_temp_fp
+      \fp_add:NV #1 \subfiglist_tmp_fp
     }
-    \dim_add:NV #2 \subfiglist_tempa_dim
-    \subfiglist_is_nan:VF \subfiglist_temp_fp
+    \dim_add:NV #2 \subfiglist_tmpa_dim
+    \subfiglist_is_nan:VF \subfiglist_tmp_fp
     {
-      \dim_add:Nf #3 { \subfiglist_tempb_dim * \dim_ratio:nn { \fp_to_dim:N \subfiglist_temp_fp } { 1pt } }
+      \dim_add:Nf #3 { \subfiglist_tmpb_dim * \dim_ratio:nn { \fp_to_dim:N \subfiglist_tmp_fp } { 1pt } }
     }
   }
   
@@ -2391,27 +2391,27 @@
 % #3: Canvas specification
 %
 {
-  \prop_get:NnN \subfiglist_canvas_prop { #3 } \subfiglist_tempa_tl
-  \subfiglist_prop_set_from_tl:NN \subfiglist_temp_prop \subfiglist_tempa_tl
+  \prop_get:NnN \subfiglist_canvas_prop { #3 } \subfiglist_tmpa_tl
+  \subfiglist_prop_set_from_tl:NN \subfiglist_tmp_prop \subfiglist_tmpa_tl
   
-  \prop_get:NnN \subfiglist_temp_prop { ratio } \subfiglist_tempa_tl
-  \fp_set:NV \subfiglist_temp_fp \subfiglist_tempa_tl
+  \prop_get:NnN \subfiglist_tmp_prop { ratio } \subfiglist_tmpa_tl
+  \fp_set:NV \subfiglist_tmp_fp \subfiglist_tmpa_tl
   
-  \dim_set:Nn \subfiglist_tempa_dim { #2 }
-  \prop_get:NnN \subfiglist_temp_prop { top } \subfiglist_tempa_tl
-  \dim_sub:NV \subfiglist_tempa_dim \subfiglist_tempa_tl
-  \prop_get:NnN \subfiglist_temp_prop { bot } \subfiglist_tempa_tl
-  \dim_sub:NV \subfiglist_tempa_dim \subfiglist_tempa_tl
-  \dim_set:Nf \subfiglist_tempa_dim
-    { \subfiglist_tempa_dim * \dim_ratio:nn { \fp_to_dim:N \subfiglist_temp_fp } { 1pt } }
+  \dim_set:Nn \subfiglist_tmpa_dim { #2 }
+  \prop_get:NnN \subfiglist_tmp_prop { top } \subfiglist_tmpa_tl
+  \dim_sub:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
+  \prop_get:NnN \subfiglist_tmp_prop { bot } \subfiglist_tmpa_tl
+  \dim_sub:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
+  \dim_set:Nf \subfiglist_tmpa_dim
+    { \subfiglist_tmpa_dim * \dim_ratio:nn { \fp_to_dim:N \subfiglist_tmp_fp } { 1pt } }
   
-  \prop_put:Nnn \subfiglist_temp_prop { height } { #2 }
-  \prop_put:NnV \subfiglist_temp_prop { width } \subfiglist_tempa_dim
-  \subfiglist_tl_set_from_prop:NN \subfiglist_tempa_tl \subfiglist_temp_prop
-  \prop_put:NnV \subfiglist_canvas_prop { #3 } \subfiglist_tempa_tl
+  \prop_put:Nnn \subfiglist_tmp_prop { height } { #2 }
+  \prop_put:NnV \subfiglist_tmp_prop { width } \subfiglist_tmpa_dim
+  \subfiglist_tl_set_from_prop:NN \subfiglist_tmpa_tl \subfiglist_tmp_prop
+  \prop_put:NnV \subfiglist_canvas_prop { #3 } \subfiglist_tmpa_tl
   
-  \subfiglist_tl_set_wrapped:Nnn \subfiglist_tempa_tl { canvas } { #3 }
-  \tl_put_right:NV #1 \subfiglist_tempa_tl
+  \subfiglist_tl_set_wrapped:Nnn \subfiglist_tmpa_tl { canvas } { #3 }
+  \tl_put_right:NV #1 \subfiglist_tmpa_tl
 }
 
 \cs_generate_variant:Nn \subfiglist_dimension_hmode_canvas:Nnn { NnV }
@@ -2426,8 +2426,8 @@
 % #3: Space specification
 %
 {
-  \subfiglist_tl_set_wrapped:Nnn \subfiglist_tempa_tl { space } { #3 }
-  \tl_put_right:NV #1 \subfiglist_tempa_tl
+  \subfiglist_tl_set_wrapped:Nnn \subfiglist_tmpa_tl { space } { #3 }
+  \tl_put_right:NV #1 \subfiglist_tmpa_tl
 }
 
 \cs_generate_variant:Nn \subfiglist_dimension_hmode_space:Nnn { NnV }
@@ -2442,8 +2442,8 @@
 % #3: Separator specification
 %
 {
-  \subfiglist_tl_set_wrapped:Nnn \subfiglist_tempa_tl { separator } { #3 }
-  \tl_put_right:NV #1 \subfiglist_tempa_tl
+  \subfiglist_tl_set_wrapped:Nnn \subfiglist_tmpa_tl { separator } { #3 }
+  \tl_put_right:NV #1 \subfiglist_tmpa_tl
 }
 
 \cs_generate_variant:Nn \subfiglist_dimension_hmode_separator:Nnn { NnV }
@@ -2475,22 +2475,22 @@
     
     \tl_map_inline:nn { #3 }
     {
-      \subfiglist_tl_set_head:Nn \subfiglist_tempa_tl { ##1 }
-      \subfiglist_tl_set_tail:Nn \subfiglist_tempb_tl { ##1 }
-      \subfiglist_tl_set_unwrapped:NV \subfiglist_tempb_tl \subfiglist_tempb_tl
+      \subfiglist_tl_set_head:Nn \subfiglist_tmpa_tl { ##1 }
+      \subfiglist_tl_set_tail:Nn \subfiglist_tmpb_tl { ##1 }
+      \subfiglist_tl_set_unwrapped:NV \subfiglist_tmpb_tl \subfiglist_tmpb_tl
       
-      \subfiglist_use:c { subfiglist_dimension_vmode_ \subfiglist_tempa_tl :NVV }
-        #1 \subfiglist_column_width_dim \subfiglist_tempb_tl
+      \subfiglist_use:c { subfiglist_dimension_vmode_ \subfiglist_tmpa_tl :NVV }
+        #1 \subfiglist_column_width_dim \subfiglist_tmpb_tl
     }
     
-  \subfiglist_tl_set_from_prop:NN \subfiglist_tempa_tl \subfiglist_canvas_prop
-  \tl_set_eq:NN \subfiglist_tempb_tl #1
-  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tempa_tl
-  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tempb_tl
+  \subfiglist_tl_set_from_prop:NN \subfiglist_tmpa_tl \subfiglist_canvas_prop
+  \tl_set_eq:NN \subfiglist_tmpb_tl #1
+  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tmpa_tl
+  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tmpb_tl
   \group_end:
-  \subfiglist_prop_set_from_tl:NN \subfiglist_canvas_prop \subfiglist_tempa_tl
-  \subfiglist_tl_set_wrapped:NnV \subfiglist_tempa_tl { subblock } \subfiglist_tempb_tl
-  \tl_put_right:NV #1 \subfiglist_tempa_tl
+  \subfiglist_prop_set_from_tl:NN \subfiglist_canvas_prop \subfiglist_tmpa_tl
+  \subfiglist_tl_set_wrapped:NnV \subfiglist_tmpa_tl { subblock } \subfiglist_tmpb_tl
+  \tl_put_right:NV #1 \subfiglist_tmpa_tl
 }
 
 \cs_generate_variant:Nn \subfiglist_dimension_hmode_subblock:Nnn { NnV }
@@ -2522,22 +2522,22 @@
       
     \tl_map_inline:nn { #3 }
     {
-      \subfiglist_tl_set_head:Nn \subfiglist_tempa_tl { ##1 }
-      \subfiglist_tl_set_tail:Nn \subfiglist_tempb_tl { ##1 }
-      \subfiglist_tl_set_unwrapped:NV \subfiglist_tempb_tl \subfiglist_tempb_tl
+      \subfiglist_tl_set_head:Nn \subfiglist_tmpa_tl { ##1 }
+      \subfiglist_tl_set_tail:Nn \subfiglist_tmpb_tl { ##1 }
+      \subfiglist_tl_set_unwrapped:NV \subfiglist_tmpb_tl \subfiglist_tmpb_tl
       
-      \subfiglist_use:c { subfiglist_dimension_hmode_ \subfiglist_tempa_tl :NVV }
-        #1 \subfiglist_line_height_dim \subfiglist_tempb_tl
+      \subfiglist_use:c { subfiglist_dimension_hmode_ \subfiglist_tmpa_tl :NVV }
+        #1 \subfiglist_line_height_dim \subfiglist_tmpb_tl
     }
     
-  \subfiglist_tl_set_from_prop:NN \subfiglist_tempa_tl \subfiglist_canvas_prop
-  \tl_set_eq:NN \subfiglist_tempb_tl #1
-  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tempa_tl
-  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tempb_tl
+  \subfiglist_tl_set_from_prop:NN \subfiglist_tmpa_tl \subfiglist_canvas_prop
+  \tl_set_eq:NN \subfiglist_tmpb_tl #1
+  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tmpa_tl
+  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tmpb_tl
   \group_end:
-  \subfiglist_prop_set_from_tl:NN \subfiglist_canvas_prop \subfiglist_tempa_tl
-  \subfiglist_tl_set_wrapped:NnV \subfiglist_tempa_tl { line } \subfiglist_tempb_tl
-  \tl_put_right:NV #1 \subfiglist_tempa_tl
+  \subfiglist_prop_set_from_tl:NN \subfiglist_canvas_prop \subfiglist_tmpa_tl
+  \subfiglist_tl_set_wrapped:NnV \subfiglist_tmpa_tl { line } \subfiglist_tmpb_tl
+  \tl_put_right:NV #1 \subfiglist_tmpa_tl
 }
 
 \cs_generate_variant:Nn \subfiglist_dimension_vmode_line:Nnn { NVn }
@@ -2551,8 +2551,8 @@
 % #3: Token list with parsed specification string for current line
 %
 {
-  \subfiglist_tl_set_wrapped:Nnn \subfiglist_tempa_tl { newline } { #3 }
-  \tl_put_right:NV #1 \subfiglist_tempa_tl
+  \subfiglist_tl_set_wrapped:Nnn \subfiglist_tmpa_tl { newline } { #3 }
+  \tl_put_right:NV #1 \subfiglist_tmpa_tl
 }
 
 \cs_generate_variant:Nn \subfiglist_dimension_vmode_newline:Nnn { NVn }
@@ -2582,9 +2582,9 @@
     % This is a workaround to an apparent bug of \includegraphics,
     % which slightly changes the aspect ratio of an image that
     % is loaded with a specific width.
-    \hbox_set:Nn \subfiglist_temp_box { \includegraphics { #1 } }
-    \dim_set:Nn \subfiglist_tempa_dim { \box_wd:N \subfiglist_temp_box }
-    \scalebox { \fp_eval:n { #2 / \subfiglist_tempa_dim } } { \box_use:N \subfiglist_temp_box }
+    \hbox_set:Nn \subfiglist_tmp_box { \includegraphics { #1 } }
+    \dim_set:Nn \subfiglist_tmpa_dim { \box_wd:N \subfiglist_tmp_box }
+    \scalebox { \fp_eval:n { #2 / \subfiglist_tmpa_dim } } { \box_use:N \subfiglist_tmp_box }
   }
 }
 
@@ -2657,18 +2657,18 @@
   \group_begin:
   
     % Store file in a box
-    \hbox_set:Nn \subfiglist_temp_box
+    \hbox_set:Nn \subfiglist_tmp_box
     {
       \subfiglist_load:nn { #2 } { ! }
     }
     
     % Get box dimensions
-    \dim_set:Nn \subfiglist_canvas_height_dim { \box_ht:N \subfiglist_temp_box }
-    \dim_set:Nn \subfiglist_canvas_width_dim  { \box_wd:N \subfiglist_temp_box }
+    \dim_set:Nn \subfiglist_canvas_height_dim { \box_ht:N \subfiglist_tmp_box }
+    \dim_set:Nn \subfiglist_canvas_width_dim  { \box_wd:N \subfiglist_tmp_box }
     
     % Store ratio width/height
-    \fp_set:Nn \subfiglist_tempa_fp { \subfiglist_canvas_width_dim / \subfiglist_canvas_height_dim }
-    \tl_set:Nf #1 { \fp_use:N \subfiglist_tempa_fp }
+    \fp_set:Nn \subfiglist_tmp_fp { \subfiglist_canvas_width_dim / \subfiglist_canvas_height_dim }
+    \tl_set:Nf #1 { \fp_use:N \subfiglist_tmp_fp }
   
   % Return local variables with group scope
   \subfiglist_group_var_return:NN \tl_set:Nn #1
@@ -2687,9 +2687,9 @@
 % #1: Property list containing canvas properties
 %
 {
-  \prop_get:NnN #1 { path } \subfiglist_tempa_tl
-  \prop_get:NnN #1 { width } \subfiglist_tempb_tl
-  \subfiglist_load:VV \subfiglist_tempa_tl \subfiglist_tempb_tl
+  \prop_get:NnN #1 { path } \subfiglist_tmpa_tl
+  \prop_get:NnN #1 { width } \subfiglist_tmpb_tl
+  \subfiglist_load:VV \subfiglist_tmpa_tl \subfiglist_tmpb_tl
 }
 
 % Output specified dummy or dummy file
@@ -2700,35 +2700,35 @@
   % #1: Property list containing canvas properties
   %
   {
-    \prop_get:NnN ##1 { width } \subfiglist_tempa_tl
-    \prop_get:NnN ##1 { height } \subfiglist_tempb_tl
+    \prop_get:NnN ##1 { width } \subfiglist_tmpa_tl
+    \prop_get:NnN ##1 { height } \subfiglist_tmpb_tl
     
-    \dim_set:NV \subfiglist_tempa_dim \subfiglist_tempa_tl
-    \dim_set:NV \subfiglist_tempb_dim \subfiglist_tempb_tl
+    \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
+    \dim_set:NV \subfiglist_tmpb_dim \subfiglist_tmpb_tl
     
   %  % Has a frame been requested?
-  %  \bool_set:Nx \subfiglist_temp_bool
+  %  \bool_set:Nx \subfiglist_tmp_bool
   %    { \tl_item:Nn \subfiglist_dummy_file_frame_tl { #1 } }
     
     % Put minipage with size of dummy
-    \begin { minipage } [ b ] [ \subfiglist_tempb_dim ] [ c ] { \subfiglist_tempa_dim }
+    \begin { minipage } [ b ] [ \subfiglist_tmpb_dim ] [ c ] { \subfiglist_tmpa_dim }
       \mbox
       {
   %      % Put frame if necessary
-  %      \bool_if:NT \subfiglist_temp_bool
+  %      \bool_if:NT \subfiglist_tmp_bool
   %      {
   %        % Calculate frame width
-  %        \dim_set:Nn \subfiglist_tempa_dim { #2 }
-  %        \dim_sub:Nn \subfiglist_tempa_dim { 2 \fboxrule }
-  %        \dim_sub:Nn \subfiglist_tempa_dim { 2 \fboxsep }
+  %        \dim_set:Nn \subfiglist_tmpa_dim { #2 }
+  %        \dim_sub:Nn \subfiglist_tmpa_dim { 2 \fboxrule }
+  %        \dim_sub:Nn \subfiglist_tmpa_dim { 2 \fboxsep }
   %        % Calculate frame height
-  %        \dim_set:Nn \subfiglist_tempb_dim { #3 }
-  %        \dim_sub:Nn \subfiglist_tempb_dim { 2 \fboxrule }
-  %        \dim_sub:Nn \subfiglist_tempb_dim { 2 \fboxsep }
+  %        \dim_set:Nn \subfiglist_tmpb_dim { #3 }
+  %        \dim_sub:Nn \subfiglist_tmpb_dim { 2 \fboxrule }
+  %        \dim_sub:Nn \subfiglist_tmpb_dim { 2 \fboxsep }
   %        % Put frame box
   %        \fbox
   %        {
-  %          \begin { minipage } [ c ] [ \subfiglist_tempb_dim ] { \subfiglist_tempa_dim }
+  %          \begin { minipage } [ c ] [ \subfiglist_tmpb_dim ] { \subfiglist_tmpa_dim }
   %            \mbox{}
   %          \end { minipage }
   %        }
@@ -2744,62 +2744,62 @@
 % #1: Canvas number
 %
 {
-  \prop_get:NnN \subfiglist_canvas_prop { #1 } \subfiglist_tempa_tl
-  \subfiglist_prop_set_from_tl:NN \subfiglist_temp_prop \subfiglist_tempa_tl
+  \prop_get:NnN \subfiglist_canvas_prop { #1 } \subfiglist_tmpa_tl
+  \subfiglist_prop_set_from_tl:NN \subfiglist_tmp_prop \subfiglist_tmpa_tl
 %  
   % Store canvas in box
-  \hbox_set:Nn \subfiglist_temp_box
+  \hbox_set:Nn \subfiglist_tmp_box
   {
     % Vertical offset:
     \vbox:n
     {
-      \prop_get:NnN \subfiglist_temp_prop { top } \subfiglist_tempa_tl
-      \dim_set:NV \subfiglist_tempa_dim \subfiglist_tempa_tl
-      \vspace { \subfiglist_tempa_dim }
+      \prop_get:NnN \subfiglist_tmp_prop { top } \subfiglist_tmpa_tl
+      \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
+      \vspace { \subfiglist_tmpa_dim }
       % Horizontal offset
       \hbox:n
       {
-        \prop_get:NnN \subfiglist_temp_prop { left } \subfiglist_tempa_tl
-        \dim_set:NV \subfiglist_tempa_dim \subfiglist_tempa_tl
-        \hspace { \subfiglist_tempa_dim }
+        \prop_get:NnN \subfiglist_tmp_prop { left } \subfiglist_tmpa_tl
+        \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
+        \hspace { \subfiglist_tmpa_dim }
         % Put canvas
-        \prop_get:NnN \subfiglist_temp_prop { type } \subfiglist_tempa_tl
-        \subfiglist_use:c { subfiglist_put_ \tl_use:N \subfiglist_tempa_tl :N } \subfiglist_temp_prop
+        \prop_get:NnN \subfiglist_tmp_prop { type } \subfiglist_tmpa_tl
+        \subfiglist_use:c { subfiglist_put_ \tl_use:N \subfiglist_tmpa_tl :N } \subfiglist_tmp_prop
         % Horizontal offset
-        \prop_get:NnN \subfiglist_temp_prop { right } \subfiglist_tempa_tl
-        \dim_set:NV \subfiglist_tempa_dim \subfiglist_tempa_tl
-        \hspace { \subfiglist_tempa_dim }
+        \prop_get:NnN \subfiglist_tmp_prop { right } \subfiglist_tmpa_tl
+        \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
+        \hspace { \subfiglist_tmpa_dim }
       }
     % Vertical offset
-    \prop_get:NnN \subfiglist_temp_prop { bot } \subfiglist_tempa_tl
-    \dim_set:NV \subfiglist_tempa_dim \subfiglist_tempa_tl
-    \vspace { \subfiglist_tempa_dim }
+    \prop_get:NnN \subfiglist_tmp_prop { bot } \subfiglist_tmpa_tl
+    \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
+    \vspace { \subfiglist_tmpa_dim }
     }
   }
   
   % Get canvas width
-  \dim_set:Nn \subfiglist_tempa_dim { \box_wd:N \subfiglist_temp_box }
+  \dim_set:Nn \subfiglist_tmpa_dim { \box_wd:N \subfiglist_tmp_box }
   
-  \begin { subfigure } [ b ] { \subfiglist_tempa_dim }
+  \begin { subfigure } [ b ] { \subfiglist_tmpa_dim }
     \centering
     
     % Place canvas
-    \leavevmode \rlap{ \box_use:N \subfiglist_temp_box }
+    \leavevmode \rlap{ \box_use:N \subfiglist_tmp_box }
     
     % Has a label been specified?
     \prop_if_in:NnT \subfiglist_label_prop { #1 }
     {
-      \subfiglist_put_label:nnn { #1 } { \box_wd:N \subfiglist_temp_box } { \box_ht:N \subfiglist_temp_box }
+      \subfiglist_put_label:nnn { #1 } { \box_wd:N \subfiglist_tmp_box } { \box_ht:N \subfiglist_tmp_box }
     }
     
     % Has an overlay been specified?
     \prop_if_in:NnT \subfiglist_overlay_prop { #1 }
     {
-      \subfiglist_put_overlay:nnn { #1 } { \box_wd:N \subfiglist_temp_box } { \box_ht:N \subfiglist_temp_box }
+      \subfiglist_put_overlay:nnn { #1 } { \box_wd:N \subfiglist_tmp_box } { \box_ht:N \subfiglist_tmp_box }
     }
     
     % Fix spacing
-    \phantom { \box_use:N \subfiglist_temp_box }
+    \phantom { \box_use:N \subfiglist_tmp_box }
   \end { subfigure }
 }
 
@@ -2835,28 +2835,28 @@
 % #1: Content of subblock
 %
 {
-  \subfiglist_tl_set_head:Nn \subfiglist_tempa_tl { #1 }
-  \subfiglist_tl_set_tail:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
-  \subfiglist_tl_set_head:NV \subfiglist_tempa_tl \subfiglist_tempa_tl
-  \subfiglist_tl_set_unwrapped:NV \subfiglist_tempb_tl \subfiglist_tempb_tl
+  \subfiglist_tl_set_head:Nn \subfiglist_tmpa_tl { #1 }
+  \subfiglist_tl_set_tail:NV \subfiglist_tmpb_tl \subfiglist_tmpa_tl
+  \subfiglist_tl_set_head:NV \subfiglist_tmpa_tl \subfiglist_tmpa_tl
+  \subfiglist_tl_set_unwrapped:NV \subfiglist_tmpb_tl \subfiglist_tmpb_tl
   
-  \subfiglist_tl_if_eq:nVTF { columnwidth } \subfiglist_tempa_tl
+  \subfiglist_tl_if_eq:nVTF { columnwidth } \subfiglist_tmpa_tl
   {
-    \begin{minipage}[b]{\subfiglist_tempb_tl}
+    \begin{minipage}[b]{\subfiglist_tmpb_tl}
       \tl_map_inline:nn { #1 }
       {
-        \subfiglist_tl_set_head:Nn \subfiglist_tempa_tl { ##1 }
-        \subfiglist_tl_set_tail:Nn \subfiglist_tempb_tl { ##1 }
-        \subfiglist_tl_set_unwrapped:NV \subfiglist_tempb_tl \subfiglist_tempb_tl
+        \subfiglist_tl_set_head:Nn \subfiglist_tmpa_tl { ##1 }
+        \subfiglist_tl_set_tail:Nn \subfiglist_tmpb_tl { ##1 }
+        \subfiglist_tl_set_unwrapped:NV \subfiglist_tmpb_tl \subfiglist_tmpb_tl
         
-        \subfiglist_use:c { subfiglist_put_ \subfiglist_tempa_tl :V } \subfiglist_tempb_tl
+        \subfiglist_use:c { subfiglist_put_ \subfiglist_tmpa_tl :V } \subfiglist_tmpb_tl
       }
     \end{minipage}
   }{
-    \tl_set:Nn \subfiglist_tempb_tl { Expected~token~`columnwidth'~but~found~token~` }
-    \tl_put_right:NV \subfiglist_tempb_tl \subfiglist_tempa_tl
-    \tl_put_right:Nn \subfiglist_tempb_tl { '~instead }
-    \msg_error:nnV { subfiglist } { internal~error } \subfiglist_tempb_tl
+    \tl_set:Nn \subfiglist_tmpb_tl { Expected~token~`columnwidth'~but~found~token~` }
+    \tl_put_right:NV \subfiglist_tmpb_tl \subfiglist_tmpa_tl
+    \tl_put_right:Nn \subfiglist_tmpb_tl { '~instead }
+    \msg_error:nnV { subfiglist } { internal~error } \subfiglist_tmpb_tl
   }
 }
 
@@ -2876,11 +2876,11 @@
 {
   \tl_map_inline:nn { #1 }
   {
-    \subfiglist_tl_set_head:Nn \subfiglist_tempa_tl { ##1 }
-    \subfiglist_tl_set_tail:Nn \subfiglist_tempb_tl { ##1 }
-    \subfiglist_tl_set_unwrapped:NV \subfiglist_tempb_tl \subfiglist_tempb_tl
+    \subfiglist_tl_set_head:Nn \subfiglist_tmpa_tl { ##1 }
+    \subfiglist_tl_set_tail:Nn \subfiglist_tmpb_tl { ##1 }
+    \subfiglist_tl_set_unwrapped:NV \subfiglist_tmpb_tl \subfiglist_tmpb_tl
     
-    \subfiglist_use:c { subfiglist_put_ \subfiglist_tempa_tl :V } \subfiglist_tempb_tl
+    \subfiglist_use:c { subfiglist_put_ \subfiglist_tmpa_tl :V } \subfiglist_tmpb_tl
   }
 }
 
@@ -2891,9 +2891,9 @@
 % #1: Content of newline
 %
 {
-  \dim_set:Nn \subfiglist_tempa_dim { #1 }
-  \dim_sub:Nn \subfiglist_tempa_dim \subfiglist_newline_correction_dim
-  \\[\subfiglist_tempa_dim]
+  \dim_set:Nn \subfiglist_tmpa_dim { #1 }
+  \dim_sub:Nn \subfiglist_tmpa_dim \subfiglist_newline_correction_dim
+  \\[\subfiglist_tmpa_dim]
 }
 
 \cs_generate_variant:Nn \subfiglist_put_newline:n { V }
@@ -2906,8 +2906,8 @@
 % #3: Canvas height
 %
 {
-  \prop_get:NnN \subfiglist_label_prop { #1 } \subfiglist_tempa_tl
-  \subfiglist_prop_set_from_tl:NN \subfiglist_temp_prop \subfiglist_tempa_tl
+  \prop_get:NnN \subfiglist_label_prop { #1 } \subfiglist_tmpa_tl
+  \subfiglist_prop_set_from_tl:NN \subfiglist_tmp_prop \subfiglist_tmpa_tl
   
   % Don't reqire any horizontal space
   \rlap
@@ -2915,72 +2915,72 @@
     % Create minipage of exact image size
     \begin { minipage } [ b ] [ #3 ] [ t ] { #2 }
       % Iterate over all three possible choices for vertical positioning
-      \prop_get:NnN \subfiglist_temp_prop { vpos } \subfiglist_tempa_tl
+      \prop_get:NnN \subfiglist_tmp_prop { vpos } \subfiglist_tmpa_tl
       \int_step_inline:nnnn { \subfiglist_keyval_choice_first_int } { 1 }
         { \subfiglist_keyval_choice_first_int + 2 }
       {
         \strut
         % Is current choice for vertical positioning the selected one?
-        \int_compare:nTF { ##1 = \subfiglist_tempa_tl }
+        \int_compare:nTF { ##1 = \subfiglist_tmpa_tl }
         {
           \strut
           % Iterate over all three possible choices for horizontal positioning
-          \prop_get:NnN \subfiglist_temp_prop { hpos } \subfiglist_tempb_tl
+          \prop_get:NnN \subfiglist_tmp_prop { hpos } \subfiglist_tmpb_tl
           \int_step_inline:nnnn { \subfiglist_keyval_choice_first_int } { 1 }
             { \subfiglist_keyval_choice_first_int + 2 }
           {
             % Is current choce for horizontal positioning the selected one?
-            \int_compare:nTF { ####1 = \subfiglist_tempb_tl }
+            \int_compare:nTF { ####1 = \subfiglist_tmpb_tl }
             {
               \group_begin:
                 % Don't reqire any horizontal space for label
                 \makebox [ 0pt ] [ l ]
                 {
                   % Additional horizontal shift
-                  \prop_get:NnN \subfiglist_temp_prop { xshift } \subfiglist_tempa_tl
-                  \dim_set:NV \subfiglist_tempa_dim \subfiglist_tempa_tl
-                  \prop_get:NnN \subfiglist_temp_prop { hoff } \subfiglist_tempa_tl
-                  \dim_add:NV \subfiglist_tempa_dim \subfiglist_tempa_tl
-                  \hspace{ \subfiglist_tempa_dim }
+                  \prop_get:NnN \subfiglist_tmp_prop { xshift } \subfiglist_tmpa_tl
+                  \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
+                  \prop_get:NnN \subfiglist_tmp_prop { hoff } \subfiglist_tmpa_tl
+                  \dim_add:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
+                  \hspace{ \subfiglist_tmpa_dim }
                   % Choose left, center or right alignment for label
-                  \prop_get:NnN \subfiglist_temp_prop { hpos } \subfiglist_tempa_tl
-                  \tl_set:Nn \subfiglist_temp_int
-                    { \subfiglist_tempa_tl - \subfiglist_keyval_choice_first_int + 1 }
+                  \prop_get:NnN \subfiglist_tmp_prop { hpos } \subfiglist_tmpa_tl
+                  \tl_set:Nn \subfiglist_tmp_int
+                    { \subfiglist_tmpa_tl - \subfiglist_keyval_choice_first_int + 1 }
                   \makebox [ 0pt ]
                   [
-                    \tl_item:nn { lcr } { \subfiglist_temp_int }
+                    \tl_item:nn { lcr } { \subfiglist_tmp_int }
                   ]
                   {
                     % Additional vertical shift
-                    \prop_get:NnN \subfiglist_temp_prop { yshift } \subfiglist_tempa_tl
-                    \dim_set:NV \subfiglist_tempa_dim \subfiglist_tempa_tl
-                    \prop_get:NnN \subfiglist_temp_prop { voff } \subfiglist_tempa_tl
-                    \dim_add:NV \subfiglist_tempa_dim \subfiglist_tempa_tl
-                    \raisebox { -\subfiglist_tempa_dim } [ \box_ht:N \strutbox ] [ 0pt ]
+                    \prop_get:NnN \subfiglist_tmp_prop { yshift } \subfiglist_tmpa_tl
+                    \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
+                    \prop_get:NnN \subfiglist_tmp_prop { voff } \subfiglist_tmpa_tl
+                    \dim_add:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
+                    \raisebox { -\subfiglist_tmpa_dim } [ \box_ht:N \strutbox ] [ 0pt ]
                     {
-                      \prop_get:NnN \subfiglist_temp_prop { background } \subfiglist_tempa_tl
+                      \prop_get:NnN \subfiglist_tmp_prop { background } \subfiglist_tmpa_tl
                       % Decide whether label has to be put inside a colorbox or not
-                      \subfiglist_tl_if_eq_charcode:nVTF { none } \subfiglist_tempa_tl
+                      \subfiglist_tl_if_eq_charcode:nVTF { none } \subfiglist_tmpa_tl
                         % Either delete next token or use it as argument of \colorbox
                         \use_none:n \colorbox
-                          { \subfiglist_tempa_tl }
+                          { \subfiglist_tmpa_tl }
                       {
-                        \prop_get:NnN \subfiglist_temp_prop { color } \subfiglist_tempa_tl
-                        \prop_get:NnN \subfiglist_temp_prop { hook }  \subfiglist_tempb_tl
+                        \prop_get:NnN \subfiglist_tmp_prop { color } \subfiglist_tmpa_tl
+                        \prop_get:NnN \subfiglist_tmp_prop { hook }  \subfiglist_tmpb_tl
                         % Use caption package for putting label?
                         \bool_if:NTF \subfiglist_use_caption_package_bool
                         {
-                          \subfiglist_label_inset_caption_package:V \subfiglist_tempa_tl
+                          \subfiglist_label_inset_caption_package:V \subfiglist_tmpa_tl
                           % Put hook for label
-                          \rlap{ \subfiglist_tempb_tl }
+                          \rlap{ \subfiglist_tmpb_tl }
                         }{
                           \hbox:N
                           {
                             \refstepcounter { subfigure }
-                            \color { \subfiglist_tempa_tl }
+                            \color { \subfiglist_tmpa_tl }
                             \subfiglistlabelformat
                             % Put hook for label
-                            \rlap{ \subfiglist_tempb_tl }
+                            \rlap{ \subfiglist_tmpb_tl }
                           }
                         }
                       }
@@ -3011,16 +3011,16 @@
 % #3: Image height
 %
 {
-  \prop_get:NnN \subfiglist_overlay_prop { #1 } \subfiglist_tempa_tl
-  \subfiglist_prop_set_from_tl:NN \subfiglist_temp_prop \subfiglist_tempa_tl
+  \prop_get:NnN \subfiglist_overlay_prop { #1 } \subfiglist_tmpa_tl
+  \subfiglist_prop_set_from_tl:NN \subfiglist_tmp_prop \subfiglist_tmpa_tl
   
   % Don't require any horizontal space
   \rlap
   {
     \begin { subfiglistoverlayenv } { #2 } { #3 }
       % Put content of overlay
-      \prop_get:NnN \subfiglist_temp_prop { content } \subfiglist_tempa_tl
-      \tl_use:N \subfiglist_tempa_tl
+      \prop_get:NnN \subfiglist_tmp_prop { content } \subfiglist_tmpa_tl
+      \tl_use:N \subfiglist_tmpa_tl
     \end { subfiglistoverlayenv }
   }
 }
@@ -3150,12 +3150,12 @@
   \prop_clear:N \subfiglist_canvas_prop
   
   % Calculate correction for height of newline
-  \vbox_set:Nn \subfiglist_temp_box
+  \vbox_set:Nn \subfiglist_tmp_box
   {
     \rule{2em}{2em}\\[0pt]\rule{2em}{2em}
   }  
   \dim_set:Nn \subfiglist_newline_correction_dim 
-    { \box_ht:N \subfiglist_temp_box - 4em }
+    { \box_ht:N \subfiglist_tmp_box - 4em }
   
   % Setup commands
   \RenewDocumentCommand \subfiglistfile { O{} m m }
@@ -3180,12 +3180,12 @@
   % dimensioned subfiglist string
   \tl_map_inline:Nn \subfiglist_parsed_spec_tl
   {
-    \subfiglist_tl_set_head:Nn \subfiglist_tempa_tl { ##1 }
-    \subfiglist_tl_set_tail:Nn \subfiglist_tempb_tl { ##1 }
-    \subfiglist_tl_set_unwrapped:NV \subfiglist_tempb_tl \subfiglist_tempb_tl
+    \subfiglist_tl_set_head:Nn \subfiglist_tmpa_tl { ##1 }
+    \subfiglist_tl_set_tail:Nn \subfiglist_tmpb_tl { ##1 }
+    \subfiglist_tl_set_unwrapped:NV \subfiglist_tmpb_tl \subfiglist_tmpb_tl
     
-    \subfiglist_use:c { subfiglist_dimension_vmode_ \subfiglist_tempa_tl :NVV }
-      \subfiglist_dimensioned_spec_tl \subfiglist_total_width_dim \subfiglist_tempb_tl
+    \subfiglist_use:c { subfiglist_dimension_vmode_ \subfiglist_tmpa_tl :NVV }
+      \subfiglist_dimensioned_spec_tl \subfiglist_total_width_dim \subfiglist_tmpb_tl
   }
   
   % Put everything inside a minipage
@@ -3193,11 +3193,11 @@
     % Iterate over top level elements to produce output
     \tl_map_inline:Nn \subfiglist_dimensioned_spec_tl
     {
-      \subfiglist_tl_set_head:Nn \subfiglist_tempa_tl { ##1 }
-      \subfiglist_tl_set_tail:Nn \subfiglist_tempb_tl { ##1 }
-      \subfiglist_tl_set_unwrapped:NV \subfiglist_tempb_tl \subfiglist_tempb_tl
+      \subfiglist_tl_set_head:Nn \subfiglist_tmpa_tl { ##1 }
+      \subfiglist_tl_set_tail:Nn \subfiglist_tmpb_tl { ##1 }
+      \subfiglist_tl_set_unwrapped:NV \subfiglist_tmpb_tl \subfiglist_tmpb_tl
       
-      \subfiglist_use:c { subfiglist_put_ \subfiglist_tempa_tl :V } \subfiglist_tempb_tl
+      \subfiglist_use:c { subfiglist_put_ \subfiglist_tmpa_tl :V } \subfiglist_tmpb_tl
     }
   \end{minipage}
   

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.8.23)  9 SEP 2017 11:53
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.8.23)  9 SEP 2017 18:15
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -683,8 +683,8 @@ Package graphics Info: Driver file: xetex.def on input line 95.
 \subfiglist_sum_hoff_dim=\dimen160
 \subfiglist_sum_voff_over_ratio_dim=\dimen161
 \subfiglist_newline_correction_dim=\dimen162
-\subfiglist_tempa_dim=\dimen163
-\subfiglist_tempb_dim=\dimen164
+\subfiglist_tmpa_dim=\dimen163
+\subfiglist_tmpb_dim=\dimen164
 \subfiglist_effective_hoff_dim=\dimen165
 \subfiglist_effective_voff_dim=\dimen166
 \subfiglist_line_height_dim=\dimen167
@@ -694,11 +694,10 @@ Package graphics Info: Driver file: xetex.def on input line 95.
 \subfiglist_canvas_count_int=\count140
 \subfiglist_tl_if_eq_charcode_int=\count141
 \subfiglist_keyval_choice_first_int=\count142
-\subfiglist_tempa_int=\count143
-\subfiglist_tempb_int=\count144
-\subfiglist_label_hpos_int=\count145
-\subfiglist_label_vpos_int=\count146
-\subfiglist_temp_box=\box45
+\subfiglist_tmp_int=\count143
+\subfiglist_label_hpos_int=\count144
+\subfiglist_label_vpos_int=\count145
+\subfiglist_tmp_box=\box45
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
@@ -707,52 +706,52 @@ Package graphics Info: Driver file: xetex.def on input line 95.
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistfile with sig. '' on line 3041.
+. Defining command \subfiglistfile with sig. '' on line 3040.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummyfile with sig. '' on line 3048.
+. Defining command \subfiglistdummyfile with sig. '' on line 3047.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummy with sig. '' on line 3055.
+. Defining command \subfiglistdummy with sig. '' on line 3054.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabel with sig. '' on line 3062.
+. Defining command \subfiglistlabel with sig. '' on line 3061.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistoverlay with sig. '' on line 3069.
+. Defining command \subfiglistoverlay with sig. '' on line 3068.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabelformat with sig. '' on line 3078.
+. Defining command \subfiglistlabelformat with sig. '' on line 3077.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistsvgenv' with sig. '' on line 3082.
+. Defining environment 'subfiglistsvgenv' with sig. '' on line 3081.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3103.
+. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3102.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3214.
+. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3213.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3218.
+. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3217.
 .................................................
 )
 runsystem(rm ./subfiglist.sty)...executed.
@@ -790,20 +789,20 @@ Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 \XKV@toks=\toks21
 \XKV@tempa@toks=\toks22
 )
-\XKV@depth=\count147
+\XKV@depth=\count146
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 )))
 (/usr/share/texlive/texmf-dist/tex/generic/pstricks/pst-fp.tex
 `pst-fp' v0.05, 2010/01/17 (hv)
-\pstFP@xs=\count148
-\pstFP@xia=\count149
-\pstFP@xib=\count150
-\pstFP@xfa=\count151
-\pstFP@xfb=\count152
-\pstFP@rega=\count153
-\pstFP@regb=\count154
-\pstFP@regs=\count155
-\pstFP@times=\count156
+\pstFP@xs=\count147
+\pstFP@xia=\count148
+\pstFP@xib=\count149
+\pstFP@xfa=\count150
+\pstFP@xfb=\count151
+\pstFP@rega=\count152
+\pstFP@regb=\count153
+\pstFP@regs=\count154
+\pstFP@times=\count155
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
 \pgfutil@everybye=\toks23
@@ -830,16 +829,16 @@ ex
 \pgf@ya=\dimen179
 \pgf@yb=\dimen180
 \pgf@yc=\dimen181
-\c@pgf@counta=\count157
-\c@pgf@countb=\count158
-\c@pgf@countc=\count159
-\c@pgf@countd=\count160
-\pgfutil@tempcnta=\count161
-\pgfutil@tempcntb=\count162
+\c@pgf@counta=\count156
+\c@pgf@countb=\count157
+\c@pgf@countc=\count158
+\c@pgf@countd=\count159
+\pgfutil@tempcnta=\count160
+\pgfutil@tempcntb=\count161
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
 \pgfmath@dimen=\dimen182
-\pgfmath@count=\count163
+\pgfmath@count=\count162
 \pgfmath@box=\box46
 \pgfmath@toks=\toks27
 \pgfmath@stack@operand=\toks28
@@ -863,14 +862,14 @@ tex)
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
 thmetics.code.tex)))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count164
+\c@pgfmathroundto@lastzeros=\count163
 ))
 \pgffor@iter=\dimen183
 \pgffor@skip=\dimen184
 \pgffor@stack=\toks30
 \pgffor@toks=\toks31
 )
-\psLoopIndex=\count165
+\psLoopIndex=\count164
 
 `PSTricks' v2.64b  <2015/14/11> (tvz)
 \pst@dima=\dimen185
@@ -886,24 +885,24 @@ thmetics.code.tex)))
 \pst@hbox=\box47
 \pst@ibox=\box48
 \pst@boxg=\box49
-\pst@cnta=\count166
-\pst@cntb=\count167
-\pst@cntc=\count168
-\pst@cntd=\count169
-\pst@cntg=\count170
-\pst@cnth=\count171
-\pst@cntm=\count172
-\pst@cntn=\count173
-\pst@cnto=\count174
-\pst@cntp=\count175
-\@zero=\count176
+\pst@cnta=\count165
+\pst@cntb=\count166
+\pst@cntc=\count167
+\pst@cntd=\count168
+\pst@cntg=\count169
+\pst@cnth=\count170
+\pst@cntm=\count171
+\pst@cntn=\count172
+\pst@cnto=\count173
+\pst@cntp=\count174
+\@zero=\count175
 \pst@toks=\toks32
 (/usr/share/texlive/texmf-dist/tex/xelatex/xetex-pstricks/pstricks.con
 (/usr/share/texlive/texmf-dist/tex/generic/pstricks/config/xdvipdfmx.cfg))
 \psunit=\dimen195
 \psxunit=\dimen196
 \psyunit=\dimen197
-\pst@C@@rType=\count177
+\pst@C@@rType=\count176
 \pslinewidth=\dimen198
 \psk@startLW=\dimen199
 \psk@endLW=\dimen256
@@ -928,8 +927,8 @@ File: pstricks.tex 2015/14/11 v2.64b `PSTricks' (tvz,hv)
 File: pst-fp.tex 2015/14/11 v2.64b `PST-fp' (hv)
 )
 \@float@every@listing=\toks35
-\c@listing=\count178
-\c@sublisting=\count179
+\c@listing=\count177
+\c@sublisting=\count178
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
 Package: hyperref 2012/11/06 v6.83m Hypertext links for LaTeX
@@ -970,13 +969,13 @@ Package: hycolor 2011/01/30 v1.7 Color options for hyperref/bookmark (HO)
 Package: auxhook 2011/03/04 v1.3 Hooks for auxiliary files (HO)
 )
 \@linkdim=\dimen266
-\Hy@linkcounter=\count180
-\Hy@pagecounter=\count181
+\Hy@linkcounter=\count179
+\Hy@pagecounter=\count180
 
 (/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2012/11/06 v6.83m Hyperref: PDFDocEncoding definition (HO)
 )
-\Hy@SavedSpaceFactor=\count182
+\Hy@SavedSpaceFactor=\count181
 
 (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
@@ -989,7 +988,7 @@ Package hyperref Info: Plain pages OFF on input line 4458.
 Package hyperref Info: Backreferencing OFF on input line 4463.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4688.
-\c@Hy@tempcnt=\count183
+\c@Hy@tempcnt=\count182
 
 (/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip16
@@ -997,7 +996,7 @@ Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5041.
 \XeTeXLinkMargin=\dimen267
-\Fld@menulength=\count184
+\Fld@menulength=\count183
 \Field@Width=\dimen268
 \Fld@charsize=\dimen269
 Package hyperref Info: Hyper figures OFF on input line 6295.
@@ -1009,9 +1008,9 @@ Package hyperref Info: Link coloring with OCG OFF on input line 6320.
 Package hyperref Info: PDF/A mode OFF on input line 6325.
 LaTeX Info: Redefining \ref on input line 6365.
 LaTeX Info: Redefining \pageref on input line 6369.
-\Hy@abspage=\count185
-\c@Item=\count186
-\c@Hfootnote=\count187
+\Hy@abspage=\count184
+\c@Item=\count185
+\c@Hfootnote=\count186
 )
 
 Package hyperref Message: Driver (autodetected): hxetex.
@@ -1027,10 +1026,10 @@ Package: stringenc 2011/12/02 v1.10 Convert strings between diff. encodings (HO
 )
 )
 \pdfm@box=\box50
-\c@Hy@AnnotLevel=\count188
-\HyField@AnnotCount=\count189
-\Fld@listcount=\count190
-\c@bookmark@seq@number=\count191
+\c@Hy@AnnotLevel=\count187
+\HyField@AnnotCount=\count188
+\Fld@listcount=\count189
+\c@bookmark@seq@number=\count190
 
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 Package: rerunfilecheck 2011/04/15 v1.7 Rerun checks for auxiliary files (HO)
@@ -1069,7 +1068,7 @@ File: se-ascii-print.def 2011/12/02 v1.10 stringenc: Printable ASCII characters
 
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 182.
-\c@mv@sans=\count192
+\c@mv@sans=\count191
 LaTeX Font Info:    Overwriting symbol font `operators' in version `sans'
 (Font)                  OT1/cmr/m/n --> OT1/cmbr/m/n on input line 192.
 LaTeX Font Info:    Overwriting symbol font `letters' in version `sans'
@@ -1151,7 +1150,7 @@ Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 (/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
-\c@section@level=\count193
+\c@section@level=\count192
 )
 LaTeX Info: Redefining \ref on input line 209.
 LaTeX Info: Redefining \pageref on input line 209.
@@ -1369,15 +1368,6 @@ Package microtype Info: Setting up font `T1/lmr/m/n/6' on input line 264.
 Package microtype Info: ... Loading protrusion list `lmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-default'.
-
-> 
-\subfiglist_tokenized_spec_tl={{canvas}{1}}{{canvas}{2}}{{canvas}{3}}{{newline}
-{5.16667pt}}.
-<recently read> }
-                 
-l.276 \begin{subfiglist}{1 2 3 \\ 4 5 6}
-                                        
-
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -1404,32 +1394,33 @@ l.276 \begin{subfiglist}{1 2 3 \\ 4 5 6}
 . Redefining command \subfiglistoverlay with sig. 'mm' on line 276.
 .................................................
 File: figures/01.png Graphic file (type QTm)
-<use  "figures/01.png" >
+ <use  "figures/01.png" >
 File: figures/02.png Graphic file (type QTm)
  <use  "figures/02.png" >
 File: figures/03.png Graphic file (type QTm)
- <use  "figures/03.png" >
-File: figures/04.png Graphic file (type QTm)
 
-<use  "figures/04.png" >
+<use  "figures/03.png" >
+File: figures/04.png Graphic file (type QTm)
+ <use  "figures/04.png" >
 File: figures/05.png Graphic file (type QTm)
  <use  "figures/05.png" >
 File: figures/06.png Graphic file (type QTm)
- <use  "figures/06.png" >
+
+<use  "figures/06.png" >
 File: figures/01.png Graphic file (type QTm)
-
-<use  "figures/01.png" >
+ <use  "figures/01.png" >
 File: figures/02.png Graphic file (type QTm)
  <use  "figures/02.png" >
 File: figures/03.png Graphic file (type QTm)
- <use  "figures/03.png" >
-File: figures/04.png Graphic file (type QTm)
 
-<use  "figures/04.png" >
+<use  "figures/03.png" >
+File: figures/04.png Graphic file (type QTm)
+ <use  "figures/04.png" >
 File: figures/05.png Graphic file (type QTm)
  <use  "figures/05.png" >
 File: figures/06.png Graphic file (type QTm)
- <use  "figures/06.png" >
+
+<use  "figures/06.png" >
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -1485,38 +1476,7 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 311.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 311.
-
-[3]
-> \subfiglist_tokenized_spec_tl={{canvas}{1}}{{separator}{\color {red}\rule
-{2ex}{2ex}}}{{canvas}{2}}{{canvas}{3}}{{newline}{5.16667pt}}.
-<recently read> }
-                 
-l.367 \end{minipage}}
-                     
-
-> \subfiglist_tokenized_spec_tl={{canvas}{4}}{{newline}{5.16667pt}}.
-<recently read> }
-                 
-l.367 \end{minipage}}
-                     
-
-> 
-\subfiglist_tokenized_spec_tl={{canvas}{8}}{{canvas}{9}}{{newline}{5.16667pt}}.
-<recently read> }
-                 
-l.367 \end{minipage}}
-                     
-
-> \subfiglist_tokenized_spec_tl={{canvas}{1}}{{separator}{\color {red}\rule
-{2ex}{2ex}}}{{canvas}{2}}{{canvas}{3}}{{newline}{5.16667pt}}{{subblock}{{{canva
-s}{4}}{{newline}{5.16667pt}}{{canvas}{5}}{{canvas}{6}}}}{{canvas}{7}}{{subblock
-}{{{canvas}{8}}{{canvas}{9}}{{newline}{5.16667pt}}{{canvas}{10}}}}{{newline}{3e
-x}}.
-<recently read> }
-                 
-l.367 \end{minipage}}
-                     
-
+ [3]
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -1543,6 +1503,39 @@ l.367 \end{minipage}}
 . Redefining command \subfiglistoverlay with sig. 'mm' on line 367.
 .................................................
 File: figures/01.png Graphic file (type QTm)
+ <use  "figures/01.png" >
+File: figures/02.png Graphic file (type QTm)
+ <use  "figures/02.png" >
+File: figures/03.png Graphic file (type QTm)
+
+<use  "figures/03.png" >
+File: figures/04.png Graphic file (type QTm)
+ <use  "figures/04.png" >
+File: figures/05.png Graphic file (type QTm)
+ <use  "figures/05.png" >
+File: figures/06.png Graphic file (type QTm)
+
+<use  "figures/06.png" >
+File: figures/07.png Graphic file (type QTm)
+ <use  "figures/07.png" >
+File: figures/08.png Graphic file (type QTm)
+ <use  "figures/08.png" >
+File: figures/09.png Graphic file (type QTm)
+
+<use  "figures/09.png" >
+File: figures/10.png Graphic file (type QTm)
+ <use  "figures/10.png" >
+File: figures/11.png Graphic file (type QTm)
+ <use  "figures/11.png" >
+File: figures/12.png Graphic file (type QTm)
+
+<use  "figures/12.png" >
+File: figures/13.png Graphic file (type QTm)
+ <use  "figures/13.png" >
+File: figures/14.png Graphic file (type QTm)
+ <use  "figures/14.png" >
+File: figures/01.png Graphic file (type QTm)
+
 <use  "figures/01.png" >
 File: figures/02.png Graphic file (type QTm)
  <use  "figures/02.png" >
@@ -1574,39 +1567,6 @@ File: figures/13.png Graphic file (type QTm)
 <use  "figures/13.png" >
 File: figures/14.png Graphic file (type QTm)
  <use  "figures/14.png" >
-File: figures/01.png Graphic file (type QTm)
- <use  "figures/01.png" >
-File: figures/02.png Graphic file (type QTm)
-
-<use  "figures/02.png" >
-File: figures/03.png Graphic file (type QTm)
- <use  "figures/03.png" >
-File: figures/04.png Graphic file (type QTm)
- <use  "figures/04.png" >
-File: figures/05.png Graphic file (type QTm)
-
-<use  "figures/05.png" >
-File: figures/06.png Graphic file (type QTm)
- <use  "figures/06.png" >
-File: figures/07.png Graphic file (type QTm)
- <use  "figures/07.png" >
-File: figures/08.png Graphic file (type QTm)
-
-<use  "figures/08.png" >
-File: figures/09.png Graphic file (type QTm)
- <use  "figures/09.png" >
-File: figures/10.png Graphic file (type QTm)
- <use  "figures/10.png" >
-File: figures/11.png Graphic file (type QTm)
-
-<use  "figures/11.png" >
-File: figures/12.png Graphic file (type QTm)
- <use  "figures/12.png" >
-File: figures/13.png Graphic file (type QTm)
- <use  "figures/13.png" >
-File: figures/14.png Graphic file (type QTm)
-
-<use  "figures/14.png" >
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -1677,19 +1637,20 @@ Package microtype Info: ... : First loading protrusion list `cmr-default'.
 . Redefining command \subfiglistoverlay with sig. 'mm' on line 404.
 .................................................
 File: figures/02.png Graphic file (type QTm)
- <use  "figures/02.png" > (./figures/svg.pdf_tex
-File: figures/svg.pdf Graphic file (type QTm)
-
-<use  "figures/svg.pdf" >)
-File: figures/04.png Graphic file (type QTm)
- <use  "figures/04.png" >
-File: figures/02.png Graphic file (type QTm)
  <use  "figures/02.png" >
 (./figures/svg.pdf_tex
 File: figures/svg.pdf Graphic file (type QTm)
  <use  "figures/svg.pdf" >)
 File: figures/04.png Graphic file (type QTm)
  <use  "figures/04.png" >
+File: figures/02.png Graphic file (type QTm)
+
+<use  "figures/02.png" > (./figures/svg.pdf_tex
+File: figures/svg.pdf Graphic file (type QTm)
+ <use  "figures/svg.pdf" >)
+File: figures/04.png Graphic file (type QTm)
+
+<use  "figures/04.png" >
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -1875,14 +1836,6 @@ File: figures/04.png Graphic file (type QTm)
 . 
 . Redefining command \subfiglistoverlay with sig. '' on line 468.
 .................................................
-
-> 
-\subfiglist_tokenized_spec_tl={{canvas}{1}}{{canvas}{2}}{{newline}{5.16667pt}}.
-<recently read> }
-                 
-l.503 \begin{subfiglist}{1 2 \\ 3 4}
-                                    
-
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -1909,6 +1862,16 @@ l.503 \begin{subfiglist}{1 2 \\ 3 4}
 . Redefining command \subfiglistoverlay with sig. 'mm' on line 503.
 .................................................
 File: figures/01.png Graphic file (type QTm)
+ <use  "figures/01.png" >
+File: figures/02.png Graphic file (type QTm)
+
+<use  "figures/02.png" >
+File: figures/03.png Graphic file (type QTm)
+ <use  "figures/03.png" >
+File: figures/04.png Graphic file (type QTm)
+ <use  "figures/04.png" >
+File: figures/01.png Graphic file (type QTm)
+
 <use  "figures/01.png" >
 File: figures/02.png Graphic file (type QTm)
  <use  "figures/02.png" >
@@ -1917,15 +1880,6 @@ File: figures/03.png Graphic file (type QTm)
 File: figures/04.png Graphic file (type QTm)
 
 <use  "figures/04.png" >
-File: figures/01.png Graphic file (type QTm)
- <use  "figures/01.png" >
-File: figures/02.png Graphic file (type QTm)
- <use  "figures/02.png" >
-File: figures/03.png Graphic file (type QTm)
-
-<use  "figures/03.png" >
-File: figures/04.png Graphic file (type QTm)
- <use  "figures/04.png" >
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -1981,14 +1935,6 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 544.
  [7]
-> 
-\subfiglist_tokenized_spec_tl={{canvas}{1}}{{canvas}{2}}{{canvas}{3}}{{newline}
-{5.16667pt}}.
-<recently read> }
-                 
-l.628 \end{minipage}}
-                     
-
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -2015,32 +1961,33 @@ l.628 \end{minipage}}
 . Redefining command \subfiglistoverlay with sig. 'mm' on line 628.
 .................................................
 File: figures/01.png Graphic file (type QTm)
-<use  "figures/01.png" >
+ <use  "figures/01.png" >
 File: figures/02.png Graphic file (type QTm)
  <use  "figures/02.png" >
 File: figures/03.png Graphic file (type QTm)
- <use  "figures/03.png" >
-File: figures/04.png Graphic file (type QTm)
 
-<use  "figures/04.png" >
+<use  "figures/03.png" >
+File: figures/04.png Graphic file (type QTm)
+ <use  "figures/04.png" >
 File: figures/05.png Graphic file (type QTm)
  <use  "figures/05.png" >
 File: figures/06.png Graphic file (type QTm)
- <use  "figures/06.png" >
+
+<use  "figures/06.png" >
 File: figures/01.png Graphic file (type QTm)
-
-<use  "figures/01.png" >
+ <use  "figures/01.png" >
 File: figures/02.png Graphic file (type QTm)
  <use  "figures/02.png" >
 File: figures/03.png Graphic file (type QTm)
- <use  "figures/03.png" >
-File: figures/04.png Graphic file (type QTm)
 
-<use  "figures/04.png" >
+<use  "figures/03.png" >
+File: figures/04.png Graphic file (type QTm)
+ <use  "figures/04.png" >
 File: figures/05.png Graphic file (type QTm)
  <use  "figures/05.png" >
 File: figures/06.png Graphic file (type QTm)
- <use  "figures/06.png" >
+
+<use  "figures/06.png" >
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -2289,12 +2236,12 @@ Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 804.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 804.
  ) 
 Here is how much of TeX's memory you used:
- 31410 strings out of 493638
- 564137 string characters out of 6146796
- 714769 words of memory out of 5000000
- 34391 multiletter control sequences out of 15000+600000
+ 31407 strings out of 493638
+ 564068 string characters out of 6146796
+ 714767 words of memory out of 5000000
+ 34388 multiletter control sequences out of 15000+600000
  78076 words of font info for 71 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
- 70i,18n,136p,10433b,931s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 70i,18n,136p,10433b,932s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on subfiglist.pdf (12 pages).
