@@ -4,7 +4,6 @@
 
 \RequirePackage{l3sort}[2013/12/14]     % needs v4623 or newer
 \RequirePackage{l3keys2e}[2014/06/10]   % needs v5105 or newer
-\RequirePackage{xstring}[2013/10/13]    % needs v1.7c or newer
 \RequirePackage{xparse}[2014/06/10]     % needs v5105 or newer
 \RequirePackage{import}[2009/03/23]     % needs v5.1  or newer
 \RequirePackage{xcolor}[2007/01/21]     % needs v2.11 or newer
@@ -2554,17 +2553,13 @@
     \subfiglist_tl_if_eq_charcode:nnF { #2 } { ! }
       { \cs_gset:Npn \svgwidth { #2 } }
     
-    % Split path into directory and file
-    \StrCount{#1}{/}[\subfiglist_file_number_of_slashes_int]
-    
-    % Subdirectory or not?
-    \int_compare:nTF { \subfiglist_file_number_of_slashes_int = 0 }
+    \tl_if_in:nnTF { #1 } { / }
     {
-      \input { #1 }
+      \seq_set_split:Nnn \subfiglist_tmp_seq { / } { #1 }
+      \seq_pop_right:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
+      \import{ \seq_use:Nn \subfiglist_tmp_seq { / } / }{ \tl_use:N \subfiglist_tmpa_tl }
     }{
-      \StrBefore[\subfiglist_file_number_of_slashes_int]{#1}{/}[\subfiglist_file_svg_path]
-      \StrBehind[\subfiglist_file_number_of_slashes_int]{#1}{/}[\subfiglist_file_svg_file]
-      \import{\subfiglist_file_svg_path/}{\subfiglist_file_svg_file}
+      \input { #1 }
     }
   \end{subfiglistsvgenv}
 }
@@ -2577,13 +2572,10 @@
 %
 {
   % Determine file extension.
-  % Count number of dots in file name string.
-  \StrCount{#1}{.}[\subfiglist_file_number_of_dots_int]
-  % Split off extension, i.e. string part behind last dot.
-  \StrBehind[\subfiglist_file_number_of_dots_int]
-    {#1}{.}[\subfiglist_file_extension_str]
+  \seq_set_split:Nnn \subfiglist_tmp_seq { . } { #1 }
+  \seq_get_right:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
   % Set command to load images depending on file extension.
-  \subfiglist_tl_if_eq_charcode:nVTF { pdf_tex } \subfiglist_file_extension_str
+  \subfiglist_tl_if_eq_charcode:nVTF { pdf_tex } \subfiglist_tmpa_tl
   {
     \subfiglist_load_svg:nn { #1 } { #2 }
   }{
