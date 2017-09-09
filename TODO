@@ -1,12 +1,9 @@
 TODO
 
-* Use \subfiglist_token_if_eq_charcode:NN to compare \\ with \\.
 * Test all error messages
 * Delete unnecessary variables
-* Replace test for equal charcode by test for equal charcode AND equal meaning
 * Add change of meaning for `@' depending on catcode to known issues. Weird settings of catcodes e.g. for numbers may have strange effects
 * Set \subfiglist_identifier_nums by dependency injection
-* Replace wrapping commands by more general \subfiglist_tl_set_wrapped in parser and lexer
 * Add logging of canvas numbers to \subfiglist_setup_file:nnn
 * Remove need for xstring package?
 * Add starred commands for dummy/dummyfile to add frame
@@ -51,3 +48,6 @@ DONE
 * Use expl3 box commands instead of plain TeX commands
 * Check if empty separator @{} raises unwanted error
 * tempa -> tmpa in accordance with kernel docs
+* Use \subfiglist_token_if_eq_charcode:NN to compare \\ with \\.
+* Replace test for equal charcode by test for equal charcode AND equal meaning
+* Replace wrapping commands by more general \subfiglist_tl_set_wrapped in parser and lexer
