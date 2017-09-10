@@ -16,7 +16,6 @@ TODO
 * Introduce R-type argument for byref-tokens
 * Secure any \prop_get for occurence of \q_empty
 * Caveat: Don't use \subfiglistlineheight for anything related to width.
-* Add default value in \subfiglist_tokenize_newline
 * Verify numbers for labels and overlays
 * Option to set label hoff and voff globally. Document default values for no/colored background
 * Test all kinds of weird nestings and alignments
@@ -51,3 +50,4 @@ DONE
 * Replace test for equal charcode by test for equal charcode AND equal meaning
 * Replace wrapping commands by more general \subfiglist_tl_set_wrapped in parser and lexer
 * Remove need for xstring package?
+* Add default value in \subfiglist_tokenize_newline

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.8.23)  9 SEP 2017 19:14
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.8.23)  10 SEP 2017 17:36
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -693,57 +693,57 @@ Package graphics Info: Driver file: xetex.def on input line 95.
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistsetup with sig. 'm' on line 400.
+. Defining command \subfiglistsetup with sig. 'm' on line 399.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistfile with sig. '' on line 2987.
+. Defining command \subfiglistfile with sig. '' on line 2986.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummyfile with sig. '' on line 2994.
+. Defining command \subfiglistdummyfile with sig. '' on line 2993.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummy with sig. '' on line 3001.
+. Defining command \subfiglistdummy with sig. '' on line 3000.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabel with sig. '' on line 3008.
+. Defining command \subfiglistlabel with sig. '' on line 3007.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistoverlay with sig. '' on line 3015.
+. Defining command \subfiglistoverlay with sig. '' on line 3014.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabelformat with sig. '' on line 3024.
+. Defining command \subfiglistlabelformat with sig. '' on line 3023.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistsvgenv' with sig. '' on line 3028.
+. Defining environment 'subfiglistsvgenv' with sig. '' on line 3027.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3049.
+. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3048.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3160.
+. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3159.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3164.
+. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3163.
 .................................................
 )
 runsystem(rm ./subfiglist.sty)...executed.
@@ -1286,56 +1286,49 @@ Package babel Info: Redefining ngerman shorthand "~
 Package microtype Info: Setting up font `T1/lmtt/m/n/12' on input line 217.
 Package microtype Info: ... Loading protrusion list `T1-default'.
 Package microtype Info: ... : First loading protrusion list `default'.
-
-Overfull \hbox (25.94589pt too wide) in paragraph at lines 222--223
-\T1/lmr/m/n/12 with-out value. De-fault value is \T1/lmtt/m/n/12 true\T1/lmr/m/
-n/12 . This op-tion can-not be changed af-ter []\T1/lmtt/m/n/12 \begin{document
-}\T1/lmr/m/n/12 . 
- []
-
-Package microtype Info: Setting up font `T1/lmr/m/it/12' on input line 226.
+Package microtype Info: Setting up font `T1/lmr/m/sl/12' on input line 226.
 Package microtype Info: ... Loading protrusion list `lmr-it-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-it-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-it'.
-Package microtype Info: Setting up font `T1/lmr/m/sl/12' on input line 227.
-Package microtype Info: ... Loading protrusion list `lmr-it-T1'.
-Package microtype Info: ... : First loading protrusion list `cmr-it-T1'.
-Package microtype Info: ... : First loading protrusion list `cmr-it'.
-Package microtype Info: Setting up font `OT1/lmr/m/n/8' on input line 227.
+Package microtype Info: Setting up font `OT1/lmr/m/n/8' on input line 226.
 Package microtype Info: ... Loading protrusion list `cmr-OT1'.
 Package microtype Info: ... : First loading protrusion list `cmr-default'.
-Package microtype Info: Setting up font `OT1/lmr/m/n/6' on input line 227.
+Package microtype Info: Setting up font `OT1/lmr/m/n/6' on input line 226.
 Package microtype Info: ... Loading protrusion list `cmr-OT1'.
 Package microtype Info: ... : First loading protrusion list `cmr-default'.
-Package microtype Info: Setting up font `OML/lmm/m/it/8' on input line 227.
+Package microtype Info: Setting up font `OML/lmm/m/it/8' on input line 226.
 Package microtype Info: ... No protrusion.
-Package microtype Info: Setting up font `OML/lmm/m/it/6' on input line 227.
+Package microtype Info: Setting up font `OML/lmm/m/it/6' on input line 226.
 Package microtype Info: ... No protrusion.
-Package microtype Info: Setting up font `OMS/lmsy/m/n/8' on input line 227.
+Package microtype Info: Setting up font `OMS/lmsy/m/n/8' on input line 226.
 Package microtype Info: ... No protrusion.
-Package microtype Info: Setting up font `OMS/lmsy/m/n/6' on input line 227.
-Package microtype Info: ... No protrusion.
-LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 227.
-Package microtype Info: Setting up font `OMX/lmex/m/n/8' on input line 227.
+Package microtype Info: Setting up font `OMS/lmsy/m/n/6' on input line 226.
 Package microtype Info: ... No protrusion.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 227.
-Package microtype Info: Setting up font `OMX/lmex/m/n/6' on input line 227.
+(Font)              <8> on input line 226.
+Package microtype Info: Setting up font `OMX/lmex/m/n/8' on input line 226.
+Package microtype Info: ... No protrusion.
+LaTeX Font Info:    External font `lmex10' loaded for size
+(Font)              <6> on input line 226.
+Package microtype Info: Setting up font `OMX/lmex/m/n/6' on input line 226.
 Package microtype Info: ... No protrusion.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 227.
+(babel)             in language  on input line 226.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 227.
+(babel)             in language  on input line 226.
 Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 227.
+(babel)             in language  on input line 226.
 Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 227.
-[1
+(babel)             in language  on input line 226.
+ [1
 
 
 
 ]
+Package microtype Info: Setting up font `T1/lmr/m/it/12' on input line 226.
+Package microtype Info: ... Loading protrusion list `lmr-it-T1'.
+Package microtype Info: ... : First loading protrusion list `cmr-it-T1'.
+Package microtype Info: ... : First loading protrusion list `cmr-it'.
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <17.28> not available
 (Font)              Font shape `T1/lmtt/b/n' tried instead on input line 258.
 Package microtype Info: Setting up font `T1/lmtt/b/n/17.28' on input line 258.
@@ -1386,33 +1379,33 @@ Package microtype Info: ... : First loading protrusion list `cmr-default'.
 . Redefining command \subfiglistoverlay with sig. 'mm' on line 276.
 .................................................
 File: figures/01.png Graphic file (type QTm)
- <use  "figures/01.png" >
+
+<use  "figures/01.png" >
 File: figures/02.png Graphic file (type QTm)
  <use  "figures/02.png" >
 File: figures/03.png Graphic file (type QTm)
-
-<use  "figures/03.png" >
+ <use  "figures/03.png" >
 File: figures/04.png Graphic file (type QTm)
- <use  "figures/04.png" >
+
+<use  "figures/04.png" >
 File: figures/05.png Graphic file (type QTm)
  <use  "figures/05.png" >
 File: figures/06.png Graphic file (type QTm)
-
-<use  "figures/06.png" >
+ <use  "figures/06.png" >
 File: figures/01.png Graphic file (type QTm)
- <use  "figures/01.png" >
+
+<use  "figures/01.png" >
 File: figures/02.png Graphic file (type QTm)
  <use  "figures/02.png" >
 File: figures/03.png Graphic file (type QTm)
-
-<use  "figures/03.png" >
+ <use  "figures/03.png" >
 File: figures/04.png Graphic file (type QTm)
- <use  "figures/04.png" >
+
+<use  "figures/04.png" >
 File: figures/05.png Graphic file (type QTm)
  <use  "figures/05.png" >
 File: figures/06.png Graphic file (type QTm)
-
-<use  "figures/06.png" >
+ <use  "figures/06.png" >
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -1468,7 +1461,8 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 311.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 311.
- [3]
+
+[3]
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -1499,39 +1493,6 @@ File: figures/01.png Graphic file (type QTm)
 File: figures/02.png Graphic file (type QTm)
  <use  "figures/02.png" >
 File: figures/03.png Graphic file (type QTm)
-
-<use  "figures/03.png" >
-File: figures/04.png Graphic file (type QTm)
- <use  "figures/04.png" >
-File: figures/05.png Graphic file (type QTm)
- <use  "figures/05.png" >
-File: figures/06.png Graphic file (type QTm)
-
-<use  "figures/06.png" >
-File: figures/07.png Graphic file (type QTm)
- <use  "figures/07.png" >
-File: figures/08.png Graphic file (type QTm)
- <use  "figures/08.png" >
-File: figures/09.png Graphic file (type QTm)
-
-<use  "figures/09.png" >
-File: figures/10.png Graphic file (type QTm)
- <use  "figures/10.png" >
-File: figures/11.png Graphic file (type QTm)
- <use  "figures/11.png" >
-File: figures/12.png Graphic file (type QTm)
-
-<use  "figures/12.png" >
-File: figures/13.png Graphic file (type QTm)
- <use  "figures/13.png" >
-File: figures/14.png Graphic file (type QTm)
- <use  "figures/14.png" >
-File: figures/01.png Graphic file (type QTm)
-
-<use  "figures/01.png" >
-File: figures/02.png Graphic file (type QTm)
- <use  "figures/02.png" >
-File: figures/03.png Graphic file (type QTm)
  <use  "figures/03.png" >
 File: figures/04.png Graphic file (type QTm)
 
@@ -1559,6 +1520,39 @@ File: figures/13.png Graphic file (type QTm)
 <use  "figures/13.png" >
 File: figures/14.png Graphic file (type QTm)
  <use  "figures/14.png" >
+File: figures/01.png Graphic file (type QTm)
+ <use  "figures/01.png" >
+File: figures/02.png Graphic file (type QTm)
+
+<use  "figures/02.png" >
+File: figures/03.png Graphic file (type QTm)
+ <use  "figures/03.png" >
+File: figures/04.png Graphic file (type QTm)
+ <use  "figures/04.png" >
+File: figures/05.png Graphic file (type QTm)
+
+<use  "figures/05.png" >
+File: figures/06.png Graphic file (type QTm)
+ <use  "figures/06.png" >
+File: figures/07.png Graphic file (type QTm)
+ <use  "figures/07.png" >
+File: figures/08.png Graphic file (type QTm)
+
+<use  "figures/08.png" >
+File: figures/09.png Graphic file (type QTm)
+ <use  "figures/09.png" >
+File: figures/10.png Graphic file (type QTm)
+ <use  "figures/10.png" >
+File: figures/11.png Graphic file (type QTm)
+
+<use  "figures/11.png" >
+File: figures/12.png Graphic file (type QTm)
+ <use  "figures/12.png" >
+File: figures/13.png Graphic file (type QTm)
+ <use  "figures/13.png" >
+File: figures/14.png Graphic file (type QTm)
+
+<use  "figures/14.png" >
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -1629,20 +1623,19 @@ Package microtype Info: ... : First loading protrusion list `cmr-default'.
 . Redefining command \subfiglistoverlay with sig. 'mm' on line 404.
 .................................................
 File: figures/02.png Graphic file (type QTm)
- <use  "figures/02.png" >
-(./svg.pdf_tex
-File: svg.pdf Graphic file (type QTm)
- <use  "svg.pdf" >)
+ <use  "figures/02.png" > (./figures/svg.pdf_tex
+File: figures/svg.pdf Graphic file (type QTm)
+
+<use  "figures/svg.pdf" >)
 File: figures/04.png Graphic file (type QTm)
  <use  "figures/04.png" >
 File: figures/02.png Graphic file (type QTm)
-
-<use  "figures/02.png" > (./svg.pdf_tex
-File: svg.pdf Graphic file (type QTm)
- <use  "svg.pdf" >)
+ <use  "figures/02.png" >
+(./figures/svg.pdf_tex
+File: figures/svg.pdf Graphic file (type QTm)
+ <use  "figures/svg.pdf" >)
 File: figures/04.png Graphic file (type QTm)
-
-<use  "figures/04.png" >
+ <use  "figures/04.png" >
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -1730,9 +1723,9 @@ File: figures/02.png Graphic file (type QTm)
 Package microtype Info: Setting up font `T1/lmss/m/n/10' on input line 466.
 Package microtype Info: ... Loading protrusion list `T1-default'.
 Package microtype Info: ... : First loading protrusion list `default'.
- (./svg.pdf_tex
-File: svg.pdf Graphic file (type QTm)
- <use  "svg.pdf" >
+ (./figures/svg.pdf_tex
+File: figures/svg.pdf Graphic file (type QTm)
+ <use  "figures/svg.pdf" >
 LaTeX Font Info:    Try loading font information for OT1+cmbr on input line 54.
 
 
@@ -1797,10 +1790,10 @@ File: figures/04.png Graphic file (type QTm)
 
 <use  "figures/04.png" >
 File: figures/02.png Graphic file (type QTm)
- <use  "figures/02.png" > (./svg.pdf_tex
-File: svg.pdf Graphic file (type QTm)
+ <use  "figures/02.png" > (./figures/svg.pdf_tex
+File: figures/svg.pdf Graphic file (type QTm)
 
-<use  "svg.pdf" >)
+<use  "figures/svg.pdf" >)
 File: figures/04.png Graphic file (type QTm)
  <use  "figures/04.png" >
 .................................................
@@ -2228,10 +2221,10 @@ Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 804.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 804.
  ) 
 Here is how much of TeX's memory you used:
- 31135 strings out of 493638
- 559748 string characters out of 6146796
+ 31137 strings out of 493638
+ 559958 string characters out of 6146796
  708096 words of memory out of 5000000
- 34122 multiletter control sequences out of 15000+600000
+ 34123 multiletter control sequences out of 15000+600000
  78076 words of font info for 71 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
  70i,18n,136p,10433b,932s stack positions out of 5000i,500n,10000p,200000b,80000s
