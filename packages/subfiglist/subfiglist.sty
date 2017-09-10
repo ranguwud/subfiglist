@@ -132,6 +132,7 @@
 \fp_new:N   \subfiglist_tmp_fp
 \fp_new:N   \subfiglist_effective_canvas_ratio_fp
 
+\bool_new:N \subfiglist_env_store_images_bool
 \bool_new:N \subfiglist_after_char_at_bool
 \bool_new:N \subfiglist_after_char_br_bool
 \bool_new:N \subfiglist_after_char_nl_bool
@@ -2012,7 +2013,7 @@
       \prop_put:Nnn \subfiglist_tmp_prop { path } { ##3 }
 
       % Get file ratio
-      \subfiglist_get_file_ratio:Nn \subfiglist_tmpa_tl { ##3 }
+      \subfiglist_get_file_ratio:Nnn \subfiglist_tmpa_tl { ##2 } { ##3 }
       \prop_put:NnV \subfiglist_tmp_prop { ratio } \subfiglist_tmpa_tl
 
       % Process opitonal arguments
@@ -2532,73 +2533,113 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Command for loading a bitmap image.
-\cs_new:Npn \subfiglist_load_img:nn #1 #2
+\cs_new:Npn \subfiglist_load_img:Nnn #1 #2 #3
 %
-% #1: file path
-% #2: image width
+% #1: Box variable to store image
+% #2: File path
+% #3: Image width
 %
 {
   % Has natural width been requested?
-  \subfiglist_tl_if_eq_charcode:nnTF { ! } { #2 }
+  \subfiglist_tl_if_eq_charcode:nnTF { ! } { #3 }
   {
     % Load with natural width
-    \includegraphics { #1 }
+    \hbox_gset:Nn #1 { \includegraphics { #2 } }
   }{
     % Load with natural width and scale to desired width.
     % This is a workaround to an apparent bug of \includegraphics,
     % which slightly changes the aspect ratio of an image that
     % is loaded with a specific width.
-    \hbox_set:Nn \subfiglist_tmp_box { \includegraphics { #1 } }
+    \hbox_set:Nn \subfiglist_tmp_box { \includegraphics { #2 } }
     \dim_set:Nn \subfiglist_tmpa_dim { \box_wd:N \subfiglist_tmp_box }
-    \scalebox { \fp_eval:n { #2 / \subfiglist_tmpa_dim } } { \box_use:N \subfiglist_tmp_box }
+    \hbox_gset:Nn #1 { \scalebox { \fp_eval:n { #3 / \subfiglist_tmpa_dim } } { \box_use:N \subfiglist_tmp_box } }
   }
 }
 
 % Command for loading an SVG image split into PDF and text.
-\cs_new:Npn \subfiglist_load_svg:nn #1 #2
+\cs_new:Npn \subfiglist_load_svg:Nnn #1 #2 #3
 %
-% #1: file path
-% #2: image width
+% #1: Box variable to store image
+% #2: File path
+% #3: Image width
 %
 {
-  \begin{subfiglistsvgenv}
-    % Set width of SVG image
-    \subfiglist_tl_if_eq_charcode:nnF { #2 } { ! }
-      { \cs_gset:Npn \svgwidth { #2 } }
+  % Set width of SVG image
+  \subfiglist_tl_if_eq_charcode:nnF { #3 } { ! }
+    { \cs_gset:Npn \svgwidth { #3 } }
     
-    \tl_if_in:nnTF { #1 } { / }
-    {
-      \seq_set_split:Nnn \subfiglist_tmp_seq { / } { #1 }
-      \seq_pop_right:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
-      \import{ \seq_use:Nn \subfiglist_tmp_seq { / } / }{ \tl_use:N \subfiglist_tmpa_tl }
-    }{
-      \input { #1 }
-    }
-  \end{subfiglistsvgenv}
+  \hbox_gset:Nn #1
+  {
+    \begin{subfiglistsvgenv}
+      \tl_if_in:nnTF { #2 } { / }
+      {
+        \seq_set_split:Nnn \subfiglist_tmp_seq { / } { #2 }
+        \seq_pop_right:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
+        \import{ \seq_use:Nn \subfiglist_tmp_seq { / } / }{ \tl_use:N \subfiglist_tmpa_tl }
+      }{
+        \input { #2 }
+      }
+    \end{subfiglistsvgenv}
+  }
 }
 
 %Command for loading an SVG or bitmap image
-\cs_new:Npn \subfiglist_load:nn #1 #2
+\cs_new:Npn \subfiglist_load:Nnn #1 #2 #3
 %
-% #1: file path
-% #2: image width
+% #1: Box variable to store image
+% #2: File path
+% #3: Image width
 %
 {
   % Determine file extension.
-  \seq_set_split:Nnn \subfiglist_tmp_seq { . } { #1 }
+  \seq_set_split:Nnn \subfiglist_tmp_seq { . } { #2 }
   \seq_get_right:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
   % Set command to load images depending on file extension.
   \subfiglist_tl_if_eq_charcode:nVTF { pdf_tex } \subfiglist_tmpa_tl
   {
-    \subfiglist_load_svg:nn { #1 } { #2 }
+    \subfiglist_load_svg:Nnn #1 { #2 } { #3 }
   }{
-    \subfiglist_load_img:nn { #1 } { #2 }
+    \subfiglist_load_img:Nnn #1 { #2 } { #3 }
   }
 }
 
-\cs_generate_variant:Nn \subfiglist_load:nn { nV }
-\cs_generate_variant:Nn \subfiglist_load:nn { Vn }
-\cs_generate_variant:Nn \subfiglist_load:nn { VV }
+\cs_generate_variant:Nn \subfiglist_load:Nnn { NnV }
+\cs_generate_variant:Nn \subfiglist_load:Nnn { NVn }
+\cs_generate_variant:Nn \subfiglist_load:Nnn { NVV }
+\cs_generate_variant:Nn \subfiglist_load:Nnn { cnn }
+\cs_generate_variant:Nn \subfiglist_load:Nnn { cnV }
+\cs_generate_variant:Nn \subfiglist_load:Nnn { cVn }
+\cs_generate_variant:Nn \subfiglist_load:Nnn { cVV }
+
+%Command for restoring an SVG or bitmap image
+\cs_new:Npn \subfiglist_restore:Nnn #1 #2 #3
+%
+% #1: Box variable to store image
+% #2: File path
+% #3: Image width
+%
+{
+  % Determine file extension.
+  \seq_set_split:Nnn \subfiglist_tmp_seq { . } { #2 }
+  \seq_get_right:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
+  % Set command to load images depending on file extension.
+  \subfiglist_tl_if_eq_charcode:nVTF { pdf_tex } \subfiglist_tmpa_tl
+  {
+    \subfiglist_load_svg:Nnn #1 { #2 } { #3 }
+  }{
+    %\subfiglist_load_img:Nnn #1 { #2 } { #3 }
+    \dim_set:Nn \subfiglist_tmpa_dim { \box_wd:N #1 }
+    \hbox_gset:Nn #1 { \scalebox { \fp_eval:n { #3 / \subfiglist_tmpa_dim } } { \box_use:N #1 } }
+  }
+}
+
+\cs_generate_variant:Nn \subfiglist_restore:Nnn { NnV }
+\cs_generate_variant:Nn \subfiglist_restore:Nnn { NVn }
+\cs_generate_variant:Nn \subfiglist_restore:Nnn { NVV }
+\cs_generate_variant:Nn \subfiglist_restore:Nnn { cnn }
+\cs_generate_variant:Nn \subfiglist_restore:Nnn { cnV }
+\cs_generate_variant:Nn \subfiglist_restore:Nnn { cVn }
+\cs_generate_variant:Nn \subfiglist_restore:Nnn { cVV }
 
 
 
@@ -2607,23 +2648,34 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Calculate ratio width/height of specified file
-\cs_new:Npn \subfiglist_get_file_ratio:Nn #1 #2
+\cs_new:Npn \subfiglist_get_file_ratio:Nnn #1 #2 #3
 %
-% #1: floating point variable to store ratio
-% #2: image file path
+% #1: Floating point variable to store ratio
+% #2: Image number
+% #3: Image file path
 %
 {
   \group_begin:
   
     % Store file in a box
-    \hbox_set:Nn \subfiglist_tmp_box
+    \bool_if:NTF \subfiglist_env_store_images_bool
     {
-      \subfiglist_load:nn { #2 } { ! }
+      \box_if_exist:cF { subfiglist_image_ #2 _box }
+      {
+        \box_new:c { subfiglist_image_ #2 _box }
+      }
+      \subfiglist_load:cnn { subfiglist_image_ #2 _box } { #3 } { ! }
+      
+      % Get box dimensions
+      \dim_set:Nn \subfiglist_canvas_height_dim { \box_ht:c { subfiglist_image_ #2 _box } }
+      \dim_set:Nn \subfiglist_canvas_width_dim  { \box_wd:c { subfiglist_image_ #2 _box } }
+    }{
+      \subfiglist_load:Nnn \subfiglist_tmp_box { #3 } { ! }
+      
+      % Get box dimensions
+      \dim_set:Nn \subfiglist_canvas_height_dim { \box_ht:N \subfiglist_tmp_box }
+      \dim_set:Nn \subfiglist_canvas_width_dim  { \box_wd:N \subfiglist_tmp_box }
     }
-    
-    % Get box dimensions
-    \dim_set:Nn \subfiglist_canvas_height_dim { \box_ht:N \subfiglist_tmp_box }
-    \dim_set:Nn \subfiglist_canvas_width_dim  { \box_wd:N \subfiglist_tmp_box }
     
     % Store ratio width/height
     \fp_set:Nn \subfiglist_tmp_fp { \subfiglist_canvas_width_dim / \subfiglist_canvas_height_dim }
@@ -2641,22 +2693,31 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Output specified file
-\cs_new:Npn \subfiglist_put_file:N #1
+\cs_new:Npn \subfiglist_put_file:Nn #1 #2
 %
 % #1: Property list containing canvas properties
+% #2: Canvas number
 %
 {
   \prop_get:NnN #1 { path } \subfiglist_tmpa_tl
   \prop_get:NnN #1 { width } \subfiglist_tmpb_tl
-  \subfiglist_load:VV \subfiglist_tmpa_tl \subfiglist_tmpb_tl
+  \bool_if:NTF \subfiglist_env_store_images_bool
+  {
+    \subfiglist_restore:cVV { subfiglist_image_ #2 _box } \subfiglist_tmpa_tl \subfiglist_tmpb_tl
+    \box_use:c { subfiglist_image_ #2 _box }
+  }{
+    \subfiglist_load:NVV \subfiglist_tmp_box \subfiglist_tmpa_tl \subfiglist_tmpb_tl
+    \box_use:N \subfiglist_tmp_box
+  }
 }
 
 % Output specified dummy or dummy file
 \tl_map_inline:nn { { dummy } { dummyfile } }
 {
-  \cs_new:cpn { subfiglist_put_ #1 :N } ##1
+  \cs_new:cpn { subfiglist_put_ #1 :N } ##1 ##2
   %
   % #1: Property list containing canvas properties
+  % #2: Canvas number
   %
   {
     \prop_get:NnN ##1 { width } \subfiglist_tmpa_tl
@@ -2723,7 +2784,7 @@
         \hspace { \subfiglist_tmpa_dim }
         % Put canvas
         \prop_get:NnN \subfiglist_tmp_prop { type } \subfiglist_tmpa_tl
-        \subfiglist_use:c { subfiglist_put_ \tl_use:N \subfiglist_tmpa_tl :N } \subfiglist_tmp_prop
+        \subfiglist_use:c { subfiglist_put_ \tl_use:N \subfiglist_tmpa_tl :Nn } \subfiglist_tmp_prop { #1 }
         % Horizontal offset
         \prop_get:NnN \subfiglist_tmp_prop { right } \subfiglist_tmpa_tl
         \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
@@ -3093,7 +3154,9 @@
   % Check for starred environment
   \IfBooleanTF #1
   {
+    \bool_set_true:N \subfiglist_env_store_images_bool
   }{
+    \bool_set_false:N \subfiglist_env_store_images_bool
   }
   
   % Tokenize subfiglist specification

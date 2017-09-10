@@ -10,7 +10,6 @@ TODO
 * Replace any \cs in error messages by \token_to_str:c { cs }
 * Remove error message "argument out of range"
 * Add spaces to empty lines to fix syntax highlighting
-* Add option to keep images stored in boxes instead of loading them twice
 * Add "g" to name of any global variables
 * Add "i" to name of inline macros, which modify variables without scoping
 * Introduce R-type argument for byref-tokens
@@ -19,6 +18,7 @@ TODO
 * Verify numbers for labels and overlays
 * Option to set label hoff and voff globally. Document default values for no/colored background
 * Test all kinds of weird nestings and alignments
+* Define variables used to store keys
 
 
 
@@ -51,3 +51,4 @@ DONE
 * Replace wrapping commands by more general \subfiglist_tl_set_wrapped in parser and lexer
 * Remove need for xstring package?
 * Add default value in \subfiglist_tokenize_newline
+* Add option to keep images stored in boxes instead of loading them twice
