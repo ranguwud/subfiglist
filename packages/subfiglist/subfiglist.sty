@@ -277,93 +277,99 @@
 \keys_define:nn { subfiglist }
 {
   % Tweak caption package for generation of labels?
-  tweak-caption-package.bool_set:N = \subfiglist_use_caption_package_bool,
-  tweak-caption-package.default:n  = true,
+  tweak-caption-package.bool_set:N   = \subfiglist_use_caption_package_bool,
+  tweak-caption-package.default:n    = true,
   
   % Width of environment
-  environment-width.tl_set:N       = \subfiglist_env_width_default_tl,
+  environment-width.tl_set:N         = \subfiglist_env_width_default_tl,
   environment-width.value_required:,
-  ew.meta:n                        = { environment-width = #1 },
+  ew.meta:n                          = { environment-width = #1 },
   ew.value_required:,
   
   % Space between canvases
-  environment-space.tl_set:N       = \subfiglist_env_space_default_tl,
+  environment-space.tl_set:N         = \subfiglist_env_space_default_tl,
   environment-space.value_required:,
-  es.meta:n                        = { environment-space = #1 },
+  es.meta:n                          = { environment-space = #1 },
   es.value_required:,
   
+  % Use \hspace* to output space?
+  environment-use-hspace.bool_set:N = \subfiglist_env_use_hspace_default_bool,
+  environment-use-hspace.default:n  = true,
+  euh.meta:n                        = { environment-use-hspace = #1 },
+  euh.default:n                     = true,
+  
   % Space above canvas
-  canvas-top.tl_set:N              = \subfiglist_canvas_top_default_tl,
+  canvas-top.tl_set:N               = \subfiglist_canvas_top_default_tl,
   canvas-top.value_required:,
-  ct.meta:n                        = { canvas-top = #1 },
+  ct.meta:n                         = { canvas-top = #1 },
   ct.value_required:,
   
   % Space below canvas
-  canvas-bottom.tl_set:N           = \subfiglist_canvas_bot_default_tl,
+  canvas-bottom.tl_set:N            = \subfiglist_canvas_bot_default_tl,
   canvas-bottom.value_required:,
-  cb.meta:n                        = { canvas-bottom = #1 },
+  cb.meta:n                         = { canvas-bottom = #1 },
   cb.value_required:,
   
   % Space left of canvas
-  canvas-left.tl_set:N             = \subfiglist_canvas_left_default_tl,
+  canvas-left.tl_set:N              = \subfiglist_canvas_left_default_tl,
   canvas-left.value_required:,
-  cl.meta:n                        = { canvas-left = #1 },
+  cl.meta:n                         = { canvas-left = #1 },
   cl.value_required:,
   
   % Space right of canvas
-  canvas-right.tl_set:N            = \subfiglist_canvas_right_default_tl,
+  canvas-right.tl_set:N             = \subfiglist_canvas_right_default_tl,
   canvas-right.value_required:,
-  cr.meta:n                        = { canvas-right = #1 },
+  cr.meta:n                         = { canvas-right = #1 },
   cr.value_required:,
   
   % Horizontal positioning of label (left, center, right)
   label-hpos.choice:,
-  label-hpos.choices:nn            = { l, c, r }
+  label-hpos.choices:nn             = { l, c, r }
     { \tl_set_eq:NN \subfiglist_label_hpos_default_tl \l_keys_choice_tl },
   label-hpos.value_required:,
   lh.choice:,
-  lh.choices:nn                    = { l, c, r }
+  lh.choices:nn                     = { l, c, r }
     { \tl_set_eq:NN \subfiglist_label_hpos_default_tl \l_keys_choice_tl },
   lh.value_required:,
   
   % Vertical positioning of label (top, center, bottom)
   label-vpos.choice:,
-  label-vpos.choices:nn            = { t, c, b }
+  label-vpos.choices:nn             = { t, c, b }
     { \tl_set_eq:NN \subfiglist_label_vpos_default_tl \l_keys_choice_tl },
   label-vpos.value_required:,
   lv.choice:,
-  lv.choices:nn                    = { t, c, b }
+  lv.choices:nn                     = { t, c, b }
     { \tl_set_eq:NN \subfiglist_label_vpos_default_tl \l_keys_choice_tl },
   lv.value_required:,
   
   % Horizontal shift of label
-  label-xshift.tl_set:N            = \subfiglist_label_xshift_default_tl,
+  label-xshift.tl_set:N             = \subfiglist_label_xshift_default_tl,
   label-xshift.value_required:,
-  lx.meta:n                        = { label-xshift = #1 },
+  lx.meta:n                         = { label-xshift = #1 },
   lx.value_required:,
   
   % Vertical shift of label
-  label-yshift.tl_set:N            = \subfiglist_label_yshift_default_tl,
+  label-yshift.tl_set:N             = \subfiglist_label_yshift_default_tl,
   label-yshift.value_required:,
-  ly.meta:n                        = { label-yshift = #1 },
+  ly.meta:n                         = { label-yshift = #1 },
   ly.value_required:,
   
   % Label color
-  label-color.tl_set:N             = \subfiglist_label_color_default_tl,
+  label-color.tl_set:N              = \subfiglist_label_color_default_tl,
   label-color.value_required:,
-  label-colour.meta:n              = { label-color = #1 },
+  label-colour.meta:n               = { label-color = #1 },
   label-colour.value_required:,
-  lc.meta:n                        = { label-color = #1 },
+  lc.meta:n                         = { label-color = #1 },
   lc.value_required:,
   
   % Label background
-  label-background.tl_set:N        = \subfiglist_label_background_default_tl,
+  label-background.tl_set:N         = \subfiglist_label_background_default_tl,
   label-background.value_required:,
-  lb.meta:n                        = { label-background = #1 },
+  lb.meta:n                         = { label-background = #1 },
   lb.value_required:,
   
   % Error catching
-  unknown.code:n                   =
+  unknown.code:n                    =
   {
     \msg_error:nnVn { subfiglist } \subfiglist_option_unknown_message_name_tl
       \l_keys_key_tl { subfiglist~package }
@@ -374,19 +380,20 @@
 \tl_set:Nn \subfiglist_option_unknown_message_name_tl { option~unknown }
 \keys_set:nn { subfiglist }
 {
-  tweak-caption-package = true,
-  environment-width     = \textwidth,
-  environment-space     = 1ex,
-  canvas-top            = 0pt,
-  canvas-bottom         = 0pt,
-  canvas-left           = 0pt,
-  canvas-right          = 0pt,
-  label-hpos            = l,
-  label-vpos            = t,
-  label-xshift          = 0.5ex,
-  label-yshift          = 0.5ex,
-  label-color           = .,
-  label-background      = none
+  tweak-caption-package  = true,
+  environment-width      = \textwidth,
+  environment-space      = 1ex,
+  environment-use-hspace = false,
+  canvas-top             = 0pt,
+  canvas-bottom          = 0pt,
+  canvas-left            = 0pt,
+  canvas-right           = 0pt,
+  label-hpos             = l,
+  label-vpos             = t,
+  label-xshift           = 0.5ex,
+  label-yshift           = 0.5ex,
+  label-color            = .,
+  label-background       = none
 }
 \ProcessKeysOptions { subfiglist }
 
@@ -455,19 +462,25 @@
   \keys_define:nn { subfiglistenv }
   {
     % Width of environment
-    width.dim_set:N = \subfiglist_total_width_dim,
+    width.dim_set:N       = \subfiglist_total_width_dim,
     width.value_required:,
-    w.meta:n        = { width = #1 },
+    w.meta:n              = { width = #1 },
     w.value_required:,
-  
+    
     % Space between images
-    space.dim_set:N = \subfiglist_canvas_space_dim,
+    space.dim_set:N       = \subfiglist_canvas_space_dim,
     space.value_required:,
-    s.meta:n       = { space = #1 },
-    s.value_required:,  
-
+    s.meta:n              = { space = #1 },
+    s.value_required:,
+    
+    % Use \hspace* to output space?
+    use-hspace.bool_set:N = \subfiglist_env_use_hspace_bool,
+    use-hspace.default:n  = true,
+    uh.meta:n             = { use-hspace = #1 },
+    uh.default:n          = true,
+    
     % Error catching
-    unknown.code:n   =
+    unknown.code:n        =
     {
       \msg_error:nnVn { subfiglist } { option~unknown }
         \l_keys_key_tl { environment~subfiglist }
@@ -2751,8 +2764,15 @@
 
 \cs_generate_variant:Nn \subfiglist_put_canvas:n { V }
 
-% Initialize \subfiglist_put_space: to empty control sequence
-\cs_new:Npn \subfiglist_put_space:n #1 {}
+\cs_new:Npn \subfiglist_put_space:n #1
+{
+  \bool_if:NTF \subfiglist_env_use_hspace_bool
+  {
+    \hspace * { \dim_use:N \subfiglist_canvas_space_dim }
+  }{
+    \hfill
+  }
+}
 
 \cs_generate_variant:Nn \subfiglist_put_space:n { V }
 
@@ -3060,23 +3080,20 @@
   \group_begin:
   
   % Save specified dimensions
-  \subfiglist_key_set:nnn { subfiglistenv } { width } \subfiglist_env_width_default_tl
-  \subfiglist_key_set:nnn { subfiglistenv } { space } \subfiglist_env_space_default_tl
+  \subfiglist_key_set:nnV { subfiglistenv } { width } \subfiglist_env_width_default_tl
+  \subfiglist_key_set:nnV { subfiglistenv } { space } \subfiglist_env_space_default_tl
+  \bool_if:NTF \subfiglist_env_use_hspace_default_bool
+  {
+    \subfiglist_key_set:nnn { subfiglistenv } { use-hspace } { true }
+  }{
+    \subfiglist_key_set:nnn { subfiglistenv } { use-hspace } { false }
+  }
   \keys_set:nn { subfiglistenv } { #2 }
   
-  % Decide which version of \subfiglist_put_space is used
-  % depending on whether the starred environment is called.
+  % Check for starred environment
   \IfBooleanTF #1
   {
-    \cs_set:Npn \subfiglist_put_space:n ##1
-    {
-      \hspace * { \dim_use:N \subfiglist_canvas_space_dim }
-    }
   }{
-    \cs_set:Npn \subfiglist_put_space:n ##1
-    {
-      \hfill
-    }
   }
   
   % Tokenize subfiglist specification
