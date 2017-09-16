@@ -331,11 +331,11 @@
   cfc.meta:n                        = { canvas-frame-color = #1 },
   cfc.value_required:,
   
-  % Canvas rule thickness
-  canvas-frame-rule.tl_set:N        = \subfiglist_canvas_frame_rule_default_tl,
-  canvas-frame-rule.value_required:,
-  cfr.meta:n                        = { canvas-frame-rule = #1 },
-  cff.value_required:,
+  % Canvas frame width
+  canvas-frame-width.tl_set:N        = \subfiglist_canvas_frame_width_default_tl,
+  canvas-frame-width.value_required:,
+  cfw.meta:n                        = { canvas-frame-width = #1 },
+  cfw.value_required:,
   
   % Horizontal positioning of label (left, center, right)
   label-hpos.choice:,
@@ -404,7 +404,7 @@
   canvas-left            = 0pt,
   canvas-right           = 0pt,
   canvas-frame-color     = none,
-  canvas-frame-rule      = 2pt,
+  canvas-frame-width     = 2pt,
   label-hpos             = l,
   label-vpos             = t,
   label-xshift           = 0.5ex,
@@ -508,45 +508,45 @@
   \keys_define:nn { subfiglistcanvas }
   {
     % Space above canvas
-    top.dim_set:N        = \subfiglist_canvas_top_dim,
+    top.dim_set:N         = \subfiglist_canvas_top_dim,
     top.value_required:,
-    t.meta:n             = { top = #1 },
+    t.meta:n              = { top = #1 },
     t.value_required:,
     
     % Space below canvas
-    bottom.dim_set:N     = \subfiglist_canvas_bot_dim,
+    bottom.dim_set:N      = \subfiglist_canvas_bot_dim,
     bottom.value_required:,
-    b.meta:n             = { bottom = #1 },
+    b.meta:n              = { bottom = #1 },
     b.value_required:,
     
     % Space left of canvas
-    left.dim_set:N       = \subfiglist_canvas_left_dim,
+    left.dim_set:N        = \subfiglist_canvas_left_dim,
     left.value_required:,
-    l.meta:n             = { left = #1 },
+    l.meta:n              = { left = #1 },
     l.value_required:,
     
     % Space right of canvas
-    right.dim_set:N      = \subfiglist_canvas_right_dim,
+    right.dim_set:N       = \subfiglist_canvas_right_dim,
     right.value_required:,
-    r.meta:n             = { right = #1 },
+    r.meta:n              = { right = #1 },
     r.value_required:,
     
     % Frame color
-    frame-color.tl_set:N = \subfiglist_canvas_frame_color_tl,
+    frame-color.tl_set:N  = \subfiglist_canvas_frame_color_tl,
     frame-color.value_required:,
-    frame-colour.meta:n  = { frame-color = #1 },
+    frame-colour.meta:n   = { frame-color = #1 },
     frame-colour.value_required:,
-    fc.meta:n            = { frame-color = #1 },
+    fc.meta:n             = { frame-color = #1 },
     fc.value_required:,
     
-    % Frame rule
-    frame-rule.dim_set:N = \subfiglist_canvas_frame_rule_dim,
-    frame-rule.value_required:,
-    fr.meta:n            = { frame-rule = #1 },
-    fr.value_required:
+    % Frame width
+    frame-width.dim_set:N = \subfiglist_canvas_frame_width_dim,
+    frame-width.value_required:,
+    fw.meta:n             = { frame-width = #1 },
+    fw.value_required:
     
     % Error catching
-    unknown.code:n   =
+    unknown.code:n        =
     {
       \msg_error:nnVf { subfiglist } { option~unknown }
         \l_keys_key_tl { command~\subfiglist_csname_tl }
@@ -2052,7 +2052,7 @@
       \subfiglist_key_set:nnV { subfiglistcanvas } { left }        \subfiglist_canvas_left_default_tl
       \subfiglist_key_set:nnV { subfiglistcanvas } { right }       \subfiglist_canvas_right_default_tl
       \subfiglist_key_set:nnV { subfiglistcanvas } { frame-color } \subfiglist_canvas_frame_color_default_tl
-      \subfiglist_key_set:nnV { subfiglistcanvas } { frame-rule }  \subfiglist_canvas_frame_rule_default_tl
+      \subfiglist_key_set:nnV { subfiglistcanvas } { frame-width }  \subfiglist_canvas_frame_width_default_tl
       \keys_set:nn { subfiglistcanvas } { ##1 }
 
       % Save specified offsets
@@ -2061,7 +2061,7 @@
       \prop_put:NnV \subfiglist_tmp_prop { left }        \subfiglist_canvas_left_dim
       \prop_put:NnV \subfiglist_tmp_prop { right }       \subfiglist_canvas_right_dim
       \prop_put:NnV \subfiglist_tmp_prop { frame-color } \subfiglist_canvas_frame_color_tl
-      \prop_put:NnV \subfiglist_tmp_prop { frame-rule }  \subfiglist_canvas_frame_rule_dim
+      \prop_put:NnV \subfiglist_tmp_prop { frame-width }  \subfiglist_canvas_frame_width_dim
 
       \subfiglist_tl_set_from_prop:NN \subfiglist_tmpa_tl \subfiglist_tmp_prop
       \prop_put:NnV \subfiglist_canvas_prop { ##2 } \subfiglist_tmpa_tl
@@ -2126,7 +2126,7 @@
     \subfiglist_key_set:nnV { subfiglistcanvas } { left }   \subfiglist_canvas_left_default_tl
     \subfiglist_key_set:nnV { subfiglistcanvas } { right }  \subfiglist_canvas_right_default_tl
     \subfiglist_key_set:nnV { subfiglistcanvas } { frame-color } \subfiglist_canvas_frame_color_default_tl
-    \subfiglist_key_set:nnV { subfiglistcanvas } { frame-rule }  \subfiglist_canvas_frame_rule_default_tl
+    \subfiglist_key_set:nnV { subfiglistcanvas } { frame-width }  \subfiglist_canvas_frame_width_default_tl
     \keys_set:nn { subfiglistcanvas } { #1 }
     
     % Save specified offsets
@@ -2135,7 +2135,7 @@
     \prop_put:NnV \subfiglist_tmp_prop { left }  \subfiglist_canvas_left_dim
     \prop_put:NnV \subfiglist_tmp_prop { right } \subfiglist_canvas_right_dim
     \prop_put:NnV \subfiglist_tmp_prop { frame-color } \subfiglist_canvas_frame_color_tl
-    \prop_put:NnV \subfiglist_tmp_prop { frame-rule }  \subfiglist_canvas_frame_rule_dim
+    \prop_put:NnV \subfiglist_tmp_prop { frame-width }  \subfiglist_canvas_frame_width_dim
     
     \subfiglist_tl_set_from_prop:NN \subfiglist_tmpa_tl \subfiglist_tmp_prop
     \prop_put:NnV \subfiglist_canvas_prop { #2 } \subfiglist_tmpa_tl
@@ -2239,7 +2239,7 @@
   \prop_get:NnN \subfiglist_tmp_prop { frame-color } \subfiglist_tmpa_tl
   \subfiglist_tl_if_eq_charcode:nVF { none } \subfiglist_tmpa_tl
   {
-    \prop_get:NnN \subfiglist_tmp_prop { frame-rule } \subfiglist_tmpa_tl
+    \prop_get:NnN \subfiglist_tmp_prop { frame-width } \subfiglist_tmpa_tl
     \dim_add:NV #2 \subfiglist_tmpa_tl
     \dim_add:NV #2 \subfiglist_tmpa_tl
     \dim_add:NV #3 \subfiglist_tmpa_tl
@@ -2849,7 +2849,7 @@
           \colorlet { subfiglist_current_color } { . }
           {
             \color { \subfiglist_tmpa_tl }
-            \prop_get:NnN \subfiglist_tmp_prop { frame-rule } \subfiglist_tmpa_tl
+            \prop_get:NnN \subfiglist_tmp_prop { frame-width } \subfiglist_tmpa_tl
             \dim_set:Nn \fboxsep { 0pt }
             \dim_set:Nn \fboxrule { \subfiglist_tmpa_tl }
             \fbox
