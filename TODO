@@ -5,7 +5,6 @@ TODO
 * Add change of meaning for `@' depending on catcode to known issues. Weird settings of catcodes e.g. for numbers may have strange effects
 * Set \subfiglist_identifier_nums by dependency injection
 * Add logging of canvas numbers to \subfiglist_setup_file:nnn
-* Add starred commands for dummy/dummyfile to add frame
 * Rewrite error messages for int/float as "expected integer, found ... instead"
 * Replace any \cs in error messages by \token_to_str:c { cs }
 * Remove error message "argument out of range"
@@ -19,6 +18,7 @@ TODO
 * Option to set label hoff and voff globally. Document default values for no/colored background
 * Test all kinds of weird nestings and alignments
 * Define variables used to store keys
+* Check default dim keys for right format
 
 
 
@@ -52,3 +52,4 @@ DONE
 * Remove need for xstring package?
 * Add default value in \subfiglist_tokenize_newline
 * Add option to keep images stored in boxes instead of loading them twice
+* Add starred commands for dummy/dummyfile to add frame
