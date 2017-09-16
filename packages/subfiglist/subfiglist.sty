@@ -361,6 +361,15 @@
   cfr.meta:n                        = { canvas-frame-right = #1 },
   cfr.value_required:,
   
+  % Canvas frame separation
+  canvas-frame-separation.meta:n    = { canvas-frame-top = #1, 
+                                        canvas-frame-bottom = #1, 
+                                        canvas-frame-left = #1,
+                                        canvas-frame-right = #1 },
+  canvas-frame-separation.value_required:,
+  cfs.meta:n                        = { canvas-frame-separation = #1 },
+  cfs.value_required:,
+  
   % Horizontal positioning of label (left, center, right)
   label-hpos.choice:,
   label-hpos.choices:nn             = { l, c, r }
@@ -536,69 +545,78 @@
   \keys_define:nn { subfiglistcanvas }
   {
     % Space above canvas
-    top.dim_set:N          = \subfiglist_canvas_top_dim,
+    top.dim_set:N           = \subfiglist_canvas_top_dim,
     top.value_required:,
-    t.meta:n               = { top = #1 },
+    t.meta:n                = { top = #1 },
     t.value_required:,
     
     % Space below canvas
-    bottom.dim_set:N       = \subfiglist_canvas_bot_dim,
+    bottom.dim_set:N        = \subfiglist_canvas_bot_dim,
     bottom.value_required:,
-    b.meta:n               = { bottom = #1 },
+    b.meta:n                = { bottom = #1 },
     b.value_required:,
     
     % Space left of canvas
-    left.dim_set:N         = \subfiglist_canvas_left_dim,
+    left.dim_set:N          = \subfiglist_canvas_left_dim,
     left.value_required:,
-    l.meta:n               = { left = #1 },
+    l.meta:n                = { left = #1 },
     l.value_required:,
     
     % Space right of canvas
-    right.dim_set:N        = \subfiglist_canvas_right_dim,
+    right.dim_set:N         = \subfiglist_canvas_right_dim,
     right.value_required:,
-    r.meta:n               = { right = #1 },
+    r.meta:n                = { right = #1 },
     r.value_required:,
     
     % Frame color
-    frame-color.tl_set:N   = \subfiglist_canvas_frame_color_tl,
+    frame-color.tl_set:N    = \subfiglist_canvas_frame_color_tl,
     frame-color.value_required:,
-    frame-colour.meta:n    = { frame-color = #1 },
+    frame-colour.meta:n     = { frame-color = #1 },
     frame-colour.value_required:,
-    fc.meta:n              = { frame-color = #1 },
+    fc.meta:n               = { frame-color = #1 },
     fc.value_required:,
     
     % Frame width
-    frame-width.dim_set:N  = \subfiglist_canvas_frame_width_dim,
+    frame-width.dim_set:N   = \subfiglist_canvas_frame_width_dim,
     frame-width.value_required:,
-    fw.meta:n              = { frame-width = #1 },
+    fw.meta:n               = { frame-width = #1 },
     fw.value_required:,
     
     % Frame top separation
-    frame-top.dim_set:N    = \subfiglist_canvas_frame_top_dim,
+    frame-top.dim_set:N     = \subfiglist_canvas_frame_top_dim,
     frame-top.value_required:,
-    ft.meta:n              = { frame-top = #1 },
+    ft.meta:n               = { frame-top = #1 },
     ft.value_required:,
 
     % Frame bottom separation
-    frame-bottom.dim_set:N = \subfiglist_canvas_frame_bottom_dim,
+    frame-bottom.dim_set:N  = \subfiglist_canvas_frame_bottom_dim,
     frame-bottom.value_required:,
-    fb.meta:n              = { frame-bottom = #1 },
+    fb.meta:n               = { frame-bottom = #1 },
     fb.value_required:,
 
     % Frame left separation
-    frame-left.dim_set:N   = \subfiglist_canvas_frame_left_dim,
+    frame-left.dim_set:N    = \subfiglist_canvas_frame_left_dim,
     frame-left.value_required:,
-    fl.meta:n              = { frame-left = #1 },
+    fl.meta:n               = { frame-left = #1 },
     fl.value_required:,
 
     % Frame right separation
-    frame-right.dim_set:N  = \subfiglist_canvas_frame_right_dim,
+    frame-right.dim_set:N   = \subfiglist_canvas_frame_right_dim,
     frame-right.value_required:,
-    fr.meta:n              = { frame-right = #1 },
+    fr.meta:n               = { frame-right = #1 },
     fr.value_required:,
 
+    % Canvas frame separation
+    frame-separation.meta:n = { frame-top = #1,
+                                frame-bottom = #1, 
+                                frame-left = #1,
+                                frame-right = #1 },
+    frame-separation.value_required:,
+    fs.meta:n               = { frame-separation = #1 },
+    fs.value_required:,
+  
     % Error catching
-    unknown.code:n         =
+    unknown.code:n          =
     {
       \msg_error:nnVf { subfiglist } { option~unknown }
         \l_keys_key_tl { command~\subfiglist_csname_tl }
