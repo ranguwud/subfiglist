@@ -2261,8 +2261,6 @@
     \keys_set:nn { subfiglistlabel } { #1 }
     
     % Save label properties.
-    \prop_put:Nnn \subfiglist_tmp_prop { hoff }       { 0.5ex }
-    \prop_put:Nnn \subfiglist_tmp_prop { voff }       { 0.5ex }
     \prop_put:NnV \subfiglist_tmp_prop { hpos }       \subfiglist_label_hpos_int
     \prop_put:NnV \subfiglist_tmp_prop { vpos }       \subfiglist_label_vpos_int
     \prop_put:NnV \subfiglist_tmp_prop { xshift }     \subfiglist_label_xshift_dim
@@ -3154,8 +3152,6 @@
                   % Additional horizontal shift
                   \prop_get:NnN \subfiglist_tmp_prop { xshift } \subfiglist_tmpa_tl
                   \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
-                  \prop_get:NnN \subfiglist_tmp_prop { hoff } \subfiglist_tmpa_tl
-                  \dim_add:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
                   \hspace{ \subfiglist_tmpa_dim }
                   % Choose left, center or right alignment for label
                   \prop_get:NnN \subfiglist_tmp_prop { hpos } \subfiglist_tmpa_tl
@@ -3169,8 +3165,6 @@
                     % Additional vertical shift
                     \prop_get:NnN \subfiglist_tmp_prop { yshift } \subfiglist_tmpa_tl
                     \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
-                    \prop_get:NnN \subfiglist_tmp_prop { voff } \subfiglist_tmpa_tl
-                    \dim_add:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
                     \raisebox { -\subfiglist_tmpa_dim } [ \box_ht:N \strutbox ] [ 0pt ]
                     {
                       \prop_get:NnN \subfiglist_tmp_prop { background } \subfiglist_tmpa_tl
