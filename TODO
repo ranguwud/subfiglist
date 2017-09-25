@@ -15,6 +15,10 @@ TODO
 * Test all kinds of weird nestings and alignments
 * Define variables used to store keys
 * Check default dim keys for right format
+* Check for file extension .tex and directly import such files to allow for e.g. TikZ images (https://tex.stackexchange.com/q/121390)
+* Convert all png images in documentation to TikZ images
+* Check naming conventions for local and global variables
+* Make use of string functions where appropiate
 
 
 
