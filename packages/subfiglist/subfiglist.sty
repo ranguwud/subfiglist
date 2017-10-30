@@ -150,6 +150,35 @@
 %%%   Generate variants of some commands   %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+% Functions for expanding tokens TWICE
+\cs_new:Npn \subfiglist_exp_args:Nt #1 #2
+{
+  \exp_args:NNo \exp_args:No #1 { #2 }
+}
+
+\cs_generate_variant:Nn \subfiglist_exp_args:Nt { c }
+
+\cs_new:Npn \subfiglist_exp_args:NNt #1 #2 #3
+{
+  \exp_args:NNNo \exp_args:NNo #1 #2 { #3 }
+}
+
+\cs_generate_variant:Nn \subfiglist_exp_args:NNt { c }
+
+\cs_new:Npn \subfiglist_exp_args:Nnt #1 #2 #3
+{
+  \exp_args:NNno \exp_args:Nno #1 { #2 } { #3 }
+}
+
+\cs_generate_variant:Nn \subfiglist_exp_args:Nnt { c }
+
+\cs_new:Npn \subfiglist_exp_args:Ntt #1 #2 #3
+{
+  \exp_args:NNoo \exp_args:Noo #1 { #2 } { #3 }
+}
+
+\cs_generate_variant:Nn \subfiglist_exp_args:Ntt { c }
+
 \cs_generate_variant:Nn \dim_set:Nn               { Nf }
 \cs_generate_variant:Nn \dim_add:Nn               { Nf }
 \cs_generate_variant:Nn \dim_sub:Nn               { Nf }
@@ -180,6 +209,11 @@
 \cs_generate_variant:Nn \msg_error:nnnn           { nVVV }
 \cs_generate_variant:Nn \prg_new_conditional:Npnn { cpnn }
 \cs_generate_variant:Nn \cs_generate_variant:Nn   { cn }
+
+\cs_new:Npn \token_if_eq_charcode:NtTF #1 #2 #3 #4
+{
+  \subfiglist_exp_args:NNt \token_if_eq_charcode:NNTF #1 { #2 } { #3 } { #4 }
+}
 
 
 
@@ -697,36 +731,6 @@
 {
   \cs_if_exist_use:cF { #1 } { \msg_error:nnf { subfiglist } { undefined~command~sequence } { \token_to_str:c { #1 } } }
 }
-
-
-% Functions for expanding tokens TWICE
-\cs_new:Npn \subfiglist_exp_args:Nt #1 #2
-{
-  \exp_args:NNo \exp_args:No #1 { #2 }
-}
-
-\cs_generate_variant:Nn \subfiglist_exp_args:Nt { c }
-
-\cs_new:Npn \subfiglist_exp_args:NNt #1 #2 #3
-{
-  \exp_args:NNNo \exp_args:NNo #1 #2 { #3 }
-}
-
-\cs_generate_variant:Nn \subfiglist_exp_args:NNt { c }
-
-\cs_new:Npn \subfiglist_exp_args:Nnt #1 #2 #3
-{
-  \exp_args:NNno \exp_args:Nno #1 { #2 } { #3 }
-}
-
-\cs_generate_variant:Nn \subfiglist_exp_args:Nnt { c }
-
-\cs_new:Npn \subfiglist_exp_args:Ntt #1 #2 #3
-{
-  \exp_args:NNoo \exp_args:Noo #1 { #2 } { #3 }
-}
-
-\cs_generate_variant:Nn \subfiglist_exp_args:Ntt { c }
 
 
 % Command for setting a token list variable to head
@@ -1393,7 +1397,7 @@
         }
       }{
         % Check for decimal separator
-        \subfiglist_token_if_eq:NtTF . { \tl_head:n { #1 } }
+        \token_if_eq_charcode:NtTF . { \tl_head:n { #1 } }
         {
           % Check if trailing end is an integer
           \subfiglist_is_integer:tTF { \tl_tail:n { #1 } }
@@ -2887,7 +2891,7 @@
 % Output specified dummy or dummy file
 \tl_map_inline:nn { { dummy } { dummyfile } }
 {
-  \cs_new:cpn { subfiglist_put_ #1 :N } ##1 ##2
+  \cs_new:cpn { subfiglist_put_ #1 :Nn } ##1 ##2
   %
   % #1: Property list containing canvas properties
   % #2: Canvas number
