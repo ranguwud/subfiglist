@@ -179,36 +179,38 @@
 
 \cs_generate_variant:Nn \subfiglist_exp_args:Ntt { c }
 
-\cs_generate_variant:Nn \dim_set:Nn               { Nf }
-\cs_generate_variant:Nn \dim_add:Nn               { Nf }
-\cs_generate_variant:Nn \dim_sub:Nn               { Nf }
-\cs_generate_variant:Nn \dim_set:Nn               { NV }
-\cs_generate_variant:Nn \dim_add:Nn               { NV }
-\cs_generate_variant:Nn \dim_sub:Nn               { NV }
-\cs_generate_variant:Nn \fp_set:Nn                { Nf }
-\cs_generate_variant:Nn \fp_add:Nn                { Nf }
-\cs_generate_variant:Nn \fp_sub:Nn                { Nf }
-\cs_generate_variant:Nn \fp_set:Nn                { NV }
-\cs_generate_variant:Nn \fp_add:Nn                { NV }
-\cs_generate_variant:Nn \fp_sub:Nn                { NV }
-\cs_generate_variant:Nn \tl_put_right:Nn          { Nf }
-\cs_generate_variant:Nn \tl_if_single_p:n         { V }
-\cs_generate_variant:Nn \tl_if_blank_p:n          { V }
-\cs_generate_variant:Nn \msg_error:nnn            { nnf }
-\cs_generate_variant:Nn \msg_error:nnnn           { nnnf }
-\cs_generate_variant:Nn \msg_error:nnnn           { nnfn }
-\cs_generate_variant:Nn \msg_error:nnnn           { nnff }
-\cs_generate_variant:Nn \msg_error:nnn            { nnV }
-\cs_generate_variant:Nn \msg_error:nnnn           { nnnV }
-\cs_generate_variant:Nn \msg_error:nnnn           { nnVn }
-\cs_generate_variant:Nn \msg_error:nnnn           { nnVV }
-\cs_generate_variant:Nn \msg_error:nnnn           { nnVx }
-\cs_generate_variant:Nn \msg_error:nnn            { nVV }
-\cs_generate_variant:Nn \msg_error:nnnn           { nVnV }
-\cs_generate_variant:Nn \msg_error:nnnn           { nVVn }
-\cs_generate_variant:Nn \msg_error:nnnn           { nVVV }
-\cs_generate_variant:Nn \prg_new_conditional:Npnn { cpnn }
-\cs_generate_variant:Nn \cs_generate_variant:Nn   { cn }
+\cs_generate_variant:Nn \dim_set:Nn                { Nf }
+\cs_generate_variant:Nn \dim_add:Nn                { Nf }
+\cs_generate_variant:Nn \dim_sub:Nn                { Nf }
+\cs_generate_variant:Nn \dim_set:Nn                { NV }
+\cs_generate_variant:Nn \dim_add:Nn                { NV }
+\cs_generate_variant:Nn \dim_sub:Nn                { NV }
+\cs_generate_variant:Nn \fp_set:Nn                 { Nf }
+\cs_generate_variant:Nn \fp_add:Nn                 { Nf }
+\cs_generate_variant:Nn \fp_sub:Nn                 { Nf }
+\cs_generate_variant:Nn \fp_set:Nn                 { NV }
+\cs_generate_variant:Nn \fp_add:Nn                 { NV }
+\cs_generate_variant:Nn \fp_sub:Nn                 { NV }
+\cs_generate_variant:Nn \tl_put_right:Nn           { Nf }
+\cs_generate_variant:Nn \tl_if_single_p:n          { V }
+\cs_generate_variant:Nn \tl_if_blank_p:n           { V }
+\cs_generate_variant:Nn \msg_error:nnn             { nnf }
+\cs_generate_variant:Nn \msg_error:nnnn            { nnnf }
+\cs_generate_variant:Nn \msg_error:nnnn            { nnfn }
+\cs_generate_variant:Nn \msg_error:nnnn            { nnff }
+\cs_generate_variant:Nn \msg_error:nnn             { nnV }
+\cs_generate_variant:Nn \msg_error:nnnn            { nnnV }
+\cs_generate_variant:Nn \msg_error:nnnn            { nnVn }
+\cs_generate_variant:Nn \msg_error:nnnn            { nnVV }
+\cs_generate_variant:Nn \msg_error:nnnn            { nnVx }
+\cs_generate_variant:Nn \msg_error:nnn             { nVV }
+\cs_generate_variant:Nn \msg_error:nnnn            { nVnV }
+\cs_generate_variant:Nn \msg_error:nnnn            { nVVn }
+\cs_generate_variant:Nn \msg_error:nnnn            { nVVV }
+\cs_generate_variant:Nn \prg_new_conditional:Npnn  { cpnn }
+\cs_generate_variant:Nn \cs_generate_variant:Nn    { cn }
+\cs_generate_variant:Nn \token_if_eq_charcode_p:NN { NV }
+\cs_generate_variant:Nn \token_if_eq_charcode:NNTF { NV }
 
 \cs_new:Npn \token_if_eq_charcode:NtTF #1 #2 #3 #4
 {
@@ -1576,10 +1578,10 @@
 % #1: Token to be tested
 %
 {
-  % Compare `@' using \token_if_eq_charcode instead of \subfiglist_token_if_eq,
-  % because the test \token_if_eq_meaning used by \subfiglist_token_if_eq returns
-  % false, if @ is `other' in the document, but `letter' in the package code.
-  \subfiglist_token_if_eq_charcode_p:NV @ #1
+  % Comparing `@' using \token_if_eq_charcode is important here,
+  % because the test \token_if_eq_meaning returns false, if @ is
+  % `other' in the document, but `letter' in the package code.
+  \str_if_eq_p:nV { @ } #1
 }
 
 \cs_new:Npn \subfiglist_tokenize_is_newline_p:V #1
@@ -1587,7 +1589,7 @@
 % #1: Token to be tested
 %
 {
-  \subfiglist_token_if_eq_p:NV \\ #1
+  \str_if_eq_p:nV { \\ } #1
 }
 
 \prg_new_conditional:Npnn \subfiglist_tokenize_is_subblock:V #1 { p }
@@ -1661,7 +1663,7 @@
   {
     \tl_put_right:NV \subfiglist_tmpb_tl \subfiglist_canvas_space_dim
   }{
-    \subfiglist_token_if_eq_charcode:NVTF [ \subfiglist_tmpa_tl
+    \token_if_eq_charcode:NVTF [ \subfiglist_tmpa_tl
     {
       \seq_pop_left:NN #3 \subfiglist_tmpa_tl
       \seq_get_left:NN #3 \subfiglist_tmpa_tl
@@ -1669,7 +1671,7 @@
       {
         \bool_lazy_or_p:nn
           { \quark_if_no_value_p:N \subfiglist_tmpa_tl }
-          { \subfiglist_token_if_eq_charcode_p:NV ] \subfiglist_tmpa_tl }
+          { \token_if_eq_charcode_p:NV ] \subfiglist_tmpa_tl }
       }{
         \seq_pop_left:NN #3 \subfiglist_tmpa_tl
         \tl_put_right:NV \subfiglist_tmpb_tl \subfiglist_tmpa_tl
