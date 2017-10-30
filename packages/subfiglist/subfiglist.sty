@@ -209,6 +209,7 @@
 \cs_generate_variant:Nn \msg_error:nnnn            { nVVV }
 \cs_generate_variant:Nn \prg_new_conditional:Npnn  { cpnn }
 \cs_generate_variant:Nn \cs_generate_variant:Nn    { cn }
+\cs_generate_variant:Nn \str_if_eq_p:nn            { nf }
 \cs_generate_variant:Nn \token_if_eq_charcode_p:NN { NV }
 \cs_generate_variant:Nn \token_if_eq_charcode:NNTF { NV }
 
@@ -1767,7 +1768,7 @@
 % #1: Token to be tested
 %
 {
-  \subfiglist_tl_if_eq_charcode_p:nf { canvas } { \tl_head:V #1 }
+  \str_if_eq_p:nf { canvas } { \tl_head:V #1 }
 }
 
 \cs_new:Npn \subfiglist_parse_is_separator_p:V #1
@@ -1775,7 +1776,7 @@
 % #1: Token to be tested
 %
 {
-  \subfiglist_tl_if_eq_charcode_p:nf { separator } { \tl_head:V #1 }
+  \str_if_eq_p:nf { separator } { \tl_head:V #1 }
 }
 
 \cs_new:Npn \subfiglist_parse_is_newline_p:V #1
@@ -1783,7 +1784,7 @@
 % #1: Token to be tested
 %
 {
-  \subfiglist_tl_if_eq_charcode_p:nf { newline } { \tl_head:V #1 }
+  \str_if_eq_p:nf { newline } { \tl_head:V #1 }
 }
 
 \cs_new:Npn \subfiglist_parse_is_subblock_p:V #1
@@ -1791,7 +1792,7 @@
 % #1: Token to be tested
 %
 {
-  \subfiglist_tl_if_eq_charcode_p:nf { subblock } { \tl_head:V #1 }
+  \str_if_eq_p:nf { subblock } { \tl_head:V #1 }
 }
 
 \cs_new:Npn \subfiglist_parse_is_line_p:V #1
