@@ -18,7 +18,6 @@ TODO
 * Check for file extension .tex and directly import such files to allow for e.g. TikZ images (https://tex.stackexchange.com/q/121390)
 * Convert all png images in documentation to TikZ images
 * Check naming conventions for local and global variables
-* Make use of string functions where appropiate
 
 
 
@@ -57,3 +56,4 @@ DONE
 * Remove obsolete label hoff and voff
 * Add logging of canvas numbers to \subfiglist_setup_file:nnn
 * Replace any \cs in error messages by \token_to_str:c { cs }
+* Make use of string functions where appropiate
