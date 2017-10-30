@@ -1175,9 +1175,6 @@
 % #1: Token to be tested
 %
 {
-  % Comparing `@' using \token_if_eq_charcode is important here,
-  % because the test \token_if_eq_meaning returns false, if @ is
-  % `other' in the document, but `letter' in the package code.
   \str_if_eq_p:nV { @ } #1
 }
 

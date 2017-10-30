@@ -2,7 +2,6 @@ TODO
 
 * Test all error messages
 * Delete unnecessary variables
-* Add change of meaning for `@' depending on catcode to known issues. Weird settings of catcodes e.g. for numbers may have strange effects
 * Rewrite error messages for int/float as "expected integer, found ... instead"
 * Remove error message "argument out of range"
 * Add spaces to empty lines to fix syntax highlighting
@@ -57,3 +56,4 @@ DONE
 * Add logging of canvas numbers to \subfiglist_setup_file:nnn
 * Replace any \cs in error messages by \token_to_str:c { cs }
 * Make use of string functions where appropiate
+* Add change of meaning for `@' depending on catcode to known issues. Weird settings of catcodes e.g. for numbers may have strange effects
