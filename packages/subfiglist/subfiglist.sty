@@ -2294,6 +2294,22 @@
 %%%   Image loading   %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%
 
+\cs_new:Npn \subfiglist_load_is_svg_p:V #1
+%
+% #1: Image file extension
+%
+{
+  \str_if_eq_p:nV { pdf_tex } #1
+}
+
+\prg_new_conditional:Npnn \subfiglist_load_is_img:V #1 { p }
+%
+% #1: Image file extension
+%
+{
+  \prg_return_true:
+}
+
 % Command for loading a bitmap image.
 \cs_new:Npn \subfiglist_load_img:Nnn #1 #2 #3
 %
@@ -2367,11 +2383,13 @@
     \subfiglist_load_img:Nnn #1 { #2 } { #3 }
   }{
     % Distinguish between file extensions
-    \str_if_eq:nVTF { pdf_tex } \subfiglist_tmpa_tl
+    \tl_map_inline:nn { { svg } { img } }
     {
-      \subfiglist_load_svg:Nnn #1 { #2 } { #3 }
-    }{
-      \subfiglist_load_img:Nnn #1 { #2 } { #3 }
+      \bool_if:nT { \subfiglist_use:c { subfiglist_load_is_ ##1 _p:V } \subfiglist_tmpa_tl }
+      {
+        \subfiglist_use:c { subfiglist_load_ ##1 :Nnn } #1 { #2 } { #3 }
+        \tl_map_break:
+      }
     }
   }
 }
@@ -2392,17 +2410,27 @@
 % #3: Image width
 %
 {
-  % Determine file extension.
-  \seq_set_split:Nnn \subfiglist_tmp_seq { . } { #2 }
+  % Strip off path
+  \seq_set_split:Nnn \subfiglist_tmp_seq { / } { #2 }
   \seq_get_right:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
+  % Determine file extension.
+  \seq_set_split:NnV \subfiglist_tmp_seq { . } \subfiglist_tmpa_tl
+  \seq_pop_right:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
   % Set command to load images depending on file extension.
-  \str_if_eq:nVTF { pdf_tex } \subfiglist_tmpa_tl
+  \seq_if_empty:NTF \subfiglist_tmp_seq
   {
-    \subfiglist_load_svg:Nnn #1 { #2 } { #3 }
-  }{
-    %\subfiglist_load_img:Nnn #1 { #2 } { #3 }
+    % There is no file extension, only the file name.
+    % Assume bitmap image in this case.
     \dim_set:Nn \subfiglist_tmpa_dim { \box_wd:N #1 }
     \hbox_gset:Nn #1 { \scalebox { \fp_eval:n { #3 / \subfiglist_tmpa_dim } } { \box_use:N #1 } }
+  }{
+    \bool_if:nTF { \subfiglist_load_is_svg_p:V \subfiglist_tmpa_tl }
+    {
+      \subfiglist_load_svg:Nnn #1 { #2 } { #3 }
+    }{
+      \dim_set:Nn \subfiglist_tmpa_dim { \box_wd:N #1 }
+      \hbox_gset:Nn #1 { \scalebox { \fp_eval:n { #3 / \subfiglist_tmpa_dim } } { \box_use:N #1 } }
+    }
   }
 }
 

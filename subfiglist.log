@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.8.23)  30 OCT 2017 19:14
+This is XeTeX, Version 3.14159265-2.6-0.99992 (TeX Live 2015/Debian) (preloaded format=xelatex 2017.8.23)  1 NOV 2017 12:28
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -698,52 +698,52 @@ Package graphics Info: Driver file: xetex.def on input line 95.
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistfile with sig. '' on line 2867.
+. Defining command \subfiglistfile with sig. '' on line 2901.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummyfile with sig. '' on line 2874.
+. Defining command \subfiglistdummyfile with sig. '' on line 2908.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummy with sig. '' on line 2881.
+. Defining command \subfiglistdummy with sig. '' on line 2915.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabel with sig. '' on line 2888.
+. Defining command \subfiglistlabel with sig. '' on line 2922.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistoverlay with sig. '' on line 2895.
+. Defining command \subfiglistoverlay with sig. '' on line 2929.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabelformat with sig. '' on line 2904.
+. Defining command \subfiglistlabelformat with sig. '' on line 2938.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistsvgenv' with sig. '' on line 2908.
+. Defining environment 'subfiglistsvgenv' with sig. '' on line 2942.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 2929.
+. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 2963.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3039.
+. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3073.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3043.
+. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3077.
 .................................................
 )
 runsystem(rm ./subfiglist.sty)...executed.
@@ -2226,12 +2226,12 @@ Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 804.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 804.
  ) 
 Here is how much of TeX's memory you used:
- 31184 strings out of 493638
- 562100 string characters out of 6146796
- 708139 words of memory out of 5000000
- 34170 multiletter control sequences out of 15000+600000
+ 31187 strings out of 493638
+ 562176 string characters out of 6146796
+ 708243 words of memory out of 5000000
+ 34173 multiletter control sequences out of 15000+600000
  78076 words of font info for 71 fonts, out of 8000000 for 9000
  1328 hyphenation exceptions out of 8191
- 50i,18n,97p,10433b,942s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 53i,18n,102p,10433b,942s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on subfiglist.pdf (12 pages).
