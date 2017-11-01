@@ -2302,36 +2302,20 @@
   \str_if_eq_p:nV { pdf_tex } #1
 }
 
+\cs_new:Npn \subfiglist_load_is_tex_p:V #1
+%
+% #1: Image file extension
+%
+{
+  \str_if_eq_p:nV { tex } #1
+}
+
 \prg_new_conditional:Npnn \subfiglist_load_is_img:V #1 { p }
 %
 % #1: Image file extension
 %
 {
   \prg_return_true:
-}
-
-% Command for loading a bitmap image.
-\cs_new:Npn \subfiglist_load_img:Nnn #1 #2 #3
-%
-% #1: Box variable to store image
-% #2: File path
-% #3: Image width
-%
-{
-  % Has natural width been requested?
-  \str_if_eq:nnTF { ! } { #3 }
-  {
-    % Load with natural width
-    \hbox_gset:Nn #1 { \includegraphics { #2 } }
-  }{
-    % Load with natural width and scale to desired width.
-    % This is a workaround to an apparent bug of \includegraphics,
-    % which slightly changes the aspect ratio of an image that
-    % is loaded with a specific width.
-    \hbox_set:Nn \subfiglist_tmp_box { \includegraphics { #2 } }
-    \dim_set:Nn \subfiglist_tmpa_dim { \box_wd:N \subfiglist_tmp_box }
-    \hbox_gset:Nn #1 { \scalebox { \fp_eval:n { #3 / \subfiglist_tmpa_dim } } { \box_use:N \subfiglist_tmp_box } }
-  }
 }
 
 % Command for loading an SVG image split into PDF and text.
@@ -2361,6 +2345,73 @@
   }
 }
 
+% Command for loading a TeX image
+\cs_new:Npn \subfiglist_load_tex:Nnn #1 #2 #3
+%
+% #1: Box variable to store image
+% #2: File path
+% #3: Image width
+%
+{
+  % Has natural width been requested?
+  \str_if_eq:nnTF { ! } { #3 }
+  {
+    \hbox_gset:Nn #1
+    {
+      \subfiglist_load_tex_make_env:n { #2 }
+    }
+  }{
+    \hbox_set:Nn \subfiglist_tmp_box
+    {
+      \subfiglist_load_tex_make_env:n { #2 }
+    }
+    \dim_set:Nn \subfiglist_tmpa_dim { \box_wd:N \subfiglist_tmp_box }
+    \hbox_gset:Nn #1 { \scalebox { \fp_eval:n { #3 / \subfiglist_tmpa_dim } } { \box_use:N \subfiglist_tmp_box } }
+  }
+}
+
+% Command for loading a TeX image
+\cs_new:Npn \subfiglist_load_tex_make_env:n #1
+%
+% #1: File path
+%
+{
+  \begin{subfiglisttexenv}
+    \tl_if_in:nnTF { #1 } { / }
+    {
+      \seq_set_split:Nnn \subfiglist_tmp_seq { / } { #1 }
+      \seq_pop_right:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
+      \import{ \seq_use:Nn \subfiglist_tmp_seq { / } / }{ \tl_use:N \subfiglist_tmpa_tl }
+    }{
+      \input { #1 }
+    }
+  \end{subfiglisttexenv}
+}
+
+% Command for loading a bitmap image.
+\cs_new:Npn \subfiglist_load_img:Nnn #1 #2 #3
+%
+% #1: Box variable to store image
+% #2: File path
+% #3: Image width
+%
+{
+  % Has natural width been requested?
+  \str_if_eq:nnTF { ! } { #3 }
+  {
+    % Load with natural width
+    \hbox_gset:Nn #1 { \includegraphics { #2 } }
+  }{
+    % Load with natural width and scale to desired width.
+    % This is a workaround to an apparent bug of \includegraphics,
+    % which slightly changes the aspect ratio of an image that
+    % is loaded with a specific width.
+    \hbox_set:Nn \subfiglist_tmp_box { \includegraphics { #2 } }
+    \dim_set:Nn \subfiglist_tmpa_dim { \box_wd:N \subfiglist_tmp_box }
+    \hbox_gset:Nn #1 { \scalebox { \fp_eval:n { #3 / \subfiglist_tmpa_dim } } { \box_use:N \subfiglist_tmp_box } }
+  }
+}
+
 %Command for loading an SVG or bitmap image
 \cs_new:Npn \subfiglist_load:Nnn #1 #2 #3
 %
@@ -2383,7 +2434,7 @@
     \subfiglist_load_img:Nnn #1 { #2 } { #3 }
   }{
     % Distinguish between file extensions
-    \tl_map_inline:nn { { svg } { img } }
+    \tl_map_inline:nn { { svg } { tex } { img } }
     {
       \bool_if:nT { \subfiglist_use:c { subfiglist_load_is_ ##1 _p:V } \subfiglist_tmpa_tl }
       {
@@ -2424,7 +2475,9 @@
     \dim_set:Nn \subfiglist_tmpa_dim { \box_wd:N #1 }
     \hbox_gset:Nn #1 { \scalebox { \fp_eval:n { #3 / \subfiglist_tmpa_dim } } { \box_use:N #1 } }
   }{
-    \bool_if:nTF { \subfiglist_load_is_svg_p:V \subfiglist_tmpa_tl }
+    \bool_lazy_or:nnTF
+    { \subfiglist_load_is_svg_p:V \subfiglist_tmpa_tl }
+    { \subfiglist_load_is_tex_p:V \subfiglist_tmpa_tl }
     {
       \subfiglist_load_svg:Nnn #1 { #2 } { #3 }
     }{
@@ -2931,6 +2984,10 @@
 
 % Define environment to format SVG images
 \NewDocumentEnvironment { subfiglistsvgenv } { } { } { }
+
+
+% Define environment to format TeX images
+\NewDocumentEnvironment { subfiglisttexenv } { } { } { }
 
 
 % Define environment for overlays
