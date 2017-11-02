@@ -8,13 +8,11 @@ TODO
 * Add "g" to name of any global variables
 * Add "i" to name of inline macros, which modify variables without scoping
 * Introduce R-type argument for byref-tokens
-* Secure any \prop_get for occurence of \q_empty
 * Caveat: Don't use \subfiglistlineheight for anything related to width.
 * Verify numbers for labels and overlays
 * Test all kinds of weird nestings and alignments
 * Define variables used to store keys
 * Check default dim keys for right format
-* Check for file extension .tex and directly import such files to allow for e.g. TikZ images (https://tex.stackexchange.com/q/121390)
 * Convert all png images in documentation to TikZ images
 * Check naming conventions for local and global variables
 
@@ -57,3 +55,5 @@ DONE
 * Replace any \cs in error messages by \token_to_str:c { cs }
 * Make use of string functions where appropiate
 * Add change of meaning for `@' depending on catcode to known issues. Weird settings of catcodes e.g. for numbers may have strange effects
+* Check for file extension .tex and directly import such files to allow for e.g. TikZ images (https://tex.stackexchange.com/q/121390)
+* Secure any \prop_get for occurence of \q_empty
