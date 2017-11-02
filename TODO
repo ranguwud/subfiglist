@@ -3,7 +3,6 @@ TODO
 * Test all error messages
 * Delete unnecessary variables
 * Rewrite error messages for int/float as "expected integer, found ... instead"
-* Remove error message "argument out of range"
 * Add spaces to empty lines to fix syntax highlighting
 * Add "g" to name of any global variables
 * Add "i" to name of inline macros, which modify variables without scoping
@@ -57,3 +56,4 @@ DONE
 * Add change of meaning for `@' depending on catcode to known issues. Weird settings of catcodes e.g. for numbers may have strange effects
 * Check for file extension .tex and directly import such files to allow for e.g. TikZ images (https://tex.stackexchange.com/q/121390)
 * Secure any \prop_get for occurence of \q_empty
+* Remove error message "argument out of range"
