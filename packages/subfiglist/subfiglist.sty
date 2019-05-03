@@ -100,6 +100,8 @@
 \tl_new:N   \subfiglist_label_hooks_tl
 \tl_new:N   \subfiglist_label_hpos_tl
 \tl_new:N   \subfiglist_label_vpos_tl
+\tl_new:N   \subfiglist_label_hpos_default_tl
+\tl_new:N   \subfiglist_label_vpos_default_tl
 \tl_new:N   \subfiglist_label_hoff_tl
 \tl_new:N   \subfiglist_label_voff_tl
 \tl_new:N   \subfiglist_label_xshift_tl
@@ -143,8 +145,6 @@
 
 \int_new:N  \subfiglist_label_hpos_int
 \int_new:N  \subfiglist_label_vpos_int
-\tl_new:N  \subfiglist_label_hpos_default_tl
-\tl_new:N  \subfiglist_label_vpos_default_tl
 
 \fp_new:N   \subfiglist_sub_block_line_ratio_fp
 \fp_new:N   \subfiglist_sub_block_ratio_fp
@@ -333,146 +333,146 @@
 \keys_define:nn { subfiglist }
 {
   % Tweak caption package for generation of labels?
-  tweak-caption-package.bool_set:N   = \subfiglist_use_caption_package_bool,
-  tweak-caption-package.default:n    = true,
+  tweak-caption-package.bool_set:N          = \subfiglist_use_caption_package_bool,
+  tweak-caption-package.default:n           = true,
   
   % Width of environment
-  environment-width.tl_set:N         = \subfiglist_env_width_default_tl,
-  environment-width.value_required:,
-  ew.meta:n                          = { environment-width = #1 },
-  ew.value_required:,
+  environment-width.tl_set:N                = \subfiglist_env_width_default_tl,
+  environment-width.value_required:n        = true,
+  ew.meta:n                                 = { environment-width = #1 },
+  ew.value_required:n                       = true,
   
   % Space between canvases
-  environment-space.tl_set:N         = \subfiglist_env_space_default_tl,
-  environment-space.value_required:,
-  es.meta:n                          = { environment-space = #1 },
-  es.value_required:,
+  environment-space.tl_set:N                = \subfiglist_env_space_default_tl,
+  environment-space.value_required:n        = true,
+  es.meta:n                                 = { environment-space = #1 },
+  es.value_required:n                       = true,
   
   % Use \hspace* to output space?
-  environment-use-hspace.bool_set:N = \subfiglist_env_use_hspace_default_bool,
-  environment-use-hspace.default:n  = true,
-  euh.meta:n                        = { environment-use-hspace = #1 },
-  euh.default:n                     = true,
+  environment-use-hspace.bool_set:N        = \subfiglist_env_use_hspace_default_bool,
+  environment-use-hspace.default:n         = true,
+  euh.meta:n                               = { environment-use-hspace = #1 },
+  euh.default:n                            = true,
   
   % Space above canvas
-  canvas-top.tl_set:N               = \subfiglist_canvas_top_default_tl,
-  canvas-top.value_required:,
-  ct.meta:n                         = { canvas-top = #1 },
-  ct.value_required:,
+  canvas-top.tl_set:N                      = \subfiglist_canvas_top_default_tl,
+  canvas-top.value_required:n              = true,
+  ct.meta:n                                = { canvas-top = #1 },
+  ct.value_required:n                      = true,
   
   % Space below canvas
-  canvas-bottom.tl_set:N            = \subfiglist_canvas_bot_default_tl,
-  canvas-bottom.value_required:,
-  cb.meta:n                         = { canvas-bottom = #1 },
-  cb.value_required:,
+  canvas-bottom.tl_set:N                   = \subfiglist_canvas_bot_default_tl,
+  canvas-bottom.value_required:n           = true,
+  cb.meta:n                                = { canvas-bottom = #1 },
+  cb.value_required:n                      = true,
   
   % Space left of canvas
-  canvas-left.tl_set:N              = \subfiglist_canvas_left_default_tl,
-  canvas-left.value_required:,
-  cl.meta:n                         = { canvas-left = #1 },
-  cl.value_required:,
+  canvas-left.tl_set:N                     = \subfiglist_canvas_left_default_tl,
+  canvas-left.value_required:n             = true,
+  cl.meta:n                                = { canvas-left = #1 },
+  cl.value_required:n                      = true,
   
   % Space right of canvas
-  canvas-right.tl_set:N             = \subfiglist_canvas_right_default_tl,
-  canvas-right.value_required:,
-  cr.meta:n                         = { canvas-right = #1 },
-  cr.value_required:,
+  canvas-right.tl_set:N                    = \subfiglist_canvas_right_default_tl,
+  canvas-right.value_required:n            = true,
+  cr.meta:n                                = { canvas-right = #1 },
+  cr.value_required:n                      = true,
   
   % Canvas frame color
-  canvas-frame-color.tl_set:N       = \subfiglist_canvas_frame_color_default_tl,
-  canvas-frame-color.value_required:,
-  canvas-frame-colour.meta:n        = { canvas-frame-color = #1 },
-  canvas-frame-colour.value_required:,
-  cfc.meta:n                        = { canvas-frame-color = #1 },
-  cfc.value_required:,
+  canvas-frame-color.tl_set:N              = \subfiglist_canvas_frame_color_default_tl,
+  canvas-frame-color.value_required:n      = true,
+  canvas-frame-colour.meta:n               = { canvas-frame-color = #1 },
+  canvas-frame-colour.value_required:n     = true,
+  cfc.meta:n                               = { canvas-frame-color = #1 },
+  cfc.value_required:n                     = true,
   
   % Canvas frame border width
-  canvas-frame-width.tl_set:N       = \subfiglist_canvas_frame_width_default_tl,
-  canvas-frame-width.value_required:,
-  cfw.meta:n                        = { canvas-frame-width = #1 },
-  cfw.value_required:,
+  canvas-frame-width.tl_set:N              = \subfiglist_canvas_frame_width_default_tl,
+  canvas-frame-width.value_required:n      = true,
+  cfw.meta:n                               = { canvas-frame-width = #1 },
+  cfw.value_required:n                     = true,
   
   % Canvas frame top separation
-  canvas-frame-top.tl_set:N         = \subfiglist_canvas_frame_top_default_tl,
-  canvas-frame-top.value_required:,
-  cft.meta:n                        = { canvas-frame-top = #1 },
-  cft.value_required:,
+  canvas-frame-top.tl_set:N                = \subfiglist_canvas_frame_top_default_tl,
+  canvas-frame-top.value_required:n        = true,
+  cft.meta:n                               = { canvas-frame-top = #1 },
+  cft.value_required:n                     = true,
   
   % Canvas frame bottom separation
-  canvas-frame-bottom.tl_set:N      = \subfiglist_canvas_frame_bottom_default_tl,
-  canvas-frame-bottom.value_required:,
-  cfb.meta:n                        = { canvas-frame-bottom = #1 },
-  cfb.value_required:,
+  canvas-frame-bottom.tl_set:N             = \subfiglist_canvas_frame_bottom_default_tl,
+  canvas-frame-bottom.value_required:n     = true,
+  cfb.meta:n                               = { canvas-frame-bottom = #1 },
+  cfb.value_required:n                     = true,
   
   % Canvas frame left separation
-  canvas-frame-left.tl_set:N        = \subfiglist_canvas_frame_left_default_tl,
-  canvas-frame-left.value_required:,
-  cfl.meta:n                        = { canvas-frame-left = #1 },
-  cfl.value_required:,
+  canvas-frame-left.tl_set:N               = \subfiglist_canvas_frame_left_default_tl,
+  canvas-frame-left.value_required:n       = true,
+  cfl.meta:n                               = { canvas-frame-left = #1 },
+  cfl.value_required:n                     = true,
   
   % Canvas frame right separation
-  canvas-frame-right.tl_set:N       = \subfiglist_canvas_frame_right_default_tl,
-  canvas-frame-right.value_required:,
-  cfr.meta:n                        = { canvas-frame-right = #1 },
-  cfr.value_required:,
+  canvas-frame-right.tl_set:N              = \subfiglist_canvas_frame_right_default_tl,
+  canvas-frame-right.value_required:n      = true,
+  cfr.meta:n                               = { canvas-frame-right = #1 },
+  cfr.value_required:n                     = true,
   
   % Canvas frame separation
-  canvas-frame-separation.meta:n    = { canvas-frame-top = #1, 
-                                        canvas-frame-bottom = #1, 
-                                        canvas-frame-left = #1,
-                                        canvas-frame-right = #1 },
-  canvas-frame-separation.value_required:,
-  cfs.meta:n                        = { canvas-frame-separation = #1 },
-  cfs.value_required:,
+  canvas-frame-separation.meta:n           = { canvas-frame-top = #1, 
+                                               canvas-frame-bottom = #1, 
+                                               canvas-frame-left = #1,
+                                               canvas-frame-right = #1 },
+  canvas-frame-separation.value_required:n = true,
+  cfs.meta:n                               = { canvas-frame-separation = #1 },
+  cfs.value_required:n                     = true,
   
   % Horizontal positioning of label (left, center, right)
   label-hpos.choice:,
-  label-hpos.choices:nn             = { l, c, r }
+  label-hpos.choices:nn                    = { l, c, r }
     { \tl_set_eq:NN \subfiglist_label_hpos_default_tl \l_keys_choice_tl },
-  label-hpos.value_required:,
+  label-hpos.value_required:n              = true,
   lh.choice:,
-  lh.choices:nn                     = { l, c, r }
+  lh.choices:nn                            = { l, c, r }
     { \tl_set_eq:NN \subfiglist_label_hpos_default_tl \l_keys_choice_tl },
-  lh.value_required:,
+  lh.value_required:n                      = true,
   
   % Vertical positioning of label (top, center, bottom)
   label-vpos.choice:,
-  label-vpos.choices:nn             = { t, c, b }
+  label-vpos.choices:nn                    = { t, c, b }
     { \tl_set_eq:NN \subfiglist_label_vpos_default_tl \l_keys_choice_tl },
-  label-vpos.value_required:,
+  label-vpos.value_required:n              = true,
   lv.choice:,
-  lv.choices:nn                     = { t, c, b }
+  lv.choices:nn                            = { t, c, b }
     { \tl_set_eq:NN \subfiglist_label_vpos_default_tl \l_keys_choice_tl },
-  lv.value_required:,
+  lv.value_required:n                      = true,
   
   % Horizontal shift of label
-  label-xshift.tl_set:N             = \subfiglist_label_xshift_default_tl,
-  label-xshift.value_required:,
-  lx.meta:n                         = { label-xshift = #1 },
-  lx.value_required:,
+  label-xshift.tl_set:N                    = \subfiglist_label_xshift_default_tl,
+  label-xshift.value_required:n            = true,
+  lx.meta:n                                = { label-xshift = #1 },
+  lx.value_required:n                      = true,
   
   % Vertical shift of label
-  label-yshift.tl_set:N             = \subfiglist_label_yshift_default_tl,
-  label-yshift.value_required:,
-  ly.meta:n                         = { label-yshift = #1 },
-  ly.value_required:,
+  label-yshift.tl_set:N                    = \subfiglist_label_yshift_default_tl,
+  label-yshift.value_required:n            = true,
+  ly.meta:n                                = { label-yshift = #1 },
+  ly.value_required:n                      = true,
   
   % Label color
-  label-color.tl_set:N              = \subfiglist_label_color_default_tl,
-  label-color.value_required:,
-  label-colour.meta:n               = { label-color = #1 },
-  label-colour.value_required:,
-  lc.meta:n                         = { label-color = #1 },
-  lc.value_required:,
+  label-color.tl_set:N                     = \subfiglist_label_color_default_tl,
+  label-color.value_required:n             = true,
+  label-colour.meta:n                      = { label-color = #1 },
+  label-colour.value_required:n            = true,
+  lc.meta:n                                = { label-color = #1 },
+  lc.value_required:n                      = true,
   
   % Label background
-  label-background.tl_set:N         = \subfiglist_label_background_default_tl,
-  label-background.value_required:,
-  lb.meta:n                         = { label-background = #1 },
-  lb.value_required:,
+  label-background.tl_set:N                = \subfiglist_label_background_default_tl,
+  label-background.value_required:n        = true,
+  lb.meta:n                                = { label-background = #1 },
+  lb.value_required:n                      = true,
   
   % Error catching
-  unknown.code:n                    =
+  unknown.code:n                           =
   {
     \msg_error:nnVn { subfiglist } \subfiglist_option_unknown_message_name_tl
       \l_keys_key_tl { subfiglist~package }
@@ -520,9 +520,9 @@
 \keys_define:nn { subfiglisttest }
 {
   test.choice:,
-  test.choices:nn = { first, second }
+  test.choices:nn       = { first, second }
     { \int_gset_eq:NN \subfiglist_keyval_choice_first_int \l_keys_choice_int },
-  test.value_required:
+  test.value_required:n = true
 }
 \keys_set:nn { subfiglisttest } { test = first }
 
@@ -571,25 +571,25 @@
   \keys_define:nn { subfiglistenv }
   {
     % Width of environment
-    width.dim_set:N       = \subfiglist_total_width_dim,
-    width.value_required:,
-    w.meta:n              = { width = #1 },
-    w.value_required:,
+    width.dim_set:N        = \subfiglist_total_width_dim,
+    width.value_required:n = true,
+    w.meta:n               = { width = #1 },
+    w.value_required:n     = true,
     
     % Space between images
-    space.dim_set:N       = \subfiglist_canvas_space_dim,
-    space.value_required:,
-    s.meta:n              = { space = #1 },
-    s.value_required:,
+    space.dim_set:N        = \subfiglist_canvas_space_dim,
+    space.value_required:n = true,
+    s.meta:n               = { space = #1 },
+    s.value_required:n     = true,
     
     % Use \hspace* to output space?
-    use-hspace.bool_set:N = \subfiglist_env_use_hspace_bool,
-    use-hspace.default:n  = true,
-    uh.meta:n             = { use-hspace = #1 },
-    uh.default:n          = true,
+    use-hspace.bool_set:N  = \subfiglist_env_use_hspace_bool,
+    use-hspace.default:n   = true,
+    uh.meta:n              = { use-hspace = #1 },
+    uh.default:n           = true,
     
     % Error catching
-    unknown.code:n        =
+    unknown.code:n         =
     {
       \msg_error:nnVn { subfiglist } { option~unknown }
         \l_keys_key_tl { environment~subfiglist }
@@ -602,78 +602,78 @@
     \keys_define:nn { #1 }
     {
       % Space above canvas
-      top.dim_set:N           = \subfiglist_canvas_top_dim,
-      top.value_required:,
-      t.meta:n                = { top = ##1 },
-      t.value_required:,
+      top.dim_set:N                     = \subfiglist_canvas_top_dim,
+      top.value_required:n              = true,
+      t.meta:n                          = { top = ##1 },
+      t.value_required:n                = true,
 
       % Space below canvas
-      bottom.dim_set:N        = \subfiglist_canvas_bot_dim,
-      bottom.value_required:,
-      b.meta:n                = { bottom = ##1 },
-      b.value_required:,
+      bottom.dim_set:N                  = \subfiglist_canvas_bot_dim,
+      bottom.value_required:n           = true,
+      b.meta:n                          = { bottom = ##1 },
+      b.value_required:n                = true,
 
       % Space left of canvas
-      left.dim_set:N          = \subfiglist_canvas_left_dim,
-      left.value_required:,
-      l.meta:n                = { left = ##1 },
-      l.value_required:,
+      left.dim_set:N                    = \subfiglist_canvas_left_dim,
+      left.value_required:n             = true,
+      l.meta:n                          = { left = ##1 },
+      l.value_required:n                = true,
 
       % Space right of canvas
-      right.dim_set:N         = \subfiglist_canvas_right_dim,
-      right.value_required:,
-      r.meta:n                = { right = ##1 },
-      r.value_required:,
+      right.dim_set:N                   = \subfiglist_canvas_right_dim,
+      right.value_required:n            = true,
+      r.meta:n                          = { right = ##1 },
+      r.value_required:n                = true,
 
       % Frame color
-      frame-color.tl_set:N    = \subfiglist_canvas_frame_color_tl,
-      frame-color.value_required:,
-      frame-colour.meta:n     = { frame-color = ##1 },
-      frame-colour.value_required:,
-      fc.meta:n               = { frame-color = ##1 },
-      fc.value_required:,
+      frame-color.tl_set:N              = \subfiglist_canvas_frame_color_tl,
+      frame-color.value_required:n      = true,
+      frame-colour.meta:n               = { frame-color = ##1 },
+      frame-colour.value_required:n     = true,
+      fc.meta:n                         = { frame-color = ##1 },
+      fc.value_required:n               = true,
 
       % Frame width
-      frame-width.dim_set:N   = \subfiglist_canvas_frame_width_dim,
-      frame-width.value_required:,
-      fw.meta:n               = { frame-width = ##1 },
-      fw.value_required:,
+      frame-width.dim_set:N             = \subfiglist_canvas_frame_width_dim,
+      frame-width.value_required:n      = true,
+      fw.meta:n                         = { frame-width = ##1 },
+      fw.value_required:n               = true,
 
       % Frame top separation
-      frame-top.dim_set:N     = \subfiglist_canvas_frame_top_dim,
-      frame-top.value_required:,
-      ft.meta:n               = { frame-top = ##1 },
-      ft.value_required:,
+      frame-top.dim_set:N               = \subfiglist_canvas_frame_top_dim,
+      frame-top.value_required:n        = true,
+      ft.meta:n                         = { frame-top = ##1 },
+      ft.value_required:n               = true,
 
       % Frame bottom separation
-      frame-bottom.dim_set:N  = \subfiglist_canvas_frame_bottom_dim,
-      frame-bottom.value_required:,
-      fb.meta:n               = { frame-bottom = ##1 },
-      fb.value_required:,
+      frame-bottom.dim_set:N            = \subfiglist_canvas_frame_bottom_dim,
+      frame-bottom.value_required:n     = true,
+      fb.meta:n                         = { frame-bottom = ##1 },
+      fb.value_required:n               = true,
 
       % Frame left separation
-      frame-left.dim_set:N    = \subfiglist_canvas_frame_left_dim,
-      frame-left.value_required:,
-      fl.meta:n               = { frame-left = ##1 },
-      fl.value_required:,
+      frame-left.dim_set:N              = \subfiglist_canvas_frame_left_dim,
+      frame-left.value_required:n       = true,
+      fl.meta:n                         = { frame-left = ##1 },
+      fl.value_required:n               = true,
 
       % Frame right separation
-      frame-right.dim_set:N   = \subfiglist_canvas_frame_right_dim,
-      frame-right.value_required:,
-      fr.meta:n               = { frame-right = ##1 },
-      fr.value_required:,
+      frame-right.dim_set:N             = \subfiglist_canvas_frame_right_dim,
+      frame-right.value_required:n      = true,
+      fr.meta:n                         = { frame-right = ##1 },
+      fr.value_required:n               = true,
 
       % Canvas frame separation
       frame-separation.meta:n = { frame-top = ##1,
                                   frame-bottom = ##1, 
                                   frame-left = ##1,
                                   frame-right = ##1 },
-      frame-separation.value_required:,
-      fs.meta:n               = { frame-separation = ##1 },
-      fs.value_required:,
+      frame-separation.value_required:n = true,
+      fs.meta:n                         = { frame-separation = ##1 },
+      fs.value_required:n               = true,
 
       % Error catching
-      unknown.code:n          =
+      unknown.code:n                    =
       {
         \msg_error:nnVx { subfiglist } { option~unknown }
           \l_keys_key_tl { command~\token_to_str:c { #1 } }
@@ -686,52 +686,52 @@
   {
     % Horizontal positioning (left, center, right)
     hpos.choice:,
-    hpos.choices:nn         = { l, c, r }
+    hpos.choices:nn             = { l, c, r }
       { \int_set_eq:NN \subfiglist_label_hpos_int \l_keys_choice_int },
-    hpos.value_required:,
+    hpos.value_required:n       = true,
     h.choice:,
-    h.choices:nn            = { l, c, r }
+    h.choices:nn                = { l, c, r }
       { \int_set_eq:NN \subfiglist_label_hpos_int \l_keys_choice_int },
-    h.value_required:,
+    h.value_required:n          = true,
     
     % Vertical positioning (top, center, bottom)
     vpos.choice:,
-    vpos.choices:nn         = { t, c, b }
+    vpos.choices:nn             = { t, c, b }
       { \int_set_eq:NN \subfiglist_label_vpos_int \l_keys_choice_int },
-    vpos.value_required:,
+    vpos.value_required:n       = true,
     v.choice:,
-    v.choices:nn            = { t, c, b }
+    v.choices:nn                = { t, c, b }
       { \int_set_eq:NN \subfiglist_label_vpos_int \l_keys_choice_int },
-    v.value_required:,
+    v.value_required:n          = true,
     
     % Horizontal shift
-    xshift.dim_set:N        = \subfiglist_label_xshift_dim,
-    xshift.value_required:,
-    x.meta:n                = { xshift = #1 },
-    x.value_required:,
+    xshift.dim_set:N            = \subfiglist_label_xshift_dim,
+    xshift.value_required:n     = true,
+    x.meta:n                    = { xshift = #1 },
+    x.value_required:n          = true,
     
     % Vertical shift
-    yshift.dim_set:N        = \subfiglist_label_yshift_dim,
-    yshift.value_required:,
-    y.meta:n                = { yshift = #1 },
-    y.value_required:,
+    yshift.dim_set:N            = \subfiglist_label_yshift_dim,
+    yshift.value_required:n     = true,
+    y.meta:n                    = { yshift = #1 },
+    y.value_required:n          = true,
     
     % Color
-    color.tl_set:N          = \subfiglist_label_color_tl,
-    color.value_required:,
-    colour.meta:n           = { color = #1 },
-    colour.value_required:,
-    c.meta:n                = { color = #1 },
-    c.value_required:,
+    color.tl_set:N              = \subfiglist_label_color_tl,
+    color.value_required:n      = true,
+    colour.meta:n               = { color = #1 },
+    colour.value_required:n     = true,
+    c.meta:n                    = { color = #1 },
+    c.value_required:n          = true,
     
     % Background
-    background.tl_set:N     = \subfiglist_label_background_tl,
-    background.value_required:,
-    b.meta:n                = { background = #1 },
-    b.value_required:,
+    background.tl_set:N         = \subfiglist_label_background_tl,
+    background.value_required:n = true,
+    b.meta:n                    = { background = #1 },
+    b.value_required:n          = true,
     
     % Error catching
-    unknown.code:n          =
+    unknown.code:n              =
     {
       \msg_error:nnVx { subfiglist } { option~unknown }
         \l_keys_key_tl { command~\token_to_str:c { subfiglistlabel } }

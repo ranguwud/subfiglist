@@ -14,6 +14,8 @@ TODO
 * Check default dim keys for right format
 * Convert all png images in documentation to TikZ images
 * Check naming conventions for local and global variables
+* Check required package versions
+* Check compile warnings
 
 
 
