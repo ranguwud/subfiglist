@@ -214,6 +214,7 @@
 \cs_generate_variant:Nn \tl_put_right:Nn           { Nf }
 \cs_generate_variant:Nn \tl_if_single_p:n          { V }
 \cs_generate_variant:Nn \tl_if_blank_p:n           { V }
+\cs_generate_variant:Nn \tl_if_empty:nT            { v }
 \cs_generate_variant:Nn \msg_error:nnn             { nnf }
 \cs_generate_variant:Nn \msg_error:nnnn            { nnnf }
 \cs_generate_variant:Nn \msg_error:nnnn            { nnfn }
@@ -232,6 +233,8 @@
 \cs_generate_variant:Nn \str_if_eq_p:nn            { nf }
 \cs_generate_variant:Nn \token_if_eq_charcode_p:NN { NV }
 \cs_generate_variant:Nn \token_if_eq_charcode:NNTF { NV }
+\cs_generate_variant:Nn \group_insert_after:N      { c }
+
 
 \cs_new:Npn \token_if_eq_charcode:NtTF #1 #2 #3 #4
 {
@@ -333,7 +336,7 @@
 \keys_define:nn { subfiglist }
 {
   % Tweak caption package for generation of labels?
-  tweak-caption-package.bool_set:N          = \subfiglist_use_caption_package_bool,
+  tweak-caption-package.bool_set:N          = \subfiglist_tweak_caption_package_bool,
   tweak-caption-package.default:n           = true,
   
   % Width of environment
@@ -536,7 +539,7 @@
   
   % Derive command to put label inset from caption package
   % code, if subfiglist package is loaded with caption option.
-  \bool_if:NT \subfiglist_use_caption_package_bool
+  \bool_if:NT \subfiglist_tweak_caption_package_bool
   {
     \cs_new:Npn \subfiglist_label_inset_caption_package:n #1
     %
@@ -887,9 +890,6 @@
 
 % Provide framework for exporting group scope local variables according to discussion
 % at https://tex.stackexchange.com/questions/56294/how-do-i-get-a-value-out-of-a-group
-\cs_generate_variant:Nn \tl_if_empty:nT {v}
-\cs_generate_variant:Nn \group_insert_after:N {c}
-
 \cs_new:Nn \subfiglist_group_after_insert:nn
 { 
   \cs_if_exist:cF { g_subfiglist_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
@@ -1054,7 +1054,6 @@
     \prg_return_false:
   }
 }
-
 
 % Define variants of \subfiglist_is_integer expanding its argument twice
 \cs_new:Npn \subfiglist_is_integer_p:t #1
@@ -1880,7 +1879,7 @@
 % #3: label hook
 %
 {
-  % Check if fourth argument is numeric
+  % Check if second argument is numeric
   \subfiglist_is_integer:nTF { #2 }
   {
     % Save label hook
@@ -2905,7 +2904,7 @@
                         \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { color } \subfiglist_tmpa_tl
                         \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { hook }  \subfiglist_tmpb_tl
                         % Use caption package for putting label?
-                        \bool_if:NTF \subfiglist_use_caption_package_bool
+                        \bool_if:NTF \subfiglist_tweak_caption_package_bool
                         {
                           \subfiglist_label_inset_caption_package:V \subfiglist_tmpa_tl
                           % Put hook for label
@@ -3054,7 +3053,7 @@
   % Make everything local, so no variables have to be reset:
   \group_begin:
   
-  % Save specified dimensions
+  % Setup default options
   \subfiglist_key_set:nnV { subfiglistenv } { width } \subfiglist_env_width_default_tl
   \subfiglist_key_set:nnV { subfiglistenv } { space } \subfiglist_env_space_default_tl
   \bool_if:NTF \subfiglist_env_use_hspace_default_bool
@@ -3084,7 +3083,7 @@
     \subfiglist_identifier_nums_sorted_tl
     \subfiglist_identifier_count_int
     
- % Parse subfiglist specification
+  % Parse subfiglist specification
   \subfiglist_parse_spec_tokens:NV \subfiglist_parsed_spec_tl \subfiglist_tokenized_spec_tl
   
   \prop_clear:N \subfiglist_canvas_prop
