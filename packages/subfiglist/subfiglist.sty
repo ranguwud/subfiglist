@@ -219,6 +219,8 @@
 \cs_generate_variant:Nn \msg_error:nnnn            { nnnf }
 \cs_generate_variant:Nn \msg_error:nnnn            { nnfn }
 \cs_generate_variant:Nn \msg_error:nnnn            { nnff }
+\cs_generate_variant:Nn \msg_error:nnnnn           { nnnfn }
+\cs_generate_variant:Nn \msg_error:nnnnn           { nnnfV }
 \cs_generate_variant:Nn \msg_error:nnn             { nnV }
 \cs_generate_variant:Nn \msg_error:nnnn            { nnnV }
 \cs_generate_variant:Nn \msg_error:nnnn            { nnVn }
@@ -284,10 +286,10 @@
 }
 
 \msg_new:nnn { subfiglist } { missing~number }
-  { #1~argument~of~command~`#2'~needs~to~be~an~integer. }
+  { #1~argument~of~command~`#2'~needs~to~be~a~positive~integer,~found~`#3'~instead. }
 
 \msg_new:nnn { subfiglist } { missing~float }
-  { #1~argument~of~command~`#2'~needs~to~be~a~floating~point~expression. }
+  { #1~argument~of~command~`#2'~needs~to~be~a~floating~point~expression,~found~`#3'~instead. }
 
 \msg_new:nnn { subfiglist } { malformed~argument }
   { Malformed~argument:~expected~#1~but~found~#2~instead. }
@@ -1825,7 +1827,7 @@
       \subfiglist_tl_set_from_prop:NN \subfiglist_tmpa_tl \subfiglist_tmp_prop
       \prop_put:NnV \subfiglist_canvas_prop { ##2 } \subfiglist_tmpa_tl
     }{
-      \msg_error:nnnf { subfiglist } { missing~number } { First~mandatory } { \token_to_str:c { subfiglist #1 } }
+      \msg_error:nnnfn { subfiglist } { missing~number } { First~mandatory } { \token_to_str:c { subfiglist #1 } } { ##2 }
     }
   }
 }
@@ -1857,19 +1859,19 @@
         \seq_get_left:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
         \subfiglist_is_float:VF \subfiglist_tmpa_tl
         {
-          \msg_error:nnnf { subfiglist } { missing~float } { Second } { \token_to_str:c { subfiglistdummy } }
+          \msg_error:nnnfV { subfiglist } { missing~float } { Second } { \token_to_str:c { subfiglistdummy } } \subfiglist_tmpa_tl
         }
         \prop_put:NnV \subfiglist_tmp_prop { ratio } \subfiglist_tmpa_tl
       }{
         \seq_pop_left:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
         \subfiglist_is_float:VF \subfiglist_tmpa_tl
         {
-          \msg_error:nnnf { subfiglist } { missing~float } { Second } { \token_to_str:c { subfiglistdummy } }
+          \msg_error:nnnfV { subfiglist } { missing~float } { First~group~of~second } { \token_to_str:c { subfiglistdummy } } \subfiglist_tmpa_tl
         }
         \seq_pop_left:NN \subfiglist_tmp_seq \subfiglist_tmpb_tl
         \subfiglist_is_float:VF \subfiglist_tmpb_tl
         {
-          \msg_error:nnnf { subfiglist } { missing~float } { Second } { \token_to_str:c { subfiglistdummy } }
+          \msg_error:nnnfV { subfiglist } { missing~float } { Second~group~of~second } { \token_to_str:c { subfiglistdummy } } \subfiglist_tmpb_tl
         }
         \fp_set:Nn \subfiglist_tmp_fp { \subfiglist_tmpa_tl / \subfiglist_tmpb_tl }
         \tl_set:Nf \subfiglist_tmpa_tl { \fp_use:N \subfiglist_tmp_fp }
@@ -1907,7 +1909,7 @@
     \subfiglist_tl_set_from_prop:NN \subfiglist_tmpa_tl \subfiglist_tmp_prop
     \prop_put:NnV \subfiglist_canvas_prop { #2 } \subfiglist_tmpa_tl
   }{
-    \msg_error:nnnf { subfiglist } { missing~number } { First~mandatory } { \token_to_str:c { subfiglistdummy } }
+    \msg_error:nnnfn { subfiglist } { missing~number } { First~mandatory } { \token_to_str:c { subfiglistdummy } } { #2 }
   }
 }
 
@@ -1920,7 +1922,7 @@
 %
 {
   % Check if second argument is numeric
-  \subfiglist_is_integer:nTF { #2 }
+  \subfiglist_is_positive_integer:nTF { #2 }
   {
     % Save label hook
     \prop_clear:N \subfiglist_tmp_prop
@@ -1946,7 +1948,7 @@
     \subfiglist_tl_set_from_prop:NN \subfiglist_tmpa_tl \subfiglist_tmp_prop
     \prop_put:NnV \subfiglist_label_prop { #2 } \subfiglist_tmpa_tl
   }{
-    \msg_error:nnnf { subfiglist } { missing~number } { First~mandatory } { \token_to_str:c { subfiglistlabel } }
+    \msg_error:nnnfn { subfiglist } { missing~number } { First~mandatory } { \token_to_str:c { subfiglistlabel } } { #2 }
   }
 }
 
@@ -1958,7 +1960,7 @@
 %
 {
   % Check if first argument is numeric
-  \subfiglist_is_integer:nTF { #1 }
+  \subfiglist_is_positive_integer:nTF { #1 }
   {
     \prop_clear:N \subfiglist_tmp_prop
     \prop_put:Nnn \subfiglist_tmp_prop { content } { #2 }
@@ -1966,7 +1968,7 @@
     \subfiglist_tl_set_from_prop:NN \subfiglist_tmpa_tl \subfiglist_tmp_prop
     \prop_put:NnV \subfiglist_overlay_prop { #1 } \subfiglist_tmpa_tl
   }{
-    \msg_error:nnnf { subfiglist } { missing~number } { First~mandatory } { \token_to_str:c { subfiglistoverlay } }
+    \msg_error:nnnfn { subfiglist } { missing~number } { First~mandatory } { \token_to_str:c { subfiglistoverlay } } { #1 }
   }
 }
 
@@ -3138,11 +3140,11 @@
   
   % Setup commands
   \RenewDocumentCommand \subfiglistfile { O{} m m }
-    { \subfiglist_setup_file:nnn { ##1 } { ##2 } { ##3} }
+    { \subfiglist_setup_file:nnn { ##1 } { ##2 } { ##3 } }
   \RenewDocumentCommand \subfiglistdummyfile { O{} m m }
-    { \subfiglist_setup_dummyfile:nnn { ##1 } { ##2 } { ##3} }
+    { \subfiglist_setup_dummyfile:nnn { ##1 } { ##2 } { ##3 } }
   \RenewDocumentCommand \subfiglistdummy { O{} m m }
-    { \subfiglist_setup_dummy:nnn { ##1 } { ##2 } { ##3} }
+    { \subfiglist_setup_dummy:nnn { ##1 } { ##2 } { ##3 } }
   \RenewDocumentCommand \subfiglistlabel { O{} m m }
     { \subfiglist_setup_label:nnn { ##1 } { ##2 } { ##3 } }
   \RenewDocumentCommand \subfiglistoverlay { m m }
