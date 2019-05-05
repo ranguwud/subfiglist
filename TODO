@@ -7,15 +7,22 @@ TODO
 * Add "g" to name of any global variables
 * Add "i" to name of inline macros, which modify variables without scoping
 * Introduce R-type argument for byref-tokens
-* Caveat: Don't use \subfiglistlineheight for anything related to width.
 * Verify numbers for labels and overlays
 * Test all kinds of weird nestings and alignments
 * Define variables used to store keys
 * Check default dim keys for right format
-* Convert all png images in documentation to TikZ images
 * Check naming conventions for local and global variables
 * Check required package versions
 * Check compile warnings
+
+
+
+
+MANUAL
+
+* Caveat: Don't use \subfiglistlineheight for anything related to width.
+* Convert all png images in documentation to TikZ images
+
 
 
 
