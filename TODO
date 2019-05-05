@@ -13,7 +13,6 @@ TODO
 * Check naming conventions for local and global variables
 * Check required package versions
 * Check compile warnings
-* Control catcodes when splitting strings
 
 
 
@@ -67,4 +66,5 @@ DONE
 * Secure any \prop_get for occurence of \q_empty
 * Remove error message "argument out of range"
 * Rewrite error messages for int/float as "expected integer, found ... instead"
+* Control catcodes when splitting strings
 

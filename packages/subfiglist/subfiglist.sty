@@ -215,6 +215,7 @@
 \cs_generate_variant:Nn \tl_if_single_p:n          { V }
 \cs_generate_variant:Nn \tl_if_blank_p:n           { V }
 \cs_generate_variant:Nn \tl_if_empty:nT            { v }
+\cs_generate_variant:Nn \tl_if_in:nnTF             { nx }
 \cs_generate_variant:Nn \msg_error:nnn             { nnf }
 \cs_generate_variant:Nn \msg_error:nnnn            { nnnf }
 \cs_generate_variant:Nn \msg_error:nnnn            { nnfn }
@@ -2430,9 +2431,10 @@
   \hbox_gset:Nn #1
   {
     \begin{subfiglistsvgenv}
-      \tl_if_in:nnTF { #2 } { / }
+      \int_set:Nn \subfiglist_tmp_int { \char_value_catcode:n { `/ } }
+      \tl_if_in:nxTF { #2 } { \char_generate:nV { `/ } \subfiglist_tmp_int }
       {
-        \seq_set_split:Nnn \subfiglist_tmp_seq { / } { #2 }
+        \seq_set_split:Nxn \subfiglist_tmp_seq { \char_generate:nV { `/ } \subfiglist_tmp_int } { #2 }
         \seq_pop_right:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
         \import{ \seq_use:Nn \subfiglist_tmp_seq { / } / }{ \tl_use:N \subfiglist_tmpa_tl }
       }{
@@ -2474,9 +2476,10 @@
 %
 {
   \begin{subfiglisttexenv}
-    \tl_if_in:nnTF { #1 } { / }
+  \int_set:Nn \subfiglist_tmp_int { \char_value_catcode:n { `/ } }
+  \tl_if_in:nxTF { #1 } { \char_generate:nV { `/ } \subfiglist_tmp_int }
     {
-      \seq_set_split:Nnn \subfiglist_tmp_seq { / } { #1 }
+      \seq_set_split:Nxn \subfiglist_tmp_seq { \char_generate:nV { `/ } \subfiglist_tmp_int } { #1 }
       \seq_pop_right:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
       \import{ \seq_use:Nn \subfiglist_tmp_seq { / } / }{ \tl_use:N \subfiglist_tmpa_tl }
     }{
@@ -2518,10 +2521,12 @@
 %
 {
   % Strip off path
-  \seq_set_split:Nnn \subfiglist_tmp_seq { / } { #2 }
+  \int_set:Nn \subfiglist_tmp_int { \char_value_catcode:n { `/ } }
+  \seq_set_split:Nxn \subfiglist_tmp_seq { \char_generate:nV { `/ } \subfiglist_tmp_int } { #2 }
   \seq_get_right:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
   % Determine file extension.
-  \seq_set_split:NnV \subfiglist_tmp_seq { . } \subfiglist_tmpa_tl
+  \int_set:Nn \subfiglist_tmp_int { \char_value_catcode:n { `. } }
+  \seq_set_split:Nxn \subfiglist_tmp_seq { \char_generate:nV { `. } \subfiglist_tmp_int } { #2 }
   \seq_pop_right:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
   % Set command to load images depending on file extension.
   \seq_if_empty:NTF \subfiglist_tmp_seq
@@ -2559,10 +2564,12 @@
 %
 {
   % Strip off path
-  \seq_set_split:Nnn \subfiglist_tmp_seq { / } { #2 }
+  \int_set:Nn \subfiglist_tmp_int { \char_value_catcode:n { `/ } }
+  \seq_set_split:Nxn \subfiglist_tmp_seq { \char_generate:nV { `/ } \subfiglist_tmp_int } { #2 }
   \seq_get_right:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
   % Determine file extension.
-  \seq_set_split:NnV \subfiglist_tmp_seq { . } \subfiglist_tmpa_tl
+  \int_set:Nn \subfiglist_tmp_int { \char_value_catcode:n { `. } }
+  \seq_set_split:Nxn \subfiglist_tmp_seq { \char_generate:nV { `. } \subfiglist_tmp_int } { #2 }
   \seq_pop_right:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
   % Set command to load images depending on file extension.
   \seq_if_empty:NTF \subfiglist_tmp_seq
