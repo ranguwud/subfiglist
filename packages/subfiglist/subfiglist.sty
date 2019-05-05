@@ -233,6 +233,8 @@
 \cs_generate_variant:Nn \prg_new_conditional:Npnn  { cpnn }
 \cs_generate_variant:Nn \cs_generate_variant:Nn    { cn }
 \cs_generate_variant:Nn \str_if_eq_p:nn            { nf }
+\cs_generate_variant:Nn \char_generate:nn          { nV }
+\cs_generate_variant:Nn \seq_set_split:Nnn         { Nx }
 \cs_generate_variant:Nn \token_if_eq_charcode_p:NN { NV }
 \cs_generate_variant:Nn \token_if_eq_charcode:NNTF { NV }
 \cs_generate_variant:Nn \group_insert_after:N      { c }
@@ -1850,7 +1852,8 @@
     \prop_put:Nnn \subfiglist_tmp_prop { type } { dummy }
     
     % Get dummy ratio
-    \seq_set_split:Nnn \subfiglist_tmp_seq { : } { #3 }
+    \int_set:Nn \subfiglist_tmp_int { \char_value_catcode:n { `: } }
+    \seq_set_split:Nxn \subfiglist_tmp_seq { \char_generate:nV { `: } \subfiglist_tmp_int } { #3 }
     
     \int_compare:nTF { 1 <= \seq_count:N \subfiglist_tmp_seq <= 2 }
     {

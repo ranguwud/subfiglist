@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.1.6)  5 MAY 2019 19:45
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.1.6)  5 MAY 2019 21:16
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -778,62 +778,62 @@ Package graphics Info: Driver file: xetex.def on input line 99.
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistsetup with sig. 'm' on line 518.
+. Defining command \subfiglistsetup with sig. 'm' on line 522.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistfile with sig. '' on line 3016.
+. Defining command \subfiglistfile with sig. '' on line 3021.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummyfile with sig. '' on line 3023.
+. Defining command \subfiglistdummyfile with sig. '' on line 3028.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummy with sig. '' on line 3030.
+. Defining command \subfiglistdummy with sig. '' on line 3035.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabel with sig. '' on line 3037.
+. Defining command \subfiglistlabel with sig. '' on line 3042.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistoverlay with sig. '' on line 3044.
+. Defining command \subfiglistoverlay with sig. '' on line 3049.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabelformat with sig. '' on line 3053.
+. Defining command \subfiglistlabelformat with sig. '' on line 3058.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistsvgenv' with sig. '' on line 3057.
+. Defining environment 'subfiglistsvgenv' with sig. '' on line 3062.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglisttexenv' with sig. '' on line 3061.
+. Defining environment 'subfiglisttexenv' with sig. '' on line 3066.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3082.
+. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3087.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3192.
+. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3197.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3196.
+. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3201.
 .................................................
 )
 runsystem(rm ./subfiglist.sty)...executed.
@@ -1471,8 +1471,29 @@ Package microtype Info: ... : First loading protrusion list `cmr-default'.
 . 
 . Redefining command \subfiglistoverlay with sig. 'mm' on line 276.
 .................................................
-File: figures/01.png Graphic file (type bmp)
-<figures/01.png>
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+! subfiglist error: "missing number"
+! 
+! First mandatory argument of command `\subfiglistfile' needs to be a positive
+! integer, found `0' instead.
+! 
+! See the subfiglist documentation for further information.
+! 
+! Type <return> to continue.
+!...............................................  
+                                                  
+l.277   \subfiglistfile{0}{figures/01.png}
+                                          
+|'''''''''''''''''''''''''''''''''''''''''''''''
+| LaTeX does not know anything more about this error, sorry.
+| 
+| Try typing <return> to proceed.
+| If that doesn't work, type X <return> to quit.
+|...............................................
+
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
 File: figures/03.png Graphic file (type bmp)
@@ -1483,8 +1504,79 @@ File: figures/05.png Graphic file (type bmp)
 <figures/05.png>
 File: figures/06.png Graphic file (type bmp)
 <figures/06.png>
-File: figures/01.png Graphic file (type bmp)
-<figures/01.png>
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+! subfiglist error: "missing canvas"
+! 
+! Canvas no. 1 missing in body of `subfiglist' environment.
+! 
+! See the subfiglist documentation for further information.
+! 
+! Type <return> to continue.
+!...............................................  
+                                                  
+l.283 \end{subfiglist}
+                      
+|'''''''''''''''''''''''''''''''''''''''''''''''
+| LaTeX does not know anything more about this error, sorry.
+| 
+| Try typing <return> to proceed.
+| If that doesn't work, type X <return> to quit.
+|...............................................
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+! subfiglist error: "too many identifiers"
+! 
+! You have specified 6 identifieres in argument of `subfiglist' environment,
+! but only 1 canvases are given in body of `subfiglist' environment.
+! 
+! See the subfiglist documentation for further information.
+! 
+! Type <return> to continue.
+!...............................................  
+                                                  
+l.283 \end{subfiglist}
+                      
+|'''''''''''''''''''''''''''''''''''''''''''''''
+| LaTeX does not know anything more about this error, sorry.
+| 
+| Try typing <return> to proceed.
+| If that doesn't work, type X <return> to quit.
+|...............................................
+
+*************************************************
+* subfiglist warning: "mismatching image order"
+* 
+* Package subfiglist Warning: The image numbers in the argument of
+* `subfiglist' environment are given in a different order than the image
+* numbers in the body of `subfiglist' environment.
+*************************************************
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!
+! subfiglist error: "internal error"
+! 
+! Internal error: key `1' not found in property list \subfiglist_canvas_prop 
+! 
+! See the subfiglist documentation for further information.
+! 
+! Type <return> to continue.
+!...............................................  
+                                                  
+l.283 \end{subfiglist}
+                      
+|'''''''''''''''''''''''''''''''''''''''''''''''
+| LaTeX does not know anything more about this error, sorry.
+| 
+| Try typing <return> to proceed.
+| If that doesn't work, type X <return> to quit.
+|...............................................
+
+File: figures/06.png Graphic file (type bmp)
+<figures/06.png>
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
 File: figures/03.png Graphic file (type bmp)
@@ -1550,7 +1642,7 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 311.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 311.
- [3]
+[3]
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -1667,8 +1759,7 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 378.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 378.
-
-[4]
+ [4]
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 382.
 Package babel Info: Redefining ngerman shorthand "~
@@ -2294,10 +2385,10 @@ Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 804.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 804.
  ) 
 Here is how much of TeX's memory you used:
- 33367 strings out of 493007
- 616378 string characters out of 6136720
- 805873 words of memory out of 5000000
- 36906 multiletter control sequences out of 15000+600000
+ 33372 strings out of 493007
+ 616456 string characters out of 6136720
+ 806009 words of memory out of 5000000
+ 36911 multiletter control sequences out of 15000+600000
  602883 words of font info for 77 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  54i,18n,102p,10433b,992s stack positions out of 5000i,500n,10000p,200000b,80000s
