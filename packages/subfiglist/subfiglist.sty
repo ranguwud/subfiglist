@@ -291,7 +291,7 @@
   { #1~argument~of~command~`#2'~needs~to~be~a~positive~integer,~found~`#3'~instead. }
 
 \msg_new:nnn { subfiglist } { missing~float }
-  { #1~argument~of~command~`#2'~needs~to~be~a~floating~point~expression,~found~`#3'~instead. }
+  { #1~argument~of~command~`#2'~needs~to~be~a~positive~floating~point~expression,~found~`#3'~instead. }
 
 \msg_new:nnn { subfiglist } { malformed~argument }
   { Malformed~argument:~expected~#1~but~found~#2~instead. }
@@ -1091,7 +1091,7 @@
 {
   \bool_if:nTF
   {
-    \bool_lazy_and_p:nn { \subfiglist_is_integer_or_empty_p:n { #1 } } { \int_compare_p:nNn { #1 } > { 0 } }
+    \bool_lazy_and_p:nn { \subfiglist_is_integer_p:n { #1 } } { \int_compare_p:nNn { #1 } > { 0 } }
   }{
     \prg_return_true:
   }{
@@ -1207,6 +1207,27 @@
 \cs_generate_variant:Nn \subfiglist_is_float:nT  { V }
 \cs_generate_variant:Nn \subfiglist_is_float:nF  { V }
 \cs_generate_variant:Nn \subfiglist_is_float:nTF { V }
+
+% Test whether token list is a positive float
+\prg_new_conditional:Npnn \subfiglist_is_positive_float:n #1 { p, T, F, TF }
+%
+% #1: Token list
+%
+{
+  \bool_if:nTF
+  {
+    \bool_lazy_and_p:nn { \subfiglist_is_float_p:n { #1 } } { \fp_compare_p:nNn { #1 } > { 0 } }
+  }{
+    \prg_return_true:
+  }{
+    \prg_return_false:
+  }
+}
+
+\cs_generate_variant:Nn \subfiglist_is_positive_float_p:n { V }
+\cs_generate_variant:Nn \subfiglist_is_positive_float:nT  { V }
+\cs_generate_variant:Nn \subfiglist_is_positive_float:nF  { V }
+\cs_generate_variant:Nn \subfiglist_is_positive_float:nTF { V }
 
 
 % Test whether a float is NaN
@@ -1860,19 +1881,19 @@
       \int_compare:nTF { \seq_count:N \subfiglist_tmp_seq = 1 }
       {
         \seq_get_left:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
-        \subfiglist_is_float:VF \subfiglist_tmpa_tl
+        \subfiglist_is_positive_float:VF \subfiglist_tmpa_tl
         {
           \msg_error:nnnfV { subfiglist } { missing~float } { Second } { \token_to_str:c { subfiglistdummy } } \subfiglist_tmpa_tl
         }
         \prop_put:NnV \subfiglist_tmp_prop { ratio } \subfiglist_tmpa_tl
       }{
         \seq_pop_left:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
-        \subfiglist_is_float:VF \subfiglist_tmpa_tl
+        \subfiglist_is_positive_float:VF \subfiglist_tmpa_tl
         {
           \msg_error:nnnfV { subfiglist } { missing~float } { First~group~of~second } { \token_to_str:c { subfiglistdummy } } \subfiglist_tmpa_tl
         }
         \seq_pop_left:NN \subfiglist_tmp_seq \subfiglist_tmpb_tl
-        \subfiglist_is_float:VF \subfiglist_tmpb_tl
+        \subfiglist_is_positive_float:VF \subfiglist_tmpb_tl
         {
           \msg_error:nnnfV { subfiglist } { missing~float } { Second~group~of~second } { \token_to_str:c { subfiglistdummy } } \subfiglist_tmpb_tl
         }
