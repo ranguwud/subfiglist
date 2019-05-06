@@ -856,9 +856,44 @@
 % #2: Token list
 %
 {
+  \prop_clear:N #1
   \tl_map_inline:Nn #2
   {
     \prop_put:Nnn #1 ##1
+  }
+}
+
+% Commands for transforming sequences into token lists
+% and vice versa
+\cs_new:Npn \subfiglist_tl_set_from_seq:NN #1 #2
+%
+% #1: Token list to be set
+% #2: Sequence
+%
+{
+  \group_begin:
+    \tl_clear:N \subfiglist_tmpa_tl
+
+    \seq_map_inline:Nn #2
+    {
+      \subfiglist_tl_set_wrapped:Nn \subfiglist_tmpb_tl { ##1 }
+      \tl_put_right:NV \subfiglist_tmpa_tl \subfiglist_tmpb_tl
+    }
+    \tl_set_eq:NN #1 \subfiglist_tmpa_tl
+  \subfiglist_group_var_return:NN \tl_set:Nn #1
+  \group_end:
+}
+
+\cs_new:Npn \subfiglist_seq_set_from_tl:NN #1 #2
+%
+% #1: Sequence to be set
+% #2: Token list
+%
+{
+  \seq_clear:N #1
+  \tl_map_inline:Nn #2
+  {
+    \seq_put_right:Nn #1 { ##1 }
   }
 }
 
