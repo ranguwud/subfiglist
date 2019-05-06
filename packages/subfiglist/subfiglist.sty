@@ -75,8 +75,6 @@
 \tl_new:N   \subfiglist_dimensioned_spec_tl
 \tl_new:N   \subfiglist_spec_current_line_tl
 
-\tl_new:N   \subfiglist_identifier_nums_tl
-\tl_new:N   \subfiglist_identifier_nums_sorted_tl
 \tl_new:N   \subfiglist_canvas_nums_tl
 \tl_new:N   \subfiglist_canvas_nums_sorted_tl
 
@@ -130,6 +128,9 @@
 \seq_new:N  \subfiglist_spec_str_seq
 \seq_new:N  \subfiglist_spec_tokens_seq
 \seq_new:N  \subfiglist_tmp_seq
+
+\seq_new:N   \subfiglist_identifier_nums_seq
+\seq_new:N   \subfiglist_identifier_nums_sorted_seq
 
 \prop_new:N \subfiglist_canvas_prop
 \prop_new:N \subfiglist_label_prop
@@ -315,20 +316,20 @@
 \msg_new:nnn { subfiglist } { wrong~identifier~order }
 {
   Package~subfiglist~Warning:~
-  The~image~numbers~in~the~argument~of~`subfiglist'~environment~are~given~in~non-ascending~order.
+  The~canvas~numbers~in~the~argument~of~`subfiglist'~environment~are~given~in~non-ascending~order.
 }
 
 \msg_new:nnn { subfiglist } { wrong~canvas~order }
 {
   Package~subfiglist~Warning:~
-  The~image~numbers~in~the~body~of~`subfiglist'~environment~are~given~in~non-ascending~order.
+  The~canvas~numbers~in~the~body~of~`subfiglist'~environment~are~given~in~non-ascending~order.
 }
 
 \msg_new:nnn { subfiglist } { mismatching~image~order }
 {
   Package~subfiglist~Warning:~
-  The~image~numbers~in~the~argument~of~`subfiglist'~environment~are~given~
-  in~a~different~order~than~the~image~numbers~in~the~body~of~`subfiglist'~environment.
+  The~canvas~numbers~in~the~argument~of~`subfiglist'~environment~are~given~
+  in~a~different~order~than~the~canvas~numbers~in~the~body~of~`subfiglist'~environment.
 }
 
 
@@ -1342,14 +1343,13 @@
 \cs_new:Npn \subfiglist_tokenize_integer:NNN #1 #2 #3
 %
 % #1: Token list variable for storing tokenized specification string
-% #2: Token list variable for storing identifier numbers
+% #2: Sequence variable for storing identifier numbers
 % #3: Sequence containing specification string
 %
 {
   \seq_pop_left:NN #3 \subfiglist_tmpa_tl
-  \subfiglist_tl_set_wrapped:NV \subfiglist_tmpb_tl \subfiglist_tmpa_tl
-  \tl_put_right:NV #2 \subfiglist_tmpb_tl
-  
+
+  \seq_put_right:NV #2 \subfiglist_tmpa_tl
   \subfiglist_tl_set_wrapped:NnV \subfiglist_tmpb_tl { canvas } \subfiglist_tmpa_tl
   \tl_put_right:NV #1 \subfiglist_tmpb_tl
 }
@@ -1357,7 +1357,7 @@
 \cs_new:Npn \subfiglist_tokenize_at:NNN #1 #2 #3
 %
 % #1: Token list variable for storing tokenized specification string
-% #2: Token list variable for storing identifier numbers
+% #2: Sequence variable for storing identifier numbers
 % #3: Sequence containing specification string
 %
 {
@@ -1376,7 +1376,7 @@
 \cs_new:Npn \subfiglist_tokenize_newline:NNN #1 #2 #3
 %
 % #1: Token list variable for storing tokenized specification string
-% #2: Token list variable for storing identifier numbers
+% #2: Sequence variable for storing identifier numbers
 % #3: Sequence containing specification string
 %
 {
@@ -1421,26 +1421,30 @@
 \cs_new:Npn \subfiglist_tokenize_subblock:NNN #1 #2 #3
 %
 % #1: Token list variable for storing tokenized specification string
-% #2: Token list variable for storing identifier numbers
+% #2: Sequence variable for storing identifier numbers
 % #3: Sequence containing specification string
 %
 {
   \seq_pop_left:NN #3 \subfiglist_tmpa_tl
   \group_begin:
     \tl_clear:N #1
-    \subfiglist_tokenize_spec_str:NNV #1 #2 \subfiglist_tmpa_tl
+    \seq_clear:N #2
+    \subfiglist_seq_set_from_tl:NN #3 \subfiglist_tmpa_tl
     \subfiglist_tokenize_spec_str:NNN #1 #2 #3
     \subfiglist_tl_set_wrapped:NnV \subfiglist_tmpa_tl { subblock } #1
-    \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tmpa_tl
-    \subfiglist_group_var_return:NN \tl_set:Nn #2
+    \subfiglist_tl_set_from_seq:NN \subfiglist_tmpb_tl #2
+  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tmpa_tl
+  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tmpb_tl
   \group_end:
   \tl_put_right:NV #1 \subfiglist_tmpa_tl
+  \subfiglist_seq_set_from_tl:NN \subfiglist_tmp_seq \subfiglist_tmpb_tl
+  \seq_concat:NNN #2 #2 \subfiglist_tmp_seq
 }
 
 \cs_new:Npn \subfiglist_tokenize_error:NNN #1 #2 #3
 %
 % #1: Token list variable for storing tokenized specification string
-% #2: Token list variable for storing identifier numbers
+% #2: Sequence variable for storing identifier numbers
 % #3: Sequence containing specification string
 %
 {
@@ -1452,7 +1456,7 @@
 \cs_new:Npn \subfiglist_tokenize_spec_str:NNN #1 #2 #3
 %
 % #1: Token list variable for storing tokenized specification string
-% #2: Token list variable for storing identifier numbers
+% #2: Sequence variable for storing identifier numbers
 % #3: Sequence containing specification string
 %
 {
@@ -1471,11 +1475,12 @@
         }
       }
     }
+    \subfiglist_tl_set_from_seq:NN \subfiglist_tmpa_tl #2
   \subfiglist_group_var_return:NN \tl_set:Nn #1
-  \subfiglist_group_var_return:NN \tl_set:Nn #2
+  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tmpa_tl
   \group_end:
-}
-
+  \subfiglist_seq_set_from_tl:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
+  \seq_concat:NNN #2 #2 \subfiglist_tmp_seq
 }
 
 
@@ -1723,8 +1728,8 @@
 %
 {
   % Sort detected image numbers
-  \tl_set_eq:NN #2 #1
-  \tl_sort:Nn #2
+  \seq_set_eq:NN #2 #1
+  \seq_sort:Nn #2
   {
     \int_compare:nTF { ##1 > ##2 }
       { \sort_reversed: }
@@ -1733,7 +1738,7 @@
   
   % Check if some image number is missing
   \int_zero:N \subfiglist_tmp_int
-  \tl_map_inline:Nn #2
+  \seq_map_inline:Nn #2
   {
     \int_incr:N \subfiglist_tmp_int
     
@@ -1742,10 +1747,10 @@
       \int_compare:nTF { ##1 > \subfiglist_tmp_int }
       {
         \msg_error:nnV { subfiglist } { missing~identifier } \subfiglist_tmp_int
-        \tl_map_break:
+        \seq_map_break:
       }{
         \msg_error:nnn { subfiglist } { double~identifier } { ##1 }
-        \tl_map_break:
+        \seq_map_break:
       }
     }
   }
@@ -1755,9 +1760,16 @@
   
   % Check if image numbers in subfiglist specification
   % are in ascending order and warn if otherwise
-  \str_if_eq:VVF #1 #2
+  \int_zero:N \subfiglist_tmp_int
+  \seq_map_inline:Nn #1
   {
-    \msg_warning:nn { subfiglist } { wrong~identifier~order }
+    \int_incr:N \subfiglist_tmp_int
+    
+    \int_compare:nF { ##1 = \subfiglist_tmp_int }
+    {
+      \msg_warning:nn { subfiglist } { wrong~identifier~order }
+      \seq_map_break:
+    }
   }
 }
 
@@ -2467,7 +2479,7 @@
       {
         \seq_set_split:Nxn \subfiglist_tmp_seq { \char_generate:nV { `/ } \subfiglist_tmp_int } { #2 }
         \seq_pop_right:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
-        \import{ \seq_use:Nn \subfiglist_tmp_seq { / } / }{ \tl_use:N \subfiglist_tmpa_tl }
+        \import { \seq_use:Nn \subfiglist_tmp_seq { / } / }{ \tl_use:N \subfiglist_tmpa_tl }
       }{
         \input { #2 }
       }
@@ -2512,7 +2524,7 @@
     {
       \seq_set_split:Nxn \subfiglist_tmp_seq { \char_generate:nV { `/ } \subfiglist_tmp_int } { #1 }
       \seq_pop_right:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
-      \import{ \seq_use:Nn \subfiglist_tmp_seq { / } / }{ \tl_use:N \subfiglist_tmpa_tl }
+      \import { \seq_use:Nn \subfiglist_tmp_seq { / } / }{ \tl_use:N \subfiglist_tmpa_tl }
     }{
       \input { #1 }
     }
@@ -3185,8 +3197,8 @@
   
   % Verify identifier numbers
   \subfiglist_verify_identifier_nums:NNN
-    \subfiglist_identifier_nums_tl
-    \subfiglist_identifier_nums_sorted_tl
+    \subfiglist_identifier_nums_seq
+    \subfiglist_identifier_nums_sorted_seq
     \subfiglist_identifier_count_int
     
   % Parse subfiglist specification
@@ -3216,7 +3228,7 @@
 }{
   % Verify canvas numbers
   \subfiglist_verify_canvas_nums:NNNV
-    \subfiglist_identifier_nums_tl
+    \subfiglist_identifier_nums_seq
     \subfiglist_canvas_nums_tl
     \subifglist_canvas_nums_sorted_tl
     \subfiglist_identifier_count_int
