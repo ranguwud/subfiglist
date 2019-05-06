@@ -11,7 +11,7 @@ TODO
 * Define variables used to store keys
 * Check default dim keys for right format
 * Check naming conventions for local and global variables
-* Check required package versions (\char_generate:nn?)
+* Check required package versions
 * Check compile warnings
 
 
