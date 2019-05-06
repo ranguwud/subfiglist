@@ -1429,6 +1429,7 @@
   \group_begin:
     \tl_clear:N #1
     \subfiglist_tokenize_spec_str:NNV #1 #2 \subfiglist_tmpa_tl
+    \subfiglist_tokenize_spec_str:NNN #1 #2 #3
     \subfiglist_tl_set_wrapped:NnV \subfiglist_tmpa_tl { subblock } #1
     \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tmpa_tl
     \subfiglist_group_var_return:NN \tl_set:Nn #2
@@ -1448,29 +1449,24 @@
 }
 
 % Lexer for subfiglist specification
-\cs_new:Npn \subfiglist_tokenize_spec_str:NNn #1 #2 #3
+\cs_new:Npn \subfiglist_tokenize_spec_str:NNN #1 #2 #3
 %
 % #1: Token list variable for storing tokenized specification string
 % #2: Token list variable for storing identifier numbers
-% #3: Token list containing specification string
+% #3: Sequence containing specification string
 %
 {
   \group_begin:
-    \seq_clear:N \subfiglist_spec_str_seq
-    \tl_map_inline:nn { #3 }
-    {
-      \seq_put_right:Nn \subfiglist_spec_str_seq { ##1 }
-    }
     
-    \bool_until_do:nn { \seq_if_empty_p:N \subfiglist_spec_str_seq }
+    \bool_until_do:nn { \seq_if_empty_p:N #3 }
     {
-      \seq_get_left:NN \subfiglist_spec_str_seq \subfiglist_tmpa_tl
+      \seq_get_left:NN #3 \subfiglist_tmpa_tl
       
       \tl_map_inline:nn { { integer } { at } { newline } { subblock } { error } }
       {
         \bool_if:nT { \subfiglist_use:c { subfiglist_tokenize_is_ ##1 _p:V } \subfiglist_tmpa_tl }
         {
-          \subfiglist_use:c { subfiglist_tokenize_ ##1 :NNN } #1 #2 \subfiglist_spec_str_seq
+          \subfiglist_use:c { subfiglist_tokenize_ ##1 :NNN } #1 #2 #3
           \tl_map_break:
         }
       }
@@ -1480,7 +1476,7 @@
   \group_end:
 }
 
-\cs_generate_variant:Nn \subfiglist_tokenize_spec_str:NNn { NNV }
+}
 
 
 
@@ -3181,9 +3177,11 @@
   }
   
   % Tokenize subfiglist specification
-  \tl_clear:N \subfiglist_identifier_nums_tl
-  \seq_clear:N \subfiglist_spec_token_seq
-  \subfiglist_tokenize_spec_str:NNn \subfiglist_tokenized_spec_tl \subfiglist_identifier_nums_tl { #3 }
+  \tl_set:Nn \subfiglist_tmpa_tl { #3 }
+  \subfiglist_seq_set_from_tl:NN \subfiglist_spec_str_seq \subfiglist_tmpa_tl
+  \seq_clear:N \subfiglist_identifier_nums_seq
+  \tl_clear:N \subfiglist_tokenized_spec_tl
+  \subfiglist_tokenize_spec_str:NNN \subfiglist_tokenized_spec_tl \subfiglist_identifier_nums_seq \subfiglist_spec_str_seq
   
   % Verify identifier numbers
   \subfiglist_verify_identifier_nums:NNN
