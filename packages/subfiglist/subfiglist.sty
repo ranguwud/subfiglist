@@ -885,16 +885,20 @@
   \group_end:
 }
 
-\cs_new:Npn \subfiglist_seq_set_from_tl:NN #1 #2
-%
-% #1: Sequence to be set
-% #2: Token list
-%
+\tl_map_inline:nn { nN }
 {
-  \seq_clear:N #1
-  \tl_map_inline:Nn #2
+  \cs_new:cpn { subfiglist_seq_set_from_tl:N #1 } ##1 ##2
+  %
+  % #1: Sequence to be set
+  % #2: Token list
+  %
   {
-    \seq_put_right:Nn #1 { ##1 }
+    \seq_clear:N ##1
+    \subfiglist_use:c { tl_map_inline: #1 n } { ##2 }
+    {
+      \seq_put_right:Nn ##1 { ####1 }
+    }
+    \seq_log:N ##1
   }
 }
 
@@ -3189,8 +3193,7 @@
   }
   
   % Tokenize subfiglist specification
-  \tl_set:Nn \subfiglist_tmpa_tl { #3 }
-  \subfiglist_seq_set_from_tl:NN \subfiglist_spec_str_seq \subfiglist_tmpa_tl
+  \subfiglist_seq_set_from_tl:Nn \subfiglist_spec_str_seq { #3 }
   \seq_clear:N \subfiglist_identifier_nums_seq
   \tl_clear:N \subfiglist_tokenized_spec_tl
   \subfiglist_tokenize_spec_str:NNN \subfiglist_tokenized_spec_tl \subfiglist_identifier_nums_seq \subfiglist_spec_str_seq

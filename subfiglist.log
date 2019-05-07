@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.1.6)  6 MAY 2019 21:42
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.1.6)  7 MAY 2019 12:00
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -783,57 +783,57 @@ Package graphics Info: Driver file: xetex.def on input line 99.
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistfile with sig. '' on line 3092.
+. Defining command \subfiglistfile with sig. '' on line 3096.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummyfile with sig. '' on line 3099.
+. Defining command \subfiglistdummyfile with sig. '' on line 3103.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummy with sig. '' on line 3106.
+. Defining command \subfiglistdummy with sig. '' on line 3110.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabel with sig. '' on line 3113.
+. Defining command \subfiglistlabel with sig. '' on line 3117.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistoverlay with sig. '' on line 3120.
+. Defining command \subfiglistoverlay with sig. '' on line 3124.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabelformat with sig. '' on line 3129.
+. Defining command \subfiglistlabelformat with sig. '' on line 3133.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistsvgenv' with sig. '' on line 3133.
+. Defining environment 'subfiglistsvgenv' with sig. '' on line 3137.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglisttexenv' with sig. '' on line 3137.
+. Defining environment 'subfiglisttexenv' with sig. '' on line 3141.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3158.
+. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3162.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3270.
+. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3273.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3274.
+. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3277.
 .................................................
 )
 runsystem(rm ./subfiglist.sty)...executed.
@@ -1446,6 +1446,22 @@ Package microtype Info: Setting up font `T1/lmr/m/n/6' on input line 264.
 Package microtype Info: ... Loading protrusion list `lmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-default'.
+The sequence \subfiglist_spec_str_seq contains the items (without outer
+braces):
+>  {1}
+>  {2}
+>  {3}
+>  {\\}
+>  {4}
+>  {5}
+>  {6}.
+The sequence \subfiglist_tmp_seq contains the items (without outer braces):
+>  {1}
+>  {2}
+>  {3}
+>  {4}
+>  {5}
+>  {6}.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -1559,6 +1575,72 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 311.
 [3]
+The sequence \subfiglist_spec_str_seq contains the items (without outer
+braces):
+>  {1}
+>  {@}
+>  {\color {red}\rule {2ex}{2ex}}
+>  {2}
+>  {3}
+>  {\\}
+>  { 4 \\ 5 6 }
+>  {7}
+>  { 8 9 \\ {10} }
+>  {\\}
+>  {[}
+>  {3}
+>  {e}
+>  {x}
+>  {]}
+>  {11}
+>  {12}
+>  {@}
+>  {\hspace *{3ex}}
+>  {13}
+>  {14}.
+The sequence \subfiglist_spec_str_seq contains the items (without outer
+braces):
+>  {4}
+>  {\\}
+>  {5}
+>  {6}.
+The sequence \subfiglist_tmp_seq contains the items (without outer braces):
+>  {4}
+>  {5}
+>  {6}.
+The sequence \subfiglist_tmp_seq contains the items (without outer braces):
+>  {4}
+>  {5}
+>  {6}.
+The sequence \subfiglist_spec_str_seq contains the items (without outer
+braces):
+>  {8}
+>  {9}
+>  {\\}
+>  {10}.
+The sequence \subfiglist_tmp_seq contains the items (without outer braces):
+>  {8}
+>  {9}
+>  {10}.
+The sequence \subfiglist_tmp_seq contains the items (without outer braces):
+>  {8}
+>  {9}
+>  {10}.
+The sequence \subfiglist_tmp_seq contains the items (without outer braces):
+>  {1}
+>  {2}
+>  {3}
+>  {4}
+>  {5}
+>  {6}
+>  {7}
+>  {8}
+>  {9}
+>  {10}
+>  {11}
+>  {12}
+>  {13}
+>  {14}.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -1692,6 +1774,15 @@ Package microtype Info: Setting up font `T1/lmr/m/n/8' on input line 389.
 Package microtype Info: ... Loading protrusion list `lmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-default'.
+The sequence \subfiglist_spec_str_seq contains the items (without outer
+braces):
+>  {1}
+>  {2}
+>  {3}.
+The sequence \subfiglist_tmp_seq contains the items (without outer braces):
+>  {1}
+>  {2}
+>  {3}.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -1798,6 +1889,15 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 426.
 [5]
+The sequence \subfiglist_spec_str_seq contains the items (without outer
+braces):
+>  {1}
+>  {2}
+>  {3}.
+The sequence \subfiglist_tmp_seq contains the items (without outer braces):
+>  {1}
+>  {2}
+>  {3}.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -1934,6 +2034,18 @@ File: figures/04.png Graphic file (type bmp)
 . 
 . Redefining command \subfiglistoverlay with sig. '' on line 468.
 .................................................
+The sequence \subfiglist_spec_str_seq contains the items (without outer
+braces):
+>  {1}
+>  {2}
+>  {\\}
+>  {3}
+>  {4}.
+The sequence \subfiglist_tmp_seq contains the items (without outer braces):
+>  {1}
+>  {2}
+>  {3}
+>  {4}.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -2037,6 +2149,22 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 544.
  [7]
+The sequence \subfiglist_spec_str_seq contains the items (without outer
+braces):
+>  {1}
+>  {2}
+>  {3}
+>  {\\}
+>  {4}
+>  {5}
+>  {6}.
+The sequence \subfiglist_tmp_seq contains the items (without outer braces):
+>  {1}
+>  {2}
+>  {3}
+>  {4}
+>  {5}
+>  {6}.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -2144,6 +2272,13 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 640.
 [8]
+The sequence \subfiglist_spec_str_seq contains the items (without outer
+braces):
+>  {1}
+>  {2}.
+The sequence \subfiglist_tmp_seq contains the items (without outer braces):
+>  {1}
+>  {2}.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -2224,6 +2359,13 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 710.
 [9]
+The sequence \subfiglist_spec_str_seq contains the items (without outer
+braces):
+>  {1}
+>  {2}.
+The sequence \subfiglist_tmp_seq contains the items (without outer braces):
+>  {1}
+>  {2}.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -2353,10 +2495,10 @@ Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 804.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 804.
  ) 
 Here is how much of TeX's memory you used:
- 33382 strings out of 493007
- 616754 string characters out of 6136720
- 806335 words of memory out of 5000000
- 36921 multiletter control sequences out of 15000+600000
+ 33383 strings out of 493007
+ 616783 string characters out of 6136720
+ 806392 words of memory out of 5000000
+ 36922 multiletter control sequences out of 15000+600000
  602883 words of font info for 77 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  54i,18n,102p,10433b,995s stack positions out of 5000i,500n,10000p,200000b,80000s
