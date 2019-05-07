@@ -636,7 +636,7 @@ demonstrates. Default color is \texttt{.}\ (period) if not specified otherwise i
 \subfiglistoverlay{image-number}{content}
 \end{verbatim}
 
-This command can be used to place objects on top of the image referenced by \texttt{image-number}. The argument \texttt{content} can contain arbitrary commands that are placed inside the environment \texttt{subfiglistoverlayenv}. By default, \texttt{subfiglistoverlayenv} expands to a \texttt{picture} environment with \verb|\unitlength| being equal to the width of the image referenced by \texttt{image-number}.
+\ref{baz}This command can be used to place objects on top of the image referenced by \texttt{image-number}. The argument \texttt{content} can contain arbitrary commands that are placed inside the environment \texttt{subfiglistoverlayenv}. By default, \texttt{subfiglistoverlayenv} expands to a \texttt{picture} environment with \verb|\unitlength| being equal to the width of the image referenced by \texttt{image-number}.
 
 When \verb|\subfiglistoverlay| in its default setup, i.\,e.\ for \texttt{subfiglistoverlayenv} expanding to a \texttt{picture} environment, is used for drawing lines or shapes, loading of the \texttt{pict2e} package is strongly recommended. The standard \texttt{picture} environment suffers from several severe limitations, which are lifted by this package.
 

@@ -11,8 +11,7 @@ TODO
 * Check required package versions (\char_generate:nn?)
 * Check compile warnings
 * Setup ALL default options
-* Remove checks for \quark_no_value
-* Allow changing order of labels
+* Remove unnecessary checks for \quark_no_value
 
 
 
@@ -70,4 +69,5 @@ DONE
 * Verify numbers for labels and overlays
 * Test all kinds of weird nestings and alignments
 * Add spaces to empty lines to fix syntax highlighting
+* Allow changing order of labels
 

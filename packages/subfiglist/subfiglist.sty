@@ -588,11 +588,18 @@
   % code, if subfiglist package is loaded with caption option.
   \bool_if:NT \subfiglist_tweak_caption_package_bool
   {
-    \cs_new:Npn \subfiglist_label_inset_caption_package:n #1
+    \cs_new:Npn \subfiglist_label_inset_caption_package:nn #1 #2
     %
     % #1: Text color
+    % #2: Label number
     %
     {
+      \int_compare:nT { #2 > 1 }
+      {
+        \addtocounter { \@subcaptype } { \numexpr -\value { \@subcaptype } }
+        \addtocounter { \@subcaptype } { #2 }
+        \addtocounter { \@subcaptype } { -1 }
+      }
       % Step subcaption counter
       \caption@@@refstepcounter\@subcaptype
       % Setup label anchor
@@ -614,7 +621,7 @@
       \caption@end
     }
     
-    \cs_generate_variant:Nn \subfiglist_label_inset_caption_package:n { V }
+    \cs_generate_variant:Nn \subfiglist_label_inset_caption_package:nn { VV }
   }
   
   % Keys for subfiglist environment
@@ -2127,6 +2134,7 @@
   \subfiglist_is_positive_integer:nTF { #2 }
   {
     \seq_put_right:Nn \subfiglist_label_nums_seq { #2 }
+    \int_set:Nn \subfiglist_tmp_int { \seq_count:N \subfiglist_label_nums_seq }
     
     % Save label hook
     \prop_clear:N \subfiglist_tmp_prop
@@ -2148,6 +2156,7 @@
     \prop_put:NnV \subfiglist_tmp_prop { yshift }     \subfiglist_label_yshift_dim
     \prop_put:NnV \subfiglist_tmp_prop { color }      \subfiglist_label_color_tl
     \prop_put:NnV \subfiglist_tmp_prop { background } \subfiglist_label_background_tl
+    \prop_put:NnV \subfiglist_tmp_prop { sequenceno } \subfiglist_tmp_int
     
     \subfiglist_tl_set_from_prop:NN \subfiglist_tmpa_tl \subfiglist_tmp_prop
     \prop_put:NnV \subfiglist_label_prop { #2 } \subfiglist_tmpa_tl
@@ -3136,13 +3145,15 @@
                   \hspace{ \subfiglist_tmpa_dim }
                   % Choose left, center or right alignment for label
                   \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { hpos } \subfiglist_tmpa_tl
-                  \tl_set:Nn \subfiglist_tmp_int
+                  \int_set:Nn \subfiglist_tmp_int
                     { \subfiglist_tmpa_tl - \subfiglist_keyval_choice_first_int + 1 }
                   \makebox [ 0pt ]
                   [
                     \tl_item:nn { lcr } { \subfiglist_tmp_int }
                   ]
                   {
+                    \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { sequenceno } \subfiglist_tmpa_tl
+                    \int_set:Nn \subfiglist_tmp_int { \subfiglist_tmpa_tl }
                     % Additional vertical shift
                     \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { yshift } \subfiglist_tmpa_tl
                     \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
@@ -3160,12 +3171,18 @@
                         % Use caption package for putting label?
                         \bool_if:NTF \subfiglist_tweak_caption_package_bool
                         {
-                          \subfiglist_label_inset_caption_package:V \subfiglist_tmpa_tl
+                          \subfiglist_label_inset_caption_package:VV \subfiglist_tmpa_tl \subfiglist_tmp_int
                           % Put hook for label
                           \rlap{ \subfiglist_tmpb_tl }
                         }{
                           \hbox:n
                           {
+                            \int_compare:nT { \subfiglist_tmp_int > 1 }
+                            {
+                              \addtocounter { subfigure } { \numexpr -\value { subfigure } }
+                              \addtocounter { subfigure } { #2 }
+                              \addtocounter { subfigure } { -1 }
+                            }
                             \refstepcounter { subfigure }
                             \color { \subfiglist_tmpa_tl }
                             \subfiglistlabelformat

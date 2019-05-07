@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.1.6)  7 MAY 2019 14:16
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.1.6)  7 MAY 2019 15:45
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -783,57 +783,57 @@ Package graphics Info: Driver file: xetex.def on input line 99.
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistfile with sig. '' on line 3230.
+. Defining command \subfiglistfile with sig. '' on line 3248.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummyfile with sig. '' on line 3237.
+. Defining command \subfiglistdummyfile with sig. '' on line 3255.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummy with sig. '' on line 3244.
+. Defining command \subfiglistdummy with sig. '' on line 3262.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabel with sig. '' on line 3251.
+. Defining command \subfiglistlabel with sig. '' on line 3269.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistoverlay with sig. '' on line 3258.
+. Defining command \subfiglistoverlay with sig. '' on line 3276.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabelformat with sig. '' on line 3267.
+. Defining command \subfiglistlabelformat with sig. '' on line 3285.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistsvgenv' with sig. '' on line 3271.
+. Defining environment 'subfiglistsvgenv' with sig. '' on line 3289.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglisttexenv' with sig. '' on line 3275.
+. Defining environment 'subfiglisttexenv' with sig. '' on line 3293.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3296.
+. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3314.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3421.
+. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3439.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3425.
+. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3443.
 .................................................
 )
 runsystem(rm ./subfiglist.sty)...executed.
@@ -2096,6 +2096,12 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 633.
 
+Overfull \hbox (8.35406pt too wide) in paragraph at lines 639--640
+[][][]\T1/lmr/m/n/12 (c)[][]This com-mand can be used to place ob-jects on top 
+of the im-age ref-er-enced by \T1/lmtt/m/n/12 image-number\T1/lmr/m/n/12 .
+ []
+
+
 Overfull \hbox (25.18835pt too wide) in paragraph at lines 639--640
 \T1/lmr/m/n/12 vi-ron-ment with [][]\T1/lmtt/m/n/12 \unitlength []\T1/lmr/m/n/1
 2 be-ing equal to the width of the im-age ref-er-enced by \T1/lmtt/m/n/12 image
@@ -2308,11 +2314,11 @@ Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 804.
  ) 
 Here is how much of TeX's memory you used:
  33407 strings out of 493007
- 617704 string characters out of 6136720
- 807935 words of memory out of 5000000
+ 617706 string characters out of 6136720
+ 808167 words of memory out of 5000000
  36946 multiletter control sequences out of 15000+600000
  602883 words of font info for 77 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 54i,18n,102p,10433b,999s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 54i,18n,102p,10433b,1011s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on subfiglist.pdf (12 pages).
