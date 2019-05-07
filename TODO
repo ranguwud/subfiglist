@@ -2,18 +2,17 @@ TODO
 
 * Test all error messages
 * Delete unnecessary variables
-* Add spaces to empty lines to fix syntax highlighting
 * Add "g" to name of any global variables
 * Add "i" to name of inline macros, which modify variables without scoping
 * Introduce R-type argument for byref-tokens
-* Verify numbers for labels and overlays
-* Test all kinds of weird nestings and alignments
 * Define variables used to store keys
 * Check default dim keys for right format
 * Check naming conventions for local and global variables
 * Check required package versions (\char_generate:nn?)
 * Check compile warnings
 * Setup ALL default options
+* Remove checks for \quark_no_value
+* Allow changing order of labels
 
 
 
@@ -68,4 +67,7 @@ DONE
 * Remove error message "argument out of range"
 * Rewrite error messages for int/float as "expected integer, found ... instead"
 * Control catcodes when splitting strings
+* Verify numbers for labels and overlays
+* Test all kinds of weird nestings and alignments
+* Add spaces to empty lines to fix syntax highlighting
 

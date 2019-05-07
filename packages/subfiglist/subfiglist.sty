@@ -130,7 +130,10 @@
 \seq_new:N   \subfiglist_identifier_nums_sorted_seq
 \seq_new:N   \subfiglist_canvas_nums_seq
 \seq_new:N   \subfiglist_canvas_nums_sorted_seq
-
+\seq_new:N   \subfiglist_label_nums_seq
+\seq_new:N   \subfiglist_label_nums_sorted_seq
+\seq_new:N   \subfiglist_overlay_nums_seq
+\seq_new:N   \subfiglist_overlay_nums_sorted_seq
 
 \prop_new:N \subfiglist_canvas_prop
 \prop_new:N \subfiglist_label_prop
@@ -277,6 +280,12 @@
 \msg_new:nnn { subfiglist } { double~canvas }
   { Canvas~no.~#1~appears~twice~in~body~of~`subfiglist'~environment. }
 
+\msg_new:nnn { subfiglist } { double~label }
+  { Label~no.~#1~appears~twice~in~body~of~`subfiglist'~environment. }
+
+\msg_new:nnn { subfiglist } { double~overlay }
+  { Overlay~no.~#1~appears~twice~in~body~of~`subfiglist'~environment. }
+
 \msg_new:nnn { subfiglist } { too~many~identifiers }
 {
   You~have~specified~#1~identifieres~in~argument~of~`subfiglist'~environment,~
@@ -285,7 +294,19 @@
 
 \msg_new:nnn { subfiglist } { too~many~canvases }
 {
-  You~have~specified~#1~canvases~in~body~of~`subfiglist'~environment,~
+  You~have~specified~canvas~no.~#1~in~body~of~`subfiglist'~environment,~
+  but~only~#2~identifieres~are~given~in~argument~of~`subfiglist'~environment.
+}
+
+\msg_new:nnn { subfiglist } { too~many~labels }
+{
+  You~have~specified~label~no.~#1~in~body~of~`subfiglist'~environment,~
+  but~only~#2~identifieres~are~given~in~argument~of~`subfiglist'~environment.
+}
+
+\msg_new:nnn { subfiglist } { too~many~overlays }
+{
+  You~have~specified~overlay~no.~#1~in~body~of~`subfiglist'~environment,~
   but~only~#2~identifieres~are~given~in~argument~of~`subfiglist'~environment.
 }
 
@@ -325,11 +346,31 @@
   The~canvas~numbers~in~the~body~of~`subfiglist'~environment~are~given~in~non-ascending~order.
 }
 
-\msg_new:nnn { subfiglist } { mismatching~image~order }
+\msg_new:nnn { subfiglist } { wrong~label~order }
+{
+  Package~subfiglist~Warning:~
+  The~label~numbers~in~the~body~of~`subfiglist'~environment~are~given~in~non-ascending~order.
+}
+
+\msg_new:nnn { subfiglist } { mismatching~canvas~order }
 {
   Package~subfiglist~Warning:~
   The~canvas~numbers~in~the~argument~of~`subfiglist'~environment~are~given~
   in~a~different~order~than~the~canvas~numbers~in~the~body~of~`subfiglist'~environment.
+}
+
+\msg_new:nnn { subfiglist } { mismatching~label~order }
+{
+  Package~subfiglist~Warning:~
+  The~canvas~numbers~in~the~argument~of~`subfiglist'~environment~are~given~
+  in~a~different~order~than~the~label~numbers~in~the~body~of~`subfiglist'~environment.
+}
+
+\msg_new:nnn { subfiglist } { mismatching~overlay~order }
+{
+  Package~subfiglist~Warning:~
+  The~canvas~numbers~in~the~argument~of~`subfiglist'~environment~are~given~
+  in~a~different~order~than~the~overlay~numbers~in~the~body~of~`subfiglist'~environment.
 }
 
 
@@ -1847,7 +1888,7 @@
     
     \int_compare:nF { ##1 = \seq_item:Nn #1 \subfiglist_tmp_int }
     {
-      \msg_warning:nn { subfiglist } { mismatching~image~order }
+      \msg_warning:nn { subfiglist } { mismatching~canvas~order }
       \seq_map_break:
     }
   }
@@ -1855,6 +1896,82 @@
 
 \cs_generate_variant:Nn \subfiglist_verify_canvas_nums:NNNn { NNNV }
 
+\tl_map_inline:nn { { label } { overlay } }
+{
+  % Check if image numbers given in subfiglist body are valid
+  \cs_new:cpn { subfiglist_verify_ #1 _nums:NNNn } ##1 ##2 ##3 ##4
+  %
+  % #1: Variable containing identifier numbers
+  % #2: Variable containing label/overlay numbers
+  % #3: Variable to store sorted label/overlay numbers
+  % #4: Total number of identifiers
+  %
+  {
+    % Sort detected label/overlay numbers
+    \seq_set_eq:NN ##3 ##2
+    \seq_sort:Nn ##3
+    {
+      \int_compare:nTF { ####1 > ####2 }
+        { \sort_reversed: }
+        { \sort_ordered: }
+    }
+    
+    % Check for double label/overlay numbers
+    \int_zero:N \subfiglist_tmp_int
+    \seq_map_inline:Nn ##3
+    {
+      \int_compare:nF { \subfiglist_tmp_int < ####1 }
+      {
+          \msg_error:nnn { subfiglist } { double~ #1 } { ####1 }
+          \seq_map_break:
+      }
+      \int_set:Nn \subfiglist_tmp_int { ####1 }
+    }
+    
+    % Check for too large label/overlay numbers
+    \seq_get_right:NN ##3 \subfiglist_tmpa_tl
+    \quark_if_no_value:NF \subfiglist_tmpa_tl
+    {
+      \int_compare:nT { \subfiglist_tmpa_tl > ##4 }
+      {
+        \msg_error:nnVn { subfiglist } { too~many~ #1 s } \subfiglist_tmpa_tl { ##4 }
+      }
+    }
+    
+    % Check if label/overlay numbers in subfiglist body
+    % are in ascending order and warn if otherwise
+    \int_zero:N \subfiglist_tmp_int
+    \seq_map_inline:Nn ##2
+    {
+      \int_incr:N \subfiglist_tmp_int
+      
+      \int_compare:nF { ####1 = \seq_item:Nn ##3 { \subfiglist_tmp_int } }
+      {
+        \msg_warning:nn { subfiglist } { wrong~ #1 ~order }
+        \seq_map_break:
+      }
+    }
+    
+    % Check if label/overlay numbers are in same order
+    % as in specification string and warn if otherwise
+    \int_zero:N \subfiglist_tmp_int
+    \seq_map_inline:Nn ##1
+    {
+      \seq_if_in:NnT ##2 { ####1 }
+      {
+        \int_incr:N \subfiglist_tmp_int
+        
+        \int_compare:nF { ####1 = \seq_item:Nn ##2 { \subfiglist_tmp_int } }
+        {
+          \msg_warning:nn { subfiglist } { mismatching~ #1 ~order }
+          \seq_map_break:
+        }
+      }
+    }
+  }
+
+  \cs_generate_variant:cn { subfiglist_verify_ #1 _nums:NNNn } { NNNV }
+}
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -2009,6 +2126,8 @@
   % Check if second argument is numeric
   \subfiglist_is_positive_integer:nTF { #2 }
   {
+    \seq_put_right:Nn \subfiglist_label_nums_seq { #2 }
+    
     % Save label hook
     \prop_clear:N \subfiglist_tmp_prop
     \prop_put:Nnn \subfiglist_tmp_prop { hook } { #3 }
@@ -2047,6 +2166,8 @@
   % Check if first argument is numeric
   \subfiglist_is_positive_integer:nTF { #1 }
   {
+    \seq_put_right:Nn \subfiglist_overlay_nums_seq { #1 }
+    
     \prop_clear:N \subfiglist_tmp_prop
     \prop_put:Nnn \subfiglist_tmp_prop { content } { #2 }
     
@@ -3247,6 +3368,20 @@
     \subfiglist_identifier_nums_seq
     \subfiglist_canvas_nums_seq
     \subifglist_canvas_nums_sorted_seq
+    \subfiglist_identifier_count_int
+  
+  % Verify label numbers
+  \subfiglist_verify_label_nums:NNNV
+    \subfiglist_identifier_nums_seq
+    \subfiglist_label_nums_seq
+    \subifglist_label_nums_sorted_seq
+    \subfiglist_identifier_count_int
+
+  % Verify overlay numbers
+  \subfiglist_verify_overlay_nums:NNNV
+    \subfiglist_identifier_nums_seq
+    \subfiglist_overlay_nums_seq
+    \subifglist_overlay_nums_sorted_seq
     \subfiglist_identifier_count_int
   
   % Iterate over top level elements to build

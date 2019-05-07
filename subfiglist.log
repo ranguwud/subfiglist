@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.1.6)  7 MAY 2019 12:21
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.1.6)  7 MAY 2019 14:16
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -778,62 +778,62 @@ Package graphics Info: Driver file: xetex.def on input line 99.
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistsetup with sig. 'm' on line 524.
+. Defining command \subfiglistsetup with sig. 'm' on line 565.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistfile with sig. '' on line 3109.
+. Defining command \subfiglistfile with sig. '' on line 3230.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummyfile with sig. '' on line 3116.
+. Defining command \subfiglistdummyfile with sig. '' on line 3237.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummy with sig. '' on line 3123.
+. Defining command \subfiglistdummy with sig. '' on line 3244.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabel with sig. '' on line 3130.
+. Defining command \subfiglistlabel with sig. '' on line 3251.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistoverlay with sig. '' on line 3137.
+. Defining command \subfiglistoverlay with sig. '' on line 3258.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabelformat with sig. '' on line 3146.
+. Defining command \subfiglistlabelformat with sig. '' on line 3267.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistsvgenv' with sig. '' on line 3150.
+. Defining environment 'subfiglistsvgenv' with sig. '' on line 3271.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglisttexenv' with sig. '' on line 3154.
+. Defining environment 'subfiglisttexenv' with sig. '' on line 3275.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3175.
+. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3296.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3286.
+. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3421.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3290.
+. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3425.
 .................................................
 )
 runsystem(rm ./subfiglist.sty)...executed.
@@ -1491,7 +1491,7 @@ File: figures/06.png Graphic file (type bmp)
 * environment are given in non-ascending order.
 *************************************************
 *************************************************
-* subfiglist warning: "mismatching image order"
+* subfiglist warning: "mismatching canvas order"
 * 
 * Package subfiglist Warning: The canvas numbers in the argument of
 * `subfiglist' environment are given in a different order than the canvas
@@ -2307,12 +2307,12 @@ Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 804.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 804.
  ) 
 Here is how much of TeX's memory you used:
- 33383 strings out of 493007
- 616786 string characters out of 6136720
- 806407 words of memory out of 5000000
- 36922 multiletter control sequences out of 15000+600000
+ 33407 strings out of 493007
+ 617704 string characters out of 6136720
+ 807935 words of memory out of 5000000
+ 36946 multiletter control sequences out of 15000+600000
  602883 words of font info for 77 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 54i,18n,102p,10433b,995s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 54i,18n,102p,10433b,999s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on subfiglist.pdf (12 pages).
