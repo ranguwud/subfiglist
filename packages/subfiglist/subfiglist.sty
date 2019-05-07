@@ -75,9 +75,6 @@
 \tl_new:N   \subfiglist_dimensioned_spec_tl
 \tl_new:N   \subfiglist_spec_current_line_tl
 
-\tl_new:N   \subfiglist_canvas_nums_tl
-\tl_new:N   \subfiglist_canvas_nums_sorted_tl
-
 \tl_new:N   \subfiglist_canvas_top_tl
 \tl_new:N   \subfiglist_canvas_bot_tl
 \tl_new:N   \subfiglist_canvas_left_tl
@@ -131,6 +128,9 @@
 
 \seq_new:N   \subfiglist_identifier_nums_seq
 \seq_new:N   \subfiglist_identifier_nums_sorted_seq
+\seq_new:N   \subfiglist_canvas_nums_seq
+\seq_new:N   \subfiglist_canvas_nums_sorted_seq
+
 
 \prop_new:N \subfiglist_canvas_prop
 \prop_new:N \subfiglist_label_prop
@@ -898,7 +898,6 @@
     {
       \seq_put_right:Nn ##1 { ####1 }
     }
-    \seq_log:N ##1
   }
 }
 
@@ -1787,8 +1786,8 @@
 %
 {
   % Sort detected image numbers
-  \tl_set_eq:NN #3 #2
-  \tl_sort:Nn #3
+  \seq_set_eq:NN #3 #2
+  \seq_sort:Nn #3
   {
     \int_compare:nTF { ##1 > ##2 }
       { \sort_reversed: }
@@ -1797,7 +1796,7 @@
   
   % Check if some image number is missing
   \int_zero:N \subfiglist_tmp_int
-  \tl_map_inline:Nn #3
+  \seq_map_inline:Nn #3
   {
     \int_incr:N \subfiglist_tmp_int
     
@@ -1806,10 +1805,10 @@
       \int_compare:nTF { ##1 > \subfiglist_tmp_int }
       {
         \msg_error:nnV { subfiglist } { missing~canvas } \subfiglist_tmp_int
-        \tl_map_break:
+        \seq_map_break:
       }{
         \msg_error:nnn { subfiglist } { double~canvas } { ##1 }
-        \tl_map_break:
+        \seq_map_break:
       }
     }
   }
@@ -1825,16 +1824,32 @@
     }
   }
 
-  % Check if image numbers in subfiglist specification
+  % Check if canvas numbers in subfiglist body
   % are in ascending order and warn if otherwise
-  \str_if_eq:VVF #2 #3
+  \int_zero:N \subfiglist_tmp_int
+  \seq_map_inline:Nn #2
   {
-    \msg_warning:nn { subfiglist } { wrong~canvas~order }
+    \int_incr:N \subfiglist_tmp_int
+    
+    \int_compare:nF { ##1 = \subfiglist_tmp_int }
+    {
+      \msg_warning:nn { subfiglist } { wrong~canvas~order }
+      \seq_map_break:
+    }
   }
   
-  \str_if_eq:VVF #1 #2
+  % Check if canvas numbers in subfiglist specification and body
+  % are in the same order and warn if otherwise
+  \int_zero:N \subfiglist_tmp_int
+  \seq_map_inline:Nn #2
   {
-    \msg_warning:nn { subfiglist } { mismatching~image~order }
+    \int_incr:N \subfiglist_tmp_int
+    
+    \int_compare:nF { ##1 = \seq_item:Nn #1 \subfiglist_tmp_int }
+    {
+      \msg_warning:nn { subfiglist } { mismatching~image~order }
+      \seq_map_break:
+    }
   }
 }
 
@@ -1858,8 +1873,7 @@
     % Check if first argument is numeric
     \subfiglist_is_positive_integer:nTF { ##2 }
     {
-      \subfiglist_tl_set_wrapped:Nn \subfiglist_tmpa_tl { ##2 }
-      \tl_put_right:NV \subfiglist_canvas_nums_tl \subfiglist_tmpa_tl
+      \seq_put_right:Nn \subfiglist_canvas_nums_seq { ##2 }
 
       % Save canvas type and image path
       \prop_clear:N \subfiglist_tmp_prop
@@ -1913,8 +1927,7 @@
   % Check if first argument is numeric
   \subfiglist_is_positive_integer:nTF { #2 }
   {
-    \subfiglist_tl_set_wrapped:Nn \subfiglist_tmpa_tl { #2 }
-    \tl_put_right:NV \subfiglist_canvas_nums_tl \subfiglist_tmpa_tl
+    \seq_put_right:Nn \subfiglist_canvas_nums_seq { #2 }
     
     % Save canvas type and image path
     \prop_clear:N \subfiglist_tmp_prop
@@ -3232,8 +3245,8 @@
   % Verify canvas numbers
   \subfiglist_verify_canvas_nums:NNNV
     \subfiglist_identifier_nums_seq
-    \subfiglist_canvas_nums_tl
-    \subifglist_canvas_nums_sorted_tl
+    \subfiglist_canvas_nums_seq
+    \subifglist_canvas_nums_sorted_seq
     \subfiglist_identifier_count_int
   
   % Iterate over top level elements to build

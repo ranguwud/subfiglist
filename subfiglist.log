@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.1.6)  7 MAY 2019 12:00
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.1.6)  7 MAY 2019 12:21
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -783,57 +783,57 @@ Package graphics Info: Driver file: xetex.def on input line 99.
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistfile with sig. '' on line 3096.
+. Defining command \subfiglistfile with sig. '' on line 3109.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummyfile with sig. '' on line 3103.
+. Defining command \subfiglistdummyfile with sig. '' on line 3116.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummy with sig. '' on line 3110.
+. Defining command \subfiglistdummy with sig. '' on line 3123.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabel with sig. '' on line 3117.
+. Defining command \subfiglistlabel with sig. '' on line 3130.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistoverlay with sig. '' on line 3124.
+. Defining command \subfiglistoverlay with sig. '' on line 3137.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabelformat with sig. '' on line 3133.
+. Defining command \subfiglistlabelformat with sig. '' on line 3146.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistsvgenv' with sig. '' on line 3137.
+. Defining environment 'subfiglistsvgenv' with sig. '' on line 3150.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglisttexenv' with sig. '' on line 3141.
+. Defining environment 'subfiglisttexenv' with sig. '' on line 3154.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3162.
+. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3175.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3273.
+. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3286.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3277.
+. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3290.
 .................................................
 )
 runsystem(rm ./subfiglist.sty)...executed.
@@ -1446,22 +1446,6 @@ Package microtype Info: Setting up font `T1/lmr/m/n/6' on input line 264.
 Package microtype Info: ... Loading protrusion list `lmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-default'.
-The sequence \subfiglist_spec_str_seq contains the items (without outer
-braces):
->  {1}
->  {2}
->  {3}
->  {\\}
->  {4}
->  {5}
->  {6}.
-The sequence \subfiglist_tmp_seq contains the items (without outer braces):
->  {1}
->  {2}
->  {3}
->  {4}
->  {5}
->  {6}.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -1501,6 +1485,12 @@ File: figures/06.png Graphic file (type bmp)
 <figures/06.png>
 
 *************************************************
+* subfiglist warning: "wrong canvas order"
+* 
+* Package subfiglist Warning: The canvas numbers in the body of `subfiglist'
+* environment are given in non-ascending order.
+*************************************************
+*************************************************
 * subfiglist warning: "mismatching image order"
 * 
 * Package subfiglist Warning: The canvas numbers in the argument of
@@ -1515,10 +1505,10 @@ File: figures/03.png Graphic file (type bmp)
 <figures/03.png>
 File: figures/04.png Graphic file (type bmp)
 <figures/04.png>
-File: figures/05.png Graphic file (type bmp)
-<figures/05.png>
 File: figures/06.png Graphic file (type bmp)
 <figures/06.png>
+File: figures/05.png Graphic file (type bmp)
+<figures/05.png>
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -1575,72 +1565,6 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 311.
 [3]
-The sequence \subfiglist_spec_str_seq contains the items (without outer
-braces):
->  {1}
->  {@}
->  {\color {red}\rule {2ex}{2ex}}
->  {2}
->  {3}
->  {\\}
->  { 4 \\ 5 6 }
->  {7}
->  { 8 9 \\ {10} }
->  {\\}
->  {[}
->  {3}
->  {e}
->  {x}
->  {]}
->  {11}
->  {12}
->  {@}
->  {\hspace *{3ex}}
->  {13}
->  {14}.
-The sequence \subfiglist_spec_str_seq contains the items (without outer
-braces):
->  {4}
->  {\\}
->  {5}
->  {6}.
-The sequence \subfiglist_tmp_seq contains the items (without outer braces):
->  {4}
->  {5}
->  {6}.
-The sequence \subfiglist_tmp_seq contains the items (without outer braces):
->  {4}
->  {5}
->  {6}.
-The sequence \subfiglist_spec_str_seq contains the items (without outer
-braces):
->  {8}
->  {9}
->  {\\}
->  {10}.
-The sequence \subfiglist_tmp_seq contains the items (without outer braces):
->  {8}
->  {9}
->  {10}.
-The sequence \subfiglist_tmp_seq contains the items (without outer braces):
->  {8}
->  {9}
->  {10}.
-The sequence \subfiglist_tmp_seq contains the items (without outer braces):
->  {1}
->  {2}
->  {3}
->  {4}
->  {5}
->  {6}
->  {7}
->  {8}
->  {9}
->  {10}
->  {11}
->  {12}
->  {13}
->  {14}.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -1694,14 +1618,6 @@ File: figures/13.png Graphic file (type bmp)
 <figures/13.png>
 File: figures/14.png Graphic file (type bmp)
 <figures/14.png>
-
-*************************************************
-* subfiglist warning: "mismatching image order"
-* 
-* Package subfiglist Warning: The canvas numbers in the argument of
-* `subfiglist' environment are given in a different order than the canvas
-* numbers in the body of `subfiglist' environment.
-*************************************************
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
@@ -1765,7 +1681,7 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 378.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 378.
-[4]
+ [4]
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 382.
 Package babel Info: Redefining ngerman shorthand "~
@@ -1774,15 +1690,6 @@ Package microtype Info: Setting up font `T1/lmr/m/n/8' on input line 389.
 Package microtype Info: ... Loading protrusion list `lmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-default'.
-The sequence \subfiglist_spec_str_seq contains the items (without outer
-braces):
->  {1}
->  {2}
->  {3}.
-The sequence \subfiglist_tmp_seq contains the items (without outer braces):
->  {1}
->  {2}
->  {3}.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -1816,17 +1723,9 @@ File: figures/svg.pdf Graphic file (type pdf)
 )
 File: figures/04.png Graphic file (type bmp)
 <figures/04.png>
-
-*************************************************
-* subfiglist warning: "mismatching image order"
-* 
-* Package subfiglist Warning: The canvas numbers in the argument of
-* `subfiglist' environment are given in a different order than the canvas
-* numbers in the body of `subfiglist' environment.
-*************************************************
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
-(./figures/svg.pdf_tex
+ (./figures/svg.pdf_tex
 File: figures/svg.pdf Graphic file (type pdf)
 <use figures/svg.pdf>
 )
@@ -1889,15 +1788,6 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 426.
 [5]
-The sequence \subfiglist_spec_str_seq contains the items (without outer
-braces):
->  {1}
->  {2}
->  {3}.
-The sequence \subfiglist_tmp_seq contains the items (without outer braces):
->  {1}
->  {2}
->  {3}.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -1993,16 +1883,9 @@ Package microtype Info: ... No protrusion.
 )
 File: figures/04.png Graphic file (type bmp)
 <figures/04.png>
-
-*************************************************
-* subfiglist warning: "mismatching image order"
-* 
-* Package subfiglist Warning: The canvas numbers in the argument of
-* `subfiglist' environment are given in a different order than the canvas
-* numbers in the body of `subfiglist' environment.
-*************************************************
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
+
 (./figures/svg.pdf_tex
 File: figures/svg.pdf Graphic file (type pdf)
 <use figures/svg.pdf>
@@ -2034,18 +1917,6 @@ File: figures/04.png Graphic file (type bmp)
 . 
 . Redefining command \subfiglistoverlay with sig. '' on line 468.
 .................................................
-The sequence \subfiglist_spec_str_seq contains the items (without outer
-braces):
->  {1}
->  {2}
->  {\\}
->  {3}
->  {4}.
-The sequence \subfiglist_tmp_seq contains the items (without outer braces):
->  {1}
->  {2}
->  {3}
->  {4}.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -2079,14 +1950,6 @@ File: figures/03.png Graphic file (type bmp)
 <figures/03.png>
 File: figures/04.png Graphic file (type bmp)
 <figures/04.png>
-
-*************************************************
-* subfiglist warning: "mismatching image order"
-* 
-* Package subfiglist Warning: The canvas numbers in the argument of
-* `subfiglist' environment are given in a different order than the canvas
-* numbers in the body of `subfiglist' environment.
-*************************************************
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
@@ -2121,6 +1984,7 @@ File: figures/04.png Graphic file (type bmp)
 . Redefining command \subfiglistoverlay with sig. '' on line 512.
 .................................................
 
+
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 Package babel Info: Redefining ngerman shorthand "|
@@ -2149,22 +2013,6 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 544.
  [7]
-The sequence \subfiglist_spec_str_seq contains the items (without outer
-braces):
->  {1}
->  {2}
->  {3}
->  {\\}
->  {4}
->  {5}
->  {6}.
-The sequence \subfiglist_tmp_seq contains the items (without outer braces):
->  {1}
->  {2}
->  {3}
->  {4}
->  {5}
->  {6}.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -2202,14 +2050,6 @@ File: figures/05.png Graphic file (type bmp)
 <figures/05.png>
 File: figures/06.png Graphic file (type bmp)
 <figures/06.png>
-
-*************************************************
-* subfiglist warning: "mismatching image order"
-* 
-* Package subfiglist Warning: The canvas numbers in the argument of
-* `subfiglist' environment are given in a different order than the canvas
-* numbers in the body of `subfiglist' environment.
-*************************************************
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
@@ -2248,6 +2088,7 @@ File: figures/06.png Graphic file (type bmp)
 . Redefining command \subfiglistoverlay with sig. '' on line 628.
 .................................................
 
+
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 Package babel Info: Redefining ngerman shorthand "|
@@ -2272,13 +2113,6 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 640.
 [8]
-The sequence \subfiglist_spec_str_seq contains the items (without outer
-braces):
->  {1}
->  {2}.
-The sequence \subfiglist_tmp_seq contains the items (without outer braces):
->  {1}
->  {2}.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -2308,14 +2142,6 @@ File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
-
-*************************************************
-* subfiglist warning: "mismatching image order"
-* 
-* Package subfiglist Warning: The canvas numbers in the argument of
-* `subfiglist' environment are given in a different order than the canvas
-* numbers in the body of `subfiglist' environment.
-*************************************************
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
@@ -2346,6 +2172,7 @@ File: figures/02.png Graphic file (type bmp)
 . Redefining command \subfiglistoverlay with sig. '' on line 701.
 .................................................
 
+
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 Package microtype Info: *** Changing to language context `american'
@@ -2359,13 +2186,6 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 710.
 [9]
-The sequence \subfiglist_spec_str_seq contains the items (without outer
-braces):
->  {1}
->  {2}.
-The sequence \subfiglist_tmp_seq contains the items (without outer braces):
->  {1}
->  {2}.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -2395,14 +2215,6 @@ File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
-
-*************************************************
-* subfiglist warning: "mismatching image order"
-* 
-* Package subfiglist Warning: The canvas numbers in the argument of
-* `subfiglist' environment are given in a different order than the canvas
-* numbers in the body of `subfiglist' environment.
-*************************************************
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
@@ -2442,7 +2254,7 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 791.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 791.
-[10]
+ [10]
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 793.
 Package babel Info: Redefining ngerman shorthand "~
@@ -2496,8 +2308,8 @@ Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 804.
  ) 
 Here is how much of TeX's memory you used:
  33383 strings out of 493007
- 616783 string characters out of 6136720
- 806392 words of memory out of 5000000
+ 616786 string characters out of 6136720
+ 806407 words of memory out of 5000000
  36922 multiletter control sequences out of 15000+600000
  602883 words of font info for 77 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
