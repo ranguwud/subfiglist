@@ -5,12 +5,9 @@ TODO
 * Add "g" to name of any global variables
 * Add "i" to name of inline macros, which modify variables without scoping
 * Introduce R-type argument for byref-tokens
-* Define variables used to store keys
-* Check default dim keys for right format
 * Check naming conventions for local and global variables
 * Check required package versions (\char_generate:nn?)
 * Check compile warnings
-* Setup ALL default options
 * Remove unnecessary checks for \quark_no_value
 
 
@@ -70,4 +67,7 @@ DONE
 * Test all kinds of weird nestings and alignments
 * Add spaces to empty lines to fix syntax highlighting
 * Allow changing order of labels
+* Check default dim keys for right format
+* Define variables used to store keys
+* Setup ALL default options
 

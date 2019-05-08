@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.1.6)  8 MAY 2019 17:46
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.1.6)  8 MAY 2019 18:29
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -730,27 +730,25 @@ Package graphics Info: Driver file: xetex.def on input line 99.
 \Gin@req@width=\dimen146
 )
 \subfiglistlineheight=\dimen147
-\subfiglist_total_width_dim=\dimen148
-\subfiglist_canvas_space_dim=\dimen149
-\subfiglist_canvas_height_dim=\dimen150
-\subfiglist_canvas_width_dim=\dimen151
-\subfiglist_canvas_top_dim=\dimen152
-\subfiglist_canvas_bot_dim=\dimen153
-\subfiglist_canvas_left_dim=\dimen154
-\subfiglist_canvas_right_dim=\dimen155
-\subfiglist_sub_block_line_hoff_dim=\dimen156
-\subfiglist_sub_block_line_voff_dim=\dimen157
-\subfiglist_sub_block_hoff_dim=\dimen158
-\subfiglist_sub_block_voff_dim=\dimen159
-\subfiglist_sum_hoff_dim=\dimen160
-\subfiglist_sum_voff_over_ratio_dim=\dimen161
-\subfiglist_newline_correction_dim=\dimen162
-\subfiglist_tmpa_dim=\dimen163
-\subfiglist_tmpb_dim=\dimen164
-\subfiglist_effective_hoff_dim=\dimen165
-\subfiglist_effective_voff_dim=\dimen166
-\subfiglist_line_height_dim=\dimen167
-\subfiglist_column_width_dim=\dimen168
+\subfiglist_canvas_height_dim=\dimen148
+\subfiglist_canvas_width_dim=\dimen149
+\subfiglist_canvas_top_dim=\dimen150
+\subfiglist_canvas_bot_dim=\dimen151
+\subfiglist_canvas_left_dim=\dimen152
+\subfiglist_canvas_right_dim=\dimen153
+\subfiglist_sub_block_line_hoff_dim=\dimen154
+\subfiglist_sub_block_line_voff_dim=\dimen155
+\subfiglist_sub_block_hoff_dim=\dimen156
+\subfiglist_sub_block_voff_dim=\dimen157
+\subfiglist_sum_hoff_dim=\dimen158
+\subfiglist_sum_voff_over_ratio_dim=\dimen159
+\subfiglist_newline_correction_dim=\dimen160
+\subfiglist_tmpa_dim=\dimen161
+\subfiglist_tmpb_dim=\dimen162
+\subfiglist_effective_hoff_dim=\dimen163
+\subfiglist_effective_voff_dim=\dimen164
+\subfiglist_line_height_dim=\dimen165
+\subfiglist_column_width_dim=\dimen166
 \subfiglist_exit_count_int=\count187
 \subfiglist_identifier_count_int=\count188
 \subfiglist_canvas_count_int=\count189
@@ -775,65 +773,78 @@ Package graphics Info: Driver file: xetex.def on input line 99.
 * should not change an argument from type 'N' to type 'V': base form only
 * accepts a single token argument.
 *************************************************
+\subfiglist_env_width_document_default_dim=\dimen167
+\subfiglist_canvas_space_document_default_dim=\dimen168
+\subfiglist_canvas_top_document_default_dim=\dimen169
+\subfiglist_canvas_bot_document_default_dim=\dimen170
+\subfiglist_canvas_left_document_default_dim=\dimen171
+\subfiglist_canvas_right_document_default_dim=\dimen172
+\subfiglist_canvas_frame_width_document_default_dim=\dimen173
+\subfiglist_canvas_frame_top_document_default_dim=\dimen174
+\subfiglist_canvas_frame_bottom_document_default_dim=\dimen175
+\subfiglist_canvas_frame_left_document_default_dim=\dimen176
+\subfiglist_canvas_frame_right_document_default_dim=\dimen177
+\subfiglist_label_xshift_document_default_dim=\dimen178
+\subfiglist_label_yshift_document_default_dim=\dimen179
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistsetup with sig. 'm' on line 565.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \subfiglistfile with sig. '' on line 3247.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \subfiglistdummyfile with sig. '' on line 3254.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \subfiglistdummy with sig. '' on line 3261.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \subfiglistlabel with sig. '' on line 3268.
+. Defining command \subfiglistsetup with sig. 'm' on line 572.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistoverlay with sig. '' on line 3275.
+. Defining command \subfiglistfile with sig. '' on line 3389.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabelformat with sig. '' on line 3284.
+. Defining command \subfiglistdummyfile with sig. '' on line 3396.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \subfiglistdummy with sig. '' on line 3403.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \subfiglistlabel with sig. '' on line 3410.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \subfiglistoverlay with sig. '' on line 3417.
+.................................................
+.................................................
+. LaTeX info: "xparse/define-command"
+. 
+. Defining command \subfiglistlabelformat with sig. '' on line 3426.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistsvgenv' with sig. '' on line 3288.
+. Defining environment 'subfiglistsvgenv' with sig. '' on line 3430.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglisttexenv' with sig. '' on line 3292.
+. Defining environment 'subfiglisttexenv' with sig. '' on line 3434.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3313.
+. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3455.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3438.
+. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3597.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3442.
+. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3601.
 .................................................
 )
 runsystem(rm ./subfiglist.sty)...executed.
@@ -851,9 +862,9 @@ Package pict2e Info: Driver file for pict2e: p2e-xetex.def on input line 121.
 File: p2e-xetex.def 2016/02/05 v0.1u Driver-dependant file (RN,HjG,JT)
 )
 \pIIe@GRAPH=\toks20
-\@arclen=\dimen169
-\@arcrad=\dimen170
-\@tempdimd=\dimen171
+\@arclen=\dimen180
+\@arcrad=\dimen181
+\@tempdimd=\dimen182
 )
 (/usr/share/texlive/texmf-dist/tex/latex/pstricks/pstricks.sty
 Package: pstricks 2018/01/06 v0.67 LaTeX wrapper for `PSTricks' (RN,HV)
@@ -891,8 +902,8 @@ File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
 \pgfutil@everybye=\toks23
-\pgfutil@tempdima=\dimen172
-\pgfutil@tempdimb=\dimen173
+\pgfutil@tempdima=\dimen183
+\pgfutil@tempdimb=\dimen184
 
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.t
 ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
@@ -906,14 +917,14 @@ ex
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex
-\pgf@x=\dimen174
-\pgf@xa=\dimen175
-\pgf@xb=\dimen176
-\pgf@xc=\dimen177
-\pgf@y=\dimen178
-\pgf@ya=\dimen179
-\pgf@yb=\dimen180
-\pgf@yc=\dimen181
+\pgf@x=\dimen185
+\pgf@xa=\dimen186
+\pgf@xb=\dimen187
+\pgf@xc=\dimen188
+\pgf@y=\dimen189
+\pgf@ya=\dimen190
+\pgf@yb=\dimen191
+\pgf@yc=\dimen192
 \c@pgf@counta=\count271
 \c@pgf@countb=\count272
 \c@pgf@countc=\count273
@@ -922,7 +933,7 @@ ex
 \pgfutil@tempcntb=\count276
 )
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
-\pgfmath@dimen=\dimen182
+\pgfmath@dimen=\dimen193
 \pgfmath@count=\count277
 \pgfmath@box=\box48
 \pgfmath@toks=\toks27
@@ -949,24 +960,24 @@ thmetics.code.tex)))
 (/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
 \c@pgfmathroundto@lastzeros=\count278
 ))
-\pgffor@iter=\dimen183
-\pgffor@skip=\dimen184
+\pgffor@iter=\dimen194
+\pgffor@skip=\dimen195
 \pgffor@stack=\toks30
 \pgffor@toks=\toks31
 )
 \psLoopIndex=\count279
 
 `PSTricks' v2.82  <2018/01/06> (tvz,hv)
-\pst@dima=\dimen185
-\pst@dimb=\dimen186
-\pst@dimc=\dimen187
-\pst@dimd=\dimen188
-\pst@dimg=\dimen189
-\pst@dimh=\dimen190
-\pst@dimm=\dimen191
-\pst@dimn=\dimen192
-\pst@dimo=\dimen193
-\pst@dimp=\dimen194
+\pst@dima=\dimen196
+\pst@dimb=\dimen197
+\pst@dimc=\dimen198
+\pst@dimd=\dimen199
+\pst@dimg=\dimen256
+\pst@dimh=\dimen257
+\pst@dimm=\dimen258
+\pst@dimn=\dimen259
+\pst@dimo=\dimen260
+\pst@dimp=\dimen261
 \pst@hbox=\box49
 \pst@ibox=\box50
 \pst@boxg=\box51
@@ -984,24 +995,24 @@ thmetics.code.tex)))
 \pst@toks=\toks32
 (/usr/share/texlive/texmf-dist/tex/xelatex/xetex-pstricks/pstricks.con
 (/usr/share/texlive/texmf-dist/tex/generic/pstricks/config/xdvipdfmx.cfg))
-\psunit=\dimen195
-\psxunit=\dimen196
-\psyunit=\dimen197
+\psunit=\dimen262
+\psxunit=\dimen263
+\psyunit=\dimen264
 \pst@C@@rType=\count291
-\pslinewidth=\dimen198
-\psk@startLW=\dimen199
-\psk@endLW=\dimen256
+\pslinewidth=\dimen265
+\psk@startLW=\dimen266
+\psk@endLW=\dimen267
 \pst@customdefs=\toks33
-\pslinearc=\dimen257
-\pst@symbolStep=\dimen258
-\pst@symbolWidth=\dimen259
-\pst@symbolLinewidth=\dimen260
+\pslinearc=\dimen268
+\pst@symbolStep=\dimen269
+\pst@symbolWidth=\dimen270
+\pst@symbolLinewidth=\dimen271
 \everypsbox=\toks34
-\psframesep=\dimen261
-\pslabelsep=\dimen262
-\sh@wgridXunit=\dimen263
-\sh@wgridYunit=\dimen264
-\pst@shift=\dimen265
+\psframesep=\dimen272
+\pslabelsep=\dimen273
+\sh@wgridXunit=\dimen274
+\sh@wgridYunit=\dimen275
+\pst@shift=\dimen276
 
 (/usr/share/texlive/texmf-dist/tex/xelatex/xetex-pstricks/pstricks.con
 (/usr/share/texlive/texmf-dist/tex/generic/pstricks/config/xdvipdfmx.cfg
@@ -1053,7 +1064,7 @@ Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
 (/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty
 Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
 )
-\@linkdim=\dimen266
+\@linkdim=\dimen277
 \Hy@linkcounter=\count294
 \Hy@pagecounter=\count295
 
@@ -1080,10 +1091,10 @@ Package hyperref Info: Bookmarks ON on input line 4762.
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
 LaTeX Info: Redefining \url on input line 5115.
-\XeTeXLinkMargin=\dimen267
+\XeTeXLinkMargin=\dimen278
 \Fld@menulength=\count298
-\Field@Width=\dimen268
-\Fld@charsize=\dimen269
+\Field@Width=\dimen279
+\Fld@charsize=\dimen280
 Package hyperref Info: Hyper figures OFF on input line 6369.
 Package hyperref Info: Link nesting OFF on input line 6374.
 Package hyperref Info: Hyper index ON on input line 6377.
@@ -1220,13 +1231,26 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: hypcap package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\subfiglist_canvas_frame_width_dim=\dimen270
-\subfiglist_canvas_frame_top_dim=\dimen271
-\subfiglist_canvas_frame_bottom_dim=\dimen272
-\subfiglist_canvas_frame_left_dim=\dimen273
-\subfiglist_canvas_frame_right_dim=\dimen274
-\subfiglist_label_xshift_dim=\dimen275
-\subfiglist_label_yshift_dim=\dimen276
+\subfiglist_env_width_dim=\dimen281
+\subfiglist_canvas_space_environment_default_dim=\dimen282
+\subfiglist_canvas_top_environment_default_dim=\dimen283
+\subfiglist_canvas_bot_environment_default_dim=\dimen284
+\subfiglist_canvas_left_environment_default_dim=\dimen285
+\subfiglist_canvas_right_environment_default_dim=\dimen286
+\subfiglist_canvas_frame_width_environment_default_dim=\dimen287
+\subfiglist_canvas_frame_top_environment_default_dim=\dimen288
+\subfiglist_canvas_frame_bottom_environment_default_dim=\dimen289
+\subfiglist_canvas_frame_left_environment_default_dim=\dimen290
+\subfiglist_canvas_frame_right_environment_default_dim=\dimen291
+\subfiglist_label_xshift_environment_default_dim=\dimen292
+\subfiglist_label_yshift_environment_default_dim=\dimen293
+\subfiglist_canvas_frame_width_dim=\dimen294
+\subfiglist_canvas_frame_top_dim=\dimen295
+\subfiglist_canvas_frame_bottom_dim=\dimen296
+\subfiglist_canvas_frame_left_dim=\dimen297
+\subfiglist_canvas_frame_right_dim=\dimen298
+\subfiglist_label_xshift_dim=\dimen299
+\subfiglist_label_yshift_dim=\dimen300
 \AtBeginShipoutBox=\box53
 Package hyperref Info: Link coloring ON on input line 209.
 
@@ -2313,12 +2337,12 @@ Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 804.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 804.
  ) 
 Here is how much of TeX's memory you used:
- 33407 strings out of 493007
- 617699 string characters out of 6136720
- 808159 words of memory out of 5000000
- 36946 multiletter control sequences out of 15000+600000
+ 33537 strings out of 493007
+ 623765 string characters out of 6136720
+ 817315 words of memory out of 5000000
+ 37076 multiletter control sequences out of 15000+600000
  602883 words of font info for 77 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 54i,18n,102p,10433b,1011s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 54i,18n,102p,10451b,1015s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on subfiglist.pdf (12 pages).
