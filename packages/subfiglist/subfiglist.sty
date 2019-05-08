@@ -1474,13 +1474,12 @@
 {
   \seq_pop_left:NN #3 \subfiglist_tmpa_tl
   
-  \seq_pop_left:NN #3 \subfiglist_tmpa_tl
-  \quark_if_no_value:NTF \subfiglist_tmpa_tl
+  \seq_pop_left:NNTF #3 \subfiglist_tmpa_tl
   {
-    \msg_error:nn { subfiglist } { missing~separator }
-  }{
     \subfiglist_tl_set_wrapped:NnV \subfiglist_tmpb_tl { separator } \subfiglist_tmpa_tl
     \tl_put_right:NV #1 \subfiglist_tmpb_tl
+  }{
+    \msg_error:nn { subfiglist } { missing~separator }
   }
 }
 
@@ -1494,12 +1493,9 @@
   % Consume newline character
   \seq_pop_left:NN #3 \subfiglist_tmpa_tl
   
-  \seq_get_left:NN #3 \subfiglist_tmpa_tl
   \tl_clear:N \subfiglist_tmpb_tl
-  \quark_if_no_value:NTF \subfiglist_tmpa_tl
+  \seq_get_left:NNTF #3 \subfiglist_tmpa_tl
   {
-    \tl_put_right:NV \subfiglist_tmpb_tl \subfiglist_canvas_space_environment_default_dim
-  }{
     \token_if_eq_charcode:NVTF [ \subfiglist_tmpa_tl
     {
       \seq_pop_left:NN #3 \subfiglist_tmpa_tl
@@ -1524,6 +1520,8 @@
     }{
       \tl_put_right:NV \subfiglist_tmpb_tl \subfiglist_canvas_space_environment_default_dim
     }
+  }{
+    \tl_put_right:NV \subfiglist_tmpb_tl \subfiglist_canvas_space_environment_default_dim
   }
   \subfiglist_tl_set_wrapped:NnV \subfiglist_tmpa_tl { newline } \subfiglist_tmpb_tl
   \tl_put_right:NV #1 \subfiglist_tmpa_tl
@@ -1996,8 +1994,7 @@
     }
     
     % Check for too large label/overlay numbers
-    \seq_get_right:NN ##3 \subfiglist_tmpa_tl
-    \quark_if_no_value:NF \subfiglist_tmpa_tl
+    \seq_get_right:NNT ##3 \subfiglist_tmpa_tl
     {
       \int_compare:nT { \subfiglist_tmpa_tl > ##4 }
       {

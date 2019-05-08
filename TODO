@@ -7,7 +7,6 @@ TODO
 * Check naming conventions for local and global variables
 * Check required package versions (\char_generate:nn?)
 * Check compile warnings
-* Remove unnecessary checks for \quark_no_value
 
 
 
@@ -70,4 +69,5 @@ DONE
 * Define variables used to store keys
 * Setup ALL default options
 * Delete unnecessary variables
+* Remove unnecessary checks for \quark_no_value
 
