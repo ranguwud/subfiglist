@@ -1,7 +1,6 @@
 TODO
 
 * Test all error messages
-* Delete unnecessary variables
 * Add "g" to name of any global variables
 * Add "i" to name of inline macros, which modify variables without scoping
 * Introduce R-type argument for byref-tokens
@@ -17,7 +16,7 @@ MANUAL
 
 * Caveat: Don't use \subfiglistlineheight for anything related to width.
 * Convert all png images in documentation to TikZ images
-
+* \textwidth may change throughout the document
 
 
 
@@ -70,4 +69,5 @@ DONE
 * Check default dim keys for right format
 * Define variables used to store keys
 * Setup ALL default options
+* Delete unnecessary variables
 

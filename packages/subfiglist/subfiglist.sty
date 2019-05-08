@@ -39,130 +39,48 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \dim_new:N  \subfiglistlineheight
-
-\dim_new:N  \subfiglist_canvas_height_dim
-\dim_new:N  \subfiglist_canvas_width_dim
-
-\dim_new:N  \subfiglist_canvas_top_dim
-\dim_new:N  \subfiglist_canvas_bot_dim
-\dim_new:N  \subfiglist_canvas_left_dim
-\dim_new:N  \subfiglist_canvas_right_dim
-
-\dim_new:N  \subfiglist_sub_block_line_hoff_dim
-\dim_new:N  \subfiglist_sub_block_line_voff_dim
-\dim_new:N  \subfiglist_sub_block_hoff_dim
-\dim_new:N  \subfiglist_sub_block_voff_dim
-
-\dim_new:N  \subfiglist_sum_hoff_dim
-\dim_new:N  \subfiglist_sum_voff_over_ratio_dim
 \dim_new:N  \subfiglist_newline_correction_dim
-\dim_new:N  \subfiglist_tmpa_dim
-\dim_new:N  \subfiglist_tmpb_dim
-
 \dim_new:N  \subfiglist_effective_hoff_dim
 \dim_new:N  \subfiglist_effective_voff_dim
 \dim_new:N  \subfiglist_line_height_dim
 \dim_new:N  \subfiglist_column_width_dim
-
-\tl_new:N   \subfiglist_test_tl
-\tl_new:N   \subfiglist_head_tl
-\tl_new:N   \subfiglist_tail_tl
+\dim_new:N  \subfiglist_tmpa_dim
+\dim_new:N  \subfiglist_tmpb_dim
 
 \tl_new:N   \subfiglist_parsed_spec_tl
 \tl_new:N   \subfiglist_tokenized_spec_tl
 \tl_new:N   \subfiglist_dimensioned_spec_tl
-\tl_new:N   \subfiglist_spec_current_line_tl
-
-\tl_new:N   \subfiglist_canvas_top_tl
-\tl_new:N   \subfiglist_canvas_bot_tl
-\tl_new:N   \subfiglist_canvas_left_tl
-\tl_new:N   \subfiglist_canvas_right_tl
-
-\tl_new:N   \subfiglist_file_nums_tl
-\tl_new:N   \subfiglist_file_names_tl
-
-\tl_new:N   \subfiglist_dummy_file_nums_tl
-\tl_new:N   \subfiglist_dummy_file_names_tl
-\tl_new:N   \subfiglist_dummy_file_frame_tl
-
-\tl_new:N   \subfiglist_dummy_nums_tl
-\tl_new:N   \subfiglist_dummy_ratio_tl
-\tl_new:N   \subfiglist_dummy_frame_tl
-
-\tl_new:N   \subfiglist_label_nums_tl
-\tl_new:N   \subfiglist_label_hooks_tl
-\tl_new:N   \subfiglist_label_hpos_tl
-\tl_new:N   \subfiglist_label_vpos_tl
-\tl_new:N   \subfiglist_label_hpos_default_tl
-\tl_new:N   \subfiglist_label_vpos_default_tl
-\tl_new:N   \subfiglist_label_hoff_tl
-\tl_new:N   \subfiglist_label_voff_tl
-\tl_new:N   \subfiglist_label_xshift_tl
-\tl_new:N   \subfiglist_label_yshift_tl
-\tl_new:N   \subfiglist_label_color_list_tl
-\tl_new:N   \subfiglist_label_background_list_tl
-
-\tl_new:N   \subfiglist_overlay_nums_tl
-\tl_new:N   \subfiglist_overlay_content_tl
-
-\tl_new:N   \subfiglist_objects_pos_tl
-\tl_new:N   \subfiglist_objects_hoff_tl
-\tl_new:N   \subfiglist_objects_voff_tl
-\tl_new:N   \subfiglist_objects_ratio_tl
-\tl_new:N   \subfiglist_objects_cs_tl
-\tl_new:N   \subfiglist_objects_opt_arg_nl_tl
-\tl_new:N   \subfiglist_objects_sub_blocks_tl
-\tl_new:N   \subfiglist_objects_width_tl
 \tl_new:N   \subfiglist_option_unknown_message_name_tl
-
-\tl_new:N   \subfiglist_csname_tl
-
 \tl_new:N   \subfiglist_tmpa_tl
 \tl_new:N   \subfiglist_tmpb_tl
 
 \seq_new:N  \subfiglist_spec_str_seq
 \seq_new:N  \subfiglist_spec_tokens_seq
+\seq_new:N  \subfiglist_identifier_nums_seq
+\seq_new:N  \subfiglist_identifier_nums_sorted_seq
+\seq_new:N  \subfiglist_canvas_nums_seq
+\seq_new:N  \subfiglist_canvas_nums_sorted_seq
+\seq_new:N  \subfiglist_label_nums_seq
+\seq_new:N  \subfiglist_label_nums_sorted_seq
+\seq_new:N  \subfiglist_overlay_nums_seq
+\seq_new:N  \subfiglist_overlay_nums_sorted_seq
 \seq_new:N  \subfiglist_tmp_seq
-
-\seq_new:N   \subfiglist_identifier_nums_seq
-\seq_new:N   \subfiglist_identifier_nums_sorted_seq
-\seq_new:N   \subfiglist_canvas_nums_seq
-\seq_new:N   \subfiglist_canvas_nums_sorted_seq
-\seq_new:N   \subfiglist_label_nums_seq
-\seq_new:N   \subfiglist_label_nums_sorted_seq
-\seq_new:N   \subfiglist_overlay_nums_seq
-\seq_new:N   \subfiglist_overlay_nums_sorted_seq
 
 \prop_new:N \subfiglist_canvas_prop
 \prop_new:N \subfiglist_label_prop
 \prop_new:N \subfiglist_overlay_prop
 \prop_new:N \subfiglist_tmp_prop
 
-\int_new:N  \subfiglist_exit_count_int
 \int_new:N  \subfiglist_identifier_count_int
-\int_new:N  \subfiglist_canvas_count_int
-\int_new:N  \subfiglist_tl_if_eq_charcode_int
 \int_new:N  \subfiglist_keyval_choice_first_int
-\int_new:N  \subfiglist_tmp_int
-
 \int_new:N  \subfiglist_label_hpos_int
 \int_new:N  \subfiglist_label_vpos_int
+\int_new:N  \subfiglist_tmp_int
 
-\fp_new:N   \subfiglist_sub_block_line_ratio_fp
-\fp_new:N   \subfiglist_sub_block_ratio_fp
-\fp_new:N   \subfiglist_sum_ratio_over_ratio_fp
-\fp_new:N   \subfiglist_tmp_fp
 \fp_new:N   \subfiglist_effective_canvas_ratio_fp
+\fp_new:N   \subfiglist_tmp_fp
 
 \bool_new:N \subfiglist_env_store_images_bool
-\bool_new:N \subfiglist_after_char_at_bool
-\bool_new:N \subfiglist_after_char_br_bool
-\bool_new:N \subfiglist_after_char_nl_bool
-\bool_new:N \subfiglist_space_needed_bool
-\bool_new:N \subfiglist_first_bool
-\bool_new:N \subfiglist_hmode_bool
-\bool_new:N \subfiglist_tl_if_eq_charcode_bool
-\bool_new:N \subfiglist_tmp_bool
 
 \box_new:N  \subfiglist_tmp_box
 
@@ -2957,18 +2875,18 @@
       \subfiglist_load:cnn { subfiglist_image_ #2 _box } { #3 } { ! }
       
       % Get box dimensions
-      \dim_set:Nn \subfiglist_canvas_height_dim { \box_ht:c { subfiglist_image_ #2 _box } }
-      \dim_set:Nn \subfiglist_canvas_width_dim  { \box_wd:c { subfiglist_image_ #2 _box } }
+      \dim_set:Nn \subfiglist_tmpa_dim { \box_ht:c { subfiglist_image_ #2 _box } }
+      \dim_set:Nn \subfiglist_tmpb_dim  { \box_wd:c { subfiglist_image_ #2 _box } }
     }{
       \subfiglist_load:Nnn \subfiglist_tmp_box { #3 } { ! }
       
       % Get box dimensions
-      \dim_set:Nn \subfiglist_canvas_height_dim { \box_ht:N \subfiglist_tmp_box }
-      \dim_set:Nn \subfiglist_canvas_width_dim  { \box_wd:N \subfiglist_tmp_box }
+      \dim_set:Nn \subfiglist_tmpa_dim { \box_ht:N \subfiglist_tmp_box }
+      \dim_set:Nn \subfiglist_tmpb_dim  { \box_wd:N \subfiglist_tmp_box }
     }
     
     % Store ratio width/height
-    \fp_set:Nn \subfiglist_tmp_fp { \subfiglist_canvas_width_dim / \subfiglist_canvas_height_dim }
+    \fp_set:Nn \subfiglist_tmp_fp { \subfiglist_tmpb_dim / \subfiglist_tmpa_dim }
     \tl_set:Nf #1 { \fp_use:N \subfiglist_tmp_fp }
   
   % Return local variables with group scope
@@ -3444,10 +3362,10 @@
   \group_begin:
 
   \dim_set:Nn \unitlength { #1 }
-  \dim_set:Nn \subfiglist_canvas_width_dim  { #1 }
-  \dim_set:Nn \subfiglist_canvas_height_dim { #2 }
+  \dim_set:Nn \subfiglist_tmpb_dim  { #1 }
+  \dim_set:Nn \subfiglist_tmpa_dim { #2 }
   
-  \begin { picture } ( 1, \fp_eval:n { \subfiglist_canvas_height_dim / \subfiglist_canvas_width_dim } )
+  \begin { picture } ( 1, \fp_eval:n { \subfiglist_tmpa_dim / \subfiglist_tmpb_dim } )
 }{
   \end { picture }
   
