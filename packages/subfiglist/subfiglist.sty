@@ -392,17 +392,17 @@
   ew.meta:n                                 = { environment-width = #1 },
   ew.value_required:n                       = true,
   
-  % Space between canvases
-  environment-space.tl_set:N                = \subfiglist_env_space_default_tl,
-  environment-space.value_required:n        = true,
-  es.meta:n                                 = { environment-space = #1 },
-  es.value_required:n                       = true,
-  
   % Use \hspace* to output space?
   environment-use-hspace.bool_set:N        = \subfiglist_env_use_hspace_default_bool,
   environment-use-hspace.default:n         = true,
   euh.meta:n                               = { environment-use-hspace = #1 },
   euh.default:n                            = true,
+  
+  % Space between canvases
+  canvas-space.tl_set:N                     = \subfiglist_canvas_space_default_tl,
+  canvas-space.value_required:n             = true,
+  cs.meta:n                                 = { canvas-space = #1 },
+  cs.value_required:n                       = true,
   
   % Space above canvas
   canvas-top.tl_set:N                      = \subfiglist_canvas_top_default_tl,
@@ -535,8 +535,8 @@
 {
   tweak-caption-package  = true,
   environment-width      = \textwidth,
-  environment-space      = 1ex,
   environment-use-hspace = false,
+  canvas-space           = 1ex,
   canvas-top             = 0pt,
   canvas-bottom          = 0pt,
   canvas-left            = 0pt,
@@ -3326,7 +3326,7 @@
   
   % Setup default options
   \subfiglist_key_set:nnV { subfiglistenv } { width } \subfiglist_env_width_default_tl
-  \subfiglist_key_set:nnV { subfiglistenv } { space } \subfiglist_env_space_default_tl
+  \subfiglist_key_set:nnV { subfiglistenv } { space } \subfiglist_canvas_space_default_tl
   \bool_if:NTF \subfiglist_env_use_hspace_default_bool
   {
     \subfiglist_key_set:nnn { subfiglistenv } { use-hspace } { true }
