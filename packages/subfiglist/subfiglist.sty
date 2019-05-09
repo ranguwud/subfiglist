@@ -40,10 +40,6 @@
 
 \dim_new:N  \subfiglistlineheight
 \dim_new:N  \subfiglist_newline_correction_dim
-\dim_new:N  \subfiglist_effective_hoff_dim
-\dim_new:N  \subfiglist_effective_voff_dim
-\dim_new:N  \subfiglist_line_height_dim
-\dim_new:N  \subfiglist_column_width_dim
 \dim_new:N  \subfiglist_tmpa_dim
 \dim_new:N  \subfiglist_tmpb_dim
 
@@ -51,6 +47,10 @@
 \tl_new:N   \subfiglist_tokenized_spec_tl
 \tl_new:N   \subfiglist_dimensioned_spec_tl
 \tl_new:N   \subfiglist_option_unknown_message_name_tl
+\tl_new:N   \subfiglist_label_hpos_document_default_tl
+\tl_new:N   \subfiglist_label_vpos_document_default_tl
+\tl_new:N   \subfiglist_label_hpos_environment_default_tl
+\tl_new:N   \subfiglist_label_vpos_environment_default_tl
 \tl_new:N   \subfiglist_tmpa_tl
 \tl_new:N   \subfiglist_tmpb_tl
 
@@ -77,10 +77,9 @@
 \int_new:N  \subfiglist_label_vpos_int
 \int_new:N  \subfiglist_tmp_int
 
-\fp_new:N   \subfiglist_effective_canvas_ratio_fp
 \fp_new:N   \subfiglist_tmp_fp
 
-\bool_new:N \subfiglist_env_store_images_bool
+\bool_new:N \subfiglist_store_images_bool
 
 \box_new:N  \subfiglist_tmp_box
 
@@ -2532,6 +2531,11 @@
 % #3: Subblock specification
 %
 {
+  \fp_zero_new:N  \subfiglist_effective_canvas_ratio_fp
+  \dim_zero_new:N \subfiglist_effective_hoff_dim
+  \dim_zero_new:N \subfiglist_effective_voff_dim
+  \dim_zero_new:N \subfiglist_column_width_dim
+  
   \subfiglist_get_aspect_hmode_subblock:NNNn
     \subfiglist_effective_canvas_ratio_fp
     \subfiglist_effective_hoff_dim
@@ -2579,6 +2583,11 @@
 % #3: Token list with parsed specification string for current line
 %
 {
+  \fp_zero_new:N  \subfiglist_effective_canvas_ratio_fp
+  \dim_zero_new:N \subfiglist_effective_hoff_dim
+  \dim_zero_new:N \subfiglist_effective_voff_dim
+  \dim_zero_new:N \subfiglist_line_height_dim
+
   \subfiglist_get_aspect_vmode_line:NNNn
     \subfiglist_effective_canvas_ratio_fp
     \subfiglist_effective_hoff_dim
@@ -2863,7 +2872,7 @@
   \group_begin:
   
     % Store file in a box
-    \bool_if:NTF \subfiglist_env_store_images_bool
+    \bool_if:NTF \subfiglist_store_images_bool
     {
       \box_if_exist:cF { subfiglist_image_ #2 _box }
       {
@@ -2906,7 +2915,7 @@
 {
   \subfiglist_prop_get_safe:NnN #1 { path } \subfiglist_tmpa_tl
   \subfiglist_prop_get_safe:NnN #1 { width } \subfiglist_tmpb_tl
-  \bool_if:NTF \subfiglist_env_store_images_bool
+  \bool_if:NTF \subfiglist_store_images_bool
   {
     \subfiglist_restore:cVV { subfiglist_image_ #2 _box } \subfiglist_tmpa_tl \subfiglist_tmpb_tl
     \box_use:c { subfiglist_image_ #2 _box }
@@ -3412,9 +3421,9 @@
   % Check for starred environment
   \IfBooleanTF #1
   {
-    \bool_set_true:N \subfiglist_env_store_images_bool
+    \bool_set_true:N \subfiglist_store_images_bool
   }{
-    \bool_set_false:N \subfiglist_env_store_images_bool
+    \bool_set_false:N \subfiglist_store_images_bool
   }
   
   % Tokenize subfiglist specification
