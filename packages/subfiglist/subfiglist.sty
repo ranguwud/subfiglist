@@ -47,10 +47,6 @@
 \tl_new:N   \subfiglist_tokenized_spec_tl
 \tl_new:N   \subfiglist_dimensioned_spec_tl
 \tl_new:N   \subfiglist_option_unknown_message_name_tl
-\tl_new:N   \subfiglist_label_hpos_document_default_tl
-\tl_new:N   \subfiglist_label_vpos_document_default_tl
-\tl_new:N   \subfiglist_label_hpos_environment_default_tl
-\tl_new:N   \subfiglist_label_vpos_environment_default_tl
 \tl_new:N   \subfiglist_tmpa_tl
 \tl_new:N   \subfiglist_tmpb_tl
 
@@ -72,9 +68,6 @@
 \prop_new:N \subfiglist_tmp_prop
 
 \int_new:N  \subfiglist_identifier_count_int
-\int_new:N  \subfiglist_keyval_choice_first_int
-\int_new:N  \subfiglist_label_hpos_int
-\int_new:N  \subfiglist_label_vpos_int
 \int_new:N  \subfiglist_tmp_int
 
 \fp_new:N   \subfiglist_tmp_fp
@@ -380,21 +373,33 @@
   % Horizontal positioning of label (left, center, right)
   label-hpos.choice:,
   label-hpos.choices:nn                    = { l, c, r }
-    { \tl_set_eq:NN \subfiglist_label_hpos_document_default_tl \l_keys_choice_tl },
+  {
+    \tl_clear_new:N \subfiglist_label_hpos_document_default_tl
+    \tl_set_eq:NN \subfiglist_label_hpos_document_default_tl \l_keys_choice_tl
+  },
   label-hpos.value_required:n              = true,
   lh.choice:,
   lh.choices:nn                            = { l, c, r }
-    { \tl_set_eq:NN \subfiglist_label_hpos_document_default_tl \l_keys_choice_tl },
+  {
+    \tl_clear_new:N \subfiglist_label_hpos_document_default_tl
+    \tl_set_eq:NN \subfiglist_label_hpos_document_default_tl \l_keys_choice_tl
+  },
   lh.value_required:n                      = true,
   
   % Vertical positioning of label (top, center, bottom)
   label-vpos.choice:,
   label-vpos.choices:nn                    = { t, c, b }
-    { \tl_set_eq:NN \subfiglist_label_vpos_document_default_tl \l_keys_choice_tl },
+  {
+    \tl_clear_new:N \subfiglist_label_vpos_document_default_tl
+    \tl_set_eq:NN \subfiglist_label_vpos_document_default_tl \l_keys_choice_tl
+  },
   label-vpos.value_required:n              = true,
   lv.choice:,
   lv.choices:nn                            = { t, c, b }
-    { \tl_set_eq:NN \subfiglist_label_vpos_document_default_tl \l_keys_choice_tl },
+  {
+    \tl_clear_new:N \subfiglist_label_vpos_document_default_tl 
+    \tl_set_eq:NN \subfiglist_label_vpos_document_default_tl \l_keys_choice_tl
+  },
   lv.value_required:n                      = true,
   
   % Horizontal shift of label
@@ -473,7 +478,10 @@
 {
   test.choice:,
   test.choices:nn       = { first, second }
-    { \int_gset_eq:NN \subfiglist_keyval_choice_first_int \l_keys_choice_int },
+  {
+    \int_zero_new:N \subfiglist_keyval_choice_first_int
+    \int_set_eq:NN \subfiglist_keyval_choice_first_int \l_keys_choice_int
+  },
   test.value_required:n = true
 }
 \keys_set:nn { subfiglisttest } { test = first }
@@ -630,21 +638,33 @@
     % Horizontal positioning of label (left, center, right)
     label-hpos.choice:,
     label-hpos.choices:nn                    = { l, c, r }
-      { \tl_set_eq:NN \subfiglist_label_hpos_environment_default_tl \l_keys_choice_tl },
+    {
+      \tl_clear_new:N \subfiglist_label_hpos_environment_default_tl
+      \tl_set_eq:NN \subfiglist_label_hpos_environment_default_tl \l_keys_choice_tl
+    },
     label-hpos.value_required:n              = true,
     lh.choice:,
     lh.choices:nn                            = { l, c, r }
-      { \tl_set_eq:NN \subfiglist_label_hpos_environment_default_tl \l_keys_choice_tl },
+    {
+      \tl_clear_new:N \subfiglist_label_hpos_environment_default_tl
+      \tl_set_eq:NN \subfiglist_label_hpos_environment_default_tl \l_keys_choice_tl
+    },
     lh.value_required:n                      = true,
     
     % Vertical positioning of label (top, center, bottom)
     label-vpos.choice:,
     label-vpos.choices:nn                    = { t, c, b }
-      { \tl_set_eq:NN \subfiglist_label_vpos_environment_default_tl \l_keys_choice_tl },
+    {
+      \tl_clear_new:N \subfiglist_label_vpos_environment_default_tl
+      \tl_set_eq:NN \subfiglist_label_vpos_environment_default_tl \l_keys_choice_tl
+    },
     label-vpos.value_required:n              = true,
     lv.choice:,
     lv.choices:nn                            = { t, c, b }
-      { \tl_set_eq:NN \subfiglist_label_vpos_environment_default_tl \l_keys_choice_tl },
+    {
+      \tl_clear_new:N \subfiglist_label_vpos_environment_default_tl
+      \tl_set_eq:NN \subfiglist_label_vpos_environment_default_tl \l_keys_choice_tl
+    },
     lv.value_required:n                      = true,
     
     % Horizontal shift of label
@@ -781,21 +801,33 @@
     % Horizontal positioning (left, center, right)
     hpos.choice:,
     hpos.choices:nn             = { l, c, r }
-      { \int_set_eq:NN \subfiglist_label_hpos_int \l_keys_choice_int },
+    {
+      \int_zero_new:N \subfiglist_label_hpos_int
+      \int_set_eq:NN \subfiglist_label_hpos_int \l_keys_choice_int
+    },
     hpos.value_required:n       = true,
     h.choice:,
     h.choices:nn                = { l, c, r }
-      { \int_set_eq:NN \subfiglist_label_hpos_int \l_keys_choice_int },
+    {
+      \int_zero_new:N \subfiglist_label_hpos_int
+      \int_set_eq:NN \subfiglist_label_hpos_int \l_keys_choice_int
+    },
     h.value_required:n          = true,
     
     % Vertical positioning (top, center, bottom)
     vpos.choice:,
     vpos.choices:nn             = { t, c, b }
-      { \int_set_eq:NN \subfiglist_label_vpos_int \l_keys_choice_int },
+    {
+      \int_zero_new:N \subfiglist_label_vpos_int
+      \int_set_eq:NN \subfiglist_label_vpos_int \l_keys_choice_int
+    },
     vpos.value_required:n       = true,
     v.choice:,
     v.choices:nn                = { t, c, b }
-      { \int_set_eq:NN \subfiglist_label_vpos_int \l_keys_choice_int },
+    {
+      \int_zero_new:N \subfiglist_label_vpos_int
+      \int_set_eq:NN \subfiglist_label_vpos_int \l_keys_choice_int
+    },
     v.value_required:n          = true,
     
     % Horizontal shift
