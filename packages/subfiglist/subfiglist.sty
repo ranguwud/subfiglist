@@ -146,55 +146,10 @@
   { Internal~error:~#1 }
 
 \msg_new:nnn { subfiglist } { parser~error }
-  { Error~while~parsing~the~argument~of~`subfiglist'~environment:~Unexpected~token~`#1' }
+  { Error~while~parsing~argument~of~`subfiglist'~environment:~Unexpected~token~`#1' }
 
 \msg_new:nnn { subfiglist } { runaway~optional~argument }
-  { Missing~closing~square~bracket~`]'~of~optional~argument~inside~argument~of~`subfiglist'~environment. }
-
-\msg_new:nnn { subfiglist } { missing~separator }
-  { Expected~specification~of~a~separator~after~token~`@'~in~argument~of~`subfiglist'~environment. }
-
-\msg_new:nnn { subfiglist } { missing~identifier }
-  { Canvas~no.~#1~missing~in~argument~of~`subfiglist'~environment. }
-
-\msg_new:nnn { subfiglist } { missing~canvas }
-  { Canvas~no.~#1~missing~in~body~of~`subfiglist'~environment. }
-
-\msg_new:nnn { subfiglist } { double~identifier }
-  { Canvas~no.~#1~appears~twice~in~argument~of~`subfiglist'~environment. }
-
-\msg_new:nnn { subfiglist } { double~canvas }
-  { Canvas~no.~#1~appears~twice~in~body~of~`subfiglist'~environment. }
-
-\msg_new:nnn { subfiglist } { double~label }
-  { Label~no.~#1~appears~twice~in~body~of~`subfiglist'~environment. }
-
-\msg_new:nnn { subfiglist } { double~overlay }
-  { Overlay~no.~#1~appears~twice~in~body~of~`subfiglist'~environment. }
-
-\msg_new:nnn { subfiglist } { too~many~identifiers }
-{
-  You~have~specified~#1~identifieres~in~argument~of~`subfiglist'~environment,~
-  but~only~#2~canvases~are~given~in~body~of~`subfiglist'~environment.
-}
-
-\msg_new:nnn { subfiglist } { too~many~canvases }
-{
-  You~have~specified~canvas~no.~#1~in~body~of~`subfiglist'~environment,~
-  but~only~#2~identifieres~are~given~in~argument~of~`subfiglist'~environment.
-}
-
-\msg_new:nnn { subfiglist } { too~many~labels }
-{
-  You~have~specified~label~no.~#1~in~body~of~`subfiglist'~environment,~
-  but~only~#2~identifieres~are~given~in~argument~of~`subfiglist'~environment.
-}
-
-\msg_new:nnn { subfiglist } { too~many~overlays }
-{
-  You~have~specified~overlay~no.~#1~in~body~of~`subfiglist'~environment,~
-  but~only~#2~identifieres~are~given~in~argument~of~`subfiglist'~environment.
-}
+  { Missing~closing~square~bracket~`]'~inside~argument~of~`subfiglist'~environment. }
 
 \msg_new:nnn { subfiglist } { missing~number }
   { #1~argument~of~command~`#2'~needs~to~be~a~positive~integer,~found~`#3'~instead. }
@@ -220,43 +175,94 @@
 \msg_new:nnn { subfiglist } { option~invalid }
   { Option~`caption'~invalid~after~\@backslashchar begin{document}. }
 
+\msg_new:nnn { subfiglist } { missing~separator }
+  { Expected~specification~of~a~separator~after~token~`@'~in~argument~of~`subfiglist'~environment. }
+
+\msg_new:nnn { subfiglist } { missing~identifier }
+  { Canvas~no.~#1~missing~in~argument~of~`subfiglist'~environment. }
+
+\msg_new:nnn { subfiglist } { missing~canvas }
+  { Canvas~no.~#1~missing~in~body~of~`subfiglist'~environment. }
+
+\msg_new:nnn { subfiglist } { double~identifier }
+  { Canvas~no.~#1~appears~twice~in~argument~of~`subfiglist'~environment. }
+
+\msg_new:nnn { subfiglist } { double~canvas }
+  { Canvas~no.~#1~appears~twice~in~body~of~`subfiglist'~environment. }
+
+\msg_new:nnn { subfiglist } { double~label }
+  { Label~no.~#1~appears~twice~in~body~of~`subfiglist'~environment. }
+
+\msg_new:nnn { subfiglist } { double~overlay }
+  { Overlay~no.~#1~appears~twice~in~body~of~`subfiglist'~environment. }
+
+\msg_new:nnn { subfiglist } { too~many~identifiers }
+{
+  You~have~specified~#1~identifieres~in~the~argument~of~the~`subfiglist'~environment,~
+  but~only~#2~canvases~are~given~in~the~body~of~the~`subfiglist'~environment.
+}
+
+\msg_new:nnn { subfiglist } { too~many~canvases }
+{
+  You~have~specified~canvas~no.~#1~in~the~body~of~the~`subfiglist'~environment,~
+  but~only~#2~identifieres~are~given~in~the~argument~of~the~`subfiglist'~environment.
+}
+
+\msg_new:nnn { subfiglist } { too~many~labels }
+{
+  You~have~specified~label~no.~#1~in~the~body~of~the~`subfiglist'~environment,~
+  but~only~#2~identifieres~are~given~in~the~argument~of~the~`subfiglist'~environment.
+}
+
+\msg_new:nnn { subfiglist } { too~many~overlays }
+{
+  You~have~specified~overlay~no.~#1~in~the~body~of~the~`subfiglist'~environment,~
+  but~only~#2~identifieres~are~given~in~the~argument~of~the~`subfiglist'~environment.
+}
+
 \msg_new:nnn { subfiglist } { wrong~identifier~order }
 {
   Package~subfiglist~Warning:~
-  The~canvas~numbers~in~the~argument~of~`subfiglist'~environment~are~given~in~non-ascending~order.
+  Canvas~numbers~in~argument~of~`subfiglist'~environment~are~given~in~non-ascending~order.
 }
 
 \msg_new:nnn { subfiglist } { wrong~canvas~order }
 {
   Package~subfiglist~Warning:~
-  The~canvas~numbers~in~the~body~of~`subfiglist'~environment~are~given~in~non-ascending~order.
+  Canvas~numbers~in~body~of~`subfiglist'~environment~are~given~in~non-ascending~order.
 }
 
 \msg_new:nnn { subfiglist } { wrong~label~order }
 {
   Package~subfiglist~Warning:~
-  The~label~numbers~in~the~body~of~`subfiglist'~environment~are~given~in~non-ascending~order.
+  Label~numbers~in~body~of~`subfiglist'~environment~are~given~in~non-ascending~order.
+}
+
+\msg_new:nnn { subfiglist } { wrong~overlay~order }
+{
+  Package~subfiglist~Warning:~
+  Overlay~numbers~in~body~of~`subfiglist'~environment~are~given~in~non-ascending~order.
 }
 
 \msg_new:nnn { subfiglist } { mismatching~canvas~order }
 {
   Package~subfiglist~Warning:~
-  The~canvas~numbers~in~the~argument~of~`subfiglist'~environment~are~given~
-  in~a~different~order~than~the~canvas~numbers~in~the~body~of~`subfiglist'~environment.
+  The~canvas~numbers~in~the~argument~of~the~`subfiglist'~environment~are~given~
+  in~a~different~order~than~the~canvas~numbers~in~the~body~of~the~`subfiglist'~environment.
 }
 
 \msg_new:nnn { subfiglist } { mismatching~label~order }
 {
   Package~subfiglist~Warning:~
-  The~canvas~numbers~in~the~argument~of~`subfiglist'~environment~are~given~
-  in~a~different~order~than~the~label~numbers~in~the~body~of~`subfiglist'~environment.
+  The~canvas~numbers~in~the~argument~of~the~`subfiglist'~environment~are~given~
+  in~a~different~order~than~the~label~numbers~in~the~body~of~the~`subfiglist'~environment.
 }
 
 \msg_new:nnn { subfiglist } { mismatching~overlay~order }
 {
   Package~subfiglist~Warning:~
-  The~canvas~numbers~in~the~argument~of~`subfiglist'~environment~are~given~
-  in~a~different~order~than~the~overlay~numbers~in~the~body~of~`subfiglist'~environment.
+  The~canvas~numbers~in~the~argument~of~the~`subfiglist'~environment~are~given~
+  in~a~different~order~than~the~overlay~numbers~in~the~body~of~the~`subfiglist'~environment.
 }
 
 
