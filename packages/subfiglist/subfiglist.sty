@@ -3266,7 +3266,7 @@
                             \int_compare:nT { \subfiglist_tmp_int > 1 }
                             {
                               \addtocounter { subfigure } { \numexpr -\value { subfigure } }
-                              \addtocounter { subfigure } { #2 }
+                              \addtocounter { subfigure } { \subfiglist_tmp_int }
                               \addtocounter { subfigure } { -1 }
                             }
                             \refstepcounter { subfigure }
