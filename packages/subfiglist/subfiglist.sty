@@ -1028,6 +1028,7 @@
 
 \cs_generate_variant:Nn \subfiglist_tl_set_unwrapped:Nn { NV }
 
+
 % Commands for transforming property lists into token lists
 % and vice versa
 \cs_new:Npn \subfiglist_tl_set_from_prop:NN #1 #2
@@ -1045,7 +1046,7 @@
       \tl_put_right:NV \subfiglist_tmpa_tl \subfiglist_tmpb_tl
     }
     \tl_set_eq:NN #1 \subfiglist_tmpa_tl
-  \subfiglist_group_var_return:NN \tl_set:Nn #1
+  \subfiglist_group_tl_return:N #1
   \group_end:
 }
 
@@ -1075,6 +1076,22 @@
   }
 }
 
+\cs_new:Npn \subfiglist_prop_get_safe:NnN #1 #2 #3
+%
+% #1: Property list to recover value from
+% #2: Key to recover
+% #3: Token list variable to store recovered value
+%
+{
+  \prop_get:NnN #1 { #2 } #3
+  \quark_if_no_value:NT #3
+  {
+    \tl_clear:N #3
+    \msg_error:nnn { subfiglist } { internal~error } { key~`#2'~not~found~in~property~list~#1 }
+  }
+}
+
+
 % Commands for transforming sequences into token lists
 % and vice versa
 \cs_new:Npn \subfiglist_tl_set_from_seq:NN #1 #2
@@ -1092,7 +1109,7 @@
       \tl_put_right:NV \subfiglist_tmpa_tl \subfiglist_tmpb_tl
     }
     \tl_set_eq:NN #1 \subfiglist_tmpa_tl
-  \subfiglist_group_var_return:NN \tl_set:Nn #1
+  \subfiglist_group_tl_return:N #1
   \group_end:
 }
 
@@ -1122,20 +1139,6 @@
   }
 }
 
-\cs_new:Npn \subfiglist_prop_get_safe:NnN #1 #2 #3
-%
-% #1: Property list to recover value from
-% #2: Key to recover
-% #3: Token list variable to store recovered value
-%
-{
-  \prop_get:NnN #1 { #2 } #3
-  \quark_if_no_value:NT #3
-  {
-    \tl_clear:N #3
-    \msg_error:nnn { subfiglist } { internal~error } { key~`#2'~not~found~in~property~list~#1 }
-  }
-}
 
 % Command for setting a single key-value pair
 \cs_new:Npn \subfiglist_key_set:nnn #1 #2 #3
