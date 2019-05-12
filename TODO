@@ -7,6 +7,7 @@ TODO
 * Check naming conventions for local and global variables
 * Check required package versions (\char_generate:nn?)
 * Check compile warnings
+* Remove deprecated \subfiglist_group_var_return:NN
 
 
 
@@ -16,6 +17,7 @@ MANUAL
 * Caveat: Don't use \subfiglistlineheight for anything related to width.
 * Convert all png images in documentation to TikZ images
 * \textwidth may change throughout the document
+* \refstepcounter{figure} if not tweaking caption package and not using figure environment.
 
 
 

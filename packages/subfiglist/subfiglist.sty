@@ -505,7 +505,7 @@
   }
   
   % Derive command to put label inset from caption package
-  % code, if subfiglist package is loaded with caption option.
+  % code, if subfiglist package is loaded with corresponding option.
   \bool_if:NT \subfiglist_tweak_caption_package_bool
   {
     \cs_new:Npn \subfiglist_label_inset_caption_package:nn #1 #2
@@ -885,7 +885,78 @@
 % causing an error, if it does not exist
 \cs_new:Npn \subfiglist_use:c #1
 {
-  \cs_if_exist_use:cF { #1 } { \msg_error:nnf { subfiglist } { undefined~command~sequence } { \token_to_str:c { #1 } } }
+  \cs_if_exist_use:cF { #1 }
+  {
+    \msg_error:nnf { subfiglist } { undefined~command~sequence } { \token_to_str:c { #1 } }
+  }
+}
+
+
+% Provide framework for exporting group scope local variables according to discussion
+% at https://tex.stackexchange.com/questions/56294/how-do-i-get-a-value-out-of-a-group
+\cs_new:Nn \subfiglist_group_after_insert:nn
+{ 
+  \cs_if_exist:cF { subfiglist_g_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
+  {
+    \tl_new:c { subfiglist_g_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
+    \tl_gclear:c { subfiglist_g_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
+  }
+
+  % First time the function is executed inside the group:
+  \tl_if_empty:vT { subfiglist_g_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
+  {
+    % Set up the aftergroup execution:
+    \group_insert_after:c { subfiglist_g_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
+
+    % Reset the material for aftergroup execution:
+    \tl_gset:cx { subfiglist_g_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
+    {
+      \tl_gclear:c { subfiglist_g_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
+    }
+  }
+
+  % Append the new material to the aftergroup execution:
+  \tl_gput_right:cx  { subfiglist_g_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
+  {
+    \exp_not:n { #1 {#2} }
+  }
+}
+
+\cs_generate_variant:Nn \subfiglist_group_after_insert:nn {nV}
+
+\cs_new:Npn \subfiglist_group_var_return:NN #1 #2
+{
+  \subfiglist_group_after_insert:nV { #1 #2 } { #2 } 
+}
+
+\cs_new:Npn \subfiglist_group_tl_return:N #1
+{
+  \subfiglist_group_after_insert:nV { \tl_set:Nn #1 } #1
+}
+
+\cs_new:Npn \subfiglist_group_dim_return:N #1
+{
+  \subfiglist_group_after_insert:nV { \dim_set:Nn #1 } #1
+}
+
+\cs_new:Npn \subfiglist_group_int_return:N #1
+{
+  \subfiglist_group_after_insert:nV { \int_set:Nn #1 } #1
+}
+
+\cs_new:Npn \subfiglist_group_fp_return:N #1
+{
+  \subfiglist_group_after_insert:nV { \fp_set:Nn #1 } #1
+}
+
+\cs_new:Npn \subfiglist_group_seq_return_from_tl:NN #1 #2
+{
+  \subfiglist_group_after_insert:nV { \subfiglist_seq_set_from_tl:Nn #1 } #2
+}
+
+\cs_new:Npn \subfiglist_group_prop_return_from_tl:NN #1 #2
+{
+  \subfiglist_group_after_insert:nV { \subfiglist_prop_set_from_tl:Nn #1 } #2
 }
 
 
@@ -978,6 +1049,19 @@
   \group_end:
 }
 
+\cs_new:Npn \subfiglist_prop_set_from_tl:Nn #1 #2
+%
+% #1: Property list to be set
+% #2: Token list
+%
+{
+  \prop_clear:N #1
+  \tl_map_inline:nn { #2 }
+  {
+    \prop_put:Nnn #1 ##1
+  }
+}
+
 \cs_new:Npn \subfiglist_prop_set_from_tl:NN #1 #2
 %
 % #1: Property list to be set
@@ -1012,19 +1096,29 @@
   \group_end:
 }
 
-\tl_map_inline:nn { nN }
+\cs_new:Npn \subfiglist_seq_set_from_tl:Nn #1 #2
+%
+% #1: Sequence to be set
+% #2: Token list
+%
 {
-  \cs_new:cpn { subfiglist_seq_set_from_tl:N #1 } ##1 ##2
-  %
-  % #1: Sequence to be set
-  % #2: Token list
-  %
+  \seq_clear:N #1
+  \tl_map_inline:nn { #2 }
   {
-    \seq_clear:N ##1
-    \subfiglist_use:c { tl_map_inline: #1 n } { ##2 }
-    {
-      \seq_put_right:Nn ##1 { ####1 }
-    }
+    \seq_put_right:Nn #1 { ##1 }
+  }
+}
+
+\cs_new:Npn \subfiglist_seq_set_from_tl:NN #1 #2
+%
+% #1: Sequence to be set
+% #2: Token list
+%
+{
+  \seq_clear:N #1
+  \tl_map_inline:Nn #2
+  {
+    \seq_put_right:Nn #1 { ##1 }
   }
 }
 
@@ -1057,43 +1151,6 @@
 }
 
 \cs_generate_variant:Nn \subfiglist_key_set:nnn { nnV }
-
-
-% Provide framework for exporting group scope local variables according to discussion
-% at https://tex.stackexchange.com/questions/56294/how-do-i-get-a-value-out-of-a-group
-\cs_new:Nn \subfiglist_group_after_insert:nn
-{ 
-  \cs_if_exist:cF { g_subfiglist_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
-  {
-    \tl_new:c { g_subfiglist_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
-  }
-
-  % First time the function is executed inside the group:
-  \tl_if_empty:vT { g_subfiglist_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
-  {
-    % Set up the aftergroup execution:
-    \group_insert_after:c { g_subfiglist_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
-
-    % Reset the material for aftergroup execution:
-    \tl_gset:cx { g_subfiglist_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
-    {
-      \tl_gclear:c { g_subfiglist_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
-    }
-  }
-
-  % Append the new material to the aftergroup execution:
-  \tl_gput_right:cx  { g_subfiglist_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
-  {
-    \exp_not:n { #1 {#2} }
-  }
-}
-
-\cs_generate_variant:Nn \subfiglist_group_after_insert:nn {nV}
-
-\cs_new:Npn \subfiglist_group_var_return:NN #1 #2
-{
-  \subfiglist_group_after_insert:nV { #1 #2 } { #2 } 
-}
 
 
 
