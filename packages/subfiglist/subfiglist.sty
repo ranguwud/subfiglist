@@ -1537,11 +1537,19 @@
 % #3: Sequence containing specification string
 %
 {
-  \seq_pop_left:NN #3 \subfiglist_tmpa_tl
+  \group_begin:
+    \seq_pop_left:NN #3 \subfiglist_tmpa_tl
 
-  \seq_put_right:NV #2 \subfiglist_tmpa_tl
-  \subfiglist_tl_set_wrapped:NnV \subfiglist_tmpb_tl { canvas } \subfiglist_tmpa_tl
-  \tl_put_right:NV #1 \subfiglist_tmpb_tl
+    \seq_put_right:NV #2 \subfiglist_tmpa_tl
+    \subfiglist_tl_set_wrapped:NnV \subfiglist_tmpb_tl { canvas } \subfiglist_tmpa_tl
+    \tl_put_right:NV #1 \subfiglist_tmpb_tl
+  
+  \subfiglist_tl_set_from_seq:NN \subfiglist_tmpa_tl #2
+  \subfiglist_tl_set_from_seq:NN \subfiglist_tmpb_tl #3
+  \subfiglist_group_tl_return:N #1
+  \subfiglist_group_seq_return_from_tl:NN #2 \subfiglist_tmpa_tl
+  \subfiglist_group_seq_return_from_tl:NN #3 \subfiglist_tmpb_tl
+  \group_end:
 }
 
 \cs_new:Npn \subfiglist_tokenize_at:NNN #1 #2 #3
@@ -1551,15 +1559,23 @@
 % #3: Sequence containing specification string
 %
 {
-  \seq_pop_left:NN #3 \subfiglist_tmpa_tl
+  \group_begin:
+    \seq_pop_left:NN #3 \subfiglist_tmpa_tl
+    
+    \seq_pop_left:NNTF #3 \subfiglist_tmpa_tl
+    {
+      \subfiglist_tl_set_wrapped:NnV \subfiglist_tmpb_tl { separator } \subfiglist_tmpa_tl
+      \tl_put_right:NV #1 \subfiglist_tmpb_tl
+    }{
+      \msg_error:nn { subfiglist } { missing~separator }
+    }
   
-  \seq_pop_left:NNTF #3 \subfiglist_tmpa_tl
-  {
-    \subfiglist_tl_set_wrapped:NnV \subfiglist_tmpb_tl { separator } \subfiglist_tmpa_tl
-    \tl_put_right:NV #1 \subfiglist_tmpb_tl
-  }{
-    \msg_error:nn { subfiglist } { missing~separator }
-  }
+  \subfiglist_tl_set_from_seq:NN \subfiglist_tmpa_tl #2
+  \subfiglist_tl_set_from_seq:NN \subfiglist_tmpb_tl #3
+  \subfiglist_group_tl_return:N #1
+  \subfiglist_group_seq_return_from_tl:NN #2 \subfiglist_tmpa_tl
+  \subfiglist_group_seq_return_from_tl:NN #3 \subfiglist_tmpb_tl
+  \group_end:
 }
 
 \cs_new:Npn \subfiglist_tokenize_newline:NNN #1 #2 #3
@@ -1569,41 +1585,50 @@
 % #3: Sequence containing specification string
 %
 {
-  % Consume newline character
-  \seq_pop_left:NN #3 \subfiglist_tmpa_tl
-  
-  \tl_clear:N \subfiglist_tmpb_tl
-  \seq_get_left:NNTF #3 \subfiglist_tmpa_tl
-  {
-    \token_if_eq_charcode:NVTF [ \subfiglist_tmpa_tl
+  \group_begin:
+    % Consume newline character
+    \seq_pop_left:NN #3 \subfiglist_tmpa_tl
+    
+    \tl_clear:N \subfiglist_tmpb_tl
+    \seq_get_left:NNTF #3 \subfiglist_tmpa_tl
     {
-      \seq_pop_left:NN #3 \subfiglist_tmpa_tl
-      \seq_get_left:NN #3 \subfiglist_tmpa_tl
-      \bool_until_do:nn 
+      \token_if_eq_charcode:NVTF [ \subfiglist_tmpa_tl
       {
-        \bool_lazy_or_p:nn
-          { \quark_if_no_value_p:N \subfiglist_tmpa_tl }
-          { \token_if_eq_charcode_p:NV ] \subfiglist_tmpa_tl }
-      }{
         \seq_pop_left:NN #3 \subfiglist_tmpa_tl
-        \tl_put_right:NV \subfiglist_tmpb_tl \subfiglist_tmpa_tl
         \seq_get_left:NN #3 \subfiglist_tmpa_tl
-      }
-      
-      \quark_if_no_value:NTF \subfiglist_tmpa_tl
-      {
-        \msg_error:nn { subfiglist } { runaway~optional~argument }
+        \bool_until_do:nn 
+        {
+          \bool_lazy_or_p:nn
+            { \quark_if_no_value_p:N \subfiglist_tmpa_tl }
+            { \token_if_eq_charcode_p:NV ] \subfiglist_tmpa_tl }
+        }{
+          \seq_pop_left:NN #3 \subfiglist_tmpa_tl
+          \tl_put_right:NV \subfiglist_tmpb_tl \subfiglist_tmpa_tl
+          \seq_get_left:NN #3 \subfiglist_tmpa_tl
+        }
+        
+        \quark_if_no_value:NTF \subfiglist_tmpa_tl
+        {
+          \tl_clear:N \subfiglist_tmpa_tl
+          \msg_error:nn { subfiglist } { runaway~optional~argument }
+        }{
+          \seq_pop_left:NN #3 \subfiglist_tmpa_tl
+        }
       }{
-        \seq_pop_left:NN #3 \subfiglist_tmpa_tl
+        \tl_put_right:NV \subfiglist_tmpb_tl \subfiglist_canvas_space_environment_default_dim
       }
     }{
       \tl_put_right:NV \subfiglist_tmpb_tl \subfiglist_canvas_space_environment_default_dim
     }
-  }{
-    \tl_put_right:NV \subfiglist_tmpb_tl \subfiglist_canvas_space_environment_default_dim
-  }
-  \subfiglist_tl_set_wrapped:NnV \subfiglist_tmpa_tl { newline } \subfiglist_tmpb_tl
-  \tl_put_right:NV #1 \subfiglist_tmpa_tl
+    \subfiglist_tl_set_wrapped:NnV \subfiglist_tmpa_tl { newline } \subfiglist_tmpb_tl
+    \tl_put_right:NV #1 \subfiglist_tmpa_tl
+  
+  \subfiglist_tl_set_from_seq:NN \subfiglist_tmpa_tl #2
+  \subfiglist_tl_set_from_seq:NN \subfiglist_tmpb_tl #3
+  \subfiglist_group_tl_return:N #1
+  \subfiglist_group_seq_return_from_tl:NN #2 \subfiglist_tmpa_tl
+  \subfiglist_group_seq_return_from_tl:NN #3 \subfiglist_tmpb_tl
+  \group_end:
 }
 
 \cs_new:Npn \subfiglist_tokenize_subblock:NNN #1 #2 #3
@@ -1613,20 +1638,35 @@
 % #3: Sequence containing specification string
 %
 {
-  \seq_pop_left:NN #3 \subfiglist_tmpa_tl
   \group_begin:
+    \tl_clear_new:N \subfiglist_tmp_tokenized_spec_tl
+    \seq_clear_new:N \subfiglist_tmp_identifier_nums_seq
+    \seq_clear_new:N \subfiglist_tmp_spec_str_seq
+    
+    \seq_pop_left:NN #3 \subfiglist_tmpa_tl
+    \tl_set_eq:NN \subfiglist_tmp_tokenized_spec_tl #1
+    \seq_set_eq:NN \subfiglist_tmp_identifier_nums_seq #2
+    \seq_set_eq:NN \subfiglist_tmp_spec_str_seq #3
+
     \tl_clear:N #1
     \seq_clear:N #2
     \subfiglist_seq_set_from_tl:NN #3 \subfiglist_tmpa_tl
     \subfiglist_tokenize_spec_str:NNN #1 #2 #3
+    
     \subfiglist_tl_set_wrapped:NnV \subfiglist_tmpa_tl { subblock } #1
-    \subfiglist_tl_set_from_seq:NN \subfiglist_tmpb_tl #2
-  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tmpa_tl
-  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tmpb_tl
+    \tl_set_eq:NN #1 \subfiglist_tmp_tokenized_spec_tl
+    \tl_put_right:NV #1 \subfiglist_tmpa_tl
+    
+    \seq_concat:NNN #2 \subfiglist_tmp_identifier_nums_seq #2
+    
+    \seq_set_eq:NN #3 \subfiglist_tmp_spec_str_seq
+
+  \subfiglist_tl_set_from_seq:NN \subfiglist_tmpa_tl #2
+  \subfiglist_tl_set_from_seq:NN \subfiglist_tmpb_tl #3
+  \subfiglist_group_tl_return:N #1
+  \subfiglist_group_seq_return_from_tl:NN #2 \subfiglist_tmpa_tl
+  \subfiglist_group_seq_return_from_tl:NN #3 \subfiglist_tmpb_tl
   \group_end:
-  \tl_put_right:NV #1 \subfiglist_tmpa_tl
-  \subfiglist_seq_set_from_tl:NN \subfiglist_tmp_seq \subfiglist_tmpb_tl
-  \seq_concat:NNN #2 #2 \subfiglist_tmp_seq
 }
 
 \cs_new:Npn \subfiglist_tokenize_error:NNN #1 #2 #3
@@ -1636,8 +1676,16 @@
 % #3: Sequence containing specification string
 %
 {
-  \seq_pop_left:NN #3 \subfiglist_tmpa_tl
-  \msg_error:nnV { subfiglist } { parser~error } \subfiglist_tmpa_tl
+  \group_begin:
+    \seq_pop_left:NN #3 \subfiglist_tmpa_tl
+    \msg_error:nnV { subfiglist } { parser~error } \subfiglist_tmpa_tl
+
+  \subfiglist_tl_set_from_seq:NN \subfiglist_tmpa_tl #2
+  \subfiglist_tl_set_from_seq:NN \subfiglist_tmpb_tl #3
+  \subfiglist_group_tl_return:N #1
+  \subfiglist_group_seq_return_from_tl:NN #2 \subfiglist_tmpa_tl
+  \subfiglist_group_seq_return_from_tl:NN #3 \subfiglist_tmpb_tl
+  \group_end:
 }
 
 % Lexer for subfiglist specification
@@ -1663,12 +1711,13 @@
         }
       }
     }
-    \subfiglist_tl_set_from_seq:NN \subfiglist_tmpa_tl #2
-  \subfiglist_group_var_return:NN \tl_set:Nn #1
-  \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tmpa_tl
+
+  \subfiglist_tl_set_from_seq:NN \subfiglist_tmpa_tl #2
+  \subfiglist_tl_set_from_seq:NN \subfiglist_tmpb_tl #3
+  \subfiglist_group_tl_return:N #1
+  \subfiglist_group_seq_return_from_tl:NN #2 \subfiglist_tmpa_tl
+  \subfiglist_group_seq_return_from_tl:NN #3 \subfiglist_tmpb_tl
   \group_end:
-  \subfiglist_seq_set_from_tl:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
-  \seq_concat:NNN #2 #2 \subfiglist_tmp_seq
 }
 
 

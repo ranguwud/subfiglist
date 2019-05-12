@@ -18,6 +18,7 @@ MANUAL
 * Convert all png images in documentation to TikZ images
 * \textwidth may change throughout the document
 * \refstepcounter{figure} if not tweaking caption package and not using figure environment.
+* No space allowed when writing integers in braces
 
 
 
