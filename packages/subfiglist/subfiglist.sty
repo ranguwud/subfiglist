@@ -1083,8 +1083,7 @@
 % #3: Token list variable to store recovered value
 %
 {
-  \prop_get:NnN #1 { #2 } #3
-  \quark_if_no_value:NT #3
+  \prop_get:NnNF #1 { #2 } #3
   {
     \tl_clear:N #3
     \msg_error:nnn { subfiglist } { internal~error } { key~`#2'~not~found~in~property~list~#1 }
