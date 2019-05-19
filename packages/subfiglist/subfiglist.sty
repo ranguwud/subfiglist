@@ -955,6 +955,15 @@
 }
 
 
+\cs_new:Npn \subfiglist_tl_set_eq_new:NN #1 #2
+{
+  \tl_clear_new:N #1
+  \tl_set_eq:NN #1 #2
+}
+
+\cs_generate_variant:Nn \subfiglist_tl_set_eq_new:NN { Nc }
+\cs_generate_variant:Nn \subfiglist_tl_set_eq_new:NN { cN }
+
 % Command for setting a token list variable to head
 % of another token list variable. If the heading token
 % is enclosed by braces, one level of braces will be removed
@@ -995,6 +1004,17 @@
 }
 
 \cs_generate_variant:Nn \subfiglist_tl_set_wrapped:Nn { NV }
+
+\cs_new:Npn \subfiglist_tl_gput_right_wrapped:Nn #1 #2
+%
+% #1: Token list variable to be set
+% #2: First token
+%
+{
+  \tl_gput_right:Nn #1 { { #2 } }
+}
+
+\cs_generate_variant:Nn \subfiglist_tl_gput_right_wrapped:Nn { cx }
 
 \cs_new:Npn \subfiglist_tl_set_wrapped:Nnn #1 #2 #3
 %
@@ -1045,6 +1065,16 @@
   \group_end:
 }
 
+
+\cs_new:Npn \subfiglist_prop_set_eq_new:NN #1 #2
+{
+  \prop_clear_new:N #1
+  \prop_set_eq:NN #1 #2
+}
+
+\cs_generate_variant:Nn \subfiglist_prop_set_eq_new:NN { Nc }
+\cs_generate_variant:Nn \subfiglist_prop_set_eq_new:NN { cN }
+
 \cs_new:Npn \subfiglist_prop_set_from_tl:Nn #1 #2
 %
 % #1: Property list to be set
@@ -1085,6 +1115,15 @@
   }
 }
 
+
+\cs_new:Npn \subfiglist_seq_set_eq_new:NN #1 #2
+{
+  \seq_clear_new:N #1
+  \seq_set_eq:NN #1 #2
+}
+
+\cs_generate_variant:Nn \subfiglist_seq_set_eq_new:NN { Nc }
+\cs_generate_variant:Nn \subfiglist_seq_set_eq_new:NN { cN }
 
 % Commands for transforming sequences into token lists
 % and vice versa
@@ -1132,6 +1171,36 @@
     \seq_put_right:Nn #1 { ##1 }
   }
 }
+
+
+\cs_new:Npn \subfiglist_int_set_eq_new:NN #1 #2
+{
+  \int_zero_new:N #1
+  \int_set_eq:NN #1 #2
+}
+
+\cs_generate_variant:Nn \subfiglist_int_set_eq_new:NN { Nc }
+\cs_generate_variant:Nn \subfiglist_int_set_eq_new:NN { cN }
+
+
+\cs_new:Npn \subfiglist_fp_set_eq_new:NN #1 #2
+{
+  \fp_zero_new:N #1
+  \fp_set_eq:NN #1 #2
+}
+
+\cs_generate_variant:Nn \subfiglist_fp_set_eq_new:NN { Nc }
+\cs_generate_variant:Nn \subfiglist_fp_set_eq_new:NN { cN }
+
+
+\cs_new:Npn \subfiglist_dim_set_eq_new:NN #1 #2
+{
+  \dim_zero_new:N #1
+  \dim_set_eq:NN #1 #2
+}
+
+\cs_generate_variant:Nn \subfiglist_dim_set_eq_new:NN { Nc }
+\cs_generate_variant:Nn \subfiglist_dim_set_eq_new:NN { cN }
 
 
 % Command for setting a single key-value pair
