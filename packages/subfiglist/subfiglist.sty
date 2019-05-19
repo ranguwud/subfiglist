@@ -104,6 +104,7 @@
 \cs_generate_variant:Nn \dim_sub:Nn                { NV }
 \cs_generate_variant:Nn \fp_set:Nn                 { NV }
 \cs_generate_variant:Nn \fp_add:Nn                 { NV }
+\cs_generate_variant:Nn \tl_gset:Nn                { cx }
 \cs_generate_variant:Nn \tl_put_right:Nn           { Nf }
 \cs_generate_variant:Nn \tl_if_single_p:n          { V }
 \cs_generate_variant:Nn \tl_if_blank_p:n           { V }
@@ -116,10 +117,10 @@
 \cs_generate_variant:Nn \msg_error:nnnn            { nnnV }
 \cs_generate_variant:Nn \msg_error:nnnn            { nnVn }
 \cs_generate_variant:Nn \msg_error:nnnn            { nnVx }
-\cs_generate_variant:Nn \cs_generate_variant:Nn    { cn }
 \cs_generate_variant:Nn \str_if_eq_p:nn            { nf }
 \cs_generate_variant:Nn \char_generate:nn          { nV }
 \cs_generate_variant:Nn \seq_set_split:Nnn         { Nx }
+\cs_generate_variant:Nn \seq_gset_split:Nnn        { cxx }
 \cs_generate_variant:Nn \token_if_eq_charcode_p:NN { NV }
 \cs_generate_variant:Nn \token_if_eq_charcode:NNTF { NV }
 \cs_generate_variant:Nn \group_insert_after:N      { c }
@@ -887,6 +888,145 @@
 }
 
 
+% Provide framework for setting group scope local variables following the discussion
+% at https://tex.stackexchange.com/questions/56294/how-do-i-get-a-value-out-of-a-group
+\cs_new:Npn \subfiglist_group_begin:
+{
+  \group_begin:
+}
+
+\cs_new:Npn \subfiglist_group_end:
+{
+  \group_end:
+}
+
+\cs_new:Npn \subfiglist_group_begin_reset:
+{
+  \cs_set:Npn \subfiglist_group_begin:
+  {
+    \group_begin:
+  }
+}
+
+\cs_new:Npn \subfiglist_group_before_insert:N #1
+{
+  \exp_args:NNo \cs_set:Npn \subfiglist_group_begin:
+  {
+    \exp_after:wN
+    \subfiglist_group_begin_reset:
+    \subfiglist_group_begin:
+    #1
+  }
+}
+
+\cs_generate_variant:Nn \subfiglist_group_before_insert:N { c }
+
+\cs_new:Npn \subfiglist_group_local_var_add:NNNN #1 #2 #3 #4
+{
+  \cs_if_exist:cF { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+  {
+    \tl_new:c { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+    \tl_gclear:c { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+  }
+  \cs_if_exist:cF { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+  {
+    \tl_new:c { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+    \tl_gclear:c { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+  }
+
+  % First time the function is executed inside the group:
+  \tl_if_empty:vT { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+  {
+    % Set up the before group execution:
+    \subfiglist_group_before_insert:c { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+
+    % Reset the material for before group execution:
+    \tl_gset:cx { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+    {
+      \tl_gclear:c { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+    }
+  }
+  \tl_if_empty:vT { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+  {
+    % Set up the before group execution:
+    \subfiglist_group_before_insert:c { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+
+    % Reset the material for before group execution:
+    \tl_gset:cx { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+    {
+      \tl_gclear:c { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+    }
+  }
+  
+  \seq_gclear_new:c { subfiglist_g_local_var_helper_cs_ \int_use:N \etex_currentgrouplevel:D _seq }
+  \seq_gset_split:cxx { subfiglist_g_local_var_helper_cs_ \int_use:N \etex_currentgrouplevel:D _seq }
+  {
+    \char_generate:nn { `_ } { 12 }
+  }{
+    \cs_to_str:N #3
+  }
+
+  % Append the new material to the before group execution:
+  \tl_gput_right:cn { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+  {
+    #1
+  }
+  \subfiglist_tl_gput_right_wrapped:cx { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+  {
+    \seq_use:cnnn { subfiglist_g_local_var_helper_cs_ \int_use:N \etex_currentgrouplevel:D _seq }
+    { _ \int_use:N \etex_currentgrouplevel:D _ } { _ } { _ \int_use:N \etex_currentgrouplevel:D _ }
+  }
+  \tl_gput_right:cn { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+  {
+    #4
+  }
+
+  \tl_gput_right:cn { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+  {
+    #2
+  }
+  \tl_gput_right:cn { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+  {
+    #3
+  }
+  \subfiglist_tl_gput_right_wrapped:cx { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+  {
+    \seq_use:cnnn { subfiglist_g_local_var_helper_cs_ \int_use:N \etex_currentgrouplevel:D _seq }
+    { _ \int_use:N \etex_currentgrouplevel:D _ } { _ } { _ \int_use:N \etex_currentgrouplevel:D _ }
+  }
+}
+
+\cs_new:Npn \subfiglist_group_local_tl_set_eq:NN #1 #2
+{
+  \subfiglist_group_local_var_add:NNNN \subfiglist_tl_set_eq_new:cN \subfiglist_tl_set_eq_new:Nc #1 #2
+}
+
+\cs_new:Npn \subfiglist_group_local_seq_set_eq:NN #1 #2
+{
+  \subfiglist_group_local_var_add:NNNN \subfiglist_seq_set_eq_new:cN \subfiglist_seq_set_eq_new:Nc #1 #2
+}
+
+\cs_new:Npn \subfiglist_group_local_prop_set_eq:NN #1 #2
+{
+  \subfiglist_group_local_var_add:NNNN \subfiglist_prop_set_eq_new:cN \subfiglist_prop_set_eq_new:Nc #1 #2
+}
+
+\cs_new:Npn \subfiglist_group_local_int_set_eq:NN #1 #2
+{
+  \subfiglist_group_local_var_add:NNNN \subfiglist_int_set_eq_new:cN \subfiglist_int_set_eq_new:Nc #1 #2
+}
+
+\cs_new:Npn \subfiglist_group_local_fp_set_eq:NN #1 #2
+{
+  \subfiglist_group_local_var_add:NNNN \subfiglist_fp_set_eq_new:cN \subfiglist_fp_set_eq_new:Nc #1 #2
+}
+
+\cs_new:Npn \subfiglist_group_local_dim_set_eq:NN #1 #2
+{
+  \subfiglist_group_local_var_add:NNNN \subfiglist_dim_set_eq_new:cN \subfiglist_dim_set_eq_new:Nc #1 #2
+}
+
+
 % Provide framework for exporting group scope local variables according to discussion
 % at https://tex.stackexchange.com/questions/56294/how-do-i-get-a-value-out-of-a-group
 \cs_new:Nn \subfiglist_group_after_insert:nn
@@ -911,9 +1051,9 @@
   }
 
   % Append the new material to the aftergroup execution:
-  \tl_gput_right:cx  { subfiglist_g_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
+  \tl_gput_right:cn  { subfiglist_g_aftergroup_ \int_use:N \etex_currentgrouplevel:D _tl }
   {
-    \exp_not:n { #1 {#2} }
+    #1 { #2 }
   }
 }
 
