@@ -452,17 +452,20 @@
 % #2: Property list
 %
 {
-  \group_begin:
+  \subfiglist_group_local_prop_set_eq:NN \subfiglist_tmp_prop #2
+  \subfiglist_group_begin:
+  
     \tl_clear:N \subfiglist_tmpa_tl
 
-    \prop_map_inline:Nn #2
+    \prop_map_inline:Nn \subfiglist_tmp_prop
     {
       \subfiglist_tl_set_wrapped:Nnn \subfiglist_tmpb_tl { ##1 } { ##2 }
       \tl_put_right:NV \subfiglist_tmpa_tl \subfiglist_tmpb_tl
     }
-    \tl_set_eq:NN #1 \subfiglist_tmpa_tl
+    
+  \tl_set_eq:NN #1 \subfiglist_tmpa_tl
   \subfiglist_group_tl_return:N #1
-  \group_end:
+  \subfiglist_group_end:
 }
 
 
@@ -533,15 +536,18 @@
 % #2: Sequence
 %
 {
-  \group_begin:
+  \subfiglist_group_local_seq_set_eq:NN \subfiglist_tmp_seq #2
+  \subfiglist_group_begin:
+  
     \tl_clear:N \subfiglist_tmpa_tl
 
-    \seq_map_inline:Nn #2
+    \seq_map_inline:Nn \subfiglist_tmp_seq
     {
       \subfiglist_tl_set_wrapped:Nn \subfiglist_tmpb_tl { ##1 }
       \tl_put_right:NV \subfiglist_tmpa_tl \subfiglist_tmpb_tl
     }
-    \tl_set_eq:NN #1 \subfiglist_tmpa_tl
+    
+  \tl_set_eq:NN #1 \subfiglist_tmpa_tl
   \subfiglist_group_tl_return:N #1
   \group_end:
 }
