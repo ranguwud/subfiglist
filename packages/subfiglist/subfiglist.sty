@@ -324,9 +324,9 @@
   \subfiglist_group_after_insert:nV { #1 #2 } { #2 } 
 }
 
-\cs_new:Npn \subfiglist_group_tl_return:N #1
+\cs_new:Npn \subfiglist_group_return_tl_set_eq:NN #1 #2
 {
-  \subfiglist_group_after_insert:nV { \tl_set:Nn #1 } #1
+  \subfiglist_group_after_insert:nV { \tl_set:Nn #1 } #2
 }
 
 \cs_new:Npn \subfiglist_group_dim_return:N #1
@@ -463,8 +463,7 @@
       \tl_put_right:NV \subfiglist_tmpa_tl \subfiglist_tmpb_tl
     }
     
-  \tl_set_eq:NN #1 \subfiglist_tmpa_tl
-  \subfiglist_group_tl_return:N #1
+  \subfiglist_group_return_tl_set_eq:NN #1 \subfiglist_tmpa_tl
   \subfiglist_group_end:
 }
 
@@ -547,8 +546,7 @@
       \tl_put_right:NV \subfiglist_tmpa_tl \subfiglist_tmpb_tl
     }
     
-  \tl_set_eq:NN #1 \subfiglist_tmpa_tl
-  \subfiglist_group_tl_return:N #1
+  \subfiglist_group_return_tl_set_eq:NN #1 \subfiglist_tmpa_tl
   \group_end:
 }
 
@@ -1742,7 +1740,7 @@
   
   \subfiglist_tl_set_from_seq:NN \subfiglist_tmpa_tl #2
   \subfiglist_tl_set_from_seq:NN \subfiglist_tmpb_tl #3
-  \subfiglist_group_tl_return:N #1
+  \subfiglist_group_return_tl_set_eq:NN #1 #1
   \subfiglist_group_seq_return_from_tl:NN #2 \subfiglist_tmpa_tl
   \subfiglist_group_seq_return_from_tl:NN #3 \subfiglist_tmpb_tl
   \group_end:
@@ -1768,7 +1766,7 @@
   
   \subfiglist_tl_set_from_seq:NN \subfiglist_tmpa_tl #2
   \subfiglist_tl_set_from_seq:NN \subfiglist_tmpb_tl #3
-  \subfiglist_group_tl_return:N #1
+  \subfiglist_group_return_tl_set_eq:NN #1 #1
   \subfiglist_group_seq_return_from_tl:NN #2 \subfiglist_tmpa_tl
   \subfiglist_group_seq_return_from_tl:NN #3 \subfiglist_tmpb_tl
   \group_end:
@@ -1821,7 +1819,7 @@
   
   \subfiglist_tl_set_from_seq:NN \subfiglist_tmpa_tl #2
   \subfiglist_tl_set_from_seq:NN \subfiglist_tmpb_tl #3
-  \subfiglist_group_tl_return:N #1
+  \subfiglist_group_return_tl_set_eq:NN #1 #1
   \subfiglist_group_seq_return_from_tl:NN #2 \subfiglist_tmpa_tl
   \subfiglist_group_seq_return_from_tl:NN #3 \subfiglist_tmpb_tl
   \group_end:
@@ -1859,7 +1857,7 @@
 
   \subfiglist_tl_set_from_seq:NN \subfiglist_tmpa_tl #2
   \subfiglist_tl_set_from_seq:NN \subfiglist_tmpb_tl #3
-  \subfiglist_group_tl_return:N #1
+  \subfiglist_group_return_tl_set_eq:NN #1 #1
   \subfiglist_group_seq_return_from_tl:NN #2 \subfiglist_tmpa_tl
   \subfiglist_group_seq_return_from_tl:NN #3 \subfiglist_tmpb_tl
   \group_end:
@@ -1878,7 +1876,7 @@
 
   \subfiglist_tl_set_from_seq:NN \subfiglist_tmpa_tl #2
   \subfiglist_tl_set_from_seq:NN \subfiglist_tmpb_tl #3
-  \subfiglist_group_tl_return:N #1
+  \subfiglist_group_return_tl_set_eq:NN #1 #1
   \subfiglist_group_seq_return_from_tl:NN #2 \subfiglist_tmpa_tl
   \subfiglist_group_seq_return_from_tl:NN #3 \subfiglist_tmpb_tl
   \group_end:
@@ -1910,7 +1908,7 @@
 
   \subfiglist_tl_set_from_seq:NN \subfiglist_tmpa_tl #2
   \subfiglist_tl_set_from_seq:NN \subfiglist_tmpb_tl #3
-  \subfiglist_group_tl_return:N #1
+  \subfiglist_group_return_tl_set_eq:NN #1 #1
   \subfiglist_group_seq_return_from_tl:NN #2 \subfiglist_tmpa_tl
   \subfiglist_group_seq_return_from_tl:NN #3 \subfiglist_tmpb_tl
   \group_end:
@@ -1999,7 +1997,7 @@
     }
     
   \subfiglist_tl_set_from_seq:NN \subfiglist_tmpa_tl #2
-  \subfiglist_group_tl_return:N #1
+  \subfiglist_group_return_tl_set_eq:NN #1 #1
   \subfiglist_group_seq_return_from_tl:NN #2 \subfiglist_tmpa_tl
   \group_end:
 }
@@ -2016,7 +2014,7 @@
     \tl_put_right:NV #1 \subfiglist_tmpb_tl
     
   \subfiglist_tl_set_from_seq:NN \subfiglist_tmpa_tl #2
-  \subfiglist_group_tl_return:N #1
+  \subfiglist_group_return_tl_set_eq:NN #1 #1
   \subfiglist_group_seq_return_from_tl:NN #2 \subfiglist_tmpa_tl
   \group_end:
 }
@@ -2033,7 +2031,7 @@
     \tl_put_right:NV #1 \subfiglist_tmpb_tl
     
   \subfiglist_tl_set_from_seq:NN \subfiglist_tmpa_tl #2
-  \subfiglist_group_tl_return:N #1
+  \subfiglist_group_return_tl_set_eq:NN #1 #1
   \subfiglist_group_seq_return_from_tl:NN #2 \subfiglist_tmpa_tl
   \group_end:
 }
@@ -2073,7 +2071,7 @@
     }
     
   \subfiglist_tl_set_from_seq:NN \subfiglist_tmpa_tl #2
-  \subfiglist_group_tl_return:N #1
+  \subfiglist_group_return_tl_set_eq:NN #1 #1
   \subfiglist_group_seq_return_from_tl:NN #2 \subfiglist_tmpa_tl
   \group_end:
 }
@@ -2136,7 +2134,7 @@
     \seq_set_eq:NN #2 \subfiglist_tmp_spec_tokens_seq
     
   \subfiglist_tl_set_from_seq:NN \subfiglist_tmpa_tl #2
-  \subfiglist_group_tl_return:N #1
+  \subfiglist_group_return_tl_set_eq:NN #1 #1
   \subfiglist_group_seq_return_from_tl:NN #2 \subfiglist_tmpa_tl
   \group_end:
 }
@@ -2151,7 +2149,7 @@
     \msg_error:nnV { subfiglist } { internal~error } \subfiglist_tmpb_tl
     
   \subfiglist_tl_set_from_seq:NN \subfiglist_tmpa_tl #2
-  \subfiglist_group_tl_return:N #1
+  \subfiglist_group_return_tl_set_eq:NN #1 #1
   \subfiglist_group_seq_return_from_tl:NN #2 \subfiglist_tmpa_tl
   \group_end:
 }
@@ -2184,7 +2182,7 @@
       }
     }
     
-  \subfiglist_group_tl_return:N #1
+  \subfiglist_group_return_tl_set_eq:NN #1 #1
   \group_end:
 }
 
