@@ -339,9 +339,9 @@
   \subfiglist_group_after_insert:nV { \int_set:Nn #1 } #2
 }
 
-\cs_new:Npn \subfiglist_group_fp_return:N #1
+\cs_new:Npn \subfiglist_group_return_fp_set_eq:NN #1 #2
 {
-  \subfiglist_group_after_insert:nV { \fp_set:Nn #1 } #1
+  \subfiglist_group_after_insert:nV { \fp_set:Nn #1 } #2
 }
 
 \cs_new:Npn \subfiglist_group_seq_return_from_tl:NN #1 #2
