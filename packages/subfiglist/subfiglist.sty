@@ -329,9 +329,9 @@
   \subfiglist_group_after_insert:nV { \tl_set:Nn #1 } #2
 }
 
-\cs_new:Npn \subfiglist_group_dim_return:N #1
+\cs_new:Npn \subfiglist_group_return_dim_set_eq:NN #1 #2
 {
-  \subfiglist_group_after_insert:nV { \dim_set:Nn #1 } #1
+  \subfiglist_group_after_insert:nV { \dim_set:Nn #1 } #2
 }
 
 \cs_new:Npn \subfiglist_group_int_return:N #1
