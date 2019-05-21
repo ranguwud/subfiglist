@@ -49,6 +49,7 @@
 \tl_new:N   \subfiglist_tmpa_tl
 \tl_new:N   \subfiglist_tmpb_tl
 
+\seq_new:N  \subfiglist_tokenized_spec_seq
 \seq_new:N  \subfiglist_spec_str_seq
 \seq_new:N  \subfiglist_identifier_nums_seq
 \seq_new:N  \subfiglist_canvas_nums_seq
@@ -2081,16 +2082,16 @@
 
     \seq_pop_left:NN \subfiglist_tokenized_spec_seq \subfiglist_tmpa_tl
     \tl_clear_new:N  \subfiglist_parsed_spec_sub_tl
-    \tl_clear_new:N  \subfiglist_tokenized_spec_sub_tl
+    \seq_clear_new:N \subfiglist_tokenized_spec_sub_seq
     
     \subfiglist_tl_set_tail:NV \subfiglist_tmpb_tl \subfiglist_tmpa_tl
     % Remove one level of braces
     \subfiglist_tl_set_unwrapped:NV \subfiglist_tmpa_tl \subfiglist_tmpb_tl
-    \tl_set_eq:NN \subfiglist_tokenized_spec_sub_tl \subfiglist_tmpa_tl
+    \subfiglist_seq_set_from_tl:NN \subfiglist_tokenized_spec_sub_seq \subfiglist_tmpa_tl
         
-    \subfiglist_parse_spec_tokens:NV
+    \subfiglist_parse_spec_tokens:NN
       \subfiglist_parsed_spec_sub_tl
-      \subfiglist_tokenized_spec_sub_tl
+      \subfiglist_tokenized_spec_sub_seq
     
     \subfiglist_tl_set_wrapped:NnV \subfiglist_tmpa_tl { subblock } \subfiglist_parsed_spec_sub_tl
     \tl_put_right:NV \subfiglist_parsed_spec_tl \subfiglist_tmpa_tl
@@ -2183,41 +2184,35 @@
 }
 
 % Parser for subfiglist specification
-\cs_new:Npn \subfiglist_parse_spec_tokens:Nn #1 #2
+\cs_new:Npn \subfiglist_parse_spec_tokens:NN #1 #2
 %
-% #1: Token list variable for storing parsed specification string
-% #2: Token list containing tokenized specification string
+% #1: Token list variable for storing tokenized specification string
+% #2: Sequence containing tokenized specification string
 %
 {
   \subfiglist_group_local_tl_set_eq:NN  \subfiglist_parsed_spec_tl #1
-  %\subfiglist_group_local_tl_set_eq:NN \subfiglist_tokenized_spec_tl #2
+  \subfiglist_group_local_seq_set_eq:NN \subfiglist_tokenized_spec_seq #2
   \subfiglist_group_begin:
 
-    \seq_clear_new:N \subfiglist_tmp_spec_tokens_seq
-    \tl_map_inline:nn { #2 }
+    \bool_until_do:nn { \seq_if_empty_p:N \subfiglist_tokenized_spec_seq }
     {
-      \seq_put_right:Nn \subfiglist_tmp_spec_tokens_seq { ##1 }
-    }
-    
-    \bool_until_do:nn { \seq_if_empty_p:N \subfiglist_tmp_spec_tokens_seq }
-    {
-      \seq_get_left:NN \subfiglist_tmp_spec_tokens_seq \subfiglist_tmpa_tl
+      \seq_get_left:NN \subfiglist_tokenized_spec_seq \subfiglist_tmpa_tl
       
       \tl_map_inline:nn { { line } { newline } { error } }
       {
         \bool_if:nT { \subfiglist_use:c { subfiglist_parse_is_ ##1 _p:V } \subfiglist_tmpa_tl }
         {
-          \subfiglist_use:c { subfiglist_parse_ ##1 :NN } \subfiglist_parsed_spec_tl \subfiglist_tmp_spec_tokens_seq
+          \subfiglist_use:c { subfiglist_parse_ ##1 :NN } \subfiglist_parsed_spec_tl \subfiglist_tokenized_spec_seq
           \tl_map_break:
         }
       }
     }
     
-  \subfiglist_group_return_tl_set_eq:NN #1 \subfiglist_parsed_spec_tl
+  \subfiglist_tl_set_from_seq:NN \subfiglist_tmpa_tl \subfiglist_tokenized_spec_seq
+  \subfiglist_group_return_tl_set_eq:NN   #1 \subfiglist_parsed_spec_tl
+  \subfiglist_group_return_seq_from_tl:NN #2 \subfiglist_tmpa_tl
   \subfiglist_group_end:
 }
-
-\cs_generate_variant:Nn \subfiglist_parse_spec_tokens:Nn { NV }
 
 
 
@@ -3850,7 +3845,10 @@
     \subfiglist_identifier_count_int
     
   % Parse subfiglist specification
-  \subfiglist_parse_spec_tokens:NV \subfiglist_parsed_spec_tl \subfiglist_tokenized_spec_tl
+  \subfiglist_seq_set_from_tl:NN \subfiglist_tokenized_spec_seq \subfiglist_tokenized_spec_tl
+  \subfiglist_parse_spec_tokens:NN
+    \subfiglist_parsed_spec_tl
+    \subfiglist_tokenized_spec_seq
   
   \prop_clear:N \subfiglist_canvas_prop
   
