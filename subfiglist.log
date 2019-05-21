@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.1.6)  15 MAY 2019 21:14
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.1.6)  21 MAY 2019 20:35
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -767,63 +767,63 @@ Package graphics Info: Driver file: xetex.def on input line 99.
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistsetup with sig. 'm' on line 474.
+. Defining command \subfiglistsetup with sig. 'm' on line 962.
 .................................................
 \subfiglist_keyval_choice_first_int=\count189
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistfile with sig. '' on line 3491.
+. Defining command \subfiglistfile with sig. '' on line 3722.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummyfile with sig. '' on line 3498.
+. Defining command \subfiglistdummyfile with sig. '' on line 3729.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummy with sig. '' on line 3505.
+. Defining command \subfiglistdummy with sig. '' on line 3736.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabel with sig. '' on line 3512.
+. Defining command \subfiglistlabel with sig. '' on line 3743.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistoverlay with sig. '' on line 3519.
+. Defining command \subfiglistoverlay with sig. '' on line 3750.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabelformat with sig. '' on line 3528.
+. Defining command \subfiglistlabelformat with sig. '' on line 3759.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistsvgenv' with sig. '' on line 3532.
+. Defining environment 'subfiglistsvgenv' with sig. '' on line 3763.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglisttexenv' with sig. '' on line 3536.
+. Defining environment 'subfiglisttexenv' with sig. '' on line 3767.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3557.
+. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3788.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3698.
+. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3929.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3702.
+. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3933.
 .................................................
 )
 runsystem(rm ./subfiglist.sty)...executed.
@@ -1453,6 +1453,16 @@ Package microtype Info: Setting up font `T1/lmr/m/n/6' on input line 265.
 Package microtype Info: ... Loading protrusion list `lmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-default'.
+The sequence \subfiglist_tokenized_spec_sub_seq contains the items (without
+outer braces):
+>  {{canvas}{1}}
+>  {{canvas}{2}}
+>  {{canvas}{3}}.
+The sequence \subfiglist_tokenized_spec_sub_seq contains the items (without
+outer braces):
+>  {{canvas}{4}}
+>  {{canvas}{5}}
+>  {{canvas}{6}}.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -1490,20 +1500,6 @@ File: figures/05.png Graphic file (type bmp)
 <figures/05.png>
 File: figures/06.png Graphic file (type bmp)
 <figures/06.png>
-
-*************************************************
-* subfiglist warning: "wrong canvas order"
-* 
-* Package subfiglist Warning: Canvas numbers in body of `subfiglist'
-* environment are given in non-ascending order.
-*************************************************
-*************************************************
-* subfiglist warning: "mismatching canvas order"
-* 
-* Package subfiglist Warning: The canvas numbers in the argument of the
-* `subfiglist' environment are given in a different order than the canvas
-* numbers in the body of the `subfiglist' environment.
-*************************************************
 \subfiglist_effective_hoff_dim=\dimen289
 \subfiglist_effective_voff_dim=\dimen290
 \subfiglist_line_height_dim=\dimen291
@@ -1515,10 +1511,10 @@ File: figures/03.png Graphic file (type bmp)
 <figures/03.png>
 File: figures/04.png Graphic file (type bmp)
 <figures/04.png>
-File: figures/06.png Graphic file (type bmp)
-<figures/06.png>
 File: figures/05.png Graphic file (type bmp)
 <figures/05.png>
+File: figures/06.png Graphic file (type bmp)
+<figures/06.png>
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -1574,7 +1570,40 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 312.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 312.
-[3]
+ [3]
+The sequence \subfiglist_tokenized_spec_sub_seq contains the items (without
+outer braces):
+>  {{canvas}{1}}
+>  {{separator}{\color {red}\rule {2ex}{2ex}}}
+>  {{canvas}{2}}
+>  {{canvas}{3}}.
+The sequence \subfiglist_tokenized_spec_sub_seq contains the items (without
+outer braces):
+>  {{subblock}{{{canvas}{4}}{{newline}{5.16667pt}}{{canvas}{5}}{{canvas}{6}}}}
+>  {{canvas}{7}}
+> 
+{{subblock}{{{canvas}{8}}{{canvas}{9}}{{newline}{5.16667pt}}{{canvas}{10}}}}.
+The sequence \subfiglist_tokenized_spec_sub_seq contains the items (without
+outer braces):
+>  {{canvas}{4}}.
+The sequence \subfiglist_tokenized_spec_sub_seq contains the items (without
+outer braces):
+>  {{canvas}{5}}
+>  {{canvas}{6}}.
+The sequence \subfiglist_tokenized_spec_sub_seq contains the items (without
+outer braces):
+>  {{canvas}{8}}
+>  {{canvas}{9}}.
+The sequence \subfiglist_tokenized_spec_sub_seq contains the items (without
+outer braces):
+>  {{canvas}{10}}.
+The sequence \subfiglist_tokenized_spec_sub_seq contains the items (without
+outer braces):
+>  {{canvas}{11}}
+>  {{canvas}{12}}
+>  {{separator}{\hspace *{3ex}}}
+>  {{canvas}{13}}
+>  {{canvas}{14}}.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -1692,7 +1721,8 @@ Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 379.
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 379.
- [4]
+
+[4]
 Package babel Info: Redefining ngerman shorthand "|
 (babel)             in language  on input line 383.
 Package babel Info: Redefining ngerman shorthand "~
@@ -1701,6 +1731,11 @@ Package microtype Info: Setting up font `T1/lmr/m/n/8' on input line 390.
 Package microtype Info: ... Loading protrusion list `lmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-default'.
+The sequence \subfiglist_tokenized_spec_sub_seq contains the items (without
+outer braces):
+>  {{canvas}{1}}
+>  {{canvas}{2}}
+>  {{canvas}{3}}.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -1799,6 +1834,11 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 427.
 [5]
+The sequence \subfiglist_tokenized_spec_sub_seq contains the items (without
+outer braces):
+>  {{canvas}{1}}
+>  {{canvas}{2}}
+>  {{canvas}{3}}.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -1928,6 +1968,14 @@ File: figures/04.png Graphic file (type bmp)
 . 
 . Redefining command \subfiglistoverlay with sig. '' on line 469.
 .................................................
+The sequence \subfiglist_tokenized_spec_sub_seq contains the items (without
+outer braces):
+>  {{canvas}{1}}
+>  {{canvas}{2}}.
+The sequence \subfiglist_tokenized_spec_sub_seq contains the items (without
+outer braces):
+>  {{canvas}{3}}
+>  {{canvas}{4}}.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -2024,6 +2072,16 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 545.
  [7]
+The sequence \subfiglist_tokenized_spec_sub_seq contains the items (without
+outer braces):
+>  {{canvas}{1}}
+>  {{canvas}{2}}
+>  {{canvas}{3}}.
+The sequence \subfiglist_tokenized_spec_sub_seq contains the items (without
+outer braces):
+>  {{canvas}{4}}
+>  {{canvas}{5}}
+>  {{canvas}{6}}.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -2126,6 +2184,10 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 641.
 [8]
+The sequence \subfiglist_tokenized_spec_sub_seq contains the items (without
+outer braces):
+>  {{canvas}{1}}
+>  {{canvas}{2}}.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -2199,6 +2261,10 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 711.
 [9]
+The sequence \subfiglist_tokenized_spec_sub_seq contains the items (without
+outer braces):
+>  {{canvas}{1}}
+>  {{canvas}{2}}.
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -2320,12 +2386,12 @@ Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 805.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 805.
  ) 
 Here is how much of TeX's memory you used:
- 33587 strings out of 493007
- 626865 string characters out of 6136720
- 820167 words of memory out of 5000000
- 37126 multiletter control sequences out of 15000+600000
+ 33700 strings out of 493007
+ 630424 string characters out of 6136720
+ 821454 words of memory out of 5000000
+ 37239 multiletter control sequences out of 15000+600000
  602883 words of font info for 77 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 54i,18n,102p,10433b,1000s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 54i,18n,102p,10433b,1008s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on subfiglist.pdf (12 pages).
