@@ -8,6 +8,7 @@ TODO
 * Check required package versions (\char_generate:nn?)
 * Check compile warnings
 * Remove deprecated \subfiglist_group_var_return:NN
+* Only define tmp and g variables globally
 
 
 

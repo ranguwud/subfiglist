@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.1.6)  21 MAY 2019 20:47
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.1.6)  29 MAY 2019 22:06
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -767,63 +767,63 @@ Package graphics Info: Driver file: xetex.def on input line 99.
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistsetup with sig. 'm' on line 963.
+. Defining command \subfiglistsetup with sig. 'm' on line 990.
 .................................................
 \subfiglist_keyval_choice_first_int=\count189
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistfile with sig. '' on line 3717.
+. Defining command \subfiglistfile with sig. '' on line 3765.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummyfile with sig. '' on line 3724.
+. Defining command \subfiglistdummyfile with sig. '' on line 3772.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummy with sig. '' on line 3731.
+. Defining command \subfiglistdummy with sig. '' on line 3779.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabel with sig. '' on line 3738.
+. Defining command \subfiglistlabel with sig. '' on line 3786.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistoverlay with sig. '' on line 3745.
+. Defining command \subfiglistoverlay with sig. '' on line 3793.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabelformat with sig. '' on line 3754.
+. Defining command \subfiglistlabelformat with sig. '' on line 3802.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistsvgenv' with sig. '' on line 3758.
+. Defining environment 'subfiglistsvgenv' with sig. '' on line 3806.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglisttexenv' with sig. '' on line 3762.
+. Defining environment 'subfiglisttexenv' with sig. '' on line 3810.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3783.
+. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3831.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3927.
+. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3975.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3931.
+. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3979.
 .................................................
 )
 runsystem(rm ./subfiglist.sty)...executed.
@@ -1453,6 +1453,7 @@ Package microtype Info: Setting up font `T1/lmr/m/n/6' on input line 265.
 Package microtype Info: ... Loading protrusion list `lmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-default'.
+\subfiglist_identifier_count_10_int=\count303
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -1561,6 +1562,7 @@ Package babel Info: Redefining ngerman shorthand "|
 Package babel Info: Redefining ngerman shorthand "~
 (babel)             in language  on input line 312.
  [3]
+\subfiglist_identifier_count_13_int=\count304
 .................................................
 . LaTeX info: "xparse/redefine-command"
 . 
@@ -2048,8 +2050,8 @@ File: figures/05.png Graphic file (type bmp)
 <figures/05.png>
 File: figures/06.png Graphic file (type bmp)
 <figures/06.png>
-\subfiglist_label_hpos_int=\count303
-\subfiglist_label_vpos_int=\count304
+\subfiglist_label_hpos_int=\count305
+\subfiglist_label_vpos_int=\count306
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
@@ -2307,10 +2309,10 @@ Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 805.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 805.
  ) 
 Here is how much of TeX's memory you used:
- 33701 strings out of 493007
- 630459 string characters out of 6136720
- 821446 words of memory out of 5000000
- 37240 multiletter control sequences out of 15000+600000
+ 33725 strings out of 493007
+ 631211 string characters out of 6136720
+ 821913 words of memory out of 5000000
+ 37264 multiletter control sequences out of 15000+600000
  602883 words of font info for 77 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  54i,18n,102p,10433b,1010s stack positions out of 5000i,500n,10000p,200000b,80000s

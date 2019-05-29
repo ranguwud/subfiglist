@@ -115,8 +115,8 @@
 \cs_generate_variant:Nn \msg_error:nnnnn           { nnnfn }
 \cs_generate_variant:Nn \msg_error:nnnnn           { nnnfV }
 \cs_generate_variant:Nn \msg_error:nnn             { nnV }
-\cs_generate_variant:Nn \msg_error:nnnn            { nnnV }
 \cs_generate_variant:Nn \msg_error:nnnn            { nnVn }
+\cs_generate_variant:Nn \msg_error:nnnn            { nnVV }
 \cs_generate_variant:Nn \msg_error:nnnn            { nnVx }
 \cs_generate_variant:Nn \str_if_eq_p:nn            { nf }
 \cs_generate_variant:Nn \char_generate:nn          { nV }
@@ -262,30 +262,42 @@
   \subfiglist_group_local_var_add:NNNN \subfiglist_tl_set_eq_new:cN \subfiglist_tl_set_eq_new:Nc #1 #2
 }
 
+\cs_generate_variant:Nn \subfiglist_group_local_tl_set_eq:NN { cN }
+
 \cs_new:Npn \subfiglist_group_local_seq_set_eq:NN #1 #2
 {
   \subfiglist_group_local_var_add:NNNN \subfiglist_seq_set_eq_new:cN \subfiglist_seq_set_eq_new:Nc #1 #2
 }
+
+\cs_generate_variant:Nn \subfiglist_group_local_seq_set_eq:NN { cN }
 
 \cs_new:Npn \subfiglist_group_local_prop_set_eq:NN #1 #2
 {
   \subfiglist_group_local_var_add:NNNN \subfiglist_prop_set_eq_new:cN \subfiglist_prop_set_eq_new:Nc #1 #2
 }
 
+\cs_generate_variant:Nn \subfiglist_group_local_prop_set_eq:NN { cN }
+
 \cs_new:Npn \subfiglist_group_local_int_set_eq:NN #1 #2
 {
   \subfiglist_group_local_var_add:NNNN \subfiglist_int_set_eq_new:cN \subfiglist_int_set_eq_new:Nc #1 #2
 }
+
+\cs_generate_variant:Nn \subfiglist_group_local_int_set_eq:NN { cN }
 
 \cs_new:Npn \subfiglist_group_local_fp_set_eq:NN #1 #2
 {
   \subfiglist_group_local_var_add:NNNN \subfiglist_fp_set_eq_new:cN \subfiglist_fp_set_eq_new:Nc #1 #2
 }
 
+\cs_generate_variant:Nn \subfiglist_group_local_fp_set_eq:NN { cN }
+
 \cs_new:Npn \subfiglist_group_local_dim_set_eq:NN #1 #2
 {
   \subfiglist_group_local_var_add:NNNN \subfiglist_dim_set_eq_new:cN \subfiglist_dim_set_eq_new:Nc #1 #2
 }
+
+\cs_generate_variant:Nn \subfiglist_group_local_dim_set_eq:NN { cN }
 
 
 % Provide framework for exporting group scope local variables according to discussion
@@ -447,6 +459,15 @@
 
 % Commands for transforming property lists into token lists
 % and vice versa
+\cs_new:Npn \subfiglist_prop_set_eq_new:NN #1 #2
+{
+  \prop_clear_new:N #1
+  \prop_set_eq:NN #1 #2
+}
+
+\cs_generate_variant:Nn \subfiglist_prop_set_eq_new:NN { Nc }
+\cs_generate_variant:Nn \subfiglist_prop_set_eq_new:NN { cN }
+
 \cs_new:Npn \subfiglist_tl_set_from_prop:NN #1 #2
 %
 % #1: Token list to be set
@@ -468,15 +489,8 @@
   \subfiglist_group_end:
 }
 
-
-\cs_new:Npn \subfiglist_prop_set_eq_new:NN #1 #2
-{
-  \prop_clear_new:N #1
-  \prop_set_eq:NN #1 #2
-}
-
-\cs_generate_variant:Nn \subfiglist_prop_set_eq_new:NN { Nc }
-\cs_generate_variant:Nn \subfiglist_prop_set_eq_new:NN { cN }
+\cs_generate_variant:Nn \subfiglist_tl_set_from_prop:NN { cN }
+\cs_generate_variant:Nn \subfiglist_tl_set_from_prop:NN { Nc }
 
 \cs_new:Npn \subfiglist_prop_set_from_tl:Nn #1 #2
 %
@@ -491,6 +505,8 @@
   }
 }
 
+\cs_generate_variant:Nn \subfiglist_prop_set_from_tl:Nn { cn }
+
 \cs_new:Npn \subfiglist_prop_set_from_tl:NN #1 #2
 %
 % #1: Property list to be set
@@ -503,6 +519,9 @@
     \prop_put:Nnn #1 ##1
   }
 }
+
+\cs_generate_variant:Nn \subfiglist_prop_set_from_tl:NN { cN }
+\cs_generate_variant:Nn \subfiglist_prop_set_from_tl:NN { Nc }
 
 \cs_new:Npn \subfiglist_prop_get_safe:NnN #1 #2 #3
 %
@@ -551,6 +570,9 @@
   \subfiglist_group_end:
 }
 
+\cs_generate_variant:Nn \subfiglist_tl_set_from_seq:NN { cN }
+\cs_generate_variant:Nn \subfiglist_tl_set_from_seq:NN { Nc }
+
 \cs_new:Npn \subfiglist_seq_set_from_tl:Nn #1 #2
 %
 % #1: Sequence to be set
@@ -564,6 +586,8 @@
   }
 }
 
+\cs_generate_variant:Nn \subfiglist_seq_set_from_tl:Nn { cn }
+
 \cs_new:Npn \subfiglist_seq_set_from_tl:NN #1 #2
 %
 % #1: Sequence to be set
@@ -576,6 +600,9 @@
     \seq_put_right:Nn #1 { ##1 }
   }
 }
+
+\cs_generate_variant:Nn \subfiglist_seq_set_from_tl:NN { cN }
+\cs_generate_variant:Nn \subfiglist_seq_set_from_tl:NN { Nc }
 
 
 \cs_new:Npn \subfiglist_int_set_eq_new:NN #1 #2
@@ -2227,11 +2254,13 @@
 % #2: Variable to store total number of identifiers
 %
 {
-  \group_begin:
+  \subfiglist_group_local_seq_set_eq:NN \subfiglist_identifier_nums_seq  #1
+  \subfiglist_group_local_int_set_eq:NN \subfiglist_identifier_count_int #2
+  \subfiglist_group_begin:
     \seq_clear_new:N \subfiglist_identifier_nums_sorted_seq
     
     % Sort detected image numbers
-    \seq_set_eq:NN \subfiglist_identifier_nums_sorted_seq #1
+    \seq_set_eq:NN \subfiglist_identifier_nums_sorted_seq \subfiglist_identifier_nums_seq
     \seq_sort:Nn \subfiglist_identifier_nums_sorted_seq
     {
       \int_compare:nTF { ##1 > ##2 }
@@ -2259,12 +2288,12 @@
     }
     
     % Save total number of images
-    \int_set_eq:NN #2 \subfiglist_tmp_int
+    \int_set_eq:NN \subfiglist_identifier_count_int \subfiglist_tmp_int
     
     % Check if image numbers in subfiglist specification
     % are in ascending order and warn if otherwise
     \int_zero:N \subfiglist_tmp_int
-    \seq_map_inline:Nn #1
+    \seq_map_inline:Nn \subfiglist_identifier_nums_seq
     {
       \int_incr:N \subfiglist_tmp_int
       
@@ -2275,8 +2304,10 @@
       }
     }
     
-  \subfiglist_group_return_int_set_eq:NN #2 #2
-  \group_end:
+  \subfiglist_tl_set_from_seq:NN \subfiglist_tmpa_tl \subfiglist_identifier_nums_seq
+  \subfiglist_group_return_seq_from_tl:NN #1 \subfiglist_tmpa_tl
+  \subfiglist_group_return_int_set_eq:NN  #2 \subfiglist_identifier_count_int
+  \subfiglist_group_end:
 }
 
 % Check if image numbers given in subfiglist body are valid
@@ -2287,11 +2318,15 @@
 % #3: Total number of identifiers
 %
 {
-  \group_begin:
+  \subfiglist_group_local_seq_set_eq:NN \subfiglist_identifier_nums_seq  #1
+  \subfiglist_group_local_seq_set_eq:NN \subfiglist_canvas_nums_seq      #2
+  \subfiglist_group_begin:
+    \int_zero_new:N  \subfiglist_identifier_count_int
+    \int_set:Nn      \subfiglist_identifier_count_int { #3 }
     \seq_clear_new:N \subifglist_canvas_nums_sorted_seq
     
     % Sort detected image numbers
-    \seq_set_eq:NN \subifglist_canvas_nums_sorted_seq #2
+    \seq_set_eq:NN \subifglist_canvas_nums_sorted_seq \subfiglist_canvas_nums_seq
     \seq_sort:Nn \subifglist_canvas_nums_sorted_seq
     {
       \int_compare:nTF { ##1 > ##2 }
@@ -2319,20 +2354,20 @@
     }
     
     % Is number of identifiers equal to number of canvases?
-    \int_compare:nF { \subfiglist_tmp_int = #3 }
+    \int_compare:nF { \subfiglist_tmp_int = \subfiglist_identifier_count_int }
     {
-      \int_compare:nTF { \subfiglist_tmp_int > #3 }
+      \int_compare:nTF { \subfiglist_tmp_int > \subfiglist_identifier_count_int }
       {
-        \msg_error:nnVn { subfiglist } { too~many~canvases } \subfiglist_tmp_int { #3 }
+        \msg_error:nnVV { subfiglist } { too~many~canvases } \subfiglist_tmp_int \subfiglist_identifier_count_int
       }{
-        \msg_error:nnnV { subfiglist } { too~many~identifiers } { #3 } \subfiglist_tmp_int
+        \msg_error:nnVV { subfiglist } { too~many~identifiers } \subfiglist_identifier_count_int \subfiglist_tmp_int
       }
     }
 
     % Check if canvas numbers in subfiglist body
     % are in ascending order and warn if otherwise
     \int_zero:N \subfiglist_tmp_int
-    \seq_map_inline:Nn #2
+    \seq_map_inline:Nn \subfiglist_canvas_nums_seq
     {
       \int_incr:N \subfiglist_tmp_int
       
@@ -2346,17 +2381,22 @@
     % Check if canvas numbers in subfiglist specification and body
     % are in the same order and warn if otherwise
     \int_zero:N \subfiglist_tmp_int
-    \seq_map_inline:Nn #2
+    \seq_map_inline:Nn \subfiglist_canvas_nums_seq
     {
       \int_incr:N \subfiglist_tmp_int
       
-      \int_compare:nF { ##1 = \seq_item:Nn #1 \subfiglist_tmp_int }
+      \int_compare:nF { ##1 = \seq_item:Nn \subfiglist_identifier_nums_seq \subfiglist_tmp_int }
       {
         \msg_warning:nn { subfiglist } { mismatching~canvas~order }
         \seq_map_break:
       }
     }
-  \group_end:
+
+  \subfiglist_tl_set_from_seq:NN \subfiglist_tmpa_tl \subfiglist_identifier_nums_seq
+  \subfiglist_tl_set_from_seq:NN \subfiglist_tmpb_tl \subfiglist_canvas_nums_seq
+  \subfiglist_group_return_seq_from_tl:NN #1 \subfiglist_tmpa_tl
+  \subfiglist_group_return_seq_from_tl:NN #2 \subfiglist_tmpb_tl
+  \subfiglist_group_end:
 }
 
 \cs_generate_variant:Nn \subfiglist_verify_canvas_nums:NNn { NNV }
@@ -2371,11 +2411,15 @@
   % #3: Total number of identifiers
   %
   {
-    \group_begin:
+    \subfiglist_group_local_seq_set_eq:NN \subfiglist_identifier_nums_seq ##1
+    \subfiglist_group_local_seq_set_eq:cN { subfiglist_ #1 _nums_seq }    ##2
+    \subfiglist_group_begin:
+      \int_zero_new:N  \subfiglist_identifier_count_int
+      \int_set:Nn      \subfiglist_identifier_count_int { ##3 }
       \seq_clear_new:c { subfiglist_ #1 _nums_sorted_seq }
       
       % Sort detected label/overlay numbers
-      \seq_set_eq:cN { subfiglist_ #1 _nums_sorted_seq } ##2
+      \seq_set_eq:cc { subfiglist_ #1 _nums_sorted_seq } { subfiglist_ #1 _nums_seq }
       \seq_sort:cn { subfiglist_ #1 _nums_sorted_seq }
       {
         \int_compare:nTF { ####1 > ####2 }
@@ -2398,16 +2442,16 @@
       % Check for too large label/overlay numbers
       \seq_get_right:cNT { subfiglist_ #1 _nums_sorted_seq } \subfiglist_tmpa_tl
       {
-        \int_compare:nT { \subfiglist_tmpa_tl > ##3 }
+        \int_compare:nT { \subfiglist_tmpa_tl > \subfiglist_identifier_count_int }
         {
-          \msg_error:nnVn { subfiglist } { too~many~ #1 s } \subfiglist_tmpa_tl { ##3 }
+          \msg_error:nnVV { subfiglist } { too~many~ #1 s } \subfiglist_tmpa_tl \subfiglist_identifier_count_int
         }
       }
       
       % Check if label/overlay numbers in subfiglist body
       % are in ascending order and warn if otherwise
       \int_zero:N \subfiglist_tmp_int
-      \seq_map_inline:Nn ##2
+      \seq_map_inline:cn { subfiglist_ #1 _nums_seq }
       {
         \int_incr:N \subfiglist_tmp_int
         
@@ -2421,20 +2465,24 @@
       % Check if label/overlay numbers are in same order
       % as in specification string and warn if otherwise
       \int_zero:N \subfiglist_tmp_int
-      \seq_map_inline:Nn ##1
+      \seq_map_inline:Nn \subfiglist_identifier_nums_seq
       {
-        \seq_if_in:NnT ##2 { ####1 }
+        \seq_if_in:cnT { subfiglist_ #1 _nums_seq } { ####1 }
         {
           \int_incr:N \subfiglist_tmp_int
           
-          \int_compare:nF { ####1 = \seq_item:Nn ##2 { \subfiglist_tmp_int } }
+          \int_compare:nF { ####1 = \seq_item:cn { subfiglist_ #1 _nums_seq } { \subfiglist_tmp_int } }
           {
             \msg_warning:nn { subfiglist } { mismatching~ #1 ~order }
             \seq_map_break:
           }
         }
       }
-    \group_end:
+    \subfiglist_tl_set_from_seq:NN \subfiglist_tmpa_tl \subfiglist_identifier_nums_seq
+    \subfiglist_tl_set_from_seq:Nc \subfiglist_tmpb_tl { subfiglist_ #1 _nums_seq }
+    \subfiglist_group_return_seq_from_tl:NN ##1 \subfiglist_tmpa_tl
+    \subfiglist_group_return_seq_from_tl:NN ##2 \subfiglist_tmpb_tl
+    \subfiglist_group_end:
   }
 
   \cs_generate_variant:cn { subfiglist_verify_ #1 _nums:NNn } { NNV }
