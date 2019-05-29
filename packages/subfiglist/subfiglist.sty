@@ -2489,213 +2489,6 @@
 }
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%   Canvas setup commands   %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\tl_map_inline:nn { { file } { dummyfile } }
-{
-  \cs_new:cpn { subfiglist_setup_ #1 :nnn } ##1 ##2 ##3
-  %
-  % #1: optional arguments
-  % #2: image number
-  % #3: image path
-  %
-  {
-    % Check if first argument is numeric
-    \subfiglist_is_positive_integer:nTF { ##2 }
-    {
-      \seq_put_right:Nn \subfiglist_canvas_nums_seq { ##2 }
-
-      % Save canvas type and image path
-      \prop_clear:N \subfiglist_tmp_prop
-      \prop_put:Nnn \subfiglist_tmp_prop { type } { #1 }
-      \prop_put:Nnn \subfiglist_tmp_prop { path } { ##3 }
-
-      % Get file ratio
-      \subfiglist_get_file_ratio:Nnn \subfiglist_tmpa_tl { ##2 } { ##3 }
-      \prop_put:NnV \subfiglist_tmp_prop { ratio } \subfiglist_tmpa_tl
-
-      % Process opitonal arguments
-      \subfiglist_key_set:nnV { subfiglist #1 } { top }          \subfiglist_canvas_top_environment_default_dim
-      \subfiglist_key_set:nnV { subfiglist #1 } { bottom }       \subfiglist_canvas_bot_environment_default_dim
-      \subfiglist_key_set:nnV { subfiglist #1 } { left }         \subfiglist_canvas_left_environment_default_dim
-      \subfiglist_key_set:nnV { subfiglist #1 } { right }        \subfiglist_canvas_right_environment_default_dim
-      \subfiglist_key_set:nnV { subfiglist #1 } { frame-color }  \subfiglist_canvas_frame_color_environment_default_tl
-      \subfiglist_key_set:nnV { subfiglist #1 } { frame-width }  \subfiglist_canvas_frame_width_environment_default_dim
-      \subfiglist_key_set:nnV { subfiglist #1 } { frame-top }    \subfiglist_canvas_frame_top_environment_default_dim
-      \subfiglist_key_set:nnV { subfiglist #1 } { frame-bottom } \subfiglist_canvas_frame_bottom_environment_default_dim
-      \subfiglist_key_set:nnV { subfiglist #1 } { frame-left }   \subfiglist_canvas_frame_left_environment_default_dim
-      \subfiglist_key_set:nnV { subfiglist #1 } { frame-right }  \subfiglist_canvas_frame_right_environment_default_dim
-      \keys_set:nn { subfiglist #1 } { ##1 }
-
-      % Save specified offsets
-      \prop_put:NnV \subfiglist_tmp_prop { top }         \subfiglist_canvas_top_dim
-      \prop_put:NnV \subfiglist_tmp_prop { bot }         \subfiglist_canvas_bot_dim
-      \prop_put:NnV \subfiglist_tmp_prop { left }        \subfiglist_canvas_left_dim
-      \prop_put:NnV \subfiglist_tmp_prop { right }       \subfiglist_canvas_right_dim
-      \prop_put:NnV \subfiglist_tmp_prop { frame-color } \subfiglist_canvas_frame_color_tl
-      \prop_put:NnV \subfiglist_tmp_prop { frame-width } \subfiglist_canvas_frame_width_dim
-      \prop_put:NnV \subfiglist_tmp_prop { frame-top }   \subfiglist_canvas_frame_top_dim
-      \prop_put:NnV \subfiglist_tmp_prop { frame-bot }   \subfiglist_canvas_frame_bottom_dim
-      \prop_put:NnV \subfiglist_tmp_prop { frame-left }  \subfiglist_canvas_frame_left_dim
-      \prop_put:NnV \subfiglist_tmp_prop { frame-right } \subfiglist_canvas_frame_right_dim
-
-      \subfiglist_tl_set_from_prop:NN \subfiglist_tmpa_tl \subfiglist_tmp_prop
-      \prop_put:NnV \subfiglist_canvas_prop { ##2 } \subfiglist_tmpa_tl
-    }{
-      \msg_error:nnnfn { subfiglist } { missing~number } { First~mandatory } { \token_to_str:c { subfiglist #1 } } { ##2 }
-    }
-  }
-}
-
-\cs_new:Npn \subfiglist_setup_dummy:nnn #1 #2 #3
-%
-% #1: optional arguments
-% #2: image number
-% #3: aspect ratio width:height
-%
-{
-  % Check if first argument is numeric
-  \subfiglist_is_positive_integer:nTF { #2 }
-  {
-    \seq_put_right:Nn \subfiglist_canvas_nums_seq { #2 }
-    
-    % Save canvas type and image path
-    \prop_clear:N \subfiglist_tmp_prop
-    \prop_put:Nnn \subfiglist_tmp_prop { type } { dummy }
-    
-    % Get dummy ratio
-    \int_set:Nn \subfiglist_tmp_int { \char_value_catcode:n { `: } }
-    \seq_set_split:Nxn \subfiglist_tmp_seq { \char_generate:nV { `: } \subfiglist_tmp_int } { #3 }
-    
-    \int_compare:nTF { 1 <= \seq_count:N \subfiglist_tmp_seq <= 2 }
-    {
-      \int_compare:nTF { \seq_count:N \subfiglist_tmp_seq = 1 }
-      {
-        \seq_get_left:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
-        \subfiglist_is_positive_float:VF \subfiglist_tmpa_tl
-        {
-          \msg_error:nnnfV { subfiglist } { missing~float } { Second } { \token_to_str:c { subfiglistdummy } } \subfiglist_tmpa_tl
-        }
-        \prop_put:NnV \subfiglist_tmp_prop { ratio } \subfiglist_tmpa_tl
-      }{
-        \seq_pop_left:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
-        \subfiglist_is_positive_float:VF \subfiglist_tmpa_tl
-        {
-          \msg_error:nnnfV { subfiglist } { missing~float } { First~group~of~second } { \token_to_str:c { subfiglistdummy } } \subfiglist_tmpa_tl
-        }
-        \seq_pop_left:NN \subfiglist_tmp_seq \subfiglist_tmpb_tl
-        \subfiglist_is_positive_float:VF \subfiglist_tmpb_tl
-        {
-          \msg_error:nnnfV { subfiglist } { missing~float } { Second~group~of~second } { \token_to_str:c { subfiglistdummy } } \subfiglist_tmpb_tl
-        }
-        \fp_set:Nn \subfiglist_tmp_fp { \subfiglist_tmpa_tl / \subfiglist_tmpb_tl }
-        \tl_set:Nf \subfiglist_tmpa_tl { \fp_use:N \subfiglist_tmp_fp }
-        \prop_put:NnV \subfiglist_tmp_prop { ratio } \subfiglist_tmpa_tl
-      }
-    }{
-      \msg_error:nnnn { subfiglist } { malformed~argument } { argument~containing~zero~or~one~colons } { `#3' }
-    }
-    
-    % Process opitonal arguments
-    \subfiglist_key_set:nnV { subfiglistdummy } { top }          \subfiglist_canvas_top_environment_default_dim
-    \subfiglist_key_set:nnV { subfiglistdummy } { bottom }       \subfiglist_canvas_bot_environment_default_dim
-    \subfiglist_key_set:nnV { subfiglistdummy } { left }         \subfiglist_canvas_left_environment_default_dim
-    \subfiglist_key_set:nnV { subfiglistdummy } { right }        \subfiglist_canvas_right_environment_default_dim
-    \subfiglist_key_set:nnV { subfiglistdummy } { frame-color }  \subfiglist_canvas_frame_color_environment_default_tl
-    \subfiglist_key_set:nnV { subfiglistdummy } { frame-width }  \subfiglist_canvas_frame_width_environment_default_dim
-    \subfiglist_key_set:nnV { subfiglistdummy } { frame-top }    \subfiglist_canvas_frame_top_environment_default_dim
-    \subfiglist_key_set:nnV { subfiglistdummy } { frame-bottom } \subfiglist_canvas_frame_bottom_environment_default_dim
-    \subfiglist_key_set:nnV { subfiglistdummy } { frame-left }   \subfiglist_canvas_frame_left_environment_default_dim
-    \subfiglist_key_set:nnV { subfiglistdummy } { frame-right }  \subfiglist_canvas_frame_right_environment_default_dim
-    \keys_set:nn { subfiglistdummy } { #1 }
-    
-    % Save specified offsets
-    \prop_put:NnV \subfiglist_tmp_prop { top }         \subfiglist_canvas_top_dim
-    \prop_put:NnV \subfiglist_tmp_prop { bot }         \subfiglist_canvas_bot_dim
-    \prop_put:NnV \subfiglist_tmp_prop { left }        \subfiglist_canvas_left_dim
-    \prop_put:NnV \subfiglist_tmp_prop { right }       \subfiglist_canvas_right_dim
-    \prop_put:NnV \subfiglist_tmp_prop { frame-color } \subfiglist_canvas_frame_color_tl
-    \prop_put:NnV \subfiglist_tmp_prop { frame-width } \subfiglist_canvas_frame_width_dim
-    \prop_put:NnV \subfiglist_tmp_prop { frame-top }   \subfiglist_canvas_frame_top_dim
-    \prop_put:NnV \subfiglist_tmp_prop { frame-bot }   \subfiglist_canvas_frame_bottom_dim
-    \prop_put:NnV \subfiglist_tmp_prop { frame-left }  \subfiglist_canvas_frame_left_dim
-    \prop_put:NnV \subfiglist_tmp_prop { frame-right } \subfiglist_canvas_frame_right_dim
-    
-    \subfiglist_tl_set_from_prop:NN \subfiglist_tmpa_tl \subfiglist_tmp_prop
-    \prop_put:NnV \subfiglist_canvas_prop { #2 } \subfiglist_tmpa_tl
-  }{
-    \msg_error:nnnfn { subfiglist } { missing~number } { First~mandatory } { \token_to_str:c { subfiglistdummy } } { #2 }
-  }
-}
-
-% Command for specifying label
-\cs_new:Npn \subfiglist_setup_label:nnn #1 #2 #3
-%
-% #1: optional argument
-% #2: image number
-% #3: label hook
-%
-{
-  % Check if second argument is numeric
-  \subfiglist_is_positive_integer:nTF { #2 }
-  {
-    \seq_put_right:Nn \subfiglist_label_nums_seq { #2 }
-    \int_set:Nn \subfiglist_tmp_int { \seq_count:N \subfiglist_label_nums_seq }
-    
-    % Save label hook
-    \prop_clear:N \subfiglist_tmp_prop
-    \prop_put:Nnn \subfiglist_tmp_prop { hook } { #3 }
-    
-    % Process opitonal arguments
-    \subfiglist_key_set:nnV { subfiglistlabel } { hpos }       \subfiglist_label_hpos_environment_default_tl
-    \subfiglist_key_set:nnV { subfiglistlabel } { vpos }       \subfiglist_label_vpos_environment_default_tl
-    \subfiglist_key_set:nnV { subfiglistlabel } { xshift }     \subfiglist_label_xshift_environment_default_dim
-    \subfiglist_key_set:nnV { subfiglistlabel } { yshift }     \subfiglist_label_yshift_environment_default_dim
-    \subfiglist_key_set:nnV { subfiglistlabel } { color }      \subfiglist_label_color_environment_default_tl
-    \subfiglist_key_set:nnV { subfiglistlabel } { background } \subfiglist_label_background_environment_default_tl
-    \keys_set:nn { subfiglistlabel } { #1 }
-    
-    % Save label properties.
-    \prop_put:NnV \subfiglist_tmp_prop { hpos }       \subfiglist_label_hpos_int
-    \prop_put:NnV \subfiglist_tmp_prop { vpos }       \subfiglist_label_vpos_int
-    \prop_put:NnV \subfiglist_tmp_prop { xshift }     \subfiglist_label_xshift_dim
-    \prop_put:NnV \subfiglist_tmp_prop { yshift }     \subfiglist_label_yshift_dim
-    \prop_put:NnV \subfiglist_tmp_prop { color }      \subfiglist_label_color_tl
-    \prop_put:NnV \subfiglist_tmp_prop { background } \subfiglist_label_background_tl
-    \prop_put:NnV \subfiglist_tmp_prop { sequenceno } \subfiglist_tmp_int
-    
-    \subfiglist_tl_set_from_prop:NN \subfiglist_tmpa_tl \subfiglist_tmp_prop
-    \prop_put:NnV \subfiglist_label_prop { #2 } \subfiglist_tmpa_tl
-  }{
-    \msg_error:nnnfn { subfiglist } { missing~number } { First~mandatory } { \token_to_str:c { subfiglistlabel } } { #2 }
-  }
-}
-
-% Command for specifying overlay
-\cs_new:Npn \subfiglist_setup_overlay:nn #1 #2
-%
-% #1: image number
-% #2: content
-%
-{
-  % Check if first argument is numeric
-  \subfiglist_is_positive_integer:nTF { #1 }
-  {
-    \seq_put_right:Nn \subfiglist_overlay_nums_seq { #1 }
-    
-    \prop_clear:N \subfiglist_tmp_prop
-    \prop_put:Nnn \subfiglist_tmp_prop { content } { #2 }
-    
-    \subfiglist_tl_set_from_prop:NN \subfiglist_tmpa_tl \subfiglist_tmp_prop
-    \prop_put:NnV \subfiglist_overlay_prop { #1 } \subfiglist_tmpa_tl
-  }{
-    \msg_error:nnnfn { subfiglist } { missing~number } { First~mandatory } { \token_to_str:c { subfiglistoverlay } } { #1 }
-  }
-}
-
-
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%   Canvas aspect ratio   %%%
@@ -3750,6 +3543,213 @@
   }
 }
 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Canvas setup commands   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\tl_map_inline:nn { { file } { dummyfile } }
+{
+  \cs_new:cpn { subfiglist_setup_ #1 :nnn } ##1 ##2 ##3
+  %
+  % #1: optional arguments
+  % #2: image number
+  % #3: image path
+  %
+  {
+    % Check if first argument is numeric
+    \subfiglist_is_positive_integer:nTF { ##2 }
+    {
+      \seq_put_right:Nn \subfiglist_canvas_nums_seq { ##2 }
+
+      % Save canvas type and image path
+      \prop_clear:N \subfiglist_tmp_prop
+      \prop_put:Nnn \subfiglist_tmp_prop { type } { #1 }
+      \prop_put:Nnn \subfiglist_tmp_prop { path } { ##3 }
+
+      % Get file ratio
+      \subfiglist_get_file_ratio:Nnn \subfiglist_tmpa_tl { ##2 } { ##3 }
+      \prop_put:NnV \subfiglist_tmp_prop { ratio } \subfiglist_tmpa_tl
+
+      % Process opitonal arguments
+      \subfiglist_key_set:nnV { subfiglist #1 } { top }          \subfiglist_canvas_top_environment_default_dim
+      \subfiglist_key_set:nnV { subfiglist #1 } { bottom }       \subfiglist_canvas_bot_environment_default_dim
+      \subfiglist_key_set:nnV { subfiglist #1 } { left }         \subfiglist_canvas_left_environment_default_dim
+      \subfiglist_key_set:nnV { subfiglist #1 } { right }        \subfiglist_canvas_right_environment_default_dim
+      \subfiglist_key_set:nnV { subfiglist #1 } { frame-color }  \subfiglist_canvas_frame_color_environment_default_tl
+      \subfiglist_key_set:nnV { subfiglist #1 } { frame-width }  \subfiglist_canvas_frame_width_environment_default_dim
+      \subfiglist_key_set:nnV { subfiglist #1 } { frame-top }    \subfiglist_canvas_frame_top_environment_default_dim
+      \subfiglist_key_set:nnV { subfiglist #1 } { frame-bottom } \subfiglist_canvas_frame_bottom_environment_default_dim
+      \subfiglist_key_set:nnV { subfiglist #1 } { frame-left }   \subfiglist_canvas_frame_left_environment_default_dim
+      \subfiglist_key_set:nnV { subfiglist #1 } { frame-right }  \subfiglist_canvas_frame_right_environment_default_dim
+      \keys_set:nn { subfiglist #1 } { ##1 }
+
+      % Save specified offsets
+      \prop_put:NnV \subfiglist_tmp_prop { top }         \subfiglist_canvas_top_dim
+      \prop_put:NnV \subfiglist_tmp_prop { bot }         \subfiglist_canvas_bot_dim
+      \prop_put:NnV \subfiglist_tmp_prop { left }        \subfiglist_canvas_left_dim
+      \prop_put:NnV \subfiglist_tmp_prop { right }       \subfiglist_canvas_right_dim
+      \prop_put:NnV \subfiglist_tmp_prop { frame-color } \subfiglist_canvas_frame_color_tl
+      \prop_put:NnV \subfiglist_tmp_prop { frame-width } \subfiglist_canvas_frame_width_dim
+      \prop_put:NnV \subfiglist_tmp_prop { frame-top }   \subfiglist_canvas_frame_top_dim
+      \prop_put:NnV \subfiglist_tmp_prop { frame-bot }   \subfiglist_canvas_frame_bottom_dim
+      \prop_put:NnV \subfiglist_tmp_prop { frame-left }  \subfiglist_canvas_frame_left_dim
+      \prop_put:NnV \subfiglist_tmp_prop { frame-right } \subfiglist_canvas_frame_right_dim
+
+      \subfiglist_tl_set_from_prop:NN \subfiglist_tmpa_tl \subfiglist_tmp_prop
+      \prop_put:NnV \subfiglist_canvas_prop { ##2 } \subfiglist_tmpa_tl
+    }{
+      \msg_error:nnnfn { subfiglist } { missing~number } { First~mandatory } { \token_to_str:c { subfiglist #1 } } { ##2 }
+    }
+  }
+}
+
+\cs_new:Npn \subfiglist_setup_dummy:nnn #1 #2 #3
+%
+% #1: optional arguments
+% #2: image number
+% #3: aspect ratio width:height
+%
+{
+  % Check if first argument is numeric
+  \subfiglist_is_positive_integer:nTF { #2 }
+  {
+    \seq_put_right:Nn \subfiglist_canvas_nums_seq { #2 }
+    
+    % Save canvas type and image path
+    \prop_clear:N \subfiglist_tmp_prop
+    \prop_put:Nnn \subfiglist_tmp_prop { type } { dummy }
+    
+    % Get dummy ratio
+    \int_set:Nn \subfiglist_tmp_int { \char_value_catcode:n { `: } }
+    \seq_set_split:Nxn \subfiglist_tmp_seq { \char_generate:nV { `: } \subfiglist_tmp_int } { #3 }
+    
+    \int_compare:nTF { 1 <= \seq_count:N \subfiglist_tmp_seq <= 2 }
+    {
+      \int_compare:nTF { \seq_count:N \subfiglist_tmp_seq = 1 }
+      {
+        \seq_get_left:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
+        \subfiglist_is_positive_float:VF \subfiglist_tmpa_tl
+        {
+          \msg_error:nnnfV { subfiglist } { missing~float } { Second } { \token_to_str:c { subfiglistdummy } } \subfiglist_tmpa_tl
+        }
+        \prop_put:NnV \subfiglist_tmp_prop { ratio } \subfiglist_tmpa_tl
+      }{
+        \seq_pop_left:NN \subfiglist_tmp_seq \subfiglist_tmpa_tl
+        \subfiglist_is_positive_float:VF \subfiglist_tmpa_tl
+        {
+          \msg_error:nnnfV { subfiglist } { missing~float } { First~group~of~second } { \token_to_str:c { subfiglistdummy } } \subfiglist_tmpa_tl
+        }
+        \seq_pop_left:NN \subfiglist_tmp_seq \subfiglist_tmpb_tl
+        \subfiglist_is_positive_float:VF \subfiglist_tmpb_tl
+        {
+          \msg_error:nnnfV { subfiglist } { missing~float } { Second~group~of~second } { \token_to_str:c { subfiglistdummy } } \subfiglist_tmpb_tl
+        }
+        \fp_set:Nn \subfiglist_tmp_fp { \subfiglist_tmpa_tl / \subfiglist_tmpb_tl }
+        \tl_set:Nf \subfiglist_tmpa_tl { \fp_use:N \subfiglist_tmp_fp }
+        \prop_put:NnV \subfiglist_tmp_prop { ratio } \subfiglist_tmpa_tl
+      }
+    }{
+      \msg_error:nnnn { subfiglist } { malformed~argument } { argument~containing~zero~or~one~colons } { `#3' }
+    }
+    
+    % Process opitonal arguments
+    \subfiglist_key_set:nnV { subfiglistdummy } { top }          \subfiglist_canvas_top_environment_default_dim
+    \subfiglist_key_set:nnV { subfiglistdummy } { bottom }       \subfiglist_canvas_bot_environment_default_dim
+    \subfiglist_key_set:nnV { subfiglistdummy } { left }         \subfiglist_canvas_left_environment_default_dim
+    \subfiglist_key_set:nnV { subfiglistdummy } { right }        \subfiglist_canvas_right_environment_default_dim
+    \subfiglist_key_set:nnV { subfiglistdummy } { frame-color }  \subfiglist_canvas_frame_color_environment_default_tl
+    \subfiglist_key_set:nnV { subfiglistdummy } { frame-width }  \subfiglist_canvas_frame_width_environment_default_dim
+    \subfiglist_key_set:nnV { subfiglistdummy } { frame-top }    \subfiglist_canvas_frame_top_environment_default_dim
+    \subfiglist_key_set:nnV { subfiglistdummy } { frame-bottom } \subfiglist_canvas_frame_bottom_environment_default_dim
+    \subfiglist_key_set:nnV { subfiglistdummy } { frame-left }   \subfiglist_canvas_frame_left_environment_default_dim
+    \subfiglist_key_set:nnV { subfiglistdummy } { frame-right }  \subfiglist_canvas_frame_right_environment_default_dim
+    \keys_set:nn { subfiglistdummy } { #1 }
+    
+    % Save specified offsets
+    \prop_put:NnV \subfiglist_tmp_prop { top }         \subfiglist_canvas_top_dim
+    \prop_put:NnV \subfiglist_tmp_prop { bot }         \subfiglist_canvas_bot_dim
+    \prop_put:NnV \subfiglist_tmp_prop { left }        \subfiglist_canvas_left_dim
+    \prop_put:NnV \subfiglist_tmp_prop { right }       \subfiglist_canvas_right_dim
+    \prop_put:NnV \subfiglist_tmp_prop { frame-color } \subfiglist_canvas_frame_color_tl
+    \prop_put:NnV \subfiglist_tmp_prop { frame-width } \subfiglist_canvas_frame_width_dim
+    \prop_put:NnV \subfiglist_tmp_prop { frame-top }   \subfiglist_canvas_frame_top_dim
+    \prop_put:NnV \subfiglist_tmp_prop { frame-bot }   \subfiglist_canvas_frame_bottom_dim
+    \prop_put:NnV \subfiglist_tmp_prop { frame-left }  \subfiglist_canvas_frame_left_dim
+    \prop_put:NnV \subfiglist_tmp_prop { frame-right } \subfiglist_canvas_frame_right_dim
+    
+    \subfiglist_tl_set_from_prop:NN \subfiglist_tmpa_tl \subfiglist_tmp_prop
+    \prop_put:NnV \subfiglist_canvas_prop { #2 } \subfiglist_tmpa_tl
+  }{
+    \msg_error:nnnfn { subfiglist } { missing~number } { First~mandatory } { \token_to_str:c { subfiglistdummy } } { #2 }
+  }
+}
+
+% Command for specifying label
+\cs_new:Npn \subfiglist_setup_label:nnn #1 #2 #3
+%
+% #1: optional argument
+% #2: image number
+% #3: label hook
+%
+{
+  % Check if second argument is numeric
+  \subfiglist_is_positive_integer:nTF { #2 }
+  {
+    \seq_put_right:Nn \subfiglist_label_nums_seq { #2 }
+    \int_set:Nn \subfiglist_tmp_int { \seq_count:N \subfiglist_label_nums_seq }
+    
+    % Save label hook
+    \prop_clear:N \subfiglist_tmp_prop
+    \prop_put:Nnn \subfiglist_tmp_prop { hook } { #3 }
+    
+    % Process opitonal arguments
+    \subfiglist_key_set:nnV { subfiglistlabel } { hpos }       \subfiglist_label_hpos_environment_default_tl
+    \subfiglist_key_set:nnV { subfiglistlabel } { vpos }       \subfiglist_label_vpos_environment_default_tl
+    \subfiglist_key_set:nnV { subfiglistlabel } { xshift }     \subfiglist_label_xshift_environment_default_dim
+    \subfiglist_key_set:nnV { subfiglistlabel } { yshift }     \subfiglist_label_yshift_environment_default_dim
+    \subfiglist_key_set:nnV { subfiglistlabel } { color }      \subfiglist_label_color_environment_default_tl
+    \subfiglist_key_set:nnV { subfiglistlabel } { background } \subfiglist_label_background_environment_default_tl
+    \keys_set:nn { subfiglistlabel } { #1 }
+    
+    % Save label properties.
+    \prop_put:NnV \subfiglist_tmp_prop { hpos }       \subfiglist_label_hpos_int
+    \prop_put:NnV \subfiglist_tmp_prop { vpos }       \subfiglist_label_vpos_int
+    \prop_put:NnV \subfiglist_tmp_prop { xshift }     \subfiglist_label_xshift_dim
+    \prop_put:NnV \subfiglist_tmp_prop { yshift }     \subfiglist_label_yshift_dim
+    \prop_put:NnV \subfiglist_tmp_prop { color }      \subfiglist_label_color_tl
+    \prop_put:NnV \subfiglist_tmp_prop { background } \subfiglist_label_background_tl
+    \prop_put:NnV \subfiglist_tmp_prop { sequenceno } \subfiglist_tmp_int
+    
+    \subfiglist_tl_set_from_prop:NN \subfiglist_tmpa_tl \subfiglist_tmp_prop
+    \prop_put:NnV \subfiglist_label_prop { #2 } \subfiglist_tmpa_tl
+  }{
+    \msg_error:nnnfn { subfiglist } { missing~number } { First~mandatory } { \token_to_str:c { subfiglistlabel } } { #2 }
+  }
+}
+
+% Command for specifying overlay
+\cs_new:Npn \subfiglist_setup_overlay:nn #1 #2
+%
+% #1: image number
+% #2: content
+%
+{
+  % Check if first argument is numeric
+  \subfiglist_is_positive_integer:nTF { #1 }
+  {
+    \seq_put_right:Nn \subfiglist_overlay_nums_seq { #1 }
+    
+    \prop_clear:N \subfiglist_tmp_prop
+    \prop_put:Nnn \subfiglist_tmp_prop { content } { #2 }
+    
+    \subfiglist_tl_set_from_prop:NN \subfiglist_tmpa_tl \subfiglist_tmp_prop
+    \prop_put:NnV \subfiglist_overlay_prop { #1 } \subfiglist_tmpa_tl
+  }{
+    \msg_error:nnnfn { subfiglist } { missing~number } { First~mandatory } { \token_to_str:c { subfiglistoverlay } } { #1 }
+  }
+}
 
 
 
