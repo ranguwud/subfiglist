@@ -9,6 +9,7 @@ TODO
 * Check compile warnings
 * Remove deprecated \subfiglist_group_var_return:NN
 * Only define tmp and g variables globally
+* Rename svg makros to pdf_plus_tex
 
 
 

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.1.6)  29 MAY 2019 22:20
+This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.1.6)  29 MAY 2019 22:59
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -773,57 +773,57 @@ Package graphics Info: Driver file: xetex.def on input line 99.
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistfile with sig. '' on line 3765.
+. Defining command \subfiglistfile with sig. '' on line 3777.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummyfile with sig. '' on line 3772.
+. Defining command \subfiglistdummyfile with sig. '' on line 3784.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistdummy with sig. '' on line 3779.
+. Defining command \subfiglistdummy with sig. '' on line 3791.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabel with sig. '' on line 3786.
+. Defining command \subfiglistlabel with sig. '' on line 3798.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistoverlay with sig. '' on line 3793.
+. Defining command \subfiglistoverlay with sig. '' on line 3805.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-command"
 . 
-. Defining command \subfiglistlabelformat with sig. '' on line 3802.
+. Defining command \subfiglistlabelformat with sig. '' on line 3814.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistsvgenv' with sig. '' on line 3806.
+. Defining environment 'subfiglistsvgenv' with sig. '' on line 3818.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglisttexenv' with sig. '' on line 3810.
+. Defining environment 'subfiglisttexenv' with sig. '' on line 3822.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3831.
+. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3843.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3975.
+. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3987.
 .................................................
 .................................................
 . LaTeX info: "xparse/define-environment"
 . 
-. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3979.
+. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3991.
 .................................................
 )
 runsystem(rm ./subfiglist.sty)...executed.
@@ -2309,12 +2309,12 @@ Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 805.
 Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 805.
  ) 
 Here is how much of TeX's memory you used:
- 33725 strings out of 493007
- 631211 string characters out of 6136720
- 821913 words of memory out of 5000000
- 37264 multiletter control sequences out of 15000+600000
+ 33726 strings out of 493007
+ 631232 string characters out of 6136720
+ 821925 words of memory out of 5000000
+ 37265 multiletter control sequences out of 15000+600000
  602883 words of font info for 77 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 54i,18n,102p,10433b,1010s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 56i,18n,108p,10433b,1010s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on subfiglist.pdf (12 pages).
