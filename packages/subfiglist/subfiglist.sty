@@ -264,6 +264,13 @@
 
 \cs_generate_variant:Nn \subfiglist_group_local_tl_set_eq:NN { cN }
 
+\cs_new:Npn \subfiglist_group_local_tl_set:Nn #1 #2
+{
+  \subfiglist_group_local_var_add:NNNN \subfiglist_tl_set_new:cn \subfiglist_tl_set_eq_new:Nc #1 { { #2 } }
+}
+
+\cs_generate_variant:Nn \subfiglist_group_local_tl_set:Nn { cn }
+
 \cs_new:Npn \subfiglist_group_local_seq_set_eq:NN #1 #2
 {
   \subfiglist_group_local_var_add:NNNN \subfiglist_seq_set_eq_new:cN \subfiglist_seq_set_eq_new:Nc #1 #2
@@ -284,6 +291,13 @@
 }
 
 \cs_generate_variant:Nn \subfiglist_group_local_int_set_eq:NN { cN }
+
+\cs_new:Npn \subfiglist_group_local_int_set:Nn #1 #2
+{
+  \subfiglist_group_local_var_add:NNNN \subfiglist_int_set_new:cn \subfiglist_int_set_eq_new:Nc #1 { { #2 } }
+}
+
+\cs_generate_variant:Nn \subfiglist_group_local_int_set:Nn { cn }
 
 \cs_new:Npn \subfiglist_group_local_fp_set_eq:NN #1 #2
 {
@@ -376,6 +390,14 @@
 
 \cs_generate_variant:Nn \subfiglist_tl_set_eq_new:NN { Nc }
 \cs_generate_variant:Nn \subfiglist_tl_set_eq_new:NN { cN }
+
+\cs_new:Npn \subfiglist_tl_set_new:Nn #1 #2
+{
+  \tl_clear_new:N #1
+  \tl_set:Nn #1 { #2 }
+}
+
+\cs_generate_variant:Nn \subfiglist_tl_set_new:Nn { cn }
 
 % Command for setting a token list variable to head
 % of another token list variable. If the heading token
@@ -613,6 +635,14 @@
 
 \cs_generate_variant:Nn \subfiglist_int_set_eq_new:NN { Nc }
 \cs_generate_variant:Nn \subfiglist_int_set_eq_new:NN { cN }
+
+\cs_new:Npn \subfiglist_int_set_new:Nn #1 #2
+{
+  \int_zero_new:N #1
+  \int_set:Nn #1 { #2 }
+}
+
+\cs_generate_variant:Nn \subfiglist_int_set_new:Nn { cn }
 
 
 \cs_new:Npn \subfiglist_fp_set_eq_new:NN #1 #2
@@ -2727,22 +2757,24 @@
 % #3: Image file path
 %
 {
-  \group_begin:
+  \subfiglist_group_local_int_set:Nn \subfiglist_canvas_num_int { #2 }
+  \subfiglist_group_local_tl_set:Nn  \subfiglist_file_path_tl   { #3 }
+  \subfiglist_group_begin:
   
     % Store file in a box
     \bool_if:NTF \subfiglist_store_images_bool
     {
-      \box_if_exist:cF { subfiglist_image_ #2 _box }
+      \box_if_exist:cF { subfiglist_image_ \int_use:N \subfiglist_canvas_num_int _box }
       {
-        \box_new:c { subfiglist_image_ #2 _box }
+        \box_new:c { subfiglist_image_ \int_use:N \subfiglist_canvas_num_int _box }
       }
-      \subfiglist_load:cnn { subfiglist_image_ #2 _box } { #3 } { ! }
+      \subfiglist_load:cVn { subfiglist_image_ \int_use:N \subfiglist_canvas_num_int _box } \subfiglist_file_path_tl { ! }
       
       % Get box dimensions
-      \dim_set:Nn \subfiglist_tmpa_dim { \box_ht:c { subfiglist_image_ #2 _box } }
-      \dim_set:Nn \subfiglist_tmpb_dim  { \box_wd:c { subfiglist_image_ #2 _box } }
+      \dim_set:Nn \subfiglist_tmpa_dim { \box_ht:c { subfiglist_image_ \int_use:N \subfiglist_canvas_num_int _box } }
+      \dim_set:Nn \subfiglist_tmpb_dim  { \box_wd:c { subfiglist_image_ \int_use:N \subfiglist_canvas_num_int _box } }
     }{
-      \subfiglist_load:Nnn \subfiglist_tmp_box { #3 } { ! }
+      \subfiglist_load:NVn \subfiglist_tmp_box \subfiglist_file_path_tl { ! }
       
       % Get box dimensions
       \dim_set:Nn \subfiglist_tmpa_dim { \box_ht:N \subfiglist_tmp_box }
@@ -2751,11 +2783,10 @@
     
     % Store ratio width/height
     \fp_set:Nn \subfiglist_tmp_fp { \subfiglist_tmpb_dim / \subfiglist_tmpa_dim }
-    \tl_set:Nf #1 { \fp_use:N \subfiglist_tmp_fp }
   
   % Return local variables with group scope
-  \subfiglist_group_var_return:NN \tl_set:Nn #1
-  \group_end:
+  \subfiglist_group_return_fp_set_eq:NN #1 \subfiglist_tmp_fp
+  \subfiglist_group_end:
 }
 
 
