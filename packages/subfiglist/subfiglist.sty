@@ -182,78 +182,85 @@
 
 \cs_generate_variant:Nn \subfiglist_group_before_insert:N { c }
 
-\cs_new:Npn \subfiglist_group_local_var_add:NNNN #1 #2 #3 #4
+\prop_clear:N \subfiglist_tmp_prop
+\prop_put:Nnn \subfiglist_tmp_prop { N } { #4 }
+\prop_put:Nnn \subfiglist_tmp_prop { n } { { #4 } }
+
+\prop_map_inline:Nn \subfiglist_tmp_prop
 {
-  \cs_if_exist:cF { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+  \cs_new:cpn { subfiglist_group_local_var_add:NNN #1 } ##1 ##2 ##3 ##4
   {
-    \tl_new:c { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
-    \tl_gclear:c { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
-  }
-  \cs_if_exist:cF { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
-  {
-    \tl_new:c { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
-    \tl_gclear:c { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
-  }
-
-  % First time the function is executed inside the group:
-  \tl_if_empty:vT { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
-  {
-    % Set up the before group execution:
-    \subfiglist_group_before_insert:c { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
-
-    % Reset the material for before group execution:
-    \tl_gset:cx { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+    \cs_if_exist:cF { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
     {
+      \tl_new:c { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
       \tl_gclear:c { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
     }
-  }
-  \tl_if_empty:vT { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
-  {
-    % Set up the before group execution:
-    \subfiglist_group_before_insert:c { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
-
-    % Reset the material for before group execution:
-    \tl_gset:cx { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+    \cs_if_exist:cF { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
     {
+      \tl_new:c { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
       \tl_gclear:c { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
     }
-  }
-  
-  \seq_gclear_new:c { subfiglist_g_local_var_helper_cs_ \int_use:N \etex_currentgrouplevel:D _seq }
-  \seq_gset_split:cxx { subfiglist_g_local_var_helper_cs_ \int_use:N \etex_currentgrouplevel:D _seq }
-  {
-    \char_generate:nn { `_ } { 12 }
-  }{
-    \cs_to_str:N #3
-  }
 
-  % Append the new material to the before group execution:
-  \tl_gput_right:cn { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
-  {
-    #1
-  }
-  \subfiglist_tl_gput_right_wrapped:cx { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
-  {
-    \seq_use:cnnn { subfiglist_g_local_var_helper_cs_ \int_use:N \etex_currentgrouplevel:D _seq }
-    { _ \int_use:N \etex_currentgrouplevel:D _ } { _ } { _ \int_use:N \etex_currentgrouplevel:D _ }
-  }
-  \tl_gput_right:cn { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
-  {
-    #4
-  }
+    % First time the function is executed inside the group:
+    \tl_if_empty:vT { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+    {
+      % Set up the before group execution:
+      \subfiglist_group_before_insert:c { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
 
-  \tl_gput_right:cn { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
-  {
-    #2
-  }
-  \tl_gput_right:cn { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
-  {
-    #3
-  }
-  \subfiglist_tl_gput_right_wrapped:cx { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
-  {
-    \seq_use:cnnn { subfiglist_g_local_var_helper_cs_ \int_use:N \etex_currentgrouplevel:D _seq }
-    { _ \int_use:N \etex_currentgrouplevel:D _ } { _ } { _ \int_use:N \etex_currentgrouplevel:D _ }
+      % Reset the material for before group execution:
+      \tl_gset:cx { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+      {
+        \tl_gclear:c { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+      }
+    }
+    \tl_if_empty:vT { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+    {
+      % Set up the before group execution:
+      \subfiglist_group_before_insert:c { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+
+      % Reset the material for before group execution:
+      \tl_gset:cx { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+      {
+        \tl_gclear:c { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+      }
+    }
+    
+    \seq_gclear_new:c { subfiglist_g_local_var_helper_cs_ \int_use:N \etex_currentgrouplevel:D _seq }
+    \seq_gset_split:cxx { subfiglist_g_local_var_helper_cs_ \int_use:N \etex_currentgrouplevel:D _seq }
+    {
+      \char_generate:nn { `_ } { 12 }
+    }{
+      \cs_to_str:N ##3
+    }
+
+    % Append the new material to the before group execution:
+    \tl_gput_right:cn { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+    {
+      ##1
+    }
+    \subfiglist_tl_gput_right_wrapped:cx { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+    {
+      \seq_use:cnnn { subfiglist_g_local_var_helper_cs_ \int_use:N \etex_currentgrouplevel:D _seq }
+      { _ \int_use:N \etex_currentgrouplevel:D _ } { _ } { _ \int_use:N \etex_currentgrouplevel:D _ }
+    }
+    \tl_gput_right:cn { subfiglist_g_local_var_first_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+    {
+      #2% Inserts #4 for N-type and { #4 } for n-type argument
+    }
+
+    \tl_gput_right:cn { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+    {
+      ##2
+    }
+    \tl_gput_right:cn { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+    {
+      ##3
+    }
+    \subfiglist_tl_gput_right_wrapped:cx { subfiglist_g_local_var_second_stage_ \int_use:N \etex_currentgrouplevel:D _tl }
+    {
+      \seq_use:cnnn { subfiglist_g_local_var_helper_cs_ \int_use:N \etex_currentgrouplevel:D _seq }
+      { _ \int_use:N \etex_currentgrouplevel:D _ } { _ } { _ \int_use:N \etex_currentgrouplevel:D _ }
+    }
   }
 }
 
@@ -266,7 +273,7 @@
 
 \cs_new:Npn \subfiglist_group_local_tl_set:Nn #1 #2
 {
-  \subfiglist_group_local_var_add:NNNN \subfiglist_tl_set_new:cn \subfiglist_tl_set_eq_new:Nc #1 { { #2 } }
+  \subfiglist_group_local_var_add:NNNn \subfiglist_tl_set_new:cn \subfiglist_tl_set_eq_new:Nc #1 { #2 }
 }
 
 \cs_generate_variant:Nn \subfiglist_group_local_tl_set:Nn { cn }
@@ -294,7 +301,7 @@
 
 \cs_new:Npn \subfiglist_group_local_int_set:Nn #1 #2
 {
-  \subfiglist_group_local_var_add:NNNN \subfiglist_int_set_new:cn \subfiglist_int_set_eq_new:Nc #1 { { #2 } }
+  \subfiglist_group_local_var_add:NNNn \subfiglist_int_set_new:cn \subfiglist_int_set_eq_new:Nc #1 { #2 }
 }
 
 \cs_generate_variant:Nn \subfiglist_group_local_int_set:Nn { cn }
