@@ -22,7 +22,6 @@
 \RequirePackage{expl3}[2015/12/20]% needs v6326 or newer
 \ProvidesExplPackage{subfiglist}{2015/03/22}{1.0}{labeled subfigures}
 
-\RequirePackage{l3sort}[2013/12/14]     % needs v4623 or newer
 \RequirePackage{l3keys2e}[2014/06/10]   % needs v5105 or newer
 \RequirePackage{xparse}[2014/06/10]     % needs v5105 or newer
 \RequirePackage{import}[2009/03/23]     % needs v5.1  or newer
@@ -2339,8 +2338,8 @@
     \seq_sort:Nn \subfiglist_identifier_nums_sorted_seq
     {
       \int_compare:nTF { ##1 > ##2 }
-        { \sort_reversed: }
-        { \sort_ordered: }
+        { \sort_return_swapped: }
+        { \sort_return_same: }
     }
     
     % Check if some image number is missing
@@ -2405,8 +2404,8 @@
     \seq_sort:Nn \subifglist_canvas_nums_sorted_seq
     {
       \int_compare:nTF { ##1 > ##2 }
-        { \sort_reversed: }
-        { \sort_ordered: }
+        { \sort_return_swapped: }
+        { \sort_return_same: }
     }
     
     % Check if some image number is missing
@@ -2498,8 +2497,8 @@
       \seq_sort:cn { subfiglist_ #1 _nums_sorted_seq }
       {
         \int_compare:nTF { ####1 > ####2 }
-          { \sort_reversed: }
-          { \sort_ordered: }
+          { \sort_return_swapped: }
+          { \sort_return_same: }
       }
       
       % Check for double label/overlay numbers
