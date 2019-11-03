@@ -125,6 +125,7 @@
 \cs_generate_variant:Nn \token_if_eq_charcode_p:NN { NV }
 \cs_generate_variant:Nn \token_if_eq_charcode:NNTF { NV }
 \cs_generate_variant:Nn \group_insert_after:N      { c }
+\cs_generate_variant:Nn \hbox_set:Nn               { NV }
 
 
 \cs_new:Npn \token_if_eq_charcode:NtTF #1 #2 #3 #4
@@ -565,6 +566,8 @@
     \msg_error:nnn { subfiglist } { internal~error } { key~`#2'~not~found~in~property~list~#1 }
   }
 }
+
+\cs_generate_variant:Nn \subfiglist_prop_get_safe:NnN { NVN }
 
 
 \cs_new:Npn \subfiglist_seq_set_eq_new:NN #1 #2
@@ -2809,49 +2812,61 @@
 % #3: Dimension to store vertical offset
 % #4: Canvas specification
 {
-  \subfiglist_prop_get_safe:NnN \subfiglist_canvas_prop { #4 } \subfiglist_tmpa_tl
-  \subfiglist_prop_set_from_tl:NN \subfiglist_tmp_prop \subfiglist_tmpa_tl
+  \subfiglist_group_local_fp_set_eq:NN  \subfiglist_canvas_ratio_fp \c_zero_fp
+  \subfiglist_group_local_dim_set_eq:NN \subfiglist_canvas_hoff_dim \c_zero_dim
+  \subfiglist_group_local_dim_set_eq:NN \subfiglist_canvas_voff_dim \c_zero_dim
+  \subfiglist_group_local_tl_set:Nn     \subfiglist_canvas_spec_tl  { #4 }
+  \subfiglist_group_begin:
   
-  \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { ratio } \subfiglist_tmpa_tl
-  \fp_set:NV #1 \subfiglist_tmpa_tl
-  
-  \dim_zero:N #2
-  \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { left } \subfiglist_tmpa_tl
-  \dim_add:NV #2 \subfiglist_tmpa_tl
-  \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { right } \subfiglist_tmpa_tl
-  \dim_add:NV #2 \subfiglist_tmpa_tl
-  
-  \dim_zero:N #3
-  \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { top } \subfiglist_tmpa_tl
-  \dim_add:NV #3 \subfiglist_tmpa_tl
-  \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { bot } \subfiglist_tmpa_tl
-  \dim_add:NV #3 \subfiglist_tmpa_tl
-  
-  \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { frame-color } \subfiglist_tmpa_tl
-  \str_if_eq:nVF { none } \subfiglist_tmpa_tl
-  {
-    \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { frame-width } \subfiglist_tmpa_tl
-    \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { frame-left } \subfiglist_tmpb_tl
-    \dim_add:NV #2 \subfiglist_tmpa_tl
-    \dim_add:NV #2 \subfiglist_tmpb_tl
+    \subfiglist_prop_get_safe:NVN \subfiglist_canvas_prop \subfiglist_canvas_spec_tl \subfiglist_tmpa_tl
+    \subfiglist_prop_set_from_tl:NN \subfiglist_tmp_prop \subfiglist_tmpa_tl
     
-    \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { frame-right } \subfiglist_tmpb_tl
-    \dim_add:NV #2 \subfiglist_tmpa_tl
-    \dim_add:NV #2 \subfiglist_tmpb_tl
+    \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { ratio } \subfiglist_tmpa_tl
+    \fp_set:NV \subfiglist_canvas_ratio_fp \subfiglist_tmpa_tl
     
-    \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { frame-top } \subfiglist_tmpb_tl
-    \dim_add:NV #3 \subfiglist_tmpa_tl
-    \dim_add:NV #3 \subfiglist_tmpb_tl
+    % Horizontal offset
+    \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { left } \subfiglist_tmpa_tl
+    \dim_add:NV \subfiglist_canvas_hoff_dim \subfiglist_tmpa_tl
+    \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { right } \subfiglist_tmpa_tl
+    \dim_add:NV \subfiglist_canvas_hoff_dim \subfiglist_tmpa_tl
     
-    \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { frame-bot } \subfiglist_tmpb_tl
-    \dim_add:NV #3 \subfiglist_tmpa_tl
-    \dim_add:NV #3 \subfiglist_tmpb_tl
-  }
+    % Vertical offset
+    \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { top } \subfiglist_tmpa_tl
+    \dim_add:NV \subfiglist_canvas_voff_dim \subfiglist_tmpa_tl
+    \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { bot } \subfiglist_tmpa_tl
+    \dim_add:NV \subfiglist_canvas_voff_dim \subfiglist_tmpa_tl
+    
+    \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { frame-color } \subfiglist_tmpa_tl
+    \str_if_eq:nVF { none } \subfiglist_tmpa_tl
+    {
+      \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { frame-width } \subfiglist_tmpa_tl
+      \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { frame-left } \subfiglist_tmpb_tl
+      \dim_add:NV \subfiglist_canvas_hoff_dim \subfiglist_tmpa_tl
+      \dim_add:NV \subfiglist_canvas_hoff_dim \subfiglist_tmpb_tl
+      
+      \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { frame-right } \subfiglist_tmpb_tl
+      \dim_add:NV \subfiglist_canvas_hoff_dim \subfiglist_tmpa_tl
+      \dim_add:NV \subfiglist_canvas_hoff_dim \subfiglist_tmpb_tl
+      
+      \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { frame-top } \subfiglist_tmpb_tl
+      \dim_add:NV \subfiglist_canvas_voff_dim \subfiglist_tmpa_tl
+      \dim_add:NV \subfiglist_canvas_voff_dim \subfiglist_tmpb_tl
+      
+      \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { frame-bot } \subfiglist_tmpb_tl
+      \dim_add:NV \subfiglist_canvas_voff_dim \subfiglist_tmpa_tl
+      \dim_add:NV \subfiglist_canvas_voff_dim \subfiglist_tmpb_tl
+    }
+    
+    \prop_put:NnV \subfiglist_tmp_prop { hoff } \subfiglist_canvas_hoff_dim
+    \prop_put:NnV \subfiglist_tmp_prop { voff } \subfiglist_canvas_voff_dim
+    \subfiglist_tl_set_from_prop:NN \subfiglist_tmpa_tl \subfiglist_tmp_prop
+    \prop_gput:NVV \subfiglist_canvas_prop \subfiglist_canvas_spec_tl \subfiglist_tmpa_tl
   
-  \prop_put:NnV \subfiglist_tmp_prop { hoff } #2
-  \prop_put:NnV \subfiglist_tmp_prop { voff } #3
-  \subfiglist_tl_set_from_prop:NN \subfiglist_tmpa_tl \subfiglist_tmp_prop
-  \prop_put:NnV \subfiglist_canvas_prop { #4 } \subfiglist_tmpa_tl
+  % Return local variables with group scope
+  \subfiglist_group_return_fp_set_eq:NN  #1 \subfiglist_canvas_ratio_fp
+  \subfiglist_group_return_dim_set_eq:NN #2 \subfiglist_canvas_hoff_dim
+  \subfiglist_group_return_dim_set_eq:NN #3 \subfiglist_canvas_voff_dim
+  \subfiglist_group_end:
 }
 
 \cs_generate_variant:Nn \subfiglist_get_aspect_hmode_canvas:NNNn { NNNV }
@@ -2863,9 +2878,12 @@
 % #3: Dimension to store vertical offset
 % #4: Space specification
 {
-  \fp_set_eq:NN #1 \c_nan_fp
-  \dim_set_eq:NN #2 \subfiglist_canvas_space_environment_default_dim
-  \dim_zero:N #3
+  \subfiglist_group_begin:
+  
+  \subfiglist_group_return_fp_set_eq:NN  #1 \c_nan_fp
+  \subfiglist_group_return_dim_set_eq:NN #2 \subfiglist_canvas_space_environment_default_dim
+  \subfiglist_group_return_dim_set_eq:NN #3 \c_zero_dim
+  \subfiglist_group_end:
 }
 
 \cs_generate_variant:Nn \subfiglist_get_aspect_hmode_space:NNNn { NNNV }
@@ -2877,12 +2895,20 @@
 % #3: Dimension to store vertical offset
 % #4: Separator specification
 {
-  \dim_set:Nn \subfiglistlineheight { 1ex }
-  \fp_set_eq:NN #1 \c_nan_fp
+  \subfiglist_group_local_tl_set:Nn \subfiglist_separator_spec_tl { #4 }
+  \subfiglist_group_begin:
   
-  \hbox_set:Nn \subfiglist_tmp_box { #4 }
-  \dim_set:Nn #2 { \box_wd:N \subfiglist_tmp_box }
-  \dim_set:Nn #3 { \box_ht:N \subfiglist_tmp_box }
+    \dim_gset:Nn \subfiglistlineheight { 1ex }
+    \hbox_set:NV \subfiglist_tmp_box { #4 }
+    
+    \dim_set:Nn \subfiglist_tmpa_dim { \box_wd:N \subfiglist_tmp_box }
+    \dim_set:Nn \subfiglist_tmpb_dim { \box_ht:N \subfiglist_tmp_box }
+  
+  % Return local variables with group scope
+  \subfiglist_group_return_fp_set_eq:NN  #1 \c_nan_fp
+  \subfiglist_group_return_dim_set_eq:NN #2 \subfiglist_tmpa_dim
+  \subfiglist_group_return_dim_set_eq:NN #3 \subfiglist_tmpb_dim
+  \subfiglist_group_end:
 }
 
 \cs_generate_variant:Nn \subfiglist_get_aspect_hmode_separator:NNNn { NNNV }
@@ -2895,48 +2921,52 @@
 % #4: Newline specification
 %
 {
-  \fp_set_eq:NN #1 \c_inf_fp
-  \dim_zero:N #2
-  \dim_zero:N #3
+  \subfiglist_group_local_fp_set_eq:NN  \subfiglist_canvas_ratio_fp \c_inf_fp
+  \subfiglist_group_local_dim_set_eq:NN \subfiglist_canvas_hoff_dim \c_zero_dim
+  \subfiglist_group_local_dim_set_eq:NN \subfiglist_canvas_voff_dim \c_zero_dim
+  \subfiglist_group_local_tl_set:Nn     \subfiglist_newline_spec_tl { #4 }
+  \subfiglist_group_begin:
   
-  \tl_map_inline:nn { #4 }
-  {
-    \subfiglist_tl_set_head:Nn \subfiglist_tmpa_tl { ##1 }
-    \subfiglist_tl_set_tail:Nn \subfiglist_tmpb_tl { ##1 }
-    \subfiglist_tl_set_unwrapped:NV \subfiglist_tmpb_tl \subfiglist_tmpb_tl
-    
-    \group_begin:
-      \subfiglist_use:c { subfiglist_get_aspect_vmode_ \subfiglist_tmpa_tl :NNNV }
-        #1 #2 #3 \subfiglist_tmpb_tl
-      
-      \fp_set:Nn \subfiglist_tmp_fp #1
-      \dim_set:Nn \subfiglist_tmpa_dim #2
-      \dim_set:Nn \subfiglist_tmpb_dim #3
-    
-    \subfiglist_tl_set_from_prop:NN \subfiglist_tmpa_tl \subfiglist_canvas_prop
-    \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tmpa_tl
-    \subfiglist_group_var_return:NN \fp_set:Nn \subfiglist_tmp_fp
-    \subfiglist_group_var_return:NN \dim_set:Nn \subfiglist_tmpa_dim
-    \subfiglist_group_var_return:NN \dim_set:Nn \subfiglist_tmpb_dim
-    \group_end:
-    \subfiglist_prop_set_from_tl:NN \subfiglist_canvas_prop \subfiglist_tmpa_tl
-    
-    \subfiglist_is_nan:VF \subfiglist_tmp_fp
+    \tl_map_inline:Nn \subfiglist_newline_spec_tl
     {
-      \dim_compare:nNnTF { #2 } < { \subfiglist_tmpa_dim }
+      \subfiglist_tl_set_head:Nn \subfiglist_tmpa_tl { ##1 }
+      \subfiglist_tl_set_tail:Nn \subfiglist_tmpb_tl { ##1 }
+      \subfiglist_tl_set_unwrapped:NV \subfiglist_tmpb_tl \subfiglist_tmpb_tl
+      
+      \subfiglist_use:c { subfiglist_get_aspect_vmode_ \subfiglist_tmpa_tl :NNNV }
+        \subfiglist_tmp_fp   % Canvas ratios
+        \subfiglist_tmpa_dim % Horizontal offset
+        \subfiglist_tmpb_dim % Vertical offset
+        \subfiglist_tmpb_tl
+        
+      \subfiglist_is_nan:VF \subfiglist_tmp_fp
       {
-        \fp_compare:nNnF { #1 } = { \c_inf_fp }
+        \dim_compare:nNnTF { \subfiglist_canvas_hoff_dim } < { \subfiglist_tmpa_dim }
         {
-          \dim_add:Nn #3 { ( \subfiglist_tmpa_dim - #2 ) * \dim_ratio:nn { 1pt } { \fp_to_dim:N #1 } }
+          \fp_compare:nNnF { \subfiglist_canvas_ratio_fp } = { \c_inf_fp }
+          {
+            \dim_add:Nn \subfiglist_canvas_voff_dim
+            {
+              ( \subfiglist_tmpa_dim - \subfiglist_canvas_hoff_dim ) * \dim_ratio:nn { 1pt } { \fp_to_dim:N \subfiglist_canvas_ratio_fp }
+            }
+          }
+          \dim_set_eq:NN \subfiglist_canvas_hoff_dim \subfiglist_tmpa_dim
+        }{
+          \dim_add:Nn \subfiglist_canvas_voff_dim
+          {
+            \subfiglist_canvas_hoff_dim * \dim_ratio:nn { 1pt } { \fp_to_dim:N \subfiglist_tmp_fp }
+          }
         }
-        \dim_set_eq:NN #2 \subfiglist_tmpa_dim
-      }{
-        \dim_add:Nn #3 { #2 * \dim_ratio:nn { 1pt } { \fp_to_dim:N \subfiglist_tmp_fp } }
+        \fp_set:Nn \subfiglist_canvas_ratio_fp { 1 / ( ( 1 / \subfiglist_canvas_ratio_fp ) + ( 1 / \subfiglist_tmp_fp ) ) }
       }
-      \fp_set:Nn #1 { 1 / ( ( 1 / #1 ) + ( 1 / \subfiglist_tmp_fp ) ) }
+      \dim_add:NV \subfiglist_canvas_voff_dim \subfiglist_tmpb_dim
     }
-    \dim_add:NV #3 \subfiglist_tmpb_dim
-  }
+  
+  % Return local variables with group scope
+  \subfiglist_group_return_fp_set_eq:NN  #1 \subfiglist_canvas_ratio_fp
+  \subfiglist_group_return_dim_set_eq:NN #2 \subfiglist_canvas_hoff_dim
+  \subfiglist_group_return_dim_set_eq:NN #3 \subfiglist_canvas_voff_dim
+  \subfiglist_group_end:
 }
 
 \cs_generate_variant:Nn \subfiglist_get_aspect_hmode_subblock:NNNn { NNNV }
@@ -2949,44 +2979,48 @@
 % #4: Token list with parsed specification string for current line
 %
 {
-  \fp_zero:N  #1
-  \dim_zero:N #2
-  \dim_zero:N #3
+  \subfiglist_group_local_fp_set_eq:NN  \subfiglist_canvas_ratio_fp \c_zero_fp
+  \subfiglist_group_local_dim_set_eq:NN \subfiglist_canvas_hoff_dim \c_zero_dim
+  \subfiglist_group_local_dim_set_eq:NN \subfiglist_canvas_voff_dim \c_zero_dim
+  \subfiglist_group_local_tl_set:Nn     \subfiglist_line_spec_tl { #4 }
+  \subfiglist_group_begin:
   
-  \tl_map_inline:nn { #4 }
-  {
-    \subfiglist_tl_set_head:Nn \subfiglist_tmpa_tl { ##1 }
-    \subfiglist_tl_set_tail:Nn \subfiglist_tmpb_tl { ##1 }
-    \subfiglist_tl_set_unwrapped:NV \subfiglist_tmpb_tl \subfiglist_tmpb_tl
-    
-    \group_begin:
-      \subfiglist_use:c { subfiglist_get_aspect_hmode_ \subfiglist_tmpa_tl :NNNV }
-        #1 #2 #3 \subfiglist_tmpb_tl
+    \tl_map_inline:Nn \subfiglist_line_spec_tl
+    {
+      \subfiglist_tl_set_head:Nn \subfiglist_tmpa_tl { ##1 }
+      \subfiglist_tl_set_tail:Nn \subfiglist_tmpb_tl { ##1 }
+      \subfiglist_tl_set_unwrapped:NV \subfiglist_tmpb_tl \subfiglist_tmpb_tl
       
-      \fp_set:Nn \subfiglist_tmp_fp #1
-      \dim_set:Nn \subfiglist_tmpa_dim #2
-      \dim_set:Nn \subfiglist_tmpb_dim #3
-    
-    \subfiglist_tl_set_from_prop:NN \subfiglist_tmpa_tl \subfiglist_canvas_prop
-    \subfiglist_group_var_return:NN \tl_set:Nn \subfiglist_tmpa_tl
-    \subfiglist_group_var_return:NN \fp_set:Nn \subfiglist_tmp_fp
-    \subfiglist_group_var_return:NN \dim_set:Nn \subfiglist_tmpa_dim
-    \subfiglist_group_var_return:NN \dim_set:Nn \subfiglist_tmpb_dim
-    \group_end:
-    \subfiglist_prop_set_from_tl:NN \subfiglist_canvas_prop \subfiglist_tmpa_tl
-    
-    \subfiglist_is_nan:VF \subfiglist_tmp_fp
-    {
-      \fp_add:NV #1 \subfiglist_tmp_fp
+      \subfiglist_use:c { subfiglist_get_aspect_hmode_ \subfiglist_tmpa_tl :NNNV }
+        \subfiglist_tmp_fp   % Canvas ratios
+        \subfiglist_tmpa_dim % Horizontal offset
+        \subfiglist_tmpb_dim % Vertical offset
+        \subfiglist_tmpb_tl
+        
+      \subfiglist_is_nan:VF \subfiglist_tmp_fp
+      {
+        \fp_add:NV \subfiglist_canvas_ratio_fp \subfiglist_tmp_fp
+      }
+      \dim_add:NV \subfiglist_canvas_hoff_dim \subfiglist_tmpa_dim
+      \subfiglist_is_nan:VF \subfiglist_tmp_fp
+      {
+        \dim_add:Nf \subfiglist_canvas_voff_dim
+        {
+          \subfiglist_tmpb_dim * \dim_ratio:nn { \fp_to_dim:N \subfiglist_tmp_fp } { 1pt }
+        }
+      }
     }
-    \dim_add:NV #2 \subfiglist_tmpa_dim
-    \subfiglist_is_nan:VF \subfiglist_tmp_fp
+    
+    \dim_set:Nf \subfiglist_canvas_voff_dim
     {
-      \dim_add:Nf #3 { \subfiglist_tmpb_dim * \dim_ratio:nn { \fp_to_dim:N \subfiglist_tmp_fp } { 1pt } }
+      \subfiglist_canvas_voff_dim * \dim_ratio:nn { 1pt } { \fp_to_dim:N \subfiglist_canvas_ratio_fp }
     }
-  }
   
-  \dim_set:Nf #3 { #3 * \dim_ratio:nn { 1pt } { \fp_to_dim:N #1 } }
+  % Return local variables with group scope
+  \subfiglist_group_return_fp_set_eq:NN  #1 \subfiglist_canvas_ratio_fp
+  \subfiglist_group_return_dim_set_eq:NN #2 \subfiglist_canvas_hoff_dim
+  \subfiglist_group_return_dim_set_eq:NN #3 \subfiglist_canvas_voff_dim
+  \subfiglist_group_end:
 }
 
 \cs_generate_variant:Nn \subfiglist_get_aspect_vmode_line:NNNn { NNNV }
@@ -2999,9 +3033,19 @@
 % #4: Newline specification
 %
 {
-  \fp_set_eq:NN #1 \c_nan_fp
-  \dim_zero:N #2
-  \dim_set:Nn #3 { #4 }
+  \subfiglist_group_local_fp_set_eq:NN  \subfiglist_canvas_ratio_fp \c_nan_fp
+  \subfiglist_group_local_dim_set_eq:NN \subfiglist_canvas_hoff_dim \c_zero_dim
+  \subfiglist_group_local_dim_set_eq:NN \subfiglist_canvas_voff_dim \c_zero_dim
+  \subfiglist_group_local_tl_set:Nn     \subfiglist_newline_spec_tl { #4 }
+  \subfiglist_group_begin:
+  
+    \dim_set:NV \subfiglist_canvas_voff_dim \subfiglist_newline_spec_tl
+  
+  % Return local variables with group scope
+  \subfiglist_group_return_fp_set_eq:NN  #1 \subfiglist_canvas_ratio_fp
+  \subfiglist_group_return_dim_set_eq:NN #2 \subfiglist_canvas_hoff_dim
+  \subfiglist_group_return_dim_set_eq:NN #3 \subfiglist_canvas_voff_dim
+  \subfiglist_group_end:
 }
 
 \cs_generate_variant:Nn \subfiglist_get_aspect_vmode_newline:NNNn { NNNV }
