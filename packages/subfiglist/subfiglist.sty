@@ -1098,12 +1098,10 @@
     % #2: Label number
     %
     {
-      \int_compare:nT { #2 > 1 }
-      {
-        \addtocounter { \@subcaptype } { \numexpr -\value { \@subcaptype } }
-        \addtocounter { \@subcaptype } { #2 }
-        \addtocounter { \@subcaptype } { -1 }
-      }
+      % Set label counter to correct value
+      \addtocounter { \@subcaptype } { \numexpr -\value { \@subcaptype } }
+      \addtocounter { \@subcaptype } { #2 }
+      \addtocounter { \@subcaptype } { -1 }
       % Step subcaption counter
       \caption@@@refstepcounter\@subcaptype
       % Setup label anchor
@@ -2933,7 +2931,7 @@
   \subfiglist_group_begin:
   
     \dim_gset:Nn \subfiglistlineheight { 1ex }
-    \hbox_set:NV \subfiglist_tmp_box { #4 }
+    \hbox_set:NV \subfiglist_tmp_box \subfiglist_separator_spec_tl
     
     \dim_set:Nn \subfiglist_tmpa_dim { \box_wd:N \subfiglist_tmp_box }
     \dim_set:Nn \subfiglist_tmpb_dim { \box_ht:N \subfiglist_tmp_box }
@@ -3324,17 +3322,25 @@
 % #2: Canvas number
 %
 {
-  \subfiglist_prop_get_safe:NnN #1 { path } \subfiglist_tmpa_tl
-  \subfiglist_prop_get_safe:NnN #1 { width } \subfiglist_tmpb_tl
-  \bool_if:NTF \subfiglist_store_images_bool
-  {
-    \subfiglist_restore:cVV { subfiglist_image_ #2 _box } \subfiglist_tmpa_tl \subfiglist_tmpb_tl
-    \box_use:c { subfiglist_image_ #2 _box }
-  }{
-    \subfiglist_load:NVV \subfiglist_tmp_box \subfiglist_tmpa_tl \subfiglist_tmpb_tl
-    \box_use:N \subfiglist_tmp_box
-  }
+  \subfiglist_group_local_prop_set_eq:NN \subfiglist_current_canvas_prop      #1
+  \subfiglist_group_local_int_set:Nn     \subfiglist_current_canvas_num_int { #2 }
+  \subfiglist_group_begin:
+  
+    \subfiglist_prop_get_safe:NnN \subfiglist_current_canvas_prop { path } \subfiglist_tmpa_tl
+    \subfiglist_prop_get_safe:NnN \subfiglist_current_canvas_prop { width } \subfiglist_tmpb_tl
+    \bool_if:NTF \subfiglist_store_images_bool
+    {
+      \subfiglist_restore:cVV { subfiglist_image_ \subfiglist_current_canvas_num_int _box } \subfiglist_tmpa_tl \subfiglist_tmpb_tl
+      \box_use:c { subfiglist_image_ \subfiglist_current_canvas_num_int _box }
+    }{
+      \subfiglist_load:NVV \subfiglist_tmp_box \subfiglist_tmpa_tl \subfiglist_tmpb_tl
+      \box_use:N \subfiglist_tmp_box
+    }
+    
+  \subfiglist_group_end:
 }
+
+\cs_generate_variant:Nn \subfiglist_put_file:Nn { NV }
 
 % Output specified dummy or dummy file
 \tl_map_inline:nn { { dummy } { dummyfile } }
@@ -3345,17 +3351,25 @@
   % #2: Canvas number
   %
   {
-    \subfiglist_prop_get_safe:NnN ##1 { width } \subfiglist_tmpa_tl
-    \subfiglist_prop_get_safe:NnN ##1 { height } \subfiglist_tmpb_tl
+    \subfiglist_group_local_prop_set_eq:NN \subfiglist_current_canvas_prop      ##1
+    \subfiglist_group_local_int_set:Nn     \subfiglist_current_canvas_num_int { ##2 }
+    \subfiglist_group_begin:
     
-    \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
-    \dim_set:NV \subfiglist_tmpb_dim \subfiglist_tmpb_tl
-    
-    % Put minipage with size of dummy
-    \begin { minipage } [ b ] [ \subfiglist_tmpb_dim ] [ c ] { \subfiglist_tmpa_dim }
-      \mbox { }
-    \end { minipage }
+      \subfiglist_prop_get_safe:NnN \subfiglist_current_canvas_prop { width } \subfiglist_tmpa_tl
+      \subfiglist_prop_get_safe:NnN \subfiglist_current_canvas_prop { height } \subfiglist_tmpb_tl
+      
+      \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
+      \dim_set:NV \subfiglist_tmpb_dim \subfiglist_tmpb_tl
+      
+      % Put minipage with size of dummy
+      \begin { minipage } [ b ] [ \subfiglist_tmpb_dim ] [ c ] { \subfiglist_tmpa_dim }
+        \mbox { }
+      \end { minipage }
+      
+    \subfiglist_group_end:
   }
+  
+  \cs_generate_variant:cn { subfiglist_put_ #1 :Nn } { NV }
 }
 
 \cs_new:Npn \subfiglist_put_framed_canvas:Nn #1 #2
@@ -3364,46 +3378,57 @@
 % #2: Canvas number
 %
 {
-  \colorlet { subfiglist_current_color } { . }
-  {
-    \color { \subfiglist_tmpa_tl }
-    \subfiglist_prop_get_safe:NnN #1 { frame-width } \subfiglist_tmpa_tl
-    \dim_set:Nn \fboxsep { 0pt }
-    \dim_set:Nn \fboxrule { \subfiglist_tmpa_tl }
-    \fbox
+  \subfiglist_group_local_prop_set_eq:NN \subfiglist_current_canvas_prop      #1
+  \subfiglist_group_local_int_set:Nn     \subfiglist_current_canvas_num_int { #2 }
+  \subfiglist_group_begin:
+  
+    \colorlet { subfiglist_current_color } { . }
     {
-      \color { subfiglist_current_color }
-      \vbox:n
+      \subfiglist_prop_get_safe:NnN \subfiglist_current_canvas_prop { frame-color } \subfiglist_tmpa_tl
+      \color { \subfiglist_tmpa_tl }
+      \subfiglist_prop_get_safe:NnN \subfiglist_current_canvas_prop { frame-width } \subfiglist_tmpa_tl
+      \dim_set:Nn \fboxsep { 0pt }
+      \dim_set:Nn \fboxrule { \subfiglist_tmpa_tl }
+      \fbox
       {
-        % Vertical offset
-        \subfiglist_prop_get_safe:NnN #1 { frame-top } \subfiglist_tmpa_tl
-        \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
-        \vspace { \subfiglist_tmpa_dim }
-        
-        \hbox:n
+        \color { subfiglist_current_color }
+        \vbox:n
         {
-          % Horizontal offset
-          \subfiglist_prop_get_safe:NnN #1 { frame-left } \subfiglist_tmpa_tl
+          % Vertical offset
+          \subfiglist_prop_get_safe:NnN \subfiglist_current_canvas_prop { frame-top } \subfiglist_tmpa_tl
           \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
-          \hspace { \subfiglist_tmpa_dim }
+          \vspace { \subfiglist_tmpa_dim }
           
-          \subfiglist_prop_get_safe:NnN #1 { type } \subfiglist_tmpa_tl
-          \subfiglist_use:c { subfiglist_put_ \tl_use:N \subfiglist_tmpa_tl :Nn } #1 { #2 }
+          \hbox:n
+          {
+            % Horizontal offset
+            \subfiglist_prop_get_safe:NnN \subfiglist_current_canvas_prop { frame-left } \subfiglist_tmpa_tl
+            \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
+            \hspace { \subfiglist_tmpa_dim }
+            
+            \subfiglist_prop_get_safe:NnN \subfiglist_current_canvas_prop { type } \subfiglist_tmpa_tl
+            \subfiglist_use:c { subfiglist_put_ \tl_use:N \subfiglist_tmpa_tl :NV }
+              \subfiglist_current_canvas_prop
+              \subfiglist_current_canvas_num_int
+            
+            % Horizontal offset
+            \subfiglist_prop_get_safe:NnN \subfiglist_current_canvas_prop { frame-right } \subfiglist_tmpa_tl
+            \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
+            \hspace { \subfiglist_tmpa_dim }
+          }
           
-          % Horizontal offset
-          \subfiglist_prop_get_safe:NnN #1 { frame-right } \subfiglist_tmpa_tl
+          % Vertical offset
+          \subfiglist_prop_get_safe:NnN \subfiglist_current_canvas_prop { frame-bot } \subfiglist_tmpa_tl
           \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
-          \hspace { \subfiglist_tmpa_dim }
+          \vspace { \subfiglist_tmpa_dim }
         }
-        
-        % Vertical offset
-        \subfiglist_prop_get_safe:NnN #1 { frame-bot } \subfiglist_tmpa_tl
-        \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
-        \vspace { \subfiglist_tmpa_dim }
       }
     }
-  }
+    
+  \subfiglist_group_end:
 }
+
+\cs_generate_variant:Nn \subfiglist_put_framed_canvas:Nn { NV }
 
 % Output specified canvas
 \cs_new:Npn \subfiglist_put_canvas:n #1
@@ -3411,81 +3436,98 @@
 % #1: Canvas number
 %
 {
-  \subfiglist_prop_get_safe:NnN \subfiglist_canvas_prop { #1 } \subfiglist_tmpa_tl
-  \subfiglist_prop_set_from_tl:NN \subfiglist_tmp_prop \subfiglist_tmpa_tl
-%  
-  % Store canvas in box
-  \hbox_set:Nn \subfiglist_tmp_box
-  {
-    % Vertical offset:
-    \vbox:n
+  \subfiglist_group_local_int_set:Nn \subfiglist_current_canvas_num_int { #1 }
+  \subfiglist_group_begin:
+  
+    \subfiglist_prop_get_safe:NVN \subfiglist_canvas_prop \subfiglist_current_canvas_num_int \subfiglist_tmpa_tl
+    \subfiglist_prop_set_from_tl:NN \subfiglist_tmp_prop \subfiglist_tmpa_tl
+
+    % Store canvas in box
+    \hbox_set:Nn \subfiglist_tmp_box
     {
-      \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { top } \subfiglist_tmpa_tl
+      % Vertical offset:
+      \vbox:n
+      {
+        \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { top } \subfiglist_tmpa_tl
+        \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
+        \vspace { \subfiglist_tmpa_dim }
+        % Horizontal offset
+        \hbox:n
+        {
+          \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { left } \subfiglist_tmpa_tl
+          \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
+          \hspace { \subfiglist_tmpa_dim }
+          % Put canvas
+          \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { frame-color } \subfiglist_tmpa_tl
+          \str_if_eq:nVTF { none } \subfiglist_tmpa_tl
+          {
+            \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { type } \subfiglist_tmpa_tl
+            \subfiglist_use:c { subfiglist_put_ \tl_use:N \subfiglist_tmpa_tl :NV }
+              \subfiglist_tmp_prop
+              \subfiglist_current_canvas_num_int
+          }{
+            \subfiglist_put_framed_canvas:NV \subfiglist_tmp_prop \subfiglist_current_canvas_num_int
+          }
+          % Horizontal offset
+          \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { right } \subfiglist_tmpa_tl
+          \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
+          \hspace { \subfiglist_tmpa_dim }
+        }
+      % Vertical offset
+      \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { bot } \subfiglist_tmpa_tl
       \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
       \vspace { \subfiglist_tmpa_dim }
-      % Horizontal offset
-      \hbox:n
-      {
-        \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { left } \subfiglist_tmpa_tl
-        \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
-        \hspace { \subfiglist_tmpa_dim }
-        % Put canvas
-        \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { frame-color } \subfiglist_tmpa_tl
-        \str_if_eq:nVTF { none } \subfiglist_tmpa_tl
-        {
-          \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { type } \subfiglist_tmpa_tl
-          \subfiglist_use:c { subfiglist_put_ \tl_use:N \subfiglist_tmpa_tl :Nn } \subfiglist_tmp_prop { #1 }
-        }{
-          \subfiglist_put_framed_canvas:Nn \subfiglist_tmp_prop { #1 }
-        }
-        % Horizontal offset
-        \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { right } \subfiglist_tmpa_tl
-        \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
-        \hspace { \subfiglist_tmpa_dim }
       }
-    % Vertical offset
-    \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { bot } \subfiglist_tmpa_tl
-    \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
-    \vspace { \subfiglist_tmpa_dim }
-    }
-  }
-  
-  % Get canvas width
-  \dim_set:Nn \subfiglist_tmpa_dim { \box_wd:N \subfiglist_tmp_box }
-  
-  \begin { subfigure } [ b ] { \subfiglist_tmpa_dim }
-    \centering
-    
-    % Place canvas
-    \leavevmode \rlap{ \box_use:N \subfiglist_tmp_box }
-    
-    % Has a label been specified?
-    \prop_if_in:NnT \subfiglist_label_prop { #1 }
-    {
-      \subfiglist_put_label:nnn { #1 } { \box_wd:N \subfiglist_tmp_box } { \box_ht:N \subfiglist_tmp_box }
     }
     
-    % Has an overlay been specified?
-    \prop_if_in:NnT \subfiglist_overlay_prop { #1 }
-    {
-      \subfiglist_put_overlay:nnn { #1 } { \box_wd:N \subfiglist_tmp_box } { \box_ht:N \subfiglist_tmp_box }
-    }
+    % Get canvas width
+    \dim_set:Nn \subfiglist_tmpa_dim { \box_wd:N \subfiglist_tmp_box }
     
-    % Fix spacing
-    \phantom { \box_use:N \subfiglist_tmp_box }
-  \end { subfigure }
+    \begin { subfigure } [ b ] { \subfiglist_tmpa_dim }
+      \centering
+      
+      % Place canvas
+      \leavevmode \rlap{ \box_use:N \subfiglist_tmp_box }
+      
+      % Has a label been specified?
+      \prop_if_in:NVT \subfiglist_label_prop \subfiglist_current_canvas_num_int
+      {
+        \subfiglist_put_label:Vnn
+          \subfiglist_current_canvas_num_int
+          { \box_wd:N \subfiglist_tmp_box }
+          { \box_ht:N \subfiglist_tmp_box }
+      }
+      
+      % Has an overlay been specified?
+      \prop_if_in:NVT \subfiglist_overlay_prop \subfiglist_current_canvas_num_int
+      {
+        \subfiglist_put_overlay:Vnn
+          \subfiglist_current_canvas_num_int
+          { \box_wd:N \subfiglist_tmp_box } 
+          { \box_ht:N \subfiglist_tmp_box }
+      }
+      
+      % Fix spacing
+      \phantom { \box_use:N \subfiglist_tmp_box }
+    \end { subfigure }
+
+  \subfiglist_group_end:
 }
 
 \cs_generate_variant:Nn \subfiglist_put_canvas:n { V }
 
 \cs_new:Npn \subfiglist_put_space:n #1
 {
-  \bool_if:NTF \subfiglist_env_use_hspace_bool
-  {
-    \hspace * { \dim_use:N \subfiglist_canvas_space_environment_default_dim }
-  }{
-    \hfill
-  }
+  \subfiglist_group_begin:
+  
+    \bool_if:NTF \subfiglist_env_use_hspace_bool
+    {
+      \hspace * { \dim_use:N \subfiglist_canvas_space_environment_default_dim }
+    }{
+      \hfill
+    }
+  
+  \subfiglist_group_end:
 }
 
 \cs_generate_variant:Nn \subfiglist_put_space:n { V }
@@ -3495,7 +3537,13 @@
 % #1: Height of current line
 %
 {
-  \dim_set:Nn \subfiglistlineheight { #1 }
+  \subfiglist_group_local_dim_set:Nn \subfiglist_current_line_height_dim { #1 }
+  \subfiglist_group_begin:
+
+    \relax
+    
+  \subfiglist_group_return_dim_set_eq:NN \subfiglistlineheight \subfiglist_current_line_height_dim
+  \subfiglist_group_end:
 }
 
 \cs_generate_variant:Nn \subfiglist_put_lineheight:n { V }
@@ -3505,7 +3553,12 @@
 % #1: Content of separator
 %
 {
-  \mbox { #1 }
+  \subfiglist_group_local_tl_set:Nn \subfiglist_current_separator_tl { #1 }
+  \subfiglist_group_begin:
+
+    \mbox { \subfiglist_current_separator_tl }
+    
+  \subfiglist_group_end:
 }
 
 \cs_generate_variant:Nn \subfiglist_put_separator:n { V }
@@ -3515,36 +3568,45 @@
 % #1: Content of subblock
 %
 {
-  \subfiglist_tl_set_head:Nn \subfiglist_tmpa_tl { #1 }
-  \subfiglist_tl_set_tail:NV \subfiglist_tmpb_tl \subfiglist_tmpa_tl
-  \subfiglist_tl_set_head:NV \subfiglist_tmpa_tl \subfiglist_tmpa_tl
-  \subfiglist_tl_set_unwrapped:NV \subfiglist_tmpb_tl \subfiglist_tmpb_tl
-  
-  \str_if_eq:nVTF { columnwidth } \subfiglist_tmpa_tl
-  {
-    \begin{minipage}[b]{\subfiglist_tmpb_tl}
-      \tl_map_inline:nn { #1 }
-      {
-        \subfiglist_tl_set_head:Nn \subfiglist_tmpa_tl { ##1 }
-        \subfiglist_tl_set_tail:Nn \subfiglist_tmpb_tl { ##1 }
-        \subfiglist_tl_set_unwrapped:NV \subfiglist_tmpb_tl \subfiglist_tmpb_tl
-        
-        \subfiglist_use:c { subfiglist_put_ \subfiglist_tmpa_tl :V } \subfiglist_tmpb_tl
-      }
-    \end{minipage}
-  }{
-    \tl_set:Nn \subfiglist_tmpb_tl { Expected~token~`columnwidth'~but~found~token~` }
-    \tl_put_right:NV \subfiglist_tmpb_tl \subfiglist_tmpa_tl
-    \tl_put_right:Nn \subfiglist_tmpb_tl { '~instead }
-    \msg_error:nnV { subfiglist } { internal~error } \subfiglist_tmpb_tl
-  }
+  \subfiglist_group_local_tl_set:Nn \subfiglist_current_subblock_tl { #1 }
+  \subfiglist_group_begin:
+
+    \subfiglist_tl_set_head:NV \subfiglist_tmpa_tl \subfiglist_current_subblock_tl
+    \subfiglist_tl_set_tail:NV \subfiglist_tmpb_tl \subfiglist_tmpa_tl
+    \subfiglist_tl_set_head:NV \subfiglist_tmpa_tl \subfiglist_tmpa_tl
+    \subfiglist_tl_set_unwrapped:NV \subfiglist_tmpb_tl \subfiglist_tmpb_tl
+    
+    \str_if_eq:nVTF { columnwidth } \subfiglist_tmpa_tl
+    {
+      \begin{minipage}[b]{\subfiglist_tmpb_tl}
+        \tl_map_inline:Nn \subfiglist_current_subblock_tl
+        {
+          \subfiglist_tl_set_head:Nn \subfiglist_tmpa_tl { ##1 }
+          \subfiglist_tl_set_tail:Nn \subfiglist_tmpb_tl { ##1 }
+          \subfiglist_tl_set_unwrapped:NV \subfiglist_tmpb_tl \subfiglist_tmpb_tl
+          
+          \subfiglist_use:c { subfiglist_put_ \subfiglist_tmpa_tl :V } \subfiglist_tmpb_tl
+        }
+      \end{minipage}
+    }{
+      \tl_set:Nn \subfiglist_tmpb_tl { Expected~token~`columnwidth'~but~found~token~` }
+      \tl_put_right:NV \subfiglist_tmpb_tl \subfiglist_tmpa_tl
+      \tl_put_right:Nn \subfiglist_tmpb_tl { '~instead }
+      \msg_error:nnV { subfiglist } { internal~error } \subfiglist_tmpb_tl
+    }
+    
+  \subfiglist_group_end:
 }
 
 \cs_generate_variant:Nn \subfiglist_put_subblock:n { V }
 
 \cs_new:Npn \subfiglist_put_columnwidth:n #1
 {
-  \relax
+  \subfiglist_group_begin:
+
+    \relax
+    
+  \subfiglist_group_end:
 }
 
 \cs_generate_variant:Nn \subfiglist_put_columnwidth:n { V }
@@ -3554,7 +3616,10 @@
 % #1: Content of line
 %
 {
-  \tl_map_inline:nn { #1 }
+  \subfiglist_group_local_tl_set:Nn \subfiglist_current_line_tl { #1 }
+  \subfiglist_group_begin:
+
+  \tl_map_inline:Nn \subfiglist_current_line_tl
   {
     \subfiglist_tl_set_head:Nn \subfiglist_tmpa_tl { ##1 }
     \subfiglist_tl_set_tail:Nn \subfiglist_tmpb_tl { ##1 }
@@ -3562,6 +3627,8 @@
     
     \subfiglist_use:c { subfiglist_put_ \subfiglist_tmpa_tl :V } \subfiglist_tmpb_tl
   }
+    
+  \subfiglist_group_end:
 }
 
 \cs_generate_variant:Nn \subfiglist_put_line:n { V }
@@ -3571,12 +3638,59 @@
 % #1: Content of newline
 %
 {
-  \dim_set:Nn \subfiglist_tmpa_dim { #1 }
-  \dim_sub:Nn \subfiglist_tmpa_dim \subfiglist_newline_correction_dim
-  \\[\subfiglist_tmpa_dim]
+  \subfiglist_group_local_dim_set:Nn \subfiglist_current_newline_height_dim { #1 }
+  \subfiglist_group_begin:
+
+    \dim_sub:Nn \subfiglist_current_newline_height_dim \subfiglist_newline_correction_dim
+    \\[\subfiglist_current_newline_height_dim]
+    
+  \subfiglist_group_end:
 }
 
 \cs_generate_variant:Nn \subfiglist_put_newline:n { V }
+
+\cs_new:Npn \subfiglist_format_label:N #1
+%
+% #1: Label spec property list
+%
+{
+  \subfiglist_group_local_prop_set_eq:NN \subfiglist_current_label_prop #1
+  \subfiglist_group_begin:
+  
+    \subfiglist_prop_get_safe:NnN \subfiglist_current_label_prop { background } \subfiglist_tmpa_tl
+    % Decide whether label has to be put inside a colorbox or not
+    \str_if_eq:nVTF { none } \subfiglist_tmpa_tl
+      % Either delete next token or use it as argument of \colorbox
+      \use_none:n \colorbox { \subfiglist_tmpa_tl }
+    {
+      \subfiglist_prop_get_safe:NnN \subfiglist_current_label_prop { sequenceno } \subfiglist_tmpa_tl
+      \int_set:Nn \subfiglist_tmp_int { \subfiglist_tmpa_tl }
+
+      \subfiglist_prop_get_safe:NnN \subfiglist_current_label_prop { color } \subfiglist_tmpa_tl
+      \subfiglist_prop_get_safe:NnN \subfiglist_current_label_prop { hook }  \subfiglist_tmpb_tl
+      % Use caption package for putting label?
+      \bool_if:NTF \subfiglist_tweak_caption_package_bool
+      {
+        \subfiglist_label_inset_caption_package:VV \subfiglist_tmpa_tl \subfiglist_tmp_int
+        % Put hook for label
+        \rlap{ \subfiglist_tmpb_tl }
+      }{
+        \hbox:n
+        {
+          \addtocounter { subfigure } { \numexpr -\value { subfigure } }
+          \addtocounter { subfigure } { \subfiglist_tmp_int }
+          \addtocounter { subfigure } { -1 }
+          \refstepcounter { subfigure }
+          \color { \subfiglist_tmpa_tl }
+          \subfiglistlabelformat
+          % Put hook for label
+          \rlap{ \subfiglist_tmpb_tl }
+        }
+      }
+    }
+    
+  \subfiglist_group_end:
+}
 
 % Define command for label inset
 \cs_new:Npn \subfiglist_put_label:nnn #1 #2 #3
@@ -3586,128 +3700,113 @@
 % #3: Canvas height
 %
 {
-  \subfiglist_prop_get_safe:NnN \subfiglist_label_prop { #1 } \subfiglist_tmpa_tl
-  \subfiglist_prop_set_from_tl:NN \subfiglist_tmp_prop \subfiglist_tmpa_tl
-  
-  % Don't reqire any horizontal space
-  \rlap
-  {
-    % Create minipage of exact image size
-    \begin { minipage } [ b ] [ #3 ] [ t ] { #2 }
-      % Iterate over all three possible choices for vertical positioning
-      \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { vpos } \subfiglist_tmpa_tl
-      \int_step_inline:nnnn { \subfiglist_keyval_choice_first_int } { 1 }
-        { \subfiglist_keyval_choice_first_int + 2 }
-      {
-        \strut
-        % Is current choice for vertical positioning the selected one?
-        \int_compare:nTF { ##1 = \subfiglist_tmpa_tl }
+  \subfiglist_group_local_int_set:Nn \subfiglist_current_canvas_num_int    { #1 }
+  \subfiglist_group_local_dim_set:Nn \subfiglist_current_canvas_width_dim  { #2 }
+  \subfiglist_group_local_dim_set:Nn \subfiglist_current_canvas_height_dim { #3 }
+  \subfiglist_group_begin:
+
+    \subfiglist_prop_get_safe:NVN \subfiglist_label_prop \subfiglist_current_canvas_num_int \subfiglist_tmpa_tl
+    \subfiglist_prop_set_from_tl:NN \subfiglist_tmp_prop \subfiglist_tmpa_tl
+    
+    % Don't reqire any horizontal space
+    \rlap
+    {
+      % Create minipage of exact image size
+      \begin { minipage } [ b ] [ \subfiglist_current_canvas_height_dim ] [ t ] { \subfiglist_current_canvas_width_dim }
+        % Iterate over all three possible choices for vertical positioning
+        \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { vpos } \subfiglist_tmpa_tl
+        \int_step_inline:nnnn { \subfiglist_keyval_choice_first_int } { 1 }
+          { \subfiglist_keyval_choice_first_int + 2 }
         {
           \strut
-          % Iterate over all three possible choices for horizontal positioning
-          \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { hpos } \subfiglist_tmpb_tl
-          \int_step_inline:nnnn { \subfiglist_keyval_choice_first_int } { 1 }
-            { \subfiglist_keyval_choice_first_int + 2 }
+          % Is current choice for vertical positioning the selected one?
+          \int_compare:nTF { ##1 = \subfiglist_tmpa_tl }
           {
-            % Is current choce for horizontal positioning the selected one?
-            \int_compare:nTF { ####1 = \subfiglist_tmpb_tl }
+            \strut
+            % Iterate over all three possible choices for horizontal positioning
+            \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { hpos } \subfiglist_tmpb_tl
+            \int_step_inline:nnnn { \subfiglist_keyval_choice_first_int } { 1 }
+              { \subfiglist_keyval_choice_first_int + 2 }
             {
-              \group_begin:
-                % Don't reqire any horizontal space for label
-                \makebox [ 0pt ] [ l ]
-                {
-                  % Additional horizontal shift
-                  \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { xshift } \subfiglist_tmpa_tl
-                  \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
-                  \hspace{ \subfiglist_tmpa_dim }
-                  % Choose left, center or right alignment for label
-                  \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { hpos } \subfiglist_tmpa_tl
-                  \int_set:Nn \subfiglist_tmp_int
-                    { \subfiglist_tmpa_tl - \subfiglist_keyval_choice_first_int + 1 }
-                  \makebox [ 0pt ]
-                  [
-                    \tl_item:nn { lcr } { \subfiglist_tmp_int }
-                  ]
+              % Is current choce for horizontal positioning the selected one?
+              \int_compare:nTF { ####1 = \subfiglist_tmpb_tl }
+              {
+                \group_begin:
+                  % Don't reqire any horizontal space for label
+                  \makebox [ 0pt ] [ l ]
                   {
-                    \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { sequenceno } \subfiglist_tmpa_tl
-                    \int_set:Nn \subfiglist_tmp_int { \subfiglist_tmpa_tl }
-                    % Additional vertical shift
-                    \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { yshift } \subfiglist_tmpa_tl
+                    % Additional horizontal shift
+                    \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { xshift } \subfiglist_tmpa_tl
                     \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
-                    \raisebox { -\subfiglist_tmpa_dim } [ \box_ht:N \strutbox ] [ 0pt ]
+                    \hspace{ \subfiglist_tmpa_dim }
+                    % Choose left, center or right alignment for label
+                    \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { hpos } \subfiglist_tmpa_tl
+                    \int_set:Nn \subfiglist_tmp_int
+                      { \subfiglist_tmpa_tl - \subfiglist_keyval_choice_first_int + 1 }
+                    \makebox [ 0pt ]
+                    [
+                      \tl_item:nn { lcr } { \subfiglist_tmp_int }
+                    ]
                     {
-                      \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { background } \subfiglist_tmpa_tl
-                      % Decide whether label has to be put inside a colorbox or not
-                      \str_if_eq:nVTF { none } \subfiglist_tmpa_tl
-                        % Either delete next token or use it as argument of \colorbox
-                        \use_none:n \colorbox
-                          { \subfiglist_tmpa_tl }
+                      % Additional vertical shift
+                      \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { yshift } \subfiglist_tmpa_tl
+                      \dim_set:NV \subfiglist_tmpa_dim \subfiglist_tmpa_tl
+                      \raisebox { -\subfiglist_tmpa_dim } [ \box_ht:N \strutbox ] [ 0pt ]
                       {
-                        \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { color } \subfiglist_tmpa_tl
-                        \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { hook }  \subfiglist_tmpb_tl
-                        % Use caption package for putting label?
-                        \bool_if:NTF \subfiglist_tweak_caption_package_bool
-                        {
-                          \subfiglist_label_inset_caption_package:VV \subfiglist_tmpa_tl \subfiglist_tmp_int
-                          % Put hook for label
-                          \rlap{ \subfiglist_tmpb_tl }
-                        }{
-                          \hbox:n
-                          {
-                            \int_compare:nT { \subfiglist_tmp_int > 1 }
-                            {
-                              \addtocounter { subfigure } { \numexpr -\value { subfigure } }
-                              \addtocounter { subfigure } { \subfiglist_tmp_int }
-                              \addtocounter { subfigure } { -1 }
-                            }
-                            \refstepcounter { subfigure }
-                            \color { \subfiglist_tmpa_tl }
-                            \subfiglistlabelformat
-                            % Put hook for label
-                            \rlap{ \subfiglist_tmpb_tl }
-                          }
-                        }
+                        \subfiglist_format_label:N \subfiglist_tmp_prop
                       }
                     }
                   }
-                }
-              \group_end:
-            }{
-              % Put \hfills for horizontal positioning of label
-              \hfill
+                \group_end:
+              }{
+                % Put \hfills for horizontal positioning of label
+                \hfill
+              }
             }
+          }{
+            % Put \vfills for vertical positioning of label
+            \vfill
           }
-        }{
-          % Put \vfills for vertical positioning of label
-          \vfill
+          \strut
         }
-        \strut
-      }
-    \end { minipage }
-  }
+      \end { minipage }
+    }
+    
+  \subfiglist_group_end:
 }
+
+\cs_generate_variant:Nn \subfiglist_put_label:nnn { V }
 
 % Define command for overlay
 \cs_new:Npn \subfiglist_put_overlay:nnn #1 #2 #3
 %
 % #1: Canvas number
-% #2: Image width
-% #3: Image height
+% #2: Canvas width
+% #3: Canvas height
 %
 {
-  \subfiglist_prop_get_safe:NnN \subfiglist_overlay_prop { #1 } \subfiglist_tmpa_tl
+  \subfiglist_group_local_int_set:Nn \subfiglist_current_canvas_num_int    { #1 }
+  \subfiglist_group_local_dim_set:Nn \subfiglist_current_canvas_width_dim  { #2 }
+  \subfiglist_group_local_dim_set:Nn \subfiglist_current_canvas_height_dim { #3 }
+  \subfiglist_group_begin:
+
+  \subfiglist_prop_get_safe:NVN \subfiglist_overlay_prop \subfiglist_current_canvas_num_int \subfiglist_tmpa_tl
   \subfiglist_prop_set_from_tl:NN \subfiglist_tmp_prop \subfiglist_tmpa_tl
   
-  % Don't require any horizontal space
-  \rlap
-  {
-    \begin { subfiglistoverlayenv } { #2 } { #3 }
-      % Put content of overlay
-      \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { content } \subfiglist_tmpa_tl
-      \tl_use:N \subfiglist_tmpa_tl
-    \end { subfiglistoverlayenv }
-  }
+    % Don't require any horizontal space
+    \rlap
+    {
+      \begin { subfiglistoverlayenv } { \subfiglist_current_canvas_width_dim } { \subfiglist_current_canvas_height_dim }
+        % Put content of overlay
+        \subfiglist_prop_get_safe:NnN \subfiglist_tmp_prop { content } \subfiglist_tmpa_tl
+        \tl_use:N \subfiglist_tmpa_tl
+      \end { subfiglistoverlayenv }
+    }
+  
+  \subfiglist_group_end:
 }
+
+\cs_generate_variant:Nn \subfiglist_put_overlay:nnn { V }
 
 
 
