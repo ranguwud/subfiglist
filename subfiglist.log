@@ -1,55 +1,49 @@
-This is XeTeX, Version 3.14159265-2.6-0.99998 (TeX Live 2017/Debian) (preloaded format=xelatex 2019.1.6)  29 MAY 2019 22:59
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.9.12)  15 JAN 2020 21:13
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
 **subfiglist.tex
 (./subfiglist.tex
-LaTeX2e <2017-04-15>
-Babel <3.18> and hyphenation patterns for 84 language(s) loaded.
-(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrartcl.cls
-Document Class: scrartcl 2017/09/07 v3.24 KOMA-Script document class (article)
-(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrkbase.sty
-Package: scrkbase 2017/09/07 v3.24 KOMA-Script package (KOMA-Script-dependent b
-asics and keyval usage)
+LaTeX2e <2018-12-01>
+(/usr/local/texlive/2019/texmf-dist/tex/latex/koma-script/scrartcl.cls
+Document Class: scrartcl 2019/02/01 v3.26b KOMA-Script document class (article)
 
-(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrbase.sty
-Package: scrbase 2017/09/07 v3.24 KOMA-Script package (KOMA-Script-independent 
+(/usr/local/texlive/2019/texmf-dist/tex/latex/koma-script/scrkbase.sty
+Package: scrkbase 2019/02/01 v3.26b KOMA-Script package (KOMA-Script-dependent 
 basics and keyval usage)
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+(/usr/local/texlive/2019/texmf-dist/tex/latex/koma-script/scrbase.sty
+Package: scrbase 2019/02/01 v3.26b KOMA-Script package (KOMA-Script-independent
+ basics and keyval usage)
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/graphics/keyval.sty
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks14
 )
-(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrlfile.sty
-Package: scrlfile 2017/09/07 v3.24 KOMA-Script package (loading files)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/koma-script/scrlfile.sty
+Package: scrlfile 2019/02/01 v3.26b KOMA-Script package (loading files)
 )))
-(/usr/share/texlive/texmf-dist/tex/latex/koma-script/tocbasic.sty
-Package: tocbasic 2017/09/07 v3.24 KOMA-Script package (handling toc-files)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/koma-script/tocbasic.sty
+Package: tocbasic 2019/02/01 v3.26b KOMA-Script package (handling toc-files)
 \scr@dte@tocline@numberwidth=\skip41
-\scr@dte@tocline@numbox=\box26
+\scr@dte@tocline@numbox=\box27
 )
 Package tocbasic Info: omitting babel extension for `toc'
 (tocbasic)             because of feature `nobabel' available
-(tocbasic)             for `toc' on input line 133.
-Package tocbasic Info: omitting babel extension for `lof'
-(tocbasic)             because of feature `nobabel' available
-(tocbasic)             for `lof' on input line 135.
-Package tocbasic Info: omitting babel extension for `lot'
-(tocbasic)             because of feature `nobabel' available
-(tocbasic)             for `lot' on input line 136.
+(tocbasic)             for `toc' on input line 134.
 Class scrartcl Info: Switching compatibility level to `3.12'.
 Class scrartcl Info: File `scrsize11pt.clo' used instead of
-(scrartcl)           file `scrsize11.clo' to setup font sizes on input line 208
-0.
+(scrartcl)           file `scrsize11.clo' to setup font sizes on input line 216
+2.
 
-(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrsize11pt.clo
-File: scrsize11pt.clo 2017/09/07 v3.24 KOMA-Script font size class option (11pt
+(/usr/local/texlive/2019/texmf-dist/tex/latex/koma-script/scrsize11pt.clo
+File: scrsize11pt.clo 2019/02/01 v3.26b KOMA-Script font size class option (11p
+t)
 )
-)
-(/usr/share/texlive/texmf-dist/tex/latex/koma-script/typearea.sty
-Package: typearea 2017/09/07 v3.24 KOMA-Script package (type area)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/koma-script/typearea.sty
+Package: typearea 2019/02/01 v3.26b KOMA-Script package (type area)
 \ta@bcor=\skip42
-\ta@div=\count79
+\ta@div=\count80
 Package typearea Info: Switching compatibility level to `3.12'.
 \ta@hblk=\skip43
 \ta@vblk=\skip44
@@ -71,96 +65,127 @@ Package typearea Info: These are the values describing the layout:
 (typearea)              \topskip        = 11.0pt
 (typearea)              \footskip       = 47.6pt
 (typearea)              \baselineskip   = 13.6pt
-(typearea)              on input line 1686.
+(typearea)              on input line 1715.
 )
-\c@part=\count80
-\c@section=\count81
-\c@subsection=\count82
-\c@subsubsection=\count83
-\c@paragraph=\count84
-\c@subparagraph=\count85
-\scr@dte@part@maxnumwidth=\skip47
-\scr@dte@section@maxnumwidth=\skip48
+\c@part=\count81
+\c@section=\count82
+\c@subsection=\count83
+\c@subsubsection=\count84
+\c@paragraph=\count85
+\c@subparagraph=\count86
+\scr@dte@section@maxnumwidth=\skip47
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\section on input line 4489.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\section on input line 4489.
+\scr@dte@part@maxnumwidth=\skip48
+Class scrartcl Info: using compatibility default `afterindent=false'
+(scrartcl)           for `\part on input line 4497.
 \scr@dte@subsection@maxnumwidth=\skip49
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\subsection on input line 4507.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\subsection on input line 4507.
 \scr@dte@subsubsection@maxnumwidth=\skip50
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\subsubsection on input line 4517.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\subsubsection on input line 4517.
 \scr@dte@paragraph@maxnumwidth=\skip51
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\paragraph on input line 4527.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\paragraph on input line 4527.
 \scr@dte@subparagraph@maxnumwidth=\skip52
-LaTeX Info: Redefining \textsubscript on input line 4161.
+Class scrartcl Info: using compatibility default `runin=bysign'
+(scrartcl)           for `\subparagraph on input line 4537.
+Class scrartcl Info: using compatibility default `afterindent=bysign'
+(scrartcl)           for `\subparagraph on input line 4537.
 \abovecaptionskip=\skip53
 \belowcaptionskip=\skip54
-\c@pti@nb@sid@b@x=\box27
-\c@figure=\count86
-\c@table=\count87
+\c@pti@nb@sid@b@x=\box28
+Package tocbasic Info: omitting babel extension for `lof'
+(tocbasic)             because of feature `nobabel' available
+(tocbasic)             for `lof' on input line 5781.
+\scr@dte@figure@maxnumwidth=\skip55
+\c@figure=\count87
+Package tocbasic Info: omitting babel extension for `lot'
+(tocbasic)             because of feature `nobabel' available
+(tocbasic)             for `lot' on input line 5793.
+\scr@dte@table@maxnumwidth=\skip56
+\c@table=\count88
 Class scrartcl Info: Using old \@makefntext due to compatibility level
-(scrartcl)           less than 3.22 on input line 5306.
-Class scrartcl Info: Redefining `\numberline' on input line 5319.
+(scrartcl)           less than 3.22 on input line 5944.
+Class scrartcl Info: Redefining `\numberline' on input line 5957.
 \bibindent=\dimen102
 )
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
-Package: inputenc 2015/03/17 v1.2c Input encoding file
+(/usr/local/texlive/2019/texmf-dist/tex/latex/base/inputenc.sty
+Package: inputenc 2018/08/11 v1.3c Input encoding file
 \inpenc@prehook=\toks15
 \inpenc@posthook=\toks16
 
 
 Package inputenc Warning: inputenc package ignored with utf8 based engines.
 
-) (/usr/share/texlive/texmf-dist/tex/latex/base/fontenc.sty
-Package: fontenc 2017/04/05 v2.0i Standard LaTeX package
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/base/fontenc.sty
+Package: fontenc 2018/08/11 v2.0j Standard LaTeX package
 
-(/usr/share/texlive/texmf-dist/tex/latex/base/t1enc.def
-File: t1enc.def 2017/04/05 v2.0i Standard LaTeX file
+(/usr/local/texlive/2019/texmf-dist/tex/latex/base/t1enc.def
+File: t1enc.def 2018/08/11 v2.0j Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 )
 LaTeX Font Info:    Try loading font information for T1+lmr on input line 105.
 
-(/usr/share/texmf/tex/latex/lm/t1lmr.fd
+(/usr/local/texlive/2019/texmf-dist/tex/latex/lm/t1lmr.fd
 File: t1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 ))
-(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2018/02/14 3.18 The Babel package
+(/usr/local/texlive/2019/texmf-dist/tex/generic/babel/babel.sty
+Package: babel 2019/07/19 3.33 The Babel package
 
-(/usr/share/texlive/texmf-dist/tex/generic/babel/switch.def
-File: switch.def 2018/02/14 3.18 Babel switching mechanism
+(/usr/local/texlive/2019/texmf-dist/tex/generic/babel/switch.def
+File: switch.def 2019/07/19 3.33 Babel switching mechanism
 )
-(/usr/share/texlive/texmf-dist/tex/generic/babel-german/ngerman.ldf
-Language: ngerman 2016/11/02 v2.9 German support for babel (new orthography)
+(/usr/local/texlive/2019/texmf-dist/tex/generic/babel-german/ngerman.ldf
+Language: ngerman 2018/12/08 v2.11 German support for babel (post-1996 orthogra
+phy)
 
-(/usr/share/texlive/texmf-dist/tex/generic/babel-german/ngermanb.ldf
-Language: ngermanb 2016/11/02 v2.9 German support for babel (new orthography)
+(/usr/local/texlive/2019/texmf-dist/tex/generic/babel-german/ngermanb.ldf
+Language: ngermanb 2018/12/08 v2.11 German support for babel (post-1996 orthogr
+aphy)
 
-(/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
-File: babel.def 2018/02/14 3.18 Babel common definitions
-\babel@savecnt=\count88
+(/usr/local/texlive/2019/texmf-dist/tex/generic/babel/babel.def
+File: babel.def 2019/07/19 3.33 Babel common definitions
+\babel@savecnt=\count89
 \U@D=\dimen103
 
-(/usr/share/texlive/texmf-dist/tex/generic/babel/xebabel.def
-(/usr/share/texlive/texmf-dist/tex/generic/babel/txtbabel.def))
-\bbl@dirlevel=\count89
+(/usr/local/texlive/2019/texmf-dist/tex/generic/babel/xebabel.def
+(/usr/local/texlive/2019/texmf-dist/tex/generic/babel/txtbabel.def))
+\bbl@dirlevel=\count90
 )
-Package babel Info: Making " an active character on input line 125.
+Package babel Info: Making " an active character on input line 121.
 ))
-(/usr/share/texlive/texmf-dist/tex/generic/babel-english/american.ldf
+(/usr/local/texlive/2019/texmf-dist/tex/generic/babel-english/american.ldf
 Language: american 2017/06/06 v3.3r English support from the babel system
 
-(/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf
+(/usr/local/texlive/2019/texmf-dist/tex/generic/babel-english/english.ldf
 Language: english 2017/06/06 v3.3r English support from the babel system
 \l@canadian = a dialect from \language\l@american 
 \l@australian = a dialect from \language\l@british 
 \l@newzealand = a dialect from \language\l@british 
 ))
-(/usr/share/texlive/texmf-dist/tex/generic/babel-english/american.ldf
+(/usr/local/texlive/2019/texmf-dist/tex/generic/babel-english/american.ldf
 Language: american 2017/06/06 v3.3r English support from the babel system
 
-(/usr/share/texlive/texmf-dist/tex/generic/babel-english/english.ldf
+(/usr/local/texlive/2019/texmf-dist/tex/generic/babel-english/english.ldf
 Language: english 2017/06/06 v3.3r English support from the babel system
 )))
 Class scrartcl Info: File `scrsize12pt.clo' used instead of
 (scrartcl)           file `scrsize12.clo' to setup font sizes on input line 93.
 
 
-(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrsize12pt.clo
-File: scrsize12pt.clo 2017/09/07 v3.24 KOMA-Script font size class option (12pt
-)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/koma-script/scrsize12pt.clo
+File: scrsize12pt.clo 2019/02/01 v3.26b KOMA-Script font size class option (12p
+t)
 )
 Package typearea Info: These are the values describing the layout:
 (typearea)             DIV  = 12
@@ -214,55 +239,49 @@ Package typearea Info: These are the values describing the layout:
 (typearea)              \baselineskip   = 14.5pt
 (typearea)              on input line 106.
 
-(/usr/share/texlive/texmf-dist/tex/latex/etoolbox/etoolbox.sty
-Package: etoolbox 2018/02/11 v2.5e e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count90
+(/usr/local/texlive/2019/texmf-dist/tex/latex/etoolbox/etoolbox.sty
+Package: etoolbox 2019/09/09 v2.5g e-TeX tools for LaTeX (JAW)
+\etb@tempcnta=\count91
 )
-(/usr/share/texlive/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
-Package: fancyvrb 2008/02/07
+(/usr/local/texlive/2019/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
+Package: fancyvrb 2019/01/15
 
-Style option: `fancyvrb' v2.7a, with DG/SPQR fixes, and firstline=lastline fix 
-<2008/02/07> (tvz)
-\FV@CodeLineNo=\count91
+Style option: `fancyvrb' v3.2a <2019/01/15> (tvz)
+\FV@CodeLineNo=\count92
 \FV@InFile=\read1
-\FV@TabBox=\box28
-\c@FancyVerbLine=\count92
-\FV@StepNumber=\count93
+\FV@TabBox=\box29
+\c@FancyVerbLine=\count93
+\FV@StepNumber=\count94
 \FV@OutFile=\write3
 )
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hologo.sty
+(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/hologo.sty
 Package: hologo 2017/05/01 v1.13 A logo collection with bookmark support (HO)
 
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
+(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/ltxcmds.sty
 Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
 )
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/infwarerr.sty
+(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/infwarerr.sty
 Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
 )
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
+(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/kvsetkeys.sty
 Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
 
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/etexcmds.sty
+(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/etexcmds.sty
 Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
 
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifluatex.sty
+(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/ifluatex.sty
 Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
-)
-Package etexcmds Info: Could not find \expanded.
-(etexcmds)             That can mean that you are not using pdfTeX 1.50 or
-(etexcmds)             that some package has redefined \expanded.
-(etexcmds)             In the latter case, load this package earlier.
-))
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
+)))
+(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/kvdefinekeys.sty
 Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
 )
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
-Package: pdftexcmds 2018/01/21 v0.26 Utility functions of pdfTeX for LuaTeX (HO
+(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/pdftexcmds.sty
+Package: pdftexcmds 2019/07/25 v0.30 Utility functions of pdfTeX for LuaTeX (HO
 )
 
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifpdf.sty
-Package: ifpdf 2017/03/15 v3.2 Provides the ifpdf switch
+(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/ifpdf.sty
+Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
 )
 Package pdftexcmds Info: LuaTeX not detected.
 Package pdftexcmds Info: pdfTeX >= 1.30 not detected.
@@ -270,20 +289,20 @@ Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode not found.
 )
-(/usr/share/texlive/texmf-dist/tex/generic/ifxetex/ifxetex.sty
+(/usr/local/texlive/2019/texmf-dist/tex/generic/ifxetex/ifxetex.sty
 Package: ifxetex 2010/09/12 v0.6 Provides ifxetex conditional
 )
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/ifvtex.sty
+(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/ifvtex.sty
 Package: ifvtex 2016/05/16 v1.6 Detect VTeX and its facilities (HO)
 Package ifvtex Info: VTeX not detected.
 )
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/kvoptions.sty
+(/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/kvoptions.sty
 Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
 )
 Package hologo Info: Using driver `xetex'.
 )
-(/usr/share/texlive/texmf-dist/tex/latex/koma-script/scrpage2.sty
-Package: scrpage2 2017/09/07 v3.24 KOMA-Script package (page head and foot)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/koma-script/scrpage2.sty
+Package: scrpage2 2019/02/01 v3.26b KOMA-Script package (page head and foot)
 
 
 Package scrpage2 Warning: usage of obsolete package!
@@ -293,7 +312,7 @@ Package scrpage2 Warning: usage of obsolete package!
 (scrpage2)                by `scrlayer-scrpage' on input line 52.
 
 LaTeX Info: Redefining \pagemark on input line 180.
-) (/usr/share/texmf/tex/latex/lm/lmodern.sty
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/lmodern.sty
 Package: lmodern 2009/10/30 v1.6 Latin Modern Fonts
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/cmr/m/n --> OT1/lmr/m/n on input line 22.
@@ -328,8 +347,8 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/cmtt/m/n --> OT1/lmtt/m/n on input line 38.
 )
-(/usr/share/texlive/texmf-dist/tex/latex/base/textcomp.sty
-Package: textcomp 2017/04/05 v2.0i Standard LaTeX package
+(/usr/local/texlive/2019/texmf-dist/tex/latex/base/textcomp.sty
+Package: textcomp 2018/08/11 v2.0j Standard LaTeX package
 Package textcomp Info: Sub-encoding information:
 (textcomp)               5 = only ISO-Adobe without \textcurrency
 (textcomp)               4 = 5 + \texteuro
@@ -343,7 +362,7 @@ Package textcomp Info: Sub-encoding information:
 (textcomp)             See the documentation for details.
 Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 79.
 
-(/usr/share/texlive/texmf-dist/tex/latex/base/ts1enc.def
+(/usr/local/texlive/2019/texmf-dist/tex/latex/base/ts1enc.def
 File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
 )
 LaTeX Info: Redefining \oldstylenums on input line 334.
@@ -410,33 +429,33 @@ Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 407.
 Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 408.
 Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
 )
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.sty
-Package: microtype 2018/01/14 v2.7a Micro-typographical refinements (RS)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/microtype.sty
+Package: microtype 2019/02/28 v2.7b Micro-typographical refinements (RS)
 \MT@toks=\toks17
-\MT@count=\count94
-LaTeX Info: Redefining \textls on input line 793.
+\MT@count=\count95
+LaTeX Info: Redefining \textls on input line 790.
 \MT@outer@kern=\dimen104
-LaTeX Info: Redefining \textmicrotypecontext on input line 1339.
-\MT@listname@count=\count95
+LaTeX Info: Redefining \textmicrotypecontext on input line 1336.
+\MT@listname@count=\count96
 
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype-xetex.def
-File: microtype-xetex.def 2018/01/14 v2.7a Definitions specific to xetex (RS)
-LaTeX Info: Redefining \lsstyle on input line 256.
+(/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/microtype-xetex.def
+File: microtype-xetex.def 2019/02/28 v2.7b Definitions specific to xetex (RS)
+LaTeX Info: Redefining \lsstyle on input line 258.
 )
 Package microtype Info: Loading configuration file microtype.cfg.
 
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/microtype.cfg
-File: microtype.cfg 2018/01/14 v2.7a microtype main configuration file (RS)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/microtype.cfg
+File: microtype.cfg 2019/02/28 v2.7b microtype main configuration file (RS)
 ))
 (./preamble/uselocalpackage.tex
-(/usr/share/texlive/texmf-dist/tex/latex/ifplatform/ifplatform.sty
+(/usr/local/texlive/2019/texmf-dist/tex/latex/ifplatform/ifplatform.sty
 Package: ifplatform 2017/10/13 v0.4a Testing for the operating system
 
-(/usr/share/texlive/texmf-dist/tex/latex/tools/shellesc.sty
+(/usr/local/texlive/2019/texmf-dist/tex/latex/tools/shellesc.sty
 Package: shellesc 2016/06/07 v0.02a unified shell escape interface for LaTeX
 Package shellesc Info: Unrestricted shell escape enabled on input line 67.
 )
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/catchfile.sty
+(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/catchfile.sty
 Package: catchfile 2016/05/16 v1.7 Catch the contents of a file (HO)
 )
 runsystem(uname -s > "subfiglist.w18")...executed.
@@ -445,26 +464,27 @@ runsystem(uname -s > "subfiglist.w18")...executed.
 (./subfiglist.w18)
 runsystem(rm -- "subfiglist.w18")...executed.
 
-)) (/usr/share/texlive/texmf-dist/tex/latex/tools/calc.sty
-Package: calc 2014/10/28 v4.3 Infix arithmetic (KKT,FJ)
-\calc@Acount=\count96
-\calc@Bcount=\count97
+))
+(/usr/local/texlive/2019/texmf-dist/tex/latex/tools/calc.sty
+Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
+\calc@Acount=\count97
+\calc@Bcount=\count98
 \calc@Adimen=\dimen105
 \calc@Bdimen=\dimen106
-\calc@Askip=\skip55
-\calc@Bskip=\skip56
+\calc@Askip=\skip57
+\calc@Bskip=\skip58
 LaTeX Info: Redefining \setlength on input line 80.
 LaTeX Info: Redefining \addtolength on input line 81.
-\calc@Ccount=\count98
-\calc@Cskip=\skip57
+\calc@Ccount=\count99
+\calc@Cskip=\skip59
 )
-(/usr/share/texlive/texmf-dist/tex/latex/float/float.sty
+(/usr/local/texlive/2019/texmf-dist/tex/latex/float/float.sty
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
-\c@float@type=\count99
+\c@float@type=\count100
 \float@exts=\toks18
-\float@box=\box29
+\float@box=\box30
 \@float@everytoks=\toks19
-\@floatcapt=\box30
+\@floatcapt=\box31
 )
 runsystem(cp ./packages/caption/caption3.sty ./caption3.sty)...executed.
 
@@ -485,13 +505,12 @@ runsystem(rm ./caption3.sty)...executed.
 
 runsystem(cp ./packages/caption/caption.sty ./caption.sty)...executed.
 
-
 (./caption.sty
 Package: caption 2013/05/02 v3.3-89 Customizing captions (AR)
 Package caption Info: Local version instead of TeX distribution version of
 (caption)             package `caption' loaded on input line 45.
 Package caption Info: KOMA-Script document class.
-\c@ContinuedFloat=\count100
+\c@ContinuedFloat=\count101
 Package caption Info: float package is loaded.
 )
 runsystem(rm ./caption.sty)...executed.
@@ -502,205 +521,196 @@ runsystem(cp ./packages/caption/subcaption.sty ./subcaption.sty)...executed.
 Package: subcaption 2013/02/03 v1.1-62 Sub-captions (AR)
 Package subcaption Info: Local version instead of TeX distribution version of
 (subcaption)             package `subcaption' loaded on input line 38.
-\c@subfigure=\count101
-\c@subtable=\count102
+\c@subfigure=\count102
+\c@subtable=\count103
 )
 runsystem(rm ./subcaption.sty)...executed.
 
 runsystem(cp ./packages/subfiglist/subfiglist.sty ./subfiglist.sty)...executed.
 
  (./subfiglist.sty
-(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3.sty
-Package: expl3 2018/02/21 L3 programming layer (loader) 
+(/usr/local/texlive/2019/texmf-dist/tex/latex/l3kernel/expl3.sty
+Package: expl3 2019-09-08 L3 programming layer (loader) 
 
-(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/expl3-code.tex
-Package: expl3 2018/02/21 L3 programming layer (code)
-\c_max_int=\count103
-\l_tmpa_int=\count104
-\l_tmpb_int=\count105
-\g_tmpa_int=\count106
-\g_tmpb_int=\count107
-\g__intarray_font_int=\count108
-\g__prg_map_int=\count109
-\c_log_iow=\count110
-\l_iow_line_count_int=\count111
-\l__iow_line_target_int=\count112
-\l__iow_one_indent_int=\count113
-\l__iow_indent_int=\count114
+(/usr/local/texlive/2019/texmf-dist/tex/latex/l3kernel/expl3-code.tex
+Package: expl3 2019-09-08 L3 programming layer (code)
+\c_max_int=\count104
+\l_tmpa_int=\count105
+\l_tmpb_int=\count106
+\g_tmpa_int=\count107
+\g_tmpb_int=\count108
+\g__kernel_prg_map_int=\count109
+\c__ior_term_noprompt_ior=\count110
+\c_log_iow=\count111
+\l_iow_line_count_int=\count112
+\l__iow_line_target_int=\count113
+\l__iow_one_indent_int=\count114
+\l__iow_indent_int=\count115
 \c_zero_dim=\dimen114
 \c_max_dim=\dimen115
 \l_tmpa_dim=\dimen116
 \l_tmpb_dim=\dimen117
 \g_tmpa_dim=\dimen118
 \g_tmpb_dim=\dimen119
-\c_zero_skip=\skip58
-\c_max_skip=\skip59
-\l_tmpa_skip=\skip60
-\l_tmpb_skip=\skip61
-\g_tmpa_skip=\skip62
-\g_tmpb_skip=\skip63
+\c_zero_skip=\skip60
+\c_max_skip=\skip61
+\l_tmpa_skip=\skip62
+\l_tmpb_skip=\skip63
+\g_tmpa_skip=\skip64
+\g_tmpb_skip=\skip65
 \c_zero_muskip=\muskip10
 \c_max_muskip=\muskip11
 \l_tmpa_muskip=\muskip12
 \l_tmpb_muskip=\muskip13
 \g_tmpa_muskip=\muskip14
 \g_tmpb_muskip=\muskip15
-\l_keys_choice_int=\count115
-\c__fp_leading_shift_int=\count116
-\c__fp_middle_shift_int=\count117
-\c__fp_trailing_shift_int=\count118
-\c__fp_big_leading_shift_int=\count119
-\c__fp_big_middle_shift_int=\count120
-\c__fp_big_trailing_shift_int=\count121
-\c__fp_Bigg_leading_shift_int=\count122
-\c__fp_Bigg_middle_shift_int=\count123
-\c__fp_Bigg_trailing_shift_int=\count124
-\l__sort_length_int=\count125
-\l__sort_min_int=\count126
-\l__sort_top_int=\count127
-\l__sort_max_int=\count128
-\l__sort_true_max_int=\count129
-\l__sort_block_int=\count130
-\l__sort_begin_int=\count131
-\l__sort_end_int=\count132
-\l__sort_A_int=\count133
-\l__sort_B_int=\count134
-\l__sort_C_int=\count135
-\l__tl_build_start_index_int=\count136
-\l__tl_build_index_int=\count137
-\l__tl_analysis_normal_int=\count138
-\l__tl_analysis_index_int=\count139
-\l__tl_analysis_nesting_int=\count140
-\l__tl_analysis_type_int=\count141
-\l__regex_internal_a_int=\count142
-\l__regex_internal_b_int=\count143
-\l__regex_internal_c_int=\count144
-\l__regex_balance_int=\count145
-\l__regex_group_level_int=\count146
-\l__regex_mode_int=\count147
-\c__regex_cs_in_class_mode_int=\count148
-\c__regex_cs_mode_int=\count149
-\l__regex_catcodes_int=\count150
-\l__regex_default_catcodes_int=\count151
-\c__regex_catcode_L_int=\count152
-\c__regex_catcode_O_int=\count153
-\c__regex_catcode_A_int=\count154
-\c__regex_all_catcodes_int=\count155
-\l__regex_show_lines_int=\count156
-\l__regex_min_state_int=\count157
-\l__regex_max_state_int=\count158
-\l__regex_left_state_int=\count159
-\l__regex_right_state_int=\count160
-\l__regex_capturing_group_int=\count161
-\l__regex_min_pos_int=\count162
-\l__regex_max_pos_int=\count163
-\l__regex_curr_pos_int=\count164
-\l__regex_start_pos_int=\count165
-\l__regex_success_pos_int=\count166
-\l__regex_curr_char_int=\count167
-\l__regex_curr_catcode_int=\count168
-\l__regex_last_char_int=\count169
-\l__regex_case_changed_char_int=\count170
-\l__regex_curr_state_int=\count171
-\l__regex_step_int=\count172
-\l__regex_min_active_int=\count173
-\l__regex_max_active_int=\count174
-\l__regex_replacement_csnames_int=\count175
-\l__regex_match_count_int=\count176
-\l__regex_min_submatch_int=\count177
-\l__regex_submatch_int=\count178
-\l__regex_zeroth_submatch_int=\count179
-\g__regex_trace_regex_int=\count180
-\c_empty_box=\box31
-\l_tmpa_box=\box32
-\l_tmpb_box=\box33
-\g_tmpa_box=\box34
-\g_tmpb_box=\box35
-\l__box_top_dim=\dimen120
-\l__box_bottom_dim=\dimen121
-\l__box_left_dim=\dimen122
-\l__box_right_dim=\dimen123
-\l__box_top_new_dim=\dimen124
-\l__box_bottom_new_dim=\dimen125
-\l__box_left_new_dim=\dimen126
-\l__box_right_new_dim=\dimen127
-\l__box_internal_box=\box36
-\l__coffin_internal_box=\box37
-\l__coffin_internal_dim=\dimen128
-\l__coffin_offset_x_dim=\dimen129
-\l__coffin_offset_y_dim=\dimen130
-\l__coffin_x_dim=\dimen131
-\l__coffin_y_dim=\dimen132
-\l__coffin_x_prime_dim=\dimen133
-\l__coffin_y_prime_dim=\dimen134
-\c_empty_coffin=\box38
-\l__coffin_aligned_coffin=\box39
-\l__coffin_aligned_internal_coffin=\box40
-\l_tmpa_coffin=\box41
-\l_tmpb_coffin=\box42
-\l__coffin_display_coffin=\box43
-\l__coffin_display_coord_coffin=\box44
-\l__coffin_display_pole_coffin=\box45
-\l__coffin_display_offset_dim=\dimen135
-\l__coffin_display_x_dim=\dimen136
-\l__coffin_display_y_dim=\dimen137
-\l__coffin_bounding_shift_dim=\dimen138
-\l__coffin_left_corner_dim=\dimen139
-\l__coffin_right_corner_dim=\dimen140
-\l__coffin_bottom_corner_dim=\dimen141
-\l__coffin_top_corner_dim=\dimen142
-\l__coffin_scaled_total_height_dim=\dimen143
-\l__coffin_scaled_width_dim=\dimen144
+\l_keys_choice_int=\count116
+\l__intarray_loop_int=\count117
+\c__intarray_sp_dim=\dimen120
+\g__intarray_font_int=\count118
+\c__fp_leading_shift_int=\count119
+\c__fp_middle_shift_int=\count120
+\c__fp_trailing_shift_int=\count121
+\c__fp_big_leading_shift_int=\count122
+\c__fp_big_middle_shift_int=\count123
+\c__fp_big_trailing_shift_int=\count124
+\c__fp_Bigg_leading_shift_int=\count125
+\c__fp_Bigg_middle_shift_int=\count126
+\c__fp_Bigg_trailing_shift_int=\count127
+\g__fp_array_int=\count128
+\l__fp_array_loop_int=\count129
+\l__sort_length_int=\count130
+\l__sort_min_int=\count131
+\l__sort_top_int=\count132
+\l__sort_max_int=\count133
+\l__sort_true_max_int=\count134
+\l__sort_block_int=\count135
+\l__sort_begin_int=\count136
+\l__sort_end_int=\count137
+\l__sort_A_int=\count138
+\l__sort_B_int=\count139
+\l__sort_C_int=\count140
+\l__str_internal_int=\count141
+\l__tl_analysis_normal_int=\count142
+\l__tl_analysis_index_int=\count143
+\l__tl_analysis_nesting_int=\count144
+\l__tl_analysis_type_int=\count145
+\l__regex_internal_a_int=\count146
+\l__regex_internal_b_int=\count147
+\l__regex_internal_c_int=\count148
+\l__regex_balance_int=\count149
+\l__regex_group_level_int=\count150
+\l__regex_mode_int=\count151
+\c__regex_cs_in_class_mode_int=\count152
+\c__regex_cs_mode_int=\count153
+\l__regex_catcodes_int=\count154
+\l__regex_default_catcodes_int=\count155
+\c__regex_catcode_L_int=\count156
+\c__regex_catcode_O_int=\count157
+\c__regex_catcode_A_int=\count158
+\c__regex_all_catcodes_int=\count159
+\l__regex_show_lines_int=\count160
+\l__regex_min_state_int=\count161
+\l__regex_max_state_int=\count162
+\l__regex_left_state_int=\count163
+\l__regex_right_state_int=\count164
+\l__regex_capturing_group_int=\count165
+\l__regex_min_pos_int=\count166
+\l__regex_max_pos_int=\count167
+\l__regex_curr_pos_int=\count168
+\l__regex_start_pos_int=\count169
+\l__regex_success_pos_int=\count170
+\l__regex_curr_char_int=\count171
+\l__regex_curr_catcode_int=\count172
+\l__regex_last_char_int=\count173
+\l__regex_case_changed_char_int=\count174
+\l__regex_curr_state_int=\count175
+\l__regex_step_int=\count176
+\l__regex_min_active_int=\count177
+\l__regex_max_active_int=\count178
+\l__regex_replacement_csnames_int=\count179
+\l__regex_match_count_int=\count180
+\l__regex_min_submatch_int=\count181
+\l__regex_submatch_int=\count182
+\l__regex_zeroth_submatch_int=\count183
+\g__regex_trace_regex_int=\count184
+\c_empty_box=\box32
+\l_tmpa_box=\box33
+\l_tmpb_box=\box34
+\g_tmpa_box=\box35
+\g_tmpb_box=\box36
+\l__box_top_dim=\dimen121
+\l__box_bottom_dim=\dimen122
+\l__box_left_dim=\dimen123
+\l__box_right_dim=\dimen124
+\l__box_top_new_dim=\dimen125
+\l__box_bottom_new_dim=\dimen126
+\l__box_left_new_dim=\dimen127
+\l__box_right_new_dim=\dimen128
+\l__box_internal_box=\box37
+\l__coffin_internal_box=\box38
+\l__coffin_internal_dim=\dimen129
+\l__coffin_offset_x_dim=\dimen130
+\l__coffin_offset_y_dim=\dimen131
+\l__coffin_x_dim=\dimen132
+\l__coffin_y_dim=\dimen133
+\l__coffin_x_prime_dim=\dimen134
+\l__coffin_y_prime_dim=\dimen135
+\c_empty_coffin=\box39
+\l__coffin_aligned_coffin=\box40
+\l__coffin_aligned_internal_coffin=\box41
+\l_tmpa_coffin=\box42
+\l_tmpb_coffin=\box43
+\g_tmpa_coffin=\box44
+\g_tmpb_coffin=\box45
+\l__coffin_bounding_shift_dim=\dimen136
+\l__coffin_left_corner_dim=\dimen137
+\l__coffin_right_corner_dim=\dimen138
+\l__coffin_bottom_corner_dim=\dimen139
+\l__coffin_top_corner_dim=\dimen140
+\l__coffin_scaled_total_height_dim=\dimen141
+\l__coffin_scaled_width_dim=\dimen142
+\c__coffin_empty_coffin=\box46
+\l__coffin_display_coffin=\box47
+\l__coffin_display_coord_coffin=\box48
+\l__coffin_display_pole_coffin=\box49
+\l__coffin_display_offset_dim=\dimen143
+\l__coffin_display_x_dim=\dimen144
+\l__coffin_display_y_dim=\dimen145
+\g__char_data_ior=\read2
+\l__seq_internal_a_int=\count185
+\l__seq_internal_b_int=\count186
 )
-(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3xdvipdfmx.def
-File: l3xdvidpfmx.def 2017/03/18 v L3 Experimental driver: xdvipdfmx
-\g__driver_image_int=\count181
-\l__driver_tmp_box=\box46
+(/usr/local/texlive/2019/texmf-dist/tex/latex/l3backend/l3backend-xdvipdfmx.def
+File: l3backend-xdvipdfmx.def 2019-04-06 v L3 backend support: xdvipdfmx
+\g__graphics_track_int=\count187
+\l__pdf_internal_box=\box50
+\g__pdf_backend_object_int=\count188
+\g__pdf_backend_annotation_int=\count189
 ))
 Package: subfiglist 2015/03/22 v1.0 labeled subfigures
 
-(/usr/share/texlive/texmf-dist/tex/latex/l3kernel/l3sort.sty
-Package: l3sort 2017/03/18 Obsolete L3 package 
-
-*****************************************************************
-** 
-** Package l3sort is obsolete and has been removed!
-** 
-** Its functionality is now only provided as part of the expl3 package.
-** 
-** The old packages will be removed entirely at the end of 2018.
-** 
-** Therefore, please replace '\usepackage{l3sort}'
-** with '\usepackage{expl3}' in your documents as soon as possible.
-** 
-*******************************************************************
-
-Package l3sort Warning: This package is obsolete --- use 'expl3' instead on inp
-ut line 42.
-
-) (/usr/share/texlive/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
-Package: l3keys2e 2018/02/21 LaTeX2e option processing using LaTeX3 keys
+(/usr/local/texlive/2019/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.sty
+Package: l3keys2e 2019-05-28 LaTeX2e option processing using LaTeX3 keys
+) (/usr/local/texlive/2019/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
+Package: xparse 2019-05-28 L3 Experimental document command parser
+\l__xparse_current_arg_int=\count190
+\g__xparse_grabber_int=\count191
+\l__xparse_m_args_int=\count192
+\l__xparse_v_nesting_int=\count193
 )
-(/usr/share/texlive/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
-Package: xparse 2018/02/21 L3 Experimental document command parser
-\l__xparse_current_arg_int=\count182
-\g__xparse_grabber_int=\count183
-\l__xparse_m_args_int=\count184
-\l__xparse_mandatory_args_int=\count185
-\l__xparse_v_nesting_int=\count186
-)
-(/usr/share/texlive/texmf-dist/tex/latex/import/import.sty
+(/usr/local/texlive/2019/texmf-dist/tex/latex/import/import.sty
 Package: import 2009/03/23  v 5.1
 )
-(/usr/share/texlive/texmf-dist/tex/latex/xcolor/xcolor.sty
+(/usr/local/texlive/2019/texmf-dist/tex/latex/xcolor/xcolor.sty
 Package: xcolor 2016/05/11 v2.12 LaTeX color extensions (UK)
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
+(/usr/local/texlive/2019/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package xcolor Info: Driver file: xetex.def on input line 225.
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-def/xetex.def
+(/usr/local/texlive/2019/texmf-dist/tex/latex/graphics-def/xetex.def
 File: xetex.def 2017/06/24 v5.0h Graphics/color driver for xetex
 )
 Package xcolor Info: Model `cmy' substituted by `cmy0' on input line 1348.
@@ -712,307 +722,239 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
+(/usr/local/texlive/2019/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+(/usr/local/texlive/2019/texmf-dist/tex/latex/graphics/graphics.sty
 Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
 
-(/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
+(/usr/local/texlive/2019/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
 )
-(/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
+(/usr/local/texlive/2019/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: xetex.def on input line 99.
 )
-\Gin@req@height=\dimen145
-\Gin@req@width=\dimen146
+\Gin@req@height=\dimen146
+\Gin@req@width=\dimen147
 )
-\subfiglistlineheight=\dimen147
-\subfiglist_newline_correction_dim=\dimen148
-\subfiglist_tmpa_dim=\dimen149
-\subfiglist_tmpb_dim=\dimen150
-\subfiglist_identifier_count_int=\count187
-\subfiglist_tmp_int=\count188
-\subfiglist_tmp_box=\box47
-
-*************************************************
-* LaTeX warning: "kernel/deprecated-variant"
-* 
-* Variant form 'NV' deprecated for base form '\token_if_eq_charcode_p:NN'. One
-* should not change an argument from type 'N' to type 'V': base form only
-* accepts a single token argument.
-*************************************************
-*************************************************
-* LaTeX warning: "kernel/deprecated-variant"
-* 
-* Variant form 'NV' deprecated for base form '\token_if_eq_charcode:NNTF'. One
-* should not change an argument from type 'N' to type 'V': base form only
-* accepts a single token argument.
-*************************************************
-\subfiglist_env_width_document_default_dim=\dimen151
-\subfiglist_canvas_space_document_default_dim=\dimen152
-\subfiglist_canvas_top_document_default_dim=\dimen153
-\subfiglist_canvas_bot_document_default_dim=\dimen154
-\subfiglist_canvas_left_document_default_dim=\dimen155
-\subfiglist_canvas_right_document_default_dim=\dimen156
-\subfiglist_canvas_frame_width_document_default_dim=\dimen157
-\subfiglist_canvas_frame_top_document_default_dim=\dimen158
-\subfiglist_canvas_frame_bottom_document_default_dim=\dimen159
-\subfiglist_canvas_frame_left_document_default_dim=\dimen160
-\subfiglist_canvas_frame_right_document_default_dim=\dimen161
-\subfiglist_label_xshift_document_default_dim=\dimen162
-\subfiglist_label_yshift_document_default_dim=\dimen163
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \subfiglistsetup with sig. 'm' on line 990.
-.................................................
-\subfiglist_keyval_choice_first_int=\count189
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \subfiglistfile with sig. '' on line 3777.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \subfiglistdummyfile with sig. '' on line 3784.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \subfiglistdummy with sig. '' on line 3791.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \subfiglistlabel with sig. '' on line 3798.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \subfiglistoverlay with sig. '' on line 3805.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-command"
-. 
-. Defining command \subfiglistlabelformat with sig. '' on line 3814.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-environment"
-. 
-. Defining environment 'subfiglistsvgenv' with sig. '' on line 3818.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-environment"
-. 
-. Defining environment 'subfiglisttexenv' with sig. '' on line 3822.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-environment"
-. 
-. Defining environment 'subfiglistoverlayenv' with sig. 'mm' on line 3843.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-environment"
-. 
-. Defining environment 'subfiglist' with sig. 'sO{}m' on line 3987.
-.................................................
-.................................................
-. LaTeX info: "xparse/define-environment"
-. 
-. Defining environment 'subfiglist*' with sig. 'sO{}m' on line 3991.
-.................................................
+\subfiglistlineheight=\dimen148
+\subfiglist_newline_correction_dim=\dimen149
+\subfiglist_tmpa_dim=\dimen150
+\subfiglist_tmpb_dim=\dimen151
+\subfiglist_identifier_count_int=\count194
+\subfiglist_tmp_int=\count195
+\subfiglist_tmp_box=\box51
+\subfiglist_env_width_document_default_dim=\dimen152
+\subfiglist_canvas_space_document_default_dim=\dimen153
+\subfiglist_canvas_top_document_default_dim=\dimen154
+\subfiglist_canvas_bot_document_default_dim=\dimen155
+\subfiglist_canvas_left_document_default_dim=\dimen156
+\subfiglist_canvas_right_document_default_dim=\dimen157
+\subfiglist_canvas_frame_width_document_default_dim=\dimen158
+\subfiglist_canvas_frame_top_document_default_dim=\dimen159
+\subfiglist_canvas_frame_bottom_document_default_dim=\dimen160
+\subfiglist_canvas_frame_left_document_default_dim=\dimen161
+\subfiglist_canvas_frame_right_document_default_dim=\dimen162
+\subfiglist_label_xshift_document_default_dim=\dimen163
+\subfiglist_label_yshift_document_default_dim=\dimen164
+\subfiglist_keyval_choice_first_int=\count196
 )
 runsystem(rm ./subfiglist.sty)...executed.
 
- (/usr/share/texlive/texmf-dist/tex/latex/pict2e/pict2e.sty
-Package: pict2e 2016/02/05 v0.3b Improved picture commands (HjG,RN,JT)
 
-(/usr/share/texlive/texmf-dist/tex/latex/pict2e/pict2e.cfg
+(/usr/local/texlive/2019/texmf-dist/tex/latex/pict2e/pict2e.sty
+Package: pict2e 2019/08/20 v0.3c Improved picture commands (HjG,RN,JT)
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/pict2e/pict2e.cfg
 File: pict2e.cfg 2016/02/05 v0.1u pict2e configuration for teTeX/TeXLive
 )
 Package pict2e Info: Driver file: xetex.def on input line 119.
 Package pict2e Info: Driver file for pict2e: p2e-xetex.def on input line 121.
 
-(/usr/share/texlive/texmf-dist/tex/latex/pict2e/p2e-xetex.def
+(/usr/local/texlive/2019/texmf-dist/tex/latex/pict2e/p2e-xetex.def
 File: p2e-xetex.def 2016/02/05 v0.1u Driver-dependant file (RN,HjG,JT)
 )
 \pIIe@GRAPH=\toks20
-\@arclen=\dimen164
-\@arcrad=\dimen165
-\@tempdimd=\dimen166
+\@arclen=\dimen165
+\@arcrad=\dimen166
+\@tempdimd=\dimen167
 )
-(/usr/share/texlive/texmf-dist/tex/latex/pstricks/pstricks.sty
-Package: pstricks 2018/01/06 v0.67 LaTeX wrapper for `PSTricks' (RN,HV)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/pstricks/pstricks.sty
+Package: pstricks 2018/12/21 v0.69 LaTeX wrapper for `PSTricks' (RN,HV)
 
-(/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
+(/usr/local/texlive/2019/texmf-dist/tex/generic/iftex/iftex.sty
 Package: iftex 2013/04/04 v0.2 Provides if(tex) conditional for PDFTeX, XeTeX, 
 and LuaTeX
 )
-(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/pst-xkey.tex
+(/usr/local/texlive/2019/texmf-dist/tex/generic/xkeyval/pst-xkey.tex
 File: pst-xkey.tex 2005/11/25 v1.6 PSTricks specialization of xkeyval (HA)
 
-(/usr/share/texlive/texmf-dist/tex/latex/xkeyval/xkeyval.sty
+(/usr/local/texlive/2019/texmf-dist/tex/latex/xkeyval/xkeyval.sty
 Package: xkeyval 2014/12/03 v2.7a package option processing (HA)
 
-(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkeyval.tex
-(/usr/share/texlive/texmf-dist/tex/generic/xkeyval/xkvutils.tex
+(/usr/local/texlive/2019/texmf-dist/tex/generic/xkeyval/xkeyval.tex
+(/usr/local/texlive/2019/texmf-dist/tex/generic/xkeyval/xkvutils.tex
 \XKV@toks=\toks21
 \XKV@tempa@toks=\toks22
 )
-\XKV@depth=\count190
+\XKV@depth=\count197
 File: xkeyval.tex 2014/12/03 v2.7a key=value parser (HA)
 )))
-(/usr/share/texlive/texmf-dist/tex/generic/pstricks/pstricks.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pstricks/pst-fp.tex
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pstricks/pstricks.tex
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pstricks/pst-fp.tex
 `pst-fp' v0.05, 2010/01/17 (hv)
-\pstFP@xs=\count191
-\pstFP@xia=\count192
-\pstFP@xib=\count193
-\pstFP@xfa=\count194
-\pstFP@xfb=\count195
-\pstFP@rega=\count196
-\pstFP@regb=\count197
-\pstFP@regs=\count198
-\pstFP@times=\count199
+\pstFP@xs=\count198
+\pstFP@xia=\count199
+\pstFP@xib=\count266
+\pstFP@xfa=\count267
+\pstFP@xfb=\count268
+\pstFP@rega=\count269
+\pstFP@regb=\count270
+\pstFP@regs=\count271
+\pstFP@times=\count272
 )
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.tex
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfutil-common.te
+x
 \pgfutil@everybye=\toks23
-\pgfutil@tempdima=\dimen167
-\pgfutil@tempdimb=\dimen168
+\pgfutil@tempdima=\dimen168
+\pgfutil@tempdimb=\dimen169
 
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-lists.t
-ex)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfutil-common-li
+sts.tex))
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfkeys.code.tex
 \pgfkeys@pathtoks=\toks24
 \pgfkeys@temptoks=\toks25
 
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.code.t
-ex
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgfkeysfiltered.c
+ode.tex
 \pgfkeys@tmptoks=\toks26
-)) (/usr/share/texlive/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex
-\pgf@x=\dimen169
-\pgf@xa=\dimen170
-\pgf@xb=\dimen171
-\pgf@xc=\dimen172
-\pgf@y=\dimen173
-\pgf@ya=\dimen174
-\pgf@yb=\dimen175
-\pgf@yc=\dimen176
-\c@pgf@counta=\count266
-\c@pgf@countb=\count267
-\c@pgf@countc=\count268
-\c@pgf@countd=\count269
-\pgfutil@tempcnta=\count270
-\pgfutil@tempcntb=\count271
+))
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/utilities/pgffor.code.tex
+Loading pgffor.code.tex
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmath.code.tex
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathcalc.code.tex
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathutil.code.tex
+\pgf@x=\dimen170
+\pgf@xa=\dimen171
+\pgf@xb=\dimen172
+\pgf@xc=\dimen173
+\pgf@y=\dimen174
+\pgf@ya=\dimen175
+\pgf@yb=\dimen176
+\pgf@yc=\dimen177
+\c@pgf@counta=\count273
+\c@pgf@countb=\count274
+\c@pgf@countc=\count275
+\c@pgf@countd=\count276
+\pgfutil@tempcnta=\count277
+\pgfutil@tempcntb=\count278
 )
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
-\pgfmath@dimen=\dimen177
-\pgfmath@count=\count272
-\pgfmath@box=\box48
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathparser.code.tex
+\pgfmath@dimen=\dimen178
+\pgfmath@count=\count279
+\pgfmath@box=\box52
 \pgfmath@toks=\toks27
 \pgfmath@stack@operand=\toks28
 \pgfmath@stack@operation=\toks29
 )
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.tex
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic.code
-.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigonomet
-ric.code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.random.cod
-e.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.comparison
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.code.
+tex
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.basic
 .code.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.code.
-tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round.code
-.tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.code.
-tex)
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integerari
-thmetics.code.tex)))
-(/usr/share/texlive/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
-\c@pgfmathroundto@lastzeros=\count273
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.trigo
+nometric.code.tex)
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.rando
+m.code.tex)
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.compa
+rison.code.tex)
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.base.
+code.tex)
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.round
+.code.tex)
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.misc.
+code.tex)
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfunctions.integ
+erarithmetics.code.tex)))
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pgf/math/pgfmathfloat.code.tex
+\c@pgfmathroundto@lastzeros=\count280
 ))
-\pgffor@iter=\dimen178
-\pgffor@skip=\dimen179
+\pgffor@iter=\dimen179
+\pgffor@skip=\dimen180
 \pgffor@stack=\toks30
 \pgffor@toks=\toks31
 )
-\psLoopIndex=\count274
+\psLoopIndex=\count281
 
-`PSTricks' v2.82  <2018/01/06> (tvz,hv)
-\pst@dima=\dimen180
-\pst@dimb=\dimen181
-\pst@dimc=\dimen182
-\pst@dimd=\dimen183
-\pst@dimg=\dimen184
-\pst@dimh=\dimen185
-\pst@dimm=\dimen186
-\pst@dimn=\dimen187
-\pst@dimo=\dimen188
-\pst@dimp=\dimen189
-\pst@hbox=\box49
-\pst@ibox=\box50
-\pst@boxg=\box51
-\pst@cnta=\count275
-\pst@cntb=\count276
-\pst@cntc=\count277
-\pst@cntd=\count278
-\pst@cntg=\count279
-\pst@cnth=\count280
-\pst@cntm=\count281
-\pst@cntn=\count282
-\pst@cnto=\count283
-\pst@cntp=\count284
-\@zero=\count285
+`PSTricks' v2.97  <2019/05/11> (tvz,hv)
+\pst@dima=\dimen181
+\pst@dimb=\dimen182
+\pst@dimc=\dimen183
+\pst@dimd=\dimen184
+\pst@dimg=\dimen185
+\pst@dimh=\dimen186
+\pst@dimm=\dimen187
+\pst@dimn=\dimen188
+\pst@dimo=\dimen189
+\pst@dimp=\dimen190
+\pst@hbox=\box53
+\pst@ibox=\box54
+\pst@boxg=\box55
+\pst@cnta=\count282
+\pst@cntb=\count283
+\pst@cntc=\count284
+\pst@cntd=\count285
+\pst@cntg=\count286
+\pst@cnth=\count287
+\pst@cntm=\count288
+\pst@cntn=\count289
+\pst@cnto=\count290
+\pst@cntp=\count291
+\@zero=\count292
 \pst@toks=\toks32
-(/usr/share/texlive/texmf-dist/tex/xelatex/xetex-pstricks/pstricks.con
-(/usr/share/texlive/texmf-dist/tex/generic/pstricks/config/xdvipdfmx.cfg))
-\psunit=\dimen190
-\psxunit=\dimen191
-\psyunit=\dimen192
-\pst@C@@rType=\count286
-\pslinewidth=\dimen193
-\psk@startLW=\dimen194
-\psk@endLW=\dimen195
+(/usr/local/texlive/2019/texmf-dist/tex/xelatex/xetex-pstricks/pstricks.con
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pstricks/config/xdvipdfmx.cfg))
+\psunit=\dimen191
+\psxunit=\dimen192
+\psyunit=\dimen193
+\pst@C@@rType=\count293
+\pslinewidth=\dimen194
+\psk@startLW=\dimen195
+\psk@endLW=\dimen196
 \pst@customdefs=\toks33
-\pslinearc=\dimen196
-\pst@symbolStep=\dimen197
-\pst@symbolWidth=\dimen198
-\pst@symbolLinewidth=\dimen199
+\pslinearc=\dimen197
+\pst@symbolStep=\dimen198
+\pst@symbolWidth=\dimen199
+\pst@symbolLinewidth=\dimen256
 \everypsbox=\toks34
-\psframesep=\dimen256
-\pslabelsep=\dimen257
-\sh@wgridXunit=\dimen258
-\sh@wgridYunit=\dimen259
-\pst@shift=\dimen260
-
-(/usr/share/texlive/texmf-dist/tex/xelatex/xetex-pstricks/pstricks.con
-(/usr/share/texlive/texmf-dist/tex/generic/pstricks/config/xdvipdfmx.cfg
+\psframesep=\dimen257
+\pslabelsep=\dimen258
+\sh@wgridXunit=\dimen259
+\sh@wgridYunit=\dimen260
+\pst@shift=\dimen261
+(/usr/local/texlive/2019/texmf-dist/tex/xelatex/xetex-pstricks/pstricks.con
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pstricks/config/xdvipdfmx.cfg
 Using PSTricks configuration for XeTeX+xdvipdfmx
 )))
-File: pstricks.tex 2018/01/06 v2.82 `PSTricks' (tvz,hv)
- (/usr/share/texlive/texmf-dist/tex/generic/pstricks/pst-fp.tex)
-File: pst-fp.tex 2018/01/06 v2.82 `PST-fp' (hv)
-)
+File: pstricks.tex 2019/05/11 v2.97 `PSTricks' (tvz,hv)
+ (/usr/local/texlive/2019/texmf-dist/tex/generic/pstricks/pst-fp.tex)
+File: pst-fp.tex 2019/05/11 v2.97 `PST-fp' (hv)
+
+>>> Loading XeTeX special macros
+(/usr/local/texlive/2019/texmf-dist/tex/generic/pstricks/pstricks-xetex.def))
 \@float@every@listing=\toks35
-\c@listing=\count287
-\c@sublisting=\count288
+\c@listing=\count294
+\c@sublisting=\count295
 
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hyperref.sty
-Package: hyperref 2018/02/06 v6.86b Hypertext links for LaTeX
+(/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/hyperref.sty
+Package: hyperref 2019/06/12 v6.88h Hypertext links for LaTeX
 
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
+(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/hobsub-hyperref.sty
 Package: hobsub-hyperref 2016/05/16 v1.14 Bundle oberdiek, subset hyperref (HO)
 
 
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
+(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/hobsub-generic.sty
 Package: hobsub-generic 2016/05/16 v1.14 Bundle oberdiek, subset generic (HO)
 Package: hobsub 2016/05/16 v1.14 Construct package bundles (HO)
 Package hobsub Info: Skipping package `infwarerr' (already loaded).
@@ -1040,109 +982,105 @@ Package: atbegshi 2016/06/09 v1.18 At begin shipout hook (HO)
 Package: refcount 2016/05/16 v3.5 Data extraction from label references (HO)
 Package: hycolor 2016/05/16 v1.8 Color options for hyperref/bookmark (HO)
 )
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/auxhook.sty
+(/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/auxhook.sty
 Package: auxhook 2016/05/16 v1.4 Hooks for auxiliary files (HO)
 )
-\@linkdim=\dimen261
-\Hy@linkcounter=\count289
-\Hy@pagecounter=\count290
+\@linkdim=\dimen262
+\Hy@linkcounter=\count296
+\Hy@pagecounter=\count297
 
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/pd1enc.def
-File: pd1enc.def 2018/02/06 v6.86b Hyperref: PDFDocEncoding definition (HO)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/pd1enc.def
+File: pd1enc.def 2019/06/12 v6.88h Hyperref: PDFDocEncoding definition (HO)
 )
-\Hy@SavedSpaceFactor=\count291
+\Hy@SavedSpaceFactor=\count298
 
-(/usr/share/texlive/texmf-dist/tex/latex/latexconfig/hyperref.cfg
+(/usr/local/texlive/2019/texmf-dist/tex/latex/latexconfig/hyperref.cfg
 File: hyperref.cfg 2002/06/06 v1.2 hyperref configuration of TeXLive
 )
-Package hyperref Info: Option `pdfpagelabels' set `true' on input line 4383.
-Package hyperref Info: Hyper figures OFF on input line 4509.
-Package hyperref Info: Link nesting OFF on input line 4514.
-Package hyperref Info: Hyper index ON on input line 4517.
-Package hyperref Info: Plain pages OFF on input line 4524.
-Package hyperref Info: Backreferencing OFF on input line 4529.
+Package hyperref Info: Option `pdfpagelabels' set `true' on input line 4424.
+Package hyperref Info: Hyper figures OFF on input line 4550.
+Package hyperref Info: Link nesting OFF on input line 4555.
+Package hyperref Info: Hyper index ON on input line 4558.
+Package hyperref Info: Plain pages OFF on input line 4565.
+Package hyperref Info: Backreferencing OFF on input line 4570.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
-Package hyperref Info: Bookmarks ON on input line 4762.
-\c@Hy@tempcnt=\count292
+Package hyperref Info: Bookmarks ON on input line 4803.
+\c@Hy@tempcnt=\count299
 
-(/usr/share/texlive/texmf-dist/tex/latex/url/url.sty
+(/usr/local/texlive/2019/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip16
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
 )
-LaTeX Info: Redefining \url on input line 5115.
-\XeTeXLinkMargin=\dimen262
-\Fld@menulength=\count293
-\Field@Width=\dimen263
-\Fld@charsize=\dimen264
-Package hyperref Info: Hyper figures OFF on input line 6369.
-Package hyperref Info: Link nesting OFF on input line 6374.
-Package hyperref Info: Hyper index ON on input line 6377.
-Package hyperref Info: backreferencing OFF on input line 6384.
-Package hyperref Info: Link coloring OFF on input line 6389.
-Package hyperref Info: Link coloring with OCG OFF on input line 6394.
-Package hyperref Info: PDF/A mode OFF on input line 6399.
-LaTeX Info: Redefining \ref on input line 6439.
-LaTeX Info: Redefining \pageref on input line 6443.
-\Hy@abspage=\count294
-\c@Item=\count295
-\c@Hfootnote=\count296
+LaTeX Info: Redefining \url on input line 5156.
+\XeTeXLinkMargin=\dimen263
+\Fld@menulength=\count300
+\Field@Width=\dimen264
+\Fld@charsize=\dimen265
+Package hyperref Info: Hyper figures OFF on input line 6411.
+Package hyperref Info: Link nesting OFF on input line 6416.
+Package hyperref Info: Hyper index ON on input line 6419.
+Package hyperref Info: backreferencing OFF on input line 6426.
+Package hyperref Info: Link coloring OFF on input line 6431.
+Package hyperref Info: Link coloring with OCG OFF on input line 6436.
+Package hyperref Info: PDF/A mode OFF on input line 6441.
+LaTeX Info: Redefining \ref on input line 6481.
+LaTeX Info: Redefining \pageref on input line 6485.
+\Hy@abspage=\count301
+\c@Item=\count302
+\c@Hfootnote=\count303
 )
 Package hyperref Info: Driver (autodetected): hxetex.
 
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/hxetex.def
-File: hxetex.def 2018/02/06 v6.86b Hyperref driver for XeTeX
+(/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/hxetex.def
+File: hxetex.def 2019/06/12 v6.88h Hyperref driver for XeTeX
 
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/puenc.def
-File: puenc.def 2018/02/06 v6.86b Hyperref: PDF Unicode definition (HO)
+(/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/puenc.def
+File: puenc.def 2019/06/12 v6.88h Hyperref: PDF Unicode definition (HO)
 )
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/stringenc.sty
+(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/stringenc.sty
 Package: stringenc 2016/05/16 v1.11 Convert strings between diff. encodings (HO
 )
 )
-\pdfm@box=\box52
-\c@Hy@AnnotLevel=\count297
-\HyField@AnnotCount=\count298
-\Fld@listcount=\count299
-\c@bookmark@seq@number=\count300
+\pdfm@box=\box56
+\c@Hy@AnnotLevel=\count304
+\HyField@AnnotCount=\count305
+\Fld@listcount=\count306
+\c@bookmark@seq@number=\count307
 
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
+(/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/rerunfilecheck.sty
 Package: rerunfilecheck 2016/05/16 v1.8 Rerun checks for auxiliary files (HO)
-Package rerunfilecheck Info: Feature \pdfmdfivesum is not available
-(rerunfilecheck)             (e.g. pdfTeX or LuaTeX with package `pdftexcmds').
-
-(rerunfilecheck)             Therefore file contents cannot be checked efficien
-tly
-(rerunfilecheck)             and the loading of the package is aborted.
+Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
+82.
 )
-\Hy@SectionHShift=\skip64
+\Hy@SectionHShift=\skip66
 )
-(/usr/share/texlive/texmf-dist/tex/latex/oberdiek/hypcap.sty
+(/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/hypcap.sty
 Package: hypcap 2016/05/16 v1.12 Adjusting the anchors of captions (HO)
 )
-(/usr/share/texlive/texmf-dist/tex/latex/cleveref/cleveref.sty
-Package: cleveref 2018/02/08 v0.21.1 Intelligent cross-referencing
-Package cleveref Info: `hyperref' support loaded on input line 2301.
-LaTeX Info: Redefining \cref on input line 2301.
-LaTeX Info: Redefining \Cref on input line 2301.
-LaTeX Info: Redefining \crefrange on input line 2301.
-LaTeX Info: Redefining \Crefrange on input line 2301.
-LaTeX Info: Redefining \cpageref on input line 2301.
-LaTeX Info: Redefining \Cpageref on input line 2301.
-LaTeX Info: Redefining \cpagerefrange on input line 2301.
-LaTeX Info: Redefining \Cpagerefrange on input line 2301.
-LaTeX Info: Redefining \labelcref on input line 2301.
-LaTeX Info: Redefining \labelcpageref on input line 2301.
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cleveref/cleveref.sty
+Package: cleveref 2018/03/27 v0.21.4 Intelligent cross-referencing
+Package cleveref Info: `hyperref' support loaded on input line 2370.
+LaTeX Info: Redefining \cref on input line 2370.
+LaTeX Info: Redefining \Cref on input line 2370.
+LaTeX Info: Redefining \crefrange on input line 2370.
+LaTeX Info: Redefining \Crefrange on input line 2370.
+LaTeX Info: Redefining \cpageref on input line 2370.
+LaTeX Info: Redefining \Cpageref on input line 2370.
+LaTeX Info: Redefining \cpagerefrange on input line 2370.
+LaTeX Info: Redefining \Cpagerefrange on input line 2370.
+LaTeX Info: Redefining \labelcref on input line 2370.
+LaTeX Info: Redefining \labelcpageref on input line 2370.
 Package cleveref Info: include cross-reference names in hyperlinks on input lin
-e 7767.
+e 7836.
 Package cleveref Info: include cross-reference names in hyperlinks on input lin
-e 7783.
+e 7852.
 )
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/se-ascii-print.def
+(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/se-ascii-print.def
 File: se-ascii-print.def 2016/05/16 v1.11 stringenc: Printable ASCII characters
 
 )
 Package hyperref Info: Option `colorlinks' set `true' on input line 183.
-\c@mv@sans=\count301
+\c@mv@sans=\count308
 LaTeX Font Info:    Overwriting symbol font `operators' in version `sans'
 (Font)                  OT1/cmr/m/n --> OT1/cmbr/m/n on input line 193.
 LaTeX Font Info:    Overwriting symbol font `letters' in version `sans'
@@ -1178,7 +1116,7 @@ LaTeX Font Info:    ... okay on input line 210.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 210.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 210.
 
- (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 210.
@@ -1197,8 +1135,7 @@ Package microtype Info: *** Changing to language context `american'
 (microtype)              on input line 210.
 Package microtype Info: ... No configuration file mt-lmr.cfg.
 Package microtype Info: ... Loading configuration file mt-cmr.cfg.
-
-(/usr/share/texlive/texmf-dist/tex/latex/microtype/mt-cmr.cfg
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/microtype/mt-cmr.cfg
 File: mt-cmr.cfg 2013/05/19 v2.2 microtype config. file: Computer Modern Roman 
 (RS)
 )
@@ -1210,40 +1147,40 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: hypcap package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\subfiglist_env_width_dim=\dimen265
-\subfiglist_canvas_space_environment_default_dim=\dimen266
-\subfiglist_canvas_top_environment_default_dim=\dimen267
-\subfiglist_canvas_bot_environment_default_dim=\dimen268
-\subfiglist_canvas_left_environment_default_dim=\dimen269
-\subfiglist_canvas_right_environment_default_dim=\dimen270
-\subfiglist_canvas_frame_width_environment_default_dim=\dimen271
-\subfiglist_canvas_frame_top_environment_default_dim=\dimen272
-\subfiglist_canvas_frame_bottom_environment_default_dim=\dimen273
-\subfiglist_canvas_frame_left_environment_default_dim=\dimen274
-\subfiglist_canvas_frame_right_environment_default_dim=\dimen275
-\subfiglist_label_xshift_environment_default_dim=\dimen276
-\subfiglist_label_yshift_environment_default_dim=\dimen277
-\subfiglist_canvas_top_dim=\dimen278
-\subfiglist_canvas_bot_dim=\dimen279
-\subfiglist_canvas_left_dim=\dimen280
-\subfiglist_canvas_right_dim=\dimen281
-\subfiglist_canvas_frame_width_dim=\dimen282
-\subfiglist_canvas_frame_top_dim=\dimen283
-\subfiglist_canvas_frame_bottom_dim=\dimen284
-\subfiglist_canvas_frame_left_dim=\dimen285
-\subfiglist_canvas_frame_right_dim=\dimen286
-\subfiglist_label_xshift_dim=\dimen287
-\subfiglist_label_yshift_dim=\dimen288
-\AtBeginShipoutBox=\box53
+\subfiglist_env_width_dim=\dimen266
+\subfiglist_canvas_space_environment_default_dim=\dimen267
+\subfiglist_canvas_top_environment_default_dim=\dimen268
+\subfiglist_canvas_bot_environment_default_dim=\dimen269
+\subfiglist_canvas_left_environment_default_dim=\dimen270
+\subfiglist_canvas_right_environment_default_dim=\dimen271
+\subfiglist_canvas_frame_width_environment_default_dim=\dimen272
+\subfiglist_canvas_frame_top_environment_default_dim=\dimen273
+\subfiglist_canvas_frame_bottom_environment_default_dim=\dimen274
+\subfiglist_canvas_frame_left_environment_default_dim=\dimen275
+\subfiglist_canvas_frame_right_environment_default_dim=\dimen276
+\subfiglist_label_xshift_environment_default_dim=\dimen277
+\subfiglist_label_yshift_environment_default_dim=\dimen278
+\subfiglist_canvas_top_dim=\dimen279
+\subfiglist_canvas_bot_dim=\dimen280
+\subfiglist_canvas_left_dim=\dimen281
+\subfiglist_canvas_right_dim=\dimen282
+\subfiglist_canvas_frame_width_dim=\dimen283
+\subfiglist_canvas_frame_top_dim=\dimen284
+\subfiglist_canvas_frame_bottom_dim=\dimen285
+\subfiglist_canvas_frame_left_dim=\dimen286
+\subfiglist_canvas_frame_right_dim=\dimen287
+\subfiglist_label_xshift_dim=\dimen288
+\subfiglist_label_yshift_dim=\dimen289
+\AtBeginShipoutBox=\box57
 Package hyperref Info: Link coloring ON on input line 210.
 
-(/usr/share/texlive/texmf-dist/tex/latex/hyperref/nameref.sty
+(/usr/local/texlive/2019/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2016/05/21 v2.44 Cross-referencing by name of section
 
-(/usr/share/texlive/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
+(/usr/local/texlive/2019/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
 Package: gettitlestring 2016/05/16 v1.5 Cleanup title references (HO)
 )
-\c@section@level=\count302
+\c@section@level=\count309
 )
 LaTeX Info: Redefining \ref on input line 210.
 LaTeX Info: Redefining \pageref on input line 210.
@@ -1253,9 +1190,25 @@ LaTeX Info: Redefining \nameref on input line 210.
 \@outlinefile=\write4
 \openout4 = `subfiglist.out'.
 
+Class scrartcl Info: loading recommended package `bookmark'.
+(scrartcl)           Using `bookmark' together with `hyperref' is recommended,
+(scrartcl)           because of handling of possible bookmark level gaps.
+(scrartcl)           You can avoid loading `bookmark' with KOMA-Script option
+(scrartcl)           `bookmarkpackage=false' before \begin{document} and
+(scrartcl)           you can avoid this message with `\usepackage{bookmark}'
+(scrartcl)           before \begin{document} on input line 210.
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/bookmark.sty
+Package: bookmark 2019/06/04 v1.27 PDF bookmarks (HO)
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/oberdiek/bkm-dvipdfm.def
+File: bkm-dvipdfm.def 2019/06/04 v1.27 bookmark driver for dvipdfm (HO)
+\BKM@id=\count310
+))
 LaTeX Font Info:    Try loading font information for T1+lmss on input line 213.
 
- (/usr/share/texmf/tex/latex/lm/t1lmss.fd
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/lm/t1lmss.fd
 File: t1lmss.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 Package microtype Info: ... No configuration file mt-lmss.cfg.
@@ -1279,7 +1232,8 @@ Package microtype Info: ... Loading protrusion list `T1-default'.
 Package microtype Info: ... : First loading protrusion list `default'.
 LaTeX Font Info:    Try loading font information for T1+lmtt on input line 213.
 
-(/usr/share/texmf/tex/latex/lm/t1lmtt.fd
+
+(/usr/local/texlive/2019/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <24.88> not available
@@ -1299,7 +1253,7 @@ Package microtype Info: ... : First loading protrusion list `cmr-default'.
 LaTeX Font Info:    Try loading font information for OT1+lmr on input line 213.
 
 
-(/usr/share/texmf/tex/latex/lm/ot1lmr.fd
+(/usr/local/texlive/2019/texmf-dist/tex/latex/lm/ot1lmr.fd
 File: ot1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 Package microtype Info: Setting up font `OT1/lmr/m/n/17.28' on input line 213.
@@ -1314,7 +1268,7 @@ Package microtype Info: ... : First loading protrusion list `cmr-default'.
 LaTeX Font Info:    Try loading font information for OML+lmm on input line 213.
 
 
-(/usr/share/texmf/tex/latex/lm/omllmm.fd
+(/usr/local/texlive/2019/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 Package microtype Info: ... No configuration file mt-lmm.cfg.
@@ -1329,7 +1283,7 @@ Package microtype Info: ... No protrusion.
 LaTeX Font Info:    Try loading font information for OMS+lmsy on input line 213
 .
 
-(/usr/share/texmf/tex/latex/lm/omslmsy.fd
+(/usr/local/texlive/2019/texmf-dist/tex/latex/lm/omslmsy.fd
 File: omslmsy.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 Package microtype Info: ... No configuration file mt-lmsy.cfg.
@@ -1344,7 +1298,7 @@ Package microtype Info: ... No protrusion.
 LaTeX Font Info:    Try loading font information for OMX+lmex on input line 213
 .
 
-(/usr/share/texmf/tex/latex/lm/omxlmex.fd
+(/usr/local/texlive/2019/texmf-dist/tex/latex/lm/omxlmex.fd
 File: omxlmex.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    External font `lmex10' loaded for size
@@ -1380,10 +1334,6 @@ Package microtype Info: ... : First loading protrusion list `default'.
 \tf@toc=\write5
 \openout5 = `subfiglist.toc'.
 
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 216.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 216.
 Package microtype Info: Setting up font `T1/lmtt/m/n/12' on input line 218.
 Package microtype Info: ... Loading protrusion list `T1-default'.
 Package microtype Info: ... : First loading protrusion list `default'.
@@ -1413,15 +1363,7 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <6> on input line 227.
 Package microtype Info: Setting up font `OMX/lmex/m/n/6' on input line 227.
 Package microtype Info: ... No protrusion.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 227.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 227.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 227.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 227.
- [1
+[1
 
 
 ]
@@ -1434,51 +1376,16 @@ LaTeX Font Info:    Font shape `T1/lmtt/bx/n' in size <17.28> not available
 Package microtype Info: Setting up font `T1/lmtt/b/n/17.28' on input line 259.
 Package microtype Info: ... Loading protrusion list `T1-default'.
 Package microtype Info: ... : First loading protrusion list `default'.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 259.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 259.
 Package microtype Info: *** Changing to language context `american'
 (microtype)              on input line 261.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 261.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 261.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 261.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 261.
  [2]
 Package microtype Info: Setting up font `T1/lmr/m/n/6' on input line 265.
 Package microtype Info: ... Loading protrusion list `lmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-default'.
-\subfiglist_identifier_count_10_int=\count303
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistfile with sig. 'O{}mm' on line 277.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummyfile with sig. 'O{}mm' on line 277.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummy with sig. 'O{}mm' on line 277.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistlabel with sig. 'O{}mm' on line 277.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistoverlay with sig. 'mm' on line 277.
-.................................................
+\subfiglist_identifier_count_10_int=\count311
+\subfiglist_canvas_num_10_int=\count312
+\subfiglist_canvas_num_int=\count313
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
@@ -1491,46 +1398,41 @@ File: figures/05.png Graphic file (type bmp)
 <figures/05.png>
 File: figures/06.png Graphic file (type bmp)
 <figures/06.png>
-\subfiglist_effective_hoff_dim=\dimen289
-\subfiglist_effective_voff_dim=\dimen290
-\subfiglist_line_height_dim=\dimen291
+\subfiglist_line_height_10_dim=\dimen290
+\subfiglist_column_width_10_dim=\dimen291
+\subfiglist_effective_hoff_10_dim=\dimen292
+\subfiglist_effective_voff_10_dim=\dimen293
+\subfiglist_line_height_dim=\dimen294
+\subfiglist_column_width_dim=\dimen295
+\subfiglist_effective_hoff_dim=\dimen296
+\subfiglist_effective_voff_dim=\dimen297
+\subfiglist_canvas_hoff_11_dim=\dimen298
+\subfiglist_canvas_voff_11_dim=\dimen299
+\subfiglist_canvas_hoff_dim=\dimen300
+\subfiglist_canvas_voff_dim=\dimen301
+\subfiglist_canvas_hoff_12_dim=\dimen302
+\subfiglist_canvas_voff_12_dim=\dimen303
+\subfiglist_line_height_11_dim=\dimen304
+\subfiglist_column_width_11_dim=\dimen305
+\subfiglist_current_line_height_14_dim=\dimen306
+\subfiglist_current_line_height_dim=\dimen307
+\subfiglist_current_canvas_num_14_int=\count314
+\subfiglist_current_canvas_num_int=\count315
+\subfiglist_current_canvas_num_21_int=\count316
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
 File: figures/03.png Graphic file (type bmp)
 <figures/03.png>
+\subfiglist_current_newline_height_13_dim=\dimen308
+\subfiglist_current_newline_height_dim=\dimen309
 File: figures/04.png Graphic file (type bmp)
 <figures/04.png>
 File: figures/05.png Graphic file (type bmp)
 <figures/05.png>
 File: figures/06.png Graphic file (type bmp)
 <figures/06.png>
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistfile with sig. '' on line 284.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummyfile with sig. '' on line 284.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummy with sig. '' on line 284.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistlabel with sig. '' on line 284.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistoverlay with sig. '' on line 284.
-.................................................
 Package hyperref Info: bookmark level for unknown listing defaults to 0 on inpu
 t line 286.
 Package microtype Info: Setting up font `T1/lmr/m/n/10.95' on input line 286.
@@ -1553,41 +1455,9 @@ Package microtype Info: *** Changing to language context `american'
 Package microtype Info: Setting up font `T1/lmtt/m/sl/12' on input line 312.
 Package microtype Info: ... Loading protrusion list `T1-it-default'.
 Package microtype Info: ... : First loading protrusion list `OT1-it'.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 312.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 312.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 312.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 312.
  [3]
-\subfiglist_identifier_count_13_int=\count304
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistfile with sig. 'O{}mm' on line 368.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummyfile with sig. 'O{}mm' on line 368.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummy with sig. 'O{}mm' on line 368.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistlabel with sig. 'O{}mm' on line 368.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistoverlay with sig. 'mm' on line 368.
-.................................................
+\subfiglist_identifier_count_13_int=\count317
+\subfiglist_canvas_num_13_int=\count318
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
@@ -1616,15 +1486,44 @@ File: figures/13.png Graphic file (type bmp)
 <figures/13.png>
 File: figures/14.png Graphic file (type bmp)
 <figures/14.png>
-\subfiglist_column_width_dim=\dimen292
+\subfiglist_line_height_13_dim=\dimen310
+\subfiglist_column_width_13_dim=\dimen311
+\subfiglist_effective_hoff_13_dim=\dimen312
+\subfiglist_effective_voff_13_dim=\dimen313
+\subfiglist_canvas_hoff_14_dim=\dimen314
+\subfiglist_canvas_voff_14_dim=\dimen315
+\subfiglist_canvas_hoff_15_dim=\dimen316
+\subfiglist_canvas_voff_15_dim=\dimen317
+\subfiglist_line_height_14_dim=\dimen318
+\subfiglist_column_width_14_dim=\dimen319
+\subfiglist_canvas_hoff_16_dim=\dimen320
+\subfiglist_canvas_voff_16_dim=\dimen321
+\subfiglist_canvas_hoff_17_dim=\dimen322
+\subfiglist_canvas_voff_17_dim=\dimen323
+\subfiglist_effective_hoff_14_dim=\dimen324
+\subfiglist_effective_voff_14_dim=\dimen325
+\subfiglist_line_height_15_dim=\dimen326
+\subfiglist_column_width_15_dim=\dimen327
+\subfiglist_effective_hoff_15_dim=\dimen328
+\subfiglist_effective_voff_15_dim=\dimen329
+\subfiglist_line_height_16_dim=\dimen330
+\subfiglist_column_width_16_dim=\dimen331
+\subfiglist_current_line_height_17_dim=\dimen332
+\subfiglist_current_canvas_num_17_int=\count319
+\subfiglist_current_canvas_num_24_int=\count320
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
 File: figures/03.png Graphic file (type bmp)
 <figures/03.png>
+\subfiglist_current_newline_height_16_dim=\dimen333
+\subfiglist_current_line_height_22_dim=\dimen334
+\subfiglist_current_canvas_num_22_int=\count321
+\subfiglist_current_canvas_num_29_int=\count322
 File: figures/04.png Graphic file (type bmp)
 <figures/04.png>
+\subfiglist_current_newline_height_21_dim=\dimen335
 File: figures/05.png Graphic file (type bmp)
 <figures/05.png>
 File: figures/06.png Graphic file (type bmp)
@@ -1645,76 +1544,13 @@ File: figures/13.png Graphic file (type bmp)
 <figures/13.png>
 File: figures/14.png Graphic file (type bmp)
 <figures/14.png>
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistfile with sig. '' on line 368.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummyfile with sig. '' on line 368.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummy with sig. '' on line 368.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistlabel with sig. '' on line 368.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistoverlay with sig. '' on line 368.
-.................................................
 Package microtype Info: *** Changing to language context `american'
 (microtype)              on input line 379.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 379.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 379.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 379.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 379.
-
-[4]
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 383.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 383.
+ [4]
 Package microtype Info: Setting up font `T1/lmr/m/n/8' on input line 390.
 Package microtype Info: ... Loading protrusion list `lmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-default'.
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistfile with sig. 'O{}mm' on line 405.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummyfile with sig. 'O{}mm' on line 405.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummy with sig. 'O{}mm' on line 405.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistlabel with sig. 'O{}mm' on line 405.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistoverlay with sig. 'mm' on line 405.
-.................................................
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
  (./figures/svg.pdf_tex
@@ -1731,31 +1567,6 @@ File: figures/svg.pdf Graphic file (type pdf)
 )
 File: figures/04.png Graphic file (type bmp)
 <figures/04.png>
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistfile with sig. '' on line 410.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummyfile with sig. '' on line 410.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummy with sig. '' on line 410.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistlabel with sig. '' on line 410.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistoverlay with sig. '' on line 410.
-.................................................
 Package microtype Info: Setting up font `OT1/lmr/m/n/10.95' on input line 412.
 Package microtype Info: ... Loading protrusion list `cmr-OT1'.
 Package microtype Info: ... : First loading protrusion list `cmr-default'.
@@ -1779,40 +1590,7 @@ genv
 
 Package microtype Info: *** Changing to language context `american'
 (microtype)              on input line 427.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 427.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 427.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 427.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 427.
 [5]
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistfile with sig. 'O{}mm' on line 464.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummyfile with sig. 'O{}mm' on line 464.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummy with sig. 'O{}mm' on line 464.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistlabel with sig. 'O{}mm' on line 464.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistoverlay with sig. 'mm' on line 464.
-.................................................
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
 Package microtype Info: Setting up font `T1/lmss/m/n/10' on input line 467.
@@ -1824,7 +1602,7 @@ File: figures/svg.pdf Graphic file (type pdf)
 LaTeX Font Info:    Try loading font information for OT1+cmbr on input line 54.
 
 
-(/usr/share/texlive/texmf-dist/tex/latex/cmbright/ot1cmbr.fd
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cmbright/ot1cmbr.fd
 File: ot1cmbr.fd 2005/04/13 v8.1 (WaS)
 )
 Package microtype Info: ... No configuration file mt-cmbr.cfg.
@@ -1844,7 +1622,7 @@ Package microtype Info: ... : First loading protrusion list `default'.
 LaTeX Font Info:    Try loading font information for OML+cmbrm on input line 54
 .
 
-(/usr/share/texlive/texmf-dist/tex/latex/cmbright/omlcmbrm.fd
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cmbright/omlcmbrm.fd
 File: omlcmbrm.fd 2005/04/13 v8.1 (WaS)
 )
 Package microtype Info: ... No configuration file mt-cmbrm.cfg.
@@ -1857,7 +1635,7 @@ Package microtype Info: ... No protrusion.
 LaTeX Font Info:    Try loading font information for OMS+cmbrs on input line 54
 .
 
-(/usr/share/texlive/texmf-dist/tex/latex/cmbright/omscmbrs.fd
+(/usr/local/texlive/2019/texmf-dist/tex/latex/cmbright/omscmbrs.fd
 File: omscmbrs.fd 2005/04/13 v8.1 (WaS)
 )
 Package microtype Info: ... No configuration file mt-cmbrs.cfg.
@@ -1870,7 +1648,7 @@ Package microtype Info: ... No protrusion.
 LaTeX Font Info:    Try loading font information for OMX+iwona on input line 54
 .
 
-(/usr/share/texlive/texmf-dist/tex/latex/iwona/omxiwona.fd
+(/usr/local/texlive/2019/texmf-dist/tex/latex/iwona/omxiwona.fd
 File: omxiwona.fd 2008/07/22 v0.995 font definition file for OMX/iwona (MW)
 )
 Package microtype Info: ... No configuration file mt-iwona.cfg.
@@ -1892,56 +1670,6 @@ File: figures/svg.pdf Graphic file (type pdf)
 )
 File: figures/04.png Graphic file (type bmp)
 <figures/04.png>
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistfile with sig. '' on line 469.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummyfile with sig. '' on line 469.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummy with sig. '' on line 469.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistlabel with sig. '' on line 469.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistoverlay with sig. '' on line 469.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistfile with sig. 'O{}mm' on line 504.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummyfile with sig. 'O{}mm' on line 504.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummy with sig. 'O{}mm' on line 504.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistlabel with sig. 'O{}mm' on line 504.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistoverlay with sig. 'mm' on line 504.
-.................................................
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
@@ -1958,86 +1686,16 @@ File: figures/03.png Graphic file (type bmp)
 <figures/03.png>
 File: figures/04.png Graphic file (type bmp)
 <figures/04.png>
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistfile with sig. '' on line 513.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummyfile with sig. '' on line 513.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummy with sig. '' on line 513.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistlabel with sig. '' on line 513.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistoverlay with sig. '' on line 513.
-.................................................
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 519.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 519.
 Package microtype Info: *** Changing to language context `american'
 (microtype)              on input line 523.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 523.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 523.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 523.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 523.
 [6]
 Package microtype Info: *** Changing to language context `american'
 (microtype)              on input line 545.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 545.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 545.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 545.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 545.
  [7]
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistfile with sig. 'O{}mm' on line 629.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummyfile with sig. 'O{}mm' on line 629.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummy with sig. 'O{}mm' on line 629.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistlabel with sig. 'O{}mm' on line 629.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistoverlay with sig. 'mm' on line 629.
-.................................................
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
@@ -2050,53 +1708,39 @@ File: figures/05.png Graphic file (type bmp)
 <figures/05.png>
 File: figures/06.png Graphic file (type bmp)
 <figures/06.png>
-\subfiglist_label_hpos_int=\count305
-\subfiglist_label_vpos_int=\count306
-File: figures/01.png Graphic file (type bmp)
-<figures/01.png>
-File: figures/02.png Graphic file (type bmp)
-<figures/02.png>
-File: figures/03.png Graphic file (type bmp)
-<figures/03.png>
-File: figures/04.png Graphic file (type bmp)
-<figures/04.png>
-File: figures/05.png Graphic file (type bmp)
-<figures/05.png>
-File: figures/06.png Graphic file (type bmp)
-<figures/06.png>
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistfile with sig. '' on line 629.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummyfile with sig. '' on line 629.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummy with sig. '' on line 629.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistlabel with sig. '' on line 629.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistoverlay with sig. '' on line 629.
-.................................................
+\subfiglist_label_hpos_int=\count323
+\subfiglist_label_vpos_int=\count324
 
+
+Package subfiglist Warning: Package subfiglist Warning: Label numbers in body
+(subfiglist)                of `subfiglist' environment are given in
+(subfiglist)                non-ascending order.
+
+
+Package subfiglist Warning: Package subfiglist Warning: The canvas numbers in
+(subfiglist)                the argument of the `subfiglist' environment are
+(subfiglist)                given in a different order than the label numbers
+(subfiglist)                in the body of the `subfiglist' environment.
+
+File: figures/01.png Graphic file (type bmp)
+<figures/01.png>
+\subfiglist_current_canvas_width_21_dim=\dimen336
+\subfiglist_current_canvas_height_21_dim=\dimen337
+\subfiglist_current_canvas_width_dim=\dimen338
+\subfiglist_current_canvas_height_dim=\dimen339
+File: figures/02.png Graphic file (type bmp)
+<figures/02.png>
+File: figures/03.png Graphic file (type bmp)
+<figures/03.png>
+File: figures/04.png Graphic file (type bmp)
+<figures/04.png>
+File: figures/05.png Graphic file (type bmp)
+<figures/05.png>
+File: figures/06.png Graphic file (type bmp)
+<figures/06.png>
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 634.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 634.
 
 Overfull \hbox (25.18835pt too wide) in paragraph at lines 640--641
 \T1/lmr/m/n/12 vi-ron-ment with [][]\T1/lmtt/m/n/12 \unitlength []\T1/lmr/m/n/1
@@ -2106,113 +1750,25 @@ Overfull \hbox (25.18835pt too wide) in paragraph at lines 640--641
 
 Package microtype Info: *** Changing to language context `american'
 (microtype)              on input line 641.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 641.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 641.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 641.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 641.
 [8]
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistfile with sig. 'O{}mm' on line 677.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummyfile with sig. 'O{}mm' on line 677.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummy with sig. 'O{}mm' on line 677.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistlabel with sig. 'O{}mm' on line 677.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistoverlay with sig. 'mm' on line 677.
-.................................................
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
+\subfiglist_current_canvas_num_18_int=\count325
+\subfiglist_current_canvas_width_18_dim=\dimen340
+\subfiglist_current_canvas_height_18_dim=\dimen341
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistfile with sig. '' on line 702.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummyfile with sig. '' on line 702.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummy with sig. '' on line 702.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistlabel with sig. '' on line 702.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistoverlay with sig. '' on line 702.
-.................................................
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 Package microtype Info: *** Changing to language context `american'
 (microtype)              on input line 711.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 711.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 711.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 711.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 711.
 [9]
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistfile with sig. 'O{}mm' on line 763.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummyfile with sig. 'O{}mm' on line 763.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummy with sig. 'O{}mm' on line 763.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistlabel with sig. 'O{}mm' on line 763.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistoverlay with sig. 'mm' on line 763.
-.................................................
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
@@ -2221,100 +1777,84 @@ File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistfile with sig. '' on line 788.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummyfile with sig. '' on line 788.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistdummy with sig. '' on line 788.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistlabel with sig. '' on line 788.
-.................................................
-.................................................
-. LaTeX info: "xparse/redefine-command"
-. 
-. Redefining command \subfiglistoverlay with sig. '' on line 788.
-.................................................
 Package microtype Info: *** Changing to language context `american'
 (microtype)              on input line 792.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 792.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 792.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 792.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 792.
  [10]
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 794.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 794.
 LaTeX Font Info:    Try loading font information for TS1+lmr on input line 797.
 
- (/usr/share/texmf/tex/latex/lm/ts1lmr.fd
+ (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/ts1lmr.fd
 File: ts1lmr.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 Package microtype Info: Setting up font `TS1/lmr/m/n/12' on input line 797.
 Package microtype Info: ... Loading protrusion list `cmr-textcomp'.
 Package microtype Info: *** Changing to language context `american'
 (microtype)              on input line 800.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 800.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 800.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 800.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 800.
  [11]
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 802.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 802.
-
-
-Package caption Warning: Unused \captionsetup[subfigure] on input line 166.
-See the caption package documentation for explanation.
-
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 805.
+\subfiglist_identifier_count_7_int=\count326
+\subfiglist_canvas_num_7_int=\count327
+File: figures/02.png Graphic file (type bmp)
+<figures/02.png>
+File: figures/02.png Graphic file (type bmp)
+<figures/02.png>
+File: figures/02.png Graphic file (type bmp)
+<figures/02.png>
+File: figures/02.png Graphic file (type bmp)
+<figures/02.png>
+\subfiglist_line_height_7_dim=\dimen342
+\subfiglist_column_width_7_dim=\dimen343
+\subfiglist_effective_hoff_7_dim=\dimen344
+\subfiglist_effective_voff_7_dim=\dimen345
+\subfiglist_canvas_hoff_8_dim=\dimen346
+\subfiglist_canvas_voff_8_dim=\dimen347
+\subfiglist_canvas_hoff_9_dim=\dimen348
+\subfiglist_canvas_voff_9_dim=\dimen349
+\subfiglist_canvas_hoff_10_dim=\dimen350
+\subfiglist_canvas_voff_10_dim=\dimen351
+\subfiglist_line_height_8_dim=\dimen352
+\subfiglist_column_width_8_dim=\dimen353
+\subfiglist_effective_hoff_8_dim=\dimen354
+\subfiglist_effective_voff_8_dim=\dimen355
+\subfiglist_line_height_9_dim=\dimen356
+\subfiglist_column_width_9_dim=\dimen357
+\subfiglist_effective_hoff_9_dim=\dimen358
+\subfiglist_effective_voff_9_dim=\dimen359
+\subfiglist_current_line_height_11_dim=\dimen360
+\subfiglist_current_line_height_16_dim=\dimen361
+\subfiglist_current_canvas_num_16_int=\count328
+\subfiglist_current_canvas_num_23_int=\count329
+\subfiglist_current_canvas_num_32_int=\count330
+File: figures/02.png Graphic file (type bmp)
+<figures/02.png>
+\subfiglist_current_newline_height_15_dim=\dimen362
+File: figures/02.png Graphic file (type bmp)
+<figures/02.png>
+File: figures/02.png Graphic file (type bmp)
+<figures/02.png>
+\subfiglist_current_canvas_num_11_int=\count331
+File: figures/02.png Graphic file (type bmp)
+<figures/02.png>
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 815.
 Package microtype Info: *** Changing to language context `american'
-(microtype)              on input line 805.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 805.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 805.
-Package babel Info: Redefining ngerman shorthand "|
-(babel)             in language  on input line 805.
-Package babel Info: Redefining ngerman shorthand "~
-(babel)             in language  on input line 805.
+(microtype)              on input line 815.
+
 [12]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 805.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 815.
  (./subfiglist.aux
 Package microtype Info: *** Changing to language context `american'
 (microtype)              on input line 21.
 )
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 805.
-Package atveryend Info: Empty hook `AtEndAfterFileList' on input line 805.
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 815.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 815.
+Package rerunfilecheck Info: File `subfiglist.out' has not changed.
+(rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E.
  ) 
 Here is how much of TeX's memory you used:
- 33726 strings out of 493007
- 631232 string characters out of 6136720
- 821925 words of memory out of 5000000
- 37265 multiletter control sequences out of 15000+600000
- 602883 words of font info for 77 fonts, out of 8000000 for 9000
+ 36013 strings out of 492909
+ 674069 string characters out of 6132923
+ 889763 words of memory out of 5000000
+ 39630 multiletter control sequences out of 15000+600000
+ 604949 words of font info for 79 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 56i,18n,108p,10433b,1010s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,18n,115p,9089b,1071s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on subfiglist.pdf (12 pages).
