@@ -1,75 +1,5 @@
 \documentclass[version=3.12,american]{scrartcl}
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%   Loading of local packages   %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%
-% Loading local files as packages in LaTeX is a huge mess. This document makes use of
-% the custom package `subfiglist', which itself redefines internal commands of the
-% `caption' package and thus may break when used together with future versions of
-% the `caption' package. Hence, the following approach would be desired.
-%
-%  (1) Load a local (possibly older) version of the `caption' package to ensure proper
-%      functionality of the subfiglist package.
-%
-%  (2) Store all local packages in some subfolder of the document folder, say in
-%      ./packages/caption/.
-%
-% Apparently, this cannot be achieved. The following list suggest different approaches,
-% all of which have different benefits or drawbacks.
-%
-%   * Place all packages in the same directory as the document. This is probably the
-%     easiest and safest way but fills the document directory with additional files
-%     that may be deleted by accident when cleaning up.
-%
-%   * Load the package with full directory like \usepackage{packages/caption/caption}.
-%     This *does* work but is technically wrong since \usepackage expects the name
-%     of a package and not its path. Consequently, LaTeX will complain by saying
-%
-%       LaTeX Warning: You have requested package `packages/caption/caption',
-%                      but the package provides `caption'.
-%
-%     If now some other package also references `caption', then LaTeX will *think*
-%     it has not yet been loaded, because it only got `packages/caption/caption'
-%     previously. Hence, the TeX-distribution version of `caption' will be loaded
-%     as well, leading to weird compilation errors.
-%
-%   * Bypass the package loading system by using something like
-%
-%       \makeatletter\input{packages/caption/caption}\makeatother.
-%
-%     This is even worse since it turns off all useful mechanisms of \usepackage.
-%     In particular, it suffers from the same problem as the previous approach.
-%
-%   * Make use of the TEXINPUTS environment variable. This is one of the "recommended"
-%     ways to make LaTeX find local packages. For example, by setting
-%
-%       TEXINPUTS=.//
-%
-%     LaTeX would search all subdirectories of the document directory. This is fine
-%     (packages are being found) as long as there are no name clashes. In the case
-%     discussed here, where there is a local and a TeX-distribution version of the
-%     same package, LaTeX usually finds the TeX-distribution version first. Maybe
-%     this can be fixed in the texmf.cnf.
-%
-%   * Use the -include-directory option of pdfLaTeX. This solution suffers from the same
-%     problem as the previous and in addition is only available for MikTeX on Windows.
-%
-%   * Use a local TeXMF folder. This method is reliable and even supports changing the
-%     order in which LaTeX searches different TeXMF trees but destroys the desired grouping
-%     of document and packages. In addition, it needs to be set up on any machine that
-%     is used for compiling.
-%
-%   * Make use of write18/shell-escape. With the command \write18 TeX is able make the
-%     operating system execute shell commands. This can be used to copy a package file
-%     from a subdirectory to the document directory, then load it via \usepackage and
-%     finally delete the copy of the package file. In this document that approach is
-%     invoked by the \uselocalpackage command, which also checks if the specified package
-%     file is present and whether copying it would overwrite an existing file. Still
-%     this method might cause files to be overwritten accidentally and cause possible
-%     security issues by making \write18 accessible.
-%
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%   Begin of preamble   %%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -141,13 +71,10 @@
 \SetTracking{encoding=*,shape=sc}{50}
 
 % Load packages caption and subfiglist
-\input{preamble/uselocalpackage}
 \usepackage{calc}
 \usepackage{float}
-\uselocalpackage{packages/caption/}{caption3}
-\uselocalpackage{packages/caption/}{caption}
-\uselocalpackage{packages/caption/}{subcaption}
-\uselocalpackage{packages/subfiglist/}{subfiglist}
+\usepackage{caption}
+\usepackage{subfiglist}
 \subfiglistsetup{ew=0.5\textwidth}
 \usepackage{pict2e}
 \usepackage{pstricks}
