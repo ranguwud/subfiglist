@@ -131,20 +131,9 @@
 
 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%%%   Helper functions   %%%
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-% Function for constructing a command sequence via \csname, using it and
-% causing an error, if it does not exist
-\cs_new:Npn \subfiglist_use:c #1
-{
-  \cs_if_exist_use:cF { #1 }
-  {
-    \msg_error:nnf { subfiglist } { undefined~command~sequence } { \token_to_str:c { #1 } }
-  }
-}
-
+%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Group scoping   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%
 
 % Provide framework for setting group scope local variables following the discussion
 % at https://tex.stackexchange.com/questions/56294/how-do-i-get-a-value-out-of-a-group
@@ -402,6 +391,22 @@
 \cs_new:Npn \subfiglist_group_return_prop_from_tl:NN #1 #2
 {
   \subfiglist_group_after_insert:nV { \subfiglist_prop_set_from_tl:Nn #1 } #2
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%   Helper functions   %%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Function for constructing a command sequence via \csname, using it and
+% causing an error, if it does not exist
+\cs_new:Npn \subfiglist_use:c #1
+{
+  \cs_if_exist_use:cF { #1 }
+  {
+    \msg_error:nnf { subfiglist } { undefined~command~sequence } { \token_to_str:c { #1 } }
+  }
 }
 
 
