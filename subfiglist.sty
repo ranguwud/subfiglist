@@ -2987,13 +2987,13 @@
 % #4: Newline specification
 %
 {
-  \subfiglist_group_local_fp_set_eq:NN  \subfiglist_canvas_ratio_fp \c_inf_fp
-  \subfiglist_group_local_dim_set_eq:NN \subfiglist_canvas_hoff_dim \c_zero_dim
-  \subfiglist_group_local_dim_set_eq:NN \subfiglist_canvas_voff_dim \c_zero_dim
-  \subfiglist_group_local_tl_set:Nn     \subfiglist_newline_spec_tl { #4 }
+  \subfiglist_group_local_fp_set_eq:NN  \subfiglist_canvas_ratio_fp  \c_inf_fp
+  \subfiglist_group_local_dim_set_eq:NN \subfiglist_canvas_hoff_dim  \c_zero_dim
+  \subfiglist_group_local_dim_set_eq:NN \subfiglist_canvas_voff_dim  \c_zero_dim
+  \subfiglist_group_local_tl_set:Nn     \subfiglist_subblock_spec_tl { #4 }
   \subfiglist_group_begin:
   
-    \tl_map_inline:Nn \subfiglist_newline_spec_tl
+    \tl_map_inline:Nn \subfiglist_subblock_spec_tl
     {
       \subfiglist_tl_set_head:Nn \subfiglist_tmpa_tl { ##1 }
       \subfiglist_tl_set_tail:Nn \subfiglist_tmpb_tl { ##1 }
@@ -3020,7 +3020,7 @@
         }{
           \dim_add:Nn \subfiglist_canvas_voff_dim
           {
-            \subfiglist_canvas_hoff_dim * \dim_ratio:nn { 1pt } { \fp_to_dim:N \subfiglist_tmp_fp }
+            ( \subfiglist_canvas_hoff_dim - \subfiglist_tmpa_dim) * \dim_ratio:nn { 1pt } { \fp_to_dim:N \subfiglist_tmp_fp }
           }
         }
         \fp_set:Nn \subfiglist_canvas_ratio_fp { 1 / ( ( 1 / \subfiglist_canvas_ratio_fp ) + ( 1 / \subfiglist_tmp_fp ) ) }
@@ -3145,12 +3145,12 @@
     {
       \subfiglist_line_height_dim - \subfiglist_tmpa_tl
     }
+    \prop_put:NnV \subfiglist_tmp_prop { height } \subfiglist_column_width_dim
+    
     \dim_set:Nf \subfiglist_column_width_dim
     {
       \subfiglist_column_width_dim * \dim_ratio:nn { \fp_to_dim:N \subfiglist_tmp_fp } { 1pt }
     }
-    
-    \prop_put:NnV \subfiglist_tmp_prop { height } \subfiglist_line_height_dim
     \prop_put:NnV \subfiglist_tmp_prop { width }  \subfiglist_column_width_dim
     \subfiglist_tl_set_from_prop:NN \subfiglist_tmpa_tl \subfiglist_tmp_prop
     \prop_gput:NVV \subfiglist_canvas_prop \subfiglist_canvas_spec_tl \subfiglist_tmpa_tl

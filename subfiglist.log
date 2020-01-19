@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.9.12)  19 JAN 2020 11:43
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.9.12)  19 JAN 2020 18:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1379,6 +1379,217 @@ File: figures/06.png Graphic file (type bmp)
 \subfiglist_canvas_voff_12_dim=\dimen303
 \subfiglist_line_height_11_dim=\dimen304
 \subfiglist_column_width_11_dim=\dimen305
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/01.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1476}{4353}{7274}{3701};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {56.78171pt}
+>  {width}  =>  {83.83481pt}.
+<recently read> }
+                 
+l.211 \end{subfiglist}
+                      
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.211 \end{subfiglist}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/02.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1000}{0000}{0000}{0000};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {56.78171pt}
+>  {width}  =>  {56.78171pt}.
+<recently read> }
+                 
+l.211 \end{subfiglist}
+                      
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.211 \end{subfiglist}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/03.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1475}{5784}{6872}{4962};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {56.78171pt}
+>  {width}  =>  {83.78629pt}.
+<recently read> }
+                 
+l.211 \end{subfiglist}
+                      
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.211 \end{subfiglist}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/04.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1000}{0000}{0000}{0000};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {64.5652pt}
+>  {width}  =>  {64.5652pt}.
+<recently read> }
+                 
+l.211 \end{subfiglist}
+                      
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.211 \end{subfiglist}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/05.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1475}{5784}{6872}{4962};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {64.5652pt}
+>  {width}  =>  {95.2715pt}.
+<recently read> }
+                 
+l.211 \end{subfiglist}
+                      
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.211 \end{subfiglist}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/06.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1000}{0000}{0000}{0000};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {64.5652pt}
+>  {width}  =>  {64.5652pt}.
+<recently read> }
+                 
+l.211 \end{subfiglist}
+                      
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.211 \end{subfiglist}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 \subfiglist_current_line_height_14_dim=\dimen306
 \subfiglist_current_line_height_dim=\dimen307
 \subfiglist_current_canvas_num_14_int=\count315
@@ -1420,7 +1631,7 @@ Package microtype Info: *** Changing to language context `american'
 Package microtype Info: Setting up font `T1/lmtt/m/sl/12' on input line 239.
 Package microtype Info: ... Loading protrusion list `T1-it-default'.
 Package microtype Info: ... : First loading protrusion list `OT1-it'.
- [3]
+[3]
 \subfiglist_identifier_count_13_int=\count318
 \subfiglist_canvas_num_13_int=\count319
 File: figures/01.png Graphic file (type bmp)
@@ -1461,6 +1672,112 @@ File: figures/14.png Graphic file (type bmp)
 \subfiglist_canvas_voff_15_dim=\dimen317
 \subfiglist_line_height_14_dim=\dimen318
 \subfiglist_column_width_14_dim=\dimen319
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/01.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1476}{4353}{7274}{3701};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {55.47435pt}
+>  {width}  =>  {81.90457pt}.
+<recently read> }
+                 
+l.295 \end{minipage}}
+                     
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.295 \end{minipage}}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/02.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1000}{0000}{0000}{0000};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {55.47435pt}
+>  {width}  =>  {55.47435pt}.
+<recently read> }
+                 
+l.295 \end{minipage}}
+                     
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.295 \end{minipage}}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/03.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1475}{5784}{6872}{4962};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {55.47435pt}
+>  {width}  =>  {81.85718pt}.
+<recently read> }
+                 
+l.295 \end{minipage}}
+                     
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.295 \end{minipage}}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 \subfiglist_canvas_hoff_16_dim=\dimen320
 \subfiglist_canvas_voff_16_dim=\dimen321
 \subfiglist_canvas_hoff_17_dim=\dimen322
@@ -1473,6 +1790,391 @@ File: figures/14.png Graphic file (type bmp)
 \subfiglist_effective_voff_15_dim=\dimen329
 \subfiglist_line_height_16_dim=\dimen330
 \subfiglist_column_width_16_dim=\dimen331
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/04.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1000}{0000}{0000}{0000};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {53.99767pt}
+>  {width}  =>  {53.99767pt}.
+<recently read> }
+                 
+l.295 \end{minipage}}
+                     
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.295 \end{minipage}}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/05.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1475}{5784}{6872}{4962};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {19.72502pt}
+>  {width}  =>  {29.10596pt}.
+<recently read> }
+                 
+l.295 \end{minipage}}
+                     
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.295 \end{minipage}}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/06.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1000}{0000}{0000}{0000};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {19.72502pt}
+>  {width}  =>  {19.72502pt}.
+<recently read> }
+                 
+l.295 \end{minipage}}
+                     
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.295 \end{minipage}}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/07.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1475}{5784}{6872}{4962};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {78.8892pt}
+>  {width}  =>  {116.4078pt}.
+<recently read> }
+                 
+l.295 \end{minipage}}
+                     
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.295 \end{minipage}}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/08.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1000}{0000}{0000}{0000};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {19.72502pt}
+>  {width}  =>  {19.72502pt}.
+<recently read> }
+                 
+l.295 \end{minipage}}
+                     
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.295 \end{minipage}}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/09.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1475}{5784}{6872}{4962};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {19.72502pt}
+>  {width}  =>  {29.10596pt}.
+<recently read> }
+                 
+l.295 \end{minipage}}
+                     
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.295 \end{minipage}}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/10.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1000}{0000}{0000}{0000};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {53.99767pt}
+>  {width}  =>  {53.99767pt}.
+<recently read> }
+                 
+l.295 \end{minipage}}
+                     
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.295 \end{minipage}}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/11.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1475}{5784}{6872}{4962};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {42.19255pt}
+>  {width}  =>  {62.25873pt}.
+<recently read> }
+                 
+l.295 \end{minipage}}
+                     
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.295 \end{minipage}}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/12.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1000}{0000}{0000}{0000};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {42.19255pt}
+>  {width}  =>  {42.19255pt}.
+<recently read> }
+                 
+l.295 \end{minipage}}
+                     
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.295 \end{minipage}}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/13.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1475}{5784}{6872}{4962};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {42.19255pt}
+>  {width}  =>  {62.25873pt}.
+<recently read> }
+                 
+l.295 \end{minipage}}
+                     
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.295 \end{minipage}}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/14.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1000}{0000}{0000}{0000};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {42.19255pt}
+>  {width}  =>  {42.19255pt}.
+<recently read> }
+                 
+l.295 \end{minipage}}
+                     
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.295 \end{minipage}}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 \subfiglist_current_line_height_17_dim=\dimen332
 \subfiglist_current_canvas_num_17_int=\count320
 \subfiglist_current_canvas_num_24_int=\count321
@@ -1511,7 +2213,7 @@ File: figures/14.png Graphic file (type bmp)
 <figures/14.png>
 Package microtype Info: *** Changing to language context `american'
 (microtype)              on input line 306.
- [4]
+[4]
 Package microtype Info: Setting up font `T1/lmr/m/n/8' on input line 317.
 Package microtype Info: ... Loading protrusion list `lmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-T1'.
@@ -1524,9 +2226,115 @@ File: figures/svg.pdf Graphic file (type pdf)
 )
 File: figures/04.png Graphic file (type bmp)
 <figures/04.png>
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/02.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1000}{0000}{0000}{0000};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {64.55386pt}
+>  {width}  =>  {64.55386pt}.
+<recently read> }
+                 
+l.337 \end{subfiglist}
+                      
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.337 \end{subfiglist}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/svg.pdf_tex}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1476}{2022}{7834}{9222};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {64.55386pt}
+>  {width}  =>  {95.29417pt}.
+<recently read> }
+                 
+l.337 \end{subfiglist}
+                      
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.337 \end{subfiglist}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/04.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1000}{0000}{0000}{0000};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {64.55386pt}
+>  {width}  =>  {64.55386pt}.
+<recently read> }
+                 
+l.337 \end{subfiglist}
+                      
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.337 \end{subfiglist}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
- (./figures/svg.pdf_tex
+(./figures/svg.pdf_tex
 File: figures/svg.pdf Graphic file (type pdf)
 <use figures/svg.pdf>
 )
@@ -1626,9 +2434,114 @@ Package microtype Info: ... No protrusion.
 )
 File: figures/04.png Graphic file (type bmp)
 <figures/04.png>
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/02.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1000}{0000}{0000}{0000};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {64.55386pt}
+>  {width}  =>  {64.55386pt}.
+<recently read> }
+                 
+l.396 \end{subfiglist}
+                      
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.396 \end{subfiglist}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/svg.pdf_tex}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1476}{2022}{7834}{9222};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {64.55386pt}
+>  {width}  =>  {95.29417pt}.
+<recently read> }
+                 
+l.396 \end{subfiglist}
+                      
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.396 \end{subfiglist}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/04.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1000}{0000}{0000}{0000};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {64.55386pt}
+>  {width}  =>  {64.55386pt}.
+<recently read> }
+                 
+l.396 \end{subfiglist}
+                      
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.396 \end{subfiglist}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
-
 (./figures/svg.pdf_tex
 File: figures/svg.pdf Graphic file (type pdf)
 <use figures/svg.pdf>
@@ -1643,6 +2556,147 @@ File: figures/03.png Graphic file (type bmp)
 <figures/03.png>
 File: figures/04.png Graphic file (type bmp)
 <figures/04.png>
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/01.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1476}{4353}{7274}{3701};}
+>  {top}  =>  {10.33334pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {10.33334pt}
+>  {height}  =>  {92.70103pt}
+>  {width}  =>  {136.86755pt}.
+<recently read> }
+                 
+l.440 \end{subfiglist}
+                      
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.440 \end{subfiglist}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/02.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1000}{0000}{0000}{0000};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {10.33334pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {10.33334pt}
+>  {height}  =>  {92.70103pt}
+>  {width}  =>  {92.70103pt}.
+<recently read> }
+                 
+l.440 \end{subfiglist}
+                      
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.440 \end{subfiglist}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/03.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1475}{5784}{6872}{4962};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {10.33334pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {10.33334pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {84.38483pt}
+>  {width}  =>  {124.51706pt}.
+<recently read> }
+                 
+l.440 \end{subfiglist}
+                      
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.440 \end{subfiglist}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/04.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1000}{0000}{0000}{0000};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {10.33334pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {10.33334pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {84.38483pt}
+>  {width}  =>  {84.38483pt}.
+<recently read> }
+                 
+l.440 \end{subfiglist}
+                      
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.440 \end{subfiglist}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
@@ -1651,7 +2705,6 @@ File: figures/03.png Graphic file (type bmp)
 <figures/03.png>
 File: figures/04.png Graphic file (type bmp)
 <figures/04.png>
-
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -1686,6 +2739,216 @@ Package subfiglist Warning: Package subfiglist Warning: The canvas numbers in
 (subfiglist)                the argument of the `subfiglist' environment are
 (subfiglist)                given in a different order than the label numbers
 (subfiglist)                in the body of the `subfiglist' environment.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/01.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1476}{4353}{7274}{3701};}
+>  {top}  =>  {15.50002pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {15.50002pt}
+>  {height}  =>  {56.78177pt}
+>  {width}  =>  {83.8349pt}.
+<recently read> }
+                 
+l.556 \end{minipage}}
+                     
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.556 \end{minipage}}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/02.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1000}{0000}{0000}{0000};}
+>  {top}  =>  {15.50002pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {15.50002pt}
+>  {height}  =>  {56.78177pt}
+>  {width}  =>  {56.78177pt}.
+<recently read> }
+                 
+l.556 \end{minipage}}
+                     
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.556 \end{minipage}}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/03.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1475}{5784}{6872}{4962};}
+>  {top}  =>  {15.50002pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {15.50002pt}
+>  {height}  =>  {56.78177pt}
+>  {width}  =>  {83.78638pt}.
+<recently read> }
+                 
+l.556 \end{minipage}}
+                     
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.556 \end{minipage}}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/04.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1000}{0000}{0000}{0000};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {64.5652pt}
+>  {width}  =>  {64.5652pt}.
+<recently read> }
+                 
+l.556 \end{minipage}}
+                     
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.556 \end{minipage}}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/05.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1475}{5784}{6872}{4962};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {64.5652pt}
+>  {width}  =>  {95.2715pt}.
+<recently read> }
+                 
+l.556 \end{minipage}}
+                     
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.556 \end{minipage}}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/06.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1000}{0000}{0000}{0000};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {64.5652pt}
+>  {width}  =>  {64.5652pt}.
+<recently read> }
+                 
+l.556 \end{minipage}}
+                     
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.556 \end{minipage}}
+                     
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
 
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
@@ -1731,6 +2994,77 @@ File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/01.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1476}{4353}{7274}{3701};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {92.70103pt}
+>  {width}  =>  {136.86755pt}.
+<recently read> }
+                 
+l.629 \end{subfiglist}
+                      
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.629 \end{subfiglist}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/02.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1000}{0000}{0000}{0000};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {92.70103pt}
+>  {width}  =>  {92.70103pt}.
+<recently read> }
+                 
+l.629 \end{subfiglist}
+                      
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.629 \end{subfiglist}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 \subfiglist_current_canvas_num_18_int=\count326
@@ -1738,7 +3072,6 @@ File: figures/01.png Graphic file (type bmp)
 \subfiglist_current_canvas_height_18_dim=\dimen341
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
-
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -1749,13 +3082,84 @@ File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/01.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1476}{4353}{7274}{3701};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {92.70103pt}
+>  {width}  =>  {136.86755pt}.
+<recently read> }
+                 
+l.715 \end{subfiglist}
+                      
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.715 \end{subfiglist}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/02.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1000}{0000}{0000}{0000};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {2.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {92.70103pt}
+>  {width}  =>  {92.70103pt}.
+<recently read> }
+                 
+l.715 \end{subfiglist}
+                      
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.715 \end{subfiglist}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
 Package microtype Info: *** Changing to language context `american'
 (microtype)              on input line 719.
- [10]
+[10]
 LaTeX Font Info:    Try loading font information for TS1+lmr on input line 724.
 
  (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/ts1lmr.fd
@@ -1794,6 +3198,147 @@ File: figures/02.png Graphic file (type bmp)
 \subfiglist_column_width_9_dim=\dimen357
 \subfiglist_effective_hoff_9_dim=\dimen358
 \subfiglist_effective_voff_9_dim=\dimen359
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/02.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1000}{0000}{0000}{0000};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {red}
+>  {frame-width}  =>  {10.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {20.0pt}
+>  {voff}  =>  {20.0pt}
+>  {height}  =>  {29.99966pt}
+>  {width}  =>  {29.99966pt}.
+<recently read> }
+                 
+l.738 \end{subfiglist}
+                      
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.738 \end{subfiglist}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/02.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1000}{0000}{0000}{0000};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {red}
+>  {frame-width}  =>  {10.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {20.0pt}
+>  {voff}  =>  {20.0pt}
+>  {height}  =>  {29.99966pt}
+>  {width}  =>  {29.99966pt}.
+<recently read> }
+                 
+l.738 \end{subfiglist}
+                      
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.738 \end{subfiglist}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/02.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1000}{0000}{0000}{0000};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {red}
+>  {frame-width}  =>  {10.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {20.0pt}
+>  {voff}  =>  {20.0pt}
+>  {height}  =>  {29.99966pt}
+>  {width}  =>  {29.99966pt}.
+<recently read> }
+                 
+l.738 \end{subfiglist}
+                      
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.738 \end{subfiglist}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+The property list \subfiglist_tmp_prop contains the pairs (without outer
+braces):
+>  {type}  =>  {file}
+>  {path}  =>  {figures/02.png}
+>  {ratio}  =>  {\s__fp \__fp_chk:w 10{1}{1000}{0000}{0000}{0000};}
+>  {top}  =>  {0.0pt}
+>  {bot}  =>  {0.0pt}
+>  {left}  =>  {0.0pt}
+>  {right}  =>  {0.0pt}
+>  {frame-color}  =>  {none}
+>  {frame-width}  =>  {10.0pt}
+>  {frame-top}  =>  {0.0pt}
+>  {frame-bot}  =>  {0.0pt}
+>  {frame-left}  =>  {0.0pt}
+>  {frame-right}  =>  {0.0pt}
+>  {hoff}  =>  {0.0pt}
+>  {voff}  =>  {0.0pt}
+>  {height}  =>  {150.00035pt}
+>  {width}  =>  {150.00035pt}.
+<recently read> }
+                 
+l.738 \end{subfiglist}
+                      
+
+! Undefined control sequence.
+\subfiglist_dimension_hmode_canvas:Nnn ... \error 
+                                                  \subfiglist_group_return_t...
+l.738 \end{subfiglist}
+                      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
 \subfiglist_current_line_height_11_dim=\dimen360
 \subfiglist_current_line_height_16_dim=\dimen361
 \subfiglist_current_canvas_num_16_int=\count329
@@ -1812,7 +3357,6 @@ File: figures/02.png Graphic file (type bmp)
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 742.
 Package microtype Info: *** Changing to language context `american'
 (microtype)              on input line 742.
-
 [12]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 742.
  (./subfiglist.aux
@@ -1825,10 +3369,10 @@ Package rerunfilecheck Info: File `subfiglist.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E.
  ) 
 Here is how much of TeX's memory you used:
- 36082 strings out of 492909
- 676324 string characters out of 6132923
- 890141 words of memory out of 5000000
- 39716 multiletter control sequences out of 15000+600000
+ 36085 strings out of 492909
+ 676388 string characters out of 6132923
+ 890148 words of memory out of 5000000
+ 39719 multiletter control sequences out of 15000+600000
  613702 words of font info for 82 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  62i,18n,115p,9089b,1101s stack positions out of 5000i,500n,10000p,200000b,80000s
