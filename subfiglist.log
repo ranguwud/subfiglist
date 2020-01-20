@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.9.12)  20 JAN 2020 20:29
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.9.12)  20 JAN 2020 20:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1377,55 +1377,8 @@ File: figures/06.png Graphic file (type bmp)
 \subfiglist_canvas_voff_dim=\dimen301
 \subfiglist_canvas_hoff_12_dim=\dimen302
 \subfiglist_canvas_voff_12_dim=\dimen303
-
-> \subfiglist_effective_hoff_dim=10.33334pt.
-<recently read> }
-                 
-l.211 \end{subfiglist}
-                      
-
-> \subfiglist_effective_voff_dim=0.0pt.
-<recently read> }
-                 
-l.211 \end{subfiglist}
-                      
-
-! Undefined control sequence.
-\subfiglist_dimension_vmode_line:Nnn ...im \error 
-                                                  \dim_set:Nn \subfiglist_li...
-l.211 \end{subfiglist}
-                      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
 \subfiglist_line_height_11_dim=\dimen304
 \subfiglist_column_width_11_dim=\dimen305
-> \subfiglist_effective_hoff_dim=10.33334pt.
-<recently read> }
-                 
-l.211 \end{subfiglist}
-                      
-
-> \subfiglist_effective_voff_dim=0.0pt.
-<recently read> }
-                 
-l.211 \end{subfiglist}
-                      
-
-! Undefined control sequence.
-\subfiglist_dimension_vmode_line:Nnn ...im \error 
-                                                  \dim_set:Nn \subfiglist_li...
-l.211 \end{subfiglist}
-                      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
 \subfiglist_current_line_height_14_dim=\dimen306
 \subfiglist_current_line_height_dim=\dimen307
 \subfiglist_current_canvas_num_14_int=\count315
@@ -1467,7 +1420,7 @@ Package microtype Info: *** Changing to language context `american'
 Package microtype Info: Setting up font `T1/lmtt/m/sl/12' on input line 239.
 Package microtype Info: ... Loading protrusion list `T1-it-default'.
 Package microtype Info: ... : First loading protrusion list `OT1-it'.
-[3]
+ [3]
 \subfiglist_identifier_count_13_int=\count318
 \subfiglist_canvas_num_13_int=\count319
 File: figures/01.png Graphic file (type bmp)
@@ -1506,182 +1459,20 @@ File: figures/14.png Graphic file (type bmp)
 \subfiglist_canvas_voff_14_dim=\dimen315
 \subfiglist_canvas_hoff_15_dim=\dimen316
 \subfiglist_canvas_voff_15_dim=\dimen317
-
-> \subfiglist_effective_hoff_dim=15.50002pt.
-<recently read> }
-                 
-l.295 \end{minipage}}
-                     
-
-> \subfiglist_effective_voff_dim=0.0pt.
-<recently read> }
-                 
-l.295 \end{minipage}}
-                     
-
-! Undefined control sequence.
-\subfiglist_dimension_vmode_line:Nnn ...im \error 
-                                                  \dim_set:Nn \subfiglist_li...
-l.295 \end{minipage}}
-                     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
 \subfiglist_line_height_14_dim=\dimen318
 \subfiglist_column_width_14_dim=\dimen319
 \subfiglist_canvas_hoff_16_dim=\dimen320
 \subfiglist_canvas_voff_16_dim=\dimen321
 \subfiglist_canvas_hoff_17_dim=\dimen322
 \subfiglist_canvas_voff_17_dim=\dimen323
-> \subfiglist_effective_hoff_dim=35.91443pt.
-<recently read> }
-                 
-l.295 \end{minipage}}
-                     
-
-> \subfiglist_effective_voff_dim=10.33334pt.
-<recently read> }
-                 
-l.295 \end{minipage}}
-                     
-
-! Undefined control sequence.
-\subfiglist_dimension_vmode_line:Nnn ...im \error 
-                                                  \dim_set:Nn \subfiglist_li...
-l.295 \end{minipage}}
-                     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
 \subfiglist_effective_hoff_14_dim=\dimen324
 \subfiglist_effective_voff_14_dim=\dimen325
 \subfiglist_line_height_15_dim=\dimen326
 \subfiglist_column_width_15_dim=\dimen327
 \subfiglist_effective_hoff_15_dim=\dimen328
 \subfiglist_effective_voff_15_dim=\dimen329
-> \subfiglist_effective_hoff_dim=0.0pt.
-<recently read> }
-                 
-l.295 \end{minipage}}
-                     
-
-> \subfiglist_effective_voff_dim=0.0pt.
-<recently read> }
-                 
-l.295 \end{minipage}}
-                     
-
-! Undefined control sequence.
-\subfiglist_dimension_vmode_line:Nnn ...im \error 
-                                                  \dim_set:Nn \subfiglist_li...
-l.295 \end{minipage}}
-                     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
 \subfiglist_line_height_16_dim=\dimen330
 \subfiglist_column_width_16_dim=\dimen331
-> \subfiglist_effective_hoff_dim=5.16667pt.
-<recently read> }
-                 
-l.295 \end{minipage}}
-                     
-
-> \subfiglist_effective_voff_dim=0.0pt.
-<recently read> }
-                 
-l.295 \end{minipage}}
-                     
-
-! Undefined control sequence.
-\subfiglist_dimension_vmode_line:Nnn ...im \error 
-                                                  \dim_set:Nn \subfiglist_li...
-l.295 \end{minipage}}
-                     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-> \subfiglist_effective_hoff_dim=5.16667pt.
-<recently read> }
-                 
-l.295 \end{minipage}}
-                     
-
-> \subfiglist_effective_voff_dim=0.0pt.
-<recently read> }
-                 
-l.295 \end{minipage}}
-                     
-
-! Undefined control sequence.
-\subfiglist_dimension_vmode_line:Nnn ...im \error 
-                                                  \dim_set:Nn \subfiglist_li...
-l.295 \end{minipage}}
-                     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-> \subfiglist_effective_hoff_dim=0.0pt.
-<recently read> }
-                 
-l.295 \end{minipage}}
-                     
-
-> \subfiglist_effective_voff_dim=0.0pt.
-<recently read> }
-                 
-l.295 \end{minipage}}
-                     
-
-! Undefined control sequence.
-\subfiglist_dimension_vmode_line:Nnn ...im \error 
-                                                  \dim_set:Nn \subfiglist_li...
-l.295 \end{minipage}}
-                     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-> \subfiglist_effective_hoff_dim=25.83336pt.
-<recently read> }
-                 
-l.295 \end{minipage}}
-                     
-
-> \subfiglist_effective_voff_dim=0.0pt.
-<recently read> }
-                 
-l.295 \end{minipage}}
-                     
-
-! Undefined control sequence.
-\subfiglist_dimension_vmode_line:Nnn ...im \error 
-                                                  \dim_set:Nn \subfiglist_li...
-l.295 \end{minipage}}
-                     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
 \subfiglist_current_line_height_17_dim=\dimen332
 \subfiglist_current_canvas_num_17_int=\count320
 \subfiglist_current_canvas_num_24_int=\count321
@@ -1720,7 +1511,7 @@ File: figures/14.png Graphic file (type bmp)
 <figures/14.png>
 Package microtype Info: *** Changing to language context `american'
 (microtype)              on input line 306.
-[4]
+ [4]
 Package microtype Info: Setting up font `T1/lmr/m/n/8' on input line 317.
 Package microtype Info: ... Loading protrusion list `lmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-T1'.
@@ -1733,33 +1524,9 @@ File: figures/svg.pdf Graphic file (type pdf)
 )
 File: figures/04.png Graphic file (type bmp)
 <figures/04.png>
-
-> \subfiglist_effective_hoff_dim=10.33334pt.
-<recently read> }
-                 
-l.337 \end{subfiglist}
-                      
-
-> \subfiglist_effective_voff_dim=0.0pt.
-<recently read> }
-                 
-l.337 \end{subfiglist}
-                      
-
-! Undefined control sequence.
-\subfiglist_dimension_vmode_line:Nnn ...im \error 
-                                                  \dim_set:Nn \subfiglist_li...
-l.337 \end{subfiglist}
-                      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
-(./figures/svg.pdf_tex
+ (./figures/svg.pdf_tex
 File: figures/svg.pdf Graphic file (type pdf)
 <use figures/svg.pdf>
 )
@@ -1859,32 +1626,9 @@ Package microtype Info: ... No protrusion.
 )
 File: figures/04.png Graphic file (type bmp)
 <figures/04.png>
-
-> \subfiglist_effective_hoff_dim=10.33334pt.
-<recently read> }
-                 
-l.396 \end{subfiglist}
-                      
-
-> \subfiglist_effective_voff_dim=0.0pt.
-<recently read> }
-                 
-l.396 \end{subfiglist}
-                      
-
-! Undefined control sequence.
-\subfiglist_dimension_vmode_line:Nnn ...im \error 
-                                                  \dim_set:Nn \subfiglist_li...
-l.396 \end{subfiglist}
-                      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
+
 (./figures/svg.pdf_tex
 File: figures/svg.pdf Graphic file (type pdf)
 <use figures/svg.pdf>
@@ -1899,53 +1643,6 @@ File: figures/03.png Graphic file (type bmp)
 <figures/03.png>
 File: figures/04.png Graphic file (type bmp)
 <figures/04.png>
-
-> \subfiglist_effective_hoff_dim=5.16667pt.
-<recently read> }
-                 
-l.440 \end{subfiglist}
-                      
-
-> \subfiglist_effective_voff_dim=10.33334pt.
-<recently read> }
-                 
-l.440 \end{subfiglist}
-                      
-
-! Undefined control sequence.
-\subfiglist_dimension_vmode_line:Nnn ...im \error 
-                                                  \dim_set:Nn \subfiglist_li...
-l.440 \end{subfiglist}
-                      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-> \subfiglist_effective_hoff_dim=25.83336pt.
-<recently read> }
-                 
-l.440 \end{subfiglist}
-                      
-
-> \subfiglist_effective_voff_dim=0.0pt.
-<recently read> }
-                 
-l.440 \end{subfiglist}
-                      
-
-! Undefined control sequence.
-\subfiglist_dimension_vmode_line:Nnn ...im \error 
-                                                  \dim_set:Nn \subfiglist_li...
-l.440 \end{subfiglist}
-                      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
@@ -1954,6 +1651,7 @@ File: figures/03.png Graphic file (type bmp)
 <figures/03.png>
 File: figures/04.png Graphic file (type bmp)
 <figures/04.png>
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -1988,52 +1686,6 @@ Package subfiglist Warning: Package subfiglist Warning: The canvas numbers in
 (subfiglist)                the argument of the `subfiglist' environment are
 (subfiglist)                given in a different order than the label numbers
 (subfiglist)                in the body of the `subfiglist' environment.
-
-> \subfiglist_effective_hoff_dim=10.33334pt.
-<recently read> }
-                 
-l.556 \end{minipage}}
-                     
-
-> \subfiglist_effective_voff_dim=15.50002pt.
-<recently read> }
-                 
-l.556 \end{minipage}}
-                     
-
-! Undefined control sequence.
-\subfiglist_dimension_vmode_line:Nnn ...im \error 
-                                                  \dim_set:Nn \subfiglist_li...
-l.556 \end{minipage}}
-                     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-> \subfiglist_effective_hoff_dim=10.33334pt.
-<recently read> }
-                 
-l.556 \end{minipage}}
-                     
-
-> \subfiglist_effective_voff_dim=0.0pt.
-<recently read> }
-                 
-l.556 \end{minipage}}
-                     
-
-! Undefined control sequence.
-\subfiglist_dimension_vmode_line:Nnn ...im \error 
-                                                  \dim_set:Nn \subfiglist_li...
-l.556 \end{minipage}}
-                     
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
@@ -2079,30 +1731,6 @@ File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
-
-> \subfiglist_effective_hoff_dim=5.16667pt.
-<recently read> }
-                 
-l.629 \end{subfiglist}
-                      
-
-> \subfiglist_effective_voff_dim=0.0pt.
-<recently read> }
-                 
-l.629 \end{subfiglist}
-                      
-
-! Undefined control sequence.
-\subfiglist_dimension_vmode_line:Nnn ...im \error 
-                                                  \dim_set:Nn \subfiglist_li...
-l.629 \end{subfiglist}
-                      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 \subfiglist_current_canvas_num_18_int=\count326
@@ -2110,6 +1738,7 @@ File: figures/01.png Graphic file (type bmp)
 \subfiglist_current_canvas_height_18_dim=\dimen341
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
+
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -2120,37 +1749,13 @@ File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
-
-> \subfiglist_effective_hoff_dim=5.16667pt.
-<recently read> }
-                 
-l.715 \end{subfiglist}
-                      
-
-> \subfiglist_effective_voff_dim=0.0pt.
-<recently read> }
-                 
-l.715 \end{subfiglist}
-                      
-
-! Undefined control sequence.
-\subfiglist_dimension_vmode_line:Nnn ...im \error 
-                                                  \dim_set:Nn \subfiglist_li...
-l.715 \end{subfiglist}
-                      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
 Package microtype Info: *** Changing to language context `american'
 (microtype)              on input line 719.
-[10]
+ [10]
 LaTeX Font Info:    Try loading font information for TS1+lmr on input line 724.
 
  (/usr/local/texlive/2019/texmf-dist/tex/latex/lm/ts1lmr.fd
@@ -2181,30 +1786,6 @@ File: figures/02.png Graphic file (type bmp)
 \subfiglist_canvas_voff_9_dim=\dimen349
 \subfiglist_canvas_hoff_10_dim=\dimen350
 \subfiglist_canvas_voff_10_dim=\dimen351
-
-> \subfiglist_effective_hoff_dim=80.0pt.
-<recently read> }
-                 
-l.738 \end{subfiglist}
-                      
-
-> \subfiglist_effective_voff_dim=60.0pt.
-<recently read> }
-                 
-l.738 \end{subfiglist}
-                      
-
-! Undefined control sequence.
-\subfiglist_dimension_vmode_line:Nnn ...im \error 
-                                                  \dim_set:Nn \subfiglist_li...
-l.738 \end{subfiglist}
-                      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
 \subfiglist_line_height_8_dim=\dimen352
 \subfiglist_column_width_8_dim=\dimen353
 \subfiglist_effective_hoff_8_dim=\dimen354
@@ -2213,75 +1794,6 @@ and I'll forget about whatever was undefined.
 \subfiglist_column_width_9_dim=\dimen357
 \subfiglist_effective_hoff_9_dim=\dimen358
 \subfiglist_effective_voff_9_dim=\dimen359
-> \subfiglist_effective_hoff_dim=20.0pt.
-<recently read> }
-                 
-l.738 \end{subfiglist}
-                      
-
-> \subfiglist_effective_voff_dim=20.0pt.
-<recently read> }
-                 
-l.738 \end{subfiglist}
-                      
-
-! Undefined control sequence.
-\subfiglist_dimension_vmode_line:Nnn ...im \error 
-                                                  \dim_set:Nn \subfiglist_li...
-l.738 \end{subfiglist}
-                      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-> \subfiglist_effective_hoff_dim=20.0pt.
-<recently read> }
-                 
-l.738 \end{subfiglist}
-                      
-
-> \subfiglist_effective_voff_dim=20.0pt.
-<recently read> }
-                 
-l.738 \end{subfiglist}
-                      
-
-! Undefined control sequence.
-\subfiglist_dimension_vmode_line:Nnn ...im \error 
-                                                  \dim_set:Nn \subfiglist_li...
-l.738 \end{subfiglist}
-                      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-> \subfiglist_effective_hoff_dim=20.0pt.
-<recently read> }
-                 
-l.738 \end{subfiglist}
-                      
-
-> \subfiglist_effective_voff_dim=20.0pt.
-<recently read> }
-                 
-l.738 \end{subfiglist}
-                      
-
-! Undefined control sequence.
-\subfiglist_dimension_vmode_line:Nnn ...im \error 
-                                                  \dim_set:Nn \subfiglist_li...
-l.738 \end{subfiglist}
-                      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
 \subfiglist_current_line_height_11_dim=\dimen360
 \subfiglist_current_line_height_16_dim=\dimen361
 \subfiglist_current_canvas_num_16_int=\count329
@@ -2305,51 +1817,6 @@ File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
-> \subfiglist_effective_hoff_dim=80.0pt.
-<recently read> }
-                 
-l.748 \end{subfiglist}
-                      
-
-> \subfiglist_effective_voff_dim=40.0pt.
-<recently read> }
-                 
-l.748 \end{subfiglist}
-                      
-
-! Undefined control sequence.
-\subfiglist_dimension_vmode_line:Nnn ...im \error 
-                                                  \dim_set:Nn \subfiglist_li...
-l.748 \end{subfiglist}
-                      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-> \subfiglist_effective_hoff_dim=5.87498pt.
-<recently read> }
-                 
-l.748 \end{subfiglist}
-                      
-
-> \subfiglist_effective_voff_dim=0.0pt.
-<recently read> }
-                 
-l.748 \end{subfiglist}
-                      
-
-! Undefined control sequence.
-\subfiglist_dimension_vmode_line:Nnn ...im \error 
-                                                  \dim_set:Nn \subfiglist_li...
-l.748 \end{subfiglist}
-                      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
 ! Arithmetic overflow.
 <recently read> \__dim_eval_end: 
@@ -2358,29 +1825,6 @@ l.748 \end{subfiglist}
                       
 I can't evaluate this expression,
 since the result is out of range.
-
-> \subfiglist_effective_hoff_dim=0.0pt.
-<recently read> }
-                 
-l.748 \end{subfiglist}
-                      
-
-> \subfiglist_effective_voff_dim=0.0pt.
-<recently read> }
-                 
-l.748 \end{subfiglist}
-                      
-
-! Undefined control sequence.
-\subfiglist_dimension_vmode_line:Nnn ...im \error 
-                                                  \dim_set:Nn \subfiglist_li...
-l.748 \end{subfiglist}
-                      
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
 
 \subfiglist_current_canvas_num_27_int=\count333
 File: figures/02.png Graphic file (type bmp)
@@ -2407,10 +1851,10 @@ Package rerunfilecheck Info: File `subfiglist.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E.
  ) 
 Here is how much of TeX's memory you used:
- 36102 strings out of 492909
- 676969 string characters out of 6132923
- 890179 words of memory out of 5000000
- 39736 multiletter control sequences out of 15000+600000
+ 36100 strings out of 492909
+ 676934 string characters out of 6132923
+ 890162 words of memory out of 5000000
+ 39734 multiletter control sequences out of 15000+600000
  613702 words of font info for 82 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  62i,18n,115p,9089b,1101s stack positions out of 5000i,500n,10000p,200000b,80000s

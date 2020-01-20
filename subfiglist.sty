@@ -355,11 +355,6 @@
 
 \cs_generate_variant:Nn \subfiglist_group_after_insert:nn {nV}
 
-\cs_new:Npn \subfiglist_group_var_return:NN #1 #2
-{
-  \subfiglist_group_after_insert:nV { #1 #2 } { #2 } 
-}
-
 \cs_new:Npn \subfiglist_group_return_tl_set_eq:NN #1 #2
 {
   \subfiglist_group_after_insert:nV { \tl_set:Nn #1 } #2
