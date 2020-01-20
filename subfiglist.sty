@@ -3018,9 +3018,12 @@
           }
           \dim_set_eq:NN \subfiglist_canvas_hoff_dim \subfiglist_tmpa_dim
         }{
-          \dim_add:Nn \subfiglist_canvas_voff_dim
+          \fp_compare:nNnF { \subfiglist_tmp_fp } = { \c_inf_fp }
           {
-            ( \subfiglist_canvas_hoff_dim - \subfiglist_tmpa_dim) * \dim_ratio:nn { 1pt } { \fp_to_dim:N \subfiglist_tmp_fp }
+            \dim_add:Nn \subfiglist_canvas_voff_dim
+            {
+              ( \subfiglist_canvas_hoff_dim - \subfiglist_tmpa_dim) * \dim_ratio:nn { 1pt } { \fp_to_dim:N \subfiglist_tmp_fp }
+            }
           }
         }
         \fp_set:Nn \subfiglist_canvas_ratio_fp { 1 / ( ( 1 / \subfiglist_canvas_ratio_fp ) + ( 1 / \subfiglist_tmp_fp ) ) }
@@ -3065,23 +3068,24 @@
         
       \subfiglist_is_nan:VF \subfiglist_tmp_fp
       {
+        \dim_compare:nNnTF { \subfiglist_canvas_voff_dim } < { \subfiglist_tmpb_dim }
+        {
+          \dim_add:Nn \subfiglist_canvas_hoff_dim
+          {
+            ( \subfiglist_tmpb_dim - \subfiglist_canvas_voff_dim ) * \dim_ratio:nn { \fp_to_dim:N \subfiglist_canvas_ratio_fp } { 1pt }
+          }
+          \dim_set_eq:NN \subfiglist_canvas_voff_dim \subfiglist_tmpb_dim
+        }{
+          \dim_add:Nn \subfiglist_canvas_hoff_dim
+          {
+            ( \subfiglist_canvas_voff_dim - \subfiglist_tmpb_dim) * \dim_ratio:nn { \fp_to_dim:N \subfiglist_tmp_fp } { 1pt }
+          }
+        }
         \fp_add:NV \subfiglist_canvas_ratio_fp \subfiglist_tmp_fp
       }
       \dim_add:NV \subfiglist_canvas_hoff_dim \subfiglist_tmpa_dim
-      \subfiglist_is_nan:VF \subfiglist_tmp_fp
-      {
-        \dim_add:Nf \subfiglist_canvas_voff_dim
-        {
-          \subfiglist_tmpb_dim * \dim_ratio:nn { \fp_to_dim:N \subfiglist_tmp_fp } { 1pt }
-        }
-      }
     }
     
-    \dim_set:Nf \subfiglist_canvas_voff_dim
-    {
-      \subfiglist_canvas_voff_dim * \dim_ratio:nn { 1pt } { \fp_to_dim:N \subfiglist_canvas_ratio_fp }
-    }
-  
   % Return local variables with group scope
   \subfiglist_group_return_fp_set_eq:NN  #1 \subfiglist_canvas_ratio_fp
   \subfiglist_group_return_dim_set_eq:NN #2 \subfiglist_canvas_hoff_dim
