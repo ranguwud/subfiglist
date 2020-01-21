@@ -536,10 +536,10 @@ demonstrates. Default color is \texttt{.}\ (period) if not specified otherwise i
   \subfiglistfile{6}{figures/06.png}
   \subfiglistlabel
     [y=0pt,c=blue]
-    {2}{\label{foo}}
+    {1}{\label{foo}}
   \subfiglistlabel
     [y=0pt,c={{rgb,256:red,224}}]
-    {1}{\label{bar}}
+    {2}{\label{bar}}
   \subfiglistlabel
     [y=0pt,c={{rgb,1:green,.75}}]
     {3}{\label{baz}}
@@ -740,9 +740,9 @@ For every image~-- or more general for every ``object'' like  images, spaces or 
 \end{figure}
 
 \begin{figure}
-\begin{subfiglist}[cs=0pt,euh=true,ew=200pt]{12\\@{a}\\34}
-  \subfiglistfile[fc=red,fw=10pt]{1}{figures/02.png}
-  \subfiglistfile[fc=red,fw=20pt]{2}{figures/02.png}
+\begin{subfiglist}[cs=0pt,euh=true,ew=200pt]{12\\34}%{12\\@{a}\\34}
+  \subfiglistfile[fc=red,fw=10pt]{2}{figures/02.png}
+  \subfiglistfile[fc=red,fw=20pt]{1}{figures/02.png}
   \subfiglistfile{3}{figures/02.png}
   \subfiglistfile{4}{figures/02.png}
 \end{subfiglist}

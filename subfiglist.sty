@@ -863,6 +863,10 @@
     tweak-caption-package.bool_set:N      = \subfiglist_tweak_caption_package_bool,
     tweak-caption-package.default:n       = true,
     
+    % Disable warnings for wrong order?
+    disable-order-warnings.bool_set:N     = \subfiglist_disable_order_warnings_document_default_bool,
+    disable-order-warnings.default:n      = true,
+    
     % Width of environment
     environment-width.dim_set:N           = \subfiglist_env_width_document_default_dim,
     environment-width.value_required:n    = true,
@@ -1027,6 +1031,7 @@
 \keys_set:nn { subfiglist }
 {
   tweak-caption-package  = true,
+  disable-order-warnings = false,
   environment-width      = \textwidth,
   environment-use-hspace = false,
   canvas-space           = 1ex,
@@ -1121,6 +1126,10 @@
   % Keys for subfiglist environment
   \keys_define:nn { subfiglist-environment }
   {
+    % Disable warnings for wrong order?
+    disable-order-warnings.bool_set:N     = \subfiglist_disable_order_warnings_bool,
+    disable-order-warnings.default:n      = true,
+    
     % Width of environment
     environment-width.dim_set:N           = \subfiglist_env_width_dim,
     environment-width.value_required:n    = true,
@@ -2363,7 +2372,10 @@
       
       \int_compare:nF { ##1 = \subfiglist_tmp_int }
       {
-        \msg_warning:nn { subfiglist } { wrong~identifier~order }
+        \bool_if:NF \subfiglist_disable_order_warnings_bool
+        {
+          \msg_warning:nn { subfiglist } { wrong~identifier~order }
+        }
         \seq_map_break:
       }
     }
@@ -2436,7 +2448,10 @@
       
       \int_compare:nF { ##1 = \subfiglist_tmp_int }
       {
-        \msg_warning:nn { subfiglist } { wrong~canvas~order }
+        \bool_if:NF \subfiglist_disable_order_warnings_bool
+        {
+          \msg_warning:nn { subfiglist } { wrong~canvas~order }
+        }
         \seq_map_break:
       }
     }
@@ -2450,7 +2465,10 @@
       
       \int_compare:nF { ##1 = \seq_item:Nn \subfiglist_identifier_nums_seq \subfiglist_tmp_int }
       {
-        \msg_warning:nn { subfiglist } { mismatching~canvas~order }
+        \bool_if:NF \subfiglist_disable_order_warnings_bool
+        {
+          \msg_warning:nn { subfiglist } { mismatching~canvas~order }
+        }
         \seq_map_break:
       }
     }
@@ -2519,7 +2537,10 @@
         
         \int_compare:nF { ####1 = \seq_item:cn { subfiglist_ #1 _nums_sorted_seq } { \subfiglist_tmp_int } }
         {
-          \msg_warning:nn { subfiglist } { wrong~ #1 ~order }
+          \bool_if:NF \subfiglist_disable_order_warnings_bool
+          {
+            \msg_warning:nn { subfiglist } { wrong~ #1 ~order }
+          }
           \seq_map_break:
         }
       }
@@ -2535,7 +2556,10 @@
           
           \int_compare:nF { ####1 = \seq_item:cn { subfiglist_ #1 _nums_seq } { \subfiglist_tmp_int } }
           {
-            \msg_warning:nn { subfiglist } { mismatching~ #1 ~order }
+            \bool_if:NF \subfiglist_disable_order_warnings_bool
+            {
+              \msg_warning:nn { subfiglist } { mismatching~ #1 ~order }
+            }
             \seq_map_break:
           }
         }
@@ -4141,6 +4165,12 @@
   \group_begin:
   
   % Setup default options
+  \bool_if:NTF \subfiglist_disable_order_warnings_document_default_bool
+  {
+    \subfiglist_key_set:nnn { subfiglist-environment } { disable-order-warnings } { true }
+  }{
+    \subfiglist_key_set:nnn { subfiglist-environment } { disable-order-warnings } { false }
+  }
   \subfiglist_key_set:nnV { subfiglist-environment } { environment-width } \subfiglist_env_width_document_default_dim
   \bool_if:NTF \subfiglist_env_use_hspace_document_default_bool
   {

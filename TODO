@@ -7,14 +7,12 @@ TODO
 * Check naming conventions for local and global variables
 * Check required package versions (\char_generate:nn?)
 * Check compile warnings
-* Remove deprecated \subfiglist_group_var_return:NN
 * Only define tmp and g variables globally
 * Rename svg makros to pdf_plus_tex
 * Fix width and height argument for subfiglistoverlay environment
 * Add Tikz positioning for labels
 * Allow adjusting \fboxsep for color background in labels
 * Check for finiteness of all fp in \dim_ratio:nn calculations, raise errors if not
-* Add option to disable warnings for wrong order.
 
 
 
@@ -80,4 +78,6 @@ DONE
 * Setup ALL default options
 * Delete unnecessary variables
 * Remove unnecessary checks for \quark_no_value
+* Add option to disable warnings for wrong order.
+* Remove deprecated \subfiglist_group_var_return:NN
 
