@@ -867,17 +867,17 @@
     disable-order-warnings.bool_set:N     = \subfiglist_disable_order_warnings_document_default_bool,
     disable-order-warnings.default:n      = true,
     
+    % Use \hspace* to output space?
+    use-hspace.bool_set:N                 = \subfiglist_use_hspace_document_default_bool,
+    use-hspace.default:n                  = true,
+    uh.meta:n                             = { use-hspace = ##1 },
+    uh.default:n                          = true,
+    
     % Width of environment
     environment-width.dim_set:N           = \subfiglist_env_width_document_default_dim,
     environment-width.value_required:n    = true,
     ew.meta:n                             = { environment-width = ##1 },
     ew.value_required:n                   = true,
-    
-    % Use \hspace* to output space?
-    environment-use-hspace.bool_set:N     = \subfiglist_env_use_hspace_document_default_bool,
-    environment-use-hspace.default:n      = true,
-    euh.meta:n                            = { environment-use-hspace = ##1 },
-    euh.default:n                         = true,
     
     % Space between canvases
     canvas-space.dim_set:N                = \subfiglist_canvas_space_document_default_dim,
@@ -1032,8 +1032,8 @@
 {
   tweak-caption-package  = true,
   disable-order-warnings = false,
+  use-hspace             = false,
   environment-width      = \textwidth,
-  environment-use-hspace = false,
   canvas-space           = 1ex,
   canvas-top             = 0pt,
   canvas-bottom          = 0pt,
@@ -1130,17 +1130,17 @@
     disable-order-warnings.bool_set:N     = \subfiglist_disable_order_warnings_bool,
     disable-order-warnings.default:n      = true,
     
+    % Use \hspace* to output space?
+    use-hspace.bool_set:N                 = \subfiglist_use_hspace_bool,
+    use-hspace.default:n                  = true,
+    uh.meta:n                             = { use-hspace = #1 },
+    uh.default:n                          = true,
+    
     % Width of environment
     environment-width.dim_set:N           = \subfiglist_env_width_dim,
     environment-width.value_required:n    = true,
     ew.meta:n                             = { environment-width = #1 },
     ew.value_required:n                   = true,
-    
-    % Use \hspace* to output space?
-    environment-use-hspace.bool_set:N     = \subfiglist_env_use_hspace_bool,
-    environment-use-hspace.default:n      = true,
-    euh.meta:n                            = { environment-use-hspace = #1 },
-    euh.default:n                         = true,
     
     % Space between canvases
     canvas-space.dim_set:N                = \subfiglist_canvas_space_environment_default_dim,
@@ -3577,7 +3577,7 @@
 {
   \subfiglist_group_begin:
   
-    \bool_if:NTF \subfiglist_env_use_hspace_bool
+    \bool_if:NTF \subfiglist_use_hspace_bool
     {
       \hspace * { \dim_use:N \subfiglist_canvas_space_environment_default_dim }
     }{
@@ -4171,13 +4171,13 @@
   }{
     \subfiglist_key_set:nnn { subfiglist-environment } { disable-order-warnings } { false }
   }
-  \subfiglist_key_set:nnV { subfiglist-environment } { environment-width } \subfiglist_env_width_document_default_dim
-  \bool_if:NTF \subfiglist_env_use_hspace_document_default_bool
+  \bool_if:NTF \subfiglist_use_hspace_document_default_bool
   {
-    \subfiglist_key_set:nnn { subfiglist-environment } { environment-use-hspace } { true }
+    \subfiglist_key_set:nnn { subfiglist-environment } { use-hspace } { true }
   }{
-    \subfiglist_key_set:nnn { subfiglist-environment } { environment-use-hspace } { false }
+    \subfiglist_key_set:nnn { subfiglist-environment } { use-hspace } { false }
   }
+  \subfiglist_key_set:nnV { subfiglist-environment } { environment-width }   \subfiglist_env_width_document_default_dim
   \subfiglist_key_set:nnV { subfiglist-environment } { canvas-space }        \subfiglist_canvas_space_document_default_dim
   \subfiglist_key_set:nnV { subfiglist-environment } { canvas-top }          \subfiglist_canvas_top_document_default_dim
   \subfiglist_key_set:nnV { subfiglist-environment } { canvas-bottom }       \subfiglist_canvas_bot_document_default_dim
