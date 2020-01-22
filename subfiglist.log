@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.9.12)  21 JAN 2020 21:57
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.9.12)  22 JAN 2020 21:11
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -710,20 +710,20 @@ Package: subcaption 2019/09/01 v1.3a Sub-captions (AR)
 \subfiglist_identifier_count_int=\count195
 \subfiglist_tmp_int=\count196
 \subfiglist_tmp_box=\box51
-\subfiglist_env_width_document_default_dim=\dimen152
-\subfiglist_canvas_space_document_default_dim=\dimen153
-\subfiglist_canvas_top_document_default_dim=\dimen154
-\subfiglist_canvas_bot_document_default_dim=\dimen155
-\subfiglist_canvas_left_document_default_dim=\dimen156
-\subfiglist_canvas_right_document_default_dim=\dimen157
-\subfiglist_canvas_frame_width_document_default_dim=\dimen158
-\subfiglist_canvas_frame_top_document_default_dim=\dimen159
-\subfiglist_canvas_frame_bottom_document_default_dim=\dimen160
-\subfiglist_canvas_frame_left_document_default_dim=\dimen161
-\subfiglist_canvas_frame_right_document_default_dim=\dimen162
-\subfiglist_label_xshift_document_default_dim=\dimen163
-\subfiglist_label_yshift_document_default_dim=\dimen164
-\subfiglist_keyval_choice_first_int=\count197
+\subfiglist_kv_env_width_document_default_dim=\dimen152
+\subfiglist_kv_canvas_space_document_default_dim=\dimen153
+\subfiglist_kv_canvas_top_document_default_dim=\dimen154
+\subfiglist_kv_canvas_bot_document_default_dim=\dimen155
+\subfiglist_kv_canvas_left_document_default_dim=\dimen156
+\subfiglist_kv_canvas_right_document_default_dim=\dimen157
+\subfiglist_kv_canvas_frame_width_document_default_dim=\dimen158
+\subfiglist_kv_canvas_frame_top_document_default_dim=\dimen159
+\subfiglist_kv_canvas_frame_bottom_document_default_dim=\dimen160
+\subfiglist_kv_canvas_frame_left_document_default_dim=\dimen161
+\subfiglist_kv_canvas_frame_right_document_default_dim=\dimen162
+\subfiglist_kv_label_xshift_document_default_dim=\dimen163
+\subfiglist_kv_label_yshift_document_default_dim=\dimen164
+\subfiglist_kv_keyval_choice_first_int=\count197
 )
 (/usr/local/texlive/2019/texmf-dist/tex/latex/pict2e/pict2e.sty
 Package: pict2e 2019/08/20 v0.3c Improved picture commands (HjG,RN,JT)
@@ -1112,30 +1112,30 @@ Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: hyperref package is loaded.
 Package caption Info: hypcap package is loaded.
 Package caption Info: End \AtBeginDocument code.
-\subfiglist_env_width_dim=\dimen266
-\subfiglist_canvas_space_environment_default_dim=\dimen267
-\subfiglist_canvas_top_environment_default_dim=\dimen268
-\subfiglist_canvas_bot_environment_default_dim=\dimen269
-\subfiglist_canvas_left_environment_default_dim=\dimen270
-\subfiglist_canvas_right_environment_default_dim=\dimen271
-\subfiglist_canvas_frame_width_environment_default_dim=\dimen272
-\subfiglist_canvas_frame_top_environment_default_dim=\dimen273
-\subfiglist_canvas_frame_bottom_environment_default_dim=\dimen274
-\subfiglist_canvas_frame_left_environment_default_dim=\dimen275
-\subfiglist_canvas_frame_right_environment_default_dim=\dimen276
-\subfiglist_label_xshift_environment_default_dim=\dimen277
-\subfiglist_label_yshift_environment_default_dim=\dimen278
-\subfiglist_canvas_top_dim=\dimen279
-\subfiglist_canvas_bot_dim=\dimen280
-\subfiglist_canvas_left_dim=\dimen281
-\subfiglist_canvas_right_dim=\dimen282
-\subfiglist_canvas_frame_width_dim=\dimen283
-\subfiglist_canvas_frame_top_dim=\dimen284
-\subfiglist_canvas_frame_bottom_dim=\dimen285
-\subfiglist_canvas_frame_left_dim=\dimen286
-\subfiglist_canvas_frame_right_dim=\dimen287
-\subfiglist_label_xshift_dim=\dimen288
-\subfiglist_label_yshift_dim=\dimen289
+\subfiglist_kv_env_width_dim=\dimen266
+\subfiglist_kv_canvas_space_environment_default_dim=\dimen267
+\subfiglist_kv_canvas_top_environment_default_dim=\dimen268
+\subfiglist_kv_canvas_bot_environment_default_dim=\dimen269
+\subfiglist_kv_canvas_left_environment_default_dim=\dimen270
+\subfiglist_kv_canvas_right_environment_default_dim=\dimen271
+\subfiglist_kv_canvas_frame_width_environment_default_dim=\dimen272
+\subfiglist_kv_canvas_frame_top_environment_default_dim=\dimen273
+\subfiglist_kv_canvas_frame_bottom_environment_default_dim=\dimen274
+\subfiglist_kv_canvas_frame_left_environment_default_dim=\dimen275
+\subfiglist_kv_canvas_frame_right_environment_default_dim=\dimen276
+\subfiglist_kv_label_xshift_environment_default_dim=\dimen277
+\subfiglist_kv_label_yshift_environment_default_dim=\dimen278
+\subfiglist_kv_canvas_top_dim=\dimen279
+\subfiglist_kv_canvas_bot_dim=\dimen280
+\subfiglist_kv_canvas_left_dim=\dimen281
+\subfiglist_kv_canvas_right_dim=\dimen282
+\subfiglist_kv_canvas_frame_width_dim=\dimen283
+\subfiglist_kv_canvas_frame_top_dim=\dimen284
+\subfiglist_kv_canvas_frame_bottom_dim=\dimen285
+\subfiglist_kv_canvas_frame_left_dim=\dimen286
+\subfiglist_kv_canvas_frame_right_dim=\dimen287
+\subfiglist_kv_label_xshift_dim=\dimen288
+\subfiglist_kv_label_yshift_dim=\dimen289
 \AtBeginShipoutBox=\box57
 Package hyperref Info: Link coloring ON on input line 137.
 
@@ -1673,8 +1673,8 @@ File: figures/05.png Graphic file (type bmp)
 <figures/05.png>
 File: figures/06.png Graphic file (type bmp)
 <figures/06.png>
-\subfiglist_label_hpos_int=\count324
-\subfiglist_label_vpos_int=\count325
+\subfiglist_kv_label_hpos_int=\count324
+\subfiglist_kv_label_vpos_int=\count325
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 \subfiglist_current_canvas_width_21_dim=\dimen336
@@ -1852,7 +1852,7 @@ Package rerunfilecheck Info: File `subfiglist.out' has not changed.
  ) 
 Here is how much of TeX's memory you used:
  36120 strings out of 492909
- 677757 string characters out of 6132923
+ 677931 string characters out of 6132923
  890509 words of memory out of 5000000
  39754 multiletter control sequences out of 15000+600000
  613702 words of font info for 82 fonts, out of 8000000 for 9000
