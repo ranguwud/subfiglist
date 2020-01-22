@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.9.12)  22 JAN 2020 21:11
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.9.12)  22 JAN 2020 21:31
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -704,12 +704,12 @@ Package: subcaption 2019/09/01 v1.3a Sub-captions (AR)
 \c@subtable=\count194
 )
 \subfiglistlineheight=\dimen148
-\subfiglist_newline_correction_dim=\dimen149
-\subfiglist_tmpa_dim=\dimen150
-\subfiglist_tmpb_dim=\dimen151
-\subfiglist_identifier_count_int=\count195
-\subfiglist_tmp_int=\count196
-\subfiglist_tmp_box=\box51
+\subfiglist_g_newline_correction_dim=\dimen149
+\subfiglist_l_tmpa_dim=\dimen150
+\subfiglist_l_tmpb_dim=\dimen151
+\subfiglist_g_identifier_count_int=\count195
+\subfiglist_l_tmp_int=\count196
+\subfiglist_l_tmp_box=\box51
 \subfiglist_kv_env_width_document_default_dim=\dimen152
 \subfiglist_kv_canvas_space_document_default_dim=\dimen153
 \subfiglist_kv_canvas_top_document_default_dim=\dimen154
@@ -1348,7 +1348,7 @@ Package microtype Info: Setting up font `T1/lmr/m/n/6' on input line 192.
 Package microtype Info: ... Loading protrusion list `lmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-default'.
-\subfiglist_identifier_count_10_int=\count312
+\subfiglist_g_identifier_count_10_int=\count312
 \subfiglist_canvas_num_10_int=\count313
 \subfiglist_canvas_num_int=\count314
 File: figures/01.png Graphic file (type bmp)
@@ -1421,7 +1421,7 @@ Package microtype Info: Setting up font `T1/lmtt/m/sl/12' on input line 239.
 Package microtype Info: ... Loading protrusion list `T1-it-default'.
 Package microtype Info: ... : First loading protrusion list `OT1-it'.
  [3]
-\subfiglist_identifier_count_13_int=\count318
+\subfiglist_g_identifier_count_13_int=\count318
 \subfiglist_canvas_num_13_int=\count319
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
@@ -1755,7 +1755,7 @@ Package microtype Info: ... Loading protrusion list `cmr-textcomp'.
 Package microtype Info: *** Changing to language context `american'
 (microtype)              on input line 727.
  [11]
-\subfiglist_identifier_count_7_int=\count327
+\subfiglist_g_identifier_count_7_int=\count327
 \subfiglist_canvas_num_7_int=\count328
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
@@ -1851,10 +1851,10 @@ Package rerunfilecheck Info: File `subfiglist.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E.
  ) 
 Here is how much of TeX's memory you used:
- 36120 strings out of 492909
- 677931 string characters out of 6132923
+ 36122 strings out of 492909
+ 678189 string characters out of 6132923
  890509 words of memory out of 5000000
- 39754 multiletter control sequences out of 15000+600000
+ 39756 multiletter control sequences out of 15000+600000
  613702 words of font info for 82 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  62i,18n,115p,9089b,1099s stack positions out of 5000i,500n,10000p,200000b,80000s
