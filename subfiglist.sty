@@ -860,51 +860,51 @@
   \keys_define:nn { #1 }
   {
     % Tweak caption package for generation of labels?
-    tweak-caption-package.bool_set:N      = \subfiglist_kv_tweak_caption_package_bool,
+    tweak-caption-package.bool_set:N      = \subfiglist_k_tweak_caption_package_bool,
     tweak-caption-package.default:n       = true,
     
     % Disable warnings for wrong order?
-    disable-order-warnings.bool_set:N     = \subfiglist_kv_disable_order_warnings_document_default_bool,
+    disable-order-warnings.bool_set:N     = \subfiglist_k_disable_order_warnings_document_default_bool,
     disable-order-warnings.default:n      = true,
     
     % Use \hspace* to output space?
-    use-hspace.bool_set:N                 = \subfiglist_kv_use_hspace_document_default_bool,
+    use-hspace.bool_set:N                 = \subfiglist_k_use_hspace_document_default_bool,
     use-hspace.default:n                  = true,
     uh.meta:n                             = { use-hspace = ##1 },
     uh.default:n                          = true,
     
     % Width of environment
-    environment-width.dim_set:N           = \subfiglist_kv_env_width_document_default_dim,
+    environment-width.dim_set:N           = \subfiglist_k_env_width_document_default_dim,
     environment-width.value_required:n    = true,
     ew.meta:n                             = { environment-width = ##1 },
     ew.value_required:n                   = true,
     
     % Space between canvases
-    canvas-space.dim_set:N                = \subfiglist_kv_canvas_space_document_default_dim,
+    canvas-space.dim_set:N                = \subfiglist_k_canvas_space_document_default_dim,
     canvas-space.value_required:n         = true,
     cs.meta:n                             = { canvas-space = ##1 },
     cs.value_required:n                   = true,
     
     % Space above canvas
-    canvas-top.dim_set:N                  = \subfiglist_kv_canvas_top_document_default_dim,
+    canvas-top.dim_set:N                  = \subfiglist_k_canvas_top_document_default_dim,
     canvas-top.value_required:n           = true,
     ct.meta:n                             = { canvas-top = ##1 },
     ct.value_required:n                   = true,
     
     % Space below canvas
-    canvas-bottom.dim_set:N               = \subfiglist_kv_canvas_bot_document_default_dim,
+    canvas-bottom.dim_set:N               = \subfiglist_k_canvas_bot_document_default_dim,
     canvas-bottom.value_required:n        = true,
     cb.meta:n                             = { canvas-bottom = ##1 },
     cb.value_required:n                   = true,
     
     % Space left of canvas
-    canvas-left.dim_set:N                 = \subfiglist_kv_canvas_left_document_default_dim,
+    canvas-left.dim_set:N                 = \subfiglist_k_canvas_left_document_default_dim,
     canvas-left.value_required:n          = true,
     cl.meta:n                             = { canvas-left = ##1 },
     cl.value_required:n                   = true,
     
     % Space right of canvas
-    canvas-right.dim_set:N                = \subfiglist_kv_canvas_right_document_default_dim,
+    canvas-right.dim_set:N                = \subfiglist_k_canvas_right_document_default_dim,
     canvas-right.value_required:n         = true,
     cr.meta:n                             = { canvas-right = ##1 },
     cr.value_required:n                   = true,
@@ -919,7 +919,7 @@
     cm.value_required:n                   = true,
     
     % Canvas frame color
-    canvas-frame-color.tl_set:N           = \subfiglist_kv_canvas_frame_color_document_default_tl,
+    canvas-frame-color.tl_set:N           = \subfiglist_k_canvas_frame_color_document_default_tl,
     canvas-frame-color.value_required:n   = true,
     canvas-frame-colour.meta:n            = { canvas-frame-color = ##1 },
     canvas-frame-colour.value_required:n  = true,
@@ -927,31 +927,31 @@
     cfc.value_required:n                  = true,
     
     % Canvas frame border width
-    canvas-frame-width.dim_set:N          = \subfiglist_kv_canvas_frame_width_document_default_dim,
+    canvas-frame-width.dim_set:N          = \subfiglist_k_canvas_frame_width_document_default_dim,
     canvas-frame-width.value_required:n   = true,
     cfw.meta:n                            = { canvas-frame-width = ##1 },
     cfw.value_required:n                  = true,
     
     % Canvas frame top separation
-    canvas-frame-top.dim_set:N            = \subfiglist_kv_canvas_frame_top_document_default_dim,
+    canvas-frame-top.dim_set:N            = \subfiglist_k_canvas_frame_top_document_default_dim,
     canvas-frame-top.value_required:n     = true,
     cft.meta:n                            = { canvas-frame-top = ##1 },
     cft.value_required:n                  = true,
     
     % Canvas frame bottom separation
-    canvas-frame-bottom.dim_set:N         = \subfiglist_kv_canvas_frame_bottom_document_default_dim,
+    canvas-frame-bottom.dim_set:N         = \subfiglist_k_canvas_frame_bottom_document_default_dim,
     canvas-frame-bottom.value_required:n  = true,
     cfb.meta:n                            = { canvas-frame-bottom = ##1 },
     cfb.value_required:n                  = true,
     
     % Canvas frame left separation
-    canvas-frame-left.dim_set:N           = \subfiglist_kv_canvas_frame_left_document_default_dim,
+    canvas-frame-left.dim_set:N           = \subfiglist_k_canvas_frame_left_document_default_dim,
     canvas-frame-left.value_required:n    = true,
     cfl.meta:n                            = { canvas-frame-left = ##1 },
     cfl.value_required:n                  = true,
     
     % Canvas frame right separation
-    canvas-frame-right.dim_set:N          = \subfiglist_kv_canvas_frame_right_document_default_dim,
+    canvas-frame-right.dim_set:N          = \subfiglist_k_canvas_frame_right_document_default_dim,
     canvas-frame-right.value_required:n   = true,
     cfr.meta:n                            = { canvas-frame-right = ##1 },
     cfr.value_required:n                  = true,
@@ -969,13 +969,13 @@
     label-hpos.choice:,
     label-hpos.choices:nn                 = { l, c, r }
     {
-      \subfiglist_tl_set_eq_new:NN \subfiglist_kv_label_hpos_document_default_tl \l_keys_choice_tl
+      \subfiglist_tl_set_eq_new:NN \subfiglist_k_label_hpos_document_default_tl \l_keys_choice_tl
     },
     label-hpos.value_required:n           = true,
     lh.choice:,
     lh.choices:nn                         = { l, c, r }
     {
-      \subfiglist_tl_set_eq_new:NN \subfiglist_kv_label_hpos_document_default_tl \l_keys_choice_tl
+      \subfiglist_tl_set_eq_new:NN \subfiglist_k_label_hpos_document_default_tl \l_keys_choice_tl
     },
     lh.value_required:n                   = true,
     
@@ -983,30 +983,30 @@
     label-vpos.choice:,
     label-vpos.choices:nn                 = { t, c, b }
     {
-      \subfiglist_tl_set_eq_new:NN \subfiglist_kv_label_vpos_document_default_tl \l_keys_choice_tl
+      \subfiglist_tl_set_eq_new:NN \subfiglist_k_label_vpos_document_default_tl \l_keys_choice_tl
     },
     label-vpos.value_required:n           = true,
     lv.choice:,
     lv.choices:nn                         = { t, c, b }
     {
-      \subfiglist_tl_set_eq_new:NN \subfiglist_kv_label_vpos_document_default_tl \l_keys_choice_tl
+      \subfiglist_tl_set_eq_new:NN \subfiglist_k_label_vpos_document_default_tl \l_keys_choice_tl
     },
     lv.value_required:n                   = true,
     
     % Horizontal shift of label
-    label-xshift.dim_set:N                = \subfiglist_kv_label_xshift_document_default_dim,
+    label-xshift.dim_set:N                = \subfiglist_k_label_xshift_document_default_dim,
     label-xshift.value_required:n         = true,
     lx.meta:n                             = { label-xshift = ##1 },
     lx.value_required:n                   = true,
     
     % Vertical shift of label
-    label-yshift.dim_set:N                = \subfiglist_kv_label_yshift_document_default_dim,
+    label-yshift.dim_set:N                = \subfiglist_k_label_yshift_document_default_dim,
     label-yshift.value_required:n         = true,
     ly.meta:n                             = { label-yshift = ##1 },
     ly.value_required:n                   = true,
     
     % Label color
-    label-color.tl_set:N                  = \subfiglist_kv_label_color_document_default_tl,
+    label-color.tl_set:N                  = \subfiglist_k_label_color_document_default_tl,
     label-color.value_required:n          = true,
     label-colour.meta:n                   = { label-color = ##1 },
     label-colour.value_required:n         = true,
@@ -1014,7 +1014,7 @@
     lc.value_required:n                   = true,
     
     % Label background
-    label-background.tl_set:N             = \subfiglist_kv_label_background_document_default_tl,
+    label-background.tl_set:N             = \subfiglist_k_label_background_document_default_tl,
     label-background.value_required:n     = true,
     lb.meta:n                             = { label-background = ##1 },
     lb.value_required:n                   = true,
@@ -1068,7 +1068,7 @@
   test.choice:,
   test.choices:nn       = { first, second }
   {
-    \subfiglist_int_set_eq_new:NN \subfiglist_kv_keyval_choice_first_int \l_keys_choice_int
+    \subfiglist_int_set_eq_new:NN \subfiglist_k_keyval_choice_first_int \l_keys_choice_int
   },
   test.value_required:n = true
 }
@@ -1087,7 +1087,7 @@
   
   % Derive command to put label inset from caption package
   % code, if subfiglist package is loaded with corresponding option.
-  \bool_if:NT \subfiglist_kv_tweak_caption_package_bool
+  \bool_if:NT \subfiglist_k_tweak_caption_package_bool
   {
     \cs_new:Npn \subfiglist_label_inset_caption_package:nn #1 #2
     %
@@ -1127,47 +1127,47 @@
   \keys_define:nn { subfiglist-environment }
   {
     % Disable warnings for wrong order?
-    disable-order-warnings.bool_set:N     = \subfiglist_kv_disable_order_warnings_bool,
+    disable-order-warnings.bool_set:N     = \subfiglist_k_disable_order_warnings_bool,
     disable-order-warnings.default:n      = true,
     
     % Use \hspace* to output space?
-    use-hspace.bool_set:N                 = \subfiglist_kv_use_hspace_bool,
+    use-hspace.bool_set:N                 = \subfiglist_k_use_hspace_bool,
     use-hspace.default:n                  = true,
     uh.meta:n                             = { use-hspace = #1 },
     uh.default:n                          = true,
     
     % Width of environment
-    environment-width.dim_set:N           = \subfiglist_kv_env_width_dim,
+    environment-width.dim_set:N           = \subfiglist_k_env_width_dim,
     environment-width.value_required:n    = true,
     ew.meta:n                             = { environment-width = #1 },
     ew.value_required:n                   = true,
     
     % Space between canvases
-    canvas-space.dim_set:N                = \subfiglist_kv_canvas_space_environment_default_dim,
+    canvas-space.dim_set:N                = \subfiglist_k_canvas_space_environment_default_dim,
     canvas-space.value_required:n         = true,
     cs.meta:n                             = { canvas-space = #1 },
     cs.value_required:n                   = true,
     
     % Space above canvas
-    canvas-top.dim_set:N                  = \subfiglist_kv_canvas_top_environment_default_dim,
+    canvas-top.dim_set:N                  = \subfiglist_k_canvas_top_environment_default_dim,
     canvas-top.value_required:n           = true,
     ct.meta:n                             = { canvas-top = #1 },
     ct.value_required:n                   = true,
     
     % Space below canvas
-    canvas-bottom.dim_set:N               = \subfiglist_kv_canvas_bot_environment_default_dim,
+    canvas-bottom.dim_set:N               = \subfiglist_k_canvas_bot_environment_default_dim,
     canvas-bottom.value_required:n        = true,
     cb.meta:n                             = { canvas-bottom = #1 },
     cb.value_required:n                   = true,
     
     % Space left of canvas
-    canvas-left.dim_set:N                 = \subfiglist_kv_canvas_left_environment_default_dim,
+    canvas-left.dim_set:N                 = \subfiglist_k_canvas_left_environment_default_dim,
     canvas-left.value_required:n          = true,
     cl.meta:n                             = { canvas-left = #1 },
     cl.value_required:n                   = true,
     
     % Space right of canvas
-    canvas-right.dim_set:N                = \subfiglist_kv_canvas_right_environment_default_dim,
+    canvas-right.dim_set:N                = \subfiglist_k_canvas_right_environment_default_dim,
     canvas-right.value_required:n         = true,
     cr.meta:n                             = { canvas-right = #1 },
     cr.value_required:n                   = true,
@@ -1182,7 +1182,7 @@
     cm.value_required:n                   = true,
     
     % Canvas frame color
-    canvas-frame-color.tl_set:N           = \subfiglist_kv_canvas_frame_color_environment_default_tl,
+    canvas-frame-color.tl_set:N           = \subfiglist_k_canvas_frame_color_environment_default_tl,
     canvas-frame-color.value_required:n   = true,
     canvas-frame-colour.meta:n            = { canvas-frame-color = #1 },
     canvas-frame-colour.value_required:n  = true,
@@ -1190,31 +1190,31 @@
     cfc.value_required:n                  = true,
     
     % Canvas frame border width
-    canvas-frame-width.dim_set:N          = \subfiglist_kv_canvas_frame_width_environment_default_dim,
+    canvas-frame-width.dim_set:N          = \subfiglist_k_canvas_frame_width_environment_default_dim,
     canvas-frame-width.value_required:n   = true,
     cfw.meta:n                            = { canvas-frame-width = #1 },
     cfw.value_required:n                  = true,
     
     % Canvas frame top separation
-    canvas-frame-top.dim_set:N            = \subfiglist_kv_canvas_frame_top_environment_default_dim,
+    canvas-frame-top.dim_set:N            = \subfiglist_k_canvas_frame_top_environment_default_dim,
     canvas-frame-top.value_required:n     = true,
     cft.meta:n                            = { canvas-frame-top = #1 },
     cft.value_required:n                  = true,
     
     % Canvas frame bottom separation
-    canvas-frame-bottom.dim_set:N         = \subfiglist_kv_canvas_frame_bottom_environment_default_dim,
+    canvas-frame-bottom.dim_set:N         = \subfiglist_k_canvas_frame_bottom_environment_default_dim,
     canvas-frame-bottom.value_required:n  = true,
     cfb.meta:n                            = { canvas-frame-bottom = #1 },
     cfb.value_required:n                  = true,
     
     % Canvas frame left separation
-    canvas-frame-left.dim_set:N           = \subfiglist_kv_canvas_frame_left_environment_default_dim,
+    canvas-frame-left.dim_set:N           = \subfiglist_k_canvas_frame_left_environment_default_dim,
     canvas-frame-left.value_required:n    = true,
     cfl.meta:n                            = { canvas-frame-left = #1 },
     cfl.value_required:n                  = true,
     
     % Canvas frame right separation
-    canvas-frame-right.dim_set:N          = \subfiglist_kv_canvas_frame_right_environment_default_dim,
+    canvas-frame-right.dim_set:N          = \subfiglist_k_canvas_frame_right_environment_default_dim,
     canvas-frame-right.value_required:n   = true,
     cfr.meta:n                            = { canvas-frame-right = #1 },
     cfr.value_required:n                  = true,
@@ -1232,13 +1232,13 @@
     label-hpos.choice:,
     label-hpos.choices:nn                 = { l, c, r }
     {
-      \subfiglist_tl_set_eq_new:NN \subfiglist_kv_label_hpos_environment_default_tl \l_keys_choice_tl
+      \subfiglist_tl_set_eq_new:NN \subfiglist_k_label_hpos_environment_default_tl \l_keys_choice_tl
     },
     label-hpos.value_required:n           = true,
     lh.choice:,
     lh.choices:nn                         = { l, c, r }
     {
-      \subfiglist_tl_set_eq_new:NN \subfiglist_kv_label_hpos_environment_default_tl \l_keys_choice_tl
+      \subfiglist_tl_set_eq_new:NN \subfiglist_k_label_hpos_environment_default_tl \l_keys_choice_tl
     },
     lh.value_required:n                   = true,
     
@@ -1246,30 +1246,30 @@
     label-vpos.choice:,
     label-vpos.choices:nn                 = { t, c, b }
     {
-      \subfiglist_tl_set_eq_new:NN \subfiglist_kv_label_vpos_environment_default_tl \l_keys_choice_tl
+      \subfiglist_tl_set_eq_new:NN \subfiglist_k_label_vpos_environment_default_tl \l_keys_choice_tl
     },
     label-vpos.value_required:n           = true,
     lv.choice:,
     lv.choices:nn                         = { t, c, b }
     {
-      \subfiglist_tl_set_eq_new:NN \subfiglist_kv_label_vpos_environment_default_tl \l_keys_choice_tl
+      \subfiglist_tl_set_eq_new:NN \subfiglist_k_label_vpos_environment_default_tl \l_keys_choice_tl
     },
     lv.value_required:n                   = true,
     
     % Horizontal shift of label
-    label-xshift.dim_set:N                = \subfiglist_kv_label_xshift_environment_default_dim,
+    label-xshift.dim_set:N                = \subfiglist_k_label_xshift_environment_default_dim,
     label-xshift.value_required:n         = true,
     lx.meta:n                             = { label-xshift = #1 },
     lx.value_required:n                   = true,
     
     % Vertical shift of label
-    label-yshift.dim_set:N                = \subfiglist_kv_label_yshift_environment_default_dim,
+    label-yshift.dim_set:N                = \subfiglist_k_label_yshift_environment_default_dim,
     label-yshift.value_required:n         = true,
     ly.meta:n                             = { label-yshift = #1 },
     ly.value_required:n                   = true,
     
     % Label color
-    label-color.tl_set:N                  = \subfiglist_kv_label_color_environment_default_tl,
+    label-color.tl_set:N                  = \subfiglist_k_label_color_environment_default_tl,
     label-color.value_required:n          = true,
     label-colour.meta:n                   = { label-color = #1 },
     label-colour.value_required:n         = true,
@@ -1277,7 +1277,7 @@
     lc.value_required:n                   = true,
     
     % Label background
-    label-background.tl_set:N             = \subfiglist_kv_label_background_environment_default_tl,
+    label-background.tl_set:N             = \subfiglist_k_label_background_environment_default_tl,
     label-background.value_required:n     = true,
     lb.meta:n                             = { label-background = #1 },
     lb.value_required:n                   = true,
@@ -1296,25 +1296,25 @@
     \keys_define:nn { #1 }
     {
       % Space above canvas
-      top.dim_set:N                   = \subfiglist_kv_canvas_top_dim,
+      top.dim_set:N                   = \subfiglist_k_canvas_top_dim,
       top.value_required:n            = true,
       t.meta:n                        = { top = ##1 },
       t.value_required:n              = true,
 
       % Space below canvas
-      bottom.dim_set:N                = \subfiglist_kv_canvas_bot_dim,
+      bottom.dim_set:N                = \subfiglist_k_canvas_bot_dim,
       bottom.value_required:n         = true,
       b.meta:n                        = { bottom = ##1 },
       b.value_required:n              = true,
 
       % Space left of canvas
-      left.dim_set:N                  = \subfiglist_kv_canvas_left_dim,
+      left.dim_set:N                  = \subfiglist_k_canvas_left_dim,
       left.value_required:n           = true,
       l.meta:n                        = { left = ##1 },
       l.value_required:n              = true,
 
       % Space right of canvas
-      right.dim_set:N                 = \subfiglist_kv_canvas_right_dim,
+      right.dim_set:N                 = \subfiglist_k_canvas_right_dim,
       right.value_required:n          = true,
       r.meta:n                        = { right = ##1 },
       r.value_required:n              = true,
@@ -1329,7 +1329,7 @@
       m.value_required:n              = true,
     
       % Frame color
-      frame-color.tl_set:N            = \subfiglist_kv_canvas_frame_color_tl,
+      frame-color.tl_set:N            = \subfiglist_k_canvas_frame_color_tl,
       frame-color.value_required:n    = true,
       frame-colour.meta:n             = { frame-color = ##1 },
       frame-colour.value_required:n   = true,
@@ -1337,31 +1337,31 @@
       fc.value_required:n             = true,
 
       % Frame width
-      frame-width.dim_set:N           = \subfiglist_kv_canvas_frame_width_dim,
+      frame-width.dim_set:N           = \subfiglist_k_canvas_frame_width_dim,
       frame-width.value_required:n    = true,
       fw.meta:n                       = { frame-width = ##1 },
       fw.value_required:n             = true,
 
       % Frame top separation
-      frame-top.dim_set:N             = \subfiglist_kv_canvas_frame_top_dim,
+      frame-top.dim_set:N             = \subfiglist_k_canvas_frame_top_dim,
       frame-top.value_required:n      = true,
       ft.meta:n                       = { frame-top = ##1 },
       ft.value_required:n             = true,
 
       % Frame bottom separation
-      frame-bottom.dim_set:N          = \subfiglist_kv_canvas_frame_bottom_dim,
+      frame-bottom.dim_set:N          = \subfiglist_k_canvas_frame_bottom_dim,
       frame-bottom.value_required:n   = true,
       fb.meta:n                       = { frame-bottom = ##1 },
       fb.value_required:n             = true,
 
       % Frame left separation
-      frame-left.dim_set:N            = \subfiglist_kv_canvas_frame_left_dim,
+      frame-left.dim_set:N            = \subfiglist_k_canvas_frame_left_dim,
       frame-left.value_required:n     = true,
       fl.meta:n                       = { frame-left = ##1 },
       fl.value_required:n             = true,
 
       % Frame right separation
-      frame-right.dim_set:N           = \subfiglist_kv_canvas_frame_right_dim,
+      frame-right.dim_set:N           = \subfiglist_k_canvas_frame_right_dim,
       frame-right.value_required:n    = true,
       fr.meta:n                       = { frame-right = ##1 },
       fr.value_required:n             = true,
@@ -1391,13 +1391,13 @@
     hpos.choice:,
     hpos.choices:nn             = { l, c, r }
     {
-      \subfiglist_int_set_eq_new:NN \subfiglist_kv_label_hpos_int \l_keys_choice_int
+      \subfiglist_int_set_eq_new:NN \subfiglist_k_label_hpos_int \l_keys_choice_int
     },
     hpos.value_required:n       = true,
     h.choice:,
     h.choices:nn                = { l, c, r }
     {
-      \subfiglist_int_set_eq_new:NN \subfiglist_kv_label_hpos_int \l_keys_choice_int
+      \subfiglist_int_set_eq_new:NN \subfiglist_k_label_hpos_int \l_keys_choice_int
     },
     h.value_required:n          = true,
     
@@ -1405,30 +1405,30 @@
     vpos.choice:,
     vpos.choices:nn             = { t, c, b }
     {
-      \subfiglist_int_set_eq_new:NN \subfiglist_kv_label_vpos_int \l_keys_choice_int
+      \subfiglist_int_set_eq_new:NN \subfiglist_k_label_vpos_int \l_keys_choice_int
     },
     vpos.value_required:n       = true,
     v.choice:,
     v.choices:nn                = { t, c, b }
     {
-      \subfiglist_int_set_eq_new:NN \subfiglist_kv_label_vpos_int \l_keys_choice_int
+      \subfiglist_int_set_eq_new:NN \subfiglist_k_label_vpos_int \l_keys_choice_int
     },
     v.value_required:n          = true,
     
     % Horizontal shift
-    xshift.dim_set:N            = \subfiglist_kv_label_xshift_dim,
+    xshift.dim_set:N            = \subfiglist_k_label_xshift_dim,
     xshift.value_required:n     = true,
     x.meta:n                    = { xshift = #1 },
     x.value_required:n          = true,
     
     % Vertical shift
-    yshift.dim_set:N            = \subfiglist_kv_label_yshift_dim,
+    yshift.dim_set:N            = \subfiglist_k_label_yshift_dim,
     yshift.value_required:n     = true,
     y.meta:n                    = { yshift = #1 },
     y.value_required:n          = true,
     
     % Color
-    color.tl_set:N              = \subfiglist_kv_label_color_tl,
+    color.tl_set:N              = \subfiglist_k_label_color_tl,
     color.value_required:n      = true,
     colour.meta:n               = { color = #1 },
     colour.value_required:n     = true,
@@ -1436,7 +1436,7 @@
     c.value_required:n          = true,
     
     % Background
-    background.tl_set:N         = \subfiglist_kv_label_background_tl,
+    background.tl_set:N         = \subfiglist_k_label_background_tl,
     background.value_required:n = true,
     b.meta:n                    = { background = #1 },
     b.value_required:n          = true,
@@ -1922,10 +1922,10 @@
           \seq_pop_left:NN \subfiglist_g_spec_str_seq \subfiglist_l_tmpa_tl
         }
       }{
-        \tl_put_right:NV \subfiglist_l_tmpb_tl \subfiglist_kv_canvas_space_environment_default_dim
+        \tl_put_right:NV \subfiglist_l_tmpb_tl \subfiglist_k_canvas_space_environment_default_dim
       }
     }{
-      \tl_put_right:NV \subfiglist_l_tmpb_tl \subfiglist_kv_canvas_space_environment_default_dim
+      \tl_put_right:NV \subfiglist_l_tmpb_tl \subfiglist_k_canvas_space_environment_default_dim
     }
     \subfiglist_tl_set_wrapped:NnV \subfiglist_l_tmpa_tl { newline } \subfiglist_l_tmpb_tl
     \tl_put_right:NV \subfiglist_g_tokenized_spec_tl \subfiglist_l_tmpa_tl
@@ -2372,7 +2372,7 @@
       
       \int_compare:nF { ##1 = \subfiglist_l_tmp_int }
       {
-        \bool_if:NF \subfiglist_kv_disable_order_warnings_bool
+        \bool_if:NF \subfiglist_k_disable_order_warnings_bool
         {
           \msg_warning:nn { subfiglist } { wrong~identifier~order }
         }
@@ -2448,7 +2448,7 @@
       
       \int_compare:nF { ##1 = \subfiglist_l_tmp_int }
       {
-        \bool_if:NF \subfiglist_kv_disable_order_warnings_bool
+        \bool_if:NF \subfiglist_k_disable_order_warnings_bool
         {
           \msg_warning:nn { subfiglist } { wrong~canvas~order }
         }
@@ -2465,7 +2465,7 @@
       
       \int_compare:nF { ##1 = \seq_item:Nn \subfiglist_h_identifier_nums_seq \subfiglist_l_tmp_int }
       {
-        \bool_if:NF \subfiglist_kv_disable_order_warnings_bool
+        \bool_if:NF \subfiglist_k_disable_order_warnings_bool
         {
           \msg_warning:nn { subfiglist } { mismatching~canvas~order }
         }
@@ -2537,7 +2537,7 @@
         
         \int_compare:nF { ####1 = \seq_item:cn { subfiglist_ #1 _nums_sorted_seq } { \subfiglist_l_tmp_int } }
         {
-          \bool_if:NF \subfiglist_kv_disable_order_warnings_bool
+          \bool_if:NF \subfiglist_k_disable_order_warnings_bool
           {
             \msg_warning:nn { subfiglist } { wrong~ #1 ~order }
           }
@@ -2556,7 +2556,7 @@
           
           \int_compare:nF { ####1 = \seq_item:cn { subfiglist_ #1 _nums_seq } { \subfiglist_l_tmp_int } }
           {
-            \bool_if:NF \subfiglist_kv_disable_order_warnings_bool
+            \bool_if:NF \subfiglist_k_disable_order_warnings_bool
             {
               \msg_warning:nn { subfiglist } { mismatching~ #1 ~order }
             }
@@ -2966,7 +2966,7 @@
   \subfiglist_group_begin:
   
   \subfiglist_group_return_fp_set_eq:NN  #1 \c_nan_fp
-  \subfiglist_group_return_dim_set_eq:NN #2 \subfiglist_kv_canvas_space_environment_default_dim
+  \subfiglist_group_return_dim_set_eq:NN #2 \subfiglist_k_canvas_space_environment_default_dim
   \subfiglist_group_return_dim_set_eq:NN #3 \c_zero_dim
   \subfiglist_group_end:
 }
@@ -3577,9 +3577,9 @@
 {
   \subfiglist_group_begin:
   
-    \bool_if:NTF \subfiglist_kv_use_hspace_bool
+    \bool_if:NTF \subfiglist_k_use_hspace_bool
     {
-      \hspace * { \dim_use:N \subfiglist_kv_canvas_space_environment_default_dim }
+      \hspace * { \dim_use:N \subfiglist_k_canvas_space_environment_default_dim }
     }{
       \hfill
     }
@@ -3726,7 +3726,7 @@
       \subfiglist_prop_get_safe:NnN \subfiglist_current_label_prop { color } \subfiglist_l_tmpa_tl
       \subfiglist_prop_get_safe:NnN \subfiglist_current_label_prop { hook }  \subfiglist_l_tmpb_tl
       % Use caption package for putting label?
-      \bool_if:NTF \subfiglist_kv_tweak_caption_package_bool
+      \bool_if:NTF \subfiglist_k_tweak_caption_package_bool
       {
         \subfiglist_label_inset_caption_package:VV \subfiglist_l_tmpa_tl \subfiglist_l_tmp_int
         % Put hook for label
@@ -3772,8 +3772,8 @@
       \begin { minipage } [ b ] [ \subfiglist_current_canvas_height_dim ] [ t ] { \subfiglist_current_canvas_width_dim }
         % Iterate over all three possible choices for vertical positioning
         \subfiglist_prop_get_safe:NnN \subfiglist_l_tmp_prop { vpos } \subfiglist_l_tmpa_tl
-        \int_step_inline:nnnn { \subfiglist_kv_keyval_choice_first_int } { 1 }
-          { \subfiglist_kv_keyval_choice_first_int + 2 }
+        \int_step_inline:nnnn { \subfiglist_k_keyval_choice_first_int } { 1 }
+          { \subfiglist_k_keyval_choice_first_int + 2 }
         {
           \strut
           % Is current choice for vertical positioning the selected one?
@@ -3782,8 +3782,8 @@
             \strut
             % Iterate over all three possible choices for horizontal positioning
             \subfiglist_prop_get_safe:NnN \subfiglist_l_tmp_prop { hpos } \subfiglist_l_tmpb_tl
-            \int_step_inline:nnnn { \subfiglist_kv_keyval_choice_first_int } { 1 }
-              { \subfiglist_kv_keyval_choice_first_int + 2 }
+            \int_step_inline:nnnn { \subfiglist_k_keyval_choice_first_int } { 1 }
+              { \subfiglist_k_keyval_choice_first_int + 2 }
             {
               % Is current choce for horizontal positioning the selected one?
               \int_compare:nTF { ####1 = \subfiglist_l_tmpb_tl }
@@ -3799,7 +3799,7 @@
                     % Choose left, center or right alignment for label
                     \subfiglist_prop_get_safe:NnN \subfiglist_l_tmp_prop { hpos } \subfiglist_l_tmpa_tl
                     \int_set:Nn \subfiglist_l_tmp_int
-                      { \subfiglist_l_tmpa_tl - \subfiglist_kv_keyval_choice_first_int + 1 }
+                      { \subfiglist_l_tmpa_tl - \subfiglist_k_keyval_choice_first_int + 1 }
                     \makebox [ 0pt ]
                     [
                       \tl_item:nn { lcr } { \subfiglist_l_tmp_int }
@@ -3895,29 +3895,29 @@
       \prop_put:NnV \subfiglist_l_tmp_prop { ratio } \subfiglist_l_tmpa_tl
 
       % Process opitonal arguments
-      \subfiglist_key_set:nnV { subfiglist #1 } { top }          \subfiglist_kv_canvas_top_environment_default_dim
-      \subfiglist_key_set:nnV { subfiglist #1 } { bottom }       \subfiglist_kv_canvas_bot_environment_default_dim
-      \subfiglist_key_set:nnV { subfiglist #1 } { left }         \subfiglist_kv_canvas_left_environment_default_dim
-      \subfiglist_key_set:nnV { subfiglist #1 } { right }        \subfiglist_kv_canvas_right_environment_default_dim
-      \subfiglist_key_set:nnV { subfiglist #1 } { frame-color }  \subfiglist_kv_canvas_frame_color_environment_default_tl
-      \subfiglist_key_set:nnV { subfiglist #1 } { frame-width }  \subfiglist_kv_canvas_frame_width_environment_default_dim
-      \subfiglist_key_set:nnV { subfiglist #1 } { frame-top }    \subfiglist_kv_canvas_frame_top_environment_default_dim
-      \subfiglist_key_set:nnV { subfiglist #1 } { frame-bottom } \subfiglist_kv_canvas_frame_bottom_environment_default_dim
-      \subfiglist_key_set:nnV { subfiglist #1 } { frame-left }   \subfiglist_kv_canvas_frame_left_environment_default_dim
-      \subfiglist_key_set:nnV { subfiglist #1 } { frame-right }  \subfiglist_kv_canvas_frame_right_environment_default_dim
+      \subfiglist_key_set:nnV { subfiglist #1 } { top }          \subfiglist_k_canvas_top_environment_default_dim
+      \subfiglist_key_set:nnV { subfiglist #1 } { bottom }       \subfiglist_k_canvas_bot_environment_default_dim
+      \subfiglist_key_set:nnV { subfiglist #1 } { left }         \subfiglist_k_canvas_left_environment_default_dim
+      \subfiglist_key_set:nnV { subfiglist #1 } { right }        \subfiglist_k_canvas_right_environment_default_dim
+      \subfiglist_key_set:nnV { subfiglist #1 } { frame-color }  \subfiglist_k_canvas_frame_color_environment_default_tl
+      \subfiglist_key_set:nnV { subfiglist #1 } { frame-width }  \subfiglist_k_canvas_frame_width_environment_default_dim
+      \subfiglist_key_set:nnV { subfiglist #1 } { frame-top }    \subfiglist_k_canvas_frame_top_environment_default_dim
+      \subfiglist_key_set:nnV { subfiglist #1 } { frame-bottom } \subfiglist_k_canvas_frame_bottom_environment_default_dim
+      \subfiglist_key_set:nnV { subfiglist #1 } { frame-left }   \subfiglist_k_canvas_frame_left_environment_default_dim
+      \subfiglist_key_set:nnV { subfiglist #1 } { frame-right }  \subfiglist_k_canvas_frame_right_environment_default_dim
       \keys_set:nn { subfiglist #1 } { ##1 }
 
       % Save specified offsets
-      \prop_put:NnV \subfiglist_l_tmp_prop { top }         \subfiglist_kv_canvas_top_dim
-      \prop_put:NnV \subfiglist_l_tmp_prop { bot }         \subfiglist_kv_canvas_bot_dim
-      \prop_put:NnV \subfiglist_l_tmp_prop { left }        \subfiglist_kv_canvas_left_dim
-      \prop_put:NnV \subfiglist_l_tmp_prop { right }       \subfiglist_kv_canvas_right_dim
-      \prop_put:NnV \subfiglist_l_tmp_prop { frame-color } \subfiglist_kv_canvas_frame_color_tl
-      \prop_put:NnV \subfiglist_l_tmp_prop { frame-width } \subfiglist_kv_canvas_frame_width_dim
-      \prop_put:NnV \subfiglist_l_tmp_prop { frame-top }   \subfiglist_kv_canvas_frame_top_dim
-      \prop_put:NnV \subfiglist_l_tmp_prop { frame-bot }   \subfiglist_kv_canvas_frame_bottom_dim
-      \prop_put:NnV \subfiglist_l_tmp_prop { frame-left }  \subfiglist_kv_canvas_frame_left_dim
-      \prop_put:NnV \subfiglist_l_tmp_prop { frame-right } \subfiglist_kv_canvas_frame_right_dim
+      \prop_put:NnV \subfiglist_l_tmp_prop { top }         \subfiglist_k_canvas_top_dim
+      \prop_put:NnV \subfiglist_l_tmp_prop { bot }         \subfiglist_k_canvas_bot_dim
+      \prop_put:NnV \subfiglist_l_tmp_prop { left }        \subfiglist_k_canvas_left_dim
+      \prop_put:NnV \subfiglist_l_tmp_prop { right }       \subfiglist_k_canvas_right_dim
+      \prop_put:NnV \subfiglist_l_tmp_prop { frame-color } \subfiglist_k_canvas_frame_color_tl
+      \prop_put:NnV \subfiglist_l_tmp_prop { frame-width } \subfiglist_k_canvas_frame_width_dim
+      \prop_put:NnV \subfiglist_l_tmp_prop { frame-top }   \subfiglist_k_canvas_frame_top_dim
+      \prop_put:NnV \subfiglist_l_tmp_prop { frame-bot }   \subfiglist_k_canvas_frame_bottom_dim
+      \prop_put:NnV \subfiglist_l_tmp_prop { frame-left }  \subfiglist_k_canvas_frame_left_dim
+      \prop_put:NnV \subfiglist_l_tmp_prop { frame-right } \subfiglist_k_canvas_frame_right_dim
 
       \subfiglist_tl_set_from_prop:NN \subfiglist_l_tmpa_tl \subfiglist_l_tmp_prop
       \prop_put:NnV \subfiglist_g_canvas_prop { ##2 } \subfiglist_l_tmpa_tl
@@ -3977,29 +3977,29 @@
     }
     
     % Process opitonal arguments
-    \subfiglist_key_set:nnV { subfiglistdummy } { top }          \subfiglist_kv_canvas_top_environment_default_dim
-    \subfiglist_key_set:nnV { subfiglistdummy } { bottom }       \subfiglist_kv_canvas_bot_environment_default_dim
-    \subfiglist_key_set:nnV { subfiglistdummy } { left }         \subfiglist_kv_canvas_left_environment_default_dim
-    \subfiglist_key_set:nnV { subfiglistdummy } { right }        \subfiglist_kv_canvas_right_environment_default_dim
-    \subfiglist_key_set:nnV { subfiglistdummy } { frame-color }  \subfiglist_kv_canvas_frame_color_environment_default_tl
-    \subfiglist_key_set:nnV { subfiglistdummy } { frame-width }  \subfiglist_kv_canvas_frame_width_environment_default_dim
-    \subfiglist_key_set:nnV { subfiglistdummy } { frame-top }    \subfiglist_kv_canvas_frame_top_environment_default_dim
-    \subfiglist_key_set:nnV { subfiglistdummy } { frame-bottom } \subfiglist_kv_canvas_frame_bottom_environment_default_dim
-    \subfiglist_key_set:nnV { subfiglistdummy } { frame-left }   \subfiglist_kv_canvas_frame_left_environment_default_dim
-    \subfiglist_key_set:nnV { subfiglistdummy } { frame-right }  \subfiglist_kv_canvas_frame_right_environment_default_dim
+    \subfiglist_key_set:nnV { subfiglistdummy } { top }          \subfiglist_k_canvas_top_environment_default_dim
+    \subfiglist_key_set:nnV { subfiglistdummy } { bottom }       \subfiglist_k_canvas_bot_environment_default_dim
+    \subfiglist_key_set:nnV { subfiglistdummy } { left }         \subfiglist_k_canvas_left_environment_default_dim
+    \subfiglist_key_set:nnV { subfiglistdummy } { right }        \subfiglist_k_canvas_right_environment_default_dim
+    \subfiglist_key_set:nnV { subfiglistdummy } { frame-color }  \subfiglist_k_canvas_frame_color_environment_default_tl
+    \subfiglist_key_set:nnV { subfiglistdummy } { frame-width }  \subfiglist_k_canvas_frame_width_environment_default_dim
+    \subfiglist_key_set:nnV { subfiglistdummy } { frame-top }    \subfiglist_k_canvas_frame_top_environment_default_dim
+    \subfiglist_key_set:nnV { subfiglistdummy } { frame-bottom } \subfiglist_k_canvas_frame_bottom_environment_default_dim
+    \subfiglist_key_set:nnV { subfiglistdummy } { frame-left }   \subfiglist_k_canvas_frame_left_environment_default_dim
+    \subfiglist_key_set:nnV { subfiglistdummy } { frame-right }  \subfiglist_k_canvas_frame_right_environment_default_dim
     \keys_set:nn { subfiglistdummy } { #1 }
     
     % Save specified offsets
-    \prop_put:NnV \subfiglist_l_tmp_prop { top }         \subfiglist_kv_canvas_top_dim
-    \prop_put:NnV \subfiglist_l_tmp_prop { bot }         \subfiglist_kv_canvas_bot_dim
-    \prop_put:NnV \subfiglist_l_tmp_prop { left }        \subfiglist_kv_canvas_left_dim
-    \prop_put:NnV \subfiglist_l_tmp_prop { right }       \subfiglist_kv_canvas_right_dim
-    \prop_put:NnV \subfiglist_l_tmp_prop { frame-color } \subfiglist_kv_canvas_frame_color_tl
-    \prop_put:NnV \subfiglist_l_tmp_prop { frame-width } \subfiglist_kv_canvas_frame_width_dim
-    \prop_put:NnV \subfiglist_l_tmp_prop { frame-top }   \subfiglist_kv_canvas_frame_top_dim
-    \prop_put:NnV \subfiglist_l_tmp_prop { frame-bot }   \subfiglist_kv_canvas_frame_bottom_dim
-    \prop_put:NnV \subfiglist_l_tmp_prop { frame-left }  \subfiglist_kv_canvas_frame_left_dim
-    \prop_put:NnV \subfiglist_l_tmp_prop { frame-right } \subfiglist_kv_canvas_frame_right_dim
+    \prop_put:NnV \subfiglist_l_tmp_prop { top }         \subfiglist_k_canvas_top_dim
+    \prop_put:NnV \subfiglist_l_tmp_prop { bot }         \subfiglist_k_canvas_bot_dim
+    \prop_put:NnV \subfiglist_l_tmp_prop { left }        \subfiglist_k_canvas_left_dim
+    \prop_put:NnV \subfiglist_l_tmp_prop { right }       \subfiglist_k_canvas_right_dim
+    \prop_put:NnV \subfiglist_l_tmp_prop { frame-color } \subfiglist_k_canvas_frame_color_tl
+    \prop_put:NnV \subfiglist_l_tmp_prop { frame-width } \subfiglist_k_canvas_frame_width_dim
+    \prop_put:NnV \subfiglist_l_tmp_prop { frame-top }   \subfiglist_k_canvas_frame_top_dim
+    \prop_put:NnV \subfiglist_l_tmp_prop { frame-bot }   \subfiglist_k_canvas_frame_bottom_dim
+    \prop_put:NnV \subfiglist_l_tmp_prop { frame-left }  \subfiglist_k_canvas_frame_left_dim
+    \prop_put:NnV \subfiglist_l_tmp_prop { frame-right } \subfiglist_k_canvas_frame_right_dim
     
     \subfiglist_tl_set_from_prop:NN \subfiglist_l_tmpa_tl \subfiglist_l_tmp_prop
     \prop_put:NnV \subfiglist_g_canvas_prop { #2 } \subfiglist_l_tmpa_tl
@@ -4027,21 +4027,21 @@
     \prop_put:Nnn \subfiglist_l_tmp_prop { hook } { #3 }
     
     % Process opitonal arguments
-    \subfiglist_key_set:nnV { subfiglistlabel } { hpos }       \subfiglist_kv_label_hpos_environment_default_tl
-    \subfiglist_key_set:nnV { subfiglistlabel } { vpos }       \subfiglist_kv_label_vpos_environment_default_tl
-    \subfiglist_key_set:nnV { subfiglistlabel } { xshift }     \subfiglist_kv_label_xshift_environment_default_dim
-    \subfiglist_key_set:nnV { subfiglistlabel } { yshift }     \subfiglist_kv_label_yshift_environment_default_dim
-    \subfiglist_key_set:nnV { subfiglistlabel } { color }      \subfiglist_kv_label_color_environment_default_tl
-    \subfiglist_key_set:nnV { subfiglistlabel } { background } \subfiglist_kv_label_background_environment_default_tl
+    \subfiglist_key_set:nnV { subfiglistlabel } { hpos }       \subfiglist_k_label_hpos_environment_default_tl
+    \subfiglist_key_set:nnV { subfiglistlabel } { vpos }       \subfiglist_k_label_vpos_environment_default_tl
+    \subfiglist_key_set:nnV { subfiglistlabel } { xshift }     \subfiglist_k_label_xshift_environment_default_dim
+    \subfiglist_key_set:nnV { subfiglistlabel } { yshift }     \subfiglist_k_label_yshift_environment_default_dim
+    \subfiglist_key_set:nnV { subfiglistlabel } { color }      \subfiglist_k_label_color_environment_default_tl
+    \subfiglist_key_set:nnV { subfiglistlabel } { background } \subfiglist_k_label_background_environment_default_tl
     \keys_set:nn { subfiglistlabel } { #1 }
     
     % Save label properties.
-    \prop_put:NnV \subfiglist_l_tmp_prop { hpos }       \subfiglist_kv_label_hpos_int
-    \prop_put:NnV \subfiglist_l_tmp_prop { vpos }       \subfiglist_kv_label_vpos_int
-    \prop_put:NnV \subfiglist_l_tmp_prop { xshift }     \subfiglist_kv_label_xshift_dim
-    \prop_put:NnV \subfiglist_l_tmp_prop { yshift }     \subfiglist_kv_label_yshift_dim
-    \prop_put:NnV \subfiglist_l_tmp_prop { color }      \subfiglist_kv_label_color_tl
-    \prop_put:NnV \subfiglist_l_tmp_prop { background } \subfiglist_kv_label_background_tl
+    \prop_put:NnV \subfiglist_l_tmp_prop { hpos }       \subfiglist_k_label_hpos_int
+    \prop_put:NnV \subfiglist_l_tmp_prop { vpos }       \subfiglist_k_label_vpos_int
+    \prop_put:NnV \subfiglist_l_tmp_prop { xshift }     \subfiglist_k_label_xshift_dim
+    \prop_put:NnV \subfiglist_l_tmp_prop { yshift }     \subfiglist_k_label_yshift_dim
+    \prop_put:NnV \subfiglist_l_tmp_prop { color }      \subfiglist_k_label_color_tl
+    \prop_put:NnV \subfiglist_l_tmp_prop { background } \subfiglist_k_label_background_tl
     \prop_put:NnV \subfiglist_l_tmp_prop { sequenceno } \subfiglist_l_tmp_int
     
     \subfiglist_tl_set_from_prop:NN \subfiglist_l_tmpa_tl \subfiglist_l_tmp_prop
@@ -4165,36 +4165,36 @@
   \group_begin:
   
   % Setup default options
-  \bool_if:NTF \subfiglist_kv_disable_order_warnings_document_default_bool
+  \bool_if:NTF \subfiglist_k_disable_order_warnings_document_default_bool
   {
     \subfiglist_key_set:nnn { subfiglist-environment } { disable-order-warnings } { true }
   }{
     \subfiglist_key_set:nnn { subfiglist-environment } { disable-order-warnings } { false }
   }
-  \bool_if:NTF \subfiglist_kv_use_hspace_document_default_bool
+  \bool_if:NTF \subfiglist_k_use_hspace_document_default_bool
   {
     \subfiglist_key_set:nnn { subfiglist-environment } { use-hspace } { true }
   }{
     \subfiglist_key_set:nnn { subfiglist-environment } { use-hspace } { false }
   }
-  \subfiglist_key_set:nnV { subfiglist-environment } { environment-width }   \subfiglist_kv_env_width_document_default_dim
-  \subfiglist_key_set:nnV { subfiglist-environment } { canvas-space }        \subfiglist_kv_canvas_space_document_default_dim
-  \subfiglist_key_set:nnV { subfiglist-environment } { canvas-top }          \subfiglist_kv_canvas_top_document_default_dim
-  \subfiglist_key_set:nnV { subfiglist-environment } { canvas-bottom }       \subfiglist_kv_canvas_bot_document_default_dim
-  \subfiglist_key_set:nnV { subfiglist-environment } { canvas-left }         \subfiglist_kv_canvas_left_document_default_dim
-  \subfiglist_key_set:nnV { subfiglist-environment } { canvas-right }        \subfiglist_kv_canvas_right_document_default_dim
-  \subfiglist_key_set:nnV { subfiglist-environment } { canvas-frame-color }  \subfiglist_kv_canvas_frame_color_document_default_tl
-  \subfiglist_key_set:nnV { subfiglist-environment } { canvas-frame-width }  \subfiglist_kv_canvas_frame_width_document_default_dim
-  \subfiglist_key_set:nnV { subfiglist-environment } { canvas-frame-top }    \subfiglist_kv_canvas_frame_top_document_default_dim
-  \subfiglist_key_set:nnV { subfiglist-environment } { canvas-frame-bottom } \subfiglist_kv_canvas_frame_bottom_document_default_dim
-  \subfiglist_key_set:nnV { subfiglist-environment } { canvas-frame-left }   \subfiglist_kv_canvas_frame_left_document_default_dim
-  \subfiglist_key_set:nnV { subfiglist-environment } { canvas-frame-right }  \subfiglist_kv_canvas_frame_right_document_default_dim
-  \subfiglist_key_set:nnV { subfiglist-environment } { label-hpos }          \subfiglist_kv_label_hpos_document_default_tl
-  \subfiglist_key_set:nnV { subfiglist-environment } { label-vpos }          \subfiglist_kv_label_vpos_document_default_tl
-  \subfiglist_key_set:nnV { subfiglist-environment } { label-xshift }        \subfiglist_kv_label_xshift_document_default_dim
-  \subfiglist_key_set:nnV { subfiglist-environment } { label-yshift }        \subfiglist_kv_label_yshift_document_default_dim
-  \subfiglist_key_set:nnV { subfiglist-environment } { label-color }         \subfiglist_kv_label_color_document_default_tl
-  \subfiglist_key_set:nnV { subfiglist-environment } { label-background }    \subfiglist_kv_label_background_document_default_tl
+  \subfiglist_key_set:nnV { subfiglist-environment } { environment-width }   \subfiglist_k_env_width_document_default_dim
+  \subfiglist_key_set:nnV { subfiglist-environment } { canvas-space }        \subfiglist_k_canvas_space_document_default_dim
+  \subfiglist_key_set:nnV { subfiglist-environment } { canvas-top }          \subfiglist_k_canvas_top_document_default_dim
+  \subfiglist_key_set:nnV { subfiglist-environment } { canvas-bottom }       \subfiglist_k_canvas_bot_document_default_dim
+  \subfiglist_key_set:nnV { subfiglist-environment } { canvas-left }         \subfiglist_k_canvas_left_document_default_dim
+  \subfiglist_key_set:nnV { subfiglist-environment } { canvas-right }        \subfiglist_k_canvas_right_document_default_dim
+  \subfiglist_key_set:nnV { subfiglist-environment } { canvas-frame-color }  \subfiglist_k_canvas_frame_color_document_default_tl
+  \subfiglist_key_set:nnV { subfiglist-environment } { canvas-frame-width }  \subfiglist_k_canvas_frame_width_document_default_dim
+  \subfiglist_key_set:nnV { subfiglist-environment } { canvas-frame-top }    \subfiglist_k_canvas_frame_top_document_default_dim
+  \subfiglist_key_set:nnV { subfiglist-environment } { canvas-frame-bottom } \subfiglist_k_canvas_frame_bottom_document_default_dim
+  \subfiglist_key_set:nnV { subfiglist-environment } { canvas-frame-left }   \subfiglist_k_canvas_frame_left_document_default_dim
+  \subfiglist_key_set:nnV { subfiglist-environment } { canvas-frame-right }  \subfiglist_k_canvas_frame_right_document_default_dim
+  \subfiglist_key_set:nnV { subfiglist-environment } { label-hpos }          \subfiglist_k_label_hpos_document_default_tl
+  \subfiglist_key_set:nnV { subfiglist-environment } { label-vpos }          \subfiglist_k_label_vpos_document_default_tl
+  \subfiglist_key_set:nnV { subfiglist-environment } { label-xshift }        \subfiglist_k_label_xshift_document_default_dim
+  \subfiglist_key_set:nnV { subfiglist-environment } { label-yshift }        \subfiglist_k_label_yshift_document_default_dim
+  \subfiglist_key_set:nnV { subfiglist-environment } { label-color }         \subfiglist_k_label_color_document_default_tl
+  \subfiglist_key_set:nnV { subfiglist-environment } { label-background }    \subfiglist_k_label_background_document_default_tl
 
   \keys_set:nn { subfiglist-environment } { #2 }
   
@@ -4275,11 +4275,11 @@
     \subfiglist_tl_set_unwrapped:NV \subfiglist_l_tmpb_tl \subfiglist_l_tmpb_tl
     
     \subfiglist_use:c { subfiglist_dimension_vmode_ \subfiglist_l_tmpa_tl :NVV }
-      \subfiglist_g_dimensioned_spec_tl \subfiglist_kv_env_width_dim \subfiglist_l_tmpb_tl
+      \subfiglist_g_dimensioned_spec_tl \subfiglist_k_env_width_dim \subfiglist_l_tmpb_tl
   }
   
   % Put everything inside a minipage
-  \begin{minipage}{\subfiglist_kv_env_width_dim}
+  \begin{minipage}{\subfiglist_k_env_width_dim}
     % Iterate over top level elements to produce output
     \tl_map_inline:Nn \subfiglist_g_dimensioned_spec_tl
     {
