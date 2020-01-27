@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.9.12)  22 JAN 2020 21:33
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.9.12)  27 JAN 2020 19:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1348,9 +1348,10 @@ Package microtype Info: Setting up font `T1/lmr/m/n/6' on input line 192.
 Package microtype Info: ... Loading protrusion list `lmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-default'.
-\subfiglist_g_identifier_count_10_int=\count312
-\subfiglist_canvas_num_10_int=\count313
-\subfiglist_canvas_num_int=\count314
+\subfiglist_l_identifier_count_10_int=\count312
+\subfiglist_l_identifier_count_int=\count313
+\subfiglist_l_canvas_num_10_int=\count314
+\subfiglist_l_canvas_num_int=\count315
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
@@ -1363,35 +1364,35 @@ File: figures/05.png Graphic file (type bmp)
 <figures/05.png>
 File: figures/06.png Graphic file (type bmp)
 <figures/06.png>
-\subfiglist_line_height_10_dim=\dimen290
-\subfiglist_column_width_10_dim=\dimen291
-\subfiglist_effective_hoff_10_dim=\dimen292
-\subfiglist_effective_voff_10_dim=\dimen293
-\subfiglist_line_height_dim=\dimen294
-\subfiglist_column_width_dim=\dimen295
-\subfiglist_effective_hoff_dim=\dimen296
-\subfiglist_effective_voff_dim=\dimen297
-\subfiglist_canvas_hoff_11_dim=\dimen298
-\subfiglist_canvas_voff_11_dim=\dimen299
-\subfiglist_canvas_hoff_dim=\dimen300
-\subfiglist_canvas_voff_dim=\dimen301
-\subfiglist_canvas_hoff_12_dim=\dimen302
-\subfiglist_canvas_voff_12_dim=\dimen303
-\subfiglist_line_height_11_dim=\dimen304
-\subfiglist_column_width_11_dim=\dimen305
-\subfiglist_current_line_height_14_dim=\dimen306
-\subfiglist_current_line_height_dim=\dimen307
-\subfiglist_current_canvas_num_14_int=\count315
-\subfiglist_current_canvas_num_int=\count316
-\subfiglist_current_canvas_num_21_int=\count317
+\subfiglist_l_line_height_10_dim=\dimen290
+\subfiglist_l_column_width_10_dim=\dimen291
+\subfiglist_l_effective_hoff_10_dim=\dimen292
+\subfiglist_l_effective_voff_10_dim=\dimen293
+\subfiglist_l_line_height_dim=\dimen294
+\subfiglist_l_column_width_dim=\dimen295
+\subfiglist_l_effective_hoff_dim=\dimen296
+\subfiglist_l_effective_voff_dim=\dimen297
+\subfiglist_l_canvas_hoff_11_dim=\dimen298
+\subfiglist_l_canvas_voff_11_dim=\dimen299
+\subfiglist_l_canvas_hoff_dim=\dimen300
+\subfiglist_l_canvas_voff_dim=\dimen301
+\subfiglist_l_canvas_hoff_12_dim=\dimen302
+\subfiglist_l_canvas_voff_12_dim=\dimen303
+\subfiglist_l_line_height_11_dim=\dimen304
+\subfiglist_l_column_width_11_dim=\dimen305
+\subfiglist_l_current_line_height_14_dim=\dimen306
+\subfiglist_l_current_line_height_dim=\dimen307
+\subfiglist_l_current_canvas_num_14_int=\count316
+\subfiglist_l_current_canvas_num_int=\count317
+\subfiglist_l_current_canvas_num_21_int=\count318
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
 File: figures/03.png Graphic file (type bmp)
 <figures/03.png>
-\subfiglist_current_newline_height_13_dim=\dimen308
-\subfiglist_current_newline_height_dim=\dimen309
+\subfiglist_l_current_newline_height_13_dim=\dimen308
+\subfiglist_l_current_newline_height_dim=\dimen309
 File: figures/04.png Graphic file (type bmp)
 <figures/04.png>
 File: figures/05.png Graphic file (type bmp)
@@ -1421,8 +1422,8 @@ Package microtype Info: Setting up font `T1/lmtt/m/sl/12' on input line 239.
 Package microtype Info: ... Loading protrusion list `T1-it-default'.
 Package microtype Info: ... : First loading protrusion list `OT1-it'.
  [3]
-\subfiglist_g_identifier_count_13_int=\count318
-\subfiglist_canvas_num_13_int=\count319
+\subfiglist_l_identifier_count_13_int=\count319
+\subfiglist_l_canvas_num_13_int=\count320
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
@@ -1451,44 +1452,44 @@ File: figures/13.png Graphic file (type bmp)
 <figures/13.png>
 File: figures/14.png Graphic file (type bmp)
 <figures/14.png>
-\subfiglist_line_height_13_dim=\dimen310
-\subfiglist_column_width_13_dim=\dimen311
-\subfiglist_effective_hoff_13_dim=\dimen312
-\subfiglist_effective_voff_13_dim=\dimen313
-\subfiglist_canvas_hoff_14_dim=\dimen314
-\subfiglist_canvas_voff_14_dim=\dimen315
-\subfiglist_canvas_hoff_15_dim=\dimen316
-\subfiglist_canvas_voff_15_dim=\dimen317
-\subfiglist_line_height_14_dim=\dimen318
-\subfiglist_column_width_14_dim=\dimen319
-\subfiglist_canvas_hoff_16_dim=\dimen320
-\subfiglist_canvas_voff_16_dim=\dimen321
-\subfiglist_canvas_hoff_17_dim=\dimen322
-\subfiglist_canvas_voff_17_dim=\dimen323
-\subfiglist_effective_hoff_14_dim=\dimen324
-\subfiglist_effective_voff_14_dim=\dimen325
-\subfiglist_line_height_15_dim=\dimen326
-\subfiglist_column_width_15_dim=\dimen327
-\subfiglist_effective_hoff_15_dim=\dimen328
-\subfiglist_effective_voff_15_dim=\dimen329
-\subfiglist_line_height_16_dim=\dimen330
-\subfiglist_column_width_16_dim=\dimen331
-\subfiglist_current_line_height_17_dim=\dimen332
-\subfiglist_current_canvas_num_17_int=\count320
-\subfiglist_current_canvas_num_24_int=\count321
+\subfiglist_l_line_height_13_dim=\dimen310
+\subfiglist_l_column_width_13_dim=\dimen311
+\subfiglist_l_effective_hoff_13_dim=\dimen312
+\subfiglist_l_effective_voff_13_dim=\dimen313
+\subfiglist_l_canvas_hoff_14_dim=\dimen314
+\subfiglist_l_canvas_voff_14_dim=\dimen315
+\subfiglist_l_canvas_hoff_15_dim=\dimen316
+\subfiglist_l_canvas_voff_15_dim=\dimen317
+\subfiglist_l_line_height_14_dim=\dimen318
+\subfiglist_l_column_width_14_dim=\dimen319
+\subfiglist_l_canvas_hoff_16_dim=\dimen320
+\subfiglist_l_canvas_voff_16_dim=\dimen321
+\subfiglist_l_canvas_hoff_17_dim=\dimen322
+\subfiglist_l_canvas_voff_17_dim=\dimen323
+\subfiglist_l_effective_hoff_14_dim=\dimen324
+\subfiglist_l_effective_voff_14_dim=\dimen325
+\subfiglist_l_line_height_15_dim=\dimen326
+\subfiglist_l_column_width_15_dim=\dimen327
+\subfiglist_l_effective_hoff_15_dim=\dimen328
+\subfiglist_l_effective_voff_15_dim=\dimen329
+\subfiglist_l_line_height_16_dim=\dimen330
+\subfiglist_l_column_width_16_dim=\dimen331
+\subfiglist_l_current_line_height_17_dim=\dimen332
+\subfiglist_l_current_canvas_num_17_int=\count321
+\subfiglist_l_current_canvas_num_24_int=\count322
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
 File: figures/03.png Graphic file (type bmp)
 <figures/03.png>
-\subfiglist_current_newline_height_16_dim=\dimen333
-\subfiglist_current_line_height_22_dim=\dimen334
-\subfiglist_current_canvas_num_22_int=\count322
-\subfiglist_current_canvas_num_29_int=\count323
+\subfiglist_l_current_newline_height_16_dim=\dimen333
+\subfiglist_l_current_line_height_22_dim=\dimen334
+\subfiglist_l_current_canvas_num_22_int=\count323
+\subfiglist_l_current_canvas_num_29_int=\count324
 File: figures/04.png Graphic file (type bmp)
 <figures/04.png>
-\subfiglist_current_newline_height_21_dim=\dimen335
+\subfiglist_l_current_newline_height_21_dim=\dimen335
 File: figures/05.png Graphic file (type bmp)
 <figures/05.png>
 File: figures/06.png Graphic file (type bmp)
@@ -1673,14 +1674,14 @@ File: figures/05.png Graphic file (type bmp)
 <figures/05.png>
 File: figures/06.png Graphic file (type bmp)
 <figures/06.png>
-\subfiglist_k_label_hpos_int=\count324
-\subfiglist_k_label_vpos_int=\count325
+\subfiglist_k_label_hpos_int=\count325
+\subfiglist_k_label_vpos_int=\count326
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
-\subfiglist_current_canvas_width_21_dim=\dimen336
-\subfiglist_current_canvas_height_21_dim=\dimen337
-\subfiglist_current_canvas_width_dim=\dimen338
-\subfiglist_current_canvas_height_dim=\dimen339
+\subfiglist_l_current_canvas_width_21_dim=\dimen336
+\subfiglist_l_current_canvas_height_21_dim=\dimen337
+\subfiglist_l_current_canvas_width_dim=\dimen338
+\subfiglist_l_current_canvas_height_dim=\dimen339
 Package microtype Info: Setting up font `T1/lmr/m/n/10' on input line 556.
 Package microtype Info: ... Loading protrusion list `lmr-T1'.
 Package microtype Info: ... : First loading protrusion list `cmr-T1'.
@@ -1722,9 +1723,9 @@ File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
 File: figures/01.png Graphic file (type bmp)
 <figures/01.png>
-\subfiglist_current_canvas_num_18_int=\count326
-\subfiglist_current_canvas_width_18_dim=\dimen340
-\subfiglist_current_canvas_height_18_dim=\dimen341
+\subfiglist_l_current_canvas_num_18_int=\count327
+\subfiglist_l_current_canvas_width_18_dim=\dimen340
+\subfiglist_l_current_canvas_height_18_dim=\dimen341
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
 
@@ -1755,8 +1756,8 @@ Package microtype Info: ... Loading protrusion list `cmr-textcomp'.
 Package microtype Info: *** Changing to language context `american'
 (microtype)              on input line 727.
  [11]
-\subfiglist_g_identifier_count_7_int=\count327
-\subfiglist_canvas_num_7_int=\count328
+\subfiglist_l_identifier_count_7_int=\count328
+\subfiglist_l_canvas_num_7_int=\count329
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
 File: figures/02.png Graphic file (type bmp)
@@ -1765,37 +1766,37 @@ File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
-\subfiglist_line_height_7_dim=\dimen342
-\subfiglist_column_width_7_dim=\dimen343
-\subfiglist_effective_hoff_7_dim=\dimen344
-\subfiglist_effective_voff_7_dim=\dimen345
-\subfiglist_canvas_hoff_8_dim=\dimen346
-\subfiglist_canvas_voff_8_dim=\dimen347
-\subfiglist_canvas_hoff_9_dim=\dimen348
-\subfiglist_canvas_voff_9_dim=\dimen349
-\subfiglist_canvas_hoff_10_dim=\dimen350
-\subfiglist_canvas_voff_10_dim=\dimen351
-\subfiglist_line_height_8_dim=\dimen352
-\subfiglist_column_width_8_dim=\dimen353
-\subfiglist_effective_hoff_8_dim=\dimen354
-\subfiglist_effective_voff_8_dim=\dimen355
-\subfiglist_line_height_9_dim=\dimen356
-\subfiglist_column_width_9_dim=\dimen357
-\subfiglist_effective_hoff_9_dim=\dimen358
-\subfiglist_effective_voff_9_dim=\dimen359
-\subfiglist_current_line_height_11_dim=\dimen360
-\subfiglist_current_line_height_16_dim=\dimen361
-\subfiglist_current_canvas_num_16_int=\count329
-\subfiglist_current_canvas_num_23_int=\count330
-\subfiglist_current_canvas_num_32_int=\count331
+\subfiglist_l_line_height_7_dim=\dimen342
+\subfiglist_l_column_width_7_dim=\dimen343
+\subfiglist_l_effective_hoff_7_dim=\dimen344
+\subfiglist_l_effective_voff_7_dim=\dimen345
+\subfiglist_l_canvas_hoff_8_dim=\dimen346
+\subfiglist_l_canvas_voff_8_dim=\dimen347
+\subfiglist_l_canvas_hoff_9_dim=\dimen348
+\subfiglist_l_canvas_voff_9_dim=\dimen349
+\subfiglist_l_canvas_hoff_10_dim=\dimen350
+\subfiglist_l_canvas_voff_10_dim=\dimen351
+\subfiglist_l_line_height_8_dim=\dimen352
+\subfiglist_l_column_width_8_dim=\dimen353
+\subfiglist_l_effective_hoff_8_dim=\dimen354
+\subfiglist_l_effective_voff_8_dim=\dimen355
+\subfiglist_l_line_height_9_dim=\dimen356
+\subfiglist_l_column_width_9_dim=\dimen357
+\subfiglist_l_effective_hoff_9_dim=\dimen358
+\subfiglist_l_effective_voff_9_dim=\dimen359
+\subfiglist_l_current_line_height_11_dim=\dimen360
+\subfiglist_l_current_line_height_16_dim=\dimen361
+\subfiglist_l_current_canvas_num_16_int=\count330
+\subfiglist_l_current_canvas_num_23_int=\count331
+\subfiglist_l_current_canvas_num_32_int=\count332
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
-\subfiglist_current_newline_height_15_dim=\dimen362
+\subfiglist_l_current_newline_height_15_dim=\dimen362
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
-\subfiglist_current_canvas_num_11_int=\count332
+\subfiglist_l_current_canvas_num_11_int=\count333
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
 File: figures/02.png Graphic file (type bmp)
@@ -1818,20 +1819,12 @@ Package subfiglist Warning: Package subfiglist Warning: The canvas numbers in
 (subfiglist)                given in a different order than the canvas numbers
 (subfiglist)                in the body of the `subfiglist' environment.
 
-! Arithmetic overflow.
-<recently read> \__dim_eval_end: 
-                                 
-l.748 \end{subfiglist}
-                      
-I can't evaluate this expression,
-since the result is out of range.
-
-\subfiglist_current_canvas_num_27_int=\count333
+\subfiglist_l_current_canvas_num_27_int=\count334
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
-\subfiglist_current_newline_height_10_dim=\dimen363
+\subfiglist_l_current_newline_height_10_dim=\dimen363
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
 File: figures/02.png Graphic file (type bmp)
@@ -1851,12 +1844,12 @@ Package rerunfilecheck Info: File `subfiglist.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E.
  ) 
 Here is how much of TeX's memory you used:
- 36122 strings out of 492909
- 678131 string characters out of 6132923
- 890509 words of memory out of 5000000
- 39756 multiletter control sequences out of 15000+600000
+ 36125 strings out of 492909
+ 678690 string characters out of 6132923
+ 890500 words of memory out of 5000000
+ 39759 multiletter control sequences out of 15000+600000
  613702 words of font info for 82 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 62i,18n,115p,9089b,1099s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 62i,18n,115p,9089b,1089s stack positions out of 5000i,500n,10000p,200000b,80000s
 
 Output written on subfiglist.pdf (12 pages).
