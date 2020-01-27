@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.9.12)  27 JAN 2020 19:09
+This is XeTeX, Version 3.14159265-2.6-0.999991 (TeX Live 2019) (preloaded format=xelatex 2019.9.12)  27 JAN 2020 20:43
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1819,6 +1819,30 @@ Package subfiglist Warning: Package subfiglist Warning: The canvas numbers in
 (subfiglist)                given in a different order than the canvas numbers
 (subfiglist)                in the body of the `subfiglist' environment.
 
+
+! Package subfiglist Error: Found invalid ratio `0' while calculating canvas
+(subfiglist)                dimensions. Cannot distribute canvases.
+
+Type <return> to continue.
+ ...                                              
+                                                  
+l.748 \end{subfiglist}
+                      
+
+LaTeX does not know anything more about this error, sorry.
+
+Try typing <return> to proceed.
+If that doesn't work, type X <return> to quit.
+
+
+! Arithmetic overflow.
+<recently read> \__dim_eval_end: 
+                                 
+l.748 \end{subfiglist}
+                      
+I can't evaluate this expression,
+since the result is out of range.
+
 \subfiglist_l_current_canvas_num_27_int=\count334
 File: figures/02.png Graphic file (type bmp)
 <figures/02.png>
@@ -1844,10 +1868,10 @@ Package rerunfilecheck Info: File `subfiglist.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E.
  ) 
 Here is how much of TeX's memory you used:
- 36125 strings out of 492909
- 678690 string characters out of 6132923
- 890500 words of memory out of 5000000
- 39759 multiletter control sequences out of 15000+600000
+ 36139 strings out of 492909
+ 679136 string characters out of 6132923
+ 890844 words of memory out of 5000000
+ 39773 multiletter control sequences out of 15000+600000
  613702 words of font info for 82 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  62i,18n,115p,9089b,1089s stack positions out of 5000i,500n,10000p,200000b,80000s

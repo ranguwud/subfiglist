@@ -12,7 +12,6 @@ TODO
 * Fix width and height argument for subfiglistoverlay environment
 * Add Tikz positioning for labels
 * Allow adjusting \fboxsep for color background in labels
-* Check for finiteness of all fp in \dim_ratio:nn calculations, raise errors if not
 
 
 
@@ -81,4 +80,5 @@ DONE
 * Remove unnecessary checks for \quark_no_value
 * Add option to disable warnings for wrong order.
 * Remove deprecated \subfiglist_group_var_return:NN
+* Check for finiteness of all fp in \dim_ratio:nn calculations, raise errors if not
 

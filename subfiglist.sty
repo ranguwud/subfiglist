@@ -848,6 +848,11 @@
   in~a~different~order~than~the~overlay~numbers~in~the~body~of~the~`subfiglist'~environment.
 }
 
+\msg_new:nnn { subfiglist } { arithmetic~error }
+{
+  Found~invalid~ratio~`#1'~while~calculating~canvas~dimensions.~Cannot~distribute~canvases.
+}
+
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -1753,7 +1758,7 @@
 
 
 % Test whether a float is NaN
-\prg_new_conditional:Npnn \subfiglist_is_nan:n #1 { p, T, F, TF }
+\prg_new_conditional:Npnn \subfiglist_fp_is_nan:n #1 { p, T, F, TF }
 %
 % #1: Float to be tested
 %
@@ -1769,10 +1774,33 @@
   }
 }
 
-\cs_generate_variant:Nn \subfiglist_is_nan_p:n { V }
-\cs_generate_variant:Nn \subfiglist_is_nan:nT  { V }
-\cs_generate_variant:Nn \subfiglist_is_nan:nF  { V }
-\cs_generate_variant:Nn \subfiglist_is_nan:nTF { V }
+\cs_generate_variant:Nn \subfiglist_fp_is_nan_p:n { V }
+\cs_generate_variant:Nn \subfiglist_fp_is_nan:nT  { V }
+\cs_generate_variant:Nn \subfiglist_fp_is_nan:nF  { V }
+\cs_generate_variant:Nn \subfiglist_fp_is_nan:nTF { V }
+
+% Test whether a float is finite
+\prg_new_conditional:Npnn \subfiglist_fp_is_finite:n #1 { p, T, F, TF }
+%
+% #1: Float to be tested
+%
+{
+  \bool_lazy_any:nTF
+  {
+    { \subfiglist_fp_is_nan_p:n { #1 } }
+    { \fp_compare_p:n { #1 <= 0 } }
+    { \fp_compare_p:n { #1 = \c_inf_fp } }
+  }{
+    \prg_return_false:
+  }{
+    \prg_return_true:
+  }
+}
+
+\cs_generate_variant:Nn \subfiglist_fp_is_finite_p:n { V }
+\cs_generate_variant:Nn \subfiglist_fp_is_finite:nT  { V }
+\cs_generate_variant:Nn \subfiglist_fp_is_finite:nF  { V }
+\cs_generate_variant:Nn \subfiglist_fp_is_finite:nTF { V }
 
 
 
@@ -3027,7 +3055,7 @@
         \subfiglist_l_tmpb_dim % Vertical offset
         \subfiglist_l_tmpb_tl
         
-      \subfiglist_is_nan:VF \subfiglist_l_tmp_fp
+      \subfiglist_fp_is_nan:VF \subfiglist_l_tmp_fp
       {
         \dim_compare:nNnTF { \subfiglist_l_canvas_hoff_dim } < { \subfiglist_l_tmpa_dim }
         {
@@ -3051,6 +3079,11 @@
         \fp_set:Nn \subfiglist_l_canvas_ratio_fp { 1 / ( ( 1 / \subfiglist_l_canvas_ratio_fp ) + ( 1 / \subfiglist_l_tmp_fp ) ) }
       }
       \dim_add:NV \subfiglist_l_canvas_voff_dim \subfiglist_l_tmpb_dim
+    }
+    
+    \subfiglist_fp_is_finite:VF \subfiglist_l_canvas_ratio_fp
+    {
+      \msg_error:nnf { subfiglist } { arithmetic~error } { \fp_use:N \subfiglist_l_canvas_ratio_fp }
     }
   
   % Return local variables with group scope
@@ -3088,7 +3121,7 @@
         \subfiglist_l_tmpb_dim % Vertical offset
         \subfiglist_l_tmpb_tl
         
-      \subfiglist_is_nan:VF \subfiglist_l_tmp_fp
+      \subfiglist_fp_is_nan:VF \subfiglist_l_tmp_fp
       {
         \dim_compare:nNnTF { \subfiglist_l_canvas_voff_dim } < { \subfiglist_l_tmpb_dim }
         {
@@ -3108,6 +3141,11 @@
       \dim_add:NV \subfiglist_l_canvas_hoff_dim \subfiglist_l_tmpa_dim
     }
     
+    \subfiglist_fp_is_finite:VF \subfiglist_l_canvas_ratio_fp
+    {
+      \msg_error:nnf { subfiglist } { arithmetic~error } { \fp_use:N \subfiglist_l_canvas_ratio_fp }
+    }
+  
   % Return local variables with group scope
   \subfiglist_group_return_fp_set_eq:NN  #1 \subfiglist_l_canvas_ratio_fp
   \subfiglist_group_return_dim_set_eq:NN #2 \subfiglist_l_canvas_hoff_dim
